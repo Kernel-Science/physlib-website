@@ -344,17 +344,28 @@ function commitsInRange(base, head) {
 }
 
 /**
- * Best-effort email → { login, avatar_url, html_url } map from the GitHub API,
- * used purely to decorate contributors. Returns an empty map without a token
- * or on any failure: commit counts come from git either way.
+ * Best-effort GitHub identity lookup, used to turn git authors into linked,
+ * avatared accounts. Returns { bySha, byEmail } maps of
+ * { login, avatar_url, html_url }.
+ *
+ * Keyed primarily by commit SHA, which is an exact join against git's own
+ * commit list. Email is kept only as a secondary key for commits the API's
+ * date-windowed listing happens not to return: matching on email alone is
+ * unreliable because squash merges and web-UI commits can record a different
+ * address than the one git has locally.
+ *
+ * Runs without a token too - unauthenticated GitHub allows 60 requests/hour
+ * and a single month needs about two - so contributor links work locally. On
+ * rate-limit or any other failure we degrade to plain git names rather than
+ * failing the report.
  */
 async function githubIdentities(branch, sinceIso, untilIso) {
-  const identities = new Map();
-  if (!TOKEN) return identities;
+  const bySha = new Map();
+  const byEmail = new Map();
   try {
     for (let page = 1; page <= 100; page++) {
       const q = new URLSearchParams({
-        sha: branch.replace(/^origin\//, ""),
+        sha: branch.replace(/^[^/]+\//, ""),
         since: sinceIso,
         until: untilIso,
         per_page: "100",
@@ -363,21 +374,24 @@ async function githubIdentities(branch, sinceIso, untilIso) {
       const batch = await ghRequest(`/repos/${OWNER}/${REPO}/commits?${q}`);
       if (!Array.isArray(batch) || batch.length === 0) break;
       for (const c of batch) {
+        if (!c.author?.login) continue;
+        const identity = {
+          login: c.author.login,
+          avatar_url: c.author.avatar_url ?? null,
+          html_url: c.author.html_url ?? null,
+        };
+        if (c.sha) bySha.set(c.sha, identity);
         const email = c.commit?.author?.email;
-        if (email && c.author?.login && !identities.has(email)) {
-          identities.set(email, {
-            login: c.author.login,
-            avatar_url: c.author.avatar_url ?? null,
-            html_url: c.author.html_url ?? null,
-          });
-        }
+        if (email && !byEmail.has(email)) byEmail.set(email, identity);
       }
       if (batch.length < 100) break;
     }
   } catch (err) {
-    console.warn(`  ⚠ could not fetch GitHub identities (${err.message}); using git names`);
+    console.warn(
+      `  ⚠ could not fetch GitHub identities (${err.message}); contributors will be listed by git name without links`,
+    );
   }
-  return identities;
+  return { bySha, byEmail };
 }
 
 // ─── Path helpers ─────────────────────────────────────────────────────────
@@ -1011,10 +1025,10 @@ async function generateMonth(year, monthIdx, defaultBranch, opts = {}) {
   // the API's inclusive since/until does). GitHub is consulted only to attach
   // logins and avatars, and is entirely optional.
   const commits = commitsInRange(baseSha, headSha);
-  const identities = await githubIdentities(defaultBranch, startIso, endIso);
+  const { bySha, byEmail } = await githubIdentities(defaultBranch, startIso, endIso);
   const contributors = new Map();
   for (const c of commits) {
-    const id = identities.get(c.email);
+    const id = bySha.get(c.sha) ?? byEmail.get(c.email);
     const key = id ? `login:${id.login}` : `name:${c.name}`;
     if (!contributors.has(key)) {
       contributors.set(key, {
@@ -1114,7 +1128,7 @@ async function generateMonth(year, monthIdx, defaultBranch, opts = {}) {
 (async function main() {
   if (!TOKEN) {
     console.warn(
-      "⚠️  GITHUB_TOKEN is not set. Contributors will be listed by git author name without GitHub logins or avatars; everything else is unaffected.",
+      "⚠️  GITHUB_TOKEN is not set. Contributor identity lookups will be unauthenticated (60 req/h), which is enough for a month or two but will rate-limit on a long backfill. Everything else works offline.",
     );
   }
 
