@@ -83,6 +83,17 @@ export type MonthlyContributor = {
   html_url: string | null;
   avatar_url: string | null;
   commits: number;
+  linesChanged: number;
+};
+
+/** Someone who reviewed a PR merged this month but didn't author a commit. */
+export type MonthlyReviewer = {
+  login: string;
+  /** GitHub profile display name, when set. */
+  name?: string;
+  html_url: string | null;
+  avatar_url: string | null;
+  reviews: number;
 };
 
 export type MonthlyDeclaration = {
@@ -117,6 +128,7 @@ export type MonthlyUpdate = {
   totalDeletions: number;
   linesChanged: number;
   contributors: MonthlyContributor[];
+  reviewers?: MonthlyReviewer[];
   kindTotals: Record<string, number>;
   files: MonthlyFileEntry[];
   /** Number of files that changed in this month's diff (superset of `files`,

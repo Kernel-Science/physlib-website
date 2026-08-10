@@ -6,11 +6,11 @@
   "startDate": "2026-06-01T00:00:00.000Z",
   "endDate": "2026-07-01T00:00:00.000Z",
   "repo": "leanprover-community/physlib",
-  "branch": "upstream/master",
+  "branch": "origin/master",
   "baseSha": "d44dd713876a1cf7817747d9846cfd362353057f",
   "headSha": "05930fe0159096a15956f518d5917bc72a69175d",
   "compareUrl": "https://github.com/leanprover-community/physlib/compare/d44dd713876a1cf7817747d9846cfd362353057f...05930fe0159096a15956f518d5917bc72a69175d",
-  "commitsUrl": "https://github.com/leanprover-community/physlib/commits/upstream/master?since=2026-06-01T00:00:00.000Z&until=2026-07-01T00:00:00.000Z",
+  "commitsUrl": "https://github.com/leanprover-community/physlib/commits/origin/master?since=2026-06-01T00:00:00.000Z&until=2026-07-01T00:00:00.000Z",
   "totalCommits": 154,
   "totalAdditions": 28676,
   "totalDeletions": 18161,
@@ -303,165 +303,231 @@
   "contributors": [
     {
       "login": "jstoobysmith",
+      "name": "Joseph Tooby-Smith",
       "html_url": "https://github.com/jstoobysmith",
       "avatar_url": "https://avatars.githubusercontent.com/u/72603918?v=4",
-      "commits": 21
+      "commits": 21,
+      "linesChanged": 15350
     },
     {
-      "login": "NicolaBernini",
-      "html_url": "https://github.com/NicolaBernini",
-      "avatar_url": "https://avatars.githubusercontent.com/u/6381645?v=4",
-      "commits": 20
-    },
-    {
-      "login": "Robby955",
-      "html_url": "https://github.com/Robby955",
-      "avatar_url": "https://avatars.githubusercontent.com/u/48200016?v=4",
-      "commits": 15
-    },
-    {
-      "login": "yidiq7",
-      "html_url": "https://github.com/yidiq7",
-      "avatar_url": "https://avatars.githubusercontent.com/u/29921686?v=4",
-      "commits": 13
-    },
-    {
-      "login": "gloges",
-      "html_url": "https://github.com/gloges",
-      "avatar_url": "https://avatars.githubusercontent.com/u/11429491?v=4",
-      "commits": 12
+      "login": "Vilin97",
+      "name": "Vasily Ilin",
+      "html_url": "https://github.com/Vilin97",
+      "avatar_url": "https://avatars.githubusercontent.com/u/17322558?v=4",
+      "commits": 1,
+      "linesChanged": 8962
     },
     {
       "login": "zhikaip",
+      "name": "Zhi Kai Pong",
       "html_url": "https://github.com/zhikaip",
       "avatar_url": "https://avatars.githubusercontent.com/u/46996788?v=4",
-      "commits": 9
-    },
-    {
-      "login": "giuseppesorge",
-      "html_url": "https://github.com/giuseppesorge",
-      "avatar_url": "https://avatars.githubusercontent.com/u/10847456?v=4",
-      "commits": 7
-    },
-    {
-      "login": "kastch",
-      "html_url": "https://github.com/kastch",
-      "avatar_url": "https://avatars.githubusercontent.com/u/5752579?v=4",
-      "commits": 7
-    },
-    {
-      "login": "nateabr",
-      "html_url": "https://github.com/nateabr",
-      "avatar_url": "https://avatars.githubusercontent.com/u/135662056?v=4",
-      "commits": 7
+      "commits": 9,
+      "linesChanged": 5540
     },
     {
       "login": "juanjfndz",
       "html_url": "https://github.com/juanjfndz",
       "avatar_url": "https://avatars.githubusercontent.com/u/76520097?v=4",
-      "commits": 6
+      "commits": 6,
+      "linesChanged": 3103
     },
     {
-      "login": "Lemmy00",
-      "html_url": "https://github.com/Lemmy00",
-      "avatar_url": "https://avatars.githubusercontent.com/u/64690721?v=4",
-      "commits": 5
-    },
-    {
-      "login": "doxtor6",
-      "html_url": "https://github.com/doxtor6",
-      "avatar_url": "https://avatars.githubusercontent.com/u/91156808?v=4",
-      "commits": 4
+      "login": "gloges",
+      "name": "Gregory Loges",
+      "html_url": "https://github.com/gloges",
+      "avatar_url": "https://avatars.githubusercontent.com/u/11429491?v=4",
+      "commits": 12,
+      "linesChanged": 2913
     },
     {
       "login": "pariandrea",
+      "name": "Andrea Pari",
       "html_url": "https://github.com/pariandrea",
       "avatar_url": "https://avatars.githubusercontent.com/u/56761212?v=4",
-      "commits": 4
+      "commits": 4,
+      "linesChanged": 2515
     },
     {
       "login": "bjoernkjoshanssen",
+      "name": "Bjørn Kjos-Hanssen",
       "html_url": "https://github.com/bjoernkjoshanssen",
       "avatar_url": "https://avatars.githubusercontent.com/u/1740286?v=4",
-      "commits": 3
+      "commits": 3,
+      "linesChanged": 1993
     },
     {
-      "login": "jfindlay",
-      "html_url": "https://github.com/jfindlay",
-      "avatar_url": "https://avatars.githubusercontent.com/u/702905?v=4",
-      "commits": 3
+      "login": "Robby955",
+      "name": "Robby Sneiderman",
+      "html_url": "https://github.com/Robby955",
+      "avatar_url": "https://avatars.githubusercontent.com/u/48200016?v=4",
+      "commits": 15,
+      "linesChanged": 1736
     },
     {
-      "login": "mshibashish",
-      "html_url": "https://github.com/mshibashish",
-      "avatar_url": "https://avatars.githubusercontent.com/u/84513513?v=4",
-      "commits": 3
+      "login": "nateabr",
+      "html_url": "https://github.com/nateabr",
+      "avatar_url": "https://avatars.githubusercontent.com/u/135662056?v=4",
+      "commits": 7,
+      "linesChanged": 1433
     },
     {
-      "login": "abudjum",
-      "html_url": "https://github.com/abudjum",
-      "avatar_url": "https://avatars.githubusercontent.com/u/293911086?v=4",
-      "commits": 2
+      "login": "kastch",
+      "name": "Nikolai Kashcheev",
+      "html_url": "https://github.com/kastch",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5752579?v=4",
+      "commits": 7,
+      "linesChanged": 1308
     },
     {
-      "login": "Bergschaf",
-      "html_url": "https://github.com/Bergschaf",
-      "avatar_url": "https://avatars.githubusercontent.com/u/86738237?v=4",
-      "commits": 2
-    },
-    {
-      "login": "FloWsnr",
-      "html_url": "https://github.com/FloWsnr",
-      "avatar_url": "https://avatars.githubusercontent.com/u/65916600?v=4",
-      "commits": 2
+      "login": "yidiq7",
+      "name": "Yidi Qi",
+      "html_url": "https://github.com/yidiq7",
+      "avatar_url": "https://avatars.githubusercontent.com/u/29921686?v=4",
+      "commits": 13,
+      "linesChanged": 1194
     },
     {
       "login": "LibertasSpZ",
       "html_url": "https://github.com/LibertasSpZ",
       "avatar_url": "https://avatars.githubusercontent.com/u/38987995?v=4",
-      "commits": 2
+      "commits": 2,
+      "linesChanged": 806
     },
     {
-      "login": "Konseptt",
-      "html_url": "https://github.com/Konseptt",
-      "avatar_url": "https://avatars.githubusercontent.com/u/49203341?v=4",
-      "commits": 1
+      "login": "Lemmy00",
+      "name": "Lazar Milikic",
+      "html_url": "https://github.com/Lemmy00",
+      "avatar_url": "https://avatars.githubusercontent.com/u/64690721?v=4",
+      "commits": 5,
+      "linesChanged": 742
     },
     {
-      "login": "Paul-Lez",
-      "html_url": "https://github.com/Paul-Lez",
-      "avatar_url": "https://avatars.githubusercontent.com/u/72892199?v=4",
-      "commits": 1
+      "login": "NicolaBernini",
+      "name": "Nicola Bernini",
+      "html_url": "https://github.com/NicolaBernini",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6381645?v=4",
+      "commits": 20,
+      "linesChanged": 722
     },
     {
-      "login": "ShlokVaibhav",
-      "html_url": "https://github.com/ShlokVaibhav",
-      "avatar_url": "https://avatars.githubusercontent.com/u/52267609?v=4",
-      "commits": 1
+      "login": "jfindlay",
+      "name": "Justin Findlay",
+      "html_url": "https://github.com/jfindlay",
+      "avatar_url": "https://avatars.githubusercontent.com/u/702905?v=4",
+      "commits": 3,
+      "linesChanged": 595
+    },
+    {
+      "login": "doxtor6",
+      "html_url": "https://github.com/doxtor6",
+      "avatar_url": "https://avatars.githubusercontent.com/u/91156808?v=4",
+      "commits": 4,
+      "linesChanged": 450
+    },
+    {
+      "login": "abudjum",
+      "name": "Aleksei Bykov",
+      "html_url": "https://github.com/abudjum",
+      "avatar_url": "https://avatars.githubusercontent.com/u/293911086?v=4",
+      "commits": 2,
+      "linesChanged": 315
+    },
+    {
+      "login": "giuseppesorge",
+      "name": "giuseppe.sorge",
+      "html_url": "https://github.com/giuseppesorge",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10847456?v=4",
+      "commits": 7,
+      "linesChanged": 309
+    },
+    {
+      "login": "mshibashish",
+      "name": "Shibashish",
+      "html_url": "https://github.com/mshibashish",
+      "avatar_url": "https://avatars.githubusercontent.com/u/84513513?v=4",
+      "commits": 3,
+      "linesChanged": 140
     },
     {
       "login": "teng10",
+      "name": "Yanting Teng",
       "html_url": "https://github.com/teng10",
       "avatar_url": "https://avatars.githubusercontent.com/u/40032657?v=4",
-      "commits": 1
+      "commits": 1,
+      "linesChanged": 135
+    },
+    {
+      "login": "Bergschaf",
+      "name": "Christian Krause",
+      "html_url": "https://github.com/Bergschaf",
+      "avatar_url": "https://avatars.githubusercontent.com/u/86738237?v=4",
+      "commits": 2,
+      "linesChanged": 131
+    },
+    {
+      "login": "ShlokVaibhav",
+      "name": "Shlok Vaibhav Singh",
+      "html_url": "https://github.com/ShlokVaibhav",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52267609?v=4",
+      "commits": 1,
+      "linesChanged": 61
+    },
+    {
+      "login": "FloWsnr",
+      "name": "Florian Wiesner",
+      "html_url": "https://github.com/FloWsnr",
+      "avatar_url": "https://avatars.githubusercontent.com/u/65916600?v=4",
+      "commits": 2,
+      "linesChanged": 54
     },
     {
       "login": "tracyphasespace",
+      "name": "Tracy McSheery",
       "html_url": "https://github.com/tracyphasespace",
       "avatar_url": "https://avatars.githubusercontent.com/u/44329042?v=4",
-      "commits": 1
-    },
-    {
-      "login": "Vilin97",
-      "html_url": "https://github.com/Vilin97",
-      "avatar_url": "https://avatars.githubusercontent.com/u/17322558?v=4",
-      "commits": 1
+      "commits": 1,
+      "linesChanged": 33
     },
     {
       "login": "wdconinc",
+      "name": "Wouter Deconinck",
       "html_url": "https://github.com/wdconinc",
       "avatar_url": "https://avatars.githubusercontent.com/u/4656391?v=4",
-      "commits": 1
+      "commits": 1,
+      "linesChanged": 32
+    },
+    {
+      "login": "Konseptt",
+      "name": "Ranjan Sharma",
+      "html_url": "https://github.com/Konseptt",
+      "avatar_url": "https://avatars.githubusercontent.com/u/49203341?v=4",
+      "commits": 1,
+      "linesChanged": 16
+    },
+    {
+      "login": "Paul-Lez",
+      "name": "Paul Lezeau",
+      "html_url": "https://github.com/Paul-Lez",
+      "avatar_url": "https://avatars.githubusercontent.com/u/72892199?v=4",
+      "commits": 1,
+      "linesChanged": 13
+    }
+  ],
+  "reviewers": [
+    {
+      "login": "morrison-daniel",
+      "html_url": "https://github.com/morrison-daniel",
+      "avatar_url": "https://avatars.githubusercontent.com/u/39346894?v=4",
+      "reviews": 11,
+      "name": "Daniel Morrison"
+    },
+    {
+      "login": "Timeroot",
+      "html_url": "https://github.com/Timeroot",
+      "avatar_url": "https://avatars.githubusercontent.com/u/568733?v=4",
+      "reviews": 1,
+      "name": "Alex Meiburg"
     }
   ],
   "kindTotals": {
@@ -13071,5 +13137,5 @@
     }
   ],
   "pdfUrl": "/monthly-updates/2026-06.pdf",
-  "generatedAt": "2026-07-30T11:23:48.425Z"
+  "generatedAt": "2026-08-10T11:28:38.320Z"
 }

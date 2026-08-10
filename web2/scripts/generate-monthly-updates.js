@@ -29,9 +29,14 @@
  * Repo: needs a clone of leanprover-community/physlib. Pass --repo, or set
  * PHYSLIB_REPO, or let the script clone into .cache/physlib.git and reuse it.
  *
- * Auth: GITHUB_TOKEN is optional and used only to attach GitHub logins and
- * avatars to contributors. Commit counts and everything else come from git, so
- * the script works fully offline against an existing clone.
+ * Auth: GITHUB_TOKEN is optional. Commit counts, lines changed, and everything
+ * else about contributors come from git, so the script works fully offline
+ * against an existing clone; without a token it just falls back to plain git
+ * names with no avatars. The reviewers list, though, comes entirely from the
+ * GitHub API (merged PRs + their reviews, one request each) since git has no
+ * concept of a review - without a token that's capped at 60 requests/hour, so
+ * on a busy month the reviewers section may come back empty rather than fail
+ * the report.
  *
  * PDF: after writing the JSON report the script also writes a scientific-paper
  * style LaTeX source to .monthly-updates-build/<slug>.tex and, if either
@@ -326,21 +331,39 @@ function fileAt(sha, filePath) {
   return res.status === 0 ? res.stdout : null;
 }
 
-/** Commits in (base, head], from git - exact, and with no pagination cap. */
+/**
+ * Commits in (base, head], from git - exact, and with no pagination cap.
+ * Each commit also carries its own additions/deletions (via --numstat) so
+ * callers can attribute lines changed to individual authors. Merge commits
+ * get no numstat lines from git by default (no -m/-c passed), which is what
+ * we want here: it avoids double-counting a merged branch's lines against
+ * whoever clicked "merge".
+ */
 function commitsInRange(base, head) {
+  const MARK = "\x01";
   const SEP = "\x1f";
   const out = git([
     "log",
     `${base}..${head}`,
-    `--format=%H${SEP}%an${SEP}%ae`,
+    `--format=${MARK}%H${SEP}%an${SEP}%ae`,
+    "--numstat",
   ]);
-  return out
-    .split("\n")
-    .filter(Boolean)
-    .map((line) => {
-      const [sha, name, email] = line.split(SEP);
-      return { sha, name, email };
-    });
+  const commits = [];
+  let current = null;
+  for (const line of out.split("\n")) {
+    if (line.startsWith(MARK)) {
+      const [sha, name, email] = line.slice(MARK.length).split(SEP);
+      current = { sha, name, email, additions: 0, deletions: 0 };
+      commits.push(current);
+      continue;
+    }
+    if (!current) continue;
+    const m = line.match(/^(\d+|-)\t(\d+|-)\t/);
+    if (!m) continue;
+    current.additions += m[1] === "-" ? 0 : parseInt(m[1], 10);
+    current.deletions += m[2] === "-" ? 0 : parseInt(m[2], 10);
+  }
+  return commits;
 }
 
 /**
@@ -392,6 +415,105 @@ async function githubIdentities(branch, sinceIso, untilIso) {
     );
   }
   return { bySha, byEmail };
+}
+
+/**
+ * Reviewers for the month: GitHub logins that submitted at least one review
+ * on a pull request merged in [sinceIso, untilIso), excluding the PR's own
+ * author (self-review), bot accounts, and anyone in `contributorLogins` -
+ * those authored commits this month too, so they belong in the Contributors
+ * list rather than here.
+ *
+ * Needs one Search API call (merged PRs in range) plus one call per merged
+ * PR (its reviews). Like `githubIdentities`, this is best-effort: without a
+ * token, or on any failure, we warn and return an empty list rather than
+ * failing the whole report - a busy month can exceed the 60/hr unauthenticated
+ * budget on the reviews calls alone.
+ */
+async function fetchReviewers(sinceIso, untilIso, contributorLogins) {
+  const reviewers = new Map(); // login -> { html_url, avatar_url, prs: Set<number> }
+  try {
+    // Search's merged: range is inclusive on both ends; back the upper bound
+    // off by one second so a PR merged exactly at the next month's boundary
+    // isn't double-counted, mirroring the git side's first-parent boundary
+    // handling above.
+    const untilInclusive = new Date(
+      new Date(untilIso).getTime() - 1000,
+    ).toISOString();
+    const q = `repo:${OWNER}/${REPO} is:pr is:merged merged:${sinceIso}..${untilInclusive}`;
+    const prs = [];
+    for (let page = 1; page <= 10; page++) {
+      const params = new URLSearchParams({
+        q,
+        per_page: "100",
+        page: String(page),
+      }).toString();
+      const res = await ghRequest(`/search/issues?${params}`);
+      const items = Array.isArray(res.items) ? res.items : [];
+      for (const it of items) {
+        prs.push({ number: it.number, authorLogin: it.user?.login ?? null });
+      }
+      if (items.length < 100) break;
+    }
+    for (const pr of prs) {
+      const reviews = await ghRequest(
+        `/repos/${OWNER}/${REPO}/pulls/${pr.number}/reviews?per_page=100`,
+      );
+      if (!Array.isArray(reviews)) continue;
+      for (const r of reviews) {
+        const login = r.user?.login;
+        if (!login) continue;
+        if (login === pr.authorLogin) continue;
+        if (/\[bot\]$/.test(login)) continue;
+        if (contributorLogins.has(login)) continue;
+        if (!reviewers.has(login)) {
+          reviewers.set(login, {
+            html_url: r.user.html_url ?? null,
+            avatar_url: r.user.avatar_url ?? null,
+            prs: new Set(),
+          });
+        }
+        reviewers.get(login).prs.add(pr.number);
+      }
+    }
+  } catch (err) {
+    console.warn(
+      `  ⚠ could not fetch PR reviewers (${err.message}); reviewers section will be empty`,
+    );
+  }
+  return Array.from(reviewers.entries())
+    .map(([login, r]) => ({
+      login,
+      html_url: r.html_url,
+      avatar_url: r.avatar_url,
+      reviews: r.prs.size,
+    }))
+    .sort((a, b) => b.reviews - a.reviews || a.login.localeCompare(b.login));
+}
+
+/**
+ * GitHub profile display names for a set of logins - "Jane Smith" rather
+ * than "jsmith", for a byline that reads like a paper's author list instead
+ * of a commit log. One request per login (GitHub has no batch endpoint for
+ * this), so it's best-effort like the rest of the API integration: a login
+ * with no name set, a fetch failure, or exhausted rate limit just falls back
+ * to showing that person's username instead of failing the report.
+ */
+async function fetchProfileNames(logins) {
+  const names = new Map();
+  for (const login of logins) {
+    try {
+      const user = await ghRequest(`/users/${encodeURIComponent(login)}`);
+      if (user && typeof user.name === "string" && user.name.trim()) {
+        names.set(login, user.name.trim());
+      }
+    } catch (err) {
+      console.warn(
+        `  ⚠ could not fetch GitHub profile for ${login} (${err.message}); showing username instead`,
+      );
+    }
+  }
+  return names;
 }
 
 // ─── Path helpers ─────────────────────────────────────────────────────────
@@ -610,10 +732,33 @@ function fmtN(n) {
   return new Intl.NumberFormat("en-US").format(n);
 }
 
+// Prefer the person's real GitHub profile name over their username - reads
+// like a paper's author list rather than a commit log. Falls back to the
+// username (or, for contributors git couldn't resolve to a GitHub account at
+// all, their git commit name) when no profile name is on record.
+function displayName(person) {
+  return person.name || person.login || "unknown";
+}
+
 function renderLatex(report) {
-  const authors = report.contributors
-    .map((c) => texEscape(c.login || c.name || "unknown"))
-    .join(" \\and ");
+  const reviewers = report.reviewers ?? [];
+
+  // Title-page byline: contributors (people who authored a commit/PR this
+  // month) and reviewers (people who only reviewed) as two labeled groups,
+  // rather than one flat \and-separated author list that doesn't distinguish
+  // the two roles.
+  const contributorNames = report.contributors
+    .map((c) => texEscape(displayName(c)))
+    .join(", ");
+  const reviewerNames = reviewers
+    .map((r) => texEscape(displayName(r)))
+    .join(", ");
+  const authors = [
+    `\\textbf{Contributors:} ${contributorNames || "\\emph{none recorded}"}`,
+    reviewerNames ? `\\textbf{Reviewers:} ${reviewerNames}` : null,
+  ]
+    .filter(Boolean)
+    .join(" \\\\[0.3em]\n  ");
 
   const totalDecls = Object.values(report.kindTotals).reduce(
     (a, b) => a + b,
@@ -644,12 +789,25 @@ function renderLatex(report) {
       : "No new Lean declarations were detected in this month's diff.");
 
   // Sections
+  // Ordered by lines changed (see contributorList's sort in the generator),
+  // so the table order matches how much of the diff each person is behind.
   const contributorRows = report.contributors
     .map((c) => {
-      const label = c.login
-        ? `\\href{${texEscapeUrl(c.html_url)}}{\\texttt{${texEscape(c.login)}}}`
-        : `\\texttt{${texEscape(c.name || "unknown")}}`;
-      return `${label} & ${c.commits} \\\\`;
+      const name = texEscape(displayName(c));
+      const label = c.html_url
+        ? `\\href{${texEscapeUrl(c.html_url)}}{${name}}`
+        : name;
+      return `${label} & ${fmtN(c.linesChanged)} & ${c.commits} \\\\`;
+    })
+    .join("\n");
+
+  const reviewerRows = reviewers
+    .map((r) => {
+      const name = texEscape(displayName(r));
+      const label = r.html_url
+        ? `\\href{${texEscapeUrl(r.html_url)}}{${name}}`
+        : name;
+      return `${label} & ${r.reviews} \\\\`;
     })
     .join("\n");
 
@@ -718,7 +876,7 @@ function renderLatex(report) {
   urlcolor=blue!50!black,
   citecolor=blue!50!black,
   pdftitle={Physlib Monthly Report -- ${texEscape(report.label)}},
-  pdfauthor={${report.contributors.map((c) => texEscape(c.login || c.name || "unknown")).join(", ")}},
+  pdfauthor={${[...report.contributors.map(displayName), ...reviewers.map(displayName)].map(texEscape).join(", ")}},
   pdfsubject={Monthly diff summary of leanprover-community/physlib},
 }
 
@@ -759,11 +917,25 @@ function renderLatex(report) {
 \renewcommand{\headrulewidth}{0.4pt}
 
 \title{\vspace{-1cm}\textbf{Physlib Monthly Report} \\[0.3em] \Large ${texEscape(report.label)}}
-\author{${authors || "\\emph{No authors recorded}"}}
+\author{}
 \date{Generated ${texEscape(new Date(report.generatedAt).toUTCString())}}
 
 \begin{document}
 \maketitle
+
+% article.cls sets \author in a fixed-width single-column tabular, which
+% doesn't wrap and centers every row on its widest line -- fine for one or
+% two names, but a full contributor roster overflows the page, and a second
+% \\ row (Reviewers) ends up centered on that off-page width and vanishes.
+% A minipage wraps normally, so the byline is built here instead of via
+% \author{}.
+\begin{center}
+\begin{minipage}{0.85\linewidth}
+\centering
+${authors}
+\end{minipage}
+\end{center}
+\vspace{0.5em}
 
 \begin{abstract}
 \noindent Auto-generated summary of changes to
@@ -789,10 +961,21 @@ and the
 on GitHub for the raw source.
 
 \subsection{Contributors}
+\noindent\small Ordered by lines changed. People who authored a commit or pull request merged this month.\normalsize
+
 ${
   report.contributors.length === 0
     ? "\\emph{No contributors identified for this month.}"
-    : `\\begin{longtable}{l r}\n\\toprule\nContributor & Commits \\\\\n\\midrule\n${contributorRows}\n\\bottomrule\n\\end{longtable}`
+    : `\\begin{longtable}{l r r}\n\\toprule\nContributor & Lines Changed & Commits \\\\\n\\midrule\n${contributorRows}\n\\bottomrule\n\\end{longtable}`
+}
+
+\subsection{Reviewers}
+\noindent\small People who reviewed a pull request merged this month but did not author one themselves.\normalsize
+
+${
+  reviewers.length === 0
+    ? "\\emph{No reviewers identified for this month.}"
+    : `\\begin{longtable}{l r}\n\\toprule\nReviewer & PRs Reviewed \\\\\n\\midrule\n${reviewerRows}\n\\bottomrule\n\\end{longtable}`
 }
 
 \subsection{Modified subfolders}
@@ -1020,10 +1203,10 @@ async function generateMonth(year, monthIdx, defaultBranch, opts = {}) {
   }
   filesReport.sort((a, b) => a.filename.localeCompare(b.filename));
 
-  // Contributors: commit counts from git (exact, no pagination cap, and no
-  // double-counting of a commit that lands exactly on a month boundary the way
-  // the API's inclusive since/until does). GitHub is consulted only to attach
-  // logins and avatars, and is entirely optional.
+  // Contributors: commit counts and lines changed from git (exact, no
+  // pagination cap, and no double-counting of a commit that lands exactly on
+  // a month boundary the way the API's inclusive since/until does). GitHub is
+  // consulted only to attach logins and avatars, and is entirely optional.
   const commits = commitsInRange(baseSha, headSha);
   const { bySha, byEmail } = await githubIdentities(defaultBranch, startIso, endIso);
   const contributors = new Map();
@@ -1037,15 +1220,45 @@ async function generateMonth(year, monthIdx, defaultBranch, opts = {}) {
         html_url: id ? id.html_url : null,
         avatar_url: id ? id.avatar_url : null,
         commits: 0,
+        linesChanged: 0,
       });
     }
-    contributors.get(key).commits += 1;
+    const entry = contributors.get(key);
+    entry.commits += 1;
+    entry.linesChanged += c.additions + c.deletions;
   }
+  // Ordered by lines changed rather than commit count: a handful of large
+  // commits should outrank a long tail of one-line tweaks.
   const contributorList = Array.from(contributors.values()).sort(
     (a, b) =>
+      b.linesChanged - a.linesChanged ||
       b.commits - a.commits ||
       (a.login ?? a.name ?? "").localeCompare(b.login ?? b.name ?? ""),
   );
+
+  // Reviewers: GitHub logins who reviewed a PR merged this month but didn't
+  // author any commits this month (those people are already contributors).
+  const contributorLogins = new Set(
+    contributorList.map((c) => c.login).filter(Boolean),
+  );
+  const reviewerList = await fetchReviewers(
+    startIso,
+    endIso,
+    contributorLogins,
+  );
+
+  // Real names for the byline - "Jane Smith", not "jsmith" - for everyone we
+  // have a GitHub login for. Contributors we couldn't resolve to a login keep
+  // their git commit name (already in `.name`) unchanged.
+  const profileNames = await fetchProfileNames(
+    new Set([...contributorLogins, ...reviewerList.map((r) => r.login)]),
+  );
+  for (const c of contributorList) {
+    if (c.login && profileNames.has(c.login)) c.name = profileNames.get(c.login);
+  }
+  for (const r of reviewerList) {
+    if (profileNames.has(r.login)) r.name = profileNames.get(r.login);
+  }
 
   const kindTotals = {};
   for (const { entries } of filesReport) {
@@ -1072,6 +1285,7 @@ async function generateMonth(year, monthIdx, defaultBranch, opts = {}) {
     totalFilesChanged: stats.length,
     subfolders,
     contributors: contributorList,
+    reviewers: reviewerList,
     kindTotals,
     files: filesReport,
     pdfUrl: `/monthly-updates/${slug}.pdf`,
@@ -1082,7 +1296,7 @@ async function generateMonth(year, monthIdx, defaultBranch, opts = {}) {
   fs.writeFileSync(outPath, JSON.stringify(report, null, 2) + "\n", "utf8");
   const totalDecls = Object.values(kindTotals).reduce((a, b) => a + b, 0);
   console.log(
-    `✓ ${slug}: ${filesReport.length} files w/ decls (${stats.length} touched), ${totalDecls} declarations, ${contributorList.length} contributors → ${path.relative(process.cwd(), outPath)}`,
+    `✓ ${slug}: ${filesReport.length} files w/ decls (${stats.length} touched), ${totalDecls} declarations, ${contributorList.length} contributors, ${reviewerList.length} reviewers → ${path.relative(process.cwd(), outPath)}`,
   );
 
   // ─── LaTeX + PDF ────────────────────────────────────────────────────
