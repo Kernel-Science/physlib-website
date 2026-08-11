@@ -223,55 +223,6 @@ export default function GettingStartedPage() {
         </Card.Content>
       </Card>
 
-      {/* Making a Pull Request */}
-      <PageHeader id="making-a-pull-request" title="Making a Pull Request" />
-
-      <p className="text-sm text-muted mb-8 leading-relaxed" style={{ letterSpacing: "-0.01em" }}>
-        Small pull-requests are better than large ones — even if it&apos;s just a single result.
-      </p>
-
-      <div className="grid gap-4 sm:grid-cols-2">
-        <Card variant="default">
-          <Card.Header>
-            <Card.Title>Using Forks</Card.Title>
-          </Card.Header>
-          <Card.Content>
-            <ol className="list-decimal ml-5 space-y-1 text-sm text-foreground/90">
-              <li>Fork the Physlib repository to your GitHub account.</li>
-              <li>Clone your forked repository to your local machine.</li>
-              <li>Make your changes on your local version.</li>
-              <li>Push your changes to your forked repository.</li>
-              <li>
-                Open a pull request from your forked version to the main Physlib
-                repository.
-              </li>
-            </ol>
-          </Card.Content>
-        </Card>
-
-        <Card variant="default">
-          <Card.Header>
-            <Card.Title>Using Branches</Card.Title>
-          </Card.Header>
-          <Card.Content>
-            <ol className="list-decimal ml-5 space-y-1 text-sm text-foreground/90">
-              <li>
-                Ask Joseph Tooby-Smith to add you as an outside collaborator on
-                the project.
-              </li>
-              <li>Clone the main GitHub repository.</li>
-              <li>
-                Make your own branch (e.g.{" "}
-                <code className="font-mono text-xs">
-                  feat(your-name):updating spacetime
-                </code>
-                ).
-              </li>
-              <li>Open a pull request from your branch to the main branch.</li>
-            </ol>
-          </Card.Content>
-        </Card>
-      </div>
     </div>
   );
 }
@@ -295,7 +246,6 @@ const tocSections = [
     title: "Code Quality",
     links: [
       { label: "Linting", href: "#linting" },
-      { label: "Making a Pull Request", href: "#making-a-pull-request" },
     ],
   },
 ];
