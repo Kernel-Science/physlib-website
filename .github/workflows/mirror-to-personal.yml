@@ -12,6 +12,9 @@ concurrency:
 
 jobs:
   mirror:
+    # The mirror receives .github/ too, so without this guard the mirror repo
+    # runs this workflow against itself and fails on the missing MIRROR_PAT.
+    if: github.repository == 'kernel-science/physlib-website'
     runs-on: ubuntu-latest
     steps:
       # Vercel's Hobby plan refuses to build any commit whose *author* is not the
