@@ -6,16 +6,18 @@
   "startDate": "2026-06-01T00:00:00.000Z",
   "endDate": "2026-07-01T00:00:00.000Z",
   "repo": "leanprover-community/physlib",
-  "branch": "origin/master",
+  "branch": "master",
   "baseSha": "d44dd713876a1cf7817747d9846cfd362353057f",
   "headSha": "05930fe0159096a15956f518d5917bc72a69175d",
   "compareUrl": "https://github.com/leanprover-community/physlib/compare/d44dd713876a1cf7817747d9846cfd362353057f...05930fe0159096a15956f518d5917bc72a69175d",
-  "commitsUrl": "https://github.com/leanprover-community/physlib/commits/origin/master?since=2026-06-01T00:00:00.000Z&until=2026-07-01T00:00:00.000Z",
+  "commitsUrl": "https://github.com/leanprover-community/physlib/commits/master?since=2026-06-01T00:00:00.000Z&until=2026-07-01T00:00:00.000Z",
   "totalCommits": 154,
   "totalAdditions": 28676,
   "totalDeletions": 18161,
   "linesChanged": 46837,
   "totalFilesChanged": 492,
+  "filesAdded": 86,
+  "filesRemoved": 5,
   "subfolders": [
     {
       "path": "Physlib/Relativity",
@@ -516,11 +518,59 @@
   ],
   "reviewers": [
     {
+      "login": "jstoobysmith",
+      "html_url": "https://github.com/jstoobysmith",
+      "avatar_url": "https://avatars.githubusercontent.com/u/72603918?u=e36d367e18c3569e632096b1bb61e1079cdce1ae&v=4",
+      "reviews": 132,
+      "name": "Joseph Tooby-Smith"
+    },
+    {
+      "login": "zhikaip",
+      "html_url": "https://github.com/zhikaip",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46996788?v=4",
+      "reviews": 11,
+      "name": "Zhi Kai Pong"
+    },
+    {
       "login": "morrison-daniel",
       "html_url": "https://github.com/morrison-daniel",
       "avatar_url": "https://avatars.githubusercontent.com/u/39346894?v=4",
-      "reviews": 11,
+      "reviews": 10,
       "name": "Daniel Morrison"
+    },
+    {
+      "login": "doxtor6",
+      "html_url": "https://github.com/doxtor6",
+      "avatar_url": "https://avatars.githubusercontent.com/u/91156808?u=285e51f5f80b439d9551a29143edf51509e9afda&v=4",
+      "reviews": 2
+    },
+    {
+      "login": "gloges",
+      "html_url": "https://github.com/gloges",
+      "avatar_url": "https://avatars.githubusercontent.com/u/11429491?u=d2e097aba9465b2aa89b855e0a7250224d43726b&v=4",
+      "reviews": 2,
+      "name": "Gregory Loges"
+    },
+    {
+      "login": "jfindlay",
+      "html_url": "https://github.com/jfindlay",
+      "avatar_url": "https://avatars.githubusercontent.com/u/702905?u=1087814bd9453cc79fdd23f1c296a6b2107e087c&v=4",
+      "reviews": 1,
+      "name": "Justin Findlay"
+    },
+    {
+      "login": "kastch",
+      "html_url": "https://github.com/kastch",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5752579?v=4",
+      "reviews": 1,
+      "name": "Nikolai Kashcheev"
+    },
+    {
+      "login": "or4nge19",
+      "html_url": "https://github.com/or4nge19",
+      "avatar_url": "https://avatars.githubusercontent.com/u/188064818?v=4",
+      "reviews": 1,
+      "name": "Matteo Cipollina"
     },
     {
       "login": "Timeroot",
@@ -528,14 +578,21 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/568733?v=4",
       "reviews": 1,
       "name": "Alex Meiburg"
+    },
+    {
+      "login": "wdconinc",
+      "html_url": "https://github.com/wdconinc",
+      "avatar_url": "https://avatars.githubusercontent.com/u/4656391?u=e2522a95485b59ac1338c7ba691ba5c38ede377f&v=4",
+      "reviews": 1,
+      "name": "Wouter Deconinck"
     }
   ],
   "kindTotals": {
-    "def": 317,
-    "lemma": 982,
+    "def": 303,
+    "lemma": 923,
     "theorem": 43,
-    "instance": 109,
-    "abbrev": 29,
+    "instance": 105,
+    "abbrev": 28,
     "inductive": 1,
     "structure": 13,
     "informal_definition": 1,
@@ -549,8 +606,8 @@
           "file": "Physlib/ClassicalMechanics/FreeParticle/Basic.lean",
           "kind": "def",
           "name": "ClassicalMechanics.FreeParticle.linearMomentum",
-          "docstring": null,
-          "snippet": "def linearMomentum (s : FreeParticle) (q : Trajectory) (t : Time) : ℝ",
+          "docstring": "The linear momentum of the free particle along a trajectory.\n\nThis is given by the classical one-dimensional expression `p = m v`,\nwhere `m` is the particle mass and `v` is the velocity.",
+          "snippet": "noncomputable\ndef linearMomentum (s : FreeParticle) (q : Trajectory) (t : Time) : ℝ",
           "line": 109
         },
         {
@@ -2089,54 +2146,6 @@
         },
         {
           "file": "Physlib/Mathematics/LinearPMap.lean",
-          "kind": "def",
-          "name": "LinearPMap.sum",
-          "docstring": "A finite sum of partial linear maps.\n\n  `sum f` and `∑ a, f a` are equal, but not by definition.\n  With `sum f` both `domain` and `toFun` are made explicit.",
-          "snippet": "def sum : E →ₗ.[R] F where",
-          "line": 151
-        },
-        {
-          "file": "Physlib/Mathematics/LinearPMap.lean",
-          "kind": "lemma",
-          "name": "LinearPMap.sum_domain",
-          "docstring": null,
-          "snippet": "lemma sum_domain : (sum f).domain = ⨅ a, (f a).domain",
-          "line": 155
-        },
-        {
-          "file": "Physlib/Mathematics/LinearPMap.lean",
-          "kind": "lemma",
-          "name": "LinearPMap.sum_domain_le",
-          "docstring": null,
-          "snippet": "lemma sum_domain_le (a : α) : (sum f).domain ≤ (f a).domain",
-          "line": 157
-        },
-        {
-          "file": "Physlib/Mathematics/LinearPMap.lean",
-          "kind": "lemma",
-          "name": "LinearPMap.sum_apply",
-          "docstring": null,
-          "snippet": "@[simp]\nlemma sum_apply (ψ : (sum f).domain) : sum f ψ = ∑ a, f a ⟨ψ, sum_domain_le f a ψ.2⟩",
-          "line": 160
-        },
-        {
-          "file": "Physlib/Mathematics/LinearPMap.lean",
-          "kind": "def",
-          "name": "LinearPMap.compRestricted",
-          "docstring": "`g ∘ᵣ f` is the composition of `g` with `f` restricted to a domain consisting of exactly those\n  `x : f.domain` for which `f x ∈ g.domain`.",
-          "snippet": "def compRestricted : E →ₗ.[R] G",
-          "line": 177
-        },
-        {
-          "file": "Physlib/Mathematics/LinearPMap.lean",
-          "kind": "lemma",
-          "name": "LinearPMap.compRestricted_domain_le",
-          "docstring": null,
-          "snippet": "lemma compRestricted_domain_le : (g ∘ᵣ f).domain ≤ f.domain",
-          "line": 189
-        },
-        {
-          "file": "Physlib/Mathematics/LinearPMap.lean",
           "kind": "lemma",
           "name": "LinearPMap.compRestricted_domain",
           "docstring": null,
@@ -2146,82 +2155,10 @@
         {
           "file": "Physlib/Mathematics/LinearPMap.lean",
           "kind": "lemma",
-          "name": "LinearPMap.mem_compRestricted_domain_iff",
-          "docstring": null,
-          "snippet": "lemma mem_compRestricted_domain_iff {x : E} :\n    x ∈ (v ∘ᵣ u).domain ↔ ∃ h : x ∈ u.domain, u ⟨x, h⟩ ∈ v.domain",
-          "line": 200
-        },
-        {
-          "file": "Physlib/Mathematics/LinearPMap.lean",
-          "kind": "lemma",
           "name": "LinearPMap.mem_compRestricted_domain_iff'",
           "docstring": null,
           "snippet": "lemma mem_compRestricted_domain_iff' {x : E} :\n    x ∈ (v ∘ᵣ u).domain ↔ ∃ y : u.domain, x = y ∧ ∃ y' : v.domain, u y = y'",
           "line": 204
-        },
-        {
-          "file": "Physlib/Mathematics/LinearPMap.lean",
-          "kind": "lemma",
-          "name": "LinearPMap.mem_domain_of_mem_compRestricted_domain",
-          "docstring": null,
-          "snippet": "lemma mem_domain_of_mem_compRestricted_domain (x : (v ∘ᵣ u).domain) : u ⟨x, x.2.2⟩ ∈ v.domain",
-          "line": 208
-        },
-        {
-          "file": "Physlib/Mathematics/LinearPMap.lean",
-          "kind": "lemma",
-          "name": "LinearPMap.compRestricted_apply",
-          "docstring": null,
-          "snippet": "@[simp]\nlemma compRestricted_apply (x : (v ∘ᵣ u).domain) :\n    (v ∘ᵣ u) x = v ⟨u ⟨x, x.2.2⟩, mem_domain_of_mem_compRestricted_domain x⟩",
-          "line": 212
-        },
-        {
-          "file": "Physlib/Mathematics/LinearPMap.lean",
-          "kind": "lemma",
-          "name": "LinearPMap.compRestricted_zero",
-          "docstring": "The zero map is right-absorbing.",
-          "snippet": "@[simp]\nlemma compRestricted_zero : g ∘ᵣ (0 : E →ₗ.[R] F) = 0",
-          "line": 217
-        },
-        {
-          "file": "Physlib/Mathematics/LinearPMap.lean",
-          "kind": "lemma",
-          "name": "LinearPMap.compRestricted_assoc",
-          "docstring": null,
-          "snippet": "lemma compRestricted_assoc {H : Type*} [AddCommGroup H] [Module R H]\n    (f₁ : G →ₗ.[R] H) (f₂ : F →ₗ.[R] G) (f₃ : E →ₗ.[R] F) :\n    (f₁ ∘ᵣ f₂) ∘ᵣ f₃ = f₁ ∘ᵣ f₂ ∘ᵣ f₃",
-          "line": 222
-        },
-        {
-          "file": "Physlib/Mathematics/LinearPMap.lean",
-          "kind": "lemma",
-          "name": "LinearPMap.compRestricted_eq_comp",
-          "docstring": "`compRestricted` is the same as `comp` when the range of `u` is contained in `v.domain`.",
-          "snippet": "lemma compRestricted_eq_comp (h : ∀ x : u.domain, u x ∈ v.domain) :\n    v ∘ᵣ u = v.comp u h",
-          "line": 231
-        },
-        {
-          "file": "Physlib/Mathematics/LinearPMap.lean",
-          "kind": "lemma",
-          "name": "LinearPMap.comp_le_compRestricted",
-          "docstring": "`compRestricted` is maximal amongst compositions of `v` with domain restrictions of `u`.",
-          "snippet": "lemma comp_le_compRestricted\n    {S : Submodule R E} (h : ∀ x : (u.domRestrict S).domain, u ⟨x, x.2.2⟩ ∈ v.domain) :\n    v.comp (u.domRestrict S) h ≤ v ∘ᵣ u",
-          "line": 239
-        },
-        {
-          "file": "Physlib/Mathematics/LinearPMap.lean",
-          "kind": "lemma",
-          "name": "LinearPMap.compRestricted_mono_left",
-          "docstring": null,
-          "snippet": "lemma compRestricted_mono_left {g g' : F →ₗ.[R] G} (h : g ≤ g') (f : E →ₗ.[R] F) :\n    g ∘ᵣ f ≤ g' ∘ᵣ f",
-          "line": 244
-        },
-        {
-          "file": "Physlib/Mathematics/LinearPMap.lean",
-          "kind": "lemma",
-          "name": "LinearPMap.compRestricted_mono_right",
-          "docstring": null,
-          "snippet": "lemma compRestricted_mono_right (g : F →ₗ.[R] G) {f f' : E →ₗ.[R] F} (h : f ≤ f') :\n    g ∘ᵣ f ≤ g ∘ᵣ f'",
-          "line": 254
         },
         {
           "file": "Physlib/Mathematics/LinearPMap.lean",
@@ -2286,30 +2223,6 @@
           "docstring": null,
           "snippet": "@[simp]\nlemma smul_compRestricted {M : Type*} [Monoid M] [DistribMulAction M G] [SMulCommClass R M G]\n    (c : M) (g : F →ₗ.[R] G) (f : E →ₗ.[R] F) :\n    (c • g) ∘ᵣ f = c • (g ∘ᵣ f)",
           "line": 307
-        },
-        {
-          "file": "Physlib/Mathematics/LinearPMap.lean",
-          "kind": "instance",
-          "name": "LinearPMap.instMonoid",
-          "docstring": null,
-          "snippet": "instance instMonoid : Monoid (E →ₗ.[R] E) where",
-          "line": 325
-        },
-        {
-          "file": "Physlib/Mathematics/LinearPMap.lean",
-          "kind": "lemma",
-          "name": "LinearPMap.mul_def",
-          "docstring": null,
-          "snippet": "lemma mul_def (f₁ f₂ : E →ₗ.[R] E) : f₁ * f₂ = f₁ ∘ᵣ f₂",
-          "line": 340
-        },
-        {
-          "file": "Physlib/Mathematics/LinearPMap.lean",
-          "kind": "lemma",
-          "name": "LinearPMap.one_domain",
-          "docstring": null,
-          "snippet": "@[simp]\nlemma one_domain : (1 : E →ₗ.[R] E).domain = ⊤",
-          "line": 343
         },
         {
           "file": "Physlib/Mathematics/LinearPMap.lean",
@@ -6381,138 +6294,8 @@
       ]
     },
     {
-      "filename": "Physlib/Relativity/Tensors/ComponentIdx/Basic.lean",
-      "entries": [
-        {
-          "file": "Physlib/Relativity/Tensors/ComponentIdx/Basic.lean",
-          "kind": "abbrev",
-          "name": "TensorSpecies.Tensor.ComponentIdx",
-          "docstring": "Given a list of indices `c : Fin n → C`, the type `ComponentIdx c` is the type of\ncomponent indices of a tensor with those colors. For instance, if `c = ![.up, .down]`,\nthen an element of `ComponentIdx c` specifies one basis index for `.up` and one for\n`.down`.",
-          "snippet": "@[nolint unusedArguments]\nabbrev ComponentIdx {n : ℕ} {S : TensorSpecies k C G V basisIdx rep b}\n    (c : Fin n → C) : Type",
-          "line": 65
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/ComponentIdx/Basic.lean",
-          "kind": "lemma",
-          "name": "TensorSpecies.Tensor.ComponentIdx.congr_right",
-          "docstring": null,
-          "snippet": "lemma ComponentIdx.congr_right {n : ℕ} {c : Fin n → C} (b : ComponentIdx (S := S) c)\n    (i j : Fin n) (h : i = j) : b i = basisIdxCongr (by simp [h]) (b j)",
-          "line": 69
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/ComponentIdx/Basic.lean",
-          "kind": "def",
-          "name": "TensorSpecies.Tensor.ComponentIdx.cast",
-          "docstring": "Casting of a `ComponentIdx` through equivalent color maps.",
-          "snippet": "def ComponentIdx.cast {n m : ℕ} {c : Fin n → C} {cm : Fin m → C}\n    (h : n = m) (hc : c = cm ∘ Fin.cast h) (b : ComponentIdx (S := S) c) :\n    ComponentIdx (S := S) cm",
-          "line": 75
-        }
-      ]
-    },
-    {
-      "filename": "Physlib/Relativity/Tensors/ComponentIdx/Contraction.lean",
-      "entries": [
-        {
-          "file": "Physlib/Relativity/Tensors/ComponentIdx/Contraction.lean",
-          "kind": "def",
-          "name": "TensorSpecies.Tensor.ComponentIdx.dropPair",
-          "docstring": "The `ComponentIdx` obtained by dropping two components.",
-          "snippet": "def dropPair {n : ℕ} {c : Fin (n + 1 + 1) → C}\n    (i j : Fin (n + 1 + 1)) (b : ComponentIdx (S := S) c) :\n    ComponentIdx (S := S) (c ∘ Fin.succSuccAbove i j)",
-          "line": 65
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/ComponentIdx/Contraction.lean",
-          "kind": "def",
-          "name": "TensorSpecies.Tensor.ComponentIdx.DropPairSection",
-          "docstring": "Given a coordinate parameter\n  `b : Π k, Fin (S.repDim ((c ∘ i.succAbove ∘ j.succAbove) k)))`, the\n  coordinate parameter `Π k, Fin (S.repDim (c k))` which map down to `b`.",
-          "snippet": "def DropPairSection {n : ℕ} {c : Fin (n + 1 + 1) → C}\n    {i : Fin (n + 1 + 1)} {j : Fin (n + 1 + 1)}\n    (b : ComponentIdx (S := S) (c ∘ Fin.succSuccAbove i j)) :\n    Finset (ComponentIdx (S := S) c)",
-          "line": 79
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/ComponentIdx/Contraction.lean",
-          "kind": "lemma",
-          "name": "TensorSpecies.Tensor.ComponentIdx.DropPairSection.mem_iff_apply_succSuccAbove_eq",
-          "docstring": null,
-          "snippet": "lemma mem_iff_apply_succSuccAbove_eq {n : ℕ} {c : Fin (n + 1 + 1) → C}\n    {i j : Fin (n + 1 + 1)}\n    (b : ComponentIdx (c ∘ Fin.succSuccAbove i j))\n    (b' : ComponentIdx c) :\n    b' ∈ DropPairSection (S := S) b ↔\n      ∀ m, b' (Fin.succSuccAbove i j m) = b m",
-          "line": 87
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/ComponentIdx/Contraction.lean",
-          "kind": "lemma",
-          "name": "TensorSpecies.Tensor.ComponentIdx.DropPairSection.mem_self_of_dropPair",
-          "docstring": null,
-          "snippet": "@[simp]\nlemma mem_self_of_dropPair {n : ℕ} {c : Fin (n + 1 + 1) → C}\n    {i j : Fin (n + 1 + 1)}\n    (b : ComponentIdx (c)) :\n    b ∈ DropPairSection (S := S) (b.dropPair i j)",
-          "line": 98
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/ComponentIdx/Contraction.lean",
-          "kind": "def",
-          "name": "TensorSpecies.Tensor.ComponentIdx.DropPairSection.ofFin",
-          "docstring": "Given a `b` in `ComponentIdx (c ∘ Fin.succSuccAbove i j))` and\n  an `x` in `Fin (S.repDim (c i)) × Fin (S.repDim (c j))`, the corresponding\n  coordinate parameter in `ComponentIdx c`.",
-          "snippet": "def ofFin {n : ℕ} {c : Fin (n + 1 + 1) → C}\n    {i j : Fin (n + 1 + 1)} (hij : i ≠ j) (b : ComponentIdx (S := S) (c ∘ Fin.succSuccAbove i j))\n    (x : basisIdx (c i) × basisIdx (c j)) :\n    ComponentIdx (S := S) c",
-          "line": 107
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/ComponentIdx/Contraction.lean",
-          "kind": "lemma",
-          "name": "TensorSpecies.Tensor.ComponentIdx.DropPairSection.ofFin_apply_fst",
-          "docstring": null,
-          "snippet": "@[simp]\nlemma ofFin_apply_fst {n : ℕ} {c : Fin (n + 1 + 1) → C}\n    {i j : Fin (n + 1 + 1)} (hij : i ≠ j) (b : ComponentIdx (c ∘ Fin.succSuccAbove i j))\n    (x : basisIdx (c i) × basisIdx (c j)) :\n    ofFin (S := S) hij b x i = x.1",
-          "line": 118
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/ComponentIdx/Contraction.lean",
-          "kind": "lemma",
-          "name": "TensorSpecies.Tensor.ComponentIdx.DropPairSection.ofFin_apply_snd",
-          "docstring": null,
-          "snippet": "@[simp]\nlemma ofFin_apply_snd {n : ℕ} {c : Fin (n + 1 + 1) → C}\n    {i j : Fin (n + 1 + 1)} (hij : i ≠ j) (b : ComponentIdx (c ∘ Fin.succSuccAbove i j))\n    (x : basisIdx (c i) × basisIdx (c j)) :\n    ofFin (S := S) hij b x j = x.2",
-          "line": 125
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/ComponentIdx/Contraction.lean",
-          "kind": "lemma",
-          "name": "TensorSpecies.Tensor.ComponentIdx.DropPairSection.ofFin_mem_succSuccAboveSection",
-          "docstring": null,
-          "snippet": "lemma ofFin_mem_succSuccAboveSection {n : ℕ} {c : Fin (n + 1 + 1) → C}\n    {i j : Fin (n + 1 + 1)} (hij : i ≠ j) (b : ComponentIdx (c ∘ Fin.succSuccAbove i j))\n    (x : basisIdx (c i) × basisIdx (c j)) :\n    ofFin (S := S) hij b x ∈ DropPairSection b",
-          "line": 133
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/ComponentIdx/Contraction.lean",
-          "kind": "def",
-          "name": "TensorSpecies.Tensor.ComponentIdx.DropPairSection.ofFinEquiv",
-          "docstring": "The equivalence between `ContrSection b` and\n  `basisIdx (c i) × basisIdx (c j)`.",
-          "snippet": "def ofFinEquiv {n : ℕ} {c : Fin n.succ.succ → C}\n    {i j : Fin (n + 1 + 1)} (hij : i ≠ j)\n    (b : ComponentIdx (c ∘ Fin.succSuccAbove i j)) :\n    basisIdx (c i) × basisIdx (c j) ≃ DropPairSection (S := S) b where",
-          "line": 147
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/ComponentIdx/Contraction.lean",
-          "kind": "lemma",
-          "name": "TensorSpecies.Tensor.ComponentIdx.DropPairSection.ofFinEquiv_apply_fst",
-          "docstring": null,
-          "snippet": "@[simp]\nlemma ofFinEquiv_apply_fst {n : ℕ} {c : Fin (n + 1 + 1) → C}\n    {i j : Fin (n + 1 + 1)} (hij : i ≠ j) (b : ComponentIdx (c ∘ Fin.succSuccAbove i j))\n    (x : basisIdx (c i) × basisIdx (c j)) :\n    (ofFinEquiv (S := S) hij b x).1 i = x.1",
-          "line": 170
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/ComponentIdx/Contraction.lean",
-          "kind": "lemma",
-          "name": "TensorSpecies.Tensor.ComponentIdx.DropPairSection.ofFinEquiv_apply_snd",
-          "docstring": null,
-          "snippet": "@[simp]\nlemma ofFinEquiv_apply_snd {n : ℕ} {c : Fin (n + 1 + 1) → C}\n    {i j : Fin (n + 1 + 1)} (hij : i ≠ j) (b : ComponentIdx (c ∘ Fin.succSuccAbove i j))\n    (x : basisIdx (c i) × basisIdx (c j)) :\n    (ofFinEquiv (S := S) hij b x).1 j = x.2",
-          "line": 177
-        }
-      ]
-    },
-    {
       "filename": "Physlib/Relativity/Tensors/ComponentIdx/Product.lean",
       "entries": [
-        {
-          "file": "Physlib/Relativity/Tensors/ComponentIdx/Product.lean",
-          "kind": "def",
-          "name": "TensorSpecies.Tensor.ComponentIdx.prod",
-          "docstring": "The equivalence between `ComponentIdx (Fin.append c c1)` and\n  `ComponentIdx c × ComponentIdx c1` formed by products.",
-          "snippet": "def ComponentIdx.prod {n1 n2 : ℕ} {c : Fin n1 → C} {c1 : Fin n2 → C} :\n    ComponentIdx (S := S) (Fin.append c c1) ≃\n      ComponentIdx (S := S) c × ComponentIdx (S := S) c1 where",
-          "line": 56
-        },
         {
           "file": "Physlib/Relativity/Tensors/ComponentIdx/Product.lean",
           "kind": "lemma",
@@ -6950,155 +6733,6 @@
       ]
     },
     {
-      "filename": "Physlib/Relativity/Tensors/RealTensor/CoVector/Tensorial.lean",
-      "entries": [
-        {
-          "file": "Physlib/Relativity/Tensors/RealTensor/CoVector/Tensorial.lean",
-          "kind": "def",
-          "name": "Lorentz.CoVector.indexEquiv",
-          "docstring": "The equivalence between the type of indices of a Lorentz vector and\n  `Fin 1 ⊕ Fin d`.",
-          "snippet": "def indexEquiv {d : ℕ} :\n    ComponentIdx (S := (realLorentzTensor d)) ![Color.down] ≃ Fin 1 ⊕ Fin d",
-          "line": 46
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/RealTensor/CoVector/Tensorial.lean",
-          "kind": "instance",
-          "name": "Lorentz.CoVector.tensorial",
-          "docstring": null,
-          "snippet": "instance tensorial {d : ℕ} : Tensorial (realLorentzTensor d) ![.down] (CoVector d) where",
-          "line": 50
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/RealTensor/CoVector/Tensorial.lean",
-          "kind": "lemma",
-          "name": "Lorentz.CoVector.toTensor_symm_apply",
-          "docstring": null,
-          "snippet": "lemma toTensor_symm_apply {d : ℕ} (p : ℝT[d, .down]) :\n    (toTensor (self := tensorial)).symm p =\n    (Equiv.piCongrLeft' _ indexEquiv <|\n    Finsupp.equivFunOnFinite <|\n    (Tensor.basis (S := (realLorentzTensor d)) _).repr p)",
-          "line": 65
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/RealTensor/CoVector/Tensorial.lean",
-          "kind": "lemma",
-          "name": "Lorentz.CoVector.toTensor_symm_pure",
-          "docstring": null,
-          "snippet": "lemma toTensor_symm_pure {d : ℕ} (p : Pure (realLorentzTensor d) ![.down]) (i : Fin 1 ⊕ Fin d) :\n    (toTensor (self := tensorial)).symm p.toTensor i =\n    ((Lorentz.coBasis d).repr (p 0)) (indexEquiv.symm i 0)",
-          "line": 71
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/RealTensor/CoVector/Tensorial.lean",
-          "kind": "lemma",
-          "name": "Lorentz.CoVector.toTensor_symm_basis",
-          "docstring": null,
-          "snippet": "lemma toTensor_symm_basis {d : ℕ} (μ : Fin 1 ⊕ Fin d) :\n    (toTensor (self := tensorial)).symm (Tensor.basis ![Color.down] (indexEquiv.symm μ)) =\n    basis μ",
-          "line": 87
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/RealTensor/CoVector/Tensorial.lean",
-          "kind": "lemma",
-          "name": "Lorentz.CoVector.toTensor_basis_eq_tensor_basis",
-          "docstring": null,
-          "snippet": "lemma toTensor_basis_eq_tensor_basis {d : ℕ} (μ : Fin 1 ⊕ Fin d) :\n    toTensor (basis μ) = Tensor.basis ![Color.down] (indexEquiv.symm μ)",
-          "line": 94
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/RealTensor/CoVector/Tensorial.lean",
-          "kind": "lemma",
-          "name": "Lorentz.CoVector.basis_eq_map_tensor_basis",
-          "docstring": null,
-          "snippet": "lemma basis_eq_map_tensor_basis {d} : basis =\n    ((Tensor.basis (S := realLorentzTensor d) ![Color.down]).map\n    toTensor.symm).reindex indexEquiv",
-          "line": 99
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/RealTensor/CoVector/Tensorial.lean",
-          "kind": "lemma",
-          "name": "Lorentz.CoVector.tensor_basis_map_eq_basis_reindex",
-          "docstring": null,
-          "snippet": "lemma tensor_basis_map_eq_basis_reindex {d} :\n    (Tensor.basis (S := realLorentzTensor d) ![Color.down]).map toTensor.symm =\n    basis.reindex indexEquiv.symm",
-          "line": 106
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/RealTensor/CoVector/Tensorial.lean",
-          "kind": "lemma",
-          "name": "Lorentz.CoVector.tensor_basis_repr_toTensor_apply",
-          "docstring": null,
-          "snippet": "lemma tensor_basis_repr_toTensor_apply {d : ℕ} (p : CoVector d) (μ : ComponentIdx ![Color.down]) :\n    (Tensor.basis ![Color.down]).repr (toTensor p) μ =\n    p (indexEquiv μ)",
-          "line": 113
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/RealTensor/CoVector/Tensorial.lean",
-          "kind": "lemma",
-          "name": "Lorentz.CoVector.smul_eq_sum",
-          "docstring": null,
-          "snippet": "lemma smul_eq_sum {d : ℕ} (i : Fin 1 ⊕ Fin d) (Λ : LorentzGroup d) (p : CoVector d) :\n    (Λ • p) i = ∑ j, Λ⁻¹.1 j i * p j",
-          "line": 136
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/RealTensor/CoVector/Tensorial.lean",
-          "kind": "lemma",
-          "name": "Lorentz.CoVector.smul_eq_mulVec",
-          "docstring": null,
-          "snippet": "lemma smul_eq_mulVec {d} (Λ : LorentzGroup d) (p : CoVector d) :\n    Λ • p = (LorentzGroup.transpose Λ⁻¹).1 *ᵥ p",
-          "line": 157
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/RealTensor/CoVector/Tensorial.lean",
-          "kind": "lemma",
-          "name": "Lorentz.CoVector.smul_add",
-          "docstring": null,
-          "snippet": "lemma smul_add {d : ℕ} (Λ : LorentzGroup d) (p q : CoVector d) :\n    Λ • (p + q) = Λ • p + Λ • q",
-          "line": 165
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/RealTensor/CoVector/Tensorial.lean",
-          "kind": "lemma",
-          "name": "Lorentz.CoVector.smul_sub",
-          "docstring": null,
-          "snippet": "@[simp]\nlemma smul_sub {d : ℕ} (Λ : LorentzGroup d) (p q : CoVector d) :\n    Λ • (p - q) = Λ • p - Λ • q",
-          "line": 170
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/RealTensor/CoVector/Tensorial.lean",
-          "kind": "lemma",
-          "name": "Lorentz.CoVector.smul_zero",
-          "docstring": null,
-          "snippet": "lemma smul_zero {d : ℕ} (Λ : LorentzGroup d) :\n    Λ • (0 : CoVector d) = 0",
-          "line": 175
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/RealTensor/CoVector/Tensorial.lean",
-          "kind": "lemma",
-          "name": "Lorentz.CoVector.smul_neg",
-          "docstring": null,
-          "snippet": "lemma smul_neg {d : ℕ} (Λ : LorentzGroup d) (p : CoVector d) :\n    Λ • (-p) = - (Λ • p)",
-          "line": 180
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/RealTensor/CoVector/Tensorial.lean",
-          "kind": "def",
-          "name": "Lorentz.CoVector.actionCLM",
-          "docstring": "The Lorentz action on vectors as a continuous linear map.",
-          "snippet": "def actionCLM {d : ℕ} (Λ : LorentzGroup d) :\n    CoVector d →L[ℝ] CoVector d",
-          "line": 185
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/RealTensor/CoVector/Tensorial.lean",
-          "kind": "lemma",
-          "name": "Lorentz.CoVector.actionCLM_apply",
-          "docstring": null,
-          "snippet": "lemma actionCLM_apply {d : ℕ} (Λ : LorentzGroup d) (p : CoVector d) :\n    actionCLM Λ p = Λ • p",
-          "line": 194
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/RealTensor/CoVector/Tensorial.lean",
-          "kind": "lemma",
-          "name": "Lorentz.CoVector.smul_basis",
-          "docstring": null,
-          "snippet": "lemma smul_basis {d : ℕ} (Λ : LorentzGroup d) (μ : Fin 1 ⊕ Fin d) :\n    Λ • basis μ = ∑ ν, Λ⁻¹.1 μ ν • basis ν",
-          "line": 198
-        }
-      ]
-    },
-    {
       "filename": "Physlib/Relativity/Tensors/RealTensor/ToComplex.lean",
       "entries": [
         {
@@ -7270,187 +6904,6 @@
           "docstring": null,
           "snippet": "lemma rep_left_injective (d : ℕ) : Function.Injective (rep (d := d))",
           "line": 82
-        }
-      ]
-    },
-    {
-      "filename": "Physlib/Relativity/Tensors/RealTensor/Vector/Tensorial.lean",
-      "entries": [
-        {
-          "file": "Physlib/Relativity/Tensors/RealTensor/Vector/Tensorial.lean",
-          "kind": "def",
-          "name": "Lorentz.Vector.indexEquiv",
-          "docstring": "The equivalence between the type of indices of a Lorentz vector and\n  `Fin 1 ⊕ Fin d`.",
-          "snippet": "def indexEquiv {d : ℕ} :\n    ComponentIdx (S := (realLorentzTensor d)) ![Color.up] ≃ Fin 1 ⊕ Fin d",
-          "line": 46
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/RealTensor/Vector/Tensorial.lean",
-          "kind": "instance",
-          "name": "Lorentz.Vector.tensorial",
-          "docstring": null,
-          "snippet": "instance tensorial {d : ℕ} : Tensorial (realLorentzTensor d) ![.up] (Vector d) where",
-          "line": 50
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/RealTensor/Vector/Tensorial.lean",
-          "kind": "lemma",
-          "name": "Lorentz.Vector.toTensor_symm_apply",
-          "docstring": null,
-          "snippet": "lemma toTensor_symm_apply {d : ℕ} (p : ℝT[d, .up]) :\n    (toTensor (self := tensorial)).symm p =\n    (Equiv.piCongrLeft' _ indexEquiv <|\n    Finsupp.equivFunOnFinite <|\n    (Tensor.basis (S := (realLorentzTensor d)) _).repr p)",
-          "line": 65
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/RealTensor/Vector/Tensorial.lean",
-          "kind": "lemma",
-          "name": "Lorentz.Vector.toTensor_symm_pure",
-          "docstring": null,
-          "snippet": "lemma toTensor_symm_pure {d : ℕ} (p : Pure (realLorentzTensor d) ![.up]) (i : Fin 1 ⊕ Fin d) :\n    (toTensor (self := tensorial)).symm p.toTensor i =\n    ((Lorentz.contrBasis d).repr (p 0)) (indexEquiv.symm i 0)",
-          "line": 71
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/RealTensor/Vector/Tensorial.lean",
-          "kind": "lemma",
-          "name": "Lorentz.Vector.toTensor_symm_basis",
-          "docstring": null,
-          "snippet": "lemma toTensor_symm_basis {d : ℕ} (μ : Fin 1 ⊕ Fin d) :\n    (toTensor (self := tensorial)).symm (Tensor.basis ![Color.up] (indexEquiv.symm μ)) =\n    basis μ",
-          "line": 86
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/RealTensor/Vector/Tensorial.lean",
-          "kind": "lemma",
-          "name": "Lorentz.Vector.toTensor_basis_eq_tensor_basis",
-          "docstring": null,
-          "snippet": "lemma toTensor_basis_eq_tensor_basis {d : ℕ} (μ : Fin 1 ⊕ Fin d) :\n    toTensor (basis μ) = Tensor.basis ![Color.up] (indexEquiv.symm μ)",
-          "line": 93
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/RealTensor/Vector/Tensorial.lean",
-          "kind": "lemma",
-          "name": "Lorentz.Vector.basis_eq_map_tensor_basis",
-          "docstring": null,
-          "snippet": "lemma basis_eq_map_tensor_basis {d} : basis =\n    ((Tensor.basis\n    (S := realLorentzTensor d) ![Color.up]).map toTensor.symm).reindex indexEquiv",
-          "line": 98
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/RealTensor/Vector/Tensorial.lean",
-          "kind": "lemma",
-          "name": "Lorentz.Vector.tensor_basis_map_eq_basis_reindex",
-          "docstring": null,
-          "snippet": "lemma tensor_basis_map_eq_basis_reindex {d} :\n    (Tensor.basis (S := realLorentzTensor d) ![Color.up]).map toTensor.symm =\n    basis.reindex indexEquiv.symm",
-          "line": 105
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/RealTensor/Vector/Tensorial.lean",
-          "kind": "lemma",
-          "name": "Lorentz.Vector.tensor_basis_repr_toTensor_apply",
-          "docstring": null,
-          "snippet": "lemma tensor_basis_repr_toTensor_apply {d : ℕ} (p : Vector d) (μ : ComponentIdx ![Color.up]) :\n    (Tensor.basis ![Color.up]).repr (toTensor p) μ =\n    p (indexEquiv μ)",
-          "line": 112
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/RealTensor/Vector/Tensorial.lean",
-          "kind": "lemma",
-          "name": "Lorentz.Vector.smul_eq_sum",
-          "docstring": null,
-          "snippet": "lemma smul_eq_sum {d : ℕ} (i : Fin 1 ⊕ Fin d) (Λ : LorentzGroup d) (p : Vector d) :\n    (Λ • p) i = ∑ j, Λ.1 i j * p j",
-          "line": 133
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/RealTensor/Vector/Tensorial.lean",
-          "kind": "lemma",
-          "name": "Lorentz.Vector.smul_eq_mulVec",
-          "docstring": null,
-          "snippet": "lemma smul_eq_mulVec {d} (Λ : LorentzGroup d) (p : Vector d) :\n    Λ • p = Λ.1 *ᵥ p",
-          "line": 154
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/RealTensor/Vector/Tensorial.lean",
-          "kind": "lemma",
-          "name": "Lorentz.Vector.smul_add",
-          "docstring": null,
-          "snippet": "lemma smul_add {d : ℕ} (Λ : LorentzGroup d) (p q : Vector d) :\n    Λ • (p + q) = Λ • p + Λ • q",
-          "line": 161
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/RealTensor/Vector/Tensorial.lean",
-          "kind": "lemma",
-          "name": "Lorentz.Vector.smul_sub",
-          "docstring": null,
-          "snippet": "@[simp]\nlemma smul_sub {d : ℕ} (Λ : LorentzGroup d) (p q : Vector d) :\n    Λ • (p - q) = Λ • p - Λ • q",
-          "line": 166
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/RealTensor/Vector/Tensorial.lean",
-          "kind": "lemma",
-          "name": "Lorentz.Vector.smul_zero",
-          "docstring": null,
-          "snippet": "lemma smul_zero {d : ℕ} (Λ : LorentzGroup d) :\n    Λ • (0 : Vector d) = 0",
-          "line": 171
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/RealTensor/Vector/Tensorial.lean",
-          "kind": "lemma",
-          "name": "Lorentz.Vector.smul_neg",
-          "docstring": null,
-          "snippet": "lemma smul_neg {d : ℕ} (Λ : LorentzGroup d) (p : Vector d) :\n    Λ • (-p) = - (Λ • p)",
-          "line": 176
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/RealTensor/Vector/Tensorial.lean",
-          "kind": "lemma",
-          "name": "Lorentz.Vector.neg_smul",
-          "docstring": null,
-          "snippet": "lemma neg_smul {d} (Λ : LorentzGroup d) (p : Vector d) :\n    (-Λ) • p = - (Λ • p)",
-          "line": 180
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/RealTensor/Vector/Tensorial.lean",
-          "kind": "lemma",
-          "name": "LorentzGroup.eq_of_action_vector_eq",
-          "docstring": null,
-          "snippet": "lemma _root_.LorentzGroup.eq_of_action_vector_eq {d : ℕ}\n    {Λ Λ' : LorentzGroup d} (h : ∀ p : Vector d, Λ • p = Λ' • p) :\n    Λ = Λ'",
-          "line": 185
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/RealTensor/Vector/Tensorial.lean",
-          "kind": "def",
-          "name": "Lorentz.Vector.actionCLM",
-          "docstring": "The Lorentz action on vectors as a continuous linear map.",
-          "snippet": "def actionCLM {d : ℕ} (Λ : LorentzGroup d) :\n    Vector d →L[ℝ] Vector d",
-          "line": 198
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/RealTensor/Vector/Tensorial.lean",
-          "kind": "lemma",
-          "name": "Lorentz.Vector.actionCLM_apply",
-          "docstring": null,
-          "snippet": "lemma actionCLM_apply {d : ℕ} (Λ : LorentzGroup d) (p : Vector d) :\n    actionCLM Λ p = Λ • p",
-          "line": 208
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/RealTensor/Vector/Tensorial.lean",
-          "kind": "lemma",
-          "name": "Lorentz.Vector.actionCLM_injective",
-          "docstring": null,
-          "snippet": "lemma actionCLM_injective {d : ℕ} (Λ : LorentzGroup d) :\n    Function.Injective (actionCLM Λ)",
-          "line": 211
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/RealTensor/Vector/Tensorial.lean",
-          "kind": "lemma",
-          "name": "Lorentz.Vector.actionCLM_surjective",
-          "docstring": null,
-          "snippet": "lemma actionCLM_surjective {d : ℕ} (Λ : LorentzGroup d) :\n    Function.Surjective (actionCLM Λ)",
-          "line": 216
-        },
-        {
-          "file": "Physlib/Relativity/Tensors/RealTensor/Vector/Tensorial.lean",
-          "kind": "lemma",
-          "name": "Lorentz.Vector.smul_basis",
-          "docstring": null,
-          "snippet": "lemma smul_basis {d : ℕ} (Λ : LorentzGroup d) (μ : Fin 1 ⊕ Fin d) :\n    Λ • basis μ = ∑ ν, Λ.1 ν μ • basis ν",
-          "line": 223
         }
       ]
     },
@@ -8928,30 +8381,6 @@
     {
       "filename": "Physlib/SpaceAndTime/Space/Origin.lean",
       "entries": [
-        {
-          "file": "Physlib/SpaceAndTime/Space/Origin.lean",
-          "kind": "instance",
-          "name": "Space.«instance@570dcd05»",
-          "docstring": null,
-          "snippet": "instance {d} : Zero (Space d) where",
-          "line": 28
-        },
-        {
-          "file": "Physlib/SpaceAndTime/Space/Origin.lean",
-          "kind": "lemma",
-          "name": "Space.zero_val",
-          "docstring": null,
-          "snippet": "@[simp]\nlemma zero_val {d : ℕ} : (0 : Space d).val = fun _ => 0",
-          "line": 32
-        },
-        {
-          "file": "Physlib/SpaceAndTime/Space/Origin.lean",
-          "kind": "lemma",
-          "name": "Space.zero_apply",
-          "docstring": null,
-          "snippet": "@[simp]\nlemma zero_apply {d : ℕ} (i : Fin d) :\n    (0 : Space d) i = 0",
-          "line": 35
-        },
         {
           "file": "Physlib/SpaceAndTime/Space/Origin.lean",
           "kind": "def",
@@ -13113,29 +12542,8 @@
           "line": 137
         }
       ]
-    },
-    {
-      "filename": "scripts/PhyslibAlpha/runPhyslibAlphaLinters.lean",
-      "entries": [
-        {
-          "file": "scripts/PhyslibAlpha/runPhyslibAlphaLinters.lean",
-          "kind": "def",
-          "name": "runLinterOnModule",
-          "docstring": "Run the Batteries linter on a given module and update the linter if `update` is `true`.",
-          "snippet": "unsafe def runLinterOnModule  (module : Name): IO Unit",
-          "line": 18
-        },
-        {
-          "file": "scripts/PhyslibAlpha/runPhyslibAlphaLinters.lean",
-          "kind": "def",
-          "name": "main",
-          "docstring": null,
-          "snippet": "unsafe def main (_ : List String) : IO Unit",
-          "line": 64
-        }
-      ]
     }
   ],
   "pdfUrl": "/monthly-updates/2026-06.pdf",
-  "generatedAt": "2026-08-10T11:28:38.320Z"
+  "generatedAt": "2026-08-12T10:22:09.225Z"
 }

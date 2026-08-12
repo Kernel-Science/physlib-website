@@ -69,6 +69,16 @@ const DECL_RE = new RegExp(
 const NAMESPACE_RE = /^(namespace|section)\b[ \t]*(\S*)/;
 const END_RE = /^end\b[ \t]*(\S*)/;
 const ATTR_RE = /^\s*@\[/;
+// A line carrying nothing but declaration modifiers, as in
+//   /-- doc -/
+//   noncomputable
+//   def foo ...
+// `MOD` already covers modifiers sitting on the declaration's own line; this
+// covers the same words when the author breaks them onto their own line, which
+// otherwise hides the docstring above from the walk-back and truncates the
+// signature below.
+const MODIFIER_ONLY_RE =
+  /^\s*(?:private|protected|noncomputable|scoped|local|unsafe|partial|nonrec)(?:\s+(?:private|protected|noncomputable|scoped|local|unsafe|partial|nonrec))*\s*$/;
 
 const OPENERS = "([{⟨⦃";
 const CLOSERS = ")]}⟩⦄";
@@ -332,7 +342,11 @@ function parseLean(contents) {
         doc = docs.get(k);
         break;
       }
-      if (!lines[k].trim() || ATTR_RE.test(lines[k])) {
+      if (
+        !lines[k].trim() ||
+        ATTR_RE.test(lines[k]) ||
+        MODIFIER_ONLY_RE.test(lines[k])
+      ) {
         k -= 1;
         continue;
       }
@@ -361,11 +375,12 @@ function parseLean(contents) {
       full = [...namespaces, `«${kind}@${digest}»`].join(".");
     }
 
-    // Re-attach any attribute lines directly above; they're part of how the
-    // declaration reads.
+    // Re-attach any attribute or modifier lines directly above; they're part
+    // of how the declaration reads, and dropping a lone `noncomputable` would
+    // print a signature that isn't the one in the file.
     const attrs = [];
     let a = i - 1;
-    while (a >= 0 && ATTR_RE.test(lines[a])) {
+    while (a >= 0 && (ATTR_RE.test(lines[a]) || MODIFIER_ONLY_RE.test(lines[a]))) {
       attrs.unshift(lines[a].replace(/\s+$/, ""));
       a -= 1;
     }

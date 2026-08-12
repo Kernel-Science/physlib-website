@@ -134,6 +134,9 @@ export type MonthlyUpdate = {
   /** Number of files that changed in this month's diff (superset of `files`,
    *  which only lists Lean files where new declarations were detected). */
   totalFilesChanged?: number;
+  /** Whole files created / deleted in the diff. Renames count as neither. */
+  filesAdded?: number;
+  filesRemoved?: number;
   subfolders?: Array<{
     path: string;
     files: number;

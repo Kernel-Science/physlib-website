@@ -33,10 +33,10 @@
  * else about contributors come from git, so the script works fully offline
  * against an existing clone; without a token it just falls back to plain git
  * names with no avatars. The reviewers list, though, comes entirely from the
- * GitHub API (merged PRs + their reviews, one request each) since git has no
- * concept of a review - without a token that's capped at 60 requests/hour, so
- * on a busy month the reviewers section may come back empty rather than fail
- * the report.
+ * GitHub API (PRs touched in the month + their reviews, one request each)
+ * since git has no concept of a review - without a token that's capped at 60
+ * requests/hour, so on a busy month the reviewers section may come back empty
+ * rather than fail the report.
  *
  * PDF: after writing the JSON report the script also writes a scientific-paper
  * style LaTeX source to .monthly-updates-build/<slug>.tex and, if either
@@ -50,7 +50,7 @@ const fs = require("node:fs");
 const os = require("node:os");
 const path = require("node:path");
 const { spawnSync, execFileSync } = require("node:child_process");
-const { findAddedDeclarations } = require("./lean-decls");
+const { parseLean } = require("./lean-decls");
 
 const OWNER = "leanprover-community";
 const REPO = "physlib";
@@ -200,15 +200,25 @@ function resolveBranchRef() {
       .filter(([, url]) => url && new RegExp(`[/:]${OWNER}/${REPO}(\\.git)?$`, "i").test(url))
       .map(([name]) => name);
     for (const r of [...new Set(remotes)]) {
-      candidates.push(`${r}/master`, `${r}/main`);
+      candidates.push({ rev: `${r}/master`, name: "master" });
+      candidates.push({ rev: `${r}/main`, name: "main" });
     }
   } catch {
     /* fall through to the generic candidates */
   }
-  candidates.push("origin/master", "origin/main", "master", "main");
+  candidates.push(
+    { rev: "origin/master", name: "master" },
+    { rev: "origin/main", name: "main" },
+    { rev: "master", name: "master" },
+    { rev: "main", name: "main" },
+  );
 
+  // `rev` is what this clone can resolve locally (usually a remote-tracking
+  // ref like `origin/master`); `name` is the branch as it exists upstream.
+  // They must not be conflated: `origin/master` is meaningless in a
+  // github.com URL, and pasting it into one yields a 404.
   for (const candidate of candidates) {
-    const res = spawnSync("git", ["-C", REPO_DIR, "rev-parse", "--verify", "--quiet", candidate]);
+    const res = spawnSync("git", ["-C", REPO_DIR, "rev-parse", "--verify", "--quiet", candidate.rev]);
     if (res.status === 0) return candidate;
   }
   throw new Error(
@@ -322,6 +332,59 @@ function changedLeanFiles(base, head) {
   return pairs.sort((a, b) => a.newPath.localeCompare(b.newPath));
 }
 
+/** Paths of .lean files deleted outright between base and head. */
+function deletedLeanFiles(base, head) {
+  const out = git([
+    "diff",
+    "--name-only",
+    "--find-renames",
+    "-z",
+    "--diff-filter=D",
+    base,
+    head,
+    "--",
+    "*.lean",
+  ]);
+  return out.split("\0").filter(Boolean);
+}
+
+/**
+ * How many files the diff adds outright and removes outright, across the whole
+ * tree (not just .lean). Renames count as neither - with --find-renames a moved
+ * file is one R entry, so a tree-wide reshuffle doesn't read as hundreds of
+ * files created and destroyed.
+ */
+function fileAddRemoveCounts(base, head) {
+  const out = git([
+    "diff",
+    "--name-status",
+    "--find-renames",
+    "-z",
+    base,
+    head,
+  ]);
+  const fields = out.split("\0");
+  let added = 0;
+  let removed = 0;
+  let i = 0;
+  while (i < fields.length) {
+    const status = fields[i];
+    if (!status) {
+      i += 1;
+      continue;
+    }
+    // Renames/copies carry two path fields; everything else carries one.
+    if (status[0] === "R" || status[0] === "C") {
+      i += 3;
+      continue;
+    }
+    if (status[0] === "A") added += 1;
+    else if (status[0] === "D") removed += 1;
+    i += 2;
+  }
+  return { added, removed };
+}
+
 /** Contents of `filePath` at `sha`, or null if it didn't exist there. */
 function fileAt(sha, filePath) {
   const res = spawnSync("git", ["-C", REPO_DIR, "show", `${sha}:${filePath}`], {
@@ -418,29 +481,38 @@ async function githubIdentities(branch, sinceIso, untilIso) {
 }
 
 /**
- * Reviewers for the month: GitHub logins that submitted at least one review
- * on a pull request merged in [sinceIso, untilIso), excluding the PR's own
- * author (self-review), bot accounts, and anyone in `contributorLogins` -
- * those authored commits this month too, so they belong in the Contributors
- * list rather than here.
+ * Reviewers for the month: everyone who submitted a pull request review
+ * *dated* within [sinceIso, untilIso), whether or not that PR was merged and
+ * whether or not they also authored code this month. Reviewing is credited on
+ * its own terms, so the same person can appear under both Contributors and
+ * Reviewers.
  *
- * Needs one Search API call (merged PRs in range) plus one call per merged
- * PR (its reviews). Like `githubIdentities`, this is best-effort: without a
- * token, or on any failure, we warn and return an empty list rather than
- * failing the whole report - a busy month can exceed the 60/hr unauthenticated
- * budget on the reviews calls alone.
+ * Candidate PRs come from `updated:` rather than `merged:` - a review only
+ * counts as this month's work if the review itself landed this month, and a
+ * PR reviewed in June but merged in July (or still open) would be invisible
+ * to a merged-date search. Each review is then filtered on its own
+ * `submitted_at`, so an old review on a recently-touched PR doesn't leak in.
+ *
+ * Self-reviews are excluded: replying in your own PR's review thread submits
+ * a COMMENTED review, so counting those would list every author as a
+ * reviewer of their own work. Bots are excluded for the same reason.
+ *
+ * Needs one Search API call per 100 candidate PRs plus one call per PR (its
+ * reviews). Like `githubIdentities`, this is best-effort: without a token, or
+ * on any failure, we warn and return an empty list rather than failing the
+ * whole report - a busy month can exceed the 60/hr unauthenticated budget on
+ * the reviews calls alone.
  */
-async function fetchReviewers(sinceIso, untilIso, contributorLogins) {
-  const reviewers = new Map(); // login -> { html_url, avatar_url, prs: Set<number> }
+async function fetchReviewers(sinceIso, untilIso) {
+  const reviewers = new Map(); // login -> { user, prs: Set<number> }
+  const sinceMs = new Date(sinceIso).getTime();
+  const untilMs = new Date(untilIso).getTime();
   try {
-    // Search's merged: range is inclusive on both ends; back the upper bound
-    // off by one second so a PR merged exactly at the next month's boundary
-    // isn't double-counted, mirroring the git side's first-parent boundary
-    // handling above.
-    const untilInclusive = new Date(
-      new Date(untilIso).getTime() - 1000,
-    ).toISOString();
-    const q = `repo:${OWNER}/${REPO} is:pr is:merged merged:${sinceIso}..${untilInclusive}`;
+    // Search's date ranges are inclusive on both ends; back the upper bound
+    // off by one second so a PR touched exactly at the next month's boundary
+    // isn't pulled in, mirroring the git side's boundary handling above.
+    const untilInclusive = new Date(untilMs - 1000).toISOString();
+    const q = `repo:${OWNER}/${REPO} is:pr updated:${sinceIso}..${untilInclusive}`;
     const prs = [];
     for (let page = 1; page <= 10; page++) {
       const params = new URLSearchParams({
@@ -465,7 +537,8 @@ async function fetchReviewers(sinceIso, untilIso, contributorLogins) {
         if (!login) continue;
         if (login === pr.authorLogin) continue;
         if (/\[bot\]$/.test(login)) continue;
-        if (contributorLogins.has(login)) continue;
+        const at = r.submitted_at ? new Date(r.submitted_at).getTime() : NaN;
+        if (!Number.isFinite(at) || at < sinceMs || at >= untilMs) continue;
         if (!reviewers.has(login)) {
           reviewers.set(login, {
             html_url: r.user.html_url ?? null,
@@ -573,7 +646,7 @@ const LEAN_KEYWORDS = [
   "TODO", "return", "have", "show", "from", "calc", "at",
 ];
 
-// Unicode → LaTeX literate replacements for the `listings` package.
+// Unicode → LaTeX replacements for code snippets.
 //
 // Strategy: we set the monospace font to DejaVu Sans Mono (loaded by filename
 // in the preamble), which has native glyphs for Greek letters (α–ω, Α–Ω),
@@ -584,8 +657,15 @@ const LEAN_KEYWORDS = [
 // boxes whose subscript baseline shifts the glyph ordering in the PDF text
 // stream (which produced things like `x₀` copying as `₀x` and `S.ω` as `Sω.`).
 //
-// Only characters DejaVu Sans Mono doesn't ship or that `listings` treats
-// specially need to appear here. Each entry is [char, latex, columns].
+// Only characters DejaVu Sans Mono doesn't ship need to appear here. Each
+// entry is [char, latex, columns].
+//
+// These are applied by rewriting the snippet text (see `escapeSnippetGlyphs`),
+// NOT through the `listings` package's own `literate=` key. `literate` looks
+// like the right tool and silently is not: under XeLaTeX it only matches
+// ASCII, so every multi-byte entry here was a no-op and the character
+// typeset as nothing at all. Verified directly - an ASCII test entry
+// substitutes, the identical entry for `ᗮ` does not.
 const LEAN_LITERATE = [
   // Script / calligraphic letters — DejaVu doesn't cover most of these.
   ["𝓩", "{$\\mathcal{Z}$}", 1], ["𝒵", "{$\\mathcal{Z}$}", 1],
@@ -711,10 +791,61 @@ for (const [ch, body] of MISSING_GLYPH_MATH) {
   }
 }
 
-function literateDirective() {
-  return LEAN_LITERATE
-    .map(([ch, rep, cols]) => `{${ch}}{${rep}}${cols}`)
-    .join(" ");
+// Delimiters marking a stretch of real LaTeX inside an otherwise verbatim
+// listing (the `escapeinside` key below). Three characters, and `(*` is not
+// Lean comment syntax (Lean uses `--` and `/- -/`), so this cannot collide
+// with anything in the source we emit; `assertNoEscapeDelimiter` checks that
+// assumption rather than trusting it.
+const LST_ESCAPE_OPEN = "(*@";
+const LST_ESCAPE_CLOSE = "@*)";
+
+// char → math body, for every glyph DejaVu Sans Mono lacks.
+const SNIPPET_GLYPH_MATH = new Map([
+  ...LEAN_LITERATE.map(([ch, rep]) => [ch, rep.replace(/^\{\$|\$\}$/g, "")]),
+  ...MISSING_GLYPH_MATH,
+]);
+
+const NON_ASCII_RE = /[^\x00-\x7F]/gu;
+
+/**
+ * Route every non-ASCII character in a snippet through an `escapeinside`
+ * escape, so it is typeset as an ordinary LaTeX box rather than by
+ * `listings`' own character handling.
+ *
+ * Two separate defects make this necessary, both silent:
+ *
+ *  1. Ordering. `listings` emits a non-ASCII character *before* the run of
+ *     characters it actually follows, unless a space precedes it. `f ⟨0, by
+ *     simp⟩` typesets as `f ⟨0, by ⟩simp`, `x₀` as `₀x`, `(∑ i)` as `∑( i)`.
+ *     The code on the page is then simply not the code in the repository,
+ *     which for a report whose entire purpose is quoting declarations is a
+ *     correctness bug, not a cosmetic one. Escaped characters are unaffected.
+ *  2. Missing glyphs. DejaVu Sans Mono has no glyph for a handful of symbols
+ *     mathlib uses, and XeLaTeX has no font fallback, so those typeset as
+ *     nothing at all.
+ *
+ * `\texttt{…}` keeps the character in the very same monospace font it would
+ * otherwise have used, so this fixes the order without changing how the code
+ * looks; only the glyphs DejaVu actually lacks fall back to math mode.
+ */
+function escapeSnippetGlyphs(snippet) {
+  return String(snippet).replace(NON_ASCII_RE, (ch) => {
+    const math = SNIPPET_GLYPH_MATH.get(ch);
+    const body = math ? `\\ensuremath{${math}}` : `\\texttt{${ch}}`;
+    return `${LST_ESCAPE_OPEN}${body}${LST_ESCAPE_CLOSE}`;
+  });
+}
+
+/** Guard the escapeinside assumption: source containing the opening delimiter
+ *  would start executing listing content as LaTeX. */
+function assertNoEscapeDelimiter(snippet, where) {
+  if (String(snippet).includes(LST_ESCAPE_OPEN)) {
+    console.warn(
+      `  ⚠ ${where}: snippet contains the listings escape delimiter ${LST_ESCAPE_OPEN}; dropping it to keep the listing verbatim`,
+    );
+    return String(snippet).split(LST_ESCAPE_OPEN).join("(*");
+  }
+  return snippet;
 }
 
 function humanKind(kind) {
@@ -743,10 +874,11 @@ function displayName(person) {
 function renderLatex(report) {
   const reviewers = report.reviewers ?? [];
 
-  // Title-page byline: contributors (people who authored a commit/PR this
-  // month) and reviewers (people who only reviewed) as two labeled groups,
+  // Title-page byline: contributors (people who authored code this month) and
+  // reviewers (people who reviewed a PR this month) as two labeled groups,
   // rather than one flat \and-separated author list that doesn't distinguish
-  // the two roles.
+  // the two roles. The groups overlap by design - doing both earns both
+  // credits.
   const contributorNames = report.contributors
     .map((c) => texEscape(displayName(c)))
     .join(", ");
@@ -774,6 +906,21 @@ function renderLatex(report) {
   const subfolderPhrase = report.subfolders.length > 0
     ? ` spanning ${report.subfolders.length} top-level ${report.subfolders.length === 1 ? "area" : "areas"} of the repository`
     : "";
+  // Whole files created/deleted, alongside the line counts - "46,837 lines
+  // changed" reads very differently depending on whether that was edits to
+  // existing files or a hundred new ones. Renames aren't counted as either.
+  const nAdded = report.filesAdded ?? 0;
+  const nRemoved = report.filesRemoved ?? 0;
+  const fileChurnPhrase = humanList(
+    [
+      nAdded > 0
+        ? `\\textcolor{addcol}{${fmtN(nAdded)}} ${nAdded === 1 ? "file was" : "files were"} newly added`
+        : null,
+      nRemoved > 0
+        ? `\\textcolor{delcol}{${fmtN(nRemoved)}} ${nRemoved === 1 ? "was" : "were"} removed outright`
+        : null,
+    ].filter(Boolean),
+  );
   const intro =
     `During ${texEscape(report.label)}, ${fmtN(report.contributors.length)} ` +
     `${report.contributors.length === 1 ? "contributor" : "contributors"} ` +
@@ -784,8 +931,11 @@ function renderLatex(report) {
     `\\textcolor{delcol}{-${fmtN(report.totalDeletions)}}) ` +
     `across ${fmtN(report.totalFilesChanged)} ` +
     `${report.totalFilesChanged === 1 ? "file" : "files"}${subfolderPhrase}. ` +
+    (fileChurnPhrase ? `Of those, ${fileChurnPhrase}. ` : "") +
     (totalDecls > 0
-      ? `This report catalogues ${fmtN(totalDecls)} newly added Lean declarations: ${kindPhrase}.`
+      ? `This report catalogues ${fmtN(totalDecls)} newly added Lean declarations: ${kindPhrase}. ` +
+        "Declarations that were only edited, golfed, or moved between files are " +
+        "deliberately excluded, so this is new material rather than churn."
       : "No new Lean declarations were detected in this month's diff.");
 
   // Sections
@@ -906,7 +1056,7 @@ function renderLatex(report) {
   columns=fullflexible,
   keepspaces=true,
   inputencoding=utf8,
-  literate=${literateDirective()}
+  escapeinside={${LST_ESCAPE_OPEN}}{${LST_ESCAPE_CLOSE}}
 }
 
 \pagestyle{fancy}
@@ -961,7 +1111,7 @@ and the
 on GitHub for the raw source.
 
 \subsection{Contributors}
-\noindent\small Ordered by lines changed. People who authored a commit or pull request merged this month.\normalsize
+\noindent\small Ordered by lines changed. People who authored commits landed this month.\normalsize
 
 ${
   report.contributors.length === 0
@@ -970,7 +1120,7 @@ ${
 }
 
 \subsection{Reviewers}
-\noindent\small People who reviewed a pull request merged this month but did not author one themselves.\normalsize
+\noindent\small Everyone who reviewed a pull request this month. Contributors who also reviewed appear in both lists.\normalsize
 
 ${
   reviewers.length === 0
@@ -999,28 +1149,81 @@ ${noDeclsNote}${fileSections}
 `;
 }
 
+/** The last `k` dotted components of `parts` (the whole thing if k overshoots). */
+function nameSuffix(parts, k) {
+  return parts.slice(Math.max(0, parts.length - k)).join(".");
+}
+
+/**
+ * Heading labels for one file's declarations: each name shortened to the
+ * fewest trailing components that still tell it apart from its neighbours.
+ *
+ * `ClassicalFieldTheory.Local.foo_of_bar` becomes `foo_of_bar` - the enclosing
+ * section already names the module, so the namespace is redundant and long
+ * enough to wrap the heading and crowd the table of contents. When one file
+ * defines the same short name under two namespaces, only the shared prefix is
+ * dropped, so `…Local.IsEulerLagrangeEquivalent.eulerLagrangeOp_eq` and
+ * `…Local.TotalDivergenceEquivalence.eulerLagrangeOp_eq` become
+ * `IsEulerLagrangeEquivalent.eulerLagrangeOp_eq` and
+ * `TotalDivergenceEquivalence.eulerLagrangeOp_eq` rather than reverting to
+ * their full names.
+ *
+ * Comparing every candidate against the *same* suffix length of every other
+ * name is what keeps the result unambiguous: two labels can only coincide if
+ * they agree at equal depth, and that is exactly the case this rejects. A name
+ * that is a strict suffix of another (`Foo.bar` alongside `A.Foo.bar`) runs out
+ * of components first and keeps its full name, which is still distinct.
+ */
+function declHeadingLabels(names) {
+  const parts = names.map((n) => String(n).split("."));
+  return names.map((name, i) => {
+    for (let k = 1; k <= parts[i].length; k++) {
+      const candidate = nameSuffix(parts[i], k);
+      let clashes = false;
+      for (let j = 0; j < parts.length; j++) {
+        if (j === i) continue;
+        if (nameSuffix(parts[j], k) === candidate) {
+          clashes = true;
+          break;
+        }
+      }
+      if (!clashes) return candidate;
+    }
+    return name;
+  });
+}
+
 function renderFileSection(fileEntry, report) {
   const module = fileEntry.filename.replace(/\.lean$/, "").replace(/\//g, ".");
-  const fileUrl = `https://github.com/${report.repo}/blob/${report.branch}/${fileEntry.filename}`;
+  // Pinned to the month's head commit, not the branch: line numbers come from
+  // parsing the file at that commit, and a branch tip keeps moving, so a
+  // `#L748` anchor against it drifts onto unrelated code (or 404s once the
+  // file is renamed away).
+  const fileUrl = `https://github.com/${report.repo}/blob/${report.headSha}/${fileEntry.filename}`;
+  const labels = declHeadingLabels(fileEntry.entries.map((d) => d.name));
   const declBlocks = fileEntry.entries
-    .map((d) => renderDeclaration(d, report))
+    .map((d, i) => renderDeclaration(d, report, labels[i]))
     .join("\n\n");
   // \subsection is used so the TOC shows every file. Names in monospace, escaped.
   return `\\subsection{\\texorpdfstring{\\texttt{${texEscape(module)}}}{${texEscape(module)}}}\n` +
     `\\noindent\\small \\href{${texEscapeUrl(fileUrl)}}{\\texttt{${texEscape(fileEntry.filename)}}} on GitHub.\\normalsize\n\n${declBlocks}`;
 }
 
-function renderDeclaration(decl, report) {
+function renderDeclaration(decl, report, label) {
   const url =
-    `https://github.com/${report.repo}/blob/${report.branch}/${decl.file}` +
+    `https://github.com/${report.repo}/blob/${report.headSha}/${decl.file}` +
     (decl.line ? `#L${decl.line}` : "");
-  const header = `\\paragraph{\\texttt{${texEscape(decl.kind)}} \\texttt{${texEscape(decl.name)}}}` +
+  const shown = label ?? decl.name;
+  const header = `\\paragraph{\\texttt{${texEscape(decl.kind)}} \\texttt{${texEscape(shown)}}}` +
     ` \\hfill \\href{${texEscapeUrl(url)}}{\\footnotesize [source]}`;
   const doc = decl.docstring
     ? `\n\\begin{quote}\\itshape\n${texEscape(decl.docstring)}\n\\end{quote}\n`
     : "\n";
-  const snippet = decl.snippet || "";
-  // Emit code snippet as a Lean listing. Content is verbatim; no escaping.
+  // Emit the snippet as a Lean listing. Content is verbatim apart from the
+  // glyphs DejaVu can't draw, which are swapped for escaped math.
+  const snippet = escapeSnippetGlyphs(
+    assertNoEscapeDelimiter(decl.snippet || "", `${decl.file}:${decl.line}`),
+  );
   const listing = `\\begin{lstlisting}[language=Lean]\n${snippet}\n\\end{lstlisting}`;
   return `${header}\n${doc}${listing}`;
 }
@@ -1112,7 +1315,10 @@ function compileLatex(texPath, pdfPath) {
 }
 
 // ─── Main per-month logic ─────────────────────────────────────────────────
-async function generateMonth(year, monthIdx, defaultBranch, opts = {}) {
+async function generateMonth(year, monthIdx, branch, opts = {}) {
+  // `branch.rev` resolves locally (e.g. `origin/master`); `branch.name` is the
+  // upstream branch, and the only one of the two that belongs in a URL.
+  const defaultBranch = branch.rev;
   const slug = formatMonthSlug(year, monthIdx);
   const label = formatMonthLabel(year, monthIdx);
   const outPath = path.join(OUT_DIR, `${slug}.json`);
@@ -1151,6 +1357,10 @@ async function generateMonth(year, monthIdx, defaultBranch, opts = {}) {
 
   console.log(`• ${slug}: diffing ${baseSha.slice(0, 7)}…${headSha.slice(0, 7)}`);
   const stats = numstat(baseSha, headSha);
+  const { added: filesAdded, removed: filesRemoved } = fileAddRemoveCounts(
+    baseSha,
+    headSha,
+  );
   let totalAdditions = 0;
   let totalDeletions = 0;
   const subfolderStats = new Map(); // subfolder -> { files: Set, additions, deletions }
@@ -1180,14 +1390,51 @@ async function generateMonth(year, monthIdx, defaultBranch, opts = {}) {
   // and set-difference by fully-qualified name. Never from diff hunks - a hunk
   // is an arbitrary window, so a *modified* declaration is indistinguishable
   // from a new one. See scripts/lean-decls.js.
+  //
+  // The comparison is against every name the diff touched, not just the name's
+  // own file, so that a declaration merely *moved* between files (or carried
+  // along by a file rename that --find-renames didn't catch) isn't reported as
+  // new knowledge. Restricting the base set to touched files is sound and
+  // keeps this to one parse per file: a declaration that lived at base in a
+  // file the diff never touched is still there at head, and Lean does not
+  // permit the same fully-qualified name in two places at once, so it cannot
+  // also be appearing as an addition somewhere else.
   const leanFiles = changedLeanFiles(baseSha, headSha);
-  console.log(`• ${slug}: parsing ${leanFiles.length} changed .lean files…`);
+  const removedLeanFiles = deletedLeanFiles(baseSha, headSha);
+  console.log(
+    `• ${slug}: parsing ${leanFiles.length} changed .lean files (+${removedLeanFiles.length} deleted)…`,
+  );
+  const baseDeclNames = new Set();
+  const baseDeclsByPath = new Map();
+  for (const p of [
+    ...leanFiles.map((f) => f.oldPath).filter(Boolean),
+    ...removedLeanFiles,
+  ]) {
+    const contents = fileAt(baseSha, p);
+    if (contents === null) continue;
+    const names = new Set(parseLean(contents).keys());
+    baseDeclsByPath.set(p, names);
+    for (const name of names) baseDeclNames.add(name);
+  }
   const filesReport = [];
+  let movedDecls = 0;
   for (const { oldPath, newPath } of leanFiles) {
     const newContents = fileAt(headSha, newPath);
     if (newContents === null) continue; // deleted again before the month ended
-    const oldContents = oldPath ? fileAt(baseSha, oldPath) : null;
-    const added = findAddedDeclarations(oldContents, newContents);
+    const ownBaseNames = oldPath ? baseDeclsByPath.get(oldPath) : null;
+    const added = [];
+    for (const decl of parseLean(newContents).values()) {
+      // Already in this same file at base: unchanged, edited, or golfed - not
+      // new knowledge either way.
+      if (ownBaseNames?.has(decl.name)) continue;
+      // Present at base in some other file the diff touched: a move, not an
+      // addition.
+      if (baseDeclNames.has(decl.name)) {
+        movedDecls += 1;
+        continue;
+      }
+      added.push(decl);
+    }
     if (added.length === 0) continue;
     filesReport.push({
       filename: newPath,
@@ -1236,16 +1483,13 @@ async function generateMonth(year, monthIdx, defaultBranch, opts = {}) {
       (a.login ?? a.name ?? "").localeCompare(b.login ?? b.name ?? ""),
   );
 
-  // Reviewers: GitHub logins who reviewed a PR merged this month but didn't
-  // author any commits this month (those people are already contributors).
+  // Reviewers: everyone who reviewed a PR this month. Deliberately overlaps
+  // Contributors - reviewing is credited whether or not the same person also
+  // wrote code this month.
   const contributorLogins = new Set(
     contributorList.map((c) => c.login).filter(Boolean),
   );
-  const reviewerList = await fetchReviewers(
-    startIso,
-    endIso,
-    contributorLogins,
-  );
+  const reviewerList = await fetchReviewers(startIso, endIso);
 
   // Real names for the byline - "Jane Smith", not "jsmith" - for everyone we
   // have a GitHub login for. Contributors we couldn't resolve to a login keep
@@ -1273,16 +1517,18 @@ async function generateMonth(year, monthIdx, defaultBranch, opts = {}) {
     startDate: startIso,
     endDate: endIso,
     repo: `${OWNER}/${REPO}`,
-    branch: defaultBranch,
+    branch: branch.name,
     baseSha,
     headSha,
     compareUrl: `https://github.com/${OWNER}/${REPO}/compare/${baseSha}...${headSha}`,
-    commitsUrl: `https://github.com/${OWNER}/${REPO}/commits/${defaultBranch}?since=${startIso}&until=${endIso}`,
+    commitsUrl: `https://github.com/${OWNER}/${REPO}/commits/${branch.name}?since=${startIso}&until=${endIso}`,
     totalCommits: commits.length,
     totalAdditions,
     totalDeletions,
     linesChanged: totalAdditions + totalDeletions,
     totalFilesChanged: stats.length,
+    filesAdded,
+    filesRemoved,
     subfolders,
     contributors: contributorList,
     reviewers: reviewerList,
@@ -1296,7 +1542,9 @@ async function generateMonth(year, monthIdx, defaultBranch, opts = {}) {
   fs.writeFileSync(outPath, JSON.stringify(report, null, 2) + "\n", "utf8");
   const totalDecls = Object.values(kindTotals).reduce((a, b) => a + b, 0);
   console.log(
-    `✓ ${slug}: ${filesReport.length} files w/ decls (${stats.length} touched), ${totalDecls} declarations, ${contributorList.length} contributors, ${reviewerList.length} reviewers → ${path.relative(process.cwd(), outPath)}`,
+    `✓ ${slug}: ${filesReport.length} files w/ decls (${stats.length} touched, +${filesAdded}/-${filesRemoved} whole files), ` +
+      `${totalDecls} new declarations${movedDecls > 0 ? ` (${movedDecls} moved, excluded)` : ""}, ` +
+      `${contributorList.length} contributors, ${reviewerList.length} reviewers → ${path.relative(process.cwd(), outPath)}`,
   );
 
   // ─── LaTeX + PDF ────────────────────────────────────────────────────
@@ -1348,8 +1596,8 @@ async function generateMonth(year, monthIdx, defaultBranch, opts = {}) {
 
   try {
     ensureRepo();
-    const defaultBranch = resolveBranchRef();
-    console.log(`• default branch: ${defaultBranch}`);
+    const branch = resolveBranchRef();
+    console.log(`• default branch: ${branch.name} (${branch.rev})`);
 
     const targets = [];
     if (monthArg) {
@@ -1376,7 +1624,7 @@ async function generateMonth(year, monthIdx, defaultBranch, opts = {}) {
 
     for (const t of targets) {
       try {
-        await generateMonth(t.year, t.monthIdx, defaultBranch, {
+        await generateMonth(t.year, t.monthIdx, branch, {
           force: flagForce,
           noPdf: flagNoPdf,
         });
