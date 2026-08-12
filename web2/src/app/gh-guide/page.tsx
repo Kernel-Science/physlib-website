@@ -1,5 +1,6 @@
 import { Card } from "@heroui/react";
 import type { Metadata } from "next";
+import { PageHeader } from "@/components/page-header";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -28,12 +29,7 @@ export default function GhGuidePage() {
 
       {/* Step 1 —  Deciding on a Problem to Work On */}
       <section className="mb-12">
-        <h2
-          className="text-2xl font-medium text-foreground mb-4"
-          style={{ letterSpacing: "-0.035em" }}
-        >
-          1. Deciding on a Problem to Work On
-        </h2>
+        <PageHeader id="deciding-a-problem" title="1. Deciding on a Problem to Work On" />
         <div className="grid gap-4 sm:grid-cols-2">
           <Card variant="default">
             <Card.Header>
@@ -44,7 +40,7 @@ export default function GhGuidePage() {
                 Before starting any work, you can open an issue on the Physlib repository to
                 describe the problem you are encountering or the feature you want to
                 add. This makes maintainers aware of the work you plan on doing and helps with
-                tracking the project. 
+                tracking the project.
               </p>
               <ul className="space-y-2 ml-4">
                 {issueChecklist.map((item) => (
@@ -75,7 +71,7 @@ export default function GhGuidePage() {
             <Card.Content className="text-sm text-foreground/90">
               <p className="mb-4 leading-relaxed" style={{ color: "color-mix(in srgb, var(--foreground) 70%, var(--accent))" }}>
               The Physlib community is full of members who can point you in the right direction if you want to discuss an idea before opening an issue.
-              There is a Physlib channel on the Leanprover Zulip where you can post any questions you have. 
+              There is a Physlib channel on the Leanprover Zulip where you can post any questions you have.
                 </p>
                 <div className="mt-4">
                 <a
@@ -95,12 +91,7 @@ export default function GhGuidePage() {
 
       {/* Step 2 — Work on it */}
       <section className="mb-12">
-        <h2
-          className="text-2xl font-medium text-foreground mb-4"
-          style={{ letterSpacing: "-0.035em" }}
-        >
-          2. Work on the Problem
-        </h2>
+        <PageHeader id="work-on-the-problem" title="2. Work on the Problem" />
         <p
           className="text-sm mb-4 leading-relaxed"
           style={{ letterSpacing: "-0.01em", color: "color-mix(in srgb, var(--foreground) 70%, var(--accent))" }}
@@ -118,18 +109,13 @@ export default function GhGuidePage() {
           Always create a new branch from the latest <code className="font-mono text-xs">master</code>{" "} branch before starting work.
           This ensures that your changes are based on the most recent version of the codebase and reduces the likelihood of merge conflicts.
           We recommend you use a git GUI if you are not familiar with the command line.
-          
+
         </p>
       </section>
 
       {/* Step 3 — Pull Request */}
       <section className="mb-12">
-        <h2
-          className="text-2xl font-medium text-foreground mb-4"
-          style={{ letterSpacing: "-0.035em" }}
-        >
-          3. Make a Pull Request
-        </h2>
+        <PageHeader id="make-a-pull-request" title="3. Make a Pull Request" />
         <p className="text-sm mb-8 leading-relaxed" style={{ letterSpacing: "-0.01em", color: "color-mix(in srgb, var(--foreground) 70%, var(--accent))" }}>
           Small pull-requests are better than large ones — even if it&apos;s just a single result.
           Follow the PR template provided by GitHub when opening your PR.
@@ -169,7 +155,8 @@ export default function GhGuidePage() {
 
         <div className="mt-8">
           <h3
-            className="text-lg font-medium text-foreground mb-3"
+            id="adding-labels"
+            className="text-lg font-medium text-foreground mb-3 scroll-mt-24"
             style={{ letterSpacing: "-0.03em" }}
           >
             Adding Labels
@@ -190,7 +177,8 @@ export default function GhGuidePage() {
 
         <div className="mt-8">
           <h3
-            className="text-lg font-medium text-foreground mb-3"
+            id="lifecycle-of-a-pr"
+            className="text-lg font-medium text-foreground mb-3 scroll-mt-24"
             style={{ letterSpacing: "-0.03em" }}
           >
             Lifecycle of a PR
@@ -207,7 +195,8 @@ export default function GhGuidePage() {
 
         <div className="mt-8">
           <h3
-            className="text-lg font-medium text-foreground mb-3"
+            id="other-common-labels"
+            className="text-lg font-medium text-foreground mb-3 scroll-mt-24"
             style={{ letterSpacing: "-0.03em" }}
           >
             Other Common Labels
@@ -253,12 +242,7 @@ export default function GhGuidePage() {
       </section>
 
       <section className="mb-12">
-        <h2
-          className="text-2xl font-medium text-foreground mb-4"
-          style={{ letterSpacing: "-0.035em" }}
-        >
-          4. Managing the PR
-        </h2>
+        <PageHeader id="managing-the-pr" title="4. Managing the PR" />
         <p className="text-sm leading-relaxed" style={{ letterSpacing: "-0.01em", color: "color-mix(in srgb, var(--foreground) 70%, var(--accent))" }}>
           After opening a PR, the maintainers will review the changes and provide feedback. Feel free to begin work on a separate PR in the meantime but be prepared to make changes to this one if required.
         </p>
@@ -282,12 +266,7 @@ export default function GhGuidePage() {
       </section>
 
       <section className="mb-12">
-        <h2
-          className="text-2xl font-medium text-foreground mb-4"
-          style={{ letterSpacing: "-0.035em" }}
-        >
-          5. Merging the PR
-        </h2>
+        <PageHeader id="merging-the-pr" title="5. Merging the PR" />
         <p className="text-sm leading-relaxed" style={{ letterSpacing: "-0.01em", color: "color-mix(in srgb, var(--foreground) 70%, var(--accent))" }}>
          Once the reviewer is happy with the changes, they will merge the PR into the main branch. Physlib uses a{" "}
             <a
@@ -304,12 +283,7 @@ export default function GhGuidePage() {
 
       {/* Additional Guidance */}
       <section className="mb-12">
-        <h2
-          className="text-2xl font-medium text-foreground mb-4"
-          style={{ letterSpacing: "-0.035em" }}
-        >
-          Additional Guidance
-        </h2>
+        <PageHeader id="additional-guidance" title="Additional Guidance" />
         <p className="text-sm leading-relaxed" style={{ letterSpacing: "-0.01em", color: "color-mix(in srgb, var(--foreground) 70%, var(--accent))" }}>
           Please use your real name in your GitHub account settings and commit author. Physlib uses
           GitHub account names in its automated documentation generation, so using your real name
