@@ -28,7 +28,7 @@ export default function DocumentationTrackerPage() {
 
       <div className="mt-10 flex flex-col gap-6">
         <section>
-          <h2 className="text-xl font-semibold mb-3">
+          <h2 id="steps-to-help-with-documentation" className="text-xl font-semibold mb-3 scroll-mt-24">
             Steps to Help with Documentation
           </h2>
           <p className="text-sm text-muted mb-4">
@@ -38,7 +38,9 @@ export default function DocumentationTrackerPage() {
 
           {docSteps.map((step) => (
             <div key={step.title} className="mb-6">
-              <h3 className="font-semibold mb-2">{step.title}</h3>
+              <h3 id={slugify(step.title)} className="font-semibold mb-2 scroll-mt-24">
+                {step.title}
+              </h3>
               <ol className="list-decimal ml-5 space-y-1 text-sm text-foreground/90">
                 {step.items.map((item, i) => (
                   <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
@@ -50,6 +52,10 @@ export default function DocumentationTrackerPage() {
       </div>
     </div>
   );
+}
+
+function slugify(title: string) {
+  return title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 }
 
 const docSteps = [
