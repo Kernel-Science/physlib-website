@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { site } from "@/lib/site";
+import { GetInvolvedCarousel } from "@/components/get-involved-carousel";
 
 export default function HomePage() {
   return (
@@ -63,6 +64,20 @@ export default function HomePage() {
               Join Community
             </a>
           </div>
+        </div>
+      </section>
+
+      {/* ═══ GET INVOLVED ════════════════════════════════════════ */}
+      <section className="bg-background border-t border-border py-24 md:py-32">
+        <div className="mx-auto max-w-4xl px-5 sm:px-8">
+          <p className="label-mono text-muted mb-5">Get Involved</p>
+          <h2
+            className="text-4xl font-medium text-foreground mb-14 md:text-5xl"
+            style={{ letterSpacing: "-0.04em" }}
+          >
+            How you can contribute:
+          </h2>
+          <GetInvolvedCarousel />
         </div>
       </section>
 

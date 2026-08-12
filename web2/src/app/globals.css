@@ -96,6 +96,15 @@ body {
 .delay-100 { animation-delay: 100ms; }
 .delay-200 { animation-delay: 200ms; }
 
+@keyframes carousel-in-right {
+  from { opacity: 0; transform: translateX(24px); }
+  to   { opacity: 1; transform: translateX(0);    }
+}
+@keyframes carousel-in-left {
+  from { opacity: 0; transform: translateX(-24px); }
+  to   { opacity: 1; transform: translateX(0);     }
+}
+
 /* ─── Prose ─────────────────────────────────────────────────── */
 @layer components {
   .prose-physlib { @apply text-foreground leading-relaxed; }
@@ -122,6 +131,11 @@ body {
   .prose-physlib th, .prose-physlib td { @apply border border-border px-3 py-2 text-left; }
   .prose-physlib th  { @apply bg-surface-secondary font-medium; }
   .prose-physlib img { @apply rounded my-4 max-w-full h-auto; }
+}
+
+/* ─── TOC anchor offset (clears fixed navbar) ───────────────── */
+h2[id], h3[id] {
+  scroll-margin-top: 5rem;
 }
 
 @keyframes shimmer {
