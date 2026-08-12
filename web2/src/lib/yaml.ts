@@ -150,6 +150,10 @@ export type MonthlyUpdate = {
   }>;
   /** Public URL of the generated scientific-paper style PDF. */
   pdfUrl?: string;
+  /** DOI of the Zenodo record archiving this month's PDF, once minted. */
+  zenodoDoi?: string;
+  /** Direct link to the Zenodo record, once published. */
+  zenodoUrl?: string;
   generatedAt: string;
 };
 
