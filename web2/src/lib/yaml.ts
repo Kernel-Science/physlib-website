@@ -84,6 +84,8 @@ export type MonthlyContributor = {
   avatar_url: string | null;
   commits: number;
   linesChanged: number;
+  /** True when this contributor has no commits before the reporting window. */
+  firstTime?: boolean;
 };
 
 /** Someone who reviewed a PR merged this month but didn't author a commit. */

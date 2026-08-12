@@ -489,6 +489,32 @@ function commitsInRange(base, head) {
 }
 
 /**
+ * All author identities that appear in history up to and including `base`,
+ * used to distinguish first-time contributors this month from returning ones.
+ *
+ * Emails are the primary key (git's canonical author identity); names are a
+ * softer fallback for people whose email changed between contributions. If
+ * either matches a prior commit, the contributor is treated as returning.
+ * The trade-off is deliberate: false negatives (missing a first-timer) are
+ * quiet, while false positives (mislabelling a returning contributor as new)
+ * are visible in the report, so we err on the side of the tighter check.
+ */
+function priorAuthorIdentities(base) {
+  const MARK = "\x01";
+  const SEP = "\x1f";
+  const emails = new Set();
+  const names = new Set();
+  const out = git(["log", base, `--format=${MARK}%ae${SEP}%an`]);
+  for (const line of out.split("\n")) {
+    if (!line.startsWith(MARK)) continue;
+    const [email, name] = line.slice(MARK.length).split(SEP);
+    if (email) emails.add(email.toLowerCase());
+    if (name) names.add(name);
+  }
+  return { emails, names };
+}
+
+/**
  * Best-effort GitHub identity lookup, used to turn git authors into linked,
  * avatared accounts. Returns { bySha, byEmail } maps of
  * { login, avatar_url, html_url }.
@@ -939,6 +965,18 @@ const MISSING_GLYPH_MATH = [
   ["⟶", "\\longrightarrow"], ["⟹", "\\Longrightarrow"],
   ["⨂", "\\bigotimes"], ["⨅", "\\bigsqcap"], ["⨯", "\\times"],
   ["⬝", "\\cdot"],
+  // Flattened parentheses (U+27EE/U+27EF).
+  ["⟮", "\\lgroup"], ["⟯", "\\rgroup"],
+  // Fraktur letters (U+1D504+ block) - mathlib uses these for ideals and
+  // module elements. Bold variants map to \boldsymbol{\mathfrak{…}}.
+  ["𝔰", "\\mathfrak{s}"], ["𝔬", "\\mathfrak{o}"],
+  ["𝖘", "\\boldsymbol{\\mathfrak{s}}"], ["𝖔", "\\boldsymbol{\\mathfrak{o}}"],
+  // Bold script letters (U+1D4D0+ block) - LaTeX has no distinct bold-script,
+  // so these fall through to \mathcal, matching the plain-script mapping.
+  ["𝓕", "\\mathcal{F}"], ["𝓜", "\\mathcal{M}"], ["𝓝", "\\mathcal{N}"],
+  ["𝓭", "\\mathcal{d}"],
+  // Bold Latin capitals (U+1D400+ block).
+  ["𝐃", "\\mathbf{D}"],
 ];
 
 for (const [ch, body] of MISSING_GLYPH_MATH) {
@@ -1265,6 +1303,27 @@ function renderLatex(report) {
         : null,
     ].filter(Boolean),
   );
+  // First-time contributors get a hyperlinked welcome, alphabetical by
+  // display name so no one is implicitly ranked. Omitted entirely when there
+  // aren't any, rather than printing an awkward empty clause.
+  const firstTimers = [...report.contributors]
+    .filter((c) => c.firstTime)
+    .sort(byName);
+  const firstTimerPhrase =
+  firstTimers.length === 0
+    ? ""
+    : `We’re delighted to recognize ${
+        firstTimers.length === 1
+          ? "the following first-time contributor"
+          : "the following first-time contributors"
+      } this month: ${humanList(
+        firstTimers.map((c) => {
+          const name = texEscape(displayName(c));
+          return c.html_url
+            ? `\\href{${texEscapeUrl(c.html_url)}}{${name}}`
+            : name;
+        }),
+      )}.`;
   const intro =
     `During ${texEscape(report.label)}, ${fmtN(report.contributors.length)} ` +
     `${report.contributors.length === 1 ? "contributor" : "contributors"} ` +
@@ -1278,12 +1337,15 @@ function renderLatex(report) {
     (fileChurnPhrase ? `Of those, ${fileChurnPhrase}. ` : "") +
     (totalDecls > 0
       ? `This report catalogues ${fmtN(totalDecls)} newly added Lean declarations: ${kindPhrase}.`
-      : "No new Lean declarations were detected in this month's diff.");
+      : "No new Lean declarations were detected in this month's diff.") +
+    (firstTimerPhrase ? ` ${firstTimerPhrase}` : "");
 
   // Sections
-  // Ordered by lines changed (see contributorList's sort in the generator),
-  // so the table order matches how much of the diff each person is behind.
-  const contributorRows = report.contributors
+  // Alphabetical, like the byline above - a credit list, not a leaderboard.
+  // The Lines Changed / Commits / PRs Reviewed columns still carry the volume
+  // information; only the row order changed.
+  const contributorRows = [...report.contributors]
+    .sort(byName)
     .map((c) => {
       const name = texEscape(displayName(c));
       const label = c.html_url
@@ -1293,7 +1355,8 @@ function renderLatex(report) {
     })
     .join("\n");
 
-  const reviewerRows = reviewers
+  const reviewerRows = [...reviewers]
+    .sort(byName)
     .map((r) => {
       const name = texEscape(displayName(r));
       const label = r.html_url
@@ -1489,7 +1552,7 @@ and the
 on GitHub for the raw source.
 
 \subsection{Contributors}
-\noindent\small Ordered by lines changed.\normalsize
+\noindent The following individuals authored commits merged during this reporting period, listed alphabetically.
 
 ${
   report.contributors.length === 0
@@ -1498,7 +1561,7 @@ ${
 }
 
 \subsection{Reviewers}
-\noindent\small Ordered by pull requests reviewed.\normalsize
+\noindent The following individuals approved pull requests during this reporting period, listed alphabetically.
 
 ${
   reviewers.length === 0
@@ -1926,6 +1989,10 @@ async function generateMonth(year, monthIdx, branch, opts = {}) {
   // consulted only to attach logins and avatars, and is entirely optional.
   const commits = commitsInRange(baseSha, headSha);
   const { bySha, byEmail } = await githubIdentities(defaultBranch, startIso, endIso);
+  // Everything authored before the reporting window opens. If any of a
+  // contributor's commits this month use a prior email or name, they've
+  // contributed before; otherwise they're a first-timer.
+  const priorAuthors = priorAuthorIdentities(baseSha);
   const contributors = new Map();
   for (const c of commits) {
     const id = bySha.get(c.sha) ?? byEmail.get(c.email);
@@ -1938,11 +2005,18 @@ async function generateMonth(year, monthIdx, branch, opts = {}) {
         avatar_url: id ? id.avatar_url : null,
         commits: 0,
         linesChanged: 0,
+        firstTime: true,
       });
     }
     const entry = contributors.get(key);
     entry.commits += 1;
     entry.linesChanged += c.additions + c.deletions;
+    if (
+      priorAuthors.emails.has(c.email.toLowerCase()) ||
+      priorAuthors.names.has(c.name)
+    ) {
+      entry.firstTime = false;
+    }
   }
   // Ordered by lines changed rather than commit count: a handful of large
   // commits should outrank a long tail of one-line tweaks.
