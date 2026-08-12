@@ -43,6 +43,10 @@ export function GraphvizView({ getDot, height = "500px" }: Props) {
         await loadScript(
           "https://unpkg.com/@hpcc-js/wasm@2.20.0/dist/graphviz.umd.js",
         );
+        // d3-graphviz v5 resolves @hpcc-js/wasm via window["@hpcc-js/wasm"],
+        // but the UMD bundle registers itself as window.hpcc — bridge the gap.
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (window as any)["@hpcc-js/wasm"] = (window as any).hpcc;
         await loadScript(
           "https://unpkg.com/d3-graphviz@5.6.0/build/d3-graphviz.js",
         );

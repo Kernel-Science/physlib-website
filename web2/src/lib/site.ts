@@ -8,6 +8,9 @@ export const site = {
   zulip: "https://leanprover.zulipchat.com/#narrow/channel/479953-physlib",
   search: "https://physlibsearch.net",
   docs: "/docs/index.html",
+  // Same report the "/reviews" Zulip bot command sends - see
+  // https://github.com/Alex-Zughaid/PhyslibBots (zulip-dm-bots/src/index.js)
+  reportApi: "https://zulip-dm-relay.alexzughaid.workers.dev/report",
 };
 
 export type NavItem = {
@@ -46,6 +49,7 @@ export const navSections: NavSection[] = [
     items: [
       { label: "Project ideas", href: "/project-ideas" },
       { label: "Ways to contribute", href: "/get-involved" },
+      { label: "Guide to contributing via GitHub", href: "/gh-guide" },
       { label: "APIs", href: "/apis" },
     ],
   },

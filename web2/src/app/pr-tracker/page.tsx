@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PRTrackerClient } from "./pr-tracker-client";
+import { GithubSummary } from "./github-summary";
 
 export const metadata: Metadata = {
   title: "PR Triage | Physlib",
@@ -25,6 +26,7 @@ export default function PRTrackerPage() {
         </a>
       </p>
       <PRTrackerClient />
+      <GithubSummary />
     </div>
   );
 }
