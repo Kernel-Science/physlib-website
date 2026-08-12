@@ -10,18 +10,25 @@ declare global {
   }
 }
 
+// Keyed by src, so repeat calls - e.g. React Strict Mode's dev-only
+// mount/unmount/remount cycle - await the *same* load rather than each
+// racing to check "is a <script> tag already in the DOM", which is true
+// well before that tag's own load event has actually fired.
+const scriptLoads = new Map<string, Promise<void>>();
+
 function loadScript(src: string): Promise<void> {
-  return new Promise((resolve, reject) => {
-    if (document.querySelector(`script[src="${src}"]`)) {
-      resolve();
-      return;
-    }
-    const s = document.createElement("script");
-    s.src = src;
-    s.onload = () => resolve();
-    s.onerror = reject;
-    document.head.appendChild(s);
-  });
+  let promise = scriptLoads.get(src);
+  if (!promise) {
+    promise = new Promise((resolve, reject) => {
+      const s = document.createElement("script");
+      s.src = src;
+      s.onload = () => resolve();
+      s.onerror = reject;
+      document.head.appendChild(s);
+    });
+    scriptLoads.set(src, promise);
+  }
+  return promise;
 }
 
 type Props = {
