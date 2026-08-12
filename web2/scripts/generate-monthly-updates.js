@@ -76,7 +76,11 @@ const backfillArg = argValue("--backfill");
 const repoArg = argValue("--repo") || process.env.PHYSLIB_REPO || "";
 
 // ─── HTTP helpers ─────────────────────────────────────────────────────────
-function ghRequest(pathAndQuery) {
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+/** One HTTP attempt. Resolves { status, body, headers } for any status code -
+ *  deciding what is retryable is the caller's job. */
+function ghAttempt(pathAndQuery) {
   const options = {
     hostname: "api.github.com",
     path: pathAndQuery,
@@ -93,26 +97,81 @@ function ghRequest(pathAndQuery) {
     const req = https.request(options, (res) => {
       const chunks = [];
       res.on("data", (c) => chunks.push(c));
-      res.on("end", () => {
-        const body = Buffer.concat(chunks).toString("utf8");
-        if (res.statusCode && res.statusCode >= 400) {
-          reject(
-            new Error(
-              `GitHub API ${res.statusCode} on ${pathAndQuery}: ${body.slice(0, 300)}`,
-            ),
-          );
-          return;
-        }
-        try {
-          resolve(JSON.parse(body));
-        } catch (err) {
-          reject(new Error(`Invalid JSON from ${pathAndQuery}: ${err.message}`));
-        }
-      });
+      res.on("end", () =>
+        resolve({
+          status: res.statusCode ?? 0,
+          body: Buffer.concat(chunks).toString("utf8"),
+          headers: res.headers,
+        }),
+      );
     });
     req.on("error", reject);
     req.end();
   });
+}
+
+const GH_MAX_ATTEMPTS = 4;
+
+/**
+ * GET a GitHub API path, retrying transient failures.
+ *
+ * A single 502 or a brush with the secondary rate limit shouldn't cost a whole
+ * section of the report - and the reviews loop, which fires one request per
+ * pull request, is exactly the shape that trips secondary limits. Retries
+ * cover 5xx, 429, socket errors, and the 403 GitHub uses for abuse detection,
+ * honouring `retry-after` / `x-ratelimit-reset` when present. 4xx that mean
+ * what they say (404, bad credentials) fail immediately - retrying those just
+ * wastes the budget.
+ */
+async function ghRequest(pathAndQuery) {
+  let lastError;
+  for (let attempt = 1; attempt <= GH_MAX_ATTEMPTS; attempt++) {
+    let res;
+    try {
+      res = await ghAttempt(pathAndQuery);
+    } catch (err) {
+      lastError = err;
+      if (attempt === GH_MAX_ATTEMPTS) break;
+      await sleep(2 ** attempt * 500);
+      continue;
+    }
+
+    if (res.status < 400) {
+      try {
+        return JSON.parse(res.body);
+      } catch (err) {
+        throw new Error(`Invalid JSON from ${pathAndQuery}: ${err.message}`);
+      }
+    }
+
+    const rateLimited =
+      res.status === 429 ||
+      (res.status === 403 &&
+        /rate limit|abuse|secondary/i.test(res.body));
+    const retryable = res.status >= 500 || rateLimited;
+    lastError = new Error(
+      `GitHub API ${res.status} on ${pathAndQuery}: ${res.body.slice(0, 300)}`,
+    );
+    if (!retryable || attempt === GH_MAX_ATTEMPTS) break;
+
+    // Prefer the server's own guidance; fall back to exponential backoff.
+    const retryAfter = Number(res.headers["retry-after"]);
+    const resetAt = Number(res.headers["x-ratelimit-reset"]);
+    let waitMs = 2 ** attempt * 500;
+    if (Number.isFinite(retryAfter) && retryAfter > 0) {
+      waitMs = retryAfter * 1000;
+    } else if (Number.isFinite(resetAt) && resetAt > 0) {
+      waitMs = Math.max(waitMs, resetAt * 1000 - Date.now());
+    }
+    // A primary rate-limit reset can be most of an hour away; waiting that
+    // long inside a scheduled job is worse than failing and being re-run.
+    waitMs = Math.min(Math.max(waitMs, 0), 60_000);
+    console.warn(
+      `  … ${res.status} from GitHub, retrying in ${Math.round(waitMs / 1000)}s (attempt ${attempt}/${GH_MAX_ATTEMPTS})`,
+    );
+    await sleep(waitMs);
+  }
+  throw lastError;
 }
 
 // ─── Date helpers ─────────────────────────────────────────────────────────
@@ -527,10 +586,23 @@ async function fetchReviewers(sinceIso, untilIso) {
       }
       if (items.length < 100) break;
     }
+    let prFailures = 0;
     for (const pr of prs) {
-      const reviews = await ghRequest(
-        `/repos/${OWNER}/${REPO}/pulls/${pr.number}/reviews?per_page=100`,
-      );
+      // Scoped per pull request: with a single outer catch, one failed
+      // request late in a 190-PR loop discarded every reviewer found so far
+      // and published an empty section. One bad request should cost one PR.
+      let reviews;
+      try {
+        reviews = await ghRequest(
+          `/repos/${OWNER}/${REPO}/pulls/${pr.number}/reviews?per_page=100`,
+        );
+      } catch (err) {
+        prFailures += 1;
+        console.warn(
+          `  ⚠ could not fetch reviews for PR #${pr.number} (${err.message}); its reviewers are omitted`,
+        );
+        continue;
+      }
       if (!Array.isArray(reviews)) continue;
       for (const r of reviews) {
         const login = r.user?.login;
@@ -549,6 +621,11 @@ async function fetchReviewers(sinceIso, untilIso) {
         reviewers.get(login).prs.add(pr.number);
       }
     }
+    if (prFailures) {
+      console.warn(
+        `  ⚠ ${prFailures} of ${prs.length} pull request(s) could not be read; the reviewers section may undercount`,
+      );
+    }
   } catch (err) {
     console.warn(
       `  ⚠ could not fetch PR reviewers (${err.message}); reviewers section will be empty`,
@@ -564,6 +641,14 @@ async function fetchReviewers(sinceIso, untilIso) {
     .sort((a, b) => b.reviews - a.reviews || a.login.localeCompare(b.login));
 }
 
+// login -> display name (or null when the profile has none / was unreachable).
+// Module scope, so `--backfill 12` looks each person up once rather than once
+// per month: the same contributors recur every month, and this endpoint has no
+// batch form.
+const profileNameCache = new Map();
+
+const PROFILE_FETCH_CONCURRENCY = 6;
+
 /**
  * GitHub profile display names for a set of logins - "Jane Smith" rather
  * than "jsmith", for a byline that reads like a paper's author list instead
@@ -573,18 +658,35 @@ async function fetchReviewers(sinceIso, untilIso) {
  * to showing that person's username instead of failing the report.
  */
 async function fetchProfileNames(logins) {
+  const pending = [...logins].filter((l) => !profileNameCache.has(l));
+  // A handful at a time: serially this is one round trip per person (~40 for
+  // a busy month), and GitHub's secondary limits dislike bursts more than
+  // they dislike volume.
+  for (let i = 0; i < pending.length; i += PROFILE_FETCH_CONCURRENCY) {
+    const batch = pending.slice(i, i + PROFILE_FETCH_CONCURRENCY);
+    await Promise.all(
+      batch.map(async (login) => {
+        try {
+          const user = await ghRequest(`/users/${encodeURIComponent(login)}`);
+          const name =
+            user && typeof user.name === "string" && user.name.trim()
+              ? user.name.trim()
+              : null;
+          profileNameCache.set(login, name);
+        } catch (err) {
+          console.warn(
+            `  ⚠ could not fetch GitHub profile for ${login} (${err.message}); showing username instead`,
+          );
+          profileNameCache.set(login, null);
+        }
+      }),
+    );
+  }
+
   const names = new Map();
   for (const login of logins) {
-    try {
-      const user = await ghRequest(`/users/${encodeURIComponent(login)}`);
-      if (user && typeof user.name === "string" && user.name.trim()) {
-        names.set(login, user.name.trim());
-      }
-    } catch (err) {
-      console.warn(
-        `  ⚠ could not fetch GitHub profile for ${login} (${err.message}); showing username instead`,
-      );
-    }
+    const name = profileNameCache.get(login);
+    if (name) names.set(login, name);
   }
   return names;
 }
@@ -836,6 +938,144 @@ function escapeSnippetGlyphs(snippet) {
   });
 }
 
+// The monospace font the preamble loads, and the one every raw non-ASCII
+// character left in the .tex is ultimately typeset with: snippets are
+// listings, and declaration names in headings are \texttt too. Anything in
+// text mode has already been replaced by a LaTeX command via texEscape.
+const MONO_FONT_FILE = "DejaVuSansMono.ttf";
+
+/** Absolute path to `MONO_FONT_FILE`, or null when it isn't on disk (tectonic
+ *  serves fonts from its own bundle, so in CI there is nothing to read). */
+function findMonoFontFile() {
+  const res = spawnSync("kpsewhich", [MONO_FONT_FILE], { encoding: "utf8" });
+  if (res.status === 0) {
+    const found = String(res.stdout ?? "").trim().split("\n")[0];
+    if (found && fs.existsSync(found)) return found;
+  }
+  return null;
+}
+
+/**
+ * Build a `codepoint -> boolean` coverage test from a TrueType `cmap`.
+ *
+ * Only coverage is needed, not glyph ids, so this reads the best available
+ * subtable (format 12 for the full range, else format 4 for the BMP) and
+ * answers whether a codepoint maps to a non-zero glyph. Returns null if the
+ * font can't be understood, in which case the caller skips the check rather
+ * than inventing failures.
+ */
+function readCmapLookup(fontPath) {
+  let buf;
+  try {
+    buf = fs.readFileSync(fontPath);
+  } catch {
+    return null;
+  }
+  try {
+    const numTables = buf.readUInt16BE(4);
+    let cmapOff = 0;
+    for (let i = 0; i < numTables; i++) {
+      const rec = 12 + i * 16;
+      if (buf.toString("ascii", rec, rec + 4) === "cmap") {
+        cmapOff = buf.readUInt32BE(rec + 8);
+        break;
+      }
+    }
+    if (!cmapOff) return null;
+
+    const subtables = buf.readUInt16BE(cmapOff + 2);
+    let best = null;
+    let bestScore = -1;
+    for (let i = 0; i < subtables; i++) {
+      const rec = cmapOff + 4 + i * 8;
+      const platform = buf.readUInt16BE(rec);
+      const encoding = buf.readUInt16BE(rec + 2);
+      const off = cmapOff + buf.readUInt32BE(rec + 4);
+      const format = buf.readUInt16BE(off);
+      let score = -1;
+      if (format === 12 && platform === 3 && encoding === 10) score = 3;
+      else if (format === 4 && platform === 3 && encoding === 1) score = 2;
+      else if (format === 12) score = 1;
+      else if (format === 4) score = 0;
+      if (score > bestScore) {
+        bestScore = score;
+        best = { off, format };
+      }
+    }
+    if (!best) return null;
+
+    if (best.format === 12) {
+      const groups = buf.readUInt32BE(best.off + 12);
+      return (cp) => {
+        for (let g = 0; g < groups; g++) {
+          const p = best.off + 16 + g * 12;
+          if (cp >= buf.readUInt32BE(p) && cp <= buf.readUInt32BE(p + 4)) return true;
+        }
+        return false;
+      };
+    }
+
+    const segX2 = buf.readUInt16BE(best.off + 6);
+    const endO = best.off + 14;
+    const startO = endO + segX2 + 2;
+    const deltaO = startO + segX2;
+    const rangeO = deltaO + segX2;
+    return (cp) => {
+      if (cp > 0xffff) return false;
+      for (let s = 0; s < segX2 / 2; s++) {
+        if (cp > buf.readUInt16BE(endO + s * 2)) continue;
+        const start = buf.readUInt16BE(startO + s * 2);
+        if (cp < start) return false;
+        const rangeOffset = buf.readUInt16BE(rangeO + s * 2);
+        if (rangeOffset === 0) {
+          return ((cp + buf.readInt16BE(deltaO + s * 2)) & 0xffff) !== 0;
+        }
+        const gi = rangeO + s * 2 + rangeOffset + (cp - start) * 2;
+        if (gi + 1 >= buf.length) return false;
+        return buf.readUInt16BE(gi) !== 0;
+      }
+      return false;
+    };
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Refuse to compile a document containing a character the font cannot draw.
+ *
+ * XeLaTeX has no font fallback, so an uncovered codepoint typesets as nothing
+ * whatsoever - a theorem statement quietly missing a symbol. Checking the
+ * emitted source against the font's own cmap turns that into an error naming
+ * the exact codepoints, before spending four minutes on a compile, and
+ * catches glyphs the log scrape would only report afterwards.
+ *
+ * Skips when the font isn't on disk (tectonic bundles its own). That is not a
+ * hole: `compileLatex`'s log scrape is fatal too, so the same characters still
+ * fail the run, just later.
+ */
+function assertGlyphsCovered(tex) {
+  const fontPath = findMonoFontFile();
+  if (!fontPath) return;
+  const covered = readCmapLookup(fontPath);
+  if (!covered) return;
+
+  const missing = new Map();
+  for (const ch of new Set(String(tex).match(NON_ASCII_RE) ?? [])) {
+    const cp = ch.codePointAt(0);
+    if (!covered(cp)) missing.set(ch, cp);
+  }
+  if (missing.size === 0) return;
+
+  const listed = [...missing]
+    .map(([ch, cp]) => `${ch} (U+${cp.toString(16).toUpperCase().padStart(4, "0")})`)
+    .join(", ");
+  throw new Error(
+    `${missing.size} character(s) in the generated LaTeX have no glyph in ${MONO_FONT_FILE} ` +
+      `and would typeset as nothing: ${listed}. Add each to MISSING_GLYPH_MATH.`,
+  );
+}
+
 /** Guard the escapeinside assumption: source containing the opening delimiter
  *  would start executing listing content as LaTeX. */
 function assertNoEscapeDelimiter(snippet, where) {
@@ -873,6 +1113,20 @@ function displayName(person) {
 
 function renderLatex(report) {
   const reviewers = report.reviewers ?? [];
+
+  // The byline deliberately lists someone twice when they both wrote and
+  // reviewed - the two groups are labeled, so it reads correctly. `pdfauthor`
+  // is a flat metadata list with no such structure, so the same repetition
+  // there is just a name printed twice. Key on login where we have one, since
+  // two different people can share a display name.
+  const pdfAuthors = [];
+  const seenAuthors = new Set();
+  for (const person of [...report.contributors, ...reviewers]) {
+    const key = person.login ? `login:${person.login}` : `name:${displayName(person)}`;
+    if (seenAuthors.has(key)) continue;
+    seenAuthors.add(key);
+    pdfAuthors.push(displayName(person));
+  }
 
   // Title-page byline: contributors (people who authored code this month) and
   // reviewers (people who reviewed a PR this month) as two labeled groups,
@@ -1005,7 +1259,7 @@ function renderLatex(report) {
 % dejavu package (which tectonic bundles) and has broad Unicode coverage for
 % the Greek, subscripts, and math glyphs common in Lean 4 source. Loading by
 % filename works both under system xelatex and inside tectonic's font bundle.
-\setmonofont{DejaVuSansMono.ttf}[
+\setmonofont{${MONO_FONT_FILE}}[
   BoldFont       = DejaVuSansMono-Bold.ttf,
   ItalicFont     = DejaVuSansMono-Oblique.ttf,
   BoldItalicFont = DejaVuSansMono-BoldOblique.ttf,
@@ -1026,7 +1280,7 @@ function renderLatex(report) {
   urlcolor=blue!50!black,
   citecolor=blue!50!black,
   pdftitle={Physlib Monthly Report -- ${texEscape(report.label)}},
-  pdfauthor={${[...report.contributors.map(displayName), ...reviewers.map(displayName)].map(texEscape).join(", ")}},
+  pdfauthor={${pdfAuthors.map(texEscape).join(", ")}},
   pdfsubject={Monthly diff summary of leanprover-community/physlib},
 }
 
@@ -1242,7 +1496,7 @@ function which(cmd) {
  *
  * Returns { ok, missingGlyphs, overfull } on success, or { ok: false,
  * noEngine: true } when neither engine is installed. Throws on genuine
- * compilation errors so the caller can warn without aborting the whole run.
+ * compilation errors, having first salvaged the log next to the .tex.
  *
  * The diagnostics matter: a glyph the font lacks does not fail the build, it
  * just typesets as nothing, so the only way to notice is to read the log.
@@ -1254,6 +1508,21 @@ function compileLatex(texPath, pdfPath) {
 
   const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "physlib-monthly-"));
   const base = path.basename(texPath, ".tex");
+  // The temp dir is removed in `finally`, which also runs when the compile
+  // throws - taking the log with it and leaving only a 25-line stdout tail,
+  // which for a document this size is usually nowhere near the actual error.
+  // Copy it next to the .tex first; CI uploads that directory on failure.
+  const salvageLog = () => {
+    try {
+      const from = path.join(tmpDir, `${base}.log`);
+      if (!fs.existsSync(from)) return;
+      const to = path.join(path.dirname(texPath), `${base}.log`);
+      fs.copyFileSync(from, to);
+      console.error(`  … kept LaTeX log at ${path.relative(process.cwd(), to)}`);
+    } catch {
+      /* best effort - never mask the original failure */
+    }
+  };
   try {
     // Capture rather than inherit: a 200-page document produces thousands of
     // lines of noise. On failure we print the tail, which is where the error is.
@@ -1307,6 +1576,9 @@ function compileLatex(texPath, pdfPath) {
 
     fs.copyFileSync(producedPdf, pdfPath);
     return { ok: true, missingGlyphs, overfull };
+  } catch (err) {
+    salvageLog();
+    throw err;
   } finally {
     try {
       fs.rmSync(tmpDir, { recursive: true, force: true });
@@ -1534,9 +1806,50 @@ async function generateMonth(year, monthIdx, branch, opts = {}) {
     reviewers: reviewerList,
     kindTotals,
     files: filesReport,
-    pdfUrl: `/monthly-updates/${slug}.pdf`,
+    // Set only once a PDF actually exists at that path - see below.
+    pdfUrl: undefined,
     generatedAt: new Date().toISOString(),
   };
+
+  // ─── LaTeX + PDF ────────────────────────────────────────────────────
+  // Compile *before* publishing the JSON, and let failures propagate. The
+  // site renders a download link for every month whose JSON exists, so
+  // writing the JSON first and merely warning on a failed compile publishes a
+  // row whose link 404s, from a workflow run that stayed green. Nothing is
+  // written unless there is something to link to.
+  if (!opts.noPdf) {
+    fs.mkdirSync(PDF_DIR, { recursive: true });
+    fs.mkdirSync(TEX_DIR, { recursive: true });
+    const texPath = path.join(TEX_DIR, `${slug}.tex`);
+    const tex = renderLatex(report);
+    fs.writeFileSync(texPath, tex, "utf8");
+    console.log(`  … wrote ${path.relative(process.cwd(), texPath)}`);
+    assertGlyphsCovered(tex);
+
+    const pdfPath = path.join(PDF_DIR, `${slug}.pdf`);
+    const compiled = compileLatex(texPath, pdfPath);
+    if (compiled.noEngine) {
+      throw new Error(
+        "neither tectonic nor xelatex was found on PATH, so no PDF could be built. " +
+          "Install tectonic (https://tectonic-typesetting.github.io), or pass --no-pdf to write the JSON alone.",
+      );
+    }
+    // Fatal, not a warning: a glyph the font lacks typesets as nothing at
+    // all, so the alternative is publishing a report with blank characters
+    // inside theorem statements and finding out from an Actions log nobody
+    // reads. Add each listed codepoint to MISSING_GLYPH_MATH.
+    if (compiled.missingGlyphs.length) {
+      throw new Error(
+        `${compiled.missingGlyphs.length} glyph(s) are missing from the font and would render as blank: ` +
+          `${compiled.missingGlyphs.join(", ")}. Add them to MISSING_GLYPH_MATH.`,
+      );
+    }
+    console.log(`  … compiled ${path.relative(process.cwd(), pdfPath)}`);
+    if (compiled.overfull) {
+      console.log(`  … ${compiled.overfull} overfull line(s)`);
+    }
+    report.pdfUrl = `/monthly-updates/${slug}.pdf`;
+  }
 
   fs.mkdirSync(OUT_DIR, { recursive: true });
   fs.writeFileSync(outPath, JSON.stringify(report, null, 2) + "\n", "utf8");
@@ -1546,42 +1859,6 @@ async function generateMonth(year, monthIdx, branch, opts = {}) {
       `${totalDecls} new declarations${movedDecls > 0 ? ` (${movedDecls} moved, excluded)` : ""}, ` +
       `${contributorList.length} contributors, ${reviewerList.length} reviewers → ${path.relative(process.cwd(), outPath)}`,
   );
-
-  // ─── LaTeX + PDF ────────────────────────────────────────────────────
-  if (!opts.noPdf) {
-    try {
-      fs.mkdirSync(PDF_DIR, { recursive: true });
-      fs.mkdirSync(TEX_DIR, { recursive: true });
-      const texPath = path.join(TEX_DIR, `${slug}.tex`);
-      const tex = renderLatex(report);
-      fs.writeFileSync(texPath, tex, "utf8");
-      console.log(
-        `  … wrote ${path.relative(process.cwd(), texPath)}`,
-      );
-      const pdfPath = path.join(PDF_DIR, `${slug}.pdf`);
-      const compiled = compileLatex(texPath, pdfPath);
-      if (compiled.ok) {
-        console.log(`  … compiled ${path.relative(process.cwd(), pdfPath)}`);
-        if (compiled.overfull) {
-          console.log(`  … ${compiled.overfull} overfull line(s)`);
-        }
-        // Not fatal - the PDF is fine apart from these - but it must be
-        // visible, because the failure mode is a glyph silently rendering as
-        // nothing. Add any listed codepoint to MISSING_GLYPH_MATH.
-        if (compiled.missingGlyphs.length) {
-          console.warn(
-            `  ⚠ ${compiled.missingGlyphs.length} glyph(s) missing from the font and rendered as blank: ${compiled.missingGlyphs.join(", ")}`,
-          );
-        }
-      } else if (compiled.noEngine) {
-        console.warn(
-          `  ⚠ neither tectonic nor xelatex was found on PATH — skipping PDF compile for ${slug}. Install tectonic (https://tectonic-typesetting.github.io) to enable local PDF builds.`,
-        );
-      }
-    } catch (err) {
-      console.warn(`  ⚠ PDF build failed for ${slug}: ${err.message}`);
-    }
-  }
 
   return { skipped: false, slug };
 }
@@ -1622,6 +1899,7 @@ async function generateMonth(year, monthIdx, branch, opts = {}) {
       targets.push(prevMonthUTC());
     }
 
+    const failed = [];
     for (const t of targets) {
       try {
         await generateMonth(t.year, t.monthIdx, branch, {
@@ -1633,7 +1911,17 @@ async function generateMonth(year, monthIdx, branch, opts = {}) {
           `✗ ${formatMonthSlug(t.year, t.monthIdx)}: ${err.message}`,
         );
         // Continue with next target on failure so backfills are resilient.
+        failed.push(formatMonthSlug(t.year, t.monthIdx));
       }
+    }
+    // Resilient is not the same as silent: a month that failed produced no
+    // report, and the run must not look green because the other eleven
+    // worked.
+    if (failed.length) {
+      console.error(
+        `✗ ${failed.length} of ${targets.length} month(s) failed: ${failed.join(", ")}`,
+      );
+      process.exit(1);
     }
   } catch (err) {
     console.error(`✗ fatal: ${err.message}`);

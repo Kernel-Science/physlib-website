@@ -130,14 +130,22 @@ export default async function MonthlyUpdatesPage() {
                     </div>
                   </td>
                   <td className="px-4 py-3 align-top">
-                    <a
-                      href={u.pdfUrl ?? `/monthly-updates/${u.slug}.pdf`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-accent hover:underline underline-offset-2 text-sm"
-                    >
-                      PDF ↓
-                    </a>
+                    {/* The generator sets pdfUrl only once a PDF exists at
+                        that path. Guessing the path when it's absent is how a
+                        report with no PDF still gets a download link that
+                        404s. */}
+                    {u.pdfUrl ? (
+                      <a
+                        href={u.pdfUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-accent hover:underline underline-offset-2 text-sm"
+                      >
+                        PDF ↓
+                      </a>
+                    ) : (
+                      <span className="text-muted text-xs">—</span>
+                    )}
                   </td>
                 </tr>
               ))}

@@ -33,19 +33,35 @@ concurrency:
 jobs:
   generate:
     runs-on: ubuntu-latest
+    # A month whose clone hangs or whose compile pathologically loops would
+    # otherwise sit here for the 6-hour default.
+    timeout-minutes: 60
+    env:
+      # The `secrets` context is not available to a step's `if`, so the
+      # presence of the mirror credential is hoisted here as a plain boolean.
+      # Deliberately not the secret itself: this keeps it out of every step's
+      # environment.
+      HAS_MIRROR_PAT: ${{ secrets.MIRROR_PAT != '' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           persist-credentials: true
+          # The commit step below rebases onto whatever landed on the branch
+          # while TeX was installing, and rebasing in a depth-1 clone fails as
+          # soon as the remote has moved more than that one commit.
+          fetch-depth: 0
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"
 
+      # Pinned to a commit, not a tag: this step runs in a job holding
+      # `contents: write` and MIRROR_PAT, and a mutable tag is re-pointable by
+      # its owner at any time. Bump deliberately, not implicitly.
       - name: Install Tectonic (LaTeX engine)
-        uses: wtfjoke/setup-tectonic@v3
+        uses: wtfjoke/setup-tectonic@8a63d072f8390efdff59da7fa08aa49e3c1f5e1b # v3
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -82,6 +98,18 @@ jobs:
           fi
           node scripts/generate-monthly-updates.js "${ARGS[@]}"
 
+      # The .tex and the salvaged .log live only on the runner - both are
+      # gitignored - so without this a CI-only compile failure leaves nothing
+      # to debug from but a truncated stdout tail.
+      - name: Upload LaTeX build directory on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: monthly-updates-latex-${{ github.run_id }}
+          path: web2/.monthly-updates-build/
+          if-no-files-found: ignore
+          retention-days: 14
+
       # Only the JSON and the PDF are published. The .tex intermediate lives in
       # web2/.monthly-updates-build/ and is gitignored.
       - name: Commit & push new report(s)
@@ -114,8 +142,13 @@ jobs:
       # recursion. Without this step the report lands on main and never reaches
       # the live site. So mirror it here, using the same secret and target as
       # mirror-to-personal.yml.
+      #
+      # Guarded on the secret being present: without it this fails with an
+      # opaque git credential error, and it fails *after* the report has
+      # already been committed and pushed to this repo, which reads as "the
+      # run broke" rather than "the mirror isn't configured".
       - name: Mirror to personal repo (Vercel)
-        if: steps.commit.outputs.committed == 'true'
+        if: steps.commit.outputs.committed == 'true' && env.HAS_MIRROR_PAT == 'true'
         env:
           MIRROR_PAT: ${{ secrets.MIRROR_PAT }}
         run: |
