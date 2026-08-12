@@ -140,6 +140,9 @@ export type MonthlyUpdate = {
   subfolders?: Array<{
     path: string;
     files: number;
+    /** Whole files created / deleted within this subfolder. */
+    filesAdded?: number;
+    filesRemoved?: number;
     additions: number;
     deletions: number;
   }>;

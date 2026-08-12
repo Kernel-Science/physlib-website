@@ -22,282 +22,376 @@
     {
       "path": "Physlib/Relativity",
       "files": 85,
+      "filesAdded": 12,
+      "filesRemoved": 3,
       "additions": 5706,
       "deletions": 7342
     },
     {
       "path": "Physlib/SpaceAndTime",
       "files": 40,
+      "filesAdded": 9,
+      "filesRemoved": 0,
       "additions": 3364,
       "deletions": 1393
     },
     {
       "path": "Physlib/Mathematics",
       "files": 35,
+      "filesAdded": 5,
+      "filesRemoved": 0,
       "additions": 2642,
       "deletions": 1564
     },
     {
       "path": "Physlib/Particles",
       "files": 44,
+      "filesAdded": 2,
+      "filesRemoved": 0,
       "additions": 2087,
       "deletions": 1693
     },
     {
       "path": "PhyslibAlpha/ClassicalFieldTheory",
       "files": 18,
+      "filesAdded": 18,
+      "filesRemoved": 0,
       "additions": 3083,
       "deletions": 0
     },
     {
       "path": "Physlib/QuantumMechanics",
       "files": 33,
+      "filesAdded": 4,
+      "filesRemoved": 0,
       "additions": 1916,
       "deletions": 791
     },
     {
       "path": "Physlib/ClassicalMechanics",
       "files": 15,
+      "filesAdded": 1,
+      "filesRemoved": 0,
       "additions": 1393,
       "deletions": 1014
     },
     {
       "path": "Physlib/Electromagnetism",
       "files": 31,
+      "filesAdded": 1,
+      "filesRemoved": 0,
       "additions": 1034,
       "deletions": 1107
     },
     {
       "path": "scripts",
       "files": 9,
+      "filesAdded": 4,
+      "filesRemoved": 0,
       "additions": 1683,
       "deletions": 10
     },
     {
       "path": "PhyslibAlpha/QuantumMechanics",
       "files": 2,
+      "filesAdded": 2,
+      "filesRemoved": 0,
       "additions": 1308,
       "deletions": 0
     },
     {
       "path": "QuantumInfo/ForMathlib",
       "files": 38,
+      "filesAdded": 0,
+      "filesRemoved": 0,
       "additions": 472,
       "deletions": 581
     },
     {
       "path": "Physlib/StringTheory",
       "files": 4,
+      "filesAdded": 0,
+      "filesRemoved": 0,
       "additions": 306,
       "deletions": 655
     },
     {
       "path": "PhyslibAlpha/SpaceAndTime",
       "files": 7,
+      "filesAdded": 7,
+      "filesRemoved": 0,
       "additions": 903,
       "deletions": 0
     },
     {
       "path": "PhyslibAlpha/Mathematics",
       "files": 1,
+      "filesAdded": 1,
+      "filesRemoved": 0,
       "additions": 565,
       "deletions": 0
     },
     {
       "path": "Physlib/QFT",
       "files": 43,
+      "filesAdded": 0,
+      "filesRemoved": 0,
       "additions": 153,
       "deletions": 389
     },
     {
       "path": "Physlib/StatisticalMechanics",
       "files": 6,
+      "filesAdded": 0,
+      "filesRemoved": 0,
       "additions": 116,
       "deletions": 365
     },
     {
       "path": "Physlib/Thermodynamics",
       "files": 3,
+      "filesAdded": 0,
+      "filesRemoved": 0,
       "additions": 81,
       "deletions": 330
     },
     {
       "path": "QuantumInfo/Entropy",
       "files": 4,
+      "filesAdded": 0,
+      "filesRemoved": 0,
       "additions": 150,
       "deletions": 173
     },
     {
       "path": "Physlib/Units",
       "files": 9,
+      "filesAdded": 0,
+      "filesRemoved": 0,
       "additions": 173,
       "deletions": 128
     },
     {
       "path": "Physlib/Cosmology",
       "files": 7,
+      "filesAdded": 6,
+      "filesRemoved": 0,
       "additions": 264,
       "deletions": 1
     },
     {
       "path": "scripts/PhyslibAlpha",
       "files": 5,
+      "filesAdded": 5,
+      "filesRemoved": 0,
       "additions": 242,
       "deletions": 0
     },
     {
       "path": "QuantumInfo/States",
       "files": 6,
+      "filesAdded": 0,
+      "filesRemoved": 0,
       "additions": 73,
       "deletions": 102
     },
     {
       "path": ".github/workflows",
       "files": 3,
+      "filesAdded": 2,
+      "filesRemoved": 1,
       "additions": 118,
       "deletions": 54
     },
     {
       "path": "scripts/MetaPrograms",
       "files": 12,
+      "filesAdded": 0,
+      "filesRemoved": 0,
       "additions": 133,
       "deletions": 38
     },
     {
       "path": "QuantumInfo/ResourceTheory",
       "files": 3,
+      "filesAdded": 0,
+      "filesRemoved": 0,
       "additions": 73,
       "deletions": 81
     },
     {
       "path": "lakefile.lean",
       "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 1,
       "additions": 0,
       "deletions": 125
     },
     {
       "path": "lakefile.toml",
       "files": 1,
+      "filesAdded": 1,
+      "filesRemoved": 0,
       "additions": 125,
       "deletions": 0
     },
     {
       "path": "PhyslibAlpha/ClassicalMechanics",
       "files": 1,
+      "filesAdded": 1,
+      "filesRemoved": 0,
       "additions": 122,
       "deletions": 0
     },
     {
       "path": "QuantumInfo/Channels",
       "files": 6,
+      "filesAdded": 0,
+      "filesRemoved": 0,
       "additions": 51,
       "deletions": 57
     },
     {
       "path": "Physlib/CondensedMatter",
       "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
       "additions": 21,
       "deletions": 71
     },
     {
       "path": "AGENTS.md",
       "files": 1,
+      "filesAdded": 1,
+      "filesRemoved": 0,
       "additions": 85,
       "deletions": 0
     },
     {
       "path": "Physlib/FluidDynamics",
       "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
       "additions": 14,
       "deletions": 41
     },
     {
       "path": "lake-manifest.json",
       "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
       "additions": 27,
       "deletions": 26
     },
     {
       "path": "Physlib.lean",
       "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
       "additions": 39,
       "deletions": 4
     },
     {
       "path": "QuantumInfo/ClassicalInfo",
       "files": 3,
+      "filesAdded": 0,
+      "filesRemoved": 0,
       "additions": 18,
       "deletions": 15
     },
     {
       "path": "PhyslibAlpha.lean",
       "files": 1,
+      "filesAdded": 1,
+      "filesRemoved": 0,
       "additions": 32,
       "deletions": 0
     },
     {
       "path": "AI-POLICY.md",
       "files": 1,
+      "filesAdded": 1,
+      "filesRemoved": 0,
       "additions": 31,
       "deletions": 0
     },
     {
       "path": "PhyslibAlpha",
       "files": 1,
+      "filesAdded": 1,
+      "filesRemoved": 0,
       "additions": 30,
       "deletions": 0
     },
     {
       "path": "docs",
       "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
       "additions": 23,
       "deletions": 0
     },
     {
       "path": "README.md",
       "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
       "additions": 7,
       "deletions": 1
     },
     {
       "path": "CITATION.cff",
       "files": 1,
+      "filesAdded": 1,
+      "filesRemoved": 0,
       "additions": 7,
       "deletions": 0
     },
     {
       "path": "QuantumInfo/Measurements",
       "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
       "additions": 1,
       "deletions": 4
     },
     {
       "path": "CONTRIBUTING.md",
       "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
       "additions": 2,
       "deletions": 2
     },
     {
       "path": "QuantumInfo/Operators",
       "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
       "additions": 1,
       "deletions": 2
     },
     {
       "path": "lean-toolchain",
       "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
       "additions": 1,
       "deletions": 1
     },
     {
       "path": ".codespellignore",
       "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
       "additions": 1,
       "deletions": 0
     },
     {
       "path": "Physlib/Meta",
       "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
       "additions": 0,
       "deletions": 1
     }
@@ -12545,5 +12639,5 @@
     }
   ],
   "pdfUrl": "/monthly-updates/2026-06.pdf",
-  "generatedAt": "2026-08-12T10:53:45.480Z"
+  "generatedAt": "2026-08-12T11:18:31.824Z"
 }

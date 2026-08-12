@@ -408,12 +408,13 @@ function deletedLeanFiles(base, head) {
 }
 
 /**
- * How many files the diff adds outright and removes outright, across the whole
- * tree (not just .lean). Renames count as neither - with --find-renames a moved
- * file is one R entry, so a tree-wide reshuffle doesn't read as hundreds of
- * files created and destroyed.
+ * Per-file add/delete status across the whole tree (not just .lean), as a
+ * Map of path → "A" | "D" | "M". Renames report as "M" against their new
+ * path: with --find-renames a moved file is a single R entry, so counting it
+ * as a create plus a delete would make a tree-wide reshuffle read as hundreds
+ * of files appearing and vanishing.
  */
-function fileAddRemoveCounts(base, head) {
+function fileStatuses(base, head) {
   const out = git([
     "diff",
     "--name-status",
@@ -423,8 +424,7 @@ function fileAddRemoveCounts(base, head) {
     head,
   ]);
   const fields = out.split("\0");
-  let added = 0;
-  let removed = 0;
+  const statuses = new Map();
   let i = 0;
   while (i < fields.length) {
     const status = fields[i];
@@ -434,14 +434,14 @@ function fileAddRemoveCounts(base, head) {
     }
     // Renames/copies carry two path fields; everything else carries one.
     if (status[0] === "R" || status[0] === "C") {
+      statuses.set(fields[i + 2], "M");
       i += 3;
       continue;
     }
-    if (status[0] === "A") added += 1;
-    else if (status[0] === "D") removed += 1;
+    statuses.set(fields[i + 1], status[0] === "A" ? "A" : status[0] === "D" ? "D" : "M");
     i += 2;
   }
-  return { added, removed };
+  return statuses;
 }
 
 /** Contents of `filePath` at `sha`, or null if it didn't exist there. */
@@ -721,6 +721,63 @@ function texEscape(str) {
     if (out.includes(ch)) out = out.split(ch).join(rep);
   }
   return out;
+}
+
+/**
+ * Escape for text that will sit inside `\texttt{…}`, i.e. set in DejaVu Sans
+ * Mono rather than the body font.
+ *
+ * Differs from `texEscape` in leaving Unicode alone wherever the mono font can
+ * draw it. `texEscape` maps those characters into `\ensuremath`, and a math
+ * box inside `\texttt` carries its own spacing: `β_toReal` came out as
+ * `β _toReal`, and every heading with a Greek letter or subscript picked up a
+ * gap in the middle of an identifier. Only glyphs DejaVu genuinely lacks fall
+ * back to math, where the spacing is the lesser problem against not rendering.
+ */
+function texEscapeMono(str) {
+  if (str == null) return "";
+  return String(str)
+    .replace(/\\/g, "\\textbackslash{}")
+    .replace(/([&%$#_{}])/g, "\\$1")
+    .replace(/~/g, "\\textasciitilde{}")
+    .replace(/\^/g, "\\textasciicircum{}")
+    .replace(/</g, "\\textless{}")
+    .replace(/>/g, "\\textgreater{}")
+    .replace(NON_ASCII_RE, (ch) => {
+      const math = SNIPPET_GLYPH_MATH.get(ch);
+      return math ? `\\ensuremath{${math}}` : ch;
+    });
+}
+
+/**
+ * Render a Lean docstring, honouring the Markdown code spans in it.
+ *
+ * Lean docstrings mark identifiers with backticks. Passing those through to
+ * LaTeX verbatim is actively wrong rather than merely plain: ` is an opening
+ * single quote in TeX, so `Foo` sets as ‘Foo‘ - an opening quote at both ends.
+ * Two thirds of this repository's docstrings contain a code span, so it shows
+ * up on nearly every page. Code spans become \texttt, and an unpaired
+ * backtick becomes a literal one rather than silently opening a quote.
+ */
+function renderDocstring(str) {
+  if (str == null) return "";
+  const text = String(str);
+  let out = "";
+  let rest = text;
+  // ``x`` is legal Markdown for a span containing a backtick; match the
+  // longer fence first so its inner backticks aren't treated as delimiters.
+  const span = /(``)([\s\S]+?)\1|(`)([^`\n]+?)\3/;
+  for (;;) {
+    const m = span.exec(rest);
+    if (!m) break;
+    out += texEscape(rest.slice(0, m.index));
+    out += `\\texttt{${texEscapeMono(m[2] ?? m[4])}}`;
+    rest = rest.slice(m.index + m[0].length);
+  }
+  out += texEscape(rest);
+  // Any backtick that survived is unpaired; \textasciigrave prints one
+  // instead of opening a quotation that never closes.
+  return out.split("`").join("\\textasciigrave{}");
 }
 
 /** Escape a URL for use inside \href{...}{}. Only { } % \ need escaping. */
@@ -1103,6 +1160,31 @@ function fmtN(n) {
   return new Intl.NumberFormat("en-US").format(n);
 }
 
+/** "12 August 2026" - unambiguous across conventions, unlike 12/08/2026. */
+function fmtDateLong(iso) {
+  return new Intl.DateTimeFormat("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(new Date(iso));
+}
+
+/**
+ * The reporting period as "1--30 June 2026". `endDate` is the exclusive start
+ * of the next month, so the last day covered is the day before it.
+ */
+function fmtPeriod(startIso, endIso) {
+  const start = new Date(startIso);
+  const lastDay = new Date(new Date(endIso).getTime() - 86_400_000);
+  const monthYear = new Intl.DateTimeFormat("en-GB", {
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(start);
+  return `${start.getUTCDate()}--${lastDay.getUTCDate()} ${monthYear}`;
+}
+
 // Prefer the person's real GitHub profile name over their username - reads
 // like a paper's author list rather than a commit log. Falls back to the
 // username (or, for contributors git couldn't resolve to a GitHub account at
@@ -1127,16 +1209,24 @@ function renderLatex(report) {
     seenAuthors.add(key);
     pdfAuthors.push(displayName(person));
   }
+  pdfAuthors.sort((a, b) => a.localeCompare(b));
 
   // Title-page byline: contributors (people who authored code this month) and
   // reviewers (people who reviewed a PR this month) as two labeled groups,
   // rather than one flat \and-separated author list that doesn't distinguish
   // the two roles. The groups overlap by design - doing both earns both
   // credits.
-  const contributorNames = report.contributors
+  //
+  // Alphabetical, unlike the tables below: a byline is a credit list, and
+  // ordering it by volume ranks the people in it. The tables are where the
+  // "who did how much" question is answered.
+  const byName = (a, b) => displayName(a).localeCompare(displayName(b));
+  const contributorNames = [...report.contributors]
+    .sort(byName)
     .map((c) => texEscape(displayName(c)))
     .join(", ");
-  const reviewerNames = reviewers
+  const reviewerNames = [...reviewers]
+    .sort(byName)
     .map((r) => texEscape(displayName(r)))
     .join(", ");
   const authors = [
@@ -1187,9 +1277,7 @@ function renderLatex(report) {
     `${report.totalFilesChanged === 1 ? "file" : "files"}${subfolderPhrase}. ` +
     (fileChurnPhrase ? `Of those, ${fileChurnPhrase}. ` : "") +
     (totalDecls > 0
-      ? `This report catalogues ${fmtN(totalDecls)} newly added Lean declarations: ${kindPhrase}. ` +
-        "Declarations that were only edited, golfed, or moved between files are " +
-        "deliberately excluded, so this is new material rather than churn."
+      ? `This report catalogues ${fmtN(totalDecls)} newly added Lean declarations: ${kindPhrase}.`
       : "No new Lean declarations were detected in this month's diff.");
 
   // Sections
@@ -1216,10 +1304,16 @@ function renderLatex(report) {
     .join("\n");
 
   const subfolderRows = report.subfolders
-    .map(
-      (s) =>
-        `\\texttt{${texEscape(s.path)}} & ${s.files} & \\textcolor{addcol}{+${fmtN(s.additions)}} & \\textcolor{delcol}{-${fmtN(s.deletions)}} \\\\`,
-    )
+    .map((s) => {
+      // Dashes rather than a column of zeros: most areas create and delete
+      // nothing, and "0" reads as a measurement where "-" reads as "none".
+      const created = s.filesAdded ? `\\textcolor{addcol}{+${fmtN(s.filesAdded)}}` : "--";
+      const deleted = s.filesRemoved ? `\\textcolor{delcol}{-${fmtN(s.filesRemoved)}}` : "--";
+      return (
+        `\\texttt{${texEscapeMono(s.path)}} & ${s.files} & ${created} & ${deleted} & ` +
+        `\\textcolor{addcol}{+${fmtN(s.additions)}} & \\textcolor{delcol}{-${fmtN(s.deletions)}} \\\\`
+      );
+    })
     .join("\n");
 
   const kindRows = Object.entries(report.kindTotals)
@@ -1254,6 +1348,12 @@ function renderLatex(report) {
 \usepackage{fancyhdr}
 \usepackage{tocloft}
 \usepackage{microtype}
+
+% Every changed file is a subsection, so a busy month runs past 2.99 and the
+% three-digit number collides with the title at tocloft's default width.
+\setlength{\cftsecnumwidth}{2.8em}
+\setlength{\cftsubsecnumwidth}{4.0em}
+\setlength{\cftsubsecindent}{2.8em}
 
 % Use DejaVu Sans Mono for the monospace font -- it ships with TeX Live's
 % dejavu package (which tectonic bundles) and has broad Unicode coverage for
@@ -1320,9 +1420,12 @@ function renderLatex(report) {
 \fancyfoot[C]{\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
 
-\title{\vspace{-1cm}\textbf{Physlib Monthly Report} \\[0.3em] \Large ${texEscape(report.label)}}
+% The period covered is the document's identity - a citation points at "the
+% June 2026 report", not at whenever it happened to be typeset. The build date
+% is provenance, so it goes below in small print rather than competing with it.
+\title{\vspace{-1cm}\textbf{Physlib Monthly Report} \\[0.35em] \Large ${texEscape(fmtPeriod(report.startDate, report.endDate))}}
 \author{}
-\date{Generated ${texEscape(new Date(report.generatedAt).toUTCString())}}
+\date{}
 
 \begin{document}
 \maketitle
@@ -1339,15 +1442,36 @@ function renderLatex(report) {
 ${authors}
 \end{minipage}
 \end{center}
+
+\begin{center}\footnotesize
+Generated ${texEscape(fmtDateLong(report.generatedAt))} from commit \texttt{${texEscapeMono(report.headSha.slice(0, 7))}}.
+\end{center}
 \vspace{0.5em}
 
 \begin{abstract}
-\noindent Auto-generated summary of changes to
-\href{https://github.com/${texEscapeUrl(report.repo)}}{\texttt{${texEscape(report.repo)}}}
-on branch \texttt{${texEscape(report.branch)}} between
-\texttt{${texEscape(report.baseSha.slice(0, 7))}} and
-\texttt{${texEscape(report.headSha.slice(0, 7))}}.
-The full diff is available at
+\noindent
+Physlib is a community library of formalised physics for the
+\href{https://lean-lang.org}{Lean~4} proof assistant: definitions and results
+from across physics, stated in a formal language and checked by machine. This
+report is an automatically generated record of one month's additions to it.
+
+\vspace{0.4em}
+\noindent
+It covers ${texEscape(fmtPeriod(report.startDate, report.endDate))} on branch
+\texttt{${texEscapeMono(report.branch)}} of
+\href{https://github.com/${texEscapeUrl(report.repo)}}{\texttt{${texEscapeMono(report.repo)}}},
+between commits \texttt{${texEscapeMono(report.baseSha.slice(0, 7))}} and
+\texttt{${texEscapeMono(report.headSha.slice(0, 7))}}. Over that period
+${fmtN(report.contributors.length)}
+${report.contributors.length === 1 ? "contributor" : "contributors"} landed
+${fmtN(report.totalCommits)} ${report.totalCommits === 1 ? "commit" : "commits"},
+changing ${fmtN(report.linesChanged)} lines across
+${fmtN(report.totalFilesChanged)}
+${report.totalFilesChanged === 1 ? "file" : "files"}${
+  totalDecls > 0
+    ? ` and adding ${fmtN(totalDecls)} new Lean ${totalDecls === 1 ? "declaration" : "declarations"}, each catalogued with its statement in Section~2`
+    : ", adding no new Lean declarations"
+}. The complete diff is available at
 \href{${texEscapeUrl(report.compareUrl)}}{GitHub compare}.
 \end{abstract}
 
@@ -1365,7 +1489,7 @@ and the
 on GitHub for the raw source.
 
 \subsection{Contributors}
-\noindent\small Ordered by lines changed. People who authored commits landed this month.\normalsize
+\noindent\small Ordered by lines changed.\normalsize
 
 ${
   report.contributors.length === 0
@@ -1374,7 +1498,7 @@ ${
 }
 
 \subsection{Reviewers}
-\noindent\small Everyone who reviewed a pull request this month. Contributors who also reviewed appear in both lists.\normalsize
+\noindent\small Ordered by pull requests reviewed.\normalsize
 
 ${
   reviewers.length === 0
@@ -1386,7 +1510,7 @@ ${
 ${
   report.subfolders.length === 0
     ? "\\emph{No modified files were detected.}"
-    : `\\begin{longtable}{l r r r}\n\\toprule\nSubfolder & Files & Additions & Deletions \\\\\n\\midrule\n${subfolderRows}\n\\bottomrule\n\\end{longtable}`
+    : `\\begin{longtable}{l r r r r r}\n\\toprule\nSubfolder & Files & New & Deleted & Additions & Deletions \\\\\n\\midrule\n${subfolderRows}\n\\bottomrule\n\\end{longtable}`
 }
 
 \subsection{New declarations by kind}
@@ -1428,6 +1552,61 @@ function nameSuffix(parts, k) {
  * that is a strict suffix of another (`Foo.bar` alongside `A.Foo.bar`) runs out
  * of components first and keeps its full name, which is still distinct.
  */
+// Lean names an unnamed instance for you; the parser mirrors that with a
+// digest, e.g. `Foo.Bar.«instance@8aef359a»`. Useful as a stable key, useless
+// as a heading.
+const ANONYMOUS_NAME_RE = /«[^»]*@[0-9a-f]{6,}»/;
+
+/**
+ * A readable heading for a declaration Lean never gave a name to: its type.
+ *
+ * `instance : T2Space ConfigurationSpace := …` becomes `T2Space
+ * ConfigurationSpace`, which is what a reader actually wants to see in a
+ * heading and in the table of contents - a hash tells them nothing, and 76 of
+ * June's entries were hashes.
+ *
+ * Returns null when the signature can't be read, leaving the caller to fall
+ * back rather than invent something wrong.
+ */
+function instanceTypeHeading(signature) {
+  if (!signature) return null;
+  // Drop attribute lines, then flatten: signatures wrap across lines.
+  const flat = String(signature)
+    .split("\n")
+    .filter((l) => !/^\s*@\[/.test(l))
+    .join(" ")
+    .replace(/\s+/g, " ")
+    .trim();
+  // Strip modifiers and the `instance` keyword itself.
+  const body = flat.replace(
+    /^(?:(?:private|protected|noncomputable|scoped|local|unsafe|partial|nonrec)\s+)*instance\b/,
+    "",
+  );
+  if (body === flat) return null;
+  // The type is what follows the first top-level `:`; anything before it is
+  // binders (`{d}`, `[Foo α]`), and anything from `:=`/`where` on is the value.
+  let depth = 0;
+  let typeStart = -1;
+  for (let i = 0; i < body.length; i++) {
+    const ch = body[i];
+    if ("([{⟨⦃".includes(ch)) depth += 1;
+    else if (")]}⟩⦄".includes(ch)) depth -= 1;
+    else if (ch === ":" && depth === 0) {
+      if (body[i + 1] === "=") break; // `:=` with no type ascription
+      typeStart = i + 1;
+      break;
+    }
+  }
+  if (typeStart < 0) return null;
+  let type = body.slice(typeStart);
+  const stop = type.search(/\s(?::=|where)\s|\s*(?::=|where)\s*$/);
+  if (stop >= 0) type = type.slice(0, stop);
+  type = type.trim();
+  if (!type) return null;
+  // Keep headings and the table of contents to one line.
+  return type.length > 72 ? `${type.slice(0, 71).trimEnd()}…` : type;
+}
+
 function declHeadingLabels(names) {
   const parts = names.map((n) => String(n).split("."));
   return names.map((name, i) => {
@@ -1459,19 +1638,23 @@ function renderFileSection(fileEntry, report) {
     .map((d, i) => renderDeclaration(d, report, labels[i]))
     .join("\n\n");
   // \subsection is used so the TOC shows every file. Names in monospace, escaped.
-  return `\\subsection{\\texorpdfstring{\\texttt{${texEscape(module)}}}{${texEscape(module)}}}\n` +
-    `\\noindent\\small \\href{${texEscapeUrl(fileUrl)}}{\\texttt{${texEscape(fileEntry.filename)}}} on GitHub.\\normalsize\n\n${declBlocks}`;
+  return `\\subsection{\\texorpdfstring{\\texttt{${texEscapeMono(module)}}}{${module}}}\n` +
+    `\\noindent\\small \\href{${texEscapeUrl(fileUrl)}}{\\texttt{${texEscapeMono(fileEntry.filename)}}} on GitHub.\\normalsize\n\n${declBlocks}`;
 }
 
 function renderDeclaration(decl, report, label) {
   const url =
     `https://github.com/${report.repo}/blob/${report.headSha}/${decl.file}` +
     (decl.line ? `#L${decl.line}` : "");
-  const shown = label ?? decl.name;
-  const header = `\\paragraph{\\texttt{${texEscape(decl.kind)}} \\texttt{${texEscape(shown)}}}` +
+  // An anonymous instance's generated name is a digest; lead with its type
+  // instead, and only fall back to the digest if the signature is unreadable.
+  const shown = ANONYMOUS_NAME_RE.test(decl.name)
+    ? instanceTypeHeading(decl.snippet) ?? label ?? decl.name
+    : label ?? decl.name;
+  const header = `\\paragraph{\\texttt{${texEscapeMono(decl.kind)}} \\texttt{${texEscapeMono(shown)}}}` +
     ` \\hfill \\href{${texEscapeUrl(url)}}{\\footnotesize [source]}`;
   const doc = decl.docstring
-    ? `\n\\begin{quote}\\itshape\n${texEscape(decl.docstring)}\n\\end{quote}\n`
+    ? `\n\\begin{quote}\\itshape\n${renderDocstring(decl.docstring)}\n\\end{quote}\n`
     : "\n";
   // Emit the snippet as a Lean listing. Content is verbatim apart from the
   // glyphs DejaVu can't draw, which are swapped for escaped math.
@@ -1629,30 +1812,45 @@ async function generateMonth(year, monthIdx, branch, opts = {}) {
 
   console.log(`• ${slug}: diffing ${baseSha.slice(0, 7)}…${headSha.slice(0, 7)}`);
   const stats = numstat(baseSha, headSha);
-  const { added: filesAdded, removed: filesRemoved } = fileAddRemoveCounts(
-    baseSha,
-    headSha,
-  );
+  const statuses = fileStatuses(baseSha, headSha);
+  let filesAdded = 0;
+  let filesRemoved = 0;
+  for (const status of statuses.values()) {
+    if (status === "A") filesAdded += 1;
+    else if (status === "D") filesRemoved += 1;
+  }
   let totalAdditions = 0;
   let totalDeletions = 0;
-  const subfolderStats = new Map(); // subfolder -> { files: Set, additions, deletions }
+  // subfolder -> { files: Set, additions, deletions, filesAdded, filesRemoved }
+  const subfolderStats = new Map();
   for (const f of stats) {
     totalAdditions += f.additions;
     totalDeletions += f.deletions;
     const sub = topSubfolder(f.filename);
     if (!subfolderStats.has(sub)) {
-      subfolderStats.set(sub, { files: new Set(), additions: 0, deletions: 0 });
+      subfolderStats.set(sub, {
+        files: new Set(),
+        additions: 0,
+        deletions: 0,
+        filesAdded: 0,
+        filesRemoved: 0,
+      });
     }
     const s = subfolderStats.get(sub);
     s.files.add(f.filename);
     s.additions += f.additions;
     s.deletions += f.deletions;
+    const status = statuses.get(f.filename);
+    if (status === "A") s.filesAdded += 1;
+    else if (status === "D") s.filesRemoved += 1;
   }
 
   const subfolders = Array.from(subfolderStats.entries())
     .map(([p, s]) => ({
       path: p,
       files: s.files.size,
+      filesAdded: s.filesAdded,
+      filesRemoved: s.filesRemoved,
       additions: s.additions,
       deletions: s.deletions,
     }))
