@@ -64,34 +64,40 @@ export function MonthDetail({ data }: { data: MonthlyUpdate }) {
 
   return (
     <div className="flex flex-col gap-8 lg:flex-row lg:items-start">
-      {/* Main: the report itself */}
-      <div className="min-w-0 flex-1 lg:sticky lg:top-20">
-        <header className="mb-4 flex flex-wrap items-start justify-between gap-4">
-          <div>
-            <h2 className="text-2xl font-bold tracking-tight">{data.label}</h2>
-            <p className="mt-1 text-sm text-muted">
-              {formatDateRange(data.startDate, data.endDate)} &middot;{" "}
-              <a
-                href={`https://github.com/${data.repo}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-accent hover:underline underline-offset-2"
-              >
-                {data.repo}
-              </a>
-            </p>
-          </div>
-          <PdfLink href={data.pdfUrl} />
-        </header>
+      {/* Main: the report itself. The sticky positioning lives on an inner
+          div, not this flex item itself - Safari has a long-standing bug
+          where `position: sticky` directly on a flex child breaks out of
+          the row layout and overlaps its sibling instead of just sticking
+          in place while scrolling. */}
+      <div className="min-w-0 flex-1">
+        <div className="lg:sticky lg:top-20">
+          <header className="mb-4 flex flex-wrap items-start justify-between gap-4">
+            <div>
+              <h2 className="text-2xl font-bold tracking-tight">{data.label}</h2>
+              <p className="mt-1 text-sm text-muted">
+                {formatDateRange(data.startDate, data.endDate)} &middot;{" "}
+                <a
+                  href={`https://github.com/${data.repo}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-accent hover:underline underline-offset-2"
+                >
+                  {data.repo}
+                </a>
+              </p>
+            </div>
+            <PdfLink href={data.pdfUrl} />
+          </header>
 
-        {data.pdfUrl ? (
-          <PdfViewer url={data.pdfUrl} title={`${data.label} report PDF`} />
-        ) : (
-          <div className="rounded-xl border border-dashed border-border bg-surface p-8 text-center text-muted">
-            This report hasn&apos;t been generated yet. It will appear here
-            once it&apos;s published.
-          </div>
-        )}
+          {data.pdfUrl ? (
+            <PdfViewer url={data.pdfUrl} title={`${data.label} report PDF`} />
+          ) : (
+            <div className="rounded-xl border border-dashed border-border bg-surface p-8 text-center text-muted">
+              This report hasn&apos;t been generated yet. It will appear here
+              once it&apos;s published.
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Sidebar: supplementary stats */}
