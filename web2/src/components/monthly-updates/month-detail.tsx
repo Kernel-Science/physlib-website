@@ -9,15 +9,56 @@ function formatNumber(n: number): string {
 }
 
 // No link in the prompt - ChatGPT can't fetch physlib.io from most contexts,
-// and pasting the actual figures gets a real answer instead of a "please
+// and pasting the actual content gets a real answer instead of a "please
 // provide the text" reply.
-function chatGptSummaryUrl(text: string): string {
+function chatGptSummaryUrl(prompt: string): string {
   const params = new URLSearchParams({
-    q: `Summarise this: ${text}`,
+    q: prompt,
     hints: "search",
     "temporary-chat": "true",
   });
   return `https://chatgpt.com/?${params.toString()}`;
+}
+
+// The documented declarations under a subfolder path, formatted as "name
+// (kind): first line of its docstring" - the same underlying data the PDF's
+// own text is generated from, not a re-scrape of the rendered PDF. Capped to
+// a character budget so the ChatGPT URL stays a reasonable length.
+//
+// Undocumented entries are dropped entirely rather than listed bare: Lean
+// gives anonymous instances hash-based names like `«instance@180d6a48»`,
+// and a prompt half-full of those (with nothing to say about them) reads as
+// noise, not content - it doesn't summarize to anything meaningful.
+function sectionContent(data: MonthlyUpdate, subfolderPath: string): string {
+  const prefix = `${subfolderPath}/`;
+  const entries = data.files
+    .filter((f) => f.filename === subfolderPath || f.filename.startsWith(prefix))
+    .flatMap((f) => f.entries)
+    .filter((e) => e.docstring?.trim());
+
+  // Lines can move in a subfolder (refactors, renames, undocumented
+  // instances) with no *documented* declaration recorded there - fall back
+  // to what we do know in that case.
+  if (entries.length === 0) {
+    return `${subfolderPath} had lines changed this month but no documented declarations.`;
+  }
+
+  const BUDGET = 1000;
+  const lines: string[] = [];
+  let used = 0;
+  let shown = 0;
+  for (const e of entries) {
+    const docstring = e.docstring!.trim().split("\n")[0];
+    const line = `${e.name} (${e.kind}): ${docstring}`;
+    if (used + line.length > BUDGET) break;
+    lines.push(line);
+    used += line.length;
+    shown += 1;
+  }
+
+  const remaining = entries.length - shown;
+  const body = lines.join("; ");
+  return remaining > 0 ? `${body}; and ${remaining} more documented declarations` : body;
 }
 
 function formatDateRange(startISO: string, endISOExclusive: string): string {
@@ -76,12 +117,20 @@ export function MonthDetail({ data }: { data: MonthlyUpdate }) {
   const hasCitation = Boolean(data.zenodoDoi || data.zenodoUrl);
 
   return (
-    <div className="flex flex-col gap-8 lg:flex-row lg:items-start">
+    <div className="flex flex-col gap-8 lg:flex-row">
       {/* Main: the report itself. The sticky positioning lives on an inner
           div, not this flex item itself - Safari has a long-standing bug
           where `position: sticky` directly on a flex child breaks out of
           the row layout and overlaps its sibling instead of just sticking
-          in place while scrolling. */}
+          in place while scrolling.
+
+          No `items-start` on the row: sticky only has room to stay pinned
+          while its containing block is taller than the sticky content
+          itself. With `items-start`, this column's flex item shrinks to
+          exactly the PDF viewer's own height, leaving sticky nothing to
+          stick within - it would unstick the instant you scroll a pixel.
+          Default `stretch` makes this column match the sidebar's (taller,
+          with a full contributor list) height instead. */}
       <div className="min-w-0 flex-1">
         <div className="lg:sticky lg:top-20">
           <header className="mb-4 flex flex-wrap items-start justify-between gap-4">
@@ -198,7 +247,7 @@ export function MonthDetail({ data }: { data: MonthlyUpdate }) {
                     <span className="text-muted">{formatNumber(s.linesChanged)}</span>
                     <a
                       href={chatGptSummaryUrl(
-                        `${s.path} had ${formatNumber(s.linesChanged)} lines changed in ${data.label} of the Physlib Lean 4 physics library.`,
+                        `Summarise this section of the physlib library: ${sectionContent(data, s.path)}`,
                       )}
                       target="_blank"
                       rel="noopener noreferrer"
