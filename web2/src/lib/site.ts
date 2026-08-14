@@ -30,8 +30,18 @@ export const navSections: NavSection[] = [
     items: [
       { label: "Home", href: "/" },
       { label: "Getting Started", href: "/getting-started" },
-      { label: "Maintainers", href: "/maintainers" },
       { label: "Discussion", href: site.zulip, external: true },
+    ],
+  },
+  {
+    label: "About",
+    items: [
+      { label: "Overview", href: "/about" },
+      { label: "Mission", href: "/about/mission" },
+      { label: "Values", href: "/about/values" },
+      { label: "Beneficiaries", href: "/about/beneficiaries" },
+      { label: "Impact", href: "/about/impact" },
+      { label: "Maintainers", href: "/maintainers" },
     ],
   },
   {
