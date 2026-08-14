@@ -1,0 +1,1124 @@
+{
+  "slug": "2026-01",
+  "label": "Jan 2026",
+  "year": 2026,
+  "month": 1,
+  "startDate": "2026-01-01T00:00:00.000Z",
+  "endDate": "2026-02-01T00:00:00.000Z",
+  "repo": "leanprover-community/physlib",
+  "branch": "master",
+  "baseSha": "7ab21947846f1cfdc247463c24caf848107dbe13",
+  "headSha": "d127ae0f9184cd4fe24d13f9adbe94c65e1308fb",
+  "compareUrl": "https://github.com/leanprover-community/physlib/compare/7ab21947846f1cfdc247463c24caf848107dbe13...d127ae0f9184cd4fe24d13f9adbe94c65e1308fb",
+  "commitsUrl": "https://github.com/leanprover-community/physlib/commits/master?since=2026-01-01T00:00:00.000Z&until=2026-02-01T00:00:00.000Z",
+  "totalCommits": 35,
+  "totalAdditions": 2153,
+  "totalDeletions": 401,
+  "linesChanged": 2554,
+  "totalFilesChanged": 29,
+  "filesAdded": 4,
+  "filesRemoved": 2,
+  "subfolders": [
+    {
+      "path": "PhysLean/Particles",
+      "files": 7,
+      "filesAdded": 1,
+      "filesRemoved": 1,
+      "additions": 1077,
+      "deletions": 296
+    },
+    {
+      "path": "PhysLean/ClassicalMechanics",
+      "files": 4,
+      "filesAdded": 2,
+      "filesRemoved": 0,
+      "additions": 727,
+      "deletions": 12
+    },
+    {
+      "path": "PhysLean/Relativity",
+      "files": 4,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 133,
+      "deletions": 33
+    },
+    {
+      "path": "PhysLean/CondensedMatter",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 94,
+      "deletions": 5
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE",
+      "files": 2,
+      "filesAdded": 1,
+      "filesRemoved": 1,
+      "additions": 33,
+      "deletions": 24
+    },
+    {
+      "path": "PhysLean/QFT",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 40,
+      "deletions": 9
+    },
+    {
+      "path": "README.md",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 22,
+      "deletions": 8
+    },
+    {
+      "path": ".github/workflows",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 10,
+      "deletions": 0
+    },
+    {
+      "path": "PhysLean/StatisticalMechanics",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 5,
+      "deletions": 4
+    },
+    {
+      "path": "PhysLean/QuantumMechanics",
+      "files": 2,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 3,
+      "deletions": 4
+    },
+    {
+      "path": "PhysLean.lean",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 3,
+      "deletions": 1
+    },
+    {
+      "path": "docs/_data",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 2,
+      "deletions": 2
+    },
+    {
+      "path": "scripts",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 2,
+      "deletions": 2
+    },
+    {
+      "path": "PhysLean/Electromagnetism",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 1,
+      "deletions": 1
+    },
+    {
+      "path": ".codespellignore",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 1,
+      "deletions": 0
+    }
+  ],
+  "contributors": [
+    {
+      "login": "jstoobysmith",
+      "name": "Joseph Tooby-Smith",
+      "html_url": "https://github.com/jstoobysmith",
+      "avatar_url": "https://avatars.githubusercontent.com/u/72603918?v=4",
+      "commits": 11,
+      "linesChanged": 1571,
+      "firstTime": false
+    },
+    {
+      "login": "kastch",
+      "name": "Nikolai Kashcheev",
+      "html_url": "https://github.com/kastch",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5752579?v=4",
+      "commits": 6,
+      "linesChanged": 368,
+      "firstTime": true
+    },
+    {
+      "login": "NicolaBernini",
+      "name": "Nicola Bernini",
+      "html_url": "https://github.com/NicolaBernini",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6381645?v=4",
+      "commits": 4,
+      "linesChanged": 341,
+      "firstTime": false
+    },
+    {
+      "login": "rht",
+      "html_url": "https://github.com/rht",
+      "avatar_url": "https://avatars.githubusercontent.com/u/395821?v=4",
+      "commits": 3,
+      "linesChanged": 137,
+      "firstTime": false
+    },
+    {
+      "login": "physlean0",
+      "html_url": "https://github.com/physlean0",
+      "avatar_url": "https://avatars.githubusercontent.com/u/256459221?v=4",
+      "commits": 1,
+      "linesChanged": 99,
+      "firstTime": true
+    },
+    {
+      "login": "rfikani",
+      "name": "Riad F",
+      "html_url": "https://github.com/rfikani",
+      "avatar_url": "https://avatars.githubusercontent.com/u/251413443?v=4",
+      "commits": 2,
+      "linesChanged": 67,
+      "firstTime": true
+    },
+    {
+      "login": "ValentinBredemestre",
+      "html_url": "https://github.com/ValentinBredemestre",
+      "avatar_url": "https://avatars.githubusercontent.com/u/150029072?v=4",
+      "commits": 6,
+      "linesChanged": 48,
+      "firstTime": true
+    },
+    {
+      "login": "adomasbaliuka",
+      "name": "Adomas Baliuka",
+      "html_url": "https://github.com/adomasbaliuka",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52975890?v=4",
+      "commits": 1,
+      "linesChanged": 3,
+      "firstTime": true
+    },
+    {
+      "login": "MilesCranmer",
+      "name": "Miles Cranmer",
+      "html_url": "https://github.com/MilesCranmer",
+      "avatar_url": "https://avatars.githubusercontent.com/u/7593028?v=4",
+      "commits": 1,
+      "linesChanged": 2,
+      "firstTime": true
+    }
+  ],
+  "reviewers": [
+    {
+      "login": "jstoobysmith",
+      "html_url": "https://github.com/jstoobysmith",
+      "avatar_url": "https://avatars.githubusercontent.com/u/72603918?u=e36d367e18c3569e632096b1bb61e1079cdce1ae&v=4",
+      "reviews": 24,
+      "name": "Joseph Tooby-Smith"
+    }
+  ],
+  "kindTotals": {
+    "structure": 3,
+    "lemma": 72,
+    "def": 26,
+    "instance": 3
+  },
+  "files": [
+    {
+      "filename": "PhysLean/ClassicalMechanics/DampedHarmonicOscillator/Basic.lean",
+      "entries": [
+        {
+          "file": "PhysLean/ClassicalMechanics/DampedHarmonicOscillator/Basic.lean",
+          "kind": "structure",
+          "name": "ClassicalMechanics.DampedHarmonicOscillator",
+          "docstring": "Placeholder structure for the damped harmonic oscillator.\n  The damped harmonic oscillator is specified by a mass `m`, a spring constant `k`,\n  and a damping coefficient `γ`. All parameters are assumed to be positive (or non-negative\n  for the damping coefficient).",
+          "snippet": "structure DampedHarmonicOscillator where\n  m : ℝ\n  k : ℝ\n  γ : ℝ\n  m_pos : 0 < m\n  k_pos : 0 < k\n  γ_nonneg : 0 ≤ γ",
+          "line": 99
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/DampedHarmonicOscillator/Basic.lean",
+          "kind": "lemma",
+          "name": "ClassicalMechanics.DampedHarmonicOscillator.k_neq_zero",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma k_neq_zero : S.k ≠ 0",
+          "line": 115
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/DampedHarmonicOscillator/Basic.lean",
+          "kind": "lemma",
+          "name": "ClassicalMechanics.DampedHarmonicOscillator.m_neq_zero",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma m_neq_zero : S.m ≠ 0",
+          "line": 118
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/DampedHarmonicOscillator/Basic.lean",
+          "kind": "def",
+          "name": "ClassicalMechanics.DampedHarmonicOscillator.ω₀",
+          "docstring": "The natural (undamped) angular frequency of the oscillator, ω₀ = √(k/m).",
+          "snippet": "noncomputable def ω₀ : ℝ",
+          "line": 129
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/DampedHarmonicOscillator/Basic.lean",
+          "kind": "lemma",
+          "name": "ClassicalMechanics.DampedHarmonicOscillator.ω₀_pos",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma ω₀_pos : 0 < S.ω₀",
+          "line": 132
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/DampedHarmonicOscillator/Basic.lean",
+          "kind": "lemma",
+          "name": "ClassicalMechanics.DampedHarmonicOscillator.ω₀_sq",
+          "docstring": null,
+          "snippet": "lemma ω₀_sq : S.ω₀^2 = S.k / S.m",
+          "line": 134
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/DampedHarmonicOscillator/Basic.lean",
+          "kind": "def",
+          "name": "ClassicalMechanics.DampedHarmonicOscillator.EquationOfMotion",
+          "docstring": "The equation of motion for the damped harmonic oscillator.\n\nA function `x : Time → ℝ` is a solution if it satisfies\n\n    S.m * x¨ + S.γ * ẋ + S.k * x = 0\n\nfor all times `t`.",
+          "snippet": "noncomputable def EquationOfMotion (x : Time → ℝ) : Prop",
+          "line": 156
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/DampedHarmonicOscillator/Basic.lean",
+          "kind": "def",
+          "name": "ClassicalMechanics.DampedHarmonicOscillator.kineticEnergy",
+          "docstring": "The kinetic energy of the damped harmonic oscillator.",
+          "snippet": "noncomputable def kineticEnergy (x : Time → ℝ) : Time → ℝ",
+          "line": 187
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/DampedHarmonicOscillator/Basic.lean",
+          "kind": "def",
+          "name": "ClassicalMechanics.DampedHarmonicOscillator.potentialEnergy",
+          "docstring": "The potential energy of the damped harmonic oscillator.",
+          "snippet": "noncomputable def potentialEnergy (x : Time → ℝ) : Time → ℝ",
+          "line": 191
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/DampedHarmonicOscillator/Basic.lean",
+          "kind": "def",
+          "name": "ClassicalMechanics.DampedHarmonicOscillator.energy",
+          "docstring": "Mechanical energy of the damped harmonic oscillator.",
+          "snippet": "noncomputable def energy (x : Time → ℝ) : Time → ℝ",
+          "line": 195
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/DampedHarmonicOscillator/Basic.lean",
+          "kind": "def",
+          "name": "ClassicalMechanics.DampedHarmonicOscillator.energyDissipationRate",
+          "docstring": "Energy dissipation rate along a trajectory `x : Time → ℝ`.\n\n  if `x` satisfies `S.equationOfMotion x`, then\n\n  Time.deriv (S.energy x) t = - S.γ * (Time.deriv x t)^2,\n\nso the energy is non-increasing and not conserved when `S.γ > 0`.",
+          "snippet": "noncomputable def energyDissipationRate (x : Time → ℝ) : Time → ℝ",
+          "line": 205
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/DampedHarmonicOscillator/Basic.lean",
+          "kind": "def",
+          "name": "ClassicalMechanics.DampedHarmonicOscillator.discriminant",
+          "docstring": "The discriminant that determines the damping regime.",
+          "snippet": "noncomputable def discriminant : ℝ",
+          "line": 217
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/DampedHarmonicOscillator/Basic.lean",
+          "kind": "def",
+          "name": "ClassicalMechanics.DampedHarmonicOscillator.IsUnderdamped",
+          "docstring": "The system is underdamped when γ² < 4mk.",
+          "snippet": "def IsUnderdamped : Prop",
+          "line": 220
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/DampedHarmonicOscillator/Basic.lean",
+          "kind": "def",
+          "name": "ClassicalMechanics.DampedHarmonicOscillator.IsCriticallyDamped",
+          "docstring": "The system is critically damped when γ² = 4mk.",
+          "snippet": "def IsCriticallyDamped : Prop",
+          "line": 223
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/DampedHarmonicOscillator/Basic.lean",
+          "kind": "def",
+          "name": "ClassicalMechanics.DampedHarmonicOscillator.IsOverdamped",
+          "docstring": "The system is overdamped when γ² > 4mk.",
+          "snippet": "def IsOverdamped : Prop",
+          "line": 226
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/ClassicalMechanics/HarmonicOscillator/Solution.lean",
+      "entries": [
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/Solution.lean",
+          "kind": "structure",
+          "name": "ClassicalMechanics.HarmonicOscillator.InitialConditionsAtTime",
+          "docstring": "Initial conditions for the harmonic oscillator specified at an arbitrary time `t₀`.\n\n  This structure allows specifying the position and velocity at any time `t₀`, not necessarily\n  at `t=0`. This is useful for problems where the natural reference time is not zero.\n\n  The conditions can be converted to the standard `InitialConditions` format (at `t=0`)\n  using the `toInitialConditions` function.",
+          "snippet": "structure InitialConditionsAtTime where\n  t₀ : Time\n  x_t₀ : EuclideanSpace ℝ (Fin 1)\n  v_t₀ : EuclideanSpace ℝ (Fin 1)",
+          "line": 148
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/Solution.lean",
+          "kind": "lemma",
+          "name": "ClassicalMechanics.HarmonicOscillator.InitialConditionsAtTime.ext",
+          "docstring": null,
+          "snippet": "@[ext]\nlemma InitialConditionsAtTime.ext {IC₁ IC₂ : InitialConditionsAtTime}\n    (h1 : IC₁.t₀ = IC₂.t₀) (h2 : IC₁.x_t₀ = IC₂.x_t₀) (h3 : IC₁.v_t₀ = IC₂.v_t₀) :\n    IC₁ = IC₂",
+          "line": 165
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/Solution.lean",
+          "kind": "def",
+          "name": "ClassicalMechanics.HarmonicOscillator.InitialConditionsAtTime.toInitialConditions",
+          "docstring": "Convert initial conditions at time `t₀` to standard initial conditions at `t=0`.\n\n  This conversion uses the harmonic oscillator solution formula with time-reversal.\n  The resulting `InitialConditions` will produce a trajectory that passes through\n  `x_t₀` with velocity `v_t₀` at time `t₀`.\n\n  See `toInitialConditions_trajectory_at_t₀` and `toInitialConditions_velocity_at_t₀` for\n  the correctness proofs.",
+          "snippet": "noncomputable def toInitialConditions (S : HarmonicOscillator)\n    (IC : InitialConditionsAtTime) : InitialConditions where",
+          "line": 200
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/Solution.lean",
+          "kind": "lemma",
+          "name": "ClassicalMechanics.HarmonicOscillator.InitialConditionsAtTime.toInitialConditions_trajectory_at_t₀",
+          "docstring": "The trajectory resulting from `toInitialConditions` passes through the specified\n  position `x_t₀` at time `t₀`.",
+          "snippet": "@[simp]\nlemma toInitialConditions_trajectory_at_t₀ (S : HarmonicOscillator)\n    (IC : InitialConditionsAtTime) :\n    (IC.toInitialConditions S).trajectory S IC.t₀ = IC.x_t₀",
+          "line": 643
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/Solution.lean",
+          "kind": "lemma",
+          "name": "ClassicalMechanics.HarmonicOscillator.InitialConditionsAtTime.toInitialConditions_velocity_at_t₀",
+          "docstring": "The trajectory resulting from `toInitialConditions` has the specified\n  velocity `v_t₀` at time `t₀`.",
+          "snippet": "@[simp]\nlemma toInitialConditions_velocity_at_t₀ (S : HarmonicOscillator)\n    (IC : InitialConditionsAtTime) :\n    ∂ₜ ((IC.toInitialConditions S).trajectory S) IC.t₀ = IC.v_t₀",
+          "line": 657
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/Solution.lean",
+          "kind": "lemma",
+          "name": "ClassicalMechanics.HarmonicOscillator.InitialConditionsAtTime.toInitialConditions_energy_at_t₀",
+          "docstring": "The energy of the trajectory at time `t₀` equals the energy computed from the\n  initial conditions at `t₀`.",
+          "snippet": "lemma toInitialConditions_energy_at_t₀ (S : HarmonicOscillator)\n    (IC : InitialConditionsAtTime) :\n    S.energy ((IC.toInitialConditions S).trajectory S) IC.t₀ =\n    1/2 * (S.m * ‖IC.v_t₀‖^2 + S.k * ‖IC.x_t₀‖^2)",
+          "line": 670
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/ClassicalMechanics/Lagrangian/TotalDerivativeEquivalence.lean",
+      "entries": [
+        {
+          "file": "PhysLean/ClassicalMechanics/Lagrangian/TotalDerivativeEquivalence.lean",
+          "kind": "def",
+          "name": "ClassicalMechanics.Lagrangian.IsTotalTimeDerivative",
+          "docstring": "A function δL(r, v, t) is a total time derivative if it can be written as d/dt F(r, t)\n    for some function F that depends on position and time but not velocity.\n\n    Mathematically: δL(r, v, t) = fderiv ℝ F (r, t) (v, 1)\n\n    By the chain rule, this equals ∂F/∂t(r, t) + ⟨∇ᵣF(r, t), v⟩.\n\n    This is the most general form of Lagrangian equivalence under total derivatives.\n    The key point is that F must be independent of velocity.",
+          "snippet": "def IsTotalTimeDerivative {n : ℕ}\n    (δL : EuclideanSpace ℝ (Fin n) → EuclideanSpace ℝ (Fin n) → ℝ → ℝ) : Prop",
+          "line": 75
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/Lagrangian/TotalDerivativeEquivalence.lean",
+          "kind": "lemma",
+          "name": "ClassicalMechanics.Lagrangian.isTotalTimeDerivativeVelocity",
+          "docstring": "A velocity-only function that is a total time derivative must be linear in velocity.\n\n    If δL depends only on velocity and equals d/dt F(r, t) for some F,\n    then δL(v) = ⟨g, v⟩ for some constant vector g.\n\n    This characterization comes from the requirement that:\n    - d/dt F(r, t) = ∂F/∂t + ⟨∇F, ṙ⟩ = ∂F/∂t + ⟨∇F, v⟩\n    - For the result to be independent of r and t, we need ∇F = g (constant) and ∂F/∂t = 0\n    - Thus δL(v) = ⟨g, v⟩\n\n    WLOG, we assume `δL 0 = 0` since constants are total derivatives (c = d/dt(c·t))\n    and can be absorbed without affecting the equations of motion.",
+          "snippet": "lemma isTotalTimeDerivativeVelocity {n : ℕ}\n    (δL : EuclideanSpace ℝ (Fin n) → ℝ)\n    (hδL0 : δL 0 = 0)\n    (h : IsTotalTimeDerivative (fun _ v _ => δL v)) :\n    ∃ g : EuclideanSpace ℝ (Fin n), ∀ v, δL v = ⟪g, v⟫_ℝ",
+          "line": 100
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/CondensedMatter/TightBindingChain/Basic.lean",
+      "entries": [
+        {
+          "file": "PhysLean/CondensedMatter/TightBindingChain/Basic.lean",
+          "kind": "lemma",
+          "name": "CondensedMatter.TightBindingChain.localizedComp_adjoint",
+          "docstring": "The adjoint of localizedComp |m⟩⟨n| is |n⟩⟨m|.",
+          "snippet": "lemma localizedComp_adjoint (m n : Fin T.N) (ψ φ : T.HilbertSpace) :\n    ⟪|m⟩⟨n| ψ, φ⟫_ℂ = ⟪ψ, |n⟩⟨m| φ⟫_ℂ := by\n  simp only [localizedComp, LinearMap.coe_mk, AddHom.coe_mk]\n  rw [inner_smul_left, inner_smul_right, inner_conj_symm]\n  ring\n\n\n\n\n\n\n\n\n\n\n\nnoncomputable def hamiltonian : T.HilbertSpace →ₗ[ℂ] T.HilbertSpace :=\n  T.E0 • ∑ n : Fin T.N, |n⟩⟨n| - T.t • ∑ n : Fin T.N, (|n⟩⟨n + 1| + |n + 1⟩⟨n|)\n\n\n\n\n\n\n\n\nlemma hamiltonian_hermitian (ψ φ : T.HilbertSpace) :\n    ⟪T.hamiltonian ψ, φ⟫_ℂ = ⟪ψ, T.hamiltonian φ⟫_ℂ := by\n  simp only [hamiltonian, LinearMap.sub_apply, LinearMap.smul_apply, LinearMap.coe_sum,\n    Finset.sum_apply, LinearMap.add_apply]\n  rw [inner_sub_left, inner_sub_right]\n  congr 1\n  · \n    simp only [Finset.smul_sum]\n    rw [sum_inner, inner_sum]\n    apply Finset.sum_congr rfl\n    intro n _\n    simp only [inner_smul_left_eq_smul, inner_smul_right_eq_smul]\n    rw [localizedComp_adjoint]\n  ·",
+          "line": 197
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Basic.lean",
+      "entries": [
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Basic.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.ext_of_fst_snd",
+          "docstring": null,
+          "snippet": "@[ext]\nlemma ext_of_fst_snd {H1 H2 : TwoHiggsDoublet}\n    (h1 : H1.Φ1 = H2.Φ1) (h2 : H1.Φ2 = H2.Φ2) : H1 = H2",
+          "line": 48
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Basic.lean",
+          "kind": "instance",
+          "name": "TwoHiggsDoublet.«instance@a4b497b0»",
+          "docstring": null,
+          "snippet": "noncomputable instance : SMul StandardModel.GaugeGroupI TwoHiggsDoublet where",
+          "line": 59
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Basic.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.gaugeGroupI_smul_fst",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma gaugeGroupI_smul_fst (g : StandardModel.GaugeGroupI) (H : TwoHiggsDoublet) :\n    (g • H).Φ1 = g • H.Φ1",
+          "line": 65
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Basic.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.gaugeGroupI_smul_snd",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma gaugeGroupI_smul_snd (g : StandardModel.GaugeGroupI) (H : TwoHiggsDoublet) :\n    (g • H).Φ2 = g • H.Φ2",
+          "line": 69
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Basic.lean",
+          "kind": "instance",
+          "name": "TwoHiggsDoublet.«instance@6d570607»",
+          "docstring": null,
+          "snippet": "noncomputable instance : MulAction StandardModel.GaugeGroupI TwoHiggsDoublet where",
+          "line": 72
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean",
+      "entries": [
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean",
+          "kind": "def",
+          "name": "TwoHiggsDoublet.gramMatrix",
+          "docstring": "The Gram matrix of the two Higgs doublet.\n  This matrix is used in https://arxiv.org/abs/hep-ph/0605184.",
+          "snippet": "noncomputable def gramMatrix (H : TwoHiggsDoublet) : Matrix (Fin 2) (Fin 2) ℂ",
+          "line": 30
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.gramMatrix_selfAdjoint",
+          "docstring": null,
+          "snippet": "lemma gramMatrix_selfAdjoint (H : TwoHiggsDoublet) :\n    IsSelfAdjoint (gramMatrix H)",
+          "line": 33
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.eq_fst_norm_of_eq_gramMatrix",
+          "docstring": null,
+          "snippet": "lemma eq_fst_norm_of_eq_gramMatrix {H1 H2 : TwoHiggsDoublet}\n    (h : H1.gramMatrix = H2.gramMatrix) : ‖H1.Φ1‖ = ‖H2.Φ1‖",
+          "line": 39
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.eq_snd_norm_of_eq_gramMatrix",
+          "docstring": null,
+          "snippet": "lemma eq_snd_norm_of_eq_gramMatrix {H1 H2 : TwoHiggsDoublet}\n    (h : H1.gramMatrix = H2.gramMatrix) : ‖H1.Φ2‖ = ‖H2.Φ2‖",
+          "line": 55
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.gaugeGroupI_smul_gramMatrix",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma gaugeGroupI_smul_gramMatrix (g : StandardModel.GaugeGroupI) (H : TwoHiggsDoublet) :\n    (g • H).gramMatrix = H.gramMatrix",
+          "line": 71
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.gramMatrix_det_eq",
+          "docstring": null,
+          "snippet": "lemma gramMatrix_det_eq (H : TwoHiggsDoublet) :\n    H.gramMatrix.det = ‖H.Φ1‖ ^ 2 * ‖H.Φ2‖ ^ 2 - ‖⟪H.Φ1, H.Φ2⟫_ℂ‖ ^ 2",
+          "line": 77
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.gramMatrix_det_eq_real",
+          "docstring": null,
+          "snippet": "lemma gramMatrix_det_eq_real (H : TwoHiggsDoublet) :\n    H.gramMatrix.det.re = ‖H.Φ1‖ ^ 2 * ‖H.Φ2‖ ^ 2 - ‖⟪H.Φ1, H.Φ2⟫_ℂ‖ ^ 2",
+          "line": 86
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.gramMatrix_det_nonneg",
+          "docstring": null,
+          "snippet": "lemma gramMatrix_det_nonneg (H : TwoHiggsDoublet) :\n    0 ≤ H.gramMatrix.det.re",
+          "line": 91
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.gramMatrix_tr_nonneg",
+          "docstring": null,
+          "snippet": "lemma gramMatrix_tr_nonneg (H : TwoHiggsDoublet) :\n    0 ≤ H.gramMatrix.trace.re",
+          "line": 100
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.gaugeGroupI_exists_fst_eq",
+          "docstring": null,
+          "snippet": "lemma gaugeGroupI_exists_fst_eq {H : TwoHiggsDoublet} (h1 : H.Φ1 ≠ 0) :\n    ∃ g : StandardModel.GaugeGroupI,\n      g • H.Φ1 = (!₂[‖H.Φ1‖, 0] : HiggsVec) ∧\n      (g • H.Φ2) 0 = ⟪H.Φ1, H.Φ2⟫_ℂ / ‖H.Φ1‖ ∧\n      ‖(g • H.Φ2) 1‖ = Real.sqrt (H.gramMatrix.det.re) / ‖H.Φ1‖",
+          "line": 112
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.gaugeGroupI_exists_fst_eq_snd_eq",
+          "docstring": null,
+          "snippet": "lemma gaugeGroupI_exists_fst_eq_snd_eq {H : TwoHiggsDoublet} (h1 : H.Φ1 ≠ 0) :\n    ∃ g : StandardModel.GaugeGroupI,\n      g • H.Φ1 = (!₂[‖H.Φ1‖, 0] : HiggsVec) ∧\n      g • H.Φ2 = (!₂[⟪H.Φ1, H.Φ2⟫_ℂ / ‖H.Φ1‖, √(H.gramMatrix.det.re) / ‖H.Φ1‖] : HiggsVec)",
+          "line": 166
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.mem_orbit_gaugeGroupI_iff_gramMatrix",
+          "docstring": null,
+          "snippet": "lemma mem_orbit_gaugeGroupI_iff_gramMatrix (H1 H2 : TwoHiggsDoublet) :\n    H1 ∈ MulAction.orbit GaugeGroupI H2 ↔ H1.gramMatrix = H2.gramMatrix",
+          "line": 184
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.gramMatrix_surjective_det_tr",
+          "docstring": null,
+          "snippet": "lemma gramMatrix_surjective_det_tr (K : Matrix (Fin 2) (Fin 2) ℂ)\n    (hKs : IsSelfAdjoint K) (hKdet : 0 ≤ K.det.re) (hKtr : 0 ≤ K.trace.re) :\n    ∃ H : TwoHiggsDoublet, H.gramMatrix = K",
+          "line": 248
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean",
+          "kind": "def",
+          "name": "TwoHiggsDoublet.gramVector",
+          "docstring": "A real vector containing the components of the Gram matrix in the Pauli basis.",
+          "snippet": "noncomputable def gramVector (H : TwoHiggsDoublet) : Fin 1 ⊕ Fin 3 → ℝ",
+          "line": 322
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.gaugeGroupI_smul_fst_gramVector",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma gaugeGroupI_smul_fst_gramVector (g : StandardModel.GaugeGroupI)\n    (H : TwoHiggsDoublet) (μ : Fin 1 ⊕ Fin 3) :\n    (g • H).gramVector μ = H.gramVector μ",
+          "line": 326
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.gramMatrix_eq_gramVector_sum_pauliMatrix",
+          "docstring": null,
+          "snippet": "lemma gramMatrix_eq_gramVector_sum_pauliMatrix (H : TwoHiggsDoublet) :\n    gramMatrix H = (1 / 2 : ℝ) • ∑ μ, H.gramVector μ • PauliMatrix.pauliMatrix μ",
+          "line": 333
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.gramMatrix_eq_component_gramVector",
+          "docstring": null,
+          "snippet": "lemma gramMatrix_eq_component_gramVector (H : TwoHiggsDoublet) :\n    gramMatrix H =\n    !![(1 / 2 : ℂ) * (H.gramVector (Sum.inl 0) + H.gramVector (Sum.inr 2)),\n      (1 / 2 : ℂ) * (H.gramVector (Sum.inr 0) - Complex.I * H.gramVector (Sum.inr 1));\n      (1 / 2 : ℂ) * (H.gramVector (Sum.inr 0) + Complex.I * H.gramVector (Sum.inr 1)),\n      (1 / 2 : ℂ) * (H.gramVector (Sum.inl 0) - H.gramVector (Sum.inr 2))]",
+          "line": 344
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.gramVector_inl_eq_trace_gramMatrix",
+          "docstring": null,
+          "snippet": "lemma gramVector_inl_eq_trace_gramMatrix (H : TwoHiggsDoublet) :\n    H.gramVector (Sum.inl 0) = H.gramMatrix.trace.re",
+          "line": 360
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.gramVector_inl_nonneg",
+          "docstring": null,
+          "snippet": "lemma gramVector_inl_nonneg (H : TwoHiggsDoublet) :\n    0 ≤ H.gramVector (Sum.inl 0)",
+          "line": 368
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.normSq_Φ1_eq_gramVector",
+          "docstring": null,
+          "snippet": "lemma normSq_Φ1_eq_gramVector (H : TwoHiggsDoublet) :\n    ‖H.Φ1‖ ^ 2 = (1/2 : ℝ) * (H.gramVector (Sum.inl 0) + H.gramVector (Sum.inr 2))",
+          "line": 373
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.normSq_Φ2_eq_gramVector",
+          "docstring": null,
+          "snippet": "lemma normSq_Φ2_eq_gramVector (H : TwoHiggsDoublet) :\n    ‖H.Φ2‖ ^ 2 = (1/2 : ℝ) * (H.gramVector (Sum.inl 0) - H.gramVector (Sum.inr 2))",
+          "line": 381
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.Φ1_inner_Φ2_eq_gramVector",
+          "docstring": null,
+          "snippet": "lemma Φ1_inner_Φ2_eq_gramVector (H : TwoHiggsDoublet) :\n    (⟪H.Φ1, H.Φ2⟫_ℂ) = (1/2 : ℝ) * (H.gramVector (Sum.inr 0) +\n    Complex.I * H.gramVector (Sum.inr 1))",
+          "line": 389
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.Φ2_inner_Φ1_eq_gramVector",
+          "docstring": null,
+          "snippet": "lemma Φ2_inner_Φ1_eq_gramVector (H : TwoHiggsDoublet) :\n    (⟪H.Φ2, H.Φ1⟫_ℂ) = (1/2 : ℝ) * (H.gramVector (Sum.inr 0) -\n    Complex.I * H.gramVector (Sum.inr 1))",
+          "line": 396
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.Φ1_inner_Φ2_normSq_eq_gramVector",
+          "docstring": null,
+          "snippet": "lemma Φ1_inner_Φ2_normSq_eq_gramVector (H : TwoHiggsDoublet) :\n    ‖⟪H.Φ1, H.Φ2⟫_ℂ‖ ^ 2 =\n    (1/4 : ℝ) * (H.gramVector (Sum.inr 0) ^ 2 + H.gramVector (Sum.inr 1) ^ 2)",
+          "line": 405
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.gramVector_inl_zero_eq",
+          "docstring": null,
+          "snippet": "lemma gramVector_inl_zero_eq (H : TwoHiggsDoublet) :\n    H.gramVector (Sum.inl 0) = ‖H.Φ1‖ ^ 2 + ‖H.Φ2‖ ^ 2",
+          "line": 420
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.gramVector_inl_zero_eq_gramMatrix",
+          "docstring": null,
+          "snippet": "lemma gramVector_inl_zero_eq_gramMatrix (H : TwoHiggsDoublet) :\n    H.gramVector (Sum.inl 0) = (H.gramMatrix 0 0).re + (H.gramMatrix 1 1).re",
+          "line": 425
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.gramVector_inr_zero_eq",
+          "docstring": null,
+          "snippet": "lemma gramVector_inr_zero_eq (H : TwoHiggsDoublet) :\n    H.gramVector (Sum.inr 0) = 2 * (⟪H.Φ1, H.Φ2⟫_ℂ).re",
+          "line": 429
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.gramVector_inr_zero_eq_gramMatrix",
+          "docstring": null,
+          "snippet": "lemma gramVector_inr_zero_eq_gramMatrix (H : TwoHiggsDoublet) :\n    H.gramVector (Sum.inr 0) = 2 * (H.gramMatrix 1 0).re",
+          "line": 434
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.gramVector_inr_one_eq",
+          "docstring": null,
+          "snippet": "lemma gramVector_inr_one_eq (H : TwoHiggsDoublet) :\n    H.gramVector (Sum.inr 1) = 2 * (⟪H.Φ1, H.Φ2⟫_ℂ).im",
+          "line": 439
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.gramVector_inr_one_eq_gramMatrix",
+          "docstring": null,
+          "snippet": "lemma gramVector_inr_one_eq_gramMatrix (H : TwoHiggsDoublet) :\n    H.gramVector (Sum.inr 1) = 2 * (H.gramMatrix 1 0).im",
+          "line": 444
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.gramVector_inr_two_eq",
+          "docstring": null,
+          "snippet": "lemma gramVector_inr_two_eq (H : TwoHiggsDoublet) :\n    H.gramVector (Sum.inr 2) = ‖H.Φ1‖ ^ 2 - ‖H.Φ2‖ ^ 2",
+          "line": 449
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.gramVector_inr_two_eq_gramMatrix",
+          "docstring": null,
+          "snippet": "lemma gramVector_inr_two_eq_gramMatrix (H : TwoHiggsDoublet) :\n    H.gramVector (Sum.inr 2) = (H.gramMatrix 0 0).re - (H.gramMatrix 1 1).re",
+          "line": 454
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.gramMatrix_det_eq_gramVector",
+          "docstring": null,
+          "snippet": "lemma gramMatrix_det_eq_gramVector (H : TwoHiggsDoublet) :\n    H.gramMatrix.det.re =\n    (1/4 : ℝ) * (H.gramVector (Sum.inl 0) ^ 2 -\n    ∑ μ : Fin 3, H.gramVector (Sum.inr μ) ^ 2)",
+          "line": 458
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.gramVector_inr_sum_sq_le_inl",
+          "docstring": null,
+          "snippet": "lemma gramVector_inr_sum_sq_le_inl (H : TwoHiggsDoublet) :\n    ∑ μ : Fin 3, H.gramVector (Sum.inr μ) ^ 2 ≤ H.gramVector (Sum.inl 0) ^ 2",
+          "line": 467
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.gramVector_surjective",
+          "docstring": null,
+          "snippet": "lemma gramVector_surjective (v : Fin 1 ⊕ Fin 3 → ℝ)\n    (h_inl : 0 ≤ v (Sum.inl 0))\n    (h_det : ∑ μ : Fin 3, v (Sum.inr μ) ^ 2 ≤ v (Sum.inl 0) ^ 2) :\n    ∃ H : TwoHiggsDoublet, H.gramVector = v",
+          "line": 478
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+      "entries": [
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "structure",
+          "name": "TwoHiggsDoublet.PotentialParameters",
+          "docstring": "The parameters of the Two Higgs doublet model potential.\n  Following the convention of https://arxiv.org/pdf/1605.03237.",
+          "snippet": "structure PotentialParameters where\n  m₁₁2 : ℝ\n  m₂₂2 : ℝ\n  m₁₂2 : ℂ\n  𝓵₁ : ℝ\n  𝓵₂ : ℝ\n  𝓵₃ : ℝ\n  𝓵₄ : ℝ\n  𝓵₅ : ℂ\n  𝓵₆ : ℂ\n  𝓵₇ : ℂ",
+          "line": 23
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "def",
+          "name": "TwoHiggsDoublet.PotentialParameters.ξ",
+          "docstring": "A reparameterization of the parameters of the quadratic terms of the\n  potential for use with the gramVector.",
+          "snippet": "noncomputable def ξ (P : PotentialParameters) : Fin 1 ⊕ Fin 3 → ℝ",
+          "line": 49
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "def",
+          "name": "TwoHiggsDoublet.PotentialParameters.η",
+          "docstring": "A reparameterization of the parameters of the quartic terms of the\n  potential for use with the gramVector.",
+          "snippet": "noncomputable def η (P : PotentialParameters) : Fin 1 ⊕ Fin 3 → Fin 1 ⊕ Fin 3 → ℝ\n  | Sum.inl 0, Sum.inl 0 => (P.𝓵₁ + P.𝓵₂ + 2 * P.𝓵₃) / 8\n  | Sum.inl 0, Sum.inr 0 => (P.𝓵₆.re + P.𝓵₇.re) * (1 / 4)\n  | Sum.inl 0, Sum.inr 1 => (P.𝓵₆.im + P.𝓵₇.im) * (-1 / 4)\n  | Sum.inl 0, Sum.inr 2 => (P.𝓵₁ - P.𝓵₂) * (1 / 8)\n  | Sum.inr 0, Sum.inl 0 => (P.𝓵₆.re + P.𝓵₇.re) * (1 / 4)\n  | Sum.inr 1, Sum.inl 0 => (P.𝓵₆.im + P.𝓵₇.im) * (-1 / 4)\n  | Sum.inr 2, Sum.inl 0 => (P.𝓵₁ - P.𝓵₂) * (1 / 8)",
+          "line": 58
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.PotentialParameters.η_symm",
+          "docstring": null,
+          "snippet": "lemma η_symm (P : PotentialParameters) (μ ν : Fin 1 ⊕ Fin 3) :\n    P.η μ ν = P.η ν μ",
+          "line": 77
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "def",
+          "name": "TwoHiggsDoublet.massTerm",
+          "docstring": "The mass term of the two Higgs doublet model potential.",
+          "snippet": "noncomputable def massTerm (P : PotentialParameters) (H : TwoHiggsDoublet) : ℝ",
+          "line": 86
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.massTerm_eq_gramVector",
+          "docstring": null,
+          "snippet": "lemma massTerm_eq_gramVector (P : PotentialParameters) (H : TwoHiggsDoublet) :\n    massTerm P H = ∑ μ, P.ξ μ * H.gramVector μ",
+          "line": 90
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.gaugeGroupI_smul_massTerm",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma gaugeGroupI_smul_massTerm (g : StandardModel.GaugeGroupI) (P : PotentialParameters)\n    (H : TwoHiggsDoublet) :\n    massTerm P (g • H) = massTerm P H",
+          "line": 97
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "def",
+          "name": "TwoHiggsDoublet.quarticTerm",
+          "docstring": "The quartic term of the two Higgs doublet model potential.",
+          "snippet": "noncomputable def quarticTerm (P : PotentialParameters) (H : TwoHiggsDoublet) : ℝ",
+          "line": 104
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.quarticTerm_𝓵₄_expand",
+          "docstring": null,
+          "snippet": "lemma quarticTerm_𝓵₄_expand (P : PotentialParameters) (H : TwoHiggsDoublet) :\n    H.quarticTerm P =\n    1/2 * P.𝓵₁ * ‖H.Φ1‖ ^ 2 * ‖H.Φ1‖ ^ 2 + 1/2 * P.𝓵₂ * ‖H.Φ2‖ ^ 2 * ‖H.Φ2‖ ^ 2\n    + P.𝓵₃ * ‖H.Φ1‖ ^ 2 * ‖H.Φ2‖ ^ 2\n    + P.𝓵₄ * (⟪H.Φ1, H.Φ2⟫_ℂ * ⟪H.Φ2, H.Φ1⟫_ℂ).re\n    + (1/2 * P.𝓵₅ * ⟪H.Φ1, H.Φ2⟫_ℂ ^ 2 + 1/2 * conj P.𝓵₅ * ⟪H.Φ2, H.Φ1⟫_ℂ ^ 2).re\n    + (P.𝓵₆ * ‖H.Φ1‖ ^ 2 * ⟪H.Φ1, H.Φ2⟫_ℂ + conj P.𝓵₆ * ‖H.Φ1‖ ^ 2 * ⟪H.Φ2, H.Φ1⟫_ℂ).re\n    + (P.𝓵₇ * ‖H.Φ2‖ ^ 2 * ⟪H.Φ1, H.Φ2⟫_ℂ + conj P.𝓵₇ * ‖H.Φ2‖ ^ 2 * ⟪H.Φ2, H.Φ1⟫_ℂ).re",
+          "line": 112
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.quarticTerm_eq_gramVector",
+          "docstring": null,
+          "snippet": "lemma quarticTerm_eq_gramVector (P : PotentialParameters) (H : TwoHiggsDoublet) :\n    quarticTerm P H = ∑ a, ∑ b, H.gramVector a * H.gramVector b * P.η a b",
+          "line": 129
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.gaugeGroupI_smul_quarticTerm",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma gaugeGroupI_smul_quarticTerm (g : StandardModel.GaugeGroupI) (P : PotentialParameters)\n    (H : TwoHiggsDoublet) :\n    quarticTerm P (g • H) = quarticTerm P H",
+          "line": 139
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "def",
+          "name": "TwoHiggsDoublet.potential",
+          "docstring": "The potential of the two Higgs doublet model.",
+          "snippet": "noncomputable def potential (P : PotentialParameters) (H : TwoHiggsDoublet) : ℝ",
+          "line": 146
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.gaugeGroupI_smul_potential",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma gaugeGroupI_smul_potential (g : StandardModel.GaugeGroupI)\n    (P : PotentialParameters) (H : TwoHiggsDoublet) :\n    potential P (g • H) = potential P H",
+          "line": 150
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "def",
+          "name": "TwoHiggsDoublet.PotentialIsBounded",
+          "docstring": "The condition that the potential is bounded from below.",
+          "snippet": "def PotentialIsBounded (P : PotentialParameters) : Prop",
+          "line": 162
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.potentialIsBounded_iff_forall_gramVector",
+          "docstring": null,
+          "snippet": "lemma potentialIsBounded_iff_forall_gramVector (P : PotentialParameters) :\n    PotentialIsBounded P ↔ ∃ c : ℝ, ∀ K : Fin 1 ⊕ Fin 3 → ℝ, 0 ≤ K (Sum.inl 0) →\n      ∑ μ : Fin 3, K (Sum.inr μ) ^ 2 ≤ K (Sum.inl 0) ^ 2 →\n      c ≤ ∑ μ, P.ξ μ * K μ + ∑ a, ∑ b, K a * K b * P.η a b",
+          "line": 165
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.potentialIsBounded_iff_forall_euclid",
+          "docstring": null,
+          "snippet": "lemma potentialIsBounded_iff_forall_euclid (P : PotentialParameters) :\n    PotentialIsBounded P ↔ ∃ c, ∀ K0 : ℝ, ∀ K : EuclideanSpace ℝ (Fin 3), 0 ≤ K0 →\n      ‖K‖ ^ 2 ≤ K0 ^ 2 → c ≤ P.ξ (Sum.inl 0) * K0 + ∑ μ, P.ξ (Sum.inr μ) * K μ\n      + K0 ^ 2 * P.η (Sum.inl 0) (Sum.inl 0)\n      + 2 * K0 * ∑ b, K b * P.η (Sum.inl 0) (Sum.inr b) +\n      ∑ a, ∑ b, K a * K b * P.η (Sum.inr a) (Sum.inr b)",
+          "line": 187
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.potentialIsBounded_iff_forall_euclid_lt",
+          "docstring": null,
+          "snippet": "lemma potentialIsBounded_iff_forall_euclid_lt (P : PotentialParameters) :\n    PotentialIsBounded P ↔ ∃ c ≤ 0, ∀ K0 : ℝ, ∀ K : EuclideanSpace ℝ (Fin 3), 0 < K0 →\n      ‖K‖ ^ 2 ≤ K0 ^ 2 → c ≤ P.ξ (Sum.inl 0) * K0 + ∑ μ, P.ξ (Sum.inr μ) * K μ\n      + K0 ^ 2 * P.η (Sum.inl 0) (Sum.inl 0)\n      + 2 * K0 * ∑ b, K b * P.η (Sum.inl 0) (Sum.inr b) +\n      ∑ a, ∑ b, K a * K b * P.η (Sum.inr a) (Sum.inr b)",
+          "line": 223
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "def",
+          "name": "TwoHiggsDoublet.massTermReduced",
+          "docstring": "A function related to the mass term of the potential, used in the boundedness\n  condition and equivalent to the term `J2` in\n  https://arxiv.org/abs/hep-ph/0605184.",
+          "snippet": "noncomputable def massTermReduced (P : PotentialParameters) (k : EuclideanSpace ℝ (Fin 3)) : ℝ",
+          "line": 257
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.massTermReduced_lower_bound",
+          "docstring": null,
+          "snippet": "lemma massTermReduced_lower_bound (P : PotentialParameters) (k : EuclideanSpace ℝ (Fin 3))\n    (hk : ‖k‖ ^ 2 ≤ 1) : P.ξ (Sum.inl 0) - √(∑ a, |P.ξ (Sum.inr a)| ^ 2) ≤ massTermReduced P k",
+          "line": 260
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "def",
+          "name": "TwoHiggsDoublet.quarticTermReduced",
+          "docstring": "A function related to the quartic term of the potential, used in the boundedness\n  condition and equivalent to the term `J4` in\n  https://arxiv.org/abs/hep-ph/0605184.",
+          "snippet": "noncomputable def quarticTermReduced (P : PotentialParameters) (k : EuclideanSpace ℝ (Fin 3)) : ℝ",
+          "line": 293
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.potentialIsBounded_iff_exists_forall_forall_reduced",
+          "docstring": null,
+          "snippet": "lemma potentialIsBounded_iff_exists_forall_forall_reduced (P : PotentialParameters) :\n    PotentialIsBounded P ↔ ∃ c ≤ 0, ∀ K0 : ℝ, ∀ k : EuclideanSpace ℝ (Fin 3), 0 < K0 →\n      ‖k‖ ^ 2 ≤ 1 → c ≤ K0 * massTermReduced P k + K0 ^ 2 * quarticTermReduced P k",
+          "line": 297
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.quarticTermReduced_nonneg_of_potentialIsBounded",
+          "docstring": null,
+          "snippet": "lemma quarticTermReduced_nonneg_of_potentialIsBounded (P : PotentialParameters)\n    (hP : PotentialIsBounded P) (k : EuclideanSpace ℝ (Fin 3))\n    (hk : ‖k‖ ^ 2 ≤ 1) : 0 ≤ quarticTermReduced P k",
+          "line": 326
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.potentialIsBounded_iff_exists_forall_reduced",
+          "docstring": null,
+          "snippet": "lemma potentialIsBounded_iff_exists_forall_reduced (P : PotentialParameters) :\n    PotentialIsBounded P ↔ ∃ c, 0 ≤ c ∧ ∀ k : EuclideanSpace ℝ (Fin 3), ‖k‖ ^ 2 ≤ 1 →\n      0 ≤ quarticTermReduced P k ∧\n      (massTermReduced P k < 0 →\n      massTermReduced P k ^ 2 ≤ 4 * quarticTermReduced P k * c)",
+          "line": 369
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.massTermReduced_pos_of_quarticTermReduced_zero_potentialIsBounded",
+          "docstring": null,
+          "snippet": "lemma massTermReduced_pos_of_quarticTermReduced_zero_potentialIsBounded (P : PotentialParameters)\n    (hP : PotentialIsBounded P) (k : EuclideanSpace ℝ (Fin 3))\n    (hk : ‖k‖ ^ 2 ≤ 1) (hq : quarticTermReduced P k = 0) : 0 ≤ massTermReduced P k",
+          "line": 435
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.potentialIsBounded_iff_forall_reduced",
+          "docstring": null,
+          "snippet": "@[sorryful]\nlemma potentialIsBounded_iff_forall_reduced (P : PotentialParameters) :\n    PotentialIsBounded P ↔ ∀ k : EuclideanSpace ℝ (Fin 3), ‖k‖ ^ 2 ≤ 1 →\n      0 ≤ quarticTermReduced P k ∧ (quarticTermReduced P k = 0 → 0 ≤ massTermReduced P k)",
+          "line": 447
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/Particles/StandardModel/Basic.lean",
+      "entries": [
+        {
+          "file": "PhysLean/Particles/StandardModel/Basic.lean",
+          "kind": "def",
+          "name": "StandardModel.GaugeGroupI.ofU1Subgroup",
+          "docstring": "The inclusion of a U(1) subgroup.",
+          "snippet": "def ofU1Subgroup (u1 : unitary ℂ) : GaugeGroupI",
+          "line": 76
+        },
+        {
+          "file": "PhysLean/Particles/StandardModel/Basic.lean",
+          "kind": "lemma",
+          "name": "StandardModel.GaugeGroupI.ofU1Subgroup_toSU3",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma ofU1Subgroup_toSU3 (u1 : unitary ℂ) :\n    toSU3 (ofU1Subgroup u1) = 1",
+          "line": 89
+        },
+        {
+          "file": "PhysLean/Particles/StandardModel/Basic.lean",
+          "kind": "lemma",
+          "name": "StandardModel.GaugeGroupI.ofU1Subgroup_toSU2",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma ofU1Subgroup_toSU2 (u1 : unitary ℂ) :\n    toSU2 (ofU1Subgroup u1) = ⟨!![star (u1 ^ 3 : unitary ℂ), 0;0, (u1 ^ 3 : unitary ℂ)], by\n    simp only [SetLike.mem_coe]\n    rw [mem_unitaryGroup_iff']\n    funext i j\n    rw [Matrix.mul_apply]\n    fin_cases i <;> fin_cases j <;> simp [conj_mul'], by\n    simp only [RCLike.star_def, SetLike.mem_coe, MonoidHom.mem_mker, coe_detMonoidHom,\n      det_fin_two_of, conj_mul', mul_zero, sub_zero]\n    simp⟩",
+          "line": 93
+        },
+        {
+          "file": "PhysLean/Particles/StandardModel/Basic.lean",
+          "kind": "lemma",
+          "name": "StandardModel.GaugeGroupI.ofU1Subgroup_toU1",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma ofU1Subgroup_toU1 (u1 : unitary ℂ) :\n    toU1 (ofU1Subgroup u1) = u1",
+          "line": 105
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/Particles/StandardModel/HiggsBoson/Basic.lean",
+      "entries": [
+        {
+          "file": "PhysLean/Particles/StandardModel/HiggsBoson/Basic.lean",
+          "kind": "lemma",
+          "name": "StandardModel.HiggsVec.gaugeGroupI_smul_eq_U1_smul_SU2",
+          "docstring": null,
+          "snippet": "lemma gaugeGroupI_smul_eq_U1_smul_SU2 (g : StandardModel.GaugeGroupI) (φ : HiggsVec) :\n    g • φ = (WithLp.toLp 2 <| (g.toU1 ^ 3 • g.toSU2.1) *ᵥ φ.ofLp)",
+          "line": 176
+        },
+        {
+          "file": "PhysLean/Particles/StandardModel/HiggsBoson/Basic.lean",
+          "kind": "instance",
+          "name": "StandardModel.HiggsVec.«instance@9eae1e07»",
+          "docstring": null,
+          "snippet": "instance : DistribMulAction StandardModel.GaugeGroupI HiggsVec where",
+          "line": 189
+        },
+        {
+          "file": "PhysLean/Particles/StandardModel/HiggsBoson/Basic.lean",
+          "kind": "lemma",
+          "name": "StandardModel.HiggsVec.ofU1Subgroup_smul_eq_smul",
+          "docstring": null,
+          "snippet": "lemma ofU1Subgroup_smul_eq_smul (g : unitary ℂ) (φ : HiggsVec) :\n    (StandardModel.GaugeGroupI.ofU1Subgroup g) • φ =\n    (WithLp.toLp 2 <| !![1, 0; 0, g.1 ^ 6] *ᵥ φ.ofLp)",
+          "line": 377
+        },
+        {
+          "file": "PhysLean/Particles/StandardModel/HiggsBoson/Basic.lean",
+          "kind": "lemma",
+          "name": "StandardModel.HiggsVec.gaugeGroupI_smul_phase_snd",
+          "docstring": null,
+          "snippet": "lemma gaugeGroupI_smul_phase_snd (φ : HiggsVec) :\n    ∃ g : StandardModel.GaugeGroupI,\n      (g • φ).ofLp 1 = ‖(φ.ofLp 1)‖ ∧\n      (∀ φ1 : HiggsVec, (g • φ1).ofLp 0 = φ1.ofLp 0) ∧\n      (∀ a : ℝ, g • (!₂[a, 0] : HiggsVec) = (!₂[a, 0] : HiggsVec))",
+          "line": 400
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/Relativity/Tensors/RealTensor/ToComplex.lean",
+      "entries": [
+        {
+          "file": "PhysLean/Relativity/Tensors/RealTensor/ToComplex.lean",
+          "kind": "lemma",
+          "name": "realLorentzTensor.colorToComplex_append",
+          "docstring": "`colorToComplex` commutes with `Fin.append` (as functions).",
+          "snippet": "@[simp]\nlemma colorToComplex_append {n m : ℕ}\n    (c : Fin n → realLorentzTensor.Color) (c1 : Fin m → realLorentzTensor.Color) :\n    (colorToComplex ∘ Fin.append c c1) = Fin.append (colorToComplex ∘ c) (colorToComplex ∘ c1)",
+          "line": 143
+        },
+        {
+          "file": "PhysLean/Relativity/Tensors/RealTensor/ToComplex.lean",
+          "kind": "def",
+          "name": "realLorentzTensor.prodTColorToComplex",
+          "docstring": "`prodT` on the complex side, with colors written as `colorToComplex ∘ Fin.append ...`.\nThis is `prodT` followed by a cast using `colorToComplex_append`.",
+          "snippet": "noncomputable def prodTColorToComplex {n m : ℕ}\n    {c : Fin n → realLorentzTensor.Color} {c1 : Fin m → realLorentzTensor.Color} :\n    ℂT(colorToComplex ∘ c) → ℂT(colorToComplex ∘ c1) → ℂT(colorToComplex ∘ Fin.append c c1)",
+          "line": 157
+        },
+        {
+          "file": "PhysLean/Relativity/Tensors/RealTensor/ToComplex.lean",
+          "kind": "lemma",
+          "name": "realLorentzTensor.tau_colorToComplex",
+          "docstring": "`τ` commutes with `colorToComplex` on the Lorentz `up/down` colors.",
+          "snippet": "@[simp]\nlemma tau_colorToComplex (x : realLorentzTensor.Color) :\n    (complexLorentzTensor).τ (colorToComplex x) = colorToComplex ((realLorentzTensor).τ x)",
+          "line": 177
+        },
+        {
+          "file": "PhysLean/Relativity/Tensors/RealTensor/ToComplex.lean",
+          "kind": "lemma",
+          "name": "realLorentzTensor.complex_repDim_up",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma complex_repDim_up :\n    (complexLorentzTensor).repDim complexLorentzTensor.Color.up = 4",
+          "line": 200
+        },
+        {
+          "file": "PhysLean/Relativity/Tensors/RealTensor/ToComplex.lean",
+          "kind": "lemma",
+          "name": "realLorentzTensor.complex_repDim_down",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma complex_repDim_down :\n    (complexLorentzTensor).repDim complexLorentzTensor.Color.down = 4",
+          "line": 204
+        },
+        {
+          "file": "PhysLean/Relativity/Tensors/RealTensor/ToComplex.lean",
+          "kind": "def",
+          "name": "realLorentzTensor.evalIdxToComplex",
+          "docstring": "Convert an evaluation index from the real repDim to the complex repDim.",
+          "snippet": "def evalIdxToComplex {n : ℕ}\n    {c : Fin (n + 1) → realLorentzTensor.Color} (i : Fin (n + 1))\n    (b : Fin ((realLorentzTensor).repDim (c i))) :\n    Fin ((complexLorentzTensor).repDim ((colorToComplex ∘ c) i))",
+          "line": 208
+        },
+        {
+          "file": "PhysLean/Relativity/Tensors/RealTensor/ToComplex.lean",
+          "kind": "def",
+          "name": "realLorentzTensor.evalTColorToComplex",
+          "docstring": "`evalT` on the complex side, but with output colors as `colorToComplex ∘ (c ∘ i.succAbove)`.\nImplemented via `permT (σ := id) (by simp)` as a transport.",
+          "snippet": "noncomputable def evalTColorToComplex {n : ℕ}\n    {c : Fin (n + 1) → realLorentzTensor.Color} (i : Fin (n + 1))\n    (b : Fin ((realLorentzTensor).repDim (c i))) :\n    ℂT(colorToComplex ∘ c) → ℂT(colorToComplex ∘ (c ∘ i.succAbove))",
+          "line": 222
+        }
+      ]
+    }
+  ],
+  "pdfUrl": "/monthly-updates/2026-01.pdf",
+  "generatedAt": "2026-08-14T10:47:21.099Z"
+}

@@ -1,0 +1,1510 @@
+{
+  "slug": "2025-12",
+  "label": "Dec 2025",
+  "year": 2025,
+  "month": 12,
+  "startDate": "2025-12-01T00:00:00.000Z",
+  "endDate": "2026-01-01T00:00:00.000Z",
+  "repo": "leanprover-community/physlib",
+  "branch": "master",
+  "baseSha": "b47abf978783d8175b204626e27c639b9f5ef38d",
+  "headSha": "7ab21947846f1cfdc247463c24caf848107dbe13",
+  "compareUrl": "https://github.com/leanprover-community/physlib/compare/b47abf978783d8175b204626e27c639b9f5ef38d...7ab21947846f1cfdc247463c24caf848107dbe13",
+  "commitsUrl": "https://github.com/leanprover-community/physlib/commits/master?since=2025-12-01T00:00:00.000Z&until=2026-01-01T00:00:00.000Z",
+  "totalCommits": 26,
+  "totalAdditions": 3691,
+  "totalDeletions": 3018,
+  "linesChanged": 6709,
+  "totalFilesChanged": 138,
+  "filesAdded": 5,
+  "filesRemoved": 4,
+  "subfolders": [
+    {
+      "path": "PhysLean/Electromagnetism",
+      "files": 18,
+      "filesAdded": 2,
+      "filesRemoved": 4,
+      "additions": 1816,
+      "deletions": 1773
+    },
+    {
+      "path": "PhysLean/Particles",
+      "files": 11,
+      "filesAdded": 1,
+      "filesRemoved": 0,
+      "additions": 278,
+      "deletions": 299
+    },
+    {
+      "path": "PhysLean/SpaceAndTime",
+      "files": 15,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 378,
+      "deletions": 87
+    },
+    {
+      "path": "PhysLean/Relativity",
+      "files": 17,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 320,
+      "deletions": 113
+    },
+    {
+      "path": "PhysLean/QFT",
+      "files": 28,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 166,
+      "deletions": 239
+    },
+    {
+      "path": "PhysLean/Mathematics",
+      "files": 13,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 125,
+      "deletions": 262
+    },
+    {
+      "path": "PhysLean/ClassicalMechanics",
+      "files": 8,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 245,
+      "deletions": 107
+    },
+    {
+      "path": "PhysLean/Thermodynamics",
+      "files": 2,
+      "filesAdded": 1,
+      "filesRemoved": 0,
+      "additions": 221,
+      "deletions": 8
+    },
+    {
+      "path": "PhysLean/StatisticalMechanics",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 54,
+      "deletions": 66
+    },
+    {
+      "path": "PhysLean/QuantumMechanics",
+      "files": 4,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 36,
+      "deletions": 21
+    },
+    {
+      "path": "lake-manifest.json",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 16,
+      "deletions": 16
+    },
+    {
+      "path": "scripts/MetaPrograms",
+      "files": 7,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 10,
+      "deletions": 11
+    },
+    {
+      "path": ".codespellignore",
+      "files": 1,
+      "filesAdded": 1,
+      "filesRemoved": 0,
+      "additions": 10,
+      "deletions": 0
+    },
+    {
+      "path": "PhysLean.lean",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 4,
+      "deletions": 4
+    },
+    {
+      "path": "PhysLean/StringTheory",
+      "files": 2,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 2,
+      "deletions": 4
+    },
+    {
+      "path": "lakefile.toml",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 2,
+      "deletions": 2
+    },
+    {
+      "path": "PhysLean/Meta",
+      "files": 2,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 2,
+      "deletions": 1
+    },
+    {
+      "path": "PhysLean/CondensedMatter",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 1,
+      "deletions": 1
+    },
+    {
+      "path": "PhysLean/Units",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 1,
+      "deletions": 1
+    },
+    {
+      "path": "README.md",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 1,
+      "deletions": 1
+    },
+    {
+      "path": "lean-toolchain",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 1,
+      "deletions": 1
+    },
+    {
+      "path": "scripts",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 1,
+      "deletions": 1
+    },
+    {
+      "path": "PhysLean/Cosmology",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 1,
+      "deletions": 0
+    }
+  ],
+  "contributors": [
+    {
+      "login": "jstoobysmith",
+      "name": "Joseph Tooby-Smith",
+      "html_url": "https://github.com/jstoobysmith",
+      "avatar_url": "https://avatars.githubusercontent.com/u/72603918?v=4",
+      "commits": 10,
+      "linesChanged": 5356,
+      "firstTime": false
+    },
+    {
+      "login": "NicolaBernini",
+      "name": "Nicola Bernini",
+      "html_url": "https://github.com/NicolaBernini",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6381645?v=4",
+      "commits": 7,
+      "linesChanged": 677,
+      "firstTime": false
+    },
+    {
+      "login": "ShlokVaibhav",
+      "name": "Shlok Vaibhav Singh",
+      "html_url": "https://github.com/ShlokVaibhav",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52267609?v=4",
+      "commits": 1,
+      "linesChanged": 309,
+      "firstTime": false
+    },
+    {
+      "login": "fanza-cqs",
+      "name": "Fabio Anza",
+      "html_url": "https://github.com/fanza-cqs",
+      "avatar_url": "https://avatars.githubusercontent.com/u/190510424?v=4",
+      "commits": 1,
+      "linesChanged": 213,
+      "firstTime": true
+    },
+    {
+      "login": "rht",
+      "html_url": "https://github.com/rht",
+      "avatar_url": "https://avatars.githubusercontent.com/u/395821?v=4",
+      "commits": 3,
+      "linesChanged": 115,
+      "firstTime": true
+    },
+    {
+      "login": "PrParadoxy",
+      "name": "Davood Haji Taghi Tehrani",
+      "html_url": "https://github.com/PrParadoxy",
+      "avatar_url": "https://avatars.githubusercontent.com/u/56603163?v=4",
+      "commits": 1,
+      "linesChanged": 94,
+      "firstTime": true
+    },
+    {
+      "login": "Komyyy",
+      "name": "Miyahara Kō",
+      "html_url": "https://github.com/Komyyy",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52843868?v=4",
+      "commits": 1,
+      "linesChanged": 9,
+      "firstTime": false
+    },
+    {
+      "login": "pitmonticone",
+      "name": "Pietro Monticone",
+      "html_url": "https://github.com/pitmonticone",
+      "avatar_url": "https://avatars.githubusercontent.com/u/38562595?v=4",
+      "commits": 2,
+      "linesChanged": 6,
+      "firstTime": false
+    }
+  ],
+  "reviewers": [
+    {
+      "login": "jstoobysmith",
+      "html_url": "https://github.com/jstoobysmith",
+      "avatar_url": "https://avatars.githubusercontent.com/u/72603918?u=e36d367e18c3569e632096b1bb61e1079cdce1ae&v=4",
+      "reviews": 14,
+      "name": "Joseph Tooby-Smith"
+    }
+  ],
+  "kindTotals": {
+    "def": 20,
+    "lemma": 107,
+    "abbrev": 1,
+    "structure": 1,
+    "theorem": 3,
+    "instance": 1
+  },
+  "files": [
+    {
+      "filename": "PhysLean/ClassicalMechanics/Pendulum/CoplanarDoublePendulum.lean",
+      "entries": [
+        {
+          "file": "PhysLean/ClassicalMechanics/Pendulum/CoplanarDoublePendulum.lean",
+          "kind": "def",
+          "name": "ClassicalMechanics.CoplanarDoublePendulum.ConfigurationSpace",
+          "docstring": "The configuration space of the coplaner double pendulum.",
+          "snippet": "@[sorryful]\ndef ConfigurationSpace : Type",
+          "line": 71
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/ClassicalMechanics/Pendulum/SlidingPendulum.lean",
+      "entries": [
+        {
+          "file": "PhysLean/ClassicalMechanics/Pendulum/SlidingPendulum.lean",
+          "kind": "def",
+          "name": "ClassicalMechanics.SlidingPendulum.ConfigurationSpace",
+          "docstring": "The configuration space of the sliding pendulum system.",
+          "snippet": "@[sorryful]\ndef ConfigurationSpace : Type",
+          "line": 64
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/Electromagnetism/Current/InfiniteWire.lean",
+      "entries": [
+        {
+          "file": "PhysLean/Electromagnetism/Current/InfiniteWire.lean",
+          "kind": "def",
+          "name": "Electromagnetism.DistElectromagneticPotential.wireCurrentDensity",
+          "docstring": "The current density associated with an infinite wire carrying a current `I`\n  along the `x`-axis.",
+          "snippet": "noncomputable def wireCurrentDensity (c : SpeedOfLight) :\n    ℝ →ₗ[ℝ] DistLorentzCurrentDensity 3 where",
+          "line": 59
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Current/InfiniteWire.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.wireCurrentDensity_chargeDesnity",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma wireCurrentDensity_chargeDesnity (c : SpeedOfLight) (I : ℝ) :\n    (wireCurrentDensity c I).chargeDensity c = 0",
+          "line": 69
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Current/InfiniteWire.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.wireCurrentDensity_currentDensity_fst",
+          "docstring": null,
+          "snippet": "lemma wireCurrentDensity_currentDensity_fst (c : SpeedOfLight) (I : ℝ)\n    (η : 𝓢(Time × Space 3, ℝ)) :\n    (wireCurrentDensity c I).currentDensity c η 0 =\n    (constantTime <|\n    constantSliceDist 0 <|\n    I • diracDelta ℝ 0) η",
+          "line": 75
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Current/InfiniteWire.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.wireCurrentDensity_currentDensity_snd",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma wireCurrentDensity_currentDensity_snd (c : SpeedOfLight) (I : ℝ)\n    (ε : 𝓢(Time × Space 3, ℝ)) :\n    (wireCurrentDensity c I).currentDensity c ε 1 = 0",
+          "line": 85
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Current/InfiniteWire.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.wireCurrentDensity_currentDensity_thrd",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma wireCurrentDensity_currentDensity_thrd (c : SpeedOfLight) (I : ℝ)\n    (ε : 𝓢(Time × Space 3, ℝ)) :\n    (wireCurrentDensity c I).currentDensity c ε 2 = 0",
+          "line": 92
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Current/InfiniteWire.lean",
+          "kind": "def",
+          "name": "Electromagnetism.DistElectromagneticPotential.infiniteWire",
+          "docstring": "The electromagnetic potential of an infinite wire along the x-axis carrying a current `I`.",
+          "snippet": "noncomputable def infiniteWire (𝓕 : FreeSpace) (I : ℝ) :\n    DistElectromagneticPotential 3",
+          "line": 109
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Current/InfiniteWire.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.infiniteWire_scalarPotential",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma infiniteWire_scalarPotential (𝓕 : FreeSpace) (I : ℝ) :\n    (infiniteWire 𝓕 I).scalarPotential 𝓕.c = 0",
+          "line": 129
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Current/InfiniteWire.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.infiniteWire_vectorPotential",
+          "docstring": null,
+          "snippet": "lemma infiniteWire_vectorPotential (𝓕 : FreeSpace) (I : ℝ) :\n    (infiniteWire 𝓕 I).vectorPotential 𝓕.c =\n    (constantTime <|\n    constantSliceDist 0\n    ((- I * 𝓕.μ₀ / (2 * Real.pi)) • distOfFunction (fun (x : Space 2) =>\n      Real.log ‖x‖ • EuclideanSpace.single 0 (1 : ℝ))\n    (IsDistBounded.log_norm.smul_const _)))",
+          "line": 148
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Current/InfiniteWire.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.infiniteWire_vectorPotential_fst",
+          "docstring": null,
+          "snippet": "lemma infiniteWire_vectorPotential_fst (𝓕 : FreeSpace) (I : ℝ)(η : 𝓢(Time × Space 3, ℝ)) :\n    (infiniteWire 𝓕 I).vectorPotential 𝓕.c η 0 =\n    (constantTime <|\n    constantSliceDist 0 <|\n    (- I * 𝓕.μ₀ / (2 * Real.pi)) • distOfFunction (fun (x : Space 2) => Real.log ‖x‖)\n    (IsDistBounded.log_norm)) η",
+          "line": 165
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Current/InfiniteWire.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.infiniteWire_vectorPotential_snd",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma infiniteWire_vectorPotential_snd (𝓕 : FreeSpace) (I : ℝ) :\n    (infiniteWire 𝓕 I).vectorPotential 𝓕.c η 1 = 0",
+          "line": 175
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Current/InfiniteWire.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.infiniteWire_vectorPotential_thrd",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma infiniteWire_vectorPotential_thrd (𝓕 : FreeSpace) (I : ℝ) :\n    (infiniteWire 𝓕 I).vectorPotential 𝓕.c η 2 = 0",
+          "line": 181
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Current/InfiniteWire.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.infiniteWire_vectorPotential_distTimeDeriv",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma infiniteWire_vectorPotential_distTimeDeriv (𝓕 : FreeSpace) (I : ℝ) :\n    distTimeDeriv ((infiniteWire 𝓕 I).vectorPotential 𝓕.c) = 0",
+          "line": 187
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Current/InfiniteWire.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.infiniteWire_vectorPotential_distSpaceDeriv_0",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma infiniteWire_vectorPotential_distSpaceDeriv_0 (𝓕 : FreeSpace) (I : ℝ) :\n    distSpaceDeriv 0 ((infiniteWire 𝓕 I).vectorPotential 𝓕.c) = 0",
+          "line": 194
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Current/InfiniteWire.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.infiniteWire_electricField",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma infiniteWire_electricField (𝓕 : FreeSpace) (I : ℝ) :\n    (infiniteWire 𝓕 I).electricField 𝓕.c = 0",
+          "line": 212
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Current/InfiniteWire.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.infiniteWire_isExterma",
+          "docstring": null,
+          "snippet": "lemma infiniteWire_isExterma {𝓕 : FreeSpace} {I : ℝ} :\n    IsExtrema 𝓕 (infiniteWire 𝓕 I) (wireCurrentDensity 𝓕.c I)",
+          "line": 224
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/Electromagnetism/Dynamics/CurrentDensity.lean",
+      "entries": [
+        {
+          "file": "PhysLean/Electromagnetism/Dynamics/CurrentDensity.lean",
+          "kind": "abbrev",
+          "name": "Electromagnetism.DistLorentzCurrentDensity",
+          "docstring": "The Lorentz current density, also called four-current as a distribution.",
+          "snippet": "abbrev DistLorentzCurrentDensity (d : ℕ := 3)",
+          "line": 246
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Dynamics/CurrentDensity.lean",
+          "kind": "def",
+          "name": "Electromagnetism.DistLorentzCurrentDensity.chargeDensity",
+          "docstring": "The charge density underlying a Lorentz current density which is a distribution.",
+          "snippet": "noncomputable def chargeDensity {d : ℕ} (c : SpeedOfLight) :\n    (DistLorentzCurrentDensity d) →ₗ[ℝ] (Time × Space d) →d[ℝ] ℝ where",
+          "line": 257
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Dynamics/CurrentDensity.lean",
+          "kind": "def",
+          "name": "Electromagnetism.DistLorentzCurrentDensity.currentDensity",
+          "docstring": "The underlying (non-Lorentz) current density associated with a distributive\n  Lorentz current density.",
+          "snippet": "noncomputable def currentDensity (c : SpeedOfLight) :\n    DistLorentzCurrentDensity d →ₗ[ℝ] (Time × Space d) →d[ℝ] EuclideanSpace ℝ (Fin d) where",
+          "line": 274
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/Electromagnetism/Dynamics/IsExtrema.lean",
+      "entries": [
+        {
+          "file": "PhysLean/Electromagnetism/Dynamics/IsExtrema.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.ElectromagneticPotential.isExtrema_iff_tensors",
+          "docstring": null,
+          "snippet": "lemma isExtrema_iff_tensors {𝓕 : FreeSpace}\n    (A : ElectromagneticPotential d)\n    (hA : ContDiff ℝ ∞ A) (J : LorentzCurrentDensity d) (hJ : ContDiff ℝ ∞ J) :\n    IsExtrema 𝓕 A J ↔ ∀ x,\n    {((1/ 𝓕.μ₀ : ℝ) • tensorDeriv A.toFieldStrength x | κ κ ν') + - (J x | ν')}ᵀ = 0",
+          "line": 128
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Dynamics/IsExtrema.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.ElectromagneticPotential.isExtrema_lorentzGroup_apply_iff",
+          "docstring": null,
+          "snippet": "lemma isExtrema_lorentzGroup_apply_iff {𝓕 : FreeSpace}\n    (A : ElectromagneticPotential d)\n    (hA : ContDiff ℝ ∞ A) (J : LorentzCurrentDensity d) (hJ : ContDiff ℝ ∞ J)\n    (Λ : LorentzGroup d) :\n    IsExtrema 𝓕 (fun x => Λ • A (Λ⁻¹ • x)) (fun x => Λ • J (Λ⁻¹ • x)) ↔\n    IsExtrema 𝓕 A J",
+          "line": 174
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Dynamics/IsExtrema.lean",
+          "kind": "def",
+          "name": "Electromagnetism.DistElectromagneticPotential.IsExtrema",
+          "docstring": "The proposition on an electromagnetic potential, corresponding to the statement that\n  it is an extrema of the lagrangian.",
+          "snippet": "def IsExtrema {d} (𝓕 : FreeSpace)\n    (A : DistElectromagneticPotential d)\n    (J : DistLorentzCurrentDensity d) : Prop",
+          "line": 572
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Dynamics/IsExtrema.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.isExtrema_iff_gradLagrangian",
+          "docstring": null,
+          "snippet": "lemma isExtrema_iff_gradLagrangian {𝓕 : FreeSpace}\n    (A : DistElectromagneticPotential d)\n    (J : DistLorentzCurrentDensity d) :\n    IsExtrema 𝓕 A J ↔ A.gradLagrangian 𝓕 J = 0",
+          "line": 576
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Dynamics/IsExtrema.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.isExtrema_iff_components",
+          "docstring": null,
+          "snippet": "lemma isExtrema_iff_components {𝓕 : FreeSpace}\n    (A : DistElectromagneticPotential d)\n    (J : DistLorentzCurrentDensity d) :\n    IsExtrema 𝓕 A J ↔ (∀ ε, A.gradLagrangian 𝓕 J ε (Sum.inl 0) = 0)\n    ∧ (∀ ε i, A.gradLagrangian 𝓕 J ε (Sum.inr i) = 0)",
+          "line": 581
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Dynamics/IsExtrema.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.isExtrema_iff_space_time",
+          "docstring": null,
+          "snippet": "lemma isExtrema_iff_space_time {𝓕 : FreeSpace}\n    (A : DistElectromagneticPotential d)\n    (J : DistLorentzCurrentDensity d) :\n    IsExtrema 𝓕 A J ↔\n      (∀ ε, distSpaceDiv (A.electricField 𝓕.c) ε = (1/𝓕.ε₀) * (J.chargeDensity 𝓕.c) ε) ∧\n      (∀ ε i, 𝓕.μ₀ * 𝓕.ε₀ * (Space.distTimeDeriv (A.electricField 𝓕.c)) ε i -\n      ∑ j, ((PiLp.basisFun 2 ℝ (Fin d)).tensorProduct (PiLp.basisFun 2 ℝ (Fin d))).repr\n        ((Space.distSpaceDeriv j (A.magneticFieldMatrix 𝓕.c)) ε) (j, i) +\n      𝓕.μ₀ * J.currentDensity 𝓕.c ε i = 0)",
+          "line": 612
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Dynamics/IsExtrema.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.isExtrema_iff_vectorPotential",
+          "docstring": null,
+          "snippet": "lemma isExtrema_iff_vectorPotential {𝓕 : FreeSpace}\n    (A : DistElectromagneticPotential d)\n    (J : DistLorentzCurrentDensity d) :\n    IsExtrema 𝓕 A J ↔\n      (∀ ε, distSpaceDiv (A.electricField 𝓕.c) ε = (1/𝓕.ε₀) * (J.chargeDensity 𝓕.c) ε) ∧\n      (∀ ε i, 𝓕.μ₀ * 𝓕.ε₀ * distTimeDeriv (A.electricField 𝓕.c) ε i -\n      (∑ x, -(distSpaceDeriv x (distSpaceDeriv x (A.vectorPotential 𝓕.c)) ε i\n        - distSpaceDeriv x (distSpaceDeriv i (A.vectorPotential 𝓕.c)) ε x)) +\n      𝓕.μ₀ * J.currentDensity 𝓕.c ε i = 0)",
+          "line": 683
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Dynamics/IsExtrema.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.isExterma_iff_tensor",
+          "docstring": null,
+          "snippet": "lemma isExterma_iff_tensor {𝓕 : FreeSpace}\n    (A : DistElectromagneticPotential d)\n    (J : DistLorentzCurrentDensity d) :\n    IsExtrema 𝓕 A J ↔ ∀ ε,\n    {((1/ 𝓕.μ₀ : ℝ) • distTensorDeriv A.fieldStrength ε | κ κ ν') + - (J ε | ν')}ᵀ = 0",
+          "line": 715
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Dynamics/IsExtrema.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.isExterma_equivariant",
+          "docstring": null,
+          "snippet": "lemma isExterma_equivariant {𝓕 : FreeSpace}\n    (A : DistElectromagneticPotential d)\n    (J : DistLorentzCurrentDensity d) (Λ : LorentzGroup d) :\n    IsExtrema 𝓕 (Λ • A) (Λ • J) ↔ IsExtrema 𝓕 A J",
+          "line": 754
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/Electromagnetism/Dynamics/KineticTerm.lean",
+      "entries": [
+        {
+          "file": "PhysLean/Electromagnetism/Dynamics/KineticTerm.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.ElectromagneticPotential.gradKineticTerm_eq_tensorDeriv",
+          "docstring": null,
+          "snippet": "lemma gradKineticTerm_eq_tensorDeriv {d} {𝓕 : FreeSpace}\n    (A : ElectromagneticPotential d) (x : SpaceTime d)\n    (hA : ContDiff ℝ ∞ A) (ν : Fin 1 ⊕ Fin d) :\n    A.gradKineticTerm 𝓕 x ν = η ν ν * ((Tensorial.toTensor (M := Lorentz.Vector d)).symm\n    (permT id (PermCond.auto) {(1/ 𝓕.μ₀ : ℝ) • tensorDeriv A.toFieldStrength x | κ κ ν'}ᵀ)) ν",
+          "line": 1013
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Dynamics/KineticTerm.lean",
+          "kind": "def",
+          "name": "Electromagnetism.DistElectromagneticPotential.gradKineticTerm",
+          "docstring": "The gradient of the kinetic term for an Electromagnetic potential which\n  is a distribution.",
+          "snippet": "noncomputable def gradKineticTerm {d} (𝓕 : FreeSpace) :\n    DistElectromagneticPotential d →ₗ[ℝ] (SpaceTime d) →d[ℝ] Lorentz.Vector d where",
+          "line": 1096
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Dynamics/KineticTerm.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.gradKineticTerm_eq_sum_sum",
+          "docstring": null,
+          "snippet": "lemma gradKineticTerm_eq_sum_sum {d} {𝓕 : FreeSpace}\n    (A : DistElectromagneticPotential d) (ε : 𝓢(SpaceTime d, ℝ)) :\n    A.gradKineticTerm 𝓕 ε = ∑ ν, ∑ μ,\n        (1 / (𝓕.μ₀) * (η μ μ * η ν ν * distDeriv μ (distDeriv μ A) ε ν -\n        distDeriv μ (distDeriv ν A) ε μ)) • Lorentz.Vector.basis ν",
+          "line": 1134
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Dynamics/KineticTerm.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.gradKineticTerm_eq_fieldStrength",
+          "docstring": null,
+          "snippet": "lemma gradKineticTerm_eq_fieldStrength {d} {𝓕 : FreeSpace} (A : DistElectromagneticPotential d)\n    (ε : 𝓢(SpaceTime d, ℝ)) :\n    A.gradKineticTerm 𝓕 ε = ∑ ν, (1/𝓕.μ₀ * η ν ν) •\n    (∑ μ, ((Vector.basis.tensorProduct Vector.basis).repr\n      (distDeriv μ (A.fieldStrength) ε) (μ, ν))) • Lorentz.Vector.basis ν",
+          "line": 1140
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Dynamics/KineticTerm.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.gradKineticTerm_sum_inl_eq",
+          "docstring": null,
+          "snippet": "lemma gradKineticTerm_sum_inl_eq {d} {𝓕 : FreeSpace}\n    (A : DistElectromagneticPotential d) (ε : 𝓢(SpaceTime d, ℝ)) :\n    A.gradKineticTerm 𝓕 ε (Sum.inl 0) =\n    (1/(𝓕.μ₀ * 𝓕.c) * (distTimeSlice 𝓕.c).symm (Space.distSpaceDiv (A.electricField 𝓕.c)) ε)",
+          "line": 1161
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Dynamics/KineticTerm.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.gradKineticTerm_sum_inr_eq",
+          "docstring": null,
+          "snippet": "lemma gradKineticTerm_sum_inr_eq {d} {𝓕 : FreeSpace}\n    (A : DistElectromagneticPotential d) (ε : 𝓢(SpaceTime d, ℝ)) (i : Fin d) :\n    A.gradKineticTerm 𝓕 ε (Sum.inr i) =\n    (𝓕.μ₀⁻¹ * (1 / 𝓕.c ^ 2 * (distTimeSlice 𝓕.c).symm\n      (Space.distTimeDeriv (A.electricField 𝓕.c)) ε i -\n      ∑ j, ((PiLp.basisFun 2 ℝ (Fin d)).tensorProduct (PiLp.basisFun 2 ℝ (Fin d))).repr\n        ((distTimeSlice 𝓕.c).symm (Space.distSpaceDeriv j\n          (A.magneticFieldMatrix 𝓕.c)) ε) (j, i)))",
+          "line": 1182
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Dynamics/KineticTerm.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.gradKineticTerm_eq_distTensorDeriv",
+          "docstring": null,
+          "snippet": "lemma gradKineticTerm_eq_distTensorDeriv {d} {𝓕 : FreeSpace}\n    (A : DistElectromagneticPotential d) (ε : 𝓢(SpaceTime d, ℝ)) (ν : Fin 1 ⊕ Fin d) :\n    A.gradKineticTerm 𝓕 ε ν = η ν ν * ((Tensorial.toTensor (M := Lorentz.Vector d)).symm\n    (permT id (PermCond.auto) {(1/ 𝓕.μ₀ : ℝ) •\n    distTensorDeriv A.fieldStrength ε | κ κ ν'}ᵀ)) ν",
+          "line": 1215
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/Electromagnetism/Dynamics/Lagrangian.lean",
+      "entries": [
+        {
+          "file": "PhysLean/Electromagnetism/Dynamics/Lagrangian.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.ElectromagneticPotential.gradFreeCurrentPotential_eq_tensor",
+          "docstring": null,
+          "snippet": "lemma gradFreeCurrentPotential_eq_tensor {d} (A : ElectromagneticPotential d)\n    (hA : ContDiff ℝ ∞ A) (J : LorentzCurrentDensity d)\n    (hJ : ContDiff ℝ ∞ J) (x : SpaceTime d) (ν : Fin 1 ⊕ Fin d) :\n    A.gradFreeCurrentPotential J x ν = η ν ν * ((Tensorial.toTensor (M := Lorentz.Vector d)).symm\n    (permT id (PermCond.auto) {J x | ν'}ᵀ)) ν",
+          "line": 188
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Dynamics/Lagrangian.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.ElectromagneticPotential.gradLagrangian_eq_tensor",
+          "docstring": null,
+          "snippet": "lemma gradLagrangian_eq_tensor {𝓕 : FreeSpace}\n    (A : ElectromagneticPotential d)\n    (hA : ContDiff ℝ ∞ A) (J : LorentzCurrentDensity d)\n    (hJ : ContDiff ℝ ∞ J) (x : SpaceTime d) (ν : Fin 1 ⊕ Fin d) :\n    A.gradLagrangian 𝓕 J x ν =\n    η ν ν * ((Tensorial.toTensor (M := Lorentz.Vector d)).symm\n    (permT id (PermCond.auto) {((1/ 𝓕.μ₀ : ℝ) • tensorDeriv A.toFieldStrength x | κ κ ν') +\n    - (J x | ν')}ᵀ)) ν",
+          "line": 380
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Dynamics/Lagrangian.lean",
+          "kind": "def",
+          "name": "Electromagnetism.DistElectromagneticPotential.gradFreeCurrentPotential",
+          "docstring": "The variational gradient of the free current potential for distributional potentials.",
+          "snippet": "noncomputable def gradFreeCurrentPotential {d} :\n    DistLorentzCurrentDensity d →ₗ[ℝ] ((SpaceTime d) →d[ℝ] Lorentz.Vector d) where",
+          "line": 429
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Dynamics/Lagrangian.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.gradFreeCurrentPotential_eq_sum_basis",
+          "docstring": null,
+          "snippet": "lemma gradFreeCurrentPotential_eq_sum_basis {d}\n    (J : DistLorentzCurrentDensity d) (ε : 𝓢(SpaceTime d, ℝ)) :\n    (gradFreeCurrentPotential J) ε =\n    (∑ μ, (η μ μ • (J ε μ) • Lorentz.Vector.basis μ))",
+          "line": 452
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Dynamics/Lagrangian.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.gradFreeCurrentPotential_sum_inl_0",
+          "docstring": null,
+          "snippet": "lemma gradFreeCurrentPotential_sum_inl_0 (𝓕 : FreeSpace) {d}\n    (J : DistLorentzCurrentDensity d) (ε : 𝓢(SpaceTime d, ℝ)) :\n    (gradFreeCurrentPotential J) ε (Sum.inl 0) =\n    𝓕.c * (distTimeSlice 𝓕.c).symm (J.chargeDensity 𝓕.c) ε",
+          "line": 457
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Dynamics/Lagrangian.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.gradFreeCurrentPotential_sum_inr_i",
+          "docstring": null,
+          "snippet": "lemma gradFreeCurrentPotential_sum_inr_i (𝓕 : FreeSpace) {d}\n    (J : DistLorentzCurrentDensity d) (ε : 𝓢(SpaceTime d, ℝ)) (i : Fin d) :\n    (gradFreeCurrentPotential J) ε (Sum.inr i) =\n    - (distTimeSlice 𝓕.c).symm (J.currentDensity 𝓕.c) ε i",
+          "line": 471
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Dynamics/Lagrangian.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.gradFreeCurrentPotential_eq_tensor",
+          "docstring": null,
+          "snippet": "lemma gradFreeCurrentPotential_eq_tensor {d}\n    (J : DistLorentzCurrentDensity d) (ε : 𝓢(SpaceTime d, ℝ))\n    (ν : Fin 1 ⊕ Fin d) :\n    gradFreeCurrentPotential J ε ν = η ν ν * ((Tensorial.toTensor (M := Lorentz.Vector d)).symm\n    (permT id (PermCond.auto) {J ε | ν'}ᵀ)) ν",
+          "line": 489
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Dynamics/Lagrangian.lean",
+          "kind": "def",
+          "name": "Electromagnetism.DistElectromagneticPotential.gradLagrangian",
+          "docstring": "The variational gradient of lagrangian for an electromagnetic potential which is\n  a distribution.",
+          "snippet": "noncomputable def gradLagrangian {d} (𝓕 : FreeSpace) (A : DistElectromagneticPotential d)\n    (J : DistLorentzCurrentDensity d) : ((SpaceTime d) →d[ℝ] Lorentz.Vector d)",
+          "line": 512
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Dynamics/Lagrangian.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.gradLagrangian_sum_inl_0",
+          "docstring": null,
+          "snippet": "lemma gradLagrangian_sum_inl_0 {𝓕 : FreeSpace}\n    (A : DistElectromagneticPotential d) (J : DistLorentzCurrentDensity d)\n    (ε : 𝓢(SpaceTime d, ℝ)) :\n    A.gradLagrangian 𝓕 J ε (Sum.inl 0) =\n    (1/(𝓕.μ₀ * 𝓕.c) * (distTimeSlice 𝓕.c).symm (Space.distSpaceDiv (A.electricField 𝓕.c)) ε)\n    - 𝓕.c * (distTimeSlice 𝓕.c).symm (J.chargeDensity 𝓕.c) ε",
+          "line": 516
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Dynamics/Lagrangian.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.gradLagrangian_sum_inr_i",
+          "docstring": null,
+          "snippet": "lemma gradLagrangian_sum_inr_i {𝓕 : FreeSpace}\n    (A : DistElectromagneticPotential d) (J : DistLorentzCurrentDensity d)\n    (ε : 𝓢(SpaceTime d, ℝ)) (i : Fin d) :\n    A.gradLagrangian 𝓕 J ε (Sum.inr i) =\n    𝓕.μ₀⁻¹ * (1 / 𝓕.c ^ 2 *\n      (distTimeSlice 𝓕.c).symm (Space.distTimeDeriv (A.electricField 𝓕.c)) ε i -\n      ∑ j, ((PiLp.basisFun 2 ℝ (Fin d)).tensorProduct (PiLp.basisFun 2 ℝ (Fin d))).repr\n        ((distTimeSlice 𝓕.c).symm (Space.distSpaceDeriv j (A.magneticFieldMatrix 𝓕.c)) ε) (j, i)) +\n    (distTimeSlice 𝓕.c).symm (J.currentDensity 𝓕.c) ε i",
+          "line": 524
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Dynamics/Lagrangian.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.gradLagrangian_eq_tensor",
+          "docstring": null,
+          "snippet": "lemma gradLagrangian_eq_tensor {𝓕 : FreeSpace}\n    (A : DistElectromagneticPotential d) (J : DistLorentzCurrentDensity d)\n    (ε : 𝓢(SpaceTime d, ℝ)) (ν : Fin 1 ⊕ Fin d) :\n    A.gradLagrangian 𝓕 J ε ν =\n    η ν ν * ((Tensorial.toTensor (M := Lorentz.Vector d)).symm\n    (permT id (PermCond.auto) {((1/ 𝓕.μ₀ : ℝ) • distTensorDeriv A.fieldStrength ε | κ κ ν') +\n    - (J ε | ν')}ᵀ)) ν",
+          "line": 541
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/Electromagnetism/Kinematics/ElectricField.lean",
+      "entries": [
+        {
+          "file": "PhysLean/Electromagnetism/Kinematics/ElectricField.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.electricField_eq_fieldStrength",
+          "docstring": null,
+          "snippet": "lemma electricField_eq_fieldStrength {d} {c : SpeedOfLight}\n    (A : DistElectromagneticPotential d) (ε : 𝓢(Time × Space d, ℝ))\n    (i : Fin d) : A.electricField c ε i = - c * (Vector.basis.tensorProduct Vector.basis).repr\n      (distTimeSlice c (A.fieldStrength) ε) (Sum.inl 0, Sum.inr i)",
+          "line": 386
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/Electromagnetism/Kinematics/EMPotential.lean",
+      "entries": [
+        {
+          "file": "PhysLean/Electromagnetism/Kinematics/EMPotential.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.deriv_eq_sum_sum",
+          "docstring": null,
+          "snippet": "lemma deriv_eq_sum_sum {d} (A : DistElectromagneticPotential d)\n    (ε : 𝓢(SpaceTime d, ℝ)) :\n    deriv A ε =∑ μ, ∑ ν, (SpaceTime.distDeriv μ A ε ν) •\n      Lorentz.CoVector.basis μ ⊗ₜ[ℝ] Lorentz.Vector.basis ν",
+          "line": 385
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/Electromagnetism/Kinematics/FieldStrength.lean",
+      "entries": [
+        {
+          "file": "PhysLean/Electromagnetism/Kinematics/FieldStrength.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.ElectromagneticPotential.fieldStrengthMatrix_eq",
+          "docstring": null,
+          "snippet": "lemma fieldStrengthMatrix_eq {d} (A : ElectromagneticPotential d) (x : SpaceTime d) :\n    A.fieldStrengthMatrix x =\n    (Lorentz.CoVector.basis.tensorProduct Lorentz.Vector.basis).repr (A.toFieldStrength x)",
+          "line": 209
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Kinematics/FieldStrength.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.ElectromagneticPotential.toFieldStrength_eq_fieldStrengthMatrix",
+          "docstring": null,
+          "snippet": "lemma toFieldStrength_eq_fieldStrengthMatrix {d} (A : ElectromagneticPotential d) :\n    toFieldStrength A = fun x => ∑ μ, ∑ ν,\n      A.fieldStrengthMatrix x (μ, ν) • (Lorentz.Vector.basis μ) ⊗ₜ (Lorentz.Vector.basis ν)",
+          "line": 222
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Kinematics/FieldStrength.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.ElectromagneticPotential.toFieldStrength_differentiable",
+          "docstring": null,
+          "snippet": "lemma toFieldStrength_differentiable {d} {A : ElectromagneticPotential d}\n    (hA : ContDiff ℝ 2 A) :\n    Differentiable ℝ (toFieldStrength A)",
+          "line": 258
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Kinematics/FieldStrength.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.fieldStrength_eq_fieldStrengthAux",
+          "docstring": null,
+          "snippet": "lemma fieldStrength_eq_fieldStrengthAux {d} (A : DistElectromagneticPotential d)\n    (ε : 𝓢(SpaceTime d, ℝ)) :\n    A.fieldStrength ε = A.fieldStrengthAux ε",
+          "line": 662
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Kinematics/FieldStrength.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.fieldStrength_basis_repr_eq_single",
+          "docstring": null,
+          "snippet": "lemma fieldStrength_basis_repr_eq_single {d} {μν : (Fin 1 ⊕ Fin d) × (Fin 1 ⊕ Fin d)}\n    (A : DistElectromagneticPotential d) (ε : 𝓢(SpaceTime d, ℝ)) :\n    (Lorentz.Vector.basis.tensorProduct Lorentz.Vector.basis).repr (A.fieldStrength ε) μν =\n    ((η μν.1 μν.1 * distDeriv μν.1 A ε μν.2) - η μν.2 μν.2 * distDeriv μν.2 A ε μν.1)",
+          "line": 679
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Kinematics/FieldStrength.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.fieldStrength_diag_zero",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma fieldStrength_diag_zero {d} (A : DistElectromagneticPotential d)\n    (ε : 𝓢(SpaceTime d, ℝ)) (μ : Fin 1 ⊕ Fin d) :\n    (Lorentz.Vector.basis.tensorProduct Lorentz.Vector.basis).repr\n    (A.fieldStrength ε) (μ, μ) = 0",
+          "line": 687
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Kinematics/FieldStrength.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.distDeriv_fieldStrength_diag_zero",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma distDeriv_fieldStrength_diag_zero {d} (A : DistElectromagneticPotential d)\n    (ε : 𝓢(SpaceTime d, ℝ)) (μ ν : Fin 1 ⊕ Fin d) :\n    (Lorentz.Vector.basis.tensorProduct Lorentz.Vector.basis).repr\n    (distDeriv ν A.fieldStrength ε) (μ, μ) = 0",
+          "line": 695
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Kinematics/FieldStrength.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.fieldStrength_antisymmetric_basis",
+          "docstring": null,
+          "snippet": "lemma fieldStrength_antisymmetric_basis {d} (A : DistElectromagneticPotential d)\n    (ε : 𝓢(SpaceTime d, ℝ)) (μ ν : Fin 1 ⊕ Fin d) :\n    (Vector.basis.tensorProduct Vector.basis).repr\n    (A.fieldStrength ε) (μ, ν) = - (Vector.basis.tensorProduct Vector.basis).repr\n    (A.fieldStrength ε) (ν, μ)",
+          "line": 702
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Kinematics/FieldStrength.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.fieldStrength_equivariant",
+          "docstring": null,
+          "snippet": "lemma fieldStrength_equivariant {d} (A : DistElectromagneticPotential d)\n    (Λ : LorentzGroup d) :\n    (Λ • A).fieldStrength = Λ • A.fieldStrength",
+          "line": 716
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/Electromagnetism/Kinematics/MagneticField.lean",
+      "entries": [
+        {
+          "file": "PhysLean/Electromagnetism/Kinematics/MagneticField.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.magneticFieldMatrix_basis_repr_eq_vector_potential",
+          "docstring": null,
+          "snippet": "lemma magneticFieldMatrix_basis_repr_eq_vector_potential {c : SpeedOfLight}\n    (A : DistElectromagneticPotential d)\n    (ε : 𝓢(Time × Space d, ℝ)) (i j : Fin d) :\n    ((PiLp.basisFun 2 ℝ (Fin d)).tensorProduct (PiLp.basisFun 2 ℝ (Fin d))).repr\n        (A.magneticFieldMatrix c ε) (i, j) =\n      Space.distSpaceDeriv j (A.vectorPotential c) ε i -\n      Space.distSpaceDeriv i (A.vectorPotential c) ε j",
+          "line": 640
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Kinematics/MagneticField.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.magneticFieldMatrix_distSpaceDeriv_basis_repr_eq_vector_potential",
+          "docstring": null,
+          "snippet": "lemma magneticFieldMatrix_distSpaceDeriv_basis_repr_eq_vector_potential {c : SpeedOfLight}\n    (A : DistElectromagneticPotential d)\n    (ε : 𝓢(Time × Space d, ℝ)) (i j k : Fin d) :\n    ((PiLp.basisFun 2 ℝ (Fin d)).tensorProduct (PiLp.basisFun 2 ℝ (Fin d))).repr\n    (Space.distSpaceDeriv k (A.magneticFieldMatrix c) ε) (i, j) =\n    Space.distSpaceDeriv k (Space.distSpaceDeriv j (A.vectorPotential c)) ε i -\n    Space.distSpaceDeriv k (Space.distSpaceDeriv i (A.vectorPotential c)) ε j",
+          "line": 650
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Kinematics/MagneticField.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.magneticFieldMatrix_basis_repr_eq_fieldStrength",
+          "docstring": null,
+          "snippet": "lemma magneticFieldMatrix_basis_repr_eq_fieldStrength {c : SpeedOfLight}\n    (A : DistElectromagneticPotential d)\n    (ε : 𝓢(Time × Space d, ℝ)) (i j : Fin d) :\n    ((PiLp.basisFun 2 ℝ (Fin d)).tensorProduct (PiLp.basisFun 2 ℝ (Fin d))).repr\n        (A.magneticFieldMatrix c ε) (i, j) =\n      (Lorentz.Vector.basis.tensorProduct Lorentz.Vector.basis).repr\n        (distTimeSlice c A.fieldStrength ε) (Sum.inr i, Sum.inr j)",
+          "line": 666
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Kinematics/MagneticField.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.magneticFieldMatrix_one_dim_eq_zero",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma magneticFieldMatrix_one_dim_eq_zero {c : SpeedOfLight}\n    (A : DistElectromagneticPotential 1) :\n    A.magneticFieldMatrix c = 0",
+          "line": 691
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/Electromagnetism/PointParticle/OneDimension.lean",
+      "entries": [
+        {
+          "file": "PhysLean/Electromagnetism/PointParticle/OneDimension.lean",
+          "kind": "def",
+          "name": "Electromagnetism.DistElectromagneticPotential.oneDimPointParticleCurrentDensity",
+          "docstring": "The current density of a point particle stationary at the origin\n  of 1d space.",
+          "snippet": "noncomputable def oneDimPointParticleCurrentDensity (c : SpeedOfLight) (q : ℝ) (r₀ : Space 1) :\n    DistLorentzCurrentDensity 1",
+          "line": 55
+        },
+        {
+          "file": "PhysLean/Electromagnetism/PointParticle/OneDimension.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.oneDimPointParticleCurrentDensity_eq_distTranslate",
+          "docstring": null,
+          "snippet": "lemma oneDimPointParticleCurrentDensity_eq_distTranslate (c : SpeedOfLight) (q : ℝ) (r₀ : Space 1) :\n    oneDimPointParticleCurrentDensity c q r₀ = ((SpaceTime.distTimeSlice c).symm <|\n    constantTime <|\n    distTranslate (basis.repr r₀) <|\n    ((c * q) • diracDelta' ℝ 0 (Lorentz.Vector.basis (Sum.inl 0))))",
+          "line": 59
+        },
+        {
+          "file": "PhysLean/Electromagnetism/PointParticle/OneDimension.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.oneDimPointParticleCurrentDensity_currentDensity",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma oneDimPointParticleCurrentDensity_currentDensity (c : SpeedOfLight) (q : ℝ) (r₀ : Space 1) :\n    (oneDimPointParticleCurrentDensity c q r₀).currentDensity c = 0",
+          "line": 70
+        },
+        {
+          "file": "PhysLean/Electromagnetism/PointParticle/OneDimension.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.oneDimPointParticleCurrentDensity_chargeDensity",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma oneDimPointParticleCurrentDensity_chargeDensity (c : SpeedOfLight) (q : ℝ) (r₀ : Space 1) :\n    (oneDimPointParticleCurrentDensity c q r₀).chargeDensity c =\n    constantTime (q • diracDelta ℝ r₀)",
+          "line": 77
+        },
+        {
+          "file": "PhysLean/Electromagnetism/PointParticle/OneDimension.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.oneDimPointParticle_eq_distTranslate",
+          "docstring": null,
+          "snippet": "lemma oneDimPointParticle_eq_distTranslate (𝓕 : FreeSpace) (q : ℝ) (r₀ : Space 1) :\n    oneDimPointParticle 𝓕 q r₀ = ((SpaceTime.distTimeSlice 𝓕.c).symm <|\n    constantTime <|\n    distTranslate (basis.repr r₀) <|\n    distOfFunction (fun x => ((- (q * 𝓕.μ₀ * 𝓕.c)/ 2) * ‖x‖) • Lorentz.Vector.basis (Sum.inl 0))\n      (by fun_prop))",
+          "line": 108
+        },
+        {
+          "file": "PhysLean/Electromagnetism/PointParticle/OneDimension.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.oneDimPointParticle_electricField_timeDeriv",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma oneDimPointParticle_electricField_timeDeriv (𝓕 : FreeSpace) (q : ℝ) (r₀ : Space 1) :\n    Space.distTimeDeriv ((oneDimPointParticle 𝓕 q r₀).electricField 𝓕.c) = 0",
+          "line": 187
+        },
+        {
+          "file": "PhysLean/Electromagnetism/PointParticle/OneDimension.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.oneDimPointParticle_magneticFieldMatrix",
+          "docstring": null,
+          "snippet": "lemma oneDimPointParticle_magneticFieldMatrix (q : ℝ) (r₀ : Space 1) :\n    (oneDimPointParticle 𝓕 q r₀).magneticFieldMatrix 𝓕.c = 0",
+          "line": 198
+        },
+        {
+          "file": "PhysLean/Electromagnetism/PointParticle/OneDimension.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.oneDimPointParticle_div_electricField",
+          "docstring": null,
+          "snippet": "lemma oneDimPointParticle_div_electricField {𝓕} (q : ℝ) (r₀ : Space 1) :\n    distSpaceDiv ((oneDimPointParticle 𝓕 q r₀).electricField 𝓕.c) =\n    (𝓕.μ₀ * 𝓕.c ^ 2) • constantTime (q • diracDelta ℝ r₀)",
+          "line": 208
+        },
+        {
+          "file": "PhysLean/Electromagnetism/PointParticle/OneDimension.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.oneDimPointParticle_isExterma",
+          "docstring": null,
+          "snippet": "lemma oneDimPointParticle_isExterma (𝓕 : FreeSpace) (q : ℝ) (r₀ : Space 1) :\n    (oneDimPointParticle 𝓕 q r₀).IsExtrema 𝓕 (oneDimPointParticleCurrentDensity 𝓕.c q r₀)",
+          "line": 237
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/Electromagnetism/PointParticle/ThreeDimension.lean",
+      "entries": [
+        {
+          "file": "PhysLean/Electromagnetism/PointParticle/ThreeDimension.lean",
+          "kind": "def",
+          "name": "Electromagnetism.DistElectromagneticPotential.threeDimPointParticleCurrentDensity",
+          "docstring": "The current density of a point particle stationary at a point `r₀`\n  of 3d space.",
+          "snippet": "noncomputable def threeDimPointParticleCurrentDensity (c : SpeedOfLight) (q : ℝ) (r₀ : Space 3) :\n    DistLorentzCurrentDensity 3",
+          "line": 64
+        },
+        {
+          "file": "PhysLean/Electromagnetism/PointParticle/ThreeDimension.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.threeDimPointParticleCurrentDensity_eq_distTranslate",
+          "docstring": null,
+          "snippet": "lemma threeDimPointParticleCurrentDensity_eq_distTranslate (c : SpeedOfLight) (q : ℝ)\n    (r₀ : Space 3) :\n    threeDimPointParticleCurrentDensity c q r₀ = ((SpaceTime.distTimeSlice c).symm <|\n    constantTime <|\n    distTranslate (basis.repr r₀) <|\n    ((c * q) • diracDelta' ℝ 0 (Lorentz.Vector.basis (Sum.inl 0))))",
+          "line": 68
+        },
+        {
+          "file": "PhysLean/Electromagnetism/PointParticle/ThreeDimension.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.threeDimPointParticleCurrentDensity_chargeDensity",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma threeDimPointParticleCurrentDensity_chargeDensity (c : SpeedOfLight) (q : ℝ) (r₀ : Space 3) :\n    (threeDimPointParticleCurrentDensity c q r₀).chargeDensity c =\n    constantTime (q • diracDelta ℝ r₀)",
+          "line": 91
+        },
+        {
+          "file": "PhysLean/Electromagnetism/PointParticle/ThreeDimension.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.threeDimPointParticleCurrentDensity_currentDensity",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma threeDimPointParticleCurrentDensity_currentDensity (c : SpeedOfLight) (q : ℝ) (r₀ : Space 3) :\n    (threeDimPointParticleCurrentDensity c q r₀).currentDensity c = 0",
+          "line": 115
+        },
+        {
+          "file": "PhysLean/Electromagnetism/PointParticle/ThreeDimension.lean",
+          "kind": "def",
+          "name": "Electromagnetism.DistElectromagneticPotential.threeDimPointParticle",
+          "docstring": "The electromagnetic potential of a point particle stationary at `r₀`\n  of 3d space.",
+          "snippet": "noncomputable def threeDimPointParticle (𝓕 : FreeSpace) (q : ℝ) (r₀ : Space 3) :\n    DistElectromagneticPotential 3",
+          "line": 143
+        },
+        {
+          "file": "PhysLean/Electromagnetism/PointParticle/ThreeDimension.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.threeDimPointParticle_eq_distTranslate",
+          "docstring": null,
+          "snippet": "lemma threeDimPointParticle_eq_distTranslate (𝓕 : FreeSpace) (q : ℝ) (r₀ : Space 3) :\n    threeDimPointParticle 𝓕 q r₀ = ((SpaceTime.distTimeSlice 𝓕.c).symm <|\n    constantTime <|\n    distTranslate (basis.repr r₀) <|\n    distOfFunction (fun x => (((q * 𝓕.μ₀ * 𝓕.c)/ (4 * π))* ‖x‖⁻¹) •\n      Lorentz.Vector.basis (Sum.inl 0))\n      ((IsDistBounded.inv.const_mul_fun _).smul_const _))",
+          "line": 149
+        },
+        {
+          "file": "PhysLean/Electromagnetism/PointParticle/ThreeDimension.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.threeDimPointParticle_scalarPotential",
+          "docstring": null,
+          "snippet": "lemma threeDimPointParticle_scalarPotential (𝓕 : FreeSpace) (q : ℝ) (r₀ : Space 3) :\n    (threeDimPointParticle 𝓕 q r₀).scalarPotential 𝓕.c =\n    Space.constantTime (distOfFunction (fun x => (q/ (4 * π * 𝓕.ε₀))• ‖x - r₀‖⁻¹)\n      (((IsDistBounded.inv_shift _).const_mul_fun _)))",
+          "line": 172
+        },
+        {
+          "file": "PhysLean/Electromagnetism/PointParticle/ThreeDimension.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.threeDimPointParticle_vectorPotential",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma threeDimPointParticle_vectorPotential (𝓕 : FreeSpace) (q : ℝ) (r₀ : Space 3) :\n    (threeDimPointParticle 𝓕 q r₀).vectorPotential 𝓕.c = 0",
+          "line": 204
+        },
+        {
+          "file": "PhysLean/Electromagnetism/PointParticle/ThreeDimension.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.threeDimPointParticle_electricField",
+          "docstring": null,
+          "snippet": "lemma threeDimPointParticle_electricField (𝓕 : FreeSpace) (q : ℝ) (r₀ : Space 3) :\n    (threeDimPointParticle 𝓕 q r₀).electricField 𝓕.c =\n    (q/ (4 * π * 𝓕.ε₀)) • constantTime (distOfFunction (fun x : Space 3 =>\n      ‖x - r₀‖ ^ (- 3 : ℤ) • basis.repr (x - r₀))\n      ((IsDistBounded.zpow_smul_repr_self (- 3 : ℤ) (by omega)).comp_sub_right r₀))",
+          "line": 219
+        },
+        {
+          "file": "PhysLean/Electromagnetism/PointParticle/ThreeDimension.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.threeDimPointParticle_electricField_timeDeriv",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma threeDimPointParticle_electricField_timeDeriv (𝓕 : FreeSpace) (q : ℝ) (r₀ : Space 3) :\n    Space.distTimeDeriv ((threeDimPointParticle 𝓕 q r₀).electricField 𝓕.c) = 0",
+          "line": 243
+        },
+        {
+          "file": "PhysLean/Electromagnetism/PointParticle/ThreeDimension.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.threeDimPointParticle_magneticFieldMatrix",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma threeDimPointParticle_magneticFieldMatrix (q : ℝ) (r₀ : Space 3) :\n    (threeDimPointParticle 𝓕 q r₀).magneticFieldMatrix 𝓕.c = 0",
+          "line": 257
+        },
+        {
+          "file": "PhysLean/Electromagnetism/PointParticle/ThreeDimension.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.threeDimPointParticle_div_electricField",
+          "docstring": null,
+          "snippet": "lemma threeDimPointParticle_div_electricField {𝓕} (q : ℝ) (r₀ : Space 3) :\n    distSpaceDiv ((threeDimPointParticle 𝓕 q r₀).electricField 𝓕.c) =\n    (1/𝓕.ε₀) • constantTime (q • diracDelta ℝ r₀)",
+          "line": 274
+        },
+        {
+          "file": "PhysLean/Electromagnetism/PointParticle/ThreeDimension.lean",
+          "kind": "lemma",
+          "name": "Electromagnetism.DistElectromagneticPotential.threeDimPointParticle_isExterma",
+          "docstring": null,
+          "snippet": "lemma threeDimPointParticle_isExterma (𝓕 : FreeSpace) (q : ℝ) (r₀ : Space 3) :\n    (threeDimPointParticle 𝓕 q r₀).IsExtrema 𝓕 (threeDimPointParticleCurrentDensity 𝓕.c q r₀)",
+          "line": 302
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/Mathematics/List.lean",
+      "entries": [
+        {
+          "file": "PhysLean/Mathematics/List.lean",
+          "kind": "lemma",
+          "name": "PhysLean.List.insertionSortEquiv_congr_apply",
+          "docstring": null,
+          "snippet": "lemma insertionSortEquiv_congr_apply {α : Type} {r : α → α → Prop} [DecidableRel r] (l l' : List α)\n    (h : l = l') (i : Fin l.length) :\n    insertionSortEquiv r l i =\n    Fin.cast (by simp [h])\n    ((insertionSortEquiv r l') (Fin.cast (by simp [h]) i))",
+          "line": 599
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Basic.lean",
+      "entries": [
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Basic.lean",
+          "kind": "structure",
+          "name": "TwoHiggsDoublet",
+          "docstring": "The configuration space of the two Higgs doublet model.",
+          "snippet": "structure TwoHiggsDoublet where\n  Φ1 : HiggsVec\n  Φ2 : HiggsVec",
+          "line": 24
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/QuantumMechanics/OneDimension/HarmonicOscillator/Basic.lean",
+      "entries": [
+        {
+          "file": "PhysLean/QuantumMechanics/OneDimension/HarmonicOscillator/Basic.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.OneDimension.HarmonicOscillator.schrodingerOperator_add",
+          "docstring": "The Schrodinger operator is additive.",
+          "snippet": "lemma schrodingerOperator_add (ψ φ : ℝ → ℂ)\n    (hψ : Differentiable ℝ ψ) (hψ' : Differentiable ℝ (deriv ψ))\n    (hφ : Differentiable ℝ φ) (hφ' : Differentiable ℝ (deriv φ)) :\n    Q.schrodingerOperator (ψ + φ) = Q.schrodingerOperator ψ + Q.schrodingerOperator φ",
+          "line": 181
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/OneDimension/HarmonicOscillator/Basic.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.OneDimension.HarmonicOscillator.schrodingerOperator_smul",
+          "docstring": "The Schrodinger operator is homogeneous.",
+          "snippet": "lemma schrodingerOperator_smul (c : ℂ) (ψ : ℝ → ℂ)\n    (hψ : Differentiable ℝ ψ) (hψ' : Differentiable ℝ (deriv ψ)) :\n    Q.schrodingerOperator (c • ψ) = c • Q.schrodingerOperator ψ",
+          "line": 196
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/Relativity/CliffordAlgebra.lean",
+      "entries": [
+        {
+          "file": "PhysLean/Relativity/CliffordAlgebra.lean",
+          "kind": "lemma",
+          "name": "spaceTime.γ.γ_subtype_in_range",
+          "docstring": "Each gamma matrix (as an element of diracAlgebra) is in the range of ofCliffordAlgebra.",
+          "snippet": "lemma γ_subtype_in_range (i : Fin 4) :\n    ⟨γ i, γ_in_diracAlgebra i⟩ ∈ ofCliffordAlgebra.range",
+          "line": 136
+        },
+        {
+          "file": "PhysLean/Relativity/CliffordAlgebra.lean",
+          "kind": "lemma",
+          "name": "spaceTime.γ.mem_adjoin_imp_subtype_in_range",
+          "docstring": "Helper lemma: If a matrix is in Algebra.adjoin ℝ γSet, then its subtype is in the range.",
+          "snippet": "private lemma mem_adjoin_imp_subtype_in_range (m : Matrix (Fin 4) (Fin 4) ℂ)\n    (hm : m ∈ Algebra.adjoin ℝ γSet) : ⟨m, hm⟩ ∈ ofCliffordAlgebra.range",
+          "line": 142
+        },
+        {
+          "file": "PhysLean/Relativity/CliffordAlgebra.lean",
+          "kind": "lemma",
+          "name": "spaceTime.γ.ofCliffordAlgebra_range_eq_top",
+          "docstring": "The range of ofCliffordAlgebra equals the top subalgebra (i.e., all of diracAlgebra).",
+          "snippet": "lemma ofCliffordAlgebra_range_eq_top : ofCliffordAlgebra.range = ⊤",
+          "line": 174
+        },
+        {
+          "file": "PhysLean/Relativity/CliffordAlgebra.lean",
+          "kind": "theorem",
+          "name": "spaceTime.γ.ofCliffordAlgebra_surjective",
+          "docstring": "The homomorphism `ofCliffordAlgebra` is surjective.",
+          "snippet": "theorem ofCliffordAlgebra_surjective : Function.Surjective ofCliffordAlgebra",
+          "line": 180
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/Relativity/LorentzAlgebra/Basis.lean",
+      "entries": [
+        {
+          "file": "PhysLean/Relativity/LorentzAlgebra/Basis.lean",
+          "kind": "def",
+          "name": "lorentzAlgebra.boostGenerator",
+          "docstring": "The boost generator K_i in the Lorentz algebra so(1,3).\n\nThis matrix generates infinitesimal Lorentz boosts in the i-th spatial direction.\nThe matrix has non-zero entries only at positions (0, i+1) and (i+1, 0) with value 1,\nwhere we use the index convention 0 = time, 1,2,3 = space.\n\n## Properties\n- Symmetric: K_iᵀ = K_i\n- Traceless: tr(K_i) = 0\n- Satisfies Lorentz algebra condition: K_iᵀ η = -η K_i\n\n## Physical Meaning\nExponentiating β·K_i produces a finite Lorentz boost with rapidity β in direction i.",
+          "snippet": "def boostGenerator (i : Fin 3) : Matrix (Fin 1 ⊕ Fin 3) (Fin 1 ⊕ Fin 3) ℝ",
+          "line": 63
+        },
+        {
+          "file": "PhysLean/Relativity/LorentzAlgebra/Basis.lean",
+          "kind": "def",
+          "name": "lorentzAlgebra.rotationGenerator",
+          "docstring": "The rotation generator J_i in the Lorentz algebra so(1,3).\n\nThis matrix generates infinitesimal rotations about the i-th axis following the right-hand rule.\nThe matrix acts only on spatial indices in the antisymmetric pattern characteristic of\nangular momentum generators.\n\n## Properties\n- Antisymmetric: J_iᵀ = -J_i\n- Traceless: tr(J_i) = 0\n- Satisfies Lorentz algebra condition: J_iᵀ η = -η J_i\n\n## Structure\n- J_0 (rotation about x-axis): Acts on (y,z) components\n- J_1 (rotation about y-axis): Acts on (z,x) components\n- J_2 (rotation about z-axis): Acts on (x,y) components\n\n## Physical Meaning\nExponentiating θ·J_i produces a finite rotation by angle θ about axis i.",
+          "snippet": "def rotationGenerator (i : Fin 3) : Matrix (Fin 1 ⊕ Fin 3) (Fin 1 ⊕ Fin 3) ℝ",
+          "line": 87
+        },
+        {
+          "file": "PhysLean/Relativity/LorentzAlgebra/Basis.lean",
+          "kind": "lemma",
+          "name": "lorentzAlgebra.boostGenerator_mem",
+          "docstring": "The boost generator K_i is in the Lorentz algebra.",
+          "snippet": "lemma boostGenerator_mem (i : Fin 3) : boostGenerator i ∈ lorentzAlgebra",
+          "line": 101
+        },
+        {
+          "file": "PhysLean/Relativity/LorentzAlgebra/Basis.lean",
+          "kind": "lemma",
+          "name": "lorentzAlgebra.rotationGenerator_mem",
+          "docstring": "The rotation generator J_i is in the Lorentz algebra.",
+          "snippet": "lemma rotationGenerator_mem (i : Fin 3) : rotationGenerator i ∈ lorentzAlgebra",
+          "line": 124
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/Relativity/MinkowskiMatrix.lean",
+      "entries": [
+        {
+          "file": "PhysLean/Relativity/MinkowskiMatrix.lean",
+          "kind": "lemma",
+          "name": "minkowskiMatrix.as_diagonal",
+          "docstring": "The Minkowski matrix as a diagonal matrix.",
+          "snippet": "lemma as_diagonal : @minkowskiMatrix d = diagonal (Sum.elim 1 (-1))",
+          "line": 82
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/Relativity/Tensors/Basic.lean",
+      "entries": [
+        {
+          "file": "PhysLean/Relativity/Tensors/Basic.lean",
+          "kind": "lemma",
+          "name": "TensorSpecies.Tensor.PermCond.symm",
+          "docstring": null,
+          "snippet": "lemma PermCond.symm {n m : ℕ} {c : Fin n → C} {c1 : Fin m → C}\n    {σ : Fin m → Fin n} (h : PermCond c c1 σ) :\n    PermCond c1 c (h.inv σ)",
+          "line": 580
+        },
+        {
+          "file": "PhysLean/Relativity/Tensors/Basic.lean",
+          "kind": "lemma",
+          "name": "TensorSpecies.Tensor.permT_eq_zero_iff",
+          "docstring": null,
+          "snippet": "lemma permT_eq_zero_iff {n m : ℕ} {c : Fin n → C} {c1 : Fin m → C}\n    {σ : Fin m → Fin n} (h : PermCond c c1 σ) (t : S.Tensor c) :\n    permT σ h t = 0 ↔ t = 0",
+          "line": 796
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/SpaceAndTime/Space/Basic.lean",
+      "entries": [
+        {
+          "file": "PhysLean/SpaceAndTime/Space/Basic.lean",
+          "kind": "lemma",
+          "name": "Space.point_dim_zero_eq",
+          "docstring": null,
+          "snippet": "lemma point_dim_zero_eq (p : Space 0) : p = 0",
+          "line": 254
+        },
+        {
+          "file": "PhysLean/SpaceAndTime/Space/Basic.lean",
+          "kind": "lemma",
+          "name": "Space.volume_metricBall_two",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma volume_metricBall_two :\n    volume (Metric.ball (0 : Space 2) 1) = ENNReal.ofReal Real.pi",
+          "line": 779
+        },
+        {
+          "file": "PhysLean/SpaceAndTime/Space/Basic.lean",
+          "kind": "lemma",
+          "name": "Space.volume_metricBall_two_real",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma volume_metricBall_two_real :\n    (volume.real (Metric.ball (0 : Space 2) 1)) = Real.pi",
+          "line": 786
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/SpaceAndTime/Space/IsDistBounded.lean",
+      "entries": [
+        {
+          "file": "PhysLean/SpaceAndTime/Space/IsDistBounded.lean",
+          "kind": "lemma",
+          "name": "Space.IsDistBounded.inv_shift",
+          "docstring": null,
+          "snippet": "@[fun_prop]\nlemma inv_shift {d : ℕ}\n    (g : Space d.succ.succ) :\n    IsDistBounded (d := d.succ.succ) (fun x => ‖x - g‖⁻¹)",
+          "line": 908
+        },
+        {
+          "file": "PhysLean/SpaceAndTime/Space/IsDistBounded.lean",
+          "kind": "lemma",
+          "name": "Space.IsDistBounded.norm_sub",
+          "docstring": null,
+          "snippet": "@[fun_prop]\nlemma norm_sub {d : ℕ} (g : Space d) :\n    IsDistBounded (d := d) (fun x => ‖x - g‖)",
+          "line": 953
+        },
+        {
+          "file": "PhysLean/SpaceAndTime/Space/IsDistBounded.lean",
+          "kind": "lemma",
+          "name": "Space.IsDistBounded.norm_add",
+          "docstring": null,
+          "snippet": "@[fun_prop]\nlemma norm_add {d : ℕ} (g : Space d) :\n    IsDistBounded (d := d) (fun x => ‖x + g‖)",
+          "line": 960
+        },
+        {
+          "file": "PhysLean/SpaceAndTime/Space/IsDistBounded.lean",
+          "kind": "lemma",
+          "name": "Space.IsDistBounded.zpow_smul_repr_self_sub",
+          "docstring": null,
+          "snippet": "lemma zpow_smul_repr_self_sub {d : ℕ} (n : ℤ) (hn : - (d - 1 : ℕ) - 1 ≤ n)\n    (y : Space d) :\n    IsDistBounded (d := d) (fun x => ‖x - y‖ ^ n • basis.repr (x - y))",
+          "line": 1045
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/SpaceAndTime/Space/Translations.lean",
+      "entries": [
+        {
+          "file": "PhysLean/SpaceAndTime/Space/Translations.lean",
+          "kind": "def",
+          "name": "Space.distTranslate",
+          "docstring": "The continuous linear map translating distributions.",
+          "snippet": "noncomputable def distTranslate {d : ℕ} (a : EuclideanSpace ℝ (Fin d)) :\n    ((Space d) →d[ℝ] X) →ₗ[ℝ] ((Space d) →d[ℝ] X) where",
+          "line": 94
+        },
+        {
+          "file": "PhysLean/SpaceAndTime/Space/Translations.lean",
+          "kind": "lemma",
+          "name": "Space.distTranslate_apply",
+          "docstring": null,
+          "snippet": "lemma distTranslate_apply {d : ℕ} (a : EuclideanSpace ℝ (Fin d))\n    (T : (Space d) →d[ℝ] X) (η : 𝓢(Space d, ℝ)) :\n    distTranslate a T η = T (translateSchwartz (-a) η)",
+          "line": 103
+        },
+        {
+          "file": "PhysLean/SpaceAndTime/Space/Translations.lean",
+          "kind": "lemma",
+          "name": "Space.distTranslate_distGrad",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma distTranslate_distGrad {d : ℕ} (a : EuclideanSpace ℝ (Fin d))\n    (T : (Space d) →d[ℝ] ℝ) :\n    distGrad (distTranslate a T) = distTranslate a (distGrad T)",
+          "line": 110
+        },
+        {
+          "file": "PhysLean/SpaceAndTime/Space/Translations.lean",
+          "kind": "lemma",
+          "name": "Space.distTranslate_ofFunction",
+          "docstring": null,
+          "snippet": "lemma distTranslate_ofFunction {d : ℕ} (a : EuclideanSpace ℝ (Fin d.succ))\n    (f : Space d.succ → X) (hf : IsDistBounded f) :\n    distTranslate a (distOfFunction f hf) =\n    distOfFunction (fun x => f (x - basis.repr.symm a))\n    (IsDistBounded.comp_add_right hf (- basis.repr.symm a))",
+          "line": 126
+        },
+        {
+          "file": "PhysLean/SpaceAndTime/Space/Translations.lean",
+          "kind": "lemma",
+          "name": "Space.distDiv_distTranslate",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma distDiv_distTranslate {d : ℕ} (a : EuclideanSpace ℝ (Fin d))\n    (T : (Space d) →d[ℝ] EuclideanSpace ℝ (Fin d)) :\n    distDiv (distTranslate a T) = distTranslate a (distDiv T)",
+          "line": 144
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/SpaceAndTime/SpaceTime/Derivatives.lean",
+      "entries": [
+        {
+          "file": "PhysLean/SpaceAndTime/SpaceTime/Derivatives.lean",
+          "kind": "lemma",
+          "name": "SpaceTime.deriv_equivariant",
+          "docstring": null,
+          "snippet": "lemma deriv_equivariant (f : SpaceTime d → M) (Λ : LorentzGroup d) (x : SpaceTime d)\n    (hf : Differentiable ℝ f) (μ : Fin 1 ⊕ Fin d) :\n    ∂_ μ (fun x => Λ • f (Λ⁻¹ • x)) x =\n    ∑ ν, Λ⁻¹.1 ν μ • Λ • ∂_ ν f (Λ⁻¹ • x)",
+          "line": 182
+        },
+        {
+          "file": "PhysLean/SpaceAndTime/SpaceTime/Derivatives.lean",
+          "kind": "lemma",
+          "name": "SpaceTime.distDeriv_apply'",
+          "docstring": null,
+          "snippet": "lemma distDeriv_apply' {M d} [NormedAddCommGroup M] [NormedSpace ℝ M]\n    (μ : Fin 1 ⊕ Fin d) (f : (SpaceTime d) →d[ℝ] M) (ε : 𝓢(SpaceTime d, ℝ)) :\n    distDeriv μ f ε =\n    - f ((SchwartzMap.evalCLM (𝕜 := ℝ) (Lorentz.Vector.basis μ)) ((fderivCLM ℝ) ε))",
+          "line": 293
+        },
+        {
+          "file": "PhysLean/SpaceAndTime/SpaceTime/Derivatives.lean",
+          "kind": "lemma",
+          "name": "SpaceTime.apply_fderiv_eq_distDeriv",
+          "docstring": null,
+          "snippet": "lemma apply_fderiv_eq_distDeriv {M d} [NormedAddCommGroup M] [NormedSpace ℝ M]\n    (μ : Fin 1 ⊕ Fin d) (f : (SpaceTime d) →d[ℝ] M) (ε : 𝓢(SpaceTime d, ℝ)) :\n    f ((SchwartzMap.evalCLM (𝕜 := ℝ) (Lorentz.Vector.basis μ)) ((fderivCLM ℝ) ε)) =\n    - distDeriv μ f ε",
+          "line": 299
+        },
+        {
+          "file": "PhysLean/SpaceAndTime/SpaceTime/Derivatives.lean",
+          "kind": "def",
+          "name": "SpaceTime.tensorDeriv",
+          "docstring": "The derivative of a tensor, as a tensor.",
+          "snippet": "def tensorDeriv (f : SpaceTime d → M) :\n    SpaceTime d → Lorentz.CoVector d ⊗[ℝ] M",
+          "line": 418
+        },
+        {
+          "file": "PhysLean/SpaceAndTime/SpaceTime/Derivatives.lean",
+          "kind": "lemma",
+          "name": "SpaceTime.tensorDeriv_equivariant",
+          "docstring": null,
+          "snippet": "lemma tensorDeriv_equivariant (f : SpaceTime d → M) (Λ : LorentzGroup d) (x : SpaceTime d)\n    (hf : Differentiable ℝ f) :\n    tensorDeriv (fun x => Λ • f (Λ⁻¹ • x)) x =\n    Λ • tensorDeriv f (Λ⁻¹ • x)",
+          "line": 422
+        },
+        {
+          "file": "PhysLean/SpaceAndTime/SpaceTime/Derivatives.lean",
+          "kind": "lemma",
+          "name": "SpaceTime.tensorDeriv_toTensor_basis_repr",
+          "docstring": null,
+          "snippet": "lemma tensorDeriv_toTensor_basis_repr\n    {f : SpaceTime d → M}\n    (hf : Differentiable ℝ f) (x : SpaceTime d)\n    (b : Tensor.ComponentIdx (Fin.append ![realLorentzTensor.Color.down] c)) :\n    (Tensor.basis _).repr (Tensorial.toTensor (tensorDeriv f x)) b =\n    ∂_ (Lorentz.CoVector.indexEquiv (Tensor.ComponentIdx.prodEquiv b).1)\n      (fun x => (Tensor.basis _).repr (Tensorial.toTensor (f x))\n        (Tensor.ComponentIdx.prodEquiv b).2) x",
+          "line": 440
+        },
+        {
+          "file": "PhysLean/SpaceAndTime/SpaceTime/Derivatives.lean",
+          "kind": "def",
+          "name": "SpaceTime.distTensorDeriv",
+          "docstring": "The derivative of a tensor, as a tensor for distributions.",
+          "snippet": "def distTensorDeriv {M d} [NormedAddCommGroup M]\n    [InnerProductSpace ℝ M] [FiniteDimensional ℝ M] :\n    ((SpaceTime d) →d[ℝ] M) →ₗ[ℝ] ((SpaceTime d) →d[ℝ] Lorentz.CoVector d ⊗[ℝ] M) where",
+          "line": 482
+        },
+        {
+          "file": "PhysLean/SpaceAndTime/SpaceTime/Derivatives.lean",
+          "kind": "lemma",
+          "name": "SpaceTime.distTensorDeriv_apply",
+          "docstring": null,
+          "snippet": "lemma distTensorDeriv_apply {M d} [NormedAddCommGroup M]\n    [InnerProductSpace ℝ M] [FiniteDimensional ℝ M] (f : (SpaceTime d) →d[ℝ] M)\n    (ε : 𝓢(SpaceTime d, ℝ)) :\n    distTensorDeriv f ε = ∑ μ, (Lorentz.CoVector.basis μ) ⊗ₜ distDeriv μ f ε",
+          "line": 512
+        },
+        {
+          "file": "PhysLean/SpaceAndTime/SpaceTime/Derivatives.lean",
+          "kind": "lemma",
+          "name": "SpaceTime.distTensorDeriv_equivariant",
+          "docstring": null,
+          "snippet": "lemma distTensorDeriv_equivariant {M : Type} [NormedAddCommGroup M]\n    [InnerProductSpace ℝ M] [FiniteDimensional ℝ M] [(realLorentzTensor d).Tensorial c M]\n    (f : (SpaceTime d) →d[ℝ] M) (Λ : LorentzGroup d) :\n    distTensorDeriv (Λ • f) = Λ • distTensorDeriv f",
+          "line": 518
+        },
+        {
+          "file": "PhysLean/SpaceAndTime/SpaceTime/Derivatives.lean",
+          "kind": "lemma",
+          "name": "SpaceTime.distTensorDeriv_toTensor_basis_repr",
+          "docstring": null,
+          "snippet": "lemma distTensorDeriv_toTensor_basis_repr {M : Type} [NormedAddCommGroup M]\n    [InnerProductSpace ℝ M] [FiniteDimensional ℝ M] [(realLorentzTensor d).Tensorial c M]\n    {f : (SpaceTime d) →d[ℝ] M}\n    (ε : 𝓢(SpaceTime d, ℝ))\n    (b : Tensor.ComponentIdx (Fin.append ![realLorentzTensor.Color.down] c)) :\n    (Tensor.basis _).repr (Tensorial.toTensor (distTensorDeriv f ε)) b =\n    (Tensor.basis _).repr (Tensorial.toTensor\n    (distDeriv (Lorentz.CoVector.indexEquiv (Tensor.ComponentIdx.prodEquiv b).1) f ε))\n    (Tensor.ComponentIdx.prodEquiv b).2",
+          "line": 543
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/SpaceAndTime/SpaceTime/LorentzAction.lean",
+      "entries": [
+        {
+          "file": "PhysLean/SpaceAndTime/SpaceTime/LorentzAction.lean",
+          "kind": "def",
+          "name": "SpaceTime.distActionLinearMap",
+          "docstring": "The Lorentz action on distributions as a linear map.",
+          "snippet": "def distActionLinearMap {d} {M : Type} [NormedAddCommGroup M]\n    [NormedSpace ℝ M] [Tensorial (realLorentzTensor d) c M] [T2Space M](Λ : LorentzGroup d) :\n    ((SpaceTime d) →d[ℝ] M) →ₗ[ℝ] ((SpaceTime d) →d[ℝ] M) where",
+          "line": 190
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/SpaceAndTime/SpaceTime/TimeSlice.lean",
+      "entries": [
+        {
+          "file": "PhysLean/SpaceAndTime/SpaceTime/TimeSlice.lean",
+          "kind": "lemma",
+          "name": "SpaceTime.distTimeSlice_symm_distTimeDeriv_eq",
+          "docstring": null,
+          "snippet": "lemma distTimeSlice_symm_distTimeDeriv_eq {M d} [NormedAddCommGroup M] [NormedSpace ℝ M]\n    {c : SpeedOfLight}\n    (f : (Time × Space d) →d[ℝ] M) :\n    (distTimeSlice c).symm (Space.distTimeDeriv f) =\n    c.val • distDeriv (Sum.inl 0) ((distTimeSlice c).symm f)",
+          "line": 173
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/SpaceAndTime/TimeAndSpace/Basic.lean",
+      "entries": [
+        {
+          "file": "PhysLean/SpaceAndTime/TimeAndSpace/Basic.lean",
+          "kind": "lemma",
+          "name": "Space.distTimeDeriv_apply'",
+          "docstring": null,
+          "snippet": "lemma distTimeDeriv_apply' {M d} [NormedAddCommGroup M] [NormedSpace ℝ M]\n    (f : (Time × Space d) →d[ℝ] M) (ε : 𝓢(Time × Space d, ℝ)) :\n    (distTimeDeriv f) ε = -f (SchwartzMap.evalCLM (𝕜 := ℝ) (1, 0) ((fderivCLM ℝ) ε))",
+          "line": 370
+        },
+        {
+          "file": "PhysLean/SpaceAndTime/TimeAndSpace/Basic.lean",
+          "kind": "lemma",
+          "name": "Space.apply_fderiv_eq_distTimeDeriv",
+          "docstring": null,
+          "snippet": "lemma apply_fderiv_eq_distTimeDeriv {M d} [NormedAddCommGroup M] [NormedSpace ℝ M]\n    (f : (Time × Space d) →d[ℝ] M) (ε : 𝓢(Time × Space d, ℝ)) :\n    f (SchwartzMap.evalCLM (𝕜 := ℝ) (1, 0) ((fderivCLM ℝ) ε)) = - (distTimeDeriv f) ε",
+          "line": 375
+        },
+        {
+          "file": "PhysLean/SpaceAndTime/TimeAndSpace/Basic.lean",
+          "kind": "lemma",
+          "name": "Space.distSpaceDeriv_apply'",
+          "docstring": null,
+          "snippet": "lemma distSpaceDeriv_apply' {M d} [NormedAddCommGroup M] [NormedSpace ℝ M]\n    (i : Fin d) (f : (Time × Space d) →d[ℝ] M) (ε : 𝓢(Time × Space d, ℝ)) :\n    (distSpaceDeriv i f) ε =\n    - f ((SchwartzMap.evalCLM (𝕜 := ℝ) (0, basis i)) ((fderivCLM ℝ) ε))",
+          "line": 419
+        },
+        {
+          "file": "PhysLean/SpaceAndTime/TimeAndSpace/Basic.lean",
+          "kind": "lemma",
+          "name": "Space.apply_fderiv_eq_distSpaceDeriv",
+          "docstring": null,
+          "snippet": "lemma apply_fderiv_eq_distSpaceDeriv {M d} [NormedAddCommGroup M] [NormedSpace ℝ M]\n    (i : Fin d) (f : (Time × Space d) →d[ℝ] M) (ε : 𝓢(Time × Space d, ℝ)) :\n    f ((SchwartzMap.evalCLM (𝕜 := ℝ) (0, basis i)) ((fderivCLM ℝ) ε)) =\n    - (distSpaceDeriv i f) ε",
+          "line": 425
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/StatisticalMechanics/CanonicalEnsemble/TwoState.lean",
+      "entries": [
+        {
+          "file": "PhysLean/StatisticalMechanics/CanonicalEnsemble/TwoState.lean",
+          "kind": "instance",
+          "name": "CanonicalEnsemble.«instance@91a0b66f»",
+          "docstring": null,
+          "snippet": "instance {E₀ E₁} : IsFinite (twoState E₀ E₁) where",
+          "line": 30
+        },
+        {
+          "file": "PhysLean/StatisticalMechanics/CanonicalEnsemble/TwoState.lean",
+          "kind": "lemma",
+          "name": "CanonicalEnsemble.twoState_partitionFunction_apply",
+          "docstring": null,
+          "snippet": "lemma twoState_partitionFunction_apply (E₀ E₁ : ℝ) (T : Temperature) :\n    (twoState E₀ E₁).partitionFunction T = exp (- β T * E₀) + exp (- β T * E₁)",
+          "line": 35
+        },
+        {
+          "file": "PhysLean/StatisticalMechanics/CanonicalEnsemble/TwoState.lean",
+          "kind": "lemma",
+          "name": "CanonicalEnsemble.twoState_probability_fst",
+          "docstring": "Probability of the first state (energy `E₀`) in closed form.",
+          "snippet": "lemma twoState_probability_fst (E₀ E₁ : ℝ) (T : Temperature) :\n    (twoState E₀ E₁).probability T 0 = 1 / 2 * (1 + Real.tanh (β T * (E₁ - E₀) / 2))",
+          "line": 57
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/Thermodynamics/IdealGas/Basic.lean",
+      "entries": [
+        {
+          "file": "PhysLean/Thermodynamics/IdealGas/Basic.lean",
+          "kind": "def",
+          "name": "entropy",
+          "docstring": "Entropy of a monophase ideal gas:\n    S(U,V,N) = N s0 + N R (c log(U/U0) + log(V/V0) - (c+1) log(N/N0)).",
+          "snippet": "def entropy\n    (c R s0 U0 V0 N0 : ℝ) (U V N : ℝ) : ℝ",
+          "line": 30
+        },
+        {
+          "file": "PhysLean/Thermodynamics/IdealGas/Basic.lean",
+          "kind": "theorem",
+          "name": "adiabatic_relation_log",
+          "docstring": "Adiabatic relation in logarithmic form:\n    If S(Ua,Va,N) = S(Ub,Vb,N) with N fixed,\n    then c * log (Ua/Ub) + log (Va/Vb) = 0.",
+          "snippet": "theorem adiabatic_relation_log\n    {s0 U0 V0 N0 c R : ℝ}\n    {Ua Ub Va Vb N : ℝ}\n    (hUa : 0 < Ua) (hUb : 0 < Ub)\n    (hVa : 0 < Va) (hVb : 0 < Vb)\n    (hN : 0 < N)\n    (hU0 : 0 < U0) (hV0 : 0 < V0)\n    (hR : 0 < R)\n    (hS :\n      entropy c R s0 U0 V0 N0 Ua Va N =\n      entropy c R s0 U0 V0 N0 Ub Vb N) :\n    c * log (Ua / Ub) + log (Va / Vb) = 0",
+          "line": 42
+        },
+        {
+          "file": "PhysLean/Thermodynamics/IdealGas/Basic.lean",
+          "kind": "theorem",
+          "name": "adiabatic_relation_UaUbVaVb",
+          "docstring": "Adiabatic relation in product form:\n    If S(Ua,Va,N) = S(Ub,Vb,N) with N fixed,\n    then (Ua/Ub)^c * (Va/Vb) = 1.",
+          "snippet": "theorem adiabatic_relation_UaUbVaVb\n    {s0 U0 V0 N0 c R : ℝ}\n    {Ua Ub Va Vb N : ℝ}\n    (hUa : 0 < Ua) (hUb : 0 < Ub)\n    (hVa : 0 < Va) (hVb : 0 < Vb)\n    (hN : 0 < N)\n    (hU0 : 0 < U0) (hV0 : 0 < V0)\n    (hR : 0 < R)\n    (hS :\n      entropy c R s0 U0 V0 N0 Ua Va N =\n      entropy c R s0 U0 V0 N0 Ub Vb N) :\n    (Real.rpow (Ua / Ub) c) * (Va / Vb) = 1",
+          "line": 169
+        }
+      ]
+    }
+  ],
+  "pdfUrl": "/monthly-updates/2025-12.pdf",
+  "generatedAt": "2026-08-14T10:05:53.333Z"
+}

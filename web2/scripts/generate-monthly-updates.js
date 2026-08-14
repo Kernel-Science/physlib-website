@@ -947,6 +947,7 @@ const TEXT_UNICODE_SUBST = [
 const MISSING_GLYPH_MATH = [
   // Modifier letters used as super/subscripts.
   ["ʲ", "^{j}"], ["ʳ", "^{r}"], ["ᴴ", "^{H}"], ["ᵀ", "^{T}"],
+  ["ᴬ", "^{A}"], ["ᴮ", "^{B}"],
   ["ᵃ", "^{a}"], ["ᵈ", "^{d}"], ["ᵖ", "^{p}"], ["ᵘ", "^{u}"],
   ["ᵛ", "^{v}"], ["ᵟ", "^{\\delta}"], ["ᶜ", "^{c}"], ["ᶠ", "^{f}"],
   ["ⁱ", "^{i}"], ["ᵣ", "_{r}"], ["ᵥ", "_{v}"], ["ₗ", "_{l}"],
@@ -974,9 +975,54 @@ const MISSING_GLYPH_MATH = [
   // Bold script letters (U+1D4D0+ block) - LaTeX has no distinct bold-script,
   // so these fall through to \mathcal, matching the plain-script mapping.
   ["𝓕", "\\mathcal{F}"], ["𝓜", "\\mathcal{M}"], ["𝓝", "\\mathcal{N}"],
-  ["𝓭", "\\mathcal{d}"],
-  // Bold Latin capitals (U+1D400+ block).
-  ["𝐃", "\\mathbf{D}"],
+  ["𝓭", "\\mathcal{d}"], ["𝓐", "\\mathcal{A}"], ["𝓑", "\\mathcal{B}"],
+  ["𝓒", "\\mathcal{C}"], ["𝓚", "\\mathcal{K}"], ["𝓛", "\\mathcal{L}"],
+  ["𝓟", "\\mathcal{P}"], ["𝓠", "\\mathcal{Q}"], ["𝓣", "\\mathcal{T}"],
+  ["𝓥", "\\mathcal{V}"], ["𝓧", "\\mathcal{X}"], ["𝓱", "\\mathcal{h}"],
+  ["𝓵", "\\mathcal{l}"], ["𝔁", "\\mathcal{x}"],
+  // Script capital E (Letterlike Symbols block, U+2130) - a compatibility
+  // exception outside the main mathematical-alphanumeric plane, but same
+  // \mathcal treatment as the plain-script letters above.
+  ["ℰ", "\\mathcal{E}"],
+  // Bold Latin capitals and lowercase (U+1D400+ block).
+  ["𝐃", "\\mathbf{D}"], ["𝐀", "\\mathbf{A}"], ["𝐇", "\\mathbf{H}"],
+  ["𝐋", "\\mathbf{L}"], ["𝐔", "\\mathbf{U}"], ["𝐩", "\\mathbf{p}"],
+  ["𝐫", "\\mathbf{r}"], ["𝐱", "\\mathbf{x}"],
+  // Double-struck (blackboard bold, U+1D538+ block) - see also 𝕜 → \Bbbk
+  // above, which has its own dedicated LaTeX command instead of \mathbb.
+  ["𝕂", "\\mathbb{K}"], ["𝕕", "\\mathbb{d}"],
+  // Italic Greek (U+1D6FD+ block) - math mode already italicizes \beta and
+  // \lambda by default, so these need no special styling, just the letter.
+  ["𝛽", "\\beta"], ["𝜆", "\\lambda"],
+  // Sans-serif bold digit one - mathlib's other "identity element" numeral,
+  // alongside the blackboard-bold 𝟙 → \mathbb{1} above.
+  ["𝟭", "\\mathbf{1}"],
+  // Superscript Greek phi, alongside the other modifier letters above.
+  ["ᵠ", "^{\\phi}"],
+  // Relations, lattice/set operators, and mathlib's functor-category arrow.
+  ["≪", "\\ll"], ["≫", "\\gg"], ["⋙", "\\ggg"], ["⊔", "\\sqcup"],
+  ["⋃", "\\bigcup"], ["⨆", "\\bigsqcup"], ["⥤", "\\rightsquigarrow"],
+  // CJK angle brackets (U+3008/9), used as plain sequence delimiters -
+  // compare ⟪/⟫ → \langle\!\langle above, the doubled form of these.
+  ["〈", "\\langle"], ["〉", "\\rangle"],
+  // Emoji from informal/whimsical docstrings. There is no sensible
+  // math-mode rendering for these, and DejaVu Sans Mono has no glyphs for
+  // them either - drop them rather than fail the whole report over
+  // decoration. (U+FE0F is the invisible variation selector that rides
+  // along with some of them.)
+  //
+  // Body is "{}" (an empty LaTeX group), not "": texEscapeMono does
+  // `math ? ... : ch`, an empty string is falsy in JS, and that ternary
+  // would silently fall through to the original unmapped emoji instead of
+  // substituting - "{}" renders as nothing but stays a truthy JS string.
+  ["️", "{}"], ["⏳", "{}"], ["❓", "{}"], ["➗", "{}"], ["🌊", "{}"],
+  ["🌌", "{}"], ["🎲", "{}"], ["🏛", "{}"], ["💥", "{}"], ["🔍", "{}"],
+  ["🔥", "{}"], ["🧊", "{}"], ["🧵", "{}"],
+  // Newton-dot notation for a time derivative, and a plain multiplication
+  // dot - both plausible in physics docstring prose.
+  ["ẋ", "\\dot{x}"], ["⋅", "\\cdot"],
+  // Half-arrow, alongside the harpoon combinator ⥤ above.
+  ["↿", "\\upharpoonleft"],
 ];
 
 for (const [ch, body] of MISSING_GLYPH_MATH) {
@@ -1411,6 +1457,15 @@ function renderLatex(report) {
 \usepackage{fancyhdr}
 \usepackage{tocloft}
 \usepackage{microtype}
+
+% Neither amsmath nor amssymb defines a "big" square-cap operator (only
+% \bigsqcup, its union counterpart, is standard) - Lean's big-square-cap
+% glyph (U+2A05) needs one for lattice-style indexed infima. \mathop +
+% \vcenter give it the same subscript/limit placement behaviour as the real
+% big operators. (No literal U+2A05 in this comment on purpose: the
+% pre-compile glyph-coverage check scans the whole generated .tex file,
+% comments included, for characters DejaVu Sans Mono can't draw.)
+\newcommand{\bigsqcap}{\mathop{\vcenter{\hbox{\huge$\sqcap$}}}}
 
 % Every changed file is a subsection, so a busy month runs past 2.99 and the
 % three-digit number collides with the title at tocloft's default width.

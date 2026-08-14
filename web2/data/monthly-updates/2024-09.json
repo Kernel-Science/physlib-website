@@ -1,0 +1,1940 @@
+{
+  "slug": "2024-09",
+  "label": "Sep 2024",
+  "year": 2024,
+  "month": 9,
+  "startDate": "2024-09-01T00:00:00.000Z",
+  "endDate": "2024-10-01T00:00:00.000Z",
+  "repo": "leanprover-community/physlib",
+  "branch": "master",
+  "baseSha": "86b3b8acd6f6d8e10e9a938c2f5e0c62fd43b261",
+  "headSha": "94ceb30da40c8f2f5a236323e9abbfdad513be42",
+  "compareUrl": "https://github.com/leanprover-community/physlib/compare/86b3b8acd6f6d8e10e9a938c2f5e0c62fd43b261...94ceb30da40c8f2f5a236323e9abbfdad513be42",
+  "commitsUrl": "https://github.com/leanprover-community/physlib/commits/master?since=2024-09-01T00:00:00.000Z&until=2024-10-01T00:00:00.000Z",
+  "totalCommits": 124,
+  "totalAdditions": 4181,
+  "totalDeletions": 1065,
+  "linesChanged": 5246,
+  "totalFilesChanged": 106,
+  "filesAdded": 13,
+  "filesRemoved": 0,
+  "subfolders": [
+    {
+      "path": "Archive/Papers",
+      "files": 1,
+      "filesAdded": 1,
+      "filesRemoved": 0,
+      "additions": 913,
+      "deletions": 0
+    },
+    {
+      "path": "HepLean/Tensors",
+      "files": 24,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 508,
+      "deletions": 298
+    },
+    {
+      "path": "HepLean/StandardModel",
+      "files": 5,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 565,
+      "deletions": 182
+    },
+    {
+      "path": "scripts/MetaPrograms",
+      "files": 3,
+      "filesAdded": 3,
+      "filesRemoved": 0,
+      "additions": 688,
+      "deletions": 0
+    },
+    {
+      "path": "HepLean/AnomalyCancellation",
+      "files": 29,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 274,
+      "deletions": 320
+    },
+    {
+      "path": "HepLean/BeyondTheStandardModel",
+      "files": 5,
+      "filesAdded": 4,
+      "filesRemoved": 0,
+      "additions": 375,
+      "deletions": 58
+    },
+    {
+      "path": "HepLean/SpaceTime",
+      "files": 18,
+      "filesAdded": 1,
+      "filesRemoved": 0,
+      "additions": 332,
+      "deletions": 84
+    },
+    {
+      "path": "HepLean/Meta",
+      "files": 3,
+      "filesAdded": 3,
+      "filesRemoved": 0,
+      "additions": 310,
+      "deletions": 0
+    },
+    {
+      "path": "HepLean/FlavorPhysics",
+      "files": 6,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 99,
+      "deletions": 62
+    },
+    {
+      "path": "HepLean.lean",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 32,
+      "deletions": 24
+    },
+    {
+      "path": ".github/workflows",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 23,
+      "deletions": 15
+    },
+    {
+      "path": "docs",
+      "files": 1,
+      "filesAdded": 1,
+      "filesRemoved": 0,
+      "additions": 24,
+      "deletions": 0
+    },
+    {
+      "path": "HepLean/Mathematics",
+      "files": 2,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 9,
+      "deletions": 8
+    },
+    {
+      "path": "lake-manifest.json",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 6,
+      "deletions": 6
+    },
+    {
+      "path": "lakefile.toml",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 10,
+      "deletions": 1
+    },
+    {
+      "path": "docs/assets",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 7,
+      "deletions": 3
+    },
+    {
+      "path": "README.md",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 2,
+      "deletions": 1
+    },
+    {
+      "path": "docs/_layouts",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 2,
+      "deletions": 1
+    },
+    {
+      "path": "HepLean/FeynmanDiagrams",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 1,
+      "deletions": 1
+    },
+    {
+      "path": "lean-toolchain",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 1,
+      "deletions": 1
+    }
+  ],
+  "contributors": [
+    {
+      "login": "jstoobysmith",
+      "name": "Joseph Tooby-Smith",
+      "html_url": "https://github.com/jstoobysmith",
+      "avatar_url": "https://avatars.githubusercontent.com/u/72603918?v=4",
+      "commits": 114,
+      "linesChanged": 6955,
+      "firstTime": false
+    },
+    {
+      "login": null,
+      "name": "Pietro Monticone",
+      "html_url": null,
+      "avatar_url": null,
+      "commits": 10,
+      "linesChanged": 155,
+      "firstTime": false
+    }
+  ],
+  "reviewers": [],
+  "kindTotals": {
+    "structure": 11,
+    "def": 67,
+    "instance": 2,
+    "lemma": 54,
+    "theorem": 3,
+    "informal_definition": 36,
+    "informal_lemma": 27,
+    "abbrev": 1,
+    "inductive": 1
+  },
+  "files": [
+    {
+      "filename": "Archive/Papers/1907_00514.lean",
+      "entries": [
+        {
+          "file": "Archive/Papers/1907_00514.lean",
+          "kind": "structure",
+          "name": "ACCSystemCharges",
+          "docstring": "A system of charges, specified by the number of charges.",
+          "snippet": "structure ACCSystemCharges where\n  numberCharges : ℕ",
+          "line": 200
+        },
+        {
+          "file": "Archive/Papers/1907_00514.lean",
+          "kind": "def",
+          "name": "ACCSystemChargesMk",
+          "docstring": "Creates an `ACCSystemCharges` object with the specified number of charges.",
+          "snippet": "def ACCSystemChargesMk (n : ℕ) : ACCSystemCharges where",
+          "line": 207
+        },
+        {
+          "file": "Archive/Papers/1907_00514.lean",
+          "kind": "def",
+          "name": "ACCSystemCharges.Charges",
+          "docstring": "The charges as functions from `Fin χ.numberCharges → ℚ`.",
+          "snippet": "def Charges (χ : ACCSystemCharges) : Type",
+          "line": 213
+        },
+        {
+          "file": "Archive/Papers/1907_00514.lean",
+          "kind": "instance",
+          "name": "ACCSystemCharges.chargesAddCommMonoid",
+          "docstring": "An instance to provide the necessary operations and properties for `charges` to form an additive\n  commutative monoid.",
+          "snippet": "@[simps!]\ninstance chargesAddCommMonoid (χ : ACCSystemCharges) : AddCommMonoid χ.Charges",
+          "line": 220
+        },
+        {
+          "file": "Archive/Papers/1907_00514.lean",
+          "kind": "instance",
+          "name": "ACCSystemCharges.chargesModule",
+          "docstring": "An instance to provide the necessary operations and properties for `charges` to form a module\n  over the field `ℚ`.",
+          "snippet": "@[simps!]\ninstance chargesModule (χ : ACCSystemCharges) : Module ℚ χ.Charges",
+          "line": 228
+        },
+        {
+          "file": "Archive/Papers/1907_00514.lean",
+          "kind": "structure",
+          "name": "ACCSystemLinear",
+          "docstring": "The type of charges plus the linear ACCs.",
+          "snippet": "structure ACCSystemLinear extends ACCSystemCharges where\n  numberLinear : ℕ\n  linearACCs : Fin numberLinear → (toACCSystemCharges.Charges →ₗ[ℚ] ℚ)",
+          "line": 234
+        },
+        {
+          "file": "Archive/Papers/1907_00514.lean",
+          "kind": "structure",
+          "name": "ACCSystemLinear.LinSols",
+          "docstring": "The type of solutions to the linear ACCs.",
+          "snippet": "structure LinSols (χ : ACCSystemLinear) where\n  val : χ.1.Charges\n  linearSol : ∀ i : Fin χ.numberLinear, χ.linearACCs i val = 0",
+          "line": 243
+        },
+        {
+          "file": "Archive/Papers/1907_00514.lean",
+          "kind": "lemma",
+          "name": "ACCSystemLinear.LinSols.ext",
+          "docstring": "Two solutions are equal if the underlying charges are equal.",
+          "snippet": "@[ext]\nlemma LinSols.ext {χ : ACCSystemLinear} {S T : χ.LinSols} (h : S.val = T.val) : S = T",
+          "line": 251
+        },
+        {
+          "file": "Archive/Papers/1907_00514.lean",
+          "kind": "structure",
+          "name": "ACCSystemQuad",
+          "docstring": "The type of charges plus the linear ACCs plus the quadratic ACCs.",
+          "snippet": "structure ACCSystemQuad extends ACCSystemLinear where\n  numberQuadratic : ℕ\n  quadraticACCs : Fin numberQuadratic → HomogeneousQuadratic toACCSystemCharges.Charges",
+          "line": 259
+        },
+        {
+          "file": "Archive/Papers/1907_00514.lean",
+          "kind": "structure",
+          "name": "ACCSystemQuad.QuadSols",
+          "docstring": "The type of solutions to the linear and quadratic ACCs.",
+          "snippet": "structure QuadSols (χ : ACCSystemQuad) extends χ.LinSols where\n  quadSol : ∀ i : Fin χ.numberQuadratic, (χ.quadraticACCs i) val = 0",
+          "line": 268
+        },
+        {
+          "file": "Archive/Papers/1907_00514.lean",
+          "kind": "structure",
+          "name": "ACCSystem",
+          "docstring": "The type of charges plus the anomaly cancellation conditions.",
+          "snippet": "structure ACCSystem extends ACCSystemQuad where\n  cubicACC : HomogeneousCubic toACCSystemCharges.Charges",
+          "line": 275
+        },
+        {
+          "file": "Archive/Papers/1907_00514.lean",
+          "kind": "structure",
+          "name": "ACCSystem.Sols",
+          "docstring": "The type of solutions to the anomaly cancellation conditions.",
+          "snippet": "structure Sols (χ : ACCSystem) extends χ.QuadSols where\n  cubicSol : χ.cubicACC val = 0",
+          "line": 282
+        },
+        {
+          "file": "Archive/Papers/1907_00514.lean",
+          "kind": "lemma",
+          "name": "SM.SMNoGrav.One.E_zero_iff_Q_zero",
+          "docstring": null,
+          "snippet": "lemma E_zero_iff_Q_zero {S : (SMNoGrav 1).Sols} : Q S.val (0 : Fin 1) = 0 ↔\n    E S.val (0 : Fin 1) = 0",
+          "line": 867
+        },
+        {
+          "file": "Archive/Papers/1907_00514.lean",
+          "kind": "lemma",
+          "name": "SM.SMNoGrav.One.accGrav_Q_zero",
+          "docstring": null,
+          "snippet": "lemma accGrav_Q_zero {S : (SMNoGrav 1).Sols} (hQ : Q S.val (0 : Fin 1) = 0) :\n    accGrav S.val = 0",
+          "line": 876
+        },
+        {
+          "file": "Archive/Papers/1907_00514.lean",
+          "kind": "lemma",
+          "name": "SM.SMNoGrav.One.accGrav_Q_neq_zero",
+          "docstring": null,
+          "snippet": "lemma accGrav_Q_neq_zero {S : (SMNoGrav 1).Sols} (hQ : Q S.val (0 : Fin 1) ≠ 0)\n    (FLTThree : FermatLastTheoremWith ℚ 3) :\n    accGrav S.val = 0",
+          "line": 890
+        },
+        {
+          "file": "Archive/Papers/1907_00514.lean",
+          "kind": "theorem",
+          "name": "SM.SMNoGrav.One.accGravSatisfied",
+          "docstring": "Any solution to the ACCs without gravity satisfies the gravitational ACC.",
+          "snippet": "theorem accGravSatisfied {S : (SMNoGrav 1).Sols} (FLTThree : FermatLastTheoremWith ℚ 3) :\n    accGrav S.val = 0",
+          "line": 903
+        }
+      ]
+    },
+    {
+      "filename": "HepLean/BeyondTheStandardModel/GeorgiGlashow/Basic.lean",
+      "entries": [
+        {
+          "file": "HepLean/BeyondTheStandardModel/GeorgiGlashow/Basic.lean",
+          "kind": "informal_definition",
+          "name": "GeorgiGlashow.GaugeGroupI",
+          "docstring": null,
+          "snippet": "informal_definition GaugeGroupI where\n  math :≈ \"The group `SU(5)`.\"\n  physics :≈ \"The gauge group of the Georgi-Glashow model.\"",
+          "line": 21
+        },
+        {
+          "file": "HepLean/BeyondTheStandardModel/GeorgiGlashow/Basic.lean",
+          "kind": "informal_definition",
+          "name": "GeorgiGlashow.inclSM",
+          "docstring": null,
+          "snippet": "informal_definition inclSM where\n  physics :≈ \"The homomorphism of the Standard Model gauge group into the\n    Georgi-Glashow gauge group.\"\n  math :≈ \"The group homomorphism `SU(3) x SU(2) x U(1) -> SU(5)`\n    taking (h, g, α) to (blockdiag (α ^ 3 g, α ^ (-2) h).\"\n  ref :≈ \"Page 34 of https://math.ucr.edu/home/baez/guts.pdf\"\n  deps :≈ [``GaugeGroupI, ``StandardModel.GaugeGroupI]",
+          "line": 25
+        },
+        {
+          "file": "HepLean/BeyondTheStandardModel/GeorgiGlashow/Basic.lean",
+          "kind": "informal_lemma",
+          "name": "GeorgiGlashow.inclSM_ker",
+          "docstring": null,
+          "snippet": "informal_lemma inclSM_ker where\n  math :≈ \"The kernel of the map ``inclSM is equal to the subgroup\n    ``StandardModel.gaugeGroupℤ₆SubGroup.\"\n  ref :≈ \"Page 34 of https://math.ucr.edu/home/baez/guts.pdf\"\n  deps :≈ [``inclSM, ``StandardModel.gaugeGroupℤ₆SubGroup]",
+          "line": 33
+        },
+        {
+          "file": "HepLean/BeyondTheStandardModel/GeorgiGlashow/Basic.lean",
+          "kind": "informal_definition",
+          "name": "GeorgiGlashow.embedSMℤ₆",
+          "docstring": null,
+          "snippet": "informal_definition embedSMℤ₆ where\n  math :≈ \"The group embedding from ``StandardModel.GaugeGroupℤ₆ to ``GaugeGroupI\n    induced by ``inclSM by quotienting by the kernal ``inclSM_ker.\"\n  deps :≈ [``inclSM, ``StandardModel.GaugeGroupℤ₆, ``GaugeGroupI, ``inclSM_ker]",
+          "line": 39
+        }
+      ]
+    },
+    {
+      "filename": "HepLean/BeyondTheStandardModel/PatiSalam/Basic.lean",
+      "entries": [
+        {
+          "file": "HepLean/BeyondTheStandardModel/PatiSalam/Basic.lean",
+          "kind": "informal_definition",
+          "name": "PatiSalam.GaugeGroupI",
+          "docstring": null,
+          "snippet": "informal_definition GaugeGroupI where\n  math :≈ \"The group `SU(4) x SU(2) x SU(2)`.\"\n  physics :≈ \"The gauge group of the Pati-Salam model (unquotiented by ℤ₂).\"",
+          "line": 26
+        },
+        {
+          "file": "HepLean/BeyondTheStandardModel/PatiSalam/Basic.lean",
+          "kind": "informal_definition",
+          "name": "PatiSalam.inclSM",
+          "docstring": null,
+          "snippet": "informal_definition inclSM where\n  physics :≈ \"The homomorphism of the Standard Model gauge group into the Pati-Salam gauge group.\"\n  math :≈ \"The group homomorphism `SU(3) x SU(2) x U(1) -> SU(4) x SU(2) x SU(2)`\n    taking (h, g, α) to (blockdiag (α h, α ^ (-3)), g, diag(α ^ (3), α ^(-3))).\"\n  ref :≈ \"Page 54 of https://math.ucr.edu/home/baez/guts.pdf\"\n  deps :≈ [``GaugeGroupI, ``StandardModel.GaugeGroupI]",
+          "line": 30
+        },
+        {
+          "file": "HepLean/BeyondTheStandardModel/PatiSalam/Basic.lean",
+          "kind": "informal_lemma",
+          "name": "PatiSalam.inclSM_ker",
+          "docstring": null,
+          "snippet": "informal_lemma inclSM_ker where\n  math :≈ \"The kernel of the map ``inclSM is equal to the subgroup\n    ``StandardModel.gaugeGroupℤ₃SubGroup.\"\n  ref :≈ \"Footnote 10 of https://arxiv.org/pdf/2201.07245\"\n  deps :≈ [``inclSM, ``StandardModel.gaugeGroupℤ₃SubGroup]",
+          "line": 37
+        },
+        {
+          "file": "HepLean/BeyondTheStandardModel/PatiSalam/Basic.lean",
+          "kind": "informal_definition",
+          "name": "PatiSalam.embedSMℤ₃",
+          "docstring": null,
+          "snippet": "informal_definition embedSMℤ₃ where\n  math :≈ \"The group embedding from ``StandardModel.GaugeGroupℤ₃ to ``GaugeGroupI\n    induced by ``inclSM by quotienting by the kernal ``inclSM_ker.\"\n  deps :≈ [``inclSM, ``StandardModel.GaugeGroupℤ₃, ``GaugeGroupI, ``inclSM_ker]",
+          "line": 43
+        },
+        {
+          "file": "HepLean/BeyondTheStandardModel/PatiSalam/Basic.lean",
+          "kind": "informal_definition",
+          "name": "PatiSalam.gaugeGroupISpinEquiv",
+          "docstring": null,
+          "snippet": "informal_definition gaugeGroupISpinEquiv where\n  math :≈ \"The equivalence between `GaugeGroupI` and `Spin(6) × Spin(4)`.\"\n  deps :≈ [``GaugeGroupI]",
+          "line": 48
+        },
+        {
+          "file": "HepLean/BeyondTheStandardModel/PatiSalam/Basic.lean",
+          "kind": "informal_definition",
+          "name": "PatiSalam.gaugeGroupℤ₂SubGroup",
+          "docstring": null,
+          "snippet": "informal_definition gaugeGroupℤ₂SubGroup where\n  physics :≈ \"The ℤ₂-subgroup of the un-quotiented gauge group which acts trivially on\n    all particles in the standard model.\"\n  math :≈ \"The ℤ₂-subgroup of ``GaugeGroupI with the non-trivial element (-1, -1, -1).\"\n  ref :≈ \"https://math.ucr.edu/home/baez/guts.pdf\"\n  deps :≈ [``GaugeGroupI]",
+          "line": 52
+        },
+        {
+          "file": "HepLean/BeyondTheStandardModel/PatiSalam/Basic.lean",
+          "kind": "informal_definition",
+          "name": "PatiSalam.GaugeGroupℤ₂",
+          "docstring": null,
+          "snippet": "informal_definition GaugeGroupℤ₂ where\n  physics :≈ \"The gauge group of the Pati-Salam model with a ℤ₂ quotient.\"\n  math :≈ \"The quotient of ``GaugeGroupI by the ℤ₂-subgroup `gaugeGroupℤ₂SubGroup`.\"\n  ref :≈ \"https://math.ucr.edu/home/baez/guts.pdf\"\n  deps :≈ [``GaugeGroupI, ``gaugeGroupℤ₂SubGroup]",
+          "line": 59
+        },
+        {
+          "file": "HepLean/BeyondTheStandardModel/PatiSalam/Basic.lean",
+          "kind": "informal_lemma",
+          "name": "PatiSalam.sm_ℤ₆_factor_through_gaugeGroupℤ₂SubGroup",
+          "docstring": null,
+          "snippet": "informal_lemma sm_ℤ₆_factor_through_gaugeGroupℤ₂SubGroup where\n  math :≈ \"The group ``StandardModel.gaugeGroupℤ₆SubGroup under the homomorphism ``embedSM factors\n    through the subgroup ``gaugeGroupℤ₂SubGroup.\"\n  deps :≈ [``inclSM, ``StandardModel.gaugeGroupℤ₆SubGroup, ``gaugeGroupℤ₂SubGroup]",
+          "line": 65
+        },
+        {
+          "file": "HepLean/BeyondTheStandardModel/PatiSalam/Basic.lean",
+          "kind": "informal_definition",
+          "name": "PatiSalam.embedSMℤ₆Toℤ₂",
+          "docstring": null,
+          "snippet": "informal_definition embedSMℤ₆Toℤ₂ where\n  math :≈ \"The group homomorphism from ``StandardModel.GaugeGroupℤ₆ to ``GaugeGroupℤ₂\n    induced by ``embedSM.\"\n  deps :≈ [``inclSM, ``StandardModel.GaugeGroupℤ₆, ``GaugeGroupℤ₂,\n    ``sm_ℤ₆_factor_through_gaugeGroupℤ₂SubGroup]",
+          "line": 70
+        }
+      ]
+    },
+    {
+      "filename": "HepLean/BeyondTheStandardModel/Spin10/Basic.lean",
+      "entries": [
+        {
+          "file": "HepLean/BeyondTheStandardModel/Spin10/Basic.lean",
+          "kind": "informal_definition",
+          "name": "Spin10Model.GaugeGroupI",
+          "docstring": null,
+          "snippet": "informal_definition GaugeGroupI where\n  math :≈ \"The group `Spin(10)`.\"\n  physics :≈ \"The gauge group of the Spin(10) model (aka SO(10)-model.)\"",
+          "line": 20
+        },
+        {
+          "file": "HepLean/BeyondTheStandardModel/Spin10/Basic.lean",
+          "kind": "informal_definition",
+          "name": "Spin10Model.inclPatiSalam",
+          "docstring": null,
+          "snippet": "informal_definition inclPatiSalam where\n  physics :≈ \"The inclusion of the Pati-Salam gauge group into Spin(10).\"\n  math :≈ \"The lift of the embedding `SO(6) x SO(4) → SO(10)` to universal covers,\n    giving a homomorphism `Spin(6) x Spin(4) → Spin(10)`. Precomposed with the isomorphism,\n    ``PatiSalam.gaugeGroupISpinEquiv, between `SU(4) x SU(2) x SU(2)` and `Spin(6) x Spin(4)`.\"\n  ref :≈ \"Page 56 of https://math.ucr.edu/home/baez/guts.pdf\"\n  deps :≈ [``GaugeGroupI, ``PatiSalam.GaugeGroupI, ``PatiSalam.gaugeGroupISpinEquiv]",
+          "line": 24
+        },
+        {
+          "file": "HepLean/BeyondTheStandardModel/Spin10/Basic.lean",
+          "kind": "informal_definition",
+          "name": "Spin10Model.inclSM",
+          "docstring": null,
+          "snippet": "informal_definition inclSM where\n  physics :≈ \"The inclusion of the Standard Model gauge group into Spin(10).\"\n  math :≈ \"The compoisiton of ``embedPatiSalam and ``PatiSalam.inclSM.\"\n  ref :≈ \"Page 56 of https://math.ucr.edu/home/baez/guts.pdf\"\n  deps :≈ [``inclPatiSalam, ``PatiSalam.inclSM]",
+          "line": 32
+        },
+        {
+          "file": "HepLean/BeyondTheStandardModel/Spin10/Basic.lean",
+          "kind": "informal_definition",
+          "name": "Spin10Model.inclGeorgiGlashow",
+          "docstring": null,
+          "snippet": "informal_definition inclGeorgiGlashow where\n  physics :≈ \"The inclusion of the Georgi-Glashow gauge group into Spin(10).\"\n  math :≈ \"The Lie group homomorphism from SU(n) → Spin(2n) dicussed on page 46 of\n    https://math.ucr.edu/home/baez/guts.pdf for n = 5.\"\n  deps :≈ [``GaugeGroupI, ``GeorgiGlashow.GaugeGroupI]",
+          "line": 38
+        },
+        {
+          "file": "HepLean/BeyondTheStandardModel/Spin10/Basic.lean",
+          "kind": "informal_definition",
+          "name": "Spin10Model.inclSMThruGeorgiGlashow",
+          "docstring": null,
+          "snippet": "informal_definition inclSMThruGeorgiGlashow where\n  physics :≈ \"The inclusion of the Standard Model gauge group into Spin(10).\"\n  math :≈ \"The composition of ``inclGeorgiGlashow and ``GeorgiGlashow.inclSM.\"\n  deps :≈ [``inclGeorgiGlashow, ``GeorgiGlashow.inclSM]",
+          "line": 44
+        },
+        {
+          "file": "HepLean/BeyondTheStandardModel/Spin10/Basic.lean",
+          "kind": "informal_lemma",
+          "name": "Spin10Model.inclSM_eq_inclSMThruGeorgiGlashow",
+          "docstring": null,
+          "snippet": "informal_lemma inclSM_eq_inclSMThruGeorgiGlashow where\n  math :≈ \"The inclusion ``inclSM is equal to the inclusion ``inclSMThruGeorgiGlashow.\"\n  deps :≈ [``inclSM, ``inclSMThruGeorgiGlashow]",
+          "line": 49
+        }
+      ]
+    },
+    {
+      "filename": "HepLean/BeyondTheStandardModel/TwoHDM/Basic.lean",
+      "entries": [
+        {
+          "file": "HepLean/BeyondTheStandardModel/TwoHDM/Basic.lean",
+          "kind": "structure",
+          "name": "TwoHDM.Potential",
+          "docstring": "The parameters of the Two Higgs doublet model potential.",
+          "snippet": "structure Potential where\n  m₁₁2 : ℝ\n  m₂₂2 : ℝ\n  m₁₂2 : ℂ\n  𝓵₁ : ℝ\n  𝓵₂ : ℝ\n  𝓵₃ : ℝ\n  𝓵₄ : ℝ\n  𝓵₅ : ℂ\n  𝓵₆ : ℂ\n  𝓵₇ : ℂ",
+          "line": 26
+        },
+        {
+          "file": "HepLean/BeyondTheStandardModel/TwoHDM/Basic.lean",
+          "kind": "def",
+          "name": "TwoHDM.Potential.toFun",
+          "docstring": "The potential of the two Higgs doublet model.",
+          "snippet": "def toFun (Φ1 Φ2 : HiggsField) (x : SpaceTime) : ℝ",
+          "line": 53
+        },
+        {
+          "file": "HepLean/BeyondTheStandardModel/TwoHDM/Basic.lean",
+          "kind": "def",
+          "name": "TwoHDM.Potential.zero",
+          "docstring": "The potential where all parameters are zero.",
+          "snippet": "def zero : Potential",
+          "line": 64
+        },
+        {
+          "file": "HepLean/BeyondTheStandardModel/TwoHDM/Basic.lean",
+          "kind": "lemma",
+          "name": "TwoHDM.Potential.swap_fields",
+          "docstring": null,
+          "snippet": "lemma swap_fields : P.toFun Φ1 Φ2 =\n    (Potential.mk P.m₂₂2 P.m₁₁2 (conj P.m₁₂2) P.𝓵₂ P.𝓵₁ P.𝓵₃ P.𝓵₄\n    (conj P.𝓵₅) (conj P.𝓵₇) (conj P.𝓵₆)).toFun Φ2 Φ1",
+          "line": 66
+        },
+        {
+          "file": "HepLean/BeyondTheStandardModel/TwoHDM/Basic.lean",
+          "kind": "lemma",
+          "name": "TwoHDM.Potential.right_zero",
+          "docstring": "If `Φ₂` is zero the potential reduces to the Higgs potential on `Φ₁`.",
+          "snippet": "lemma right_zero : P.toFun Φ1 0 =\n    (HiggsField.Potential.mk (- P.m₁₁2) (P.𝓵₁/2)).toFun Φ1",
+          "line": 81
+        },
+        {
+          "file": "HepLean/BeyondTheStandardModel/TwoHDM/Basic.lean",
+          "kind": "lemma",
+          "name": "TwoHDM.Potential.left_zero",
+          "docstring": "If `Φ₁` is zero the potential reduces to the Higgs potential on `Φ₂`.",
+          "snippet": "lemma left_zero : P.toFun 0 Φ2 =\n    (HiggsField.Potential.mk (- P.m₂₂2) (P.𝓵₂/2)).toFun Φ2",
+          "line": 93
+        },
+        {
+          "file": "HepLean/BeyondTheStandardModel/TwoHDM/Basic.lean",
+          "kind": "lemma",
+          "name": "TwoHDM.Potential.neg_left",
+          "docstring": "Negating `Φ₁` is equivalent to negating `m₁₂2`, `𝓵₆` and `𝓵₇`.",
+          "snippet": "lemma neg_left : P.toFun (- Φ1) Φ2\n    = (Potential.mk P.m₁₁2 P.m₂₂2 (- P.m₁₂2) P.𝓵₁ P.𝓵₂ P.𝓵₃ P.𝓵₄ P.𝓵₅ (- P.𝓵₆) (- P.𝓵₇)).toFun\n    Φ1 Φ2",
+          "line": 98
+        },
+        {
+          "file": "HepLean/BeyondTheStandardModel/TwoHDM/Basic.lean",
+          "kind": "lemma",
+          "name": "TwoHDM.Potential.neg_right",
+          "docstring": "Negating `Φ₁` is equivalent to negating `m₁₂2`, `𝓵₆` and `𝓵₇`.",
+          "snippet": "lemma neg_right : P.toFun Φ1 (- Φ2)\n    = (Potential.mk P.m₁₁2 P.m₂₂2 (- P.m₁₂2) P.𝓵₁ P.𝓵₂ P.𝓵₃ P.𝓵₄ P.𝓵₅ (- P.𝓵₆) (- P.𝓵₇)).toFun\n    Φ1 Φ2",
+          "line": 110
+        },
+        {
+          "file": "HepLean/BeyondTheStandardModel/TwoHDM/Basic.lean",
+          "kind": "lemma",
+          "name": "TwoHDM.Potential.left_eq_right",
+          "docstring": null,
+          "snippet": "lemma left_eq_right : P.toFun Φ1 Φ1 =\n    (HiggsField.Potential.mk (- P.m₁₁2 - P.m₂₂2 + 2 * P.m₁₂2.re)\n    (P.𝓵₁/2 + P.𝓵₂/2 + P.𝓵₃ + P.𝓵₄ + P.𝓵₅.re + 2 * P.𝓵₆.re + 2 * P.𝓵₇.re)).toFun Φ1",
+          "line": 116
+        },
+        {
+          "file": "HepLean/BeyondTheStandardModel/TwoHDM/Basic.lean",
+          "kind": "lemma",
+          "name": "TwoHDM.Potential.left_eq_neg_right",
+          "docstring": null,
+          "snippet": "lemma left_eq_neg_right : P.toFun Φ1 (- Φ1) =\n    (HiggsField.Potential.mk (- P.m₁₁2 - P.m₂₂2 - 2 * P.m₁₂2.re)\n    (P.𝓵₁/2 + P.𝓵₂/2 + P.𝓵₃ + P.𝓵₄ + P.𝓵₅.re - 2 * P.𝓵₆.re - 2 * P.𝓵₇.re)).toFun Φ1",
+          "line": 131
+        },
+        {
+          "file": "HepLean/BeyondTheStandardModel/TwoHDM/Basic.lean",
+          "kind": "def",
+          "name": "TwoHDM.Potential.IsBounded",
+          "docstring": "The proposition on the coefficents for a potential to be bounded.",
+          "snippet": "def IsBounded : Prop",
+          "line": 149
+        },
+        {
+          "file": "HepLean/BeyondTheStandardModel/TwoHDM/Basic.lean",
+          "kind": "lemma",
+          "name": "TwoHDM.Potential.isBounded_right_zero",
+          "docstring": null,
+          "snippet": "lemma isBounded_right_zero (h : P.IsBounded) :\n    (HiggsField.Potential.mk (- P.m₁₁2) (P.𝓵₁/2)).IsBounded",
+          "line": 156
+        },
+        {
+          "file": "HepLean/BeyondTheStandardModel/TwoHDM/Basic.lean",
+          "kind": "lemma",
+          "name": "TwoHDM.Potential.isBounded_left_zero",
+          "docstring": null,
+          "snippet": "lemma isBounded_left_zero (h : P.IsBounded) :\n    (HiggsField.Potential.mk (- P.m₂₂2) (P.𝓵₂/2)).IsBounded",
+          "line": 165
+        },
+        {
+          "file": "HepLean/BeyondTheStandardModel/TwoHDM/Basic.lean",
+          "kind": "lemma",
+          "name": "TwoHDM.Potential.isBounded_𝓵₁_nonneg",
+          "docstring": null,
+          "snippet": "lemma isBounded_𝓵₁_nonneg (h : P.IsBounded) :\n    0 ≤ P.𝓵₁",
+          "line": 174
+        },
+        {
+          "file": "HepLean/BeyondTheStandardModel/TwoHDM/Basic.lean",
+          "kind": "lemma",
+          "name": "TwoHDM.Potential.isBounded_𝓵₂_nonneg",
+          "docstring": null,
+          "snippet": "lemma isBounded_𝓵₂_nonneg (h : P.IsBounded) :\n    0 ≤ P.𝓵₂",
+          "line": 181
+        },
+        {
+          "file": "HepLean/BeyondTheStandardModel/TwoHDM/Basic.lean",
+          "kind": "lemma",
+          "name": "TwoHDM.Potential.isBounded_of_left_eq_right",
+          "docstring": null,
+          "snippet": "lemma isBounded_of_left_eq_right (h : P.IsBounded) :\n    0 ≤ P.𝓵₁/2 + P.𝓵₂/2 + P.𝓵₃ + P.𝓵₄ + P.𝓵₅.re + 2 * P.𝓵₆.re + 2 * P.𝓵₇.re",
+          "line": 188
+        },
+        {
+          "file": "HepLean/BeyondTheStandardModel/TwoHDM/Basic.lean",
+          "kind": "lemma",
+          "name": "TwoHDM.Potential.isBounded_of_left_eq_neg_right",
+          "docstring": null,
+          "snippet": "lemma isBounded_of_left_eq_neg_right (h : P.IsBounded) :\n    0 ≤ P.𝓵₁/2 + P.𝓵₂/2 + P.𝓵₃ + P.𝓵₄ + P.𝓵₅.re - 2 * P.𝓵₆.re - 2 * P.𝓵₇.re",
+          "line": 198
+        },
+        {
+          "file": "HepLean/BeyondTheStandardModel/TwoHDM/Basic.lean",
+          "kind": "lemma",
+          "name": "TwoHDM.Potential.nonneg_sum_𝓵₁_to_𝓵₅_of_isBounded",
+          "docstring": null,
+          "snippet": "lemma nonneg_sum_𝓵₁_to_𝓵₅_of_isBounded (h : P.IsBounded) :\n    0 ≤ P.𝓵₁/2 + P.𝓵₂/2 + P.𝓵₃ + P.𝓵₄ + P.𝓵₅.re",
+          "line": 208
+        }
+      ]
+    },
+    {
+      "filename": "HepLean/BeyondTheStandardModel/TwoHDM/GaugeOrbits.lean",
+      "entries": [
+        {
+          "file": "HepLean/BeyondTheStandardModel/TwoHDM/GaugeOrbits.lean",
+          "kind": "informal_definition",
+          "name": "TwoHDM.prodMatrix",
+          "docstring": null,
+          "snippet": "informal_definition prodMatrix where\n  math :≈ \"For two Higgs fields `Φ₁` and `Φ₂`, the map from space time to 2 x 2 complex matrices\n  defined by ((Φ₁^†Φ₁, Φ₂^†Φ₁), (Φ₁^†Φ₂, Φ₂^†Φ₂)). \"\n  ref :≈ \"https://arxiv.org/pdf/hep-ph/0605184 eq 3.8.\"\n  deps :≈ [``StandardModel.HiggsVec, ``SpaceTime]",
+          "line": 17
+        },
+        {
+          "file": "HepLean/BeyondTheStandardModel/TwoHDM/GaugeOrbits.lean",
+          "kind": "informal_lemma",
+          "name": "TwoHDM.prodMatrix_positive_semidefinite",
+          "docstring": null,
+          "snippet": "informal_lemma prodMatrix_positive_semidefinite where\n  math :≈ \"For all x in ``SpaceTime, ``prodMatrix at `x` is positive semidefinite.\"\n  deps :≈ [``prodMatrix, ``SpaceTime]",
+          "line": 23
+        },
+        {
+          "file": "HepLean/BeyondTheStandardModel/TwoHDM/GaugeOrbits.lean",
+          "kind": "informal_lemma",
+          "name": "TwoHDM.prodMatrix_hermitian",
+          "docstring": null,
+          "snippet": "informal_lemma prodMatrix_hermitian where\n  math :≈ \"For all x in ``SpaceTime, ``prodMatrix at `x` is hermitian.\"\n  deps :≈ [``prodMatrix, ``SpaceTime]",
+          "line": 27
+        },
+        {
+          "file": "HepLean/BeyondTheStandardModel/TwoHDM/GaugeOrbits.lean",
+          "kind": "informal_lemma",
+          "name": "TwoHDM.prodMatrix_smooth",
+          "docstring": null,
+          "snippet": "informal_lemma prodMatrix_smooth where\n  math :≈ \"The map ``prodMatrix is a smooth function on spacetime.\"\n  deps :≈ [``prodMatrix]",
+          "line": 31
+        }
+      ]
+    },
+    {
+      "filename": "HepLean/Meta/AllFilePaths.lean",
+      "entries": [
+        {
+          "file": "HepLean/Meta/AllFilePaths.lean",
+          "kind": "def",
+          "name": "allFilePaths.go",
+          "docstring": "The recursive function underlying `allFilePaths`.",
+          "snippet": "partial def allFilePaths.go (prev : Array FilePath)\n  (root : Name) (path : FilePath) : IO (Array FilePath)",
+          "line": 18
+        },
+        {
+          "file": "HepLean/Meta/AllFilePaths.lean",
+          "kind": "def",
+          "name": "allFilePaths",
+          "docstring": "Gets an array of all file paths in `HepLean`.",
+          "snippet": "partial def allFilePaths : IO (Array FilePath)",
+          "line": 29
+        }
+      ]
+    },
+    {
+      "filename": "HepLean/Meta/Informal.lean",
+      "entries": [
+        {
+          "file": "HepLean/Meta/Informal.lean",
+          "kind": "structure",
+          "name": "InformalDefinition",
+          "docstring": "The structure representating an informal definition.",
+          "snippet": "structure InformalDefinition where\n  name : Name\n  math : String\n  physics : String\n  ref : String\n  dependencies : List Name",
+          "line": 19
+        },
+        {
+          "file": "HepLean/Meta/Informal.lean",
+          "kind": "structure",
+          "name": "InformalLemma",
+          "docstring": "The structure representating an informal proof.",
+          "snippet": "structure InformalLemma where\n  name : Name\n  math : String\n  physics : String\n  proof : String\n  ref : String\n  dependencies : List Name",
+          "line": 32
+        },
+        {
+          "file": "HepLean/Meta/Informal.lean",
+          "kind": "def",
+          "name": "Informal.$name",
+          "docstring": "An informal lemma.",
+          "snippet": "def $name : InformalLemma",
+          "line": 126
+        },
+        {
+          "file": "HepLean/Meta/Informal.lean",
+          "kind": "def",
+          "name": "Informal.isInformal",
+          "docstring": "Is true if and only if a `ConstantInfo` corresponds to an `InformalLemma` or a\n  `InformalDefinition`.",
+          "snippet": "def isInformal (c : ConstantInfo) : Bool",
+          "line": 137
+        },
+        {
+          "file": "HepLean/Meta/Informal.lean",
+          "kind": "def",
+          "name": "Informal.isInformalLemma",
+          "docstring": "Is true if and only if a `ConstantInfo` corresponds to an `InformalLemma`.",
+          "snippet": "def isInformalLemma (c : ConstantInfo) : Bool",
+          "line": 144
+        },
+        {
+          "file": "HepLean/Meta/Informal.lean",
+          "kind": "def",
+          "name": "Informal.isInformalDef",
+          "docstring": "Is true if and only if a `ConstantInfo` corresponds to an `InformalDefinition`.",
+          "snippet": "def isInformalDef (c : ConstantInfo) : Bool",
+          "line": 151
+        }
+      ]
+    },
+    {
+      "filename": "HepLean/Meta/TransverseTactics.lean",
+      "entries": [
+        {
+          "file": "HepLean/Meta/TransverseTactics.lean",
+          "kind": "def",
+          "name": "transverseTactics.processCommands",
+          "docstring": "Takes in a file and returns the infostates of commands and the corresponding\n  enviroment before the command is processed.",
+          "snippet": "partial def processCommands : Frontend.FrontendM (List (Environment × InfoState))",
+          "line": 29
+        },
+        {
+          "file": "HepLean/Meta/TransverseTactics.lean",
+          "kind": "def",
+          "name": "transverseTactics.visitInfo",
+          "docstring": "Tests if a given `info` is `ofTacticInfo` and if so runs `visitTacticInfo`.",
+          "snippet": "def visitInfo (file : FilePath) (env : Environment)\n    (visitTacticInfo : FilePath → ContextInfo → TacticInfo → MetaM Unit) (ci : ContextInfo)\n    (info : Info) (acc : List (IO Unit)) : List (IO Unit)",
+          "line": 54
+        },
+        {
+          "file": "HepLean/Meta/TransverseTactics.lean",
+          "kind": "def",
+          "name": "transverseTactics.traverseForest",
+          "docstring": "Applies `visitInfo` to each node of the info trees.",
+          "snippet": "def traverseForest (file : FilePath)\n    (visitTacticInfo : FilePath → ContextInfo → TacticInfo → MetaM Unit)\n    (steps : List (Environment × InfoState)) : List (IO Unit)",
+          "line": 67
+        },
+        {
+          "file": "HepLean/Meta/TransverseTactics.lean",
+          "kind": "def",
+          "name": "transverseTactics",
+          "docstring": "Applies `visitTacticInfo` to each tactic in a file.",
+          "snippet": "unsafe def transverseTactics (file : FilePath)\n  (visitTacticInfo : FilePath → ContextInfo → TacticInfo → MetaM Unit) : IO Unit",
+          "line": 81
+        }
+      ]
+    },
+    {
+      "filename": "HepLean/SpaceTime/LorentzGroup/Proper.lean",
+      "entries": [
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Proper.lean",
+          "kind": "lemma",
+          "name": "LorentzGroup.detContinuous_eq_one",
+          "docstring": null,
+          "snippet": "lemma detContinuous_eq_one (Λ : LorentzGroup d) :\n    detContinuous Λ = Additive.toMul 0 ↔ Λ.1.det = 1",
+          "line": 59
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Proper.lean",
+          "kind": "lemma",
+          "name": "LorentzGroup.detContinuous_eq_zero",
+          "docstring": null,
+          "snippet": "lemma detContinuous_eq_zero (Λ : LorentzGroup d) :\n    detContinuous Λ = Additive.toMul (1 : ZMod 2) ↔ Λ.1.det = - 1",
+          "line": 72
+        }
+      ]
+    },
+    {
+      "filename": "HepLean/SpaceTime/LorentzGroup/Restricted.lean",
+      "entries": [
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Restricted.lean",
+          "kind": "informal_definition",
+          "name": "LorentzGroup.Restricted",
+          "docstring": null,
+          "snippet": "informal_definition Restricted where\n  math :≈ \"The subgroup of the Lorentz group consisting of elements which\n    are proper and orthochronous.\"\n  deps :≈ [``LorentzGroup, ``IsProper, ``IsOrthochronous]",
+          "line": 30
+        }
+      ]
+    },
+    {
+      "filename": "HepLean/SpaceTime/SL2C/Basic.lean",
+      "entries": [
+        {
+          "file": "HepLean/SpaceTime/SL2C/Basic.lean",
+          "kind": "informal_lemma",
+          "name": "SpaceTime.SL2C.toLorentzGroup_det_one",
+          "docstring": null,
+          "snippet": "informal_lemma toLorentzGroup_det_one where\n  math :≈ \"The determinant of the image of `SL(2, ℂ)` in the Lorentz group is one.\"\n  deps :≈ [``toLorentzGroup]",
+          "line": 127
+        },
+        {
+          "file": "HepLean/SpaceTime/SL2C/Basic.lean",
+          "kind": "informal_lemma",
+          "name": "SpaceTime.SL2C.toLorentzGroup_timeComp_nonneg",
+          "docstring": null,
+          "snippet": "informal_lemma toLorentzGroup_timeComp_nonneg where\n  math :≈ \"The time coponent of the image of `SL(2, ℂ)` in the Lorentz group is non-negative.\"\n  deps :≈ [``toLorentzGroup, ``LorentzGroup.timeComp]",
+          "line": 131
+        },
+        {
+          "file": "HepLean/SpaceTime/SL2C/Basic.lean",
+          "kind": "informal_lemma",
+          "name": "SpaceTime.SL2C.toRestrictedLorentzGroup",
+          "docstring": null,
+          "snippet": "informal_lemma toRestrictedLorentzGroup where\n  math :≈ \"The homomorphism from `SL(2, ℂ)` to the restricted Lorentz group.\"\n  deps :≈ [``toLorentzGroup, ``toLorentzGroup_det_one, ``toLorentzGroup_timeComp_nonneg,\n    ``LorentzGroup.Restricted]",
+          "line": 135
+        }
+      ]
+    },
+    {
+      "filename": "HepLean/SpaceTime/WeylFermion/Basic.lean",
+      "entries": [
+        {
+          "file": "HepLean/SpaceTime/WeylFermion/Basic.lean",
+          "kind": "informal_definition",
+          "name": "Fermion.leftHandedWeyl",
+          "docstring": null,
+          "snippet": "informal_definition leftHandedWeyl where\n  math :≈ \"The vector space ℂ^2 carrying the fundamental representation of SL(2,C).\"\n  physics :≈ \"A Weyl fermion with indices ψ_a.\"\n  ref :≈ \"https://particle.physics.ucdavis.edu/modernsusy/slides/slideimages/spinorfeynrules.pdf\"",
+          "line": 24
+        },
+        {
+          "file": "HepLean/SpaceTime/WeylFermion/Basic.lean",
+          "kind": "informal_definition",
+          "name": "Fermion.rightHandedWeyl",
+          "docstring": null,
+          "snippet": "informal_definition rightHandedWeyl where\n  math :≈ \"The vector space ℂ^2 carrying the conjguate representation of SL(2,C).\"\n  physics :≈ \"A Weyl fermion with indices ψ_{dot a}.\"\n  ref :≈ \"https://particle.physics.ucdavis.edu/modernsusy/slides/slideimages/spinorfeynrules.pdf\"",
+          "line": 29
+        },
+        {
+          "file": "HepLean/SpaceTime/WeylFermion/Basic.lean",
+          "kind": "informal_definition",
+          "name": "Fermion.altLeftHandedWeyl",
+          "docstring": null,
+          "snippet": "informal_definition altLeftHandedWeyl where\n  math :≈ \"The vector space ℂ^2 carrying the representation of SL(2,C) given by\n    M → (M⁻¹)ᵀ.\"\n  physics :≈ \"A Weyl fermion with indices ψ^a.\"\n  ref :≈ \"https://particle.physics.ucdavis.edu/modernsusy/slides/slideimages/spinorfeynrules.pdf\"",
+          "line": 34
+        },
+        {
+          "file": "HepLean/SpaceTime/WeylFermion/Basic.lean",
+          "kind": "informal_definition",
+          "name": "Fermion.altRightHandedWeyl",
+          "docstring": null,
+          "snippet": "informal_definition altRightHandedWeyl where\n  math :≈ \"The vector space ℂ^2 carrying the representation of SL(2,C) given by\n    M → (M⁻¹)^†.\"\n  physics :≈ \"A Weyl fermion with indices ψ^{dot a}.\"\n  ref :≈ \"https://particle.physics.ucdavis.edu/modernsusy/slides/slideimages/spinorfeynrules.pdf\"",
+          "line": 40
+        },
+        {
+          "file": "HepLean/SpaceTime/WeylFermion/Basic.lean",
+          "kind": "informal_definition",
+          "name": "Fermion.leftHandedWeylAltEquiv",
+          "docstring": null,
+          "snippet": "informal_definition leftHandedWeylAltEquiv where\n  math :≈ \"The linear equiv between leftHandedWeyl and altLeftHandedWeyl given\n    by multiplying an element of rightHandedWeyl by the matrix `εᵃ⁰ᵃ¹ = !![0, 1; -1, 0]]`.\"\n  deps :≈ [``leftHandedWeyl, ``altLeftHandedWeyl]",
+          "line": 52
+        },
+        {
+          "file": "HepLean/SpaceTime/WeylFermion/Basic.lean",
+          "kind": "informal_lemma",
+          "name": "Fermion.leftHandedWeylAltEquiv_equivariant",
+          "docstring": null,
+          "snippet": "informal_lemma leftHandedWeylAltEquiv_equivariant where\n  math :≈ \"The linear equiv leftHandedWeylAltEquiv is equivariant with respect to the\n    action of SL(2,C) on leftHandedWeyl and altLeftHandedWeyl.\"\n  deps :≈ [``leftHandedWeylAltEquiv]",
+          "line": 57
+        },
+        {
+          "file": "HepLean/SpaceTime/WeylFermion/Basic.lean",
+          "kind": "informal_definition",
+          "name": "Fermion.rightHandedWeylAltEquiv",
+          "docstring": null,
+          "snippet": "informal_definition rightHandedWeylAltEquiv where\n  math :≈ \"The linear equiv between rightHandedWeyl and altRightHandedWeyl given\n    by multiplying an element of rightHandedWeyl by the matrix `εᵃ⁰ᵃ¹ = !![0, 1; -1, 0]]`\"\n  deps :≈ [``rightHandedWeyl, ``altRightHandedWeyl]",
+          "line": 62
+        },
+        {
+          "file": "HepLean/SpaceTime/WeylFermion/Basic.lean",
+          "kind": "informal_lemma",
+          "name": "Fermion.rightHandedWeylAltEquiv_equivariant",
+          "docstring": null,
+          "snippet": "informal_lemma rightHandedWeylAltEquiv_equivariant where\n  math :≈ \"The linear equiv rightHandedWeylAltEquiv is equivariant with respect to the\n    action of SL(2,C) on rightHandedWeyl and altRightHandedWeyl.\"\n  deps :≈ [``rightHandedWeylAltEquiv]",
+          "line": 67
+        },
+        {
+          "file": "HepLean/SpaceTime/WeylFermion/Basic.lean",
+          "kind": "informal_definition",
+          "name": "Fermion.leftAltWeylContraction",
+          "docstring": null,
+          "snippet": "informal_definition leftAltWeylContraction where\n  math :≈ \"The linear map from leftHandedWeyl ⊗ altLeftHandedWeyl to ℂ given by\n    summing over components of leftHandedWeyl and altLeftHandedWeyl in the\n    standard basis (i.e. the dot product).\"\n  physics :≈ \"The contraction of a left-handed Weyl fermion with a right-handed Weyl fermion.\n    In index notation this is ψ_a φ^a.\"\n  deps :≈ [``leftHandedWeyl, ``altLeftHandedWeyl]",
+          "line": 78
+        },
+        {
+          "file": "HepLean/SpaceTime/WeylFermion/Basic.lean",
+          "kind": "informal_lemma",
+          "name": "Fermion.leftAltWeylContraction_invariant",
+          "docstring": null,
+          "snippet": "informal_lemma leftAltWeylContraction_invariant where\n  math :≈ \"The contraction leftAltWeylContraction is invariant with respect to\n    the action of SL(2,C) on leftHandedWeyl and altLeftHandedWeyl.\"\n  deps :≈ [``leftAltWeylContraction]",
+          "line": 86
+        },
+        {
+          "file": "HepLean/SpaceTime/WeylFermion/Basic.lean",
+          "kind": "informal_definition",
+          "name": "Fermion.altLeftWeylContraction",
+          "docstring": null,
+          "snippet": "informal_definition altLeftWeylContraction where\n  math :≈ \"The linear map from altLeftHandedWeyl ⊗ leftHandedWeyl to ℂ given by\n    summing over components of altLeftHandedWeyl and leftHandedWeyl in the\n    standard basis (i.e. the dot product).\"\n  physics :≈ \"The contraction of a left-handed Weyl fermion with a right-handed Weyl fermion.\n    In index notation this is φ^a ψ_a .\"\n  deps :≈ [``leftHandedWeyl, ``altLeftHandedWeyl]",
+          "line": 91
+        },
+        {
+          "file": "HepLean/SpaceTime/WeylFermion/Basic.lean",
+          "kind": "informal_lemma",
+          "name": "Fermion.leftAltWeylContraction_symm_altLeftWeylContraction",
+          "docstring": null,
+          "snippet": "informal_lemma leftAltWeylContraction_symm_altLeftWeylContraction where\n  math :≈ \"The linear map altLeftWeylContraction is leftAltWeylContraction composed\n    with the braiding of the tensor product.\"\n  deps :≈ [``leftAltWeylContraction, ``altLeftWeylContraction]",
+          "line": 99
+        },
+        {
+          "file": "HepLean/SpaceTime/WeylFermion/Basic.lean",
+          "kind": "informal_lemma",
+          "name": "Fermion.altLeftWeylContraction_invariant",
+          "docstring": null,
+          "snippet": "informal_lemma altLeftWeylContraction_invariant where\n  math :≈ \"The contraction altLeftWeylContraction is invariant with respect to\n    the action of SL(2,C) on leftHandedWeyl and altLeftHandedWeyl.\"\n  deps :≈ [``altLeftWeylContraction]",
+          "line": 104
+        },
+        {
+          "file": "HepLean/SpaceTime/WeylFermion/Basic.lean",
+          "kind": "informal_definition",
+          "name": "Fermion.rightAltWeylContraction",
+          "docstring": null,
+          "snippet": "informal_definition rightAltWeylContraction where\n  math :≈ \"The linear map from rightHandedWeyl ⊗ altRightHandedWeyl to ℂ given by\n    summing over components of rightHandedWeyl and altRightHandedWeyl in the\n    standard basis (i.e. the dot product).\"\n  physics :≈ \"The contraction of a right-handed Weyl fermion with a left-handed Weyl fermion.\n    In index notation this is ψ_{dot a} φ^{dot a}.\"\n  deps :≈ [``rightHandedWeyl, ``altRightHandedWeyl]",
+          "line": 109
+        },
+        {
+          "file": "HepLean/SpaceTime/WeylFermion/Basic.lean",
+          "kind": "informal_lemma",
+          "name": "Fermion.rightAltWeylContraction_invariant",
+          "docstring": null,
+          "snippet": "informal_lemma rightAltWeylContraction_invariant where\n  math :≈ \"The contraction rightAltWeylContraction is invariant with respect to\n    the action of SL(2,C) on rightHandedWeyl and altRightHandedWeyl.\"\n  deps :≈ [``rightAltWeylContraction]",
+          "line": 117
+        },
+        {
+          "file": "HepLean/SpaceTime/WeylFermion/Basic.lean",
+          "kind": "informal_definition",
+          "name": "Fermion.altRightWeylContraction",
+          "docstring": null,
+          "snippet": "informal_definition altRightWeylContraction where\n  math :≈ \"The linear map from altRightHandedWeyl ⊗ rightHandedWeyl to ℂ given by\n    summing over components of altRightHandedWeyl and rightHandedWeyl in the\n    standard basis (i.e. the dot product).\"\n  physics :≈ \"The contraction of a right-handed Weyl fermion with a left-handed Weyl fermion.\n    In index notation this is φ^{dot a} ψ_{dot a}.\"\n  deps :≈ [``rightHandedWeyl, ``altRightHandedWeyl]",
+          "line": 122
+        },
+        {
+          "file": "HepLean/SpaceTime/WeylFermion/Basic.lean",
+          "kind": "informal_lemma",
+          "name": "Fermion.rightAltWeylContraction_symm_altRightWeylContraction",
+          "docstring": null,
+          "snippet": "informal_lemma rightAltWeylContraction_symm_altRightWeylContraction where\n  math :≈ \"The linear map altRightWeylContraction is rightAltWeylContraction composed\n    with the braiding of the tensor product.\"\n  deps :≈ [``rightAltWeylContraction, ``altRightWeylContraction]",
+          "line": 130
+        },
+        {
+          "file": "HepLean/SpaceTime/WeylFermion/Basic.lean",
+          "kind": "informal_lemma",
+          "name": "Fermion.altRightWeylContraction_invariant",
+          "docstring": null,
+          "snippet": "informal_lemma altRightWeylContraction_invariant where\n  math :≈ \"The contraction altRightWeylContraction is invariant with respect to\n    the action of SL(2,C) on rightHandedWeyl and altRightHandedWeyl.\"\n  deps :≈ [``altRightWeylContraction]",
+          "line": 135
+        }
+      ]
+    },
+    {
+      "filename": "HepLean/StandardModel/Basic.lean",
+      "entries": [
+        {
+          "file": "HepLean/StandardModel/Basic.lean",
+          "kind": "abbrev",
+          "name": "StandardModel.GaugeGroupI",
+          "docstring": "The global gauge group of the Standard Model with no discrete quotients.\n  The `I` in the Name is an indication of the statement that this has no discrete quotients.",
+          "snippet": "abbrev GaugeGroupI : Type",
+          "line": 28
+        },
+        {
+          "file": "HepLean/StandardModel/Basic.lean",
+          "kind": "informal_definition",
+          "name": "StandardModel.gaugeGroupℤ₆SubGroup",
+          "docstring": null,
+          "snippet": "informal_definition gaugeGroupℤ₆SubGroup where\n  physics :≈ \"The subgroup of the un-quotiented gauge group which acts trivially on\n    all particles in the standard model. \"\n  math :≈ \"The ℤ₆-subgroup of ``GaugeGroupI with elements (α^2 * I₃, α^(-3) * I₂, α), where `α`\n    is a sixth complex root of unity.\"\n  ref :≈ \"https://math.ucr.edu/home/baez/guts.pdf\"\n  deps :≈ [``GaugeGroupI]",
+          "line": 31
+        },
+        {
+          "file": "HepLean/StandardModel/Basic.lean",
+          "kind": "informal_definition",
+          "name": "StandardModel.GaugeGroupℤ₆",
+          "docstring": null,
+          "snippet": "informal_definition GaugeGroupℤ₆ where\n  physics :≈ \"The smallest possible gauge group of the Standard Model.\"\n  math :≈ \"The quotient of ``GaugeGroupI by the ℤ₆-subgroup `gaugeGroupℤ₆SubGroup`.\"\n  ref :≈ \"https://math.ucr.edu/home/baez/guts.pdf\"\n  deps :≈ [``GaugeGroupI, ``StandardModel.gaugeGroupℤ₆SubGroup]",
+          "line": 39
+        },
+        {
+          "file": "HepLean/StandardModel/Basic.lean",
+          "kind": "informal_definition",
+          "name": "StandardModel.gaugeGroupℤ₂SubGroup",
+          "docstring": null,
+          "snippet": "informal_definition gaugeGroupℤ₂SubGroup where\n  physics :≈ \"The ℤ₂subgroup of the un-quotiented gauge group which acts trivially on\n    all particles in the standard model. \"\n  math :≈ \"The ℤ₂-subgroup of ``GaugeGroupI derived from the ℤ₂ subgroup of `gaugeGroupℤ₆SubGroup`.\"\n  ref :≈ \"https://math.ucr.edu/home/baez/guts.pdf\"\n  deps :≈ [``GaugeGroupI, ``StandardModel.gaugeGroupℤ₆SubGroup]",
+          "line": 45
+        },
+        {
+          "file": "HepLean/StandardModel/Basic.lean",
+          "kind": "informal_definition",
+          "name": "StandardModel.GaugeGroupℤ₂",
+          "docstring": null,
+          "snippet": "informal_definition GaugeGroupℤ₂ where\n  physics :≈ \"The guage group of the Standard Model with a ℤ₂ quotient.\"\n  math :≈ \"The quotient of ``GaugeGroupI by the ℤ₂-subgroup `gaugeGroupℤ₂SubGroup`.\"\n  ref :≈ \"https://math.ucr.edu/home/baez/guts.pdf\"\n  deps :≈ [``GaugeGroupI, ``StandardModel.gaugeGroupℤ₂SubGroup]",
+          "line": 52
+        },
+        {
+          "file": "HepLean/StandardModel/Basic.lean",
+          "kind": "informal_definition",
+          "name": "StandardModel.gaugeGroupℤ₃SubGroup",
+          "docstring": null,
+          "snippet": "informal_definition gaugeGroupℤ₃SubGroup where\n  physics :≈ \"The ℤ₃-subgroup of the un-quotiented gauge group which acts trivially on\n    all particles in the standard model. \"\n  math :≈ \"The ℤ₃-subgroup of ``GaugeGroupI derived from the ℤ₃ subgroup of `gaugeGroupℤ₆SubGroup`.\"\n  ref :≈ \"https://math.ucr.edu/home/baez/guts.pdf\"\n  deps :≈ [``GaugeGroupI, ``StandardModel.gaugeGroupℤ₆SubGroup]",
+          "line": 58
+        },
+        {
+          "file": "HepLean/StandardModel/Basic.lean",
+          "kind": "informal_definition",
+          "name": "StandardModel.GaugeGroupℤ₃",
+          "docstring": null,
+          "snippet": "informal_definition GaugeGroupℤ₃ where\n  physics :≈ \"The guage group of the Standard Model with a ℤ₃-quotient.\"\n  math :≈ \"The quotient of ``GaugeGroupI by the ℤ₃-subgroup `gaugeGroupℤ₃SubGroup`.\"\n  ref :≈ \"https://math.ucr.edu/home/baez/guts.pdf\"\n  deps :≈ [``GaugeGroupI, ``StandardModel.gaugeGroupℤ₃SubGroup]",
+          "line": 65
+        },
+        {
+          "file": "HepLean/StandardModel/Basic.lean",
+          "kind": "inductive",
+          "name": "StandardModel.GaugeGroupQuot",
+          "docstring": "Specifies the allowed quotients of `SU(3) x SU(2) x U(1)` which give a valid\n  gauge group of the Standard Model.",
+          "snippet": "inductive GaugeGroupQuot : Type\n  | ℤ₆ : GaugeGroupQuot\n  | ℤ₂ : GaugeGroupQuot\n  | ℤ₃ : GaugeGroupQuot\n  | I : GaugeGroupQuot",
+          "line": 73
+        },
+        {
+          "file": "HepLean/StandardModel/Basic.lean",
+          "kind": "informal_lemma",
+          "name": "StandardModel.gaugeGroupI_lie",
+          "docstring": null,
+          "snippet": "informal_lemma gaugeGroupI_lie where\n  math :≈ \"The gauge group `GaugeGroupI` is a Lie group..\"\n  deps :≈ [``GaugeGroupI]",
+          "line": 93
+        },
+        {
+          "file": "HepLean/StandardModel/Basic.lean",
+          "kind": "informal_lemma",
+          "name": "StandardModel.gaugeGroup_lie",
+          "docstring": null,
+          "snippet": "informal_lemma gaugeGroup_lie where\n  math :≈ \"For every q in ``GaugeGroupQuot the group ``GaugeGroup q is a Lie group.\"\n  deps :≈ [``GaugeGroup]",
+          "line": 97
+        },
+        {
+          "file": "HepLean/StandardModel/Basic.lean",
+          "kind": "informal_definition",
+          "name": "StandardModel.gaugeBundleI",
+          "docstring": null,
+          "snippet": "informal_definition gaugeBundleI where\n  math :≈ \"The trivial principal bundle over SpaceTime with structure group ``GaugeGroupI.\"\n  deps :≈ [``GaugeGroupI, ``SpaceTime]",
+          "line": 101
+        },
+        {
+          "file": "HepLean/StandardModel/Basic.lean",
+          "kind": "informal_definition",
+          "name": "StandardModel.gaugeTransformI",
+          "docstring": null,
+          "snippet": "informal_definition gaugeTransformI where\n  math :≈ \"A global section of ``gaugeBundleI.\"\n  deps :≈ [``gaugeBundleI]",
+          "line": 105
+        }
+      ]
+    },
+    {
+      "filename": "HepLean/StandardModel/HiggsBoson/Basic.lean",
+      "entries": [
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Basic.lean",
+          "kind": "def",
+          "name": "StandardModel.HiggsVec.ofReal",
+          "docstring": "Generating a Higgs vector from a real number, such that the norm-squared of that Higgs vector\n  is the given real number.",
+          "snippet": "def ofReal (a : ℝ) : HiggsVec",
+          "line": 65
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Basic.lean",
+          "kind": "lemma",
+          "name": "StandardModel.HiggsVec.ofReal_normSq",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma ofReal_normSq {a : ℝ} (ha : 0 ≤ a) : ‖ofReal a‖ ^ 2 = a",
+          "line": 69
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Basic.lean",
+          "kind": "lemma",
+          "name": "StandardModel.HiggsVec.toField_apply",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma HiggsVec.toField_apply (φ : HiggsVec) (x : SpaceTime) : (φ.toField x) = φ",
+          "line": 109
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Basic.lean",
+          "kind": "def",
+          "name": "StandardModel.HiggsField.ofReal",
+          "docstring": "Generating a constant Higgs field from a real number, such that the norm-squared of that Higgs\n  vector is the given real number.",
+          "snippet": "def ofReal (a : ℝ) : HiggsField",
+          "line": 172
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Basic.lean",
+          "kind": "def",
+          "name": "StandardModel.HiggsField.zero",
+          "docstring": "The higgs field which is all zero.",
+          "snippet": "def zero : HiggsField",
+          "line": 175
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Basic.lean",
+          "kind": "informal_lemma",
+          "name": "StandardModel.HiggsField.zero_is_zero_section",
+          "docstring": null,
+          "snippet": "informal_lemma zero_is_zero_section where\n  physics :≈ \"The zero Higgs field is the zero section of the Higgs bundle.\"\n  math :≈ \"The HiggsField `zero` defined by `ofReal 0`\n    is the constant zero-section of the bundle `HiggsBundle`.\"\n  deps :≈ [`StandardModel.HiggsField.zero]",
+          "line": 177
+        }
+      ]
+    },
+    {
+      "filename": "HepLean/StandardModel/HiggsBoson/GaugeAction.lean",
+      "entries": [
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/GaugeAction.lean",
+          "kind": "theorem",
+          "name": "StandardModel.HiggsVec.rotate_fst_real_snd_zero",
+          "docstring": null,
+          "snippet": "theorem rotate_fst_real_snd_zero (φ : HiggsVec) :\n    ∃ (g : GaugeGroupI), rep g φ = ![Complex.ofReal ‖φ‖, 0]",
+          "line": 168
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/GaugeAction.lean",
+          "kind": "informal_lemma",
+          "name": "StandardModel.HiggsVec.guage_orbit",
+          "docstring": null,
+          "snippet": "informal_lemma guage_orbit where\n  math :≈ \"There exists a `g` in ``GaugeGroupI such that `rep g φ = φ'` if and only if\n    ‖φ‖ = ‖φ'‖.\"\n  deps :≈ [``rotate_fst_zero_snd_real]",
+          "line": 193
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/GaugeAction.lean",
+          "kind": "informal_lemma",
+          "name": "StandardModel.HiggsVec.stability_group_single",
+          "docstring": null,
+          "snippet": "informal_lemma stability_group_single where\n  physics :≈ \"The Higgs boson breaks electroweak symmetry down to the electromagnetic force.\"\n  math :≈ \"The stablity group of the action of `rep` on `![0, Complex.ofReal ‖φ‖]`,\n    for non-zero `‖φ‖` is the `SU(3) x U(1)` subgroup of\n    `gaugeGroup := SU(3) x SU(2) x U(1)` with the embedding given by\n    `(g, e^{i θ}) ↦ (g, diag (e ^ {3 * i θ}, e ^ {- 3 * i θ}), e^{i θ})`.\"\n  deps :≈ [``StandardModel.HiggsVec, ``StandardModel.HiggsVec.rep]",
+          "line": 198
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/GaugeAction.lean",
+          "kind": "informal_lemma",
+          "name": "StandardModel.HiggsVec.stability_group",
+          "docstring": null,
+          "snippet": "informal_lemma stability_group where\n  math :≈ \"The subgroup of `gaugeGroup := SU(3) x SU(2) x U(1)` which preserves every `HiggsVec`\n    by the action of ``StandardModel.HiggsVec.rep is given by `SU(3) x ℤ₆` where ℤ₆\n    is the subgroup of `SU(2) x U(1)` with elements `(α^(-3) * I₂, α)` where\n    α is a sixth root of unity.\"\n  deps :≈ [``HiggsVec, ``rep]",
+          "line": 206
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/GaugeAction.lean",
+          "kind": "informal_definition",
+          "name": "StandardModel.HiggsField.gaugeAction",
+          "docstring": null,
+          "snippet": "informal_definition gaugeAction where\n  math :≈ \"The action of ``gaugeTransformI on ``HiggsField acting pointwise through\n    ``HiggsVec.rep.\"\n  deps :≈ [``HiggsVec.rep, ``gaugeTransformI]",
+          "line": 227
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/GaugeAction.lean",
+          "kind": "informal_lemma",
+          "name": "StandardModel.HiggsField.guage_orbit",
+          "docstring": null,
+          "snippet": "informal_lemma guage_orbit where\n  math :≈ \"There exists a `g` in ``gaugeTransformI such that `gaugeAction g φ = φ'` if and only if\n    φ(x)^† φ(x) = φ'(x)^† φ'(x).\"\n  deps :≈ [``gaugeAction]",
+          "line": 232
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/GaugeAction.lean",
+          "kind": "informal_lemma",
+          "name": "StandardModel.HiggsField.gauge_orbit_surject",
+          "docstring": null,
+          "snippet": "informal_lemma gauge_orbit_surject where\n  math :≈ \"For every smooth map f from ``SpaceTime to ℝ such that `f` is positive semidefinite,\n    there exists a Higgs field φ such that `f = φ^† φ`.\"\n  deps :≈ [``HiggsField, ``SpaceTime]",
+          "line": 237
+        }
+      ]
+    },
+    {
+      "filename": "HepLean/StandardModel/HiggsBoson/PointwiseInnerProd.lean",
+      "entries": [
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/PointwiseInnerProd.lean",
+          "kind": "lemma",
+          "name": "StandardModel.HiggsField.innerProd_neg_left",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma innerProd_neg_left (φ1 φ2 : HiggsField) : ⟪- φ1, φ2⟫_H = -⟪φ1, φ2⟫_H",
+          "line": 50
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/PointwiseInnerProd.lean",
+          "kind": "lemma",
+          "name": "StandardModel.HiggsField.innerProd_neg_right",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma innerProd_neg_right (φ1 φ2 : HiggsField) : ⟪φ1, - φ2⟫_H = -⟪φ1, φ2⟫_H",
+          "line": 55
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/PointwiseInnerProd.lean",
+          "kind": "lemma",
+          "name": "StandardModel.HiggsField.normSq_apply_im_zero",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma normSq_apply_im_zero (φ : HiggsField) (x : SpaceTime) :\n    ((Complex.ofReal' ‖φ x‖) ^ 2).im = 0",
+          "line": 137
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/PointwiseInnerProd.lean",
+          "kind": "lemma",
+          "name": "StandardModel.HiggsField.normSq_apply_re_self",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma normSq_apply_re_self (φ : HiggsField) (x : SpaceTime) :\n    ((Complex.ofReal' ‖φ x‖) ^ 2).re = φ.normSq x",
+          "line": 144
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/PointwiseInnerProd.lean",
+          "kind": "lemma",
+          "name": "StandardModel.HiggsField.ofReal_normSq",
+          "docstring": null,
+          "snippet": "lemma ofReal_normSq {a : ℝ} (ha : 0 ≤ a) (x : SpaceTime) : (ofReal a).normSq x = a",
+          "line": 174
+        }
+      ]
+    },
+    {
+      "filename": "HepLean/StandardModel/HiggsBoson/Potential.lean",
+      "entries": [
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Potential.lean",
+          "kind": "structure",
+          "name": "StandardModel.HiggsField.Potential",
+          "docstring": "The parameters of the Higgs potential.",
+          "snippet": "structure Potential where\n  μ2 : ℝ\n  𝓵 : ℝ",
+          "line": 37
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Potential.lean",
+          "kind": "def",
+          "name": "StandardModel.HiggsField.Potential.toFun",
+          "docstring": "The function corresponding to the Higgs potential.",
+          "snippet": "def toFun (φ : HiggsField) (x : SpaceTime) : ℝ",
+          "line": 48
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Potential.lean",
+          "kind": "lemma",
+          "name": "StandardModel.HiggsField.Potential.toFun_smooth",
+          "docstring": "The potential is smooth.",
+          "snippet": "lemma toFun_smooth (φ : HiggsField) :\n    Smooth 𝓘(ℝ, SpaceTime) 𝓘(ℝ, ℝ) (fun x => P.toFun φ x)",
+          "line": 52
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Potential.lean",
+          "kind": "def",
+          "name": "StandardModel.HiggsField.Potential.neg",
+          "docstring": "The Higgs potential formed by negating the mass squared and the quartic coupling.",
+          "snippet": "def neg : Potential where",
+          "line": 59
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Potential.lean",
+          "kind": "lemma",
+          "name": "StandardModel.HiggsField.Potential.toFun_neg",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma toFun_neg (φ : HiggsField) (x : SpaceTime) : P.neg.toFun φ x = - P.toFun φ x",
+          "line": 64
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Potential.lean",
+          "kind": "lemma",
+          "name": "StandardModel.HiggsField.Potential.μ2_neg",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma μ2_neg : P.neg.μ2 = - P.μ2",
+          "line": 69
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Potential.lean",
+          "kind": "lemma",
+          "name": "StandardModel.HiggsField.Potential.𝓵_neg",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma 𝓵_neg : P.neg.𝓵 = - P.𝓵",
+          "line": 72
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Potential.lean",
+          "kind": "lemma",
+          "name": "StandardModel.HiggsField.Potential.toFun_zero",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma toFun_zero (x : SpaceTime) : P.toFun HiggsField.zero x = 0",
+          "line": 81
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Potential.lean",
+          "kind": "lemma",
+          "name": "StandardModel.HiggsField.Potential.complete_square",
+          "docstring": null,
+          "snippet": "lemma complete_square (h : P.𝓵 ≠ 0) (φ : HiggsField) (x : SpaceTime) :\n    P.toFun φ x = P.𝓵 * (‖φ‖_H ^ 2 x - P.μ2 / (2 * P.𝓵)) ^ 2 - P.μ2 ^ 2 / (4 * P.𝓵)",
+          "line": 84
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Potential.lean",
+          "kind": "lemma",
+          "name": "StandardModel.HiggsField.Potential.as_quad",
+          "docstring": null,
+          "snippet": "lemma as_quad (φ : HiggsField) (x : SpaceTime) :\n    P.𝓵 * ‖φ‖_H ^ 2 x * ‖φ‖_H ^ 2 x + (- P.μ2) * ‖φ‖_H ^ 2 x + (- P.toFun φ x) = 0",
+          "line": 90
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Potential.lean",
+          "kind": "lemma",
+          "name": "StandardModel.HiggsField.Potential.toFun_eq_zero_iff",
+          "docstring": null,
+          "snippet": "lemma toFun_eq_zero_iff (h : P.𝓵 ≠ 0) (φ : HiggsField) (x : SpaceTime) :\n    P.toFun φ x = 0 ↔ φ x = 0 ∨ ‖φ‖_H ^ 2 x = P.μ2 / P.𝓵",
+          "line": 95
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Potential.lean",
+          "kind": "def",
+          "name": "StandardModel.HiggsField.Potential.quadDiscrim",
+          "docstring": "The discrimiant of the quadratic equation formed by the Higgs potential.",
+          "snippet": "def quadDiscrim (φ : HiggsField) (x : SpaceTime) : ℝ",
+          "line": 123
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Potential.lean",
+          "kind": "lemma",
+          "name": "StandardModel.HiggsField.Potential.quadDiscrim_nonneg",
+          "docstring": "The discriminant of the quadratic formed by the potential is non-negative.",
+          "snippet": "lemma quadDiscrim_nonneg (h : P.𝓵 ≠ 0) (φ : HiggsField) (x : SpaceTime) :\n    0 ≤ P.quadDiscrim φ x",
+          "line": 126
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Potential.lean",
+          "kind": "lemma",
+          "name": "StandardModel.HiggsField.Potential.quadDiscrim_eq_sqrt_mul_sqrt",
+          "docstring": null,
+          "snippet": "lemma quadDiscrim_eq_sqrt_mul_sqrt (h : P.𝓵 ≠ 0) (φ : HiggsField) (x : SpaceTime) :\n    P.quadDiscrim φ x = Real.sqrt (P.quadDiscrim φ x) * Real.sqrt (P.quadDiscrim φ x)",
+          "line": 134
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Potential.lean",
+          "kind": "lemma",
+          "name": "StandardModel.HiggsField.Potential.quadDiscrim_eq_zero_iff",
+          "docstring": null,
+          "snippet": "lemma quadDiscrim_eq_zero_iff (h : P.𝓵 ≠ 0) (φ : HiggsField) (x : SpaceTime) :\n    P.quadDiscrim φ x = 0 ↔ P.toFun φ x = - P.μ2 ^ 2 / (4 * P.𝓵)",
+          "line": 138
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Potential.lean",
+          "kind": "lemma",
+          "name": "StandardModel.HiggsField.Potential.quadDiscrim_eq_zero_iff_normSq",
+          "docstring": null,
+          "snippet": "lemma quadDiscrim_eq_zero_iff_normSq (h : P.𝓵 ≠ 0) (φ : HiggsField) (x : SpaceTime) :\n    P.quadDiscrim φ x = 0 ↔ ‖φ‖_H ^ 2 x = P.μ2 / (2 * P.𝓵)",
+          "line": 146
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Potential.lean",
+          "kind": "lemma",
+          "name": "StandardModel.HiggsField.Potential.neg_𝓵_quadDiscrim_zero_bound",
+          "docstring": null,
+          "snippet": "lemma neg_𝓵_quadDiscrim_zero_bound (h : P.𝓵 < 0) (φ : HiggsField) (x : SpaceTime) :\n    P.toFun φ x ≤ - P.μ2 ^ 2 / (4 * P.𝓵)",
+          "line": 158
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Potential.lean",
+          "kind": "lemma",
+          "name": "StandardModel.HiggsField.Potential.pos_𝓵_quadDiscrim_zero_bound",
+          "docstring": null,
+          "snippet": "lemma pos_𝓵_quadDiscrim_zero_bound (h : 0 < P.𝓵) (φ : HiggsField) (x : SpaceTime) :\n    - P.μ2 ^ 2 / (4 * P.𝓵) ≤ P.toFun φ x",
+          "line": 169
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Potential.lean",
+          "kind": "lemma",
+          "name": "StandardModel.HiggsField.Potential.neg_𝓵_toFun_neg",
+          "docstring": null,
+          "snippet": "lemma neg_𝓵_toFun_neg (h : P.𝓵 < 0) (φ : HiggsField) (x : SpaceTime) :\n    (0 < P.μ2 ∧ P.toFun φ x ≤ 0) ∨ P.μ2 ≤ 0",
+          "line": 176
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Potential.lean",
+          "kind": "lemma",
+          "name": "StandardModel.HiggsField.Potential.pos_𝓵_toFun_pos",
+          "docstring": null,
+          "snippet": "lemma pos_𝓵_toFun_pos (h : 0 < P.𝓵) (φ : HiggsField) (x : SpaceTime) :\n    (P.μ2 < 0 ∧ 0 ≤ P.toFun φ x) ∨ 0 ≤ P.μ2",
+          "line": 190
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Potential.lean",
+          "kind": "lemma",
+          "name": "StandardModel.HiggsField.Potential.neg_𝓵_sol_exists_iff",
+          "docstring": null,
+          "snippet": "lemma neg_𝓵_sol_exists_iff (h𝓵 : P.𝓵 < 0) (c : ℝ) : (∃ φ x, P.toFun φ x = c) ↔ (0 < P.μ2 ∧ c ≤ 0) ∨\n    (P.μ2 ≤ 0 ∧ c ≤ - P.μ2 ^ 2 / (4 * P.𝓵))",
+          "line": 194
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Potential.lean",
+          "kind": "lemma",
+          "name": "StandardModel.HiggsField.Potential.pos_𝓵_sol_exists_iff",
+          "docstring": null,
+          "snippet": "lemma pos_𝓵_sol_exists_iff (h𝓵 : 0 < P.𝓵) (c : ℝ) : (∃ φ x, P.toFun φ x = c) ↔ (P.μ2 < 0 ∧ 0 ≤ c) ∨\n    (0 ≤ P.μ2 ∧ - P.μ2 ^ 2 / (4 * P.𝓵) ≤ c)",
+          "line": 247
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Potential.lean",
+          "kind": "def",
+          "name": "StandardModel.HiggsField.Potential.IsBounded",
+          "docstring": "The proposition on the coefficents for a potential to be bounded.",
+          "snippet": "def IsBounded : Prop",
+          "line": 261
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Potential.lean",
+          "kind": "lemma",
+          "name": "StandardModel.HiggsField.Potential.isBounded_𝓵_nonneg",
+          "docstring": null,
+          "snippet": "lemma isBounded_𝓵_nonneg (h : P.IsBounded) :\n    0 ≤ P.𝓵",
+          "line": 264
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Potential.lean",
+          "kind": "lemma",
+          "name": "StandardModel.HiggsField.Potential.isBounded_of_𝓵_pos",
+          "docstring": null,
+          "snippet": "lemma isBounded_of_𝓵_pos (h : 0 < P.𝓵) : P.IsBounded",
+          "line": 309
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Potential.lean",
+          "kind": "informal_lemma",
+          "name": "StandardModel.HiggsField.Potential.isBounded_iff_of_𝓵_zero",
+          "docstring": null,
+          "snippet": "informal_lemma isBounded_iff_of_𝓵_zero where\n  physics :≈ \"When there is no quartic coupling, the potential is bounded iff the mass squared is\n    non-positive.\"\n  math :≈ \"For `P : Potential` then P.IsBounded if and only if P.μ2 ≤ 0.\n    That is to say `- P.μ2 * ‖φ‖_H ^ 2 x` is bounded below if and only if `P.μ2 ≤ 0`.\"\n  deps :≈ [`StandardModel.HiggsField.Potential.IsBounded, `StandardModel.HiggsField.Potential]",
+          "line": 318
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Potential.lean",
+          "kind": "lemma",
+          "name": "StandardModel.HiggsField.Potential.eq_zero_iff_of_μSq_nonpos_𝓵_pos",
+          "docstring": null,
+          "snippet": "lemma eq_zero_iff_of_μSq_nonpos_𝓵_pos (h𝓵 : 0 < P.𝓵) (hμ2 : P.μ2 ≤ 0) (φ : HiggsField)\n    (x : SpaceTime) : P.toFun φ x = 0 ↔ φ x = 0",
+          "line": 330
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Potential.lean",
+          "kind": "lemma",
+          "name": "StandardModel.HiggsField.Potential.isMinOn_iff_of_μSq_nonpos_𝓵_pos",
+          "docstring": null,
+          "snippet": "lemma isMinOn_iff_of_μSq_nonpos_𝓵_pos (h𝓵 : 0 < P.𝓵) (hμ2 : P.μ2 ≤ 0) (φ : HiggsField)\n    (x : SpaceTime) : IsMinOn (fun (φ, x) => P.toFun φ x) Set.univ (φ, x)\n    ↔ P.toFun φ x = 0",
+          "line": 341
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Potential.lean",
+          "kind": "lemma",
+          "name": "StandardModel.HiggsField.Potential.isMinOn_iff_field_of_μSq_nonpos_𝓵_pos",
+          "docstring": null,
+          "snippet": "lemma isMinOn_iff_field_of_μSq_nonpos_𝓵_pos (h𝓵 : 0 < P.𝓵) (hμ2 : P.μ2 ≤ 0) (φ : HiggsField)\n    (x : SpaceTime) : IsMinOn (fun (φ, x) => P.toFun φ x) Set.univ (φ, x)\n    ↔ φ x = 0",
+          "line": 368
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Potential.lean",
+          "kind": "lemma",
+          "name": "StandardModel.HiggsField.Potential.isMinOn_iff_of_μSq_nonneg_𝓵_pos",
+          "docstring": null,
+          "snippet": "lemma isMinOn_iff_of_μSq_nonneg_𝓵_pos (h𝓵 : 0 < P.𝓵) (hμ2 : 0 ≤ P.μ2) (φ : HiggsField)\n    (x : SpaceTime) : IsMinOn (fun (φ, x) => P.toFun φ x) Set.univ (φ, x) ↔\n    P.toFun φ x = - P.μ2 ^ 2 / (4 * P.𝓵)",
+          "line": 374
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Potential.lean",
+          "kind": "lemma",
+          "name": "StandardModel.HiggsField.Potential.isMinOn_iff_field_of_μSq_nonneg_𝓵_pos",
+          "docstring": null,
+          "snippet": "lemma isMinOn_iff_field_of_μSq_nonneg_𝓵_pos (h𝓵 : 0 < P.𝓵) (hμ2 : 0 ≤ P.μ2) (φ : HiggsField)\n    (x : SpaceTime) : IsMinOn (fun (φ, x) => P.toFun φ x) Set.univ (φ, x) ↔\n    ‖φ‖_H ^ 2 x = P.μ2 /(2 * P.𝓵)",
+          "line": 391
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Potential.lean",
+          "kind": "theorem",
+          "name": "StandardModel.HiggsField.Potential.isMinOn_iff_field_of_𝓵_pos",
+          "docstring": null,
+          "snippet": "theorem isMinOn_iff_field_of_𝓵_pos (h𝓵 : 0 < P.𝓵) (φ : HiggsField) (x : SpaceTime) :\n    IsMinOn (fun (φ, x) => P.toFun φ x) Set.univ (φ, x) ↔\n    (0 ≤ P.μ2 ∧ ‖φ‖_H ^ 2 x = P.μ2 /(2 * P.𝓵)) ∨ (P.μ2 < 0 ∧ φ x = 0)",
+          "line": 397
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Potential.lean",
+          "kind": "lemma",
+          "name": "StandardModel.HiggsField.Potential.isMaxOn_iff_isMinOn_neg",
+          "docstring": null,
+          "snippet": "lemma isMaxOn_iff_isMinOn_neg (φ : HiggsField) (x : SpaceTime) :\n    IsMaxOn (fun (φ, x) => P.toFun φ x) Set.univ (φ, x) ↔\n    IsMinOn (fun (φ, x) => P.neg.toFun φ x) Set.univ (φ, x)",
+          "line": 404
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Potential.lean",
+          "kind": "lemma",
+          "name": "StandardModel.HiggsField.Potential.isMaxOn_iff_field_of_𝓵_neg",
+          "docstring": null,
+          "snippet": "lemma isMaxOn_iff_field_of_𝓵_neg (h𝓵 : P.𝓵 < 0) (φ : HiggsField) (x : SpaceTime) :\n    IsMaxOn (fun (φ, x) => P.toFun φ x) Set.univ (φ, x) ↔\n    (P.μ2 ≤ 0 ∧ ‖φ‖_H ^ 2 x = P.μ2 /(2 * P.𝓵)) ∨ (0 < P.μ2 ∧ φ x = 0)",
+          "line": 411
+        }
+      ]
+    },
+    {
+      "filename": "scripts/MetaPrograms/check_rfl.lean",
+      "entries": [
+        {
+          "file": "scripts/MetaPrograms/check_rfl.lean",
+          "kind": "def",
+          "name": "Lean.Elab.TacticInfo.name?",
+          "docstring": null,
+          "snippet": "def name? (t : TacticInfo) : Option Name",
+          "line": 29
+        },
+        {
+          "file": "scripts/MetaPrograms/check_rfl.lean",
+          "kind": "def",
+          "name": "Lean.Elab.TacticInfo.isSubstantive",
+          "docstring": "Decide whether a tactic is \"substantive\",\nor is merely a tactic combinator (e.g. `by`, `;`, multiline tactics, parenthesized tactics).",
+          "snippet": "def isSubstantive (t : TacticInfo) : Bool",
+          "line": 36
+        },
+        {
+          "file": "scripts/MetaPrograms/check_rfl.lean",
+          "kind": "def",
+          "name": "visitTacticInfo",
+          "docstring": null,
+          "snippet": "def visitTacticInfo (file : FilePath) (ci : ContextInfo) (ti : TacticInfo) : MetaM Unit",
+          "line": 54
+        },
+        {
+          "file": "scripts/MetaPrograms/check_rfl.lean",
+          "kind": "def",
+          "name": "processAllFiles",
+          "docstring": null,
+          "snippet": "unsafe def processAllFiles : IO Unit",
+          "line": 85
+        },
+        {
+          "file": "scripts/MetaPrograms/check_rfl.lean",
+          "kind": "def",
+          "name": "main",
+          "docstring": null,
+          "snippet": "unsafe def main (args : List String) : IO Unit",
+          "line": 97
+        }
+      ]
+    },
+    {
+      "filename": "scripts/MetaPrograms/free_simps.lean",
+      "entries": [
+        {
+          "file": "scripts/MetaPrograms/free_simps.lean",
+          "kind": "def",
+          "name": "Lean.Elab.TacticInfo.name?",
+          "docstring": null,
+          "snippet": "def name? (t : TacticInfo) : Option Name",
+          "line": 30
+        },
+        {
+          "file": "scripts/MetaPrograms/free_simps.lean",
+          "kind": "def",
+          "name": "Lean.Elab.TacticInfo.isSimp",
+          "docstring": "Decide whether a tactic is \"substantive\",\nor is merely a tactic combinator (e.g. `by`, `;`, multiline tactics, parenthesized tactics).",
+          "snippet": "def isSimp (t : TacticInfo) : Bool",
+          "line": 37
+        },
+        {
+          "file": "scripts/MetaPrograms/free_simps.lean",
+          "kind": "def",
+          "name": "visitTacticInfo",
+          "docstring": null,
+          "snippet": "def visitTacticInfo (file : FilePath) (ci : ContextInfo) (ti : TacticInfo) : MetaM Unit",
+          "line": 44
+        },
+        {
+          "file": "scripts/MetaPrograms/free_simps.lean",
+          "kind": "def",
+          "name": "processAllFiles",
+          "docstring": null,
+          "snippet": "unsafe def processAllFiles : IO Unit",
+          "line": 60
+        },
+        {
+          "file": "scripts/MetaPrograms/free_simps.lean",
+          "kind": "def",
+          "name": "main",
+          "docstring": null,
+          "snippet": "unsafe def main (args : List String) : IO Unit",
+          "line": 74
+        }
+      ]
+    },
+    {
+      "filename": "scripts/MetaPrograms/informal.lean",
+      "entries": [
+        {
+          "file": "scripts/MetaPrograms/informal.lean",
+          "kind": "def",
+          "name": "getConst",
+          "docstring": null,
+          "snippet": "def getConst (imp : Import) : IO (Array (Import × ConstantInfo))",
+          "line": 23
+        },
+        {
+          "file": "scripts/MetaPrograms/informal.lean",
+          "kind": "def",
+          "name": "getLineNumber",
+          "docstring": null,
+          "snippet": "def getLineNumber (c : Name) : MetaM Nat",
+          "line": 28
+        },
+        {
+          "file": "scripts/MetaPrograms/informal.lean",
+          "kind": "def",
+          "name": "getModule",
+          "docstring": null,
+          "snippet": "def getModule (c : Name) : MetaM Name",
+          "line": 33
+        },
+        {
+          "file": "scripts/MetaPrograms/informal.lean",
+          "kind": "def",
+          "name": "getConstInfo",
+          "docstring": null,
+          "snippet": "def getConstInfo (n : Name) : MetaM ConstantInfo",
+          "line": 38
+        },
+        {
+          "file": "scripts/MetaPrograms/informal.lean",
+          "kind": "def",
+          "name": "getDocString",
+          "docstring": "Gets the docstring from a name, if it exists, otherwise the string \"No docstring.\"",
+          "snippet": "def getDocString (n : Name) : MetaM String",
+          "line": 44
+        },
+        {
+          "file": "scripts/MetaPrograms/informal.lean",
+          "kind": "def",
+          "name": "depToString",
+          "docstring": null,
+          "snippet": "def depToString (d : Name) : MetaM String",
+          "line": 49
+        },
+        {
+          "file": "scripts/MetaPrograms/informal.lean",
+          "kind": "def",
+          "name": "depToWebString",
+          "docstring": null,
+          "snippet": "def depToWebString (d : Name) : MetaM String",
+          "line": 54
+        },
+        {
+          "file": "scripts/MetaPrograms/informal.lean",
+          "kind": "def",
+          "name": "constantInfoToInformalLemma",
+          "docstring": "Takes a `ConstantInfo` corresponding to a `InformalLemma` and returns\n  the corresponding `InformalLemma`.",
+          "snippet": "unsafe def constantInfoToInformalLemma (c : ConstantInfo) : MetaM InformalLemma",
+          "line": 63
+        },
+        {
+          "file": "scripts/MetaPrograms/informal.lean",
+          "kind": "def",
+          "name": "constantInfoToInformalDefinition",
+          "docstring": "Takes a `ConstantInfo` corresponding to a `InformalDefinition` and returns\n  the corresponding `InformalDefinition`.",
+          "snippet": "unsafe def constantInfoToInformalDefinition (c : ConstantInfo) : MetaM InformalDefinition",
+          "line": 71
+        },
+        {
+          "file": "scripts/MetaPrograms/informal.lean",
+          "kind": "def",
+          "name": "informalDependencies",
+          "docstring": null,
+          "snippet": "unsafe def informalDependencies (c : ConstantInfo) : MetaM (Array Name)",
+          "line": 78
+        },
+        {
+          "file": "scripts/MetaPrograms/informal.lean",
+          "kind": "def",
+          "name": "informalLemmaToString",
+          "docstring": null,
+          "snippet": "unsafe def informalLemmaToString (c : Import × ConstantInfo) : MetaM String",
+          "line": 88
+        },
+        {
+          "file": "scripts/MetaPrograms/informal.lean",
+          "kind": "def",
+          "name": "informalLemmaToWebString",
+          "docstring": null,
+          "snippet": "unsafe def informalLemmaToWebString (c : Import × ConstantInfo) : MetaM String",
+          "line": 101
+        },
+        {
+          "file": "scripts/MetaPrograms/informal.lean",
+          "kind": "def",
+          "name": "informalDefToString",
+          "docstring": null,
+          "snippet": "unsafe def informalDefToString (c : Import × ConstantInfo) : MetaM String",
+          "line": 115
+        },
+        {
+          "file": "scripts/MetaPrograms/informal.lean",
+          "kind": "def",
+          "name": "informalDefToWebString",
+          "docstring": null,
+          "snippet": "unsafe def informalDefToWebString (c : Import × ConstantInfo) : MetaM String",
+          "line": 127
+        },
+        {
+          "file": "scripts/MetaPrograms/informal.lean",
+          "kind": "def",
+          "name": "informalToString",
+          "docstring": null,
+          "snippet": "unsafe def informalToString (c : Import × ConstantInfo) : MetaM String",
+          "line": 140
+        },
+        {
+          "file": "scripts/MetaPrograms/informal.lean",
+          "kind": "def",
+          "name": "informalToWebString",
+          "docstring": null,
+          "snippet": "unsafe def informalToWebString (c : Import × ConstantInfo) : MetaM String",
+          "line": 148
+        },
+        {
+          "file": "scripts/MetaPrograms/informal.lean",
+          "kind": "def",
+          "name": "informalFileHeader",
+          "docstring": null,
+          "snippet": "def informalFileHeader : String",
+          "line": 156
+        },
+        {
+          "file": "scripts/MetaPrograms/informal.lean",
+          "kind": "def",
+          "name": "importToInformal",
+          "docstring": "Takes an import and outputs the list of `ConstantInfo` corresponding\n  to an informal definition or lemma in that import, sorted by line number.",
+          "snippet": "def importToInformal (i : Import) : MetaM (Array (Import × ConstantInfo))",
+          "line": 173
+        },
+        {
+          "file": "scripts/MetaPrograms/informal.lean",
+          "kind": "def",
+          "name": "importToString",
+          "docstring": null,
+          "snippet": "unsafe def importToString (i : Import) : MetaM String",
+          "line": 182
+        },
+        {
+          "file": "scripts/MetaPrograms/informal.lean",
+          "kind": "def",
+          "name": "importToWebString",
+          "docstring": null,
+          "snippet": "unsafe def importToWebString (i : Import) : MetaM String",
+          "line": 190
+        },
+        {
+          "file": "scripts/MetaPrograms/informal.lean",
+          "kind": "def",
+          "name": "formalToNode",
+          "docstring": "Turns a formal definition or lemma into a node of a dot graph.",
+          "snippet": "def formalToNode (nameSpaces : Array Name) (d : Name) : MetaM String",
+          "line": 206
+        },
+        {
+          "file": "scripts/MetaPrograms/informal.lean",
+          "kind": "def",
+          "name": "informalLemmaToNode",
+          "docstring": null,
+          "snippet": "unsafe def informalLemmaToNode (nameSpaces : Array Name) (c : Import × ConstantInfo) : MetaM String",
+          "line": 221
+        },
+        {
+          "file": "scripts/MetaPrograms/informal.lean",
+          "kind": "def",
+          "name": "informalDefToNode",
+          "docstring": null,
+          "snippet": "unsafe def informalDefToNode (nameSpaces : Array Name) (c : Import × ConstantInfo) : MetaM String",
+          "line": 235
+        },
+        {
+          "file": "scripts/MetaPrograms/informal.lean",
+          "kind": "def",
+          "name": "informalToNode",
+          "docstring": null,
+          "snippet": "unsafe def informalToNode (nameSpaces : Array Name) (c : Import × ConstantInfo) : MetaM String",
+          "line": 250
+        },
+        {
+          "file": "scripts/MetaPrograms/informal.lean",
+          "kind": "def",
+          "name": "informalLemmaToEdges",
+          "docstring": null,
+          "snippet": "unsafe def informalLemmaToEdges (c : Import × ConstantInfo) : MetaM (String)",
+          "line": 258
+        },
+        {
+          "file": "scripts/MetaPrograms/informal.lean",
+          "kind": "def",
+          "name": "informalDefToEdges",
+          "docstring": null,
+          "snippet": "unsafe def informalDefToEdges (c : Import × ConstantInfo) : MetaM (String)",
+          "line": 264
+        },
+        {
+          "file": "scripts/MetaPrograms/informal.lean",
+          "kind": "def",
+          "name": "informalToEdges",
+          "docstring": null,
+          "snippet": "unsafe def informalToEdges (c : Import × ConstantInfo) : MetaM (String)",
+          "line": 270
+        },
+        {
+          "file": "scripts/MetaPrograms/informal.lean",
+          "kind": "def",
+          "name": "namespaceToCluster",
+          "docstring": null,
+          "snippet": "unsafe def namespaceToCluster (name : Name) : MetaM String",
+          "line": 278
+        },
+        {
+          "file": "scripts/MetaPrograms/informal.lean",
+          "kind": "def",
+          "name": "mkDot",
+          "docstring": null,
+          "snippet": "unsafe def mkDot (imports : Array Import) : MetaM String",
+          "line": 289
+        },
+        {
+          "file": "scripts/MetaPrograms/informal.lean",
+          "kind": "def",
+          "name": "formalToHTML",
+          "docstring": null,
+          "snippet": "def formalToHTML (d : Name) : MetaM String",
+          "line": 331
+        },
+        {
+          "file": "scripts/MetaPrograms/informal.lean",
+          "kind": "def",
+          "name": "informalLemmaToHTML",
+          "docstring": null,
+          "snippet": "unsafe def informalLemmaToHTML (c : Import × ConstantInfo) : MetaM String",
+          "line": 344
+        },
+        {
+          "file": "scripts/MetaPrograms/informal.lean",
+          "kind": "def",
+          "name": "informalDefToHTML",
+          "docstring": null,
+          "snippet": "unsafe def informalDefToHTML (c : Import × ConstantInfo) : MetaM String",
+          "line": 356
+        },
+        {
+          "file": "scripts/MetaPrograms/informal.lean",
+          "kind": "def",
+          "name": "informalToHTML",
+          "docstring": null,
+          "snippet": "unsafe def informalToHTML (c : Import × ConstantInfo) : MetaM String",
+          "line": 368
+        },
+        {
+          "file": "scripts/MetaPrograms/informal.lean",
+          "kind": "def",
+          "name": "toHTML",
+          "docstring": null,
+          "snippet": "unsafe def toHTML (imports : Array Import) : MetaM String",
+          "line": 376
+        },
+        {
+          "file": "scripts/MetaPrograms/informal.lean",
+          "kind": "def",
+          "name": "main",
+          "docstring": null,
+          "snippet": "unsafe def main (args : List String) : IO UInt32",
+          "line": 479
+        }
+      ]
+    }
+  ],
+  "pdfUrl": "/monthly-updates/2024-09.pdf",
+  "generatedAt": "2026-08-14T10:30:25.934Z"
+}

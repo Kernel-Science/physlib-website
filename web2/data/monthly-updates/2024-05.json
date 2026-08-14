@@ -1,0 +1,2407 @@
+{
+  "slug": "2024-05",
+  "label": "May 2024",
+  "year": 2024,
+  "month": 5,
+  "startDate": "2024-05-01T00:00:00.000Z",
+  "endDate": "2024-06-01T00:00:00.000Z",
+  "repo": "leanprover-community/physlib",
+  "branch": "master",
+  "baseSha": "22d784b3438e25a0473fedb795e33d928bb2815c",
+  "headSha": "801a92944e42086829bfb546fd39d7cc45fd9884",
+  "compareUrl": "https://github.com/leanprover-community/physlib/compare/22d784b3438e25a0473fedb795e33d928bb2815c...801a92944e42086829bfb546fd39d7cc45fd9884",
+  "commitsUrl": "https://github.com/leanprover-community/physlib/commits/master?since=2024-05-01T00:00:00.000Z&until=2024-06-01T00:00:00.000Z",
+  "totalCommits": 134,
+  "totalAdditions": 3022,
+  "totalDeletions": 95,
+  "linesChanged": 3117,
+  "totalFilesChanged": 54,
+  "filesAdded": 22,
+  "filesRemoved": 0,
+  "subfolders": [
+    {
+      "path": "HepLean/SpaceTime",
+      "files": 10,
+      "filesAdded": 10,
+      "filesRemoved": 0,
+      "additions": 1588,
+      "deletions": 0
+    },
+    {
+      "path": "HepLean/StandardModel",
+      "files": 4,
+      "filesAdded": 4,
+      "filesRemoved": 0,
+      "additions": 694,
+      "deletions": 0
+    },
+    {
+      "path": "HepLean/GroupTheory",
+      "files": 1,
+      "filesAdded": 1,
+      "filesRemoved": 0,
+      "additions": 234,
+      "deletions": 0
+    },
+    {
+      "path": "LICENSE",
+      "files": 1,
+      "filesAdded": 1,
+      "filesRemoved": 0,
+      "additions": 201,
+      "deletions": 0
+    },
+    {
+      "path": "HepLean/AnomalyCancellation",
+      "files": 19,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 58,
+      "deletions": 55
+    },
+    {
+      "path": "scripts",
+      "files": 5,
+      "filesAdded": 4,
+      "filesRemoved": 0,
+      "additions": 112,
+      "deletions": 0
+    },
+    {
+      "path": "README.md",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 53,
+      "deletions": 12
+    },
+    {
+      "path": "lake-manifest.json",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 15,
+      "deletions": 15
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "files": 1,
+      "filesAdded": 1,
+      "filesRemoved": 0,
+      "additions": 23,
+      "deletions": 0
+    },
+    {
+      "path": "HepLean.lean",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 15,
+      "deletions": 0
+    },
+    {
+      "path": "HepLean/FlavorPhysics",
+      "files": 2,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 7,
+      "deletions": 7
+    },
+    {
+      "path": "lakefile.toml",
+      "files": 1,
+      "filesAdded": 1,
+      "filesRemoved": 0,
+      "additions": 14,
+      "deletions": 0
+    },
+    {
+      "path": ".github/workflows",
+      "files": 2,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 5,
+      "deletions": 2
+    },
+    {
+      "path": ".gitignore",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 1,
+      "deletions": 2
+    },
+    {
+      "path": ".lake",
+      "files": 2,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 1,
+      "deletions": 1
+    },
+    {
+      "path": "lean-toolchain",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 1,
+      "deletions": 1
+    },
+    {
+      "path": "lakefile.lean.bak",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 0,
+      "deletions": 0
+    }
+  ],
+  "contributors": [
+    {
+      "login": "jstoobysmith",
+      "name": "Joseph Tooby-Smith",
+      "html_url": "https://github.com/jstoobysmith",
+      "avatar_url": "https://avatars.githubusercontent.com/u/72603918?v=4",
+      "commits": 107,
+      "linesChanged": 7329,
+      "firstTime": false
+    },
+    {
+      "login": "pitmonticone",
+      "name": "Pietro Monticone",
+      "html_url": "https://github.com/pitmonticone",
+      "avatar_url": "https://avatars.githubusercontent.com/u/38562595?v=4",
+      "commits": 27,
+      "linesChanged": 120,
+      "firstTime": true
+    }
+  ],
+  "reviewers": [
+    {
+      "login": "jstoobysmith",
+      "html_url": "https://github.com/jstoobysmith",
+      "avatar_url": "https://avatars.githubusercontent.com/u/72603918?u=e36d367e18c3569e632096b1bb61e1079cdce1ae&v=4",
+      "reviews": 1,
+      "name": "Joseph Tooby-Smith"
+    }
+  ],
+  "kindTotals": {
+    "lemma": 171,
+    "def": 69,
+    "instance": 21,
+    "abbrev": 4,
+    "theorem": 1
+  },
+  "files": [
+    {
+      "filename": "HepLean/FlavorPhysics/CKMMatrix/Basic.lean",
+      "entries": [
+        {
+          "file": "HepLean/FlavorPhysics/CKMMatrix/Basic.lean",
+          "kind": "lemma",
+          "name": "phaseShiftRelation_equiv",
+          "docstring": null,
+          "snippet": "lemma phaseShiftRelation_equiv : Equivalence phaseShiftRelation where",
+          "line": 111
+        }
+      ]
+    },
+    {
+      "filename": "HepLean/GroupTheory/SO3/Basic.lean",
+      "entries": [
+        {
+          "file": "HepLean/GroupTheory/SO3/Basic.lean",
+          "kind": "def",
+          "name": "GroupTheory.SO3",
+          "docstring": "The group of `3×3` real matrices with determinant 1 and `A * Aᵀ = 1`.",
+          "snippet": "def SO3 : Type",
+          "line": 23
+        },
+        {
+          "file": "HepLean/GroupTheory/SO3/Basic.lean",
+          "kind": "instance",
+          "name": "GroupTheory.SO3Group",
+          "docstring": null,
+          "snippet": "@[simps mul_coe one_coe inv div]\ninstance SO3Group : Group SO3 where",
+          "line": 26
+        },
+        {
+          "file": "HepLean/GroupTheory/SO3/Basic.lean",
+          "kind": "instance",
+          "name": "GroupTheory.«instance@83aacb8c»",
+          "docstring": "SO3 has the subtype topology.",
+          "snippet": "instance : TopologicalSpace SO3",
+          "line": 51
+        },
+        {
+          "file": "HepLean/GroupTheory/SO3/Basic.lean",
+          "kind": "lemma",
+          "name": "GroupTheory.SO3.coe_inv",
+          "docstring": null,
+          "snippet": "lemma coe_inv (A : SO3) : (A⁻¹).1 = A.1⁻¹",
+          "line": 55
+        },
+        {
+          "file": "HepLean/GroupTheory/SO3/Basic.lean",
+          "kind": "def",
+          "name": "GroupTheory.SO3.toGL",
+          "docstring": "The inclusion of `SO(3)` into `GL (Fin 3) ℝ`.",
+          "snippet": "def toGL : SO(3) →* GL (Fin 3) ℝ where",
+          "line": 60
+        },
+        {
+          "file": "HepLean/GroupTheory/SO3/Basic.lean",
+          "kind": "lemma",
+          "name": "GroupTheory.SO3.subtype_val_eq_toGL",
+          "docstring": null,
+          "snippet": "lemma subtype_val_eq_toGL : (Subtype.val : SO3 → Matrix (Fin 3) (Fin 3) ℝ) =\n    Units.val ∘ toGL.toFun",
+          "line": 70
+        },
+        {
+          "file": "HepLean/GroupTheory/SO3/Basic.lean",
+          "kind": "lemma",
+          "name": "GroupTheory.SO3.toGL_injective",
+          "docstring": null,
+          "snippet": "lemma toGL_injective : Function.Injective toGL",
+          "line": 75
+        },
+        {
+          "file": "HepLean/GroupTheory/SO3/Basic.lean",
+          "kind": "def",
+          "name": "GroupTheory.SO3.toProd",
+          "docstring": "The inclusion of `SO(3)` into the monoid of matrices times the opposite of\n  the monoid of matrices.",
+          "snippet": "@[simps!]\ndef toProd : SO(3) →* (Matrix (Fin 3) (Fin 3) ℝ) × (Matrix (Fin 3) (Fin 3) ℝ)ᵐᵒᵖ",
+          "line": 84
+        },
+        {
+          "file": "HepLean/GroupTheory/SO3/Basic.lean",
+          "kind": "lemma",
+          "name": "GroupTheory.SO3.toProd_eq_transpose",
+          "docstring": null,
+          "snippet": "lemma toProd_eq_transpose  : toProd A = (A.1, ⟨A.1ᵀ⟩)",
+          "line": 87
+        },
+        {
+          "file": "HepLean/GroupTheory/SO3/Basic.lean",
+          "kind": "lemma",
+          "name": "GroupTheory.SO3.toProd_injective",
+          "docstring": null,
+          "snippet": "lemma toProd_injective : Function.Injective toProd",
+          "line": 96
+        },
+        {
+          "file": "HepLean/GroupTheory/SO3/Basic.lean",
+          "kind": "lemma",
+          "name": "GroupTheory.SO3.toProd_continuous",
+          "docstring": null,
+          "snippet": "lemma toProd_continuous : Continuous toProd",
+          "line": 103
+        },
+        {
+          "file": "HepLean/GroupTheory/SO3/Basic.lean",
+          "kind": "lemma",
+          "name": "GroupTheory.SO3.toProd_embedding",
+          "docstring": "The embedding of `SO(3)` into the monoid of matrices times the opposite of\n  the monoid of matrices.",
+          "snippet": "lemma toProd_embedding : Embedding toProd where",
+          "line": 115
+        },
+        {
+          "file": "HepLean/GroupTheory/SO3/Basic.lean",
+          "kind": "lemma",
+          "name": "GroupTheory.SO3.toGL_embedding",
+          "docstring": "The embedding of `SO(3)` into `GL (Fin 3) ℝ`.",
+          "snippet": "lemma toGL_embedding : Embedding toGL.toFun where",
+          "line": 123
+        },
+        {
+          "file": "HepLean/GroupTheory/SO3/Basic.lean",
+          "kind": "instance",
+          "name": "GroupTheory.SO3.«instance@6230ffa6»",
+          "docstring": null,
+          "snippet": "instance : TopologicalGroup SO(3)",
+          "line": 146
+        },
+        {
+          "file": "HepLean/GroupTheory/SO3/Basic.lean",
+          "kind": "lemma",
+          "name": "GroupTheory.SO3.det_minus_id",
+          "docstring": null,
+          "snippet": "lemma det_minus_id (A : SO(3)) : det (A.1 - 1) = 0",
+          "line": 149
+        },
+        {
+          "file": "HepLean/GroupTheory/SO3/Basic.lean",
+          "kind": "lemma",
+          "name": "GroupTheory.SO3.det_id_minus",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma det_id_minus (A : SO(3)) : det (1 - A.1) = 0",
+          "line": 163
+        },
+        {
+          "file": "HepLean/GroupTheory/SO3/Basic.lean",
+          "kind": "lemma",
+          "name": "GroupTheory.SO3.one_in_spectrum",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma one_in_spectrum (A : SO(3)) : 1 ∈ spectrum ℝ (A.1)",
+          "line": 173
+        },
+        {
+          "file": "HepLean/GroupTheory/SO3/Basic.lean",
+          "kind": "def",
+          "name": "GroupTheory.SO3.toEnd",
+          "docstring": "The endomorphism of `EuclideanSpace ℝ (Fin 3)` associated to a element of `SO(3)`.",
+          "snippet": "@[simps!]\ndef toEnd (A : SO(3)) : End ℝ (EuclideanSpace ℝ (Fin 3))",
+          "line": 184
+        },
+        {
+          "file": "HepLean/GroupTheory/SO3/Basic.lean",
+          "kind": "lemma",
+          "name": "GroupTheory.SO3.one_is_eigenvalue",
+          "docstring": null,
+          "snippet": "lemma one_is_eigenvalue (A : SO(3)) : A.toEnd.HasEigenvalue 1",
+          "line": 188
+        },
+        {
+          "file": "HepLean/GroupTheory/SO3/Basic.lean",
+          "kind": "lemma",
+          "name": "GroupTheory.SO3.exists_stationary_vec",
+          "docstring": null,
+          "snippet": "lemma exists_stationary_vec (A : SO(3)) :\n    ∃ (v : EuclideanSpace ℝ (Fin 3)),\n    Orthonormal ℝ (({0} : Set (Fin 3)).restrict (fun _ => v ))\n    ∧ A.toEnd v = v",
+          "line": 193
+        },
+        {
+          "file": "HepLean/GroupTheory/SO3/Basic.lean",
+          "kind": "lemma",
+          "name": "GroupTheory.SO3.exists_basis_preserved",
+          "docstring": null,
+          "snippet": "lemma exists_basis_preserved (A : SO(3)) :\n    ∃ (b : OrthonormalBasis (Fin 3) ℝ (EuclideanSpace ℝ (Fin 3))), A.toEnd (b 0) = b 0",
+          "line": 218
+        }
+      ]
+    },
+    {
+      "filename": "HepLean/SpaceTime/Basic.lean",
+      "entries": [
+        {
+          "file": "HepLean/SpaceTime/Basic.lean",
+          "kind": "def",
+          "name": "spaceTime",
+          "docstring": "The space-time",
+          "snippet": "def spaceTime : Type",
+          "line": 20
+        },
+        {
+          "file": "HepLean/SpaceTime/Basic.lean",
+          "kind": "instance",
+          "name": "«instance@2c9899b1»",
+          "docstring": "Give spacetime the structure of an additive commutative monoid.",
+          "snippet": "instance : AddCommMonoid spaceTime",
+          "line": 23
+        },
+        {
+          "file": "HepLean/SpaceTime/Basic.lean",
+          "kind": "instance",
+          "name": "«instance@26d2a071»",
+          "docstring": "Give spacetime the structure of a module over the reals.",
+          "snippet": "instance : Module ℝ spaceTime",
+          "line": 27
+        },
+        {
+          "file": "HepLean/SpaceTime/Basic.lean",
+          "kind": "instance",
+          "name": "euclideanNormedAddCommGroup",
+          "docstring": null,
+          "snippet": "instance euclideanNormedAddCommGroup : NormedAddCommGroup spaceTime",
+          "line": 29
+        },
+        {
+          "file": "HepLean/SpaceTime/Basic.lean",
+          "kind": "instance",
+          "name": "euclideanNormedSpace",
+          "docstring": null,
+          "snippet": "instance euclideanNormedSpace : NormedSpace ℝ spaceTime",
+          "line": 31
+        },
+        {
+          "file": "HepLean/SpaceTime/Basic.lean",
+          "kind": "def",
+          "name": "spaceTime.space",
+          "docstring": "The space part of spacetime.",
+          "snippet": "@[simp]\ndef space (x : spaceTime) : EuclideanSpace ℝ (Fin 3)",
+          "line": 43
+        },
+        {
+          "file": "HepLean/SpaceTime/Basic.lean",
+          "kind": "def",
+          "name": "spaceTime.asSmoothManifold",
+          "docstring": "The structure of a smooth manifold on spacetime.",
+          "snippet": "def asSmoothManifold : ModelWithCorners ℝ spaceTime spaceTime",
+          "line": 46
+        },
+        {
+          "file": "HepLean/SpaceTime/Basic.lean",
+          "kind": "instance",
+          "name": "spaceTime.«instance@455b7ac7»",
+          "docstring": null,
+          "snippet": "instance : ChartedSpace spaceTime spaceTime",
+          "line": 48
+        },
+        {
+          "file": "HepLean/SpaceTime/Basic.lean",
+          "kind": "def",
+          "name": "spaceTime.stdBasis",
+          "docstring": "The standard basis for spacetime.",
+          "snippet": "def stdBasis : Basis (Fin 4) ℝ spaceTime",
+          "line": 51
+        },
+        {
+          "file": "HepLean/SpaceTime/Basic.lean",
+          "kind": "lemma",
+          "name": "spaceTime.stdBasis_apply",
+          "docstring": null,
+          "snippet": "lemma stdBasis_apply (μ ν : Fin 4) : stdBasis μ ν = if μ = ν then 1 else 0",
+          "line": 53
+        },
+        {
+          "file": "HepLean/SpaceTime/Basic.lean",
+          "kind": "lemma",
+          "name": "spaceTime.stdBasis_not_eq",
+          "docstring": null,
+          "snippet": "lemma stdBasis_not_eq {μ ν : Fin 4} (h : μ ≠ ν) : stdBasis μ ν = 0",
+          "line": 56
+        },
+        {
+          "file": "HepLean/SpaceTime/Basic.lean",
+          "kind": "lemma",
+          "name": "spaceTime.stdBasis_0",
+          "docstring": null,
+          "snippet": "lemma stdBasis_0 : stdBasis 0 = ![1, 0, 0, 0]",
+          "line": 60
+        },
+        {
+          "file": "HepLean/SpaceTime/Basic.lean",
+          "kind": "lemma",
+          "name": "spaceTime.stdBasis_1",
+          "docstring": null,
+          "snippet": "lemma stdBasis_1 : stdBasis 1 = ![0, 1, 0, 0]",
+          "line": 65
+        },
+        {
+          "file": "HepLean/SpaceTime/Basic.lean",
+          "kind": "lemma",
+          "name": "spaceTime.stdBasis_2",
+          "docstring": null,
+          "snippet": "lemma stdBasis_2 : stdBasis 2 = ![0, 0, 1, 0]",
+          "line": 70
+        },
+        {
+          "file": "HepLean/SpaceTime/Basic.lean",
+          "kind": "lemma",
+          "name": "spaceTime.stdBasis_3",
+          "docstring": null,
+          "snippet": "lemma stdBasis_3 : stdBasis 3 = ![0, 0, 0, 1]",
+          "line": 75
+        },
+        {
+          "file": "HepLean/SpaceTime/Basic.lean",
+          "kind": "lemma",
+          "name": "spaceTime.stdBasis_mulVec",
+          "docstring": null,
+          "snippet": "lemma stdBasis_mulVec (μ ν : Fin 4) (Λ : Matrix (Fin 4) (Fin 4) ℝ) :\n    (Λ *ᵥ stdBasis μ) ν = Λ ν μ",
+          "line": 80
+        },
+        {
+          "file": "HepLean/SpaceTime/Basic.lean",
+          "kind": "lemma",
+          "name": "spaceTime.explicit",
+          "docstring": null,
+          "snippet": "lemma explicit (x : spaceTime) : x = ![x 0, x 1, x 2, x 3]",
+          "line": 88
+        }
+      ]
+    },
+    {
+      "filename": "HepLean/SpaceTime/CliffordAlgebra.lean",
+      "entries": [
+        {
+          "file": "HepLean/SpaceTime/CliffordAlgebra.lean",
+          "kind": "def",
+          "name": "spaceTime.γ0",
+          "docstring": "The γ⁰ gamma matrix in the Dirac representation.",
+          "snippet": "def γ0 : Matrix (Fin 4) (Fin 4) ℂ",
+          "line": 25
+        },
+        {
+          "file": "HepLean/SpaceTime/CliffordAlgebra.lean",
+          "kind": "def",
+          "name": "spaceTime.γ1",
+          "docstring": "The γ¹ gamma matrix in the Dirac representation.",
+          "snippet": "def γ1 : Matrix (Fin 4) (Fin 4) ℂ",
+          "line": 29
+        },
+        {
+          "file": "HepLean/SpaceTime/CliffordAlgebra.lean",
+          "kind": "def",
+          "name": "spaceTime.γ2",
+          "docstring": "The γ² gamma matrix in the Dirac representation.",
+          "snippet": "def γ2 : Matrix (Fin 4) (Fin 4) ℂ",
+          "line": 33
+        },
+        {
+          "file": "HepLean/SpaceTime/CliffordAlgebra.lean",
+          "kind": "def",
+          "name": "spaceTime.γ3",
+          "docstring": "The γ³ gamma matrix in the Dirac representation.",
+          "snippet": "def γ3 : Matrix (Fin 4) (Fin 4) ℂ",
+          "line": 37
+        },
+        {
+          "file": "HepLean/SpaceTime/CliffordAlgebra.lean",
+          "kind": "def",
+          "name": "spaceTime.γ5",
+          "docstring": "The γ⁵ gamma matrix in the Dirac representation.",
+          "snippet": "def γ5 : Matrix (Fin 4) (Fin 4) ℂ",
+          "line": 41
+        },
+        {
+          "file": "HepLean/SpaceTime/CliffordAlgebra.lean",
+          "kind": "def",
+          "name": "spaceTime.γ",
+          "docstring": "The γ gamma matrices in the Dirac representation.",
+          "snippet": "@[simp]\ndef γ : Fin 4 → Matrix (Fin 4) (Fin 4) ℂ",
+          "line": 45
+        },
+        {
+          "file": "HepLean/SpaceTime/CliffordAlgebra.lean",
+          "kind": "def",
+          "name": "spaceTime.γ.γSet",
+          "docstring": "The subset of `Matrix (Fin 4) (Fin 4) ℂ` formed by the gamma matrices in the Dirac\nrepresentation.",
+          "snippet": "@[simp]\ndef γSet : Set (Matrix (Fin 4) (Fin 4) ℂ)",
+          "line": 56
+        },
+        {
+          "file": "HepLean/SpaceTime/CliffordAlgebra.lean",
+          "kind": "lemma",
+          "name": "spaceTime.γ.γ_in_γSet",
+          "docstring": null,
+          "snippet": "lemma γ_in_γSet (μ : Fin 4) : γ μ ∈ γSet",
+          "line": 58
+        },
+        {
+          "file": "HepLean/SpaceTime/CliffordAlgebra.lean",
+          "kind": "def",
+          "name": "spaceTime.γ.diracAlgebra",
+          "docstring": "The algebra generated by the gamma matrices in the Dirac representation.",
+          "snippet": "def diracAlgebra : Subalgebra ℝ (Matrix (Fin 4) (Fin 4) ℂ)",
+          "line": 62
+        },
+        {
+          "file": "HepLean/SpaceTime/CliffordAlgebra.lean",
+          "kind": "lemma",
+          "name": "spaceTime.γ.γSet_subset_diracAlgebra",
+          "docstring": null,
+          "snippet": "lemma γSet_subset_diracAlgebra : γSet ⊆ diracAlgebra",
+          "line": 65
+        },
+        {
+          "file": "HepLean/SpaceTime/CliffordAlgebra.lean",
+          "kind": "lemma",
+          "name": "spaceTime.γ.γ_in_diracAlgebra",
+          "docstring": null,
+          "snippet": "lemma γ_in_diracAlgebra (μ : Fin 4) : γ μ ∈ diracAlgebra",
+          "line": 68
+        }
+      ]
+    },
+    {
+      "filename": "HepLean/SpaceTime/FourVelocity.lean",
+      "entries": [
+        {
+          "file": "HepLean/SpaceTime/FourVelocity.lean",
+          "kind": "def",
+          "name": "PreFourVelocity",
+          "docstring": "A `spaceTime` vector for which `ηLin x x = 1`.",
+          "snippet": "@[simp]\ndef PreFourVelocity : Set spaceTime",
+          "line": 20
+        },
+        {
+          "file": "HepLean/SpaceTime/FourVelocity.lean",
+          "kind": "instance",
+          "name": "«instance@7dbca820»",
+          "docstring": null,
+          "snippet": "instance : TopologicalSpace PreFourVelocity",
+          "line": 23
+        },
+        {
+          "file": "HepLean/SpaceTime/FourVelocity.lean",
+          "kind": "lemma",
+          "name": "PreFourVelocity.mem_PreFourVelocity_iff",
+          "docstring": null,
+          "snippet": "lemma mem_PreFourVelocity_iff {x : spaceTime} : x ∈ PreFourVelocity ↔ ηLin x x = 1",
+          "line": 27
+        },
+        {
+          "file": "HepLean/SpaceTime/FourVelocity.lean",
+          "kind": "def",
+          "name": "PreFourVelocity.neg",
+          "docstring": "The negative of a `PreFourVelocity` as a `PreFourVelocity`.",
+          "snippet": "def neg (v : PreFourVelocity) : PreFourVelocity",
+          "line": 31
+        },
+        {
+          "file": "HepLean/SpaceTime/FourVelocity.lean",
+          "kind": "lemma",
+          "name": "PreFourVelocity.zero_sq",
+          "docstring": null,
+          "snippet": "lemma zero_sq (v : PreFourVelocity) : v.1 0 ^ 2 = 1 + ‖v.1.space‖ ^ 2",
+          "line": 36
+        },
+        {
+          "file": "HepLean/SpaceTime/FourVelocity.lean",
+          "kind": "lemma",
+          "name": "PreFourVelocity.zero_abs_ge_one",
+          "docstring": null,
+          "snippet": "lemma zero_abs_ge_one (v : PreFourVelocity) : 1 ≤ |v.1 0|",
+          "line": 39
+        },
+        {
+          "file": "HepLean/SpaceTime/FourVelocity.lean",
+          "kind": "lemma",
+          "name": "PreFourVelocity.zero_abs_gt_norm_space",
+          "docstring": null,
+          "snippet": "lemma zero_abs_gt_norm_space (v : PreFourVelocity) : ‖v.1.space‖ < |v.1 0|",
+          "line": 45
+        },
+        {
+          "file": "HepLean/SpaceTime/FourVelocity.lean",
+          "kind": "lemma",
+          "name": "PreFourVelocity.zero_abs_ge_norm_space",
+          "docstring": null,
+          "snippet": "lemma zero_abs_ge_norm_space (v : PreFourVelocity) : ‖v.1.space‖ ≤ |v.1 0|",
+          "line": 49
+        },
+        {
+          "file": "HepLean/SpaceTime/FourVelocity.lean",
+          "kind": "lemma",
+          "name": "PreFourVelocity.zero_le_minus_one_or_ge_one",
+          "docstring": null,
+          "snippet": "lemma zero_le_minus_one_or_ge_one (v : PreFourVelocity) : v.1 0 ≤ -1 ∨ 1 ≤ v.1 0",
+          "line": 52
+        },
+        {
+          "file": "HepLean/SpaceTime/FourVelocity.lean",
+          "kind": "lemma",
+          "name": "PreFourVelocity.zero_nonpos_iff",
+          "docstring": null,
+          "snippet": "lemma zero_nonpos_iff (v : PreFourVelocity) : v.1 0 ≤ 0 ↔ v.1 0 ≤ - 1",
+          "line": 55
+        },
+        {
+          "file": "HepLean/SpaceTime/FourVelocity.lean",
+          "kind": "lemma",
+          "name": "PreFourVelocity.zero_nonneg_iff",
+          "docstring": null,
+          "snippet": "lemma zero_nonneg_iff (v : PreFourVelocity) : 0 ≤ v.1 0 ↔ 1 ≤ v.1 0",
+          "line": 64
+        },
+        {
+          "file": "HepLean/SpaceTime/FourVelocity.lean",
+          "kind": "def",
+          "name": "PreFourVelocity.IsFourVelocity",
+          "docstring": "A `PreFourVelocity` is a `FourVelocity` if its time componenet is non-negative.",
+          "snippet": "def IsFourVelocity (v : PreFourVelocity) : Prop",
+          "line": 74
+        },
+        {
+          "file": "HepLean/SpaceTime/FourVelocity.lean",
+          "kind": "lemma",
+          "name": "PreFourVelocity.IsFourVelocity_abs_zero",
+          "docstring": null,
+          "snippet": "lemma IsFourVelocity_abs_zero {v : PreFourVelocity} (hv : IsFourVelocity v) :\n    |v.1 0| = v.1 0",
+          "line": 77
+        },
+        {
+          "file": "HepLean/SpaceTime/FourVelocity.lean",
+          "kind": "lemma",
+          "name": "PreFourVelocity.not_IsFourVelocity_iff",
+          "docstring": null,
+          "snippet": "lemma not_IsFourVelocity_iff (v : PreFourVelocity) : ¬ IsFourVelocity v ↔ v.1 0 ≤ 0",
+          "line": 80
+        },
+        {
+          "file": "HepLean/SpaceTime/FourVelocity.lean",
+          "kind": "lemma",
+          "name": "PreFourVelocity.not_IsFourVelocity_iff_neg",
+          "docstring": null,
+          "snippet": "lemma not_IsFourVelocity_iff_neg {v : PreFourVelocity} : ¬ IsFourVelocity v ↔\n    IsFourVelocity (neg v)",
+          "line": 89
+        },
+        {
+          "file": "HepLean/SpaceTime/FourVelocity.lean",
+          "kind": "lemma",
+          "name": "PreFourVelocity.zero_abs_mul_sub_norm_space",
+          "docstring": null,
+          "snippet": "lemma zero_abs_mul_sub_norm_space (v v' : PreFourVelocity) :\n    0 ≤ |v.1 0| * |v'.1 0| - ‖v.1.space‖ * ‖v'.1.space‖",
+          "line": 96
+        },
+        {
+          "file": "HepLean/SpaceTime/FourVelocity.lean",
+          "kind": "lemma",
+          "name": "PreFourVelocity.euclid_norm_IsFourVelocity_IsFourVelocity",
+          "docstring": null,
+          "snippet": "lemma euclid_norm_IsFourVelocity_IsFourVelocity {v v' : PreFourVelocity}\n    (h : IsFourVelocity v) (h' : IsFourVelocity v') :\n    0 ≤ (v.1 0) * (v'.1 0) + ⟪v.1.space, v'.1.space⟫_ℝ",
+          "line": 104
+        },
+        {
+          "file": "HepLean/SpaceTime/FourVelocity.lean",
+          "kind": "lemma",
+          "name": "PreFourVelocity.euclid_norm_not_IsFourVelocity_not_IsFourVelocity",
+          "docstring": null,
+          "snippet": "lemma euclid_norm_not_IsFourVelocity_not_IsFourVelocity {v v' : PreFourVelocity}\n    (h : ¬ IsFourVelocity v) (h' : ¬ IsFourVelocity v') :\n    0 ≤ (v.1 0) * (v'.1 0) + ⟪v.1.space, v'.1.space⟫_ℝ",
+          "line": 114
+        },
+        {
+          "file": "HepLean/SpaceTime/FourVelocity.lean",
+          "kind": "lemma",
+          "name": "PreFourVelocity.euclid_norm_IsFourVelocity_not_IsFourVelocity",
+          "docstring": null,
+          "snippet": "lemma euclid_norm_IsFourVelocity_not_IsFourVelocity {v v' : PreFourVelocity}\n    (h : IsFourVelocity v) (h' : ¬ IsFourVelocity v') :\n    (v.1 0) * (v'.1 0) + ⟪v.1.space, v'.1.space⟫_ℝ ≤ 0",
+          "line": 125
+        },
+        {
+          "file": "HepLean/SpaceTime/FourVelocity.lean",
+          "kind": "lemma",
+          "name": "PreFourVelocity.euclid_norm_not_IsFourVelocity_IsFourVelocity",
+          "docstring": null,
+          "snippet": "lemma euclid_norm_not_IsFourVelocity_IsFourVelocity {v v' : PreFourVelocity}\n    (h : ¬ IsFourVelocity v) (h' : IsFourVelocity v') :\n    (v.1 0) * (v'.1 0) + ⟪v.1.space, v'.1.space⟫_ℝ ≤ 0",
+          "line": 135
+        },
+        {
+          "file": "HepLean/SpaceTime/FourVelocity.lean",
+          "kind": "def",
+          "name": "FourVelocity",
+          "docstring": "The set of `PreFourVelocity`'s which are four velocities.",
+          "snippet": "def FourVelocity : Set PreFourVelocity",
+          "line": 148
+        },
+        {
+          "file": "HepLean/SpaceTime/FourVelocity.lean",
+          "kind": "instance",
+          "name": "«instance@825b598e»",
+          "docstring": null,
+          "snippet": "instance : TopologicalSpace FourVelocity",
+          "line": 151
+        },
+        {
+          "file": "HepLean/SpaceTime/FourVelocity.lean",
+          "kind": "lemma",
+          "name": "FourVelocity.mem_FourVelocity_iff",
+          "docstring": null,
+          "snippet": "lemma mem_FourVelocity_iff {x : PreFourVelocity} : x ∈ FourVelocity ↔ 0 ≤ x.1 0",
+          "line": 156
+        },
+        {
+          "file": "HepLean/SpaceTime/FourVelocity.lean",
+          "kind": "lemma",
+          "name": "FourVelocity.time_comp",
+          "docstring": null,
+          "snippet": "lemma time_comp (x : FourVelocity) : x.1.1 0 = √(1 + ‖x.1.1.space‖ ^ 2)",
+          "line": 159
+        },
+        {
+          "file": "HepLean/SpaceTime/FourVelocity.lean",
+          "kind": "def",
+          "name": "FourVelocity.zero",
+          "docstring": "The `FourVelocity` which has all space components zero.",
+          "snippet": "def zero : FourVelocity",
+          "line": 166
+        },
+        {
+          "file": "HepLean/SpaceTime/FourVelocity.lean",
+          "kind": "def",
+          "name": "FourVelocity.pathFromZero",
+          "docstring": "A continuous path from the zero `FourVelocity` to any other.",
+          "snippet": "noncomputable def pathFromZero (u : FourVelocity) : Path zero u where",
+          "line": 172
+        },
+        {
+          "file": "HepLean/SpaceTime/FourVelocity.lean",
+          "kind": "lemma",
+          "name": "FourVelocity.isPathConnected_FourVelocity",
+          "docstring": null,
+          "snippet": "lemma isPathConnected_FourVelocity : IsPathConnected (@Set.univ FourVelocity)",
+          "line": 211
+        },
+        {
+          "file": "HepLean/SpaceTime/FourVelocity.lean",
+          "kind": "lemma",
+          "name": "FourVelocity.η_pos",
+          "docstring": null,
+          "snippet": "lemma η_pos (u v : FourVelocity) : 0 < ηLin u v",
+          "line": 218
+        },
+        {
+          "file": "HepLean/SpaceTime/FourVelocity.lean",
+          "kind": "lemma",
+          "name": "FourVelocity.one_plus_ne_zero",
+          "docstring": null,
+          "snippet": "lemma one_plus_ne_zero (u v : FourVelocity) :  1 + ηLin u v ≠ 0",
+          "line": 229
+        },
+        {
+          "file": "HepLean/SpaceTime/FourVelocity.lean",
+          "kind": "lemma",
+          "name": "FourVelocity.η_continuous",
+          "docstring": null,
+          "snippet": "lemma η_continuous (u : spaceTime) : Continuous (fun (a : FourVelocity) => ηLin u a)",
+          "line": 232
+        }
+      ]
+    },
+    {
+      "filename": "HepLean/SpaceTime/LorentzAlgebra/Basic.lean",
+      "entries": [
+        {
+          "file": "HepLean/SpaceTime/LorentzAlgebra/Basic.lean",
+          "kind": "def",
+          "name": "spaceTime.lorentzAlgebra",
+          "docstring": "The Lorentz algebra as a subalgebra of `Matrix (Fin 4) (Fin 4) ℝ`.",
+          "snippet": "def lorentzAlgebra : LieSubalgebra ℝ (Matrix (Fin 4) (Fin 4) ℝ)",
+          "line": 25
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzAlgebra/Basic.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzAlgebra.transpose_eta",
+          "docstring": null,
+          "snippet": "lemma transpose_eta (A : lorentzAlgebra) :  A.1ᵀ * η  = - η * A.1",
+          "line": 32
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzAlgebra/Basic.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzAlgebra.mem_of_transpose_eta_eq_eta_mul_self",
+          "docstring": null,
+          "snippet": "lemma mem_of_transpose_eta_eq_eta_mul_self {A : Matrix (Fin 4) (Fin 4) ℝ}\n    (h :  Aᵀ * η  = - η * A) : A ∈ lorentzAlgebra",
+          "line": 50
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzAlgebra/Basic.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzAlgebra.mem_iff",
+          "docstring": null,
+          "snippet": "lemma mem_iff {A : Matrix (Fin 4) (Fin 4) ℝ} : A ∈ lorentzAlgebra ↔\n    Aᵀ * η  = - η * A",
+          "line": 71
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzAlgebra/Basic.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzAlgebra.mem_iff'",
+          "docstring": null,
+          "snippet": "lemma mem_iff'  (A : Matrix (Fin 4) (Fin 4) ℝ) : A ∈ lorentzAlgebra ↔ A  = - η * Aᵀ * η",
+          "line": 79
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzAlgebra/Basic.lean",
+          "kind": "instance",
+          "name": "spaceTime.spaceTimeAsLieRingModule",
+          "docstring": null,
+          "snippet": "@[simps!]\ninstance spaceTimeAsLieRingModule : LieRingModule lorentzAlgebra spaceTime where",
+          "line": 93
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzAlgebra/Basic.lean",
+          "kind": "instance",
+          "name": "spaceTime.spaceTimeAsLieModule",
+          "docstring": null,
+          "snippet": "@[simps!]\ninstance spaceTimeAsLieModule : LieModule ℝ lorentzAlgebra spaceTime where",
+          "line": 104
+        }
+      ]
+    },
+    {
+      "filename": "HepLean/SpaceTime/LorentzGroup/Basic.lean",
+      "entries": [
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Basic.lean",
+          "kind": "def",
+          "name": "spaceTime.PreservesηLin",
+          "docstring": "We say a matrix `Λ` preserves `ηLin` if for all `x` and `y`,\n  `ηLin (Λ *ᵥ x) (Λ *ᵥ y) = ηLin x y`.",
+          "snippet": "def PreservesηLin (Λ : Matrix (Fin 4) (Fin 4) ℝ) : Prop",
+          "line": 39
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Basic.lean",
+          "kind": "lemma",
+          "name": "spaceTime.PreservesηLin.iff_on_right",
+          "docstring": null,
+          "snippet": "lemma iff_on_right : PreservesηLin Λ ↔\n    ∀ (x y : spaceTime), ηLin x ((η * Λᵀ * η * Λ) *ᵥ y) = ηLin x y",
+          "line": 46
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Basic.lean",
+          "kind": "lemma",
+          "name": "spaceTime.PreservesηLin.iff_matrix",
+          "docstring": null,
+          "snippet": "lemma iff_matrix : PreservesηLin Λ ↔ η * Λᵀ * η * Λ = 1",
+          "line": 59
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Basic.lean",
+          "kind": "lemma",
+          "name": "spaceTime.PreservesηLin.iff_matrix'",
+          "docstring": null,
+          "snippet": "lemma iff_matrix' : PreservesηLin Λ ↔ Λ * (η * Λᵀ * η) = 1",
+          "line": 66
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Basic.lean",
+          "kind": "lemma",
+          "name": "spaceTime.PreservesηLin.iff_transpose",
+          "docstring": null,
+          "snippet": "lemma iff_transpose : PreservesηLin Λ ↔ PreservesηLin Λᵀ",
+          "line": 74
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Basic.lean",
+          "kind": "def",
+          "name": "spaceTime.PreservesηLin.liftGL",
+          "docstring": "The lift of a matrix which preserves `ηLin` to an invertible matrix.",
+          "snippet": "def liftGL {Λ : Matrix (Fin 4) (Fin 4) ℝ} (h : PreservesηLin Λ) : GL (Fin 4) ℝ",
+          "line": 90
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Basic.lean",
+          "kind": "lemma",
+          "name": "spaceTime.PreservesηLin.mul",
+          "docstring": null,
+          "snippet": "lemma mul {Λ Λ' : Matrix (Fin 4) (Fin 4) ℝ} (h : PreservesηLin Λ) (h' : PreservesηLin Λ') :\n    PreservesηLin (Λ * Λ')",
+          "line": 93
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Basic.lean",
+          "kind": "lemma",
+          "name": "spaceTime.PreservesηLin.one",
+          "docstring": null,
+          "snippet": "lemma one : PreservesηLin 1",
+          "line": 98
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Basic.lean",
+          "kind": "lemma",
+          "name": "spaceTime.PreservesηLin.η",
+          "docstring": null,
+          "snippet": "lemma η : PreservesηLin η",
+          "line": 102
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Basic.lean",
+          "kind": "def",
+          "name": "spaceTime.lorentzGroup",
+          "docstring": "The Lorentz group is the subset of matrices which preserve ηLin.",
+          "snippet": "def lorentzGroup : Type",
+          "line": 108
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Basic.lean",
+          "kind": "instance",
+          "name": "spaceTime.lorentzGroupIsGroup",
+          "docstring": null,
+          "snippet": "@[simps mul_coe one_coe inv div]\ninstance lorentzGroupIsGroup : Group lorentzGroup where",
+          "line": 111
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Basic.lean",
+          "kind": "instance",
+          "name": "spaceTime.«instance@d18e0a1b»",
+          "docstring": "`lorentzGroup` has the subtype topology.",
+          "snippet": "instance : TopologicalSpace lorentzGroup",
+          "line": 134
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Basic.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzGroup.coe_inv",
+          "docstring": null,
+          "snippet": "lemma coe_inv (A : 𝓛) : (A⁻¹).1 = A.1⁻¹",
+          "line": 138
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Basic.lean",
+          "kind": "def",
+          "name": "spaceTime.lorentzGroup.toGL",
+          "docstring": "The homomorphism of the Lorentz group into `GL (Fin 4) ℝ`.",
+          "snippet": "def toGL : 𝓛 →* GL (Fin 4) ℝ where",
+          "line": 143
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Basic.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzGroup.toGL_injective",
+          "docstring": null,
+          "snippet": "lemma toGL_injective : Function.Injective toGL",
+          "line": 154
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Basic.lean",
+          "kind": "def",
+          "name": "spaceTime.lorentzGroup.toProd",
+          "docstring": "The homomorphism from the Lorentz Group into the monoid of matrices times the opposite of\n  the monoid of matrices.",
+          "snippet": "@[simps!]\ndef toProd : 𝓛 →* (Matrix (Fin 4) (Fin 4) ℝ) × (Matrix (Fin 4) (Fin 4) ℝ)ᵐᵒᵖ",
+          "line": 163
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Basic.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzGroup.toProd_eq_transpose_η",
+          "docstring": null,
+          "snippet": "lemma toProd_eq_transpose_η  : toProd A = (A.1, ⟨η * A.1ᵀ * η⟩)",
+          "line": 166
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Basic.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzGroup.toProd_injective",
+          "docstring": null,
+          "snippet": "lemma toProd_injective : Function.Injective toProd",
+          "line": 168
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Basic.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzGroup.toProd_continuous",
+          "docstring": null,
+          "snippet": "lemma toProd_continuous : Continuous toProd",
+          "line": 175
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Basic.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzGroup.toProd_embedding",
+          "docstring": "The embedding from the Lorentz Group into the monoid of matrices times the opposite of\n  the monoid of matrices.",
+          "snippet": "lemma toProd_embedding : Embedding toProd where",
+          "line": 187
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Basic.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzGroup.toGL_embedding",
+          "docstring": "The embedding from the Lorentz Group into `GL (Fin 4) ℝ`.",
+          "snippet": "lemma toGL_embedding : Embedding toGL.toFun where",
+          "line": 195
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Basic.lean",
+          "kind": "instance",
+          "name": "spaceTime.lorentzGroup.«instance@1eb1c661»",
+          "docstring": null,
+          "snippet": "instance : TopologicalGroup 𝓛",
+          "line": 218
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Basic.lean",
+          "kind": "def",
+          "name": "spaceTime.lorentzGroup.transpose",
+          "docstring": "The transpose of an matrix in the Lorentz group is an element of the Lorentz group.",
+          "snippet": "def transpose (Λ : lorentzGroup) : lorentzGroup",
+          "line": 221
+        }
+      ]
+    },
+    {
+      "filename": "HepLean/SpaceTime/LorentzGroup/Boosts.lean",
+      "entries": [
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Boosts.lean",
+          "kind": "def",
+          "name": "spaceTime.lorentzGroup.genBoostAux₁",
+          "docstring": "An auxillary linear map used in the definition of a genearlised boost.",
+          "snippet": "def genBoostAux₁ (u v : FourVelocity) : spaceTime →ₗ[ℝ] spaceTime where",
+          "line": 39
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Boosts.lean",
+          "kind": "def",
+          "name": "spaceTime.lorentzGroup.genBoostAux₂",
+          "docstring": "An auxillary linear map used in the definition of a genearlised boost.",
+          "snippet": "def genBoostAux₂ (u v : FourVelocity) : spaceTime →ₗ[ℝ] spaceTime where",
+          "line": 50
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Boosts.lean",
+          "kind": "def",
+          "name": "spaceTime.lorentzGroup.genBoost",
+          "docstring": "An genearlised boost. This is a Lorentz transformation which takes the four velocity `u`\nto `v`.",
+          "snippet": "def genBoost (u v : FourVelocity) : spaceTime →ₗ[ℝ] spaceTime",
+          "line": 66
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Boosts.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzGroup.genBoost.self",
+          "docstring": null,
+          "snippet": "lemma self (u : FourVelocity) : genBoost u u = LinearMap.id",
+          "line": 71
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Boosts.lean",
+          "kind": "def",
+          "name": "spaceTime.lorentzGroup.genBoost.toMatrix",
+          "docstring": "A generalised boost as a matrix.",
+          "snippet": "def toMatrix (u v : FourVelocity) : Matrix (Fin 4) (Fin 4) ℝ",
+          "line": 88
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Boosts.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzGroup.genBoost.toMatrix_mulVec",
+          "docstring": null,
+          "snippet": "lemma toMatrix_mulVec (u v : FourVelocity) (x : spaceTime) :\n    (toMatrix u v).mulVec x = genBoost u v x",
+          "line": 91
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Boosts.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzGroup.genBoost.toMatrix_apply",
+          "docstring": null,
+          "snippet": "lemma toMatrix_apply (u v : FourVelocity) (i j : Fin 4) :\n    (toMatrix u v) i j =\n     η i i * (ηLin (stdBasis i) (stdBasis j) + 2 * ηLin (stdBasis j) u * ηLin (stdBasis i) v -\n    ηLin (stdBasis i) (u + v) * ηLin (stdBasis j) (u + v) / (1 + ηLin u v))",
+          "line": 95
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Boosts.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzGroup.genBoost.toMatrix_continuous",
+          "docstring": null,
+          "snippet": "lemma toMatrix_continuous (u : FourVelocity) : Continuous (toMatrix u)",
+          "line": 106
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Boosts.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzGroup.genBoost.toMatrix_PreservesηLin",
+          "docstring": null,
+          "snippet": "lemma toMatrix_PreservesηLin (u v : FourVelocity) : PreservesηLin (toMatrix u v)",
+          "line": 131
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Boosts.lean",
+          "kind": "def",
+          "name": "spaceTime.lorentzGroup.genBoost.toLorentz",
+          "docstring": "A generalised boost as an element of the Lorentz Group.",
+          "snippet": "def toLorentz (u v : FourVelocity) : lorentzGroup",
+          "line": 143
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Boosts.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzGroup.genBoost.toLorentz_continuous",
+          "docstring": null,
+          "snippet": "lemma toLorentz_continuous (u : FourVelocity) : Continuous (toLorentz u)",
+          "line": 146
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Boosts.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzGroup.genBoost.toLorentz_joined_to_1",
+          "docstring": null,
+          "snippet": "lemma toLorentz_joined_to_1 (u v : FourVelocity) : Joined 1 (toLorentz u v)",
+          "line": 152
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Boosts.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzGroup.genBoost.toLorentz_in_connected_component_1",
+          "docstring": null,
+          "snippet": "lemma toLorentz_in_connected_component_1 (u v : FourVelocity) :\n    toLorentz u v ∈ connectedComponent 1",
+          "line": 161
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Boosts.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzGroup.genBoost.isProper",
+          "docstring": null,
+          "snippet": "lemma isProper (u v : FourVelocity) : IsProper (toLorentz u v)",
+          "line": 165
+        }
+      ]
+    },
+    {
+      "filename": "HepLean/SpaceTime/LorentzGroup/Orthochronous.lean",
+      "entries": [
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Orthochronous.lean",
+          "kind": "def",
+          "name": "spaceTime.lorentzGroup.fstCol",
+          "docstring": "The first column of a lorentz matrix as a `PreFourVelocity`.",
+          "snippet": "@[simp]\ndef fstCol (Λ : lorentzGroup) : PreFourVelocity",
+          "line": 36
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Orthochronous.lean",
+          "kind": "def",
+          "name": "spaceTime.lorentzGroup.IsOrthochronous",
+          "docstring": "A Lorentz transformation is  `orthochronous` if its `0 0` element is non-negative.",
+          "snippet": "def IsOrthochronous (Λ : lorentzGroup) : Prop",
+          "line": 51
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Orthochronous.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzGroup.IsOrthochronous_iff_transpose",
+          "docstring": null,
+          "snippet": "lemma IsOrthochronous_iff_transpose (Λ : lorentzGroup) :\n    IsOrthochronous Λ ↔ IsOrthochronous (transpose Λ)",
+          "line": 53
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Orthochronous.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzGroup.IsOrthochronous_iff_fstCol_IsFourVelocity",
+          "docstring": null,
+          "snippet": "lemma IsOrthochronous_iff_fstCol_IsFourVelocity (Λ : lorentzGroup) :\n    IsOrthochronous Λ ↔ IsFourVelocity (fstCol Λ)",
+          "line": 58
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Orthochronous.lean",
+          "kind": "def",
+          "name": "spaceTime.lorentzGroup.mapZeroZeroComp",
+          "docstring": "The continuous map taking a Lorentz transformation to its `0 0` element.",
+          "snippet": "def mapZeroZeroComp : C(lorentzGroup, ℝ)",
+          "line": 64
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Orthochronous.lean",
+          "kind": "def",
+          "name": "spaceTime.lorentzGroup.stepFunction",
+          "docstring": "An auxillary function used in the definition of `orthchroMapReal`.",
+          "snippet": "def stepFunction : ℝ → ℝ",
+          "line": 69
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Orthochronous.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzGroup.stepFunction_continuous",
+          "docstring": null,
+          "snippet": "lemma stepFunction_continuous : Continuous stepFunction",
+          "line": 73
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Orthochronous.lean",
+          "kind": "def",
+          "name": "spaceTime.lorentzGroup.orthchroMapReal",
+          "docstring": "The continuous map from `lorentzGroup` to `ℝ` wh\ntaking Orthochronous elements to `1` and non-orthochronous to `-1`.",
+          "snippet": "def orthchroMapReal : C(lorentzGroup, ℝ)",
+          "line": 86
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Orthochronous.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzGroup.orthchroMapReal_on_IsOrthochronous",
+          "docstring": null,
+          "snippet": "lemma orthchroMapReal_on_IsOrthochronous {Λ : lorentzGroup} (h : IsOrthochronous Λ) :\n    orthchroMapReal Λ = 1",
+          "line": 89
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Orthochronous.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzGroup.orthchroMapReal_on_not_IsOrthochronous",
+          "docstring": null,
+          "snippet": "lemma orthchroMapReal_on_not_IsOrthochronous {Λ : lorentzGroup} (h : ¬ IsOrthochronous Λ) :\n    orthchroMapReal Λ = - 1",
+          "line": 100
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Orthochronous.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzGroup.orthchroMapReal_minus_one_or_one",
+          "docstring": null,
+          "snippet": "lemma orthchroMapReal_minus_one_or_one (Λ : lorentzGroup) :\n    orthchroMapReal Λ = -1 ∨ orthchroMapReal Λ = 1",
+          "line": 108
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Orthochronous.lean",
+          "kind": "def",
+          "name": "spaceTime.lorentzGroup.orthchroMap",
+          "docstring": "A continuous map from `lorentzGroup` to `ℤ₂` whose kernal are the Orthochronous elements.",
+          "snippet": "def orthchroMap : C(lorentzGroup, ℤ₂)",
+          "line": 117
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Orthochronous.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzGroup.orthchroMap_IsOrthochronous",
+          "docstring": null,
+          "snippet": "lemma orthchroMap_IsOrthochronous {Λ : lorentzGroup} (h : IsOrthochronous Λ) :\n    orthchroMap Λ = 1",
+          "line": 122
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Orthochronous.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzGroup.orthchroMap_not_IsOrthochronous",
+          "docstring": null,
+          "snippet": "lemma orthchroMap_not_IsOrthochronous {Λ : lorentzGroup} (h : ¬ IsOrthochronous Λ) :\n    orthchroMap Λ =  Additive.toMul (1 : ZMod 2)",
+          "line": 126
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Orthochronous.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzGroup.zero_zero_mul",
+          "docstring": null,
+          "snippet": "lemma zero_zero_mul (Λ Λ' : lorentzGroup) :\n    (Λ * Λ').1 0 0 =  (fstCol (transpose Λ)).1 0 * (fstCol Λ').1 0 +\n    ⟪(fstCol (transpose Λ)).1.space, (fstCol Λ').1.space⟫_ℝ",
+          "line": 131
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Orthochronous.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzGroup.mul_othchron_of_othchron_othchron",
+          "docstring": null,
+          "snippet": "lemma mul_othchron_of_othchron_othchron {Λ Λ' : lorentzGroup} (h : IsOrthochronous Λ)\n    (h' : IsOrthochronous Λ') : IsOrthochronous (Λ * Λ')",
+          "line": 140
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Orthochronous.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzGroup.mul_othchron_of_not_othchron_not_othchron",
+          "docstring": null,
+          "snippet": "lemma mul_othchron_of_not_othchron_not_othchron {Λ Λ' : lorentzGroup} (h : ¬  IsOrthochronous Λ)\n    (h' : ¬ IsOrthochronous Λ') : IsOrthochronous (Λ * Λ')",
+          "line": 147
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Orthochronous.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzGroup.mul_not_othchron_of_othchron_not_othchron",
+          "docstring": null,
+          "snippet": "lemma mul_not_othchron_of_othchron_not_othchron {Λ Λ' : lorentzGroup} (h :  IsOrthochronous Λ)\n    (h' : ¬ IsOrthochronous Λ') : ¬ IsOrthochronous (Λ * Λ')",
+          "line": 154
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Orthochronous.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzGroup.mul_not_othchron_of_not_othchron_othchron",
+          "docstring": null,
+          "snippet": "lemma mul_not_othchron_of_not_othchron_othchron {Λ Λ' : lorentzGroup} (h : ¬ IsOrthochronous Λ)\n    (h' : IsOrthochronous Λ') : ¬ IsOrthochronous (Λ * Λ')",
+          "line": 164
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Orthochronous.lean",
+          "kind": "def",
+          "name": "spaceTime.lorentzGroup.orthchroRep",
+          "docstring": "The homomorphism from `lorentzGroup` to `ℤ₂` whose kernal are the Orthochronous elements.",
+          "snippet": "def orthchroRep : lorentzGroup →* ℤ₂ where",
+          "line": 175
+        }
+      ]
+    },
+    {
+      "filename": "HepLean/SpaceTime/LorentzGroup/Proper.lean",
+      "entries": [
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Proper.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzGroup.det_eq_one_or_neg_one",
+          "docstring": "The determinant of a member of the lorentz group is `1` or `-1`.",
+          "snippet": "lemma det_eq_one_or_neg_one (Λ : 𝓛) : Λ.1.det = 1 ∨ Λ.1.det = -1",
+          "line": 28
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Proper.lean",
+          "kind": "instance",
+          "name": "spaceTime.lorentzGroup.«instance@f887d98e»",
+          "docstring": null,
+          "snippet": "instance : TopologicalSpace ℤ₂",
+          "line": 34
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Proper.lean",
+          "kind": "instance",
+          "name": "spaceTime.lorentzGroup.«instance@82c50558»",
+          "docstring": null,
+          "snippet": "instance : DiscreteTopology ℤ₂",
+          "line": 36
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Proper.lean",
+          "kind": "instance",
+          "name": "spaceTime.lorentzGroup.«instance@be00ca15»",
+          "docstring": null,
+          "snippet": "instance : TopologicalGroup ℤ₂",
+          "line": 39
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Proper.lean",
+          "kind": "def",
+          "name": "spaceTime.lorentzGroup.coeForℤ₂",
+          "docstring": "A continuous function from `({-1, 1} : Set ℝ)` to `ℤ₂`.",
+          "snippet": "@[simps!]\ndef coeForℤ₂ :  C(({-1, 1} : Set ℝ), ℤ₂) where",
+          "line": 43
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Proper.lean",
+          "kind": "def",
+          "name": "spaceTime.lorentzGroup.detContinuous",
+          "docstring": "The continuous map taking a lorentz matrix to its determinant.",
+          "snippet": "def detContinuous :  C(𝓛, ℤ₂)",
+          "line": 50
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Proper.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzGroup.detContinuous_eq_iff_det_eq",
+          "docstring": null,
+          "snippet": "lemma detContinuous_eq_iff_det_eq (Λ Λ' : lorentzGroup) :\n    detContinuous Λ = detContinuous Λ' ↔ Λ.1.det = Λ'.1.det",
+          "line": 59
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Proper.lean",
+          "kind": "def",
+          "name": "spaceTime.lorentzGroup.detRep",
+          "docstring": "The representation taking a lorentz matrix to its determinant.",
+          "snippet": "@[simps!]\ndef detRep : 𝓛 →* ℤ₂ where",
+          "line": 80
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Proper.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzGroup.detRep_continuous",
+          "docstring": null,
+          "snippet": "lemma detRep_continuous : Continuous detRep",
+          "line": 93
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Proper.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzGroup.det_on_connected_component",
+          "docstring": null,
+          "snippet": "lemma det_on_connected_component {Λ Λ'  : lorentzGroup} (h : Λ' ∈ connectedComponent Λ) :\n    Λ.1.det = Λ'.1.det",
+          "line": 95
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Proper.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzGroup.detRep_on_connected_component",
+          "docstring": null,
+          "snippet": "lemma detRep_on_connected_component {Λ Λ'  : lorentzGroup} (h : Λ' ∈ connectedComponent Λ) :\n    detRep Λ = detRep Λ'",
+          "line": 104
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Proper.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzGroup.det_of_joined",
+          "docstring": null,
+          "snippet": "lemma det_of_joined {Λ Λ' : lorentzGroup} (h : Joined Λ Λ') : Λ.1.det = Λ'.1.det",
+          "line": 109
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Proper.lean",
+          "kind": "def",
+          "name": "spaceTime.lorentzGroup.IsProper",
+          "docstring": "A Lorentz Matrix is proper if its determinant is 1.",
+          "snippet": "@[simp]\ndef IsProper (Λ : lorentzGroup) : Prop",
+          "line": 114
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Proper.lean",
+          "kind": "instance",
+          "name": "spaceTime.lorentzGroup.«instance@bb7ff875»",
+          "docstring": null,
+          "snippet": "instance : DecidablePred IsProper",
+          "line": 116
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Proper.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzGroup.IsProper_iff",
+          "docstring": null,
+          "snippet": "lemma IsProper_iff (Λ : lorentzGroup) : IsProper Λ ↔ detRep Λ = 1",
+          "line": 120
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Proper.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzGroup.id_IsProper",
+          "docstring": null,
+          "snippet": "lemma id_IsProper : IsProper 1",
+          "line": 125
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Proper.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzGroup.isProper_on_connected_component",
+          "docstring": null,
+          "snippet": "lemma isProper_on_connected_component {Λ Λ'  : lorentzGroup} (h : Λ' ∈ connectedComponent Λ) :\n    IsProper Λ ↔ IsProper Λ'",
+          "line": 128
+        }
+      ]
+    },
+    {
+      "filename": "HepLean/SpaceTime/LorentzGroup/Rotations.lean",
+      "entries": [
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Rotations.lean",
+          "kind": "def",
+          "name": "spaceTime.lorentzGroup.SO3ToMatrix",
+          "docstring": "Given a element of `SO(3)` the matrix corresponding to a space-time rotation.",
+          "snippet": "@[simp]\ndef SO3ToMatrix (A : SO(3)) : Matrix (Fin 4) (Fin 4) ℝ",
+          "line": 23
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Rotations.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzGroup.SO3ToMatrix_PreservesηLin",
+          "docstring": null,
+          "snippet": "lemma SO3ToMatrix_PreservesηLin (A : SO(3)) : PreservesηLin $ SO3ToMatrix A",
+          "line": 26
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Rotations.lean",
+          "kind": "lemma",
+          "name": "spaceTime.lorentzGroup.SO3ToMatrix_injective",
+          "docstring": null,
+          "snippet": "lemma SO3ToMatrix_injective : Function.Injective SO3ToMatrix",
+          "line": 34
+        },
+        {
+          "file": "HepLean/SpaceTime/LorentzGroup/Rotations.lean",
+          "kind": "def",
+          "name": "spaceTime.lorentzGroup.SO3ToLorentz",
+          "docstring": "Given a element of `SO(3)` the element of the Lorentz group corresponding to a\nspace-time rotation.",
+          "snippet": "def SO3ToLorentz : SO(3) →* 𝓛 where",
+          "line": 44
+        }
+      ]
+    },
+    {
+      "filename": "HepLean/SpaceTime/Metric.lean",
+      "entries": [
+        {
+          "file": "HepLean/SpaceTime/Metric.lean",
+          "kind": "def",
+          "name": "spaceTime.η",
+          "docstring": "The metric as a `4×4` real matrix.",
+          "snippet": "def η : Matrix (Fin 4) (Fin 4) ℝ",
+          "line": 29
+        },
+        {
+          "file": "HepLean/SpaceTime/Metric.lean",
+          "kind": "lemma",
+          "name": "spaceTime.η_block",
+          "docstring": null,
+          "snippet": "lemma η_block : η = Matrix.reindex finSumFinEquiv finSumFinEquiv (\n    Matrix.fromBlocks (1 : Matrix (Fin 1) (Fin 1) ℝ) 0 0 (-1 : Matrix (Fin 3) (Fin 3) ℝ))",
+          "line": 32
+        },
+        {
+          "file": "HepLean/SpaceTime/Metric.lean",
+          "kind": "lemma",
+          "name": "spaceTime.η_reindex",
+          "docstring": null,
+          "snippet": "lemma η_reindex : (Matrix.reindex finSumFinEquiv finSumFinEquiv).symm η =\n    LieAlgebra.Orthogonal.indefiniteDiagonal (Fin 1) (Fin 3) ℝ",
+          "line": 43
+        },
+        {
+          "file": "HepLean/SpaceTime/Metric.lean",
+          "kind": "lemma",
+          "name": "spaceTime.η_explicit",
+          "docstring": null,
+          "snippet": "lemma η_explicit : η = !![(1 : ℝ), 0, 0, 0; 0, -1, 0, 0; 0, 0, -1, 0; 0, 0, 0, -1]",
+          "line": 47
+        },
+        {
+          "file": "HepLean/SpaceTime/Metric.lean",
+          "kind": "lemma",
+          "name": "spaceTime.η_off_diagonal",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma η_off_diagonal {μ ν : Fin 4} (h : μ ≠ ν) : η μ ν = 0",
+          "line": 65
+        },
+        {
+          "file": "HepLean/SpaceTime/Metric.lean",
+          "kind": "lemma",
+          "name": "spaceTime.η_symmetric",
+          "docstring": null,
+          "snippet": "lemma η_symmetric (μ ν : Fin 4) : η μ ν = η ν μ",
+          "line": 74
+        },
+        {
+          "file": "HepLean/SpaceTime/Metric.lean",
+          "kind": "lemma",
+          "name": "spaceTime.η_transpose",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma η_transpose : η.transpose = η",
+          "line": 82
+        },
+        {
+          "file": "HepLean/SpaceTime/Metric.lean",
+          "kind": "lemma",
+          "name": "spaceTime.det_η",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma det_η : η.det = - 1",
+          "line": 87
+        },
+        {
+          "file": "HepLean/SpaceTime/Metric.lean",
+          "kind": "lemma",
+          "name": "spaceTime.η_sq",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma η_sq : η * η = 1",
+          "line": 99
+        },
+        {
+          "file": "HepLean/SpaceTime/Metric.lean",
+          "kind": "lemma",
+          "name": "spaceTime.η_diag_mul_self",
+          "docstring": null,
+          "snippet": "lemma η_diag_mul_self (μ : Fin 4) : η μ μ * η μ μ  = 1",
+          "line": 108
+        },
+        {
+          "file": "HepLean/SpaceTime/Metric.lean",
+          "kind": "lemma",
+          "name": "spaceTime.η_mulVec",
+          "docstring": null,
+          "snippet": "lemma η_mulVec (x : spaceTime) : η *ᵥ x = ![x 0, -x 1, -x 2, -x 3]",
+          "line": 112
+        },
+        {
+          "file": "HepLean/SpaceTime/Metric.lean",
+          "kind": "def",
+          "name": "spaceTime.linearMapForSpaceTime",
+          "docstring": "Given a point in spaceTime `x` the linear map `y → x ⬝ᵥ (η *ᵥ y)`.",
+          "snippet": "@[simps!]\ndef linearMapForSpaceTime (x : spaceTime) : spaceTime →ₗ[ℝ] ℝ where",
+          "line": 125
+        },
+        {
+          "file": "HepLean/SpaceTime/Metric.lean",
+          "kind": "def",
+          "name": "spaceTime.ηLin",
+          "docstring": "The metric as a bilinear map from `spaceTime` to `ℝ`.",
+          "snippet": "def ηLin : LinearMap.BilinForm ℝ spaceTime where",
+          "line": 136
+        },
+        {
+          "file": "HepLean/SpaceTime/Metric.lean",
+          "kind": "lemma",
+          "name": "spaceTime.ηLin_expand",
+          "docstring": null,
+          "snippet": "lemma ηLin_expand (x y : spaceTime) : ηLin x y = x 0 * y 0 - x 1 * y 1 - x 2 * y 2 - x 3 * y 3",
+          "line": 150
+        },
+        {
+          "file": "HepLean/SpaceTime/Metric.lean",
+          "kind": "lemma",
+          "name": "spaceTime.ηLin_expand_self",
+          "docstring": null,
+          "snippet": "lemma ηLin_expand_self (x : spaceTime) : ηLin x x = x 0 ^ 2 - ‖x.space‖ ^ 2",
+          "line": 159
+        },
+        {
+          "file": "HepLean/SpaceTime/Metric.lean",
+          "kind": "lemma",
+          "name": "spaceTime.time_elm_sq_of_ηLin",
+          "docstring": null,
+          "snippet": "lemma time_elm_sq_of_ηLin (x : spaceTime) : x 0 ^ 2 = ηLin x x + ‖x.space‖ ^ 2",
+          "line": 165
+        },
+        {
+          "file": "HepLean/SpaceTime/Metric.lean",
+          "kind": "lemma",
+          "name": "spaceTime.ηLin_leq_time_sq",
+          "docstring": null,
+          "snippet": "lemma ηLin_leq_time_sq (x : spaceTime) : ηLin x x ≤ x 0 ^ 2",
+          "line": 169
+        },
+        {
+          "file": "HepLean/SpaceTime/Metric.lean",
+          "kind": "lemma",
+          "name": "spaceTime.ηLin_space_inner_product",
+          "docstring": null,
+          "snippet": "lemma ηLin_space_inner_product (x y : spaceTime) :\n    ηLin x y = x 0 * y 0 - ⟪x.space, y.space⟫_ℝ",
+          "line": 173
+        },
+        {
+          "file": "HepLean/SpaceTime/Metric.lean",
+          "kind": "lemma",
+          "name": "spaceTime.ηLin_ge_abs_inner_product",
+          "docstring": null,
+          "snippet": "lemma ηLin_ge_abs_inner_product (x y : spaceTime) :\n    x 0 * y 0 - ‖⟪x.space, y.space⟫_ℝ‖ ≤ (ηLin x y)",
+          "line": 180
+        },
+        {
+          "file": "HepLean/SpaceTime/Metric.lean",
+          "kind": "lemma",
+          "name": "spaceTime.ηLin_ge_sub_norm",
+          "docstring": null,
+          "snippet": "lemma ηLin_ge_sub_norm (x y : spaceTime) :\n    x 0 * y 0 - ‖x.space‖ * ‖y.space‖ ≤ (ηLin x y)",
+          "line": 185
+        },
+        {
+          "file": "HepLean/SpaceTime/Metric.lean",
+          "kind": "lemma",
+          "name": "spaceTime.ηLin_symm",
+          "docstring": null,
+          "snippet": "lemma ηLin_symm (x y : spaceTime) : ηLin x y = ηLin y x",
+          "line": 192
+        },
+        {
+          "file": "HepLean/SpaceTime/Metric.lean",
+          "kind": "lemma",
+          "name": "spaceTime.ηLin_stdBasis_apply",
+          "docstring": null,
+          "snippet": "lemma ηLin_stdBasis_apply (μ : Fin 4) (x : spaceTime) : ηLin (stdBasis μ) x = η μ μ * x μ",
+          "line": 196
+        },
+        {
+          "file": "HepLean/SpaceTime/Metric.lean",
+          "kind": "lemma",
+          "name": "spaceTime.ηLin_η_stdBasis",
+          "docstring": null,
+          "snippet": "lemma ηLin_η_stdBasis (μ ν : Fin 4) : ηLin (stdBasis μ) (stdBasis ν) = η μ ν",
+          "line": 202
+        },
+        {
+          "file": "HepLean/SpaceTime/Metric.lean",
+          "kind": "lemma",
+          "name": "spaceTime.ηLin_mulVec_left",
+          "docstring": null,
+          "snippet": "lemma ηLin_mulVec_left (x y : spaceTime) (Λ : Matrix (Fin 4) (Fin 4) ℝ) :\n    ηLin (Λ *ᵥ x) y = ηLin x ((η * Λᵀ * η) *ᵥ y)",
+          "line": 212
+        },
+        {
+          "file": "HepLean/SpaceTime/Metric.lean",
+          "kind": "lemma",
+          "name": "spaceTime.ηLin_mulVec_right",
+          "docstring": null,
+          "snippet": "lemma ηLin_mulVec_right (x y : spaceTime) (Λ : Matrix (Fin 4) (Fin 4) ℝ) :\n    ηLin x (Λ *ᵥ y) = ηLin ((η * Λᵀ * η) *ᵥ x) y",
+          "line": 218
+        },
+        {
+          "file": "HepLean/SpaceTime/Metric.lean",
+          "kind": "lemma",
+          "name": "spaceTime.ηLin_matrix_stdBasis",
+          "docstring": null,
+          "snippet": "lemma ηLin_matrix_stdBasis (μ ν : Fin 4) (Λ : Matrix (Fin 4) (Fin 4) ℝ) :\n    ηLin (stdBasis ν) (Λ *ᵥ stdBasis μ)  = η ν ν * Λ ν μ",
+          "line": 223
+        },
+        {
+          "file": "HepLean/SpaceTime/Metric.lean",
+          "kind": "lemma",
+          "name": "spaceTime.ηLin_matrix_stdBasis'",
+          "docstring": null,
+          "snippet": "lemma ηLin_matrix_stdBasis' (μ ν : Fin 4) (Λ : Matrix (Fin 4) (Fin 4) ℝ) :\n    Λ ν μ  = η ν ν *  ηLin (stdBasis ν) (Λ *ᵥ stdBasis μ)",
+          "line": 227
+        },
+        {
+          "file": "HepLean/SpaceTime/Metric.lean",
+          "kind": "lemma",
+          "name": "spaceTime.ηLin_matrix_eq_identity_iff",
+          "docstring": null,
+          "snippet": "lemma ηLin_matrix_eq_identity_iff (Λ : Matrix (Fin 4) (Fin 4) ℝ) :\n    Λ = 1 ↔ ∀ (x y : spaceTime), ηLin x y = ηLin x (Λ *ᵥ y)",
+          "line": 231
+        },
+        {
+          "file": "HepLean/SpaceTime/Metric.lean",
+          "kind": "def",
+          "name": "spaceTime.quadraticForm",
+          "docstring": "The metric as a quadratic form on `spaceTime`.",
+          "snippet": "def quadraticForm : QuadraticForm ℝ spaceTime",
+          "line": 249
+        }
+      ]
+    },
+    {
+      "filename": "HepLean/StandardModel/Basic.lean",
+      "entries": [
+        {
+          "file": "HepLean/StandardModel/Basic.lean",
+          "kind": "abbrev",
+          "name": "StandardModel.gaugeGroup",
+          "docstring": "The global gauge group of the standard model. TODO: Generalize to quotient.",
+          "snippet": "abbrev gaugeGroup : Type",
+          "line": 36
+        }
+      ]
+    },
+    {
+      "filename": "HepLean/StandardModel/HiggsBoson/Basic.lean",
+      "entries": [
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Basic.lean",
+          "kind": "abbrev",
+          "name": "StandardModel.higgsBundle",
+          "docstring": "The trivial vector bundle 𝓡² × ℂ². (TODO: Make associated bundle.)",
+          "snippet": "abbrev higgsBundle",
+          "line": 40
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Basic.lean",
+          "kind": "instance",
+          "name": "StandardModel.«instance@8dc82ed7»",
+          "docstring": null,
+          "snippet": "instance : SmoothVectorBundle higgsVec higgsBundle spaceTime.asSmoothManifold",
+          "line": 42
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Basic.lean",
+          "kind": "abbrev",
+          "name": "StandardModel.higgsField",
+          "docstring": "A higgs field is a smooth section of the higgs bundle.",
+          "snippet": "abbrev higgsField : Type",
+          "line": 46
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Basic.lean",
+          "kind": "instance",
+          "name": "StandardModel.«instance@b4eb99e1»",
+          "docstring": null,
+          "snippet": "instance : NormedAddCommGroup (Fin 2 → ℂ)",
+          "line": 48
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Basic.lean",
+          "kind": "def",
+          "name": "StandardModel.higgsVec.toField",
+          "docstring": "Given a vector `ℂ²` the constant higgs field with value equal to that\nsection.",
+          "snippet": "noncomputable def higgsVec.toField (φ : higgsVec) : higgsField where",
+          "line": 53
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Basic.lean",
+          "kind": "def",
+          "name": "StandardModel.higgsField.toHiggsVec",
+          "docstring": "Given a `higgsField`, the corresponding map from `spaceTime` to `higgsVec`.",
+          "snippet": "def toHiggsVec (φ : higgsField) : spaceTime → higgsVec",
+          "line": 64
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Basic.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsField.toHiggsVec_smooth",
+          "docstring": null,
+          "snippet": "lemma toHiggsVec_smooth (φ : higgsField) : Smooth 𝓘(ℝ, spaceTime) 𝓘(ℝ, higgsVec) φ.toHiggsVec",
+          "line": 67
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Basic.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsField.toField_toHiggsVec_apply",
+          "docstring": null,
+          "snippet": "lemma toField_toHiggsVec_apply (φ : higgsField) (x : spaceTime) :\n    (φ.toHiggsVec x).toField x = φ x",
+          "line": 78
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Basic.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsField.higgsVecToFin2ℂ_toHiggsVec",
+          "docstring": null,
+          "snippet": "lemma higgsVecToFin2ℂ_toHiggsVec (φ : higgsField) : higgsVecToFin2ℂ ∘ φ.toHiggsVec = φ",
+          "line": 82
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Basic.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsField.toVec_smooth",
+          "docstring": null,
+          "snippet": "lemma toVec_smooth (φ : higgsField) : Smooth 𝓘(ℝ, spaceTime) 𝓘(ℝ, Fin 2 → ℂ) φ",
+          "line": 86
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Basic.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsField.apply_smooth",
+          "docstring": null,
+          "snippet": "lemma apply_smooth (φ : higgsField) :\n    ∀ i, Smooth 𝓘(ℝ, spaceTime) 𝓘(ℝ, ℂ) (fun (x : spaceTime) => (φ x i))",
+          "line": 90
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Basic.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsField.apply_re_smooth",
+          "docstring": null,
+          "snippet": "lemma apply_re_smooth (φ : higgsField) (i : Fin 2):\n    Smooth 𝓘(ℝ, spaceTime) 𝓘(ℝ, ℝ) (reCLM ∘ (fun (x : spaceTime) =>  (φ x i)))",
+          "line": 95
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Basic.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsField.apply_im_smooth",
+          "docstring": null,
+          "snippet": "lemma apply_im_smooth (φ : higgsField) (i : Fin 2):\n    Smooth 𝓘(ℝ, spaceTime) 𝓘(ℝ, ℝ) (imCLM ∘ (fun (x : spaceTime) =>  (φ x i)))",
+          "line": 99
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Basic.lean",
+          "kind": "def",
+          "name": "StandardModel.higgsField.normSq",
+          "docstring": "Given a `higgsField`, the map `spaceTime → ℝ` obtained by taking the square norm of the\n higgs vector.",
+          "snippet": "@[simp]\ndef normSq (φ : higgsField) : spaceTime → ℝ",
+          "line": 106
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Basic.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsField.toHiggsVec_norm",
+          "docstring": null,
+          "snippet": "lemma toHiggsVec_norm (φ : higgsField) (x : spaceTime) :\n    ‖φ x‖  = ‖φ.toHiggsVec x‖",
+          "line": 108
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Basic.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsField.normSq_expand",
+          "docstring": null,
+          "snippet": "lemma normSq_expand (φ : higgsField)  :\n    φ.normSq  = fun x => (conj (φ x 0) * (φ x 0) + conj (φ x 1) * (φ x 1) ).re",
+          "line": 111
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Basic.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsField.normSq_smooth",
+          "docstring": null,
+          "snippet": "lemma normSq_smooth (φ : higgsField) : Smooth 𝓘(ℝ, spaceTime) 𝓘(ℝ, ℝ) φ.normSq",
+          "line": 118
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Basic.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsField.normSq_nonneg",
+          "docstring": null,
+          "snippet": "lemma normSq_nonneg (φ : higgsField) (x : spaceTime) : 0 ≤ φ.normSq x",
+          "line": 138
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Basic.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsField.normSq_zero",
+          "docstring": null,
+          "snippet": "lemma normSq_zero (φ : higgsField) (x : spaceTime) : φ.normSq x = 0 ↔ φ x = 0",
+          "line": 141
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Basic.lean",
+          "kind": "def",
+          "name": "StandardModel.higgsField.potential",
+          "docstring": "The Higgs potential of the form `- μ² * |φ|² + λ * |φ|⁴`.",
+          "snippet": "@[simp]\ndef potential (φ : higgsField) (μSq lambda : ℝ ) (x : spaceTime) :  ℝ",
+          "line": 146
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Basic.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsField.potential_smooth",
+          "docstring": null,
+          "snippet": "lemma potential_smooth (φ : higgsField) (μSq lambda : ℝ) :\n    Smooth 𝓘(ℝ, spaceTime) 𝓘(ℝ, ℝ) (fun x => φ.potential μSq lambda x)",
+          "line": 149
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Basic.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsField.potential_apply",
+          "docstring": null,
+          "snippet": "lemma potential_apply (φ : higgsField) (μSq lambda : ℝ) (x : spaceTime) :\n    (φ.potential μSq lambda) x = higgsVec.potential μSq lambda (φ.toHiggsVec x)",
+          "line": 157
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Basic.lean",
+          "kind": "def",
+          "name": "StandardModel.higgsField.isConst",
+          "docstring": "A higgs field is constant if it is equal for all `x` `y` in `spaceTime`.",
+          "snippet": "def isConst (Φ : higgsField) : Prop",
+          "line": 164
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Basic.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsField.isConst_of_higgsVec",
+          "docstring": null,
+          "snippet": "lemma isConst_of_higgsVec (φ : higgsVec) : φ.toField.isConst",
+          "line": 166
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Basic.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsField.isConst_iff_of_higgsVec",
+          "docstring": null,
+          "snippet": "lemma isConst_iff_of_higgsVec (Φ : higgsField) : Φ.isConst ↔ ∃ (φ : higgsVec), Φ = φ.toField",
+          "line": 170
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Basic.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsField.normSq_of_higgsVec",
+          "docstring": null,
+          "snippet": "lemma normSq_of_higgsVec (φ : higgsVec) : φ.toField.normSq = fun x => (norm φ) ^ 2",
+          "line": 183
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/Basic.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsField.potential_of_higgsVec",
+          "docstring": null,
+          "snippet": "lemma potential_of_higgsVec (φ : higgsVec) (μSq lambda : ℝ) :\n    φ.toField.potential μSq lambda = fun _ => higgsVec.potential μSq lambda φ",
+          "line": 188
+        }
+      ]
+    },
+    {
+      "filename": "HepLean/StandardModel/HiggsBoson/TargetSpace.lean",
+      "entries": [
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/TargetSpace.lean",
+          "kind": "abbrev",
+          "name": "StandardModel.higgsVec",
+          "docstring": "The complex vector space in which the Higgs field takes values.",
+          "snippet": "abbrev higgsVec",
+          "line": 41
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/TargetSpace.lean",
+          "kind": "def",
+          "name": "StandardModel.higgsVecToFin2ℂ",
+          "docstring": "The continuous linear map from the vector space `higgsVec` to `(Fin 2 → ℂ)` achieved by\ncasting vectors.",
+          "snippet": "def higgsVecToFin2ℂ : higgsVec →L[ℝ] (Fin 2 → ℂ) where",
+          "line": 47
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/TargetSpace.lean",
+          "kind": "lemma",
+          "name": "StandardModel.smooth_higgsVecToFin2ℂ",
+          "docstring": null,
+          "snippet": "lemma smooth_higgsVecToFin2ℂ : Smooth 𝓘(ℝ, higgsVec) 𝓘(ℝ, Fin 2 → ℂ) higgsVecToFin2ℂ",
+          "line": 54
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/TargetSpace.lean",
+          "kind": "def",
+          "name": "StandardModel.higgsVec.higgsRepUnitary",
+          "docstring": "The Higgs representation as a homomorphism from the gauge group to unitary `2×2`-matrices.",
+          "snippet": "@[simps!]\nnoncomputable def higgsRepUnitary : gaugeGroup →* unitaryGroup (Fin 2) ℂ where",
+          "line": 61
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/TargetSpace.lean",
+          "kind": "def",
+          "name": "StandardModel.higgsVec.orthonormBasis",
+          "docstring": "An orthonormal basis of higgsVec.",
+          "snippet": "noncomputable def orthonormBasis : OrthonormalBasis (Fin 2) ℂ higgsVec",
+          "line": 73
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/TargetSpace.lean",
+          "kind": "def",
+          "name": "StandardModel.higgsVec.matrixToLin",
+          "docstring": "Takes in a `2×2`-matrix and returns a linear map of `higgsVec`.",
+          "snippet": "noncomputable def matrixToLin : Matrix (Fin 2) (Fin 2) ℂ →* (higgsVec →L[ℂ] higgsVec) where",
+          "line": 77
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/TargetSpace.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsVec.matrixToLin_star",
+          "docstring": null,
+          "snippet": "lemma matrixToLin_star (g : Matrix (Fin 2) (Fin 2) ℂ) :\n    matrixToLin (star g) = star (matrixToLin g)",
+          "line": 84
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/TargetSpace.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsVec.matrixToLin_unitary",
+          "docstring": null,
+          "snippet": "lemma matrixToLin_unitary (g : unitaryGroup (Fin 2) ℂ) :\n    matrixToLin g ∈ unitary (higgsVec →L[ℂ] higgsVec)",
+          "line": 88
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/TargetSpace.lean",
+          "kind": "def",
+          "name": "StandardModel.higgsVec.unitaryToLin",
+          "docstring": "The natural homomorphism from unitary `2×2` complex matrices to unitary transformations\nof `higgsVec`.",
+          "snippet": "noncomputable def unitaryToLin : unitaryGroup (Fin 2) ℂ →* unitary (higgsVec →L[ℂ] higgsVec) where",
+          "line": 96
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/TargetSpace.lean",
+          "kind": "def",
+          "name": "StandardModel.higgsVec.unitToLinear",
+          "docstring": "The inclusion of unitary transformations on `higgsVec` into all linear transformations.",
+          "snippet": "@[simps!]\ndef unitToLinear : unitary (higgsVec →L[ℂ] higgsVec) →* higgsVec →ₗ[ℂ] higgsVec",
+          "line": 107
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/TargetSpace.lean",
+          "kind": "def",
+          "name": "StandardModel.higgsVec.rep",
+          "docstring": "The representation of the gauge group acting on `higgsVec`.",
+          "snippet": "@[simps!]\ndef rep : Representation ℂ gaugeGroup higgsVec",
+          "line": 112
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/TargetSpace.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsVec.higgsRepUnitary_mul",
+          "docstring": null,
+          "snippet": "lemma higgsRepUnitary_mul (g : gaugeGroup) (φ : higgsVec) :\n    (higgsRepUnitary g).1 *ᵥ φ = g.2.2 ^ 3 • (g.2.1.1 *ᵥ φ)",
+          "line": 115
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/TargetSpace.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsVec.rep_apply",
+          "docstring": null,
+          "snippet": "lemma rep_apply (g : gaugeGroup) (φ : higgsVec) : rep g φ = g.2.2 ^ 3 • (g.2.1.1 *ᵥ φ)",
+          "line": 120
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/TargetSpace.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsVec.norm_invariant",
+          "docstring": null,
+          "snippet": "lemma norm_invariant (g : gaugeGroup) (φ : higgsVec) : ‖rep g φ‖ = ‖φ‖",
+          "line": 123
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/TargetSpace.lean",
+          "kind": "def",
+          "name": "StandardModel.higgsVec.potential",
+          "docstring": "The higgs potential for `higgsVec`, i.e. for constant higgs fields.",
+          "snippet": "def potential (φ : higgsVec) : ℝ",
+          "line": 132
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/TargetSpace.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsVec.potential_invariant",
+          "docstring": null,
+          "snippet": "lemma potential_invariant (φ : higgsVec)  (g : gaugeGroup) :\n    potential μSq (λ) (rep g φ) = potential μSq (λ) φ",
+          "line": 134
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/TargetSpace.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsVec.potential_as_quad",
+          "docstring": null,
+          "snippet": "lemma potential_as_quad (φ : higgsVec) :\n    λ  * ‖φ‖ ^ 2 * ‖φ‖ ^ 2 + (- μSq ) * ‖φ‖ ^ 2 + (- potential μSq (λ) φ) = 0",
+          "line": 139
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/TargetSpace.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsVec.potential_snd_term_nonneg",
+          "docstring": null,
+          "snippet": "lemma potential_snd_term_nonneg (φ : higgsVec) :\n    0 ≤ λ * ‖φ‖ ^ 4",
+          "line": 152
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/TargetSpace.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsVec.zero_le_potential_discrim",
+          "docstring": null,
+          "snippet": "lemma zero_le_potential_discrim  (φ : higgsVec) :\n    0 ≤ discrim (λ) (- μSq ) (- potential μSq (λ) φ)",
+          "line": 160
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/TargetSpace.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsVec.potential_eq_zero_sol",
+          "docstring": null,
+          "snippet": "lemma potential_eq_zero_sol (φ : higgsVec)\n    (hV : potential μSq (λ) φ = 0) : φ = 0 ∨ ‖φ‖ ^ 2 = μSq / λ",
+          "line": 170
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/TargetSpace.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsVec.potential_eq_zero_sol_of_μSq_nonpos",
+          "docstring": null,
+          "snippet": "lemma potential_eq_zero_sol_of_μSq_nonpos  (hμSq : μSq ≤ 0)\n    (φ : higgsVec)  (hV : potential μSq (λ) φ = 0) : φ = 0",
+          "line": 184
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/TargetSpace.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsVec.potential_bounded_below",
+          "docstring": null,
+          "snippet": "lemma potential_bounded_below (φ : higgsVec) :\n    - μSq ^ 2 / (4 * (λ)) ≤ potential μSq (λ) φ",
+          "line": 197
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/TargetSpace.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsVec.potential_bounded_below_of_μSq_nonpos",
+          "docstring": null,
+          "snippet": "lemma potential_bounded_below_of_μSq_nonpos  {μSq : ℝ}\n    (hμSq : μSq ≤ 0) (φ : higgsVec) : 0 ≤ potential μSq (λ) φ",
+          "line": 210
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/TargetSpace.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsVec.potential_eq_bound_discrim_zero",
+          "docstring": null,
+          "snippet": "lemma potential_eq_bound_discrim_zero (φ : higgsVec)\n    (hV : potential μSq (λ) φ = - μSq ^ 2 / (4  * λ)) :\n    discrim (λ) (- μSq) (- potential μSq (λ) φ) = 0",
+          "line": 219
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/TargetSpace.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsVec.potential_eq_bound_higgsVec_sq",
+          "docstring": null,
+          "snippet": "lemma potential_eq_bound_higgsVec_sq (φ : higgsVec)\n    (hV : potential μSq (λ) φ = - μSq ^ 2 / (4  * (λ))) :\n    ‖φ‖ ^ 2 = μSq / (2 * λ)",
+          "line": 226
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/TargetSpace.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsVec.potential_eq_bound_iff",
+          "docstring": null,
+          "snippet": "lemma potential_eq_bound_iff (φ : higgsVec) :\n    potential μSq (λ) φ = - μSq ^ 2 / (4  * (λ)) ↔ ‖φ‖ ^ 2 = μSq / (2 * (λ))",
+          "line": 238
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/TargetSpace.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsVec.potential_eq_bound_iff_of_μSq_nonpos",
+          "docstring": null,
+          "snippet": "lemma potential_eq_bound_iff_of_μSq_nonpos  {μSq : ℝ}\n    (hμSq : μSq ≤ 0) (φ : higgsVec) : potential μSq (λ) φ = 0 ↔ φ = 0",
+          "line": 249
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/TargetSpace.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsVec.potential_eq_bound_IsMinOn",
+          "docstring": null,
+          "snippet": "lemma potential_eq_bound_IsMinOn  (φ : higgsVec)\n    (hv : potential μSq lambda φ = - μSq ^ 2 / (4  * lambda)) :\n    IsMinOn (potential μSq lambda) Set.univ φ",
+          "line": 257
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/TargetSpace.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsVec.potential_eq_bound_IsMinOn_of_μSq_nonpos",
+          "docstring": null,
+          "snippet": "lemma potential_eq_bound_IsMinOn_of_μSq_nonpos  {μSq : ℝ}\n    (hμSq : μSq ≤ 0) (φ : higgsVec) (hv : potential μSq lambda φ = 0) :\n    IsMinOn (potential μSq lambda) Set.univ φ",
+          "line": 265
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/TargetSpace.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsVec.potential_bound_reached_of_μSq_nonneg",
+          "docstring": null,
+          "snippet": "lemma potential_bound_reached_of_μSq_nonneg  {μSq : ℝ} (hμSq : 0 ≤ μSq) :\n    ∃ (φ : higgsVec), potential μSq lambda φ = - μSq ^ 2 / (4  * lambda)",
+          "line": 273
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/TargetSpace.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsVec.IsMinOn_potential_iff_of_μSq_nonneg",
+          "docstring": null,
+          "snippet": "lemma IsMinOn_potential_iff_of_μSq_nonneg  {μSq : ℝ} (hμSq : 0 ≤ μSq) :\n    IsMinOn (potential μSq lambda) Set.univ φ ↔ ‖φ‖ ^ 2 = μSq /(2 * lambda)",
+          "line": 280
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/TargetSpace.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsVec.IsMinOn_potential_iff_of_μSq_nonpos",
+          "docstring": null,
+          "snippet": "lemma IsMinOn_potential_iff_of_μSq_nonpos {μSq : ℝ} (hμSq : μSq ≤ 0) :\n    IsMinOn (potential μSq lambda) Set.univ φ ↔ φ = 0",
+          "line": 295
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/TargetSpace.lean",
+          "kind": "def",
+          "name": "StandardModel.higgsVec.rotateMatrix",
+          "docstring": "Given a Higgs vector, a rotation matrix which puts the first component of the\nvector to zero, and the second component to a real",
+          "snippet": "def rotateMatrix (φ : higgsVec) : Matrix (Fin 2) (Fin 2) ℂ",
+          "line": 311
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/TargetSpace.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsVec.rotateMatrix_star",
+          "docstring": null,
+          "snippet": "lemma rotateMatrix_star (φ : higgsVec) :\n    star φ.rotateMatrix =\n    ![![conj (φ 1) /‖φ‖ ,  φ 0 /‖φ‖], ![- conj (φ 0) / ‖φ‖ , φ 1 / ‖φ‖] ]",
+          "line": 314
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/TargetSpace.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsVec.rotateMatrix_det",
+          "docstring": null,
+          "snippet": "lemma rotateMatrix_det {φ : higgsVec} (hφ : φ ≠ 0) : (rotateMatrix φ).det = 1",
+          "line": 323
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/TargetSpace.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsVec.rotateMatrix_unitary",
+          "docstring": null,
+          "snippet": "lemma rotateMatrix_unitary {φ : higgsVec} (hφ : φ ≠ 0) :\n    (rotateMatrix φ) ∈ unitaryGroup (Fin 2) ℂ",
+          "line": 332
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/TargetSpace.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsVec.rotateMatrix_specialUnitary",
+          "docstring": null,
+          "snippet": "lemma rotateMatrix_specialUnitary {φ : higgsVec} (hφ : φ ≠ 0) :\n    (rotateMatrix φ) ∈ specialUnitaryGroup (Fin 2) ℂ",
+          "line": 352
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/TargetSpace.lean",
+          "kind": "def",
+          "name": "StandardModel.higgsVec.rotateGuageGroup",
+          "docstring": "Given a Higgs vector, an element of the gauge group which puts the first component of the\nvector to zero, and the second component to a real",
+          "snippet": "def rotateGuageGroup {φ : higgsVec} (hφ : φ ≠ 0) : gaugeGroup",
+          "line": 358
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/TargetSpace.lean",
+          "kind": "lemma",
+          "name": "StandardModel.higgsVec.rotateGuageGroup_apply",
+          "docstring": null,
+          "snippet": "lemma rotateGuageGroup_apply {φ : higgsVec} (hφ : φ ≠ 0) :\n    rep (rotateGuageGroup hφ) φ = ![0, ofReal ‖φ‖]",
+          "line": 361
+        },
+        {
+          "file": "HepLean/StandardModel/HiggsBoson/TargetSpace.lean",
+          "kind": "theorem",
+          "name": "StandardModel.higgsVec.rotate_fst_zero_snd_real",
+          "docstring": null,
+          "snippet": "theorem rotate_fst_zero_snd_real (φ : higgsVec) :\n    ∃ (g : gaugeGroup), rep g φ = ![0, ofReal ‖φ‖]",
+          "line": 378
+        }
+      ]
+    },
+    {
+      "filename": "HepLean/StandardModel/Representations.lean",
+      "entries": [
+        {
+          "file": "HepLean/StandardModel/Representations.lean",
+          "kind": "def",
+          "name": "StandardModel.repU1Map",
+          "docstring": "The 2d representation of U(1) with charge 3 as a map from U(1) to `unitaryGroup (Fin 2) ℂ`.",
+          "snippet": "@[simps!]\nnoncomputable def repU1Map (g : unitary ℂ) : unitaryGroup (Fin 2) ℂ",
+          "line": 30
+        },
+        {
+          "file": "HepLean/StandardModel/Representations.lean",
+          "kind": "def",
+          "name": "StandardModel.repU1",
+          "docstring": "The 2d representation of U(1) with charge 3 as a homomorphism\n from U(1) to `unitaryGroup (Fin 2) ℂ`.",
+          "snippet": "@[simps!]\nnoncomputable def repU1 : unitary ℂ →* unitaryGroup (Fin 2) ℂ where",
+          "line": 42
+        },
+        {
+          "file": "HepLean/StandardModel/Representations.lean",
+          "kind": "def",
+          "name": "StandardModel.fundamentalSU2",
+          "docstring": "The fundamental representation of SU(2) as a homomorphism to `unitaryGroup (Fin 2) ℂ`.",
+          "snippet": "@[simps!]\ndef fundamentalSU2 : specialUnitaryGroup (Fin 2) ℂ →* unitaryGroup (Fin 2) ℂ where",
+          "line": 51
+        },
+        {
+          "file": "HepLean/StandardModel/Representations.lean",
+          "kind": "lemma",
+          "name": "StandardModel.repU1_fundamentalSU2_commute",
+          "docstring": null,
+          "snippet": "lemma repU1_fundamentalSU2_commute (u1 : unitary ℂ) (g : specialUnitaryGroup (Fin 2) ℂ) :\n    repU1 u1 * fundamentalSU2 g = fundamentalSU2 g * repU1 u1",
+          "line": 56
+        }
+      ]
+    }
+  ],
+  "pdfUrl": "/monthly-updates/2024-05.pdf",
+  "generatedAt": "2026-08-14T10:32:14.192Z"
+}
