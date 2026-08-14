@@ -1,10 +1,23 @@
 import type { MonthlyUpdate } from "@/lib/yaml";
 import { ContributorPill, ReviewerPill } from "./contributor-pill";
+import { SparkleIcon } from "./icons";
 import { PdfLink } from "./pdf-link";
 import { PdfViewer } from "./pdf-viewer";
 
 function formatNumber(n: number): string {
   return new Intl.NumberFormat("en-US").format(n);
+}
+
+// No link in the prompt - ChatGPT can't fetch physlib.io from most contexts,
+// and pasting the actual figures gets a real answer instead of a "please
+// provide the text" reply.
+function chatGptSummaryUrl(text: string): string {
+  const params = new URLSearchParams({
+    q: `Summarise this: ${text}`,
+    hints: "search",
+    "temporary-chat": "true",
+  });
+  return `https://chatgpt.com/?${params.toString()}`;
 }
 
 function formatDateRange(startISO: string, endISOExclusive: string): string {
@@ -181,7 +194,20 @@ export function MonthDetail({ data }: { data: MonthlyUpdate }) {
                   <span className="truncate font-mono text-foreground/80" title={s.path}>
                     {s.path}
                   </span>
-                  <span className="shrink-0 text-muted">{formatNumber(s.linesChanged)}</span>
+                  <span className="flex shrink-0 items-baseline gap-1.5">
+                    <span className="text-muted">{formatNumber(s.linesChanged)}</span>
+                    <a
+                      href={chatGptSummaryUrl(
+                        `${s.path} had ${formatNumber(s.linesChanged)} lines changed in ${data.label} of the Physlib Lean 4 physics library.`,
+                      )}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title={`Ask ChatGPT about ${s.path}`}
+                      className="text-muted/50 transition-colors hover:text-accent"
+                    >
+                      <SparkleIcon className="size-3" />
+                    </a>
+                  </span>
                 </div>
               ))}
             </div>
