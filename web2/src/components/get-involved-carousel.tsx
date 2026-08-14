@@ -1,7 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
+
+const AUTO_ADVANCE_MS = 8_000;
 
 const cards = [
   {
@@ -29,7 +31,7 @@ const cards = [
     items: [
       "Write up clear mathematical statements of physics results",
       "Provide references to formal proofs",
-      "Describe what a result means physically and why it matters",
+      "Describe what a result means physically and why it is suitable to be included in Physlib",
       "Open a GitHub issue or post in Zulip with your informal write-up",
     ],
     cta: { label: "Join Zulip", href: "https://leanprover.zulipchat.com/", external: true },
@@ -41,6 +43,7 @@ const cards = [
       "Check that examples and code snippets still work",
       "Suggest better explanations or missing context",
       "Report issues or open a PR with fixes directly",
+      "Review documentation errors that have been pointed out by LLMs"
     ],
     cta: { label: "Read the docs", href: "/getting-started", external: false },
   },
@@ -50,6 +53,20 @@ export function GetInvolvedCarousel() {
   const [index, setIndex] = useState(0);
   const [dir, setDir] = useState<"left" | "right" | null>(null);
   const [animKey, setAnimKey] = useState(0);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+
+    const timer = window.setTimeout(() => {
+      setDir("right");
+      setIndex((currentIndex) => (currentIndex + 1) % cards.length);
+      setAnimKey((key) => key + 1);
+    }, AUTO_ADVANCE_MS);
+
+    return () => window.clearTimeout(timer);
+  }, [index]);
 
   function go(next: number) {
     const newIndex = (next + cards.length) % cards.length;
@@ -77,7 +94,7 @@ export function GetInvolvedCarousel() {
         {/* card */}
         <div
           key={animKey}
-          className="flex-1 rounded border border-border bg-background shadow-together p-7 md:p-10"
+          className="flex h-[33rem] flex-1 flex-col rounded border border-border bg-background p-7 shadow-together sm:h-[30rem] md:h-[28rem] md:p-10"
           style={{ animation: `carousel-in-${dir ?? "right"} 0.22s ease both` }}
         >
           <h3
@@ -87,7 +104,7 @@ export function GetInvolvedCarousel() {
             {card.title}
           </h3>
 
-          <ul className="space-y-3 mb-8">
+          <ul className="mb-8 space-y-3">
             {card.items.map((item) => (
               <li
                 key={item}
@@ -100,26 +117,28 @@ export function GetInvolvedCarousel() {
             ))}
           </ul>
 
-          {card.cta.external ? (
-            <a
-              href={card.cta.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex h-9 items-center gap-2 rounded px-5 text-sm font-medium transition-opacity hover:opacity-80"
-              style={{ background: "var(--accent)", color: "var(--accent-foreground)", letterSpacing: "-0.01em" }}
-            >
-              {card.cta.label}
-              <ExternalIcon />
-            </a>
-          ) : (
-            <Link
-              href={card.cta.href}
-              className="inline-flex h-9 items-center gap-2 rounded px-5 text-sm font-medium transition-opacity hover:opacity-80"
-              style={{ background: "var(--accent)", color: "var(--accent-foreground)", letterSpacing: "-0.01em" }}
-            >
-              {card.cta.label}
-            </Link>
-          )}
+          <div className="my-auto">
+            {card.cta.external ? (
+              <a
+                href={card.cta.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-9 items-center gap-2 rounded px-5 text-sm font-medium transition-opacity hover:opacity-80"
+                style={{ background: "var(--accent)", color: "var(--accent-foreground)", letterSpacing: "-0.01em" }}
+              >
+                {card.cta.label}
+                <ExternalIcon />
+              </a>
+            ) : (
+              <Link
+                href={card.cta.href}
+                className="inline-flex h-9 items-center gap-2 rounded px-5 text-sm font-medium transition-opacity hover:opacity-80"
+                style={{ background: "var(--accent)", color: "var(--accent-foreground)", letterSpacing: "-0.01em" }}
+              >
+                {card.cta.label}
+              </Link>
+            )}
+          </div>
         </div>
 
         {/* right arrow */}
@@ -139,13 +158,18 @@ export function GetInvolvedCarousel() {
             key={i}
             onClick={() => go(i)}
             aria-label={`Go to card ${i + 1}`}
-            className="rounded-full transition-all"
-            style={{
-              width: i === index ? "1.5rem" : "0.375rem",
-              height: "0.375rem",
-              background: i === index ? "var(--accent)" : "var(--border)",
-            }}
-          />
+            className="relative h-1.5 overflow-hidden rounded-full bg-border transition-[width] duration-200"
+            style={{ width: i === index ? "1.5rem" : "0.375rem" }}
+          >
+            {i === index && (
+              <span
+                key={animKey}
+                aria-hidden
+                className="carousel-progress absolute inset-y-0 left-0 w-full origin-left bg-accent"
+                style={{ animationDuration: `${AUTO_ADVANCE_MS}ms` }}
+              />
+            )}
+          </button>
         ))}
       </div>
     </div>

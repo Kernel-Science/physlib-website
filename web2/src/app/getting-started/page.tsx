@@ -52,6 +52,61 @@ export default function GettingStartedPage() {
         ))}
       </div>
 
+      {/* About Lean */}
+      <PageHeader id="about-lean" title="About Lean" />
+      <div className="grid gap-10 md:grid-cols-2 md:items-center mb-4">
+        <div>
+          <h3
+            className="text-2xl font-medium text-foreground leading-tight"
+            style={{ letterSpacing: "-0.04em" }}
+          >
+            A theorem prover that guarantees correctness.
+          </h3>
+          <p
+            className="mt-5 text-base text-muted leading-snug"
+            style={{ letterSpacing: "-0.01em" }}
+          >
+            Lean is an interactive theorem prover where you write mathematical
+            definitions, theorems, and proofs — and the system verifies
+            correctness using type theory, with no gaps or hand-waving.
+          </p>
+          <p
+            className="mt-4 text-base text-foreground/40 leading-snug"
+            style={{ letterSpacing: "-0.01em" }}
+          >
+            Increasingly used by AI labs and mathematicians, Lean is now
+            making its way into physics through Physlib.
+          </p>
+        </div>
+
+        {/* Code card */}
+        <div className="rounded overflow-hidden bg-background border border-border shadow-together">
+          <div className="flex items-center gap-1.5 px-4 py-3 border-b border-border bg-foreground/5">
+            <span className="size-2.5 rounded-full bg-red-400/60" />
+            <span className="size-2.5 rounded-full bg-yellow-400/60" />
+            <span className="size-2.5 rounded-full bg-green-400/60" />
+            <span className="ml-3 text-xs text-foreground/30 font-mono">WicksTheorem.lean</span>
+          </div>
+          <div className="bg-[#1e1e1e] p-4 md:p-5 text-[13px] font-mono text-[#d4d4d4] leading-relaxed">
+            <pre className="whitespace-pre-wrap break-words">
+              <code>
+                <span className="text-[#569cd6]">theorem</span> <span className="text-[#9cdcfe]">wicks_theorem</span> : (φs : <span className="text-[#4ec9b0]">List</span> 𝓕.FieldOp) → 𝓣(<span className="text-[#9cdcfe]">ofFieldOpList</span> φs) ={"\n"}
+                {"  "}∑ (φsΛ : <span className="text-[#4ec9b0]">WickContraction</span> φs.length), φsΛ.wickTerm{"\n"}
+                | [] <span className="text-[#569cd6]">=&gt;</span> <span className="text-[#569cd6]">by</span>{"\n"}
+                {"  "}<span className="text-[#9cdcfe]">rw</span> [timeOrder_ofFieldOpList_nil]{"\n"}
+                {"  "}<span className="text-[#9cdcfe]">simp</span> <span className="text-[#569cd6]">only</span> [map_one, <span className="text-[#4ec9b0]">List</span>.length_nil, <span className="text-[#4ec9b0]">Algebra</span>.smul_mul_assoc]{"\n"}
+                {"  "}<span className="text-[#9cdcfe]">rw</span> [sum_WickContraction_nil]{"\n"}
+                {"  "}<span className="text-[#9cdcfe]">simp</span> <span className="text-[#569cd6]">only</span> [wickTerm_empty_nil]{"\n"}
+                | φ :: φs <span className="text-[#569cd6]">=&gt;</span> <span className="text-[#569cd6]">by</span>
+              </code>
+            </pre>
+          </div>
+          <div className="px-4 py-2.5 text-xs text-foreground/30 font-mono border-t border-border">
+            Wick&apos;s theorem — formally verified in Physlib.
+          </div>
+        </div>
+      </div>
+
       {/* Useful Resources */}
       <PageHeader id="useful-resources" title="Useful Resources" />
       <div className="grid gap-3 sm:grid-cols-2 mb-4">
@@ -231,6 +286,7 @@ const tocSections = [
   {
     title: "Getting Started",
     links: [
+      { label: "About Lean", href: "#about-lean" },
       { label: "Useful Resources", href: "#useful-resources" },
       { label: "Installation Guide", href: "#installing" },
     ],

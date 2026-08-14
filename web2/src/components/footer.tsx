@@ -2,6 +2,13 @@ import Link from "next/link";
 import { site } from "@/lib/site";
 
 const footerLinks = {
+  About: [
+    { label: "Overview", href: "/about" },
+    { label: "Mission", href: "/about/mission" },
+    { label: "Values", href: "/about/values" },
+    { label: "Impact", href: "/about/impact" },
+    { label: "Maintainers", href: "/maintainers" },
+  ],
   Learn: [
     { label: "Getting Started", href: "/getting-started" },
     { label: "APIs", href: "/apis" },
@@ -9,7 +16,6 @@ const footerLinks = {
   ],
   Community: [
     { label: "Get Involved", href: "/get-involved" },
-    { label: "Maintainers", href: "/maintainers" },
     { label: "Todo list", href: "/todo" },
     { label: "Discussion", href: site.zulip, external: true },
   ],
@@ -38,7 +44,7 @@ export function Footer() {
           Physlib
         </p>
 
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-6">
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link
