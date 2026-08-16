@@ -1,4 +1,5 @@
 import type { MonthlyUpdate } from "@/lib/yaml";
+import { CitationButton } from "./citation-button";
 import { ContributorPill, ReviewerPill } from "./contributor-pill";
 import { SparkleIcon } from "./icons";
 import { PdfLink } from "./pdf-link";
@@ -148,7 +149,10 @@ export function MonthDetail({ data }: { data: MonthlyUpdate }) {
                 </a>
               </p>
             </div>
-            <PdfLink href={data.pdfUrl} />
+            <div className="flex items-center gap-2">
+              <PdfLink href={data.pdfUrl} />
+              <CitationButton data={data} />
+            </div>
           </header>
 
           {data.pdfUrl ? (

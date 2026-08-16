@@ -27,9 +27,7 @@ export default function MonthlyUpdatesLayout({
           leanprover-community/physlib
         </a>
         . Pick a month in the sidebar for a breakdown of contributors, new
-        definitions, theorems and lemmas, and a link to the full report,
-        formatted as a short scientific paper and archived on Zenodo so
-        contributors get a citable record of their work.
+        definitions, theorems and lemmas, and a link to the full report.
       </p>
 
       {children}

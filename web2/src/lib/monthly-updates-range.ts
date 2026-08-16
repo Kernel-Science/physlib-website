@@ -42,7 +42,7 @@ const MONTH_NAMES_FULL = [
 
 // The reporting window this site currently tracks. Extend the end date as
 // new months are added - reports outside this range simply won't be listed.
-const RANGE_START = { year: 2024, month: 5 };
+const RANGE_START = { year: 2025, month: 8 };
 const RANGE_END = { year: 2026, month: 7 };
 
 function slugFor(year: number, month: number): string {
