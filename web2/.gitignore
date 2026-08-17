@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# monthly-updates generator intermediates. Only data/monthly-updates/*.json and
+# public/monthly-updates/*.pdf are committed.
+/.monthly-updates-build/
+/.cache/
+/build.log

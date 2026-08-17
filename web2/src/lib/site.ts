@@ -51,6 +51,7 @@ export const navSections: NavSection[] = [
       { label: "PR triage", href: "/pr-tracker" },
       { label: "Documentation", href: "/documentation-tracker" },
       { label: "TODO list", href: "/todo" },
+      { label: "Monthly updates", href: "/monthly-updates" },
     ],
   },
   {

@@ -1,0 +1,3131 @@
+{
+  "slug": "2026-02",
+  "label": "Feb 2026",
+  "year": 2026,
+  "month": 2,
+  "startDate": "2026-02-01T00:00:00.000Z",
+  "endDate": "2026-03-01T00:00:00.000Z",
+  "repo": "leanprover-community/physlib",
+  "branch": "master",
+  "baseSha": "d127ae0f9184cd4fe24d13f9adbe94c65e1308fb",
+  "headSha": "6286c6b614977a8d6a83086aa6e0c52d7975e4af",
+  "compareUrl": "https://github.com/leanprover-community/physlib/compare/d127ae0f9184cd4fe24d13f9adbe94c65e1308fb...6286c6b614977a8d6a83086aa6e0c52d7975e4af",
+  "commitsUrl": "https://github.com/leanprover-community/physlib/commits/master?since=2026-02-01T00:00:00.000Z&until=2026-03-01T00:00:00.000Z",
+  "totalCommits": 40,
+  "totalAdditions": 4686,
+  "totalDeletions": 1089,
+  "linesChanged": 5775,
+  "totalFilesChanged": 146,
+  "filesAdded": 13,
+  "filesRemoved": 0,
+  "subfolders": [
+    {
+      "path": "PhysLean/QuantumMechanics",
+      "files": 15,
+      "filesAdded": 9,
+      "filesRemoved": 0,
+      "additions": 2009,
+      "deletions": 19
+    },
+    {
+      "path": "PhysLean/Particles",
+      "files": 16,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 711,
+      "deletions": 154
+    },
+    {
+      "path": "PhysLean/Relativity",
+      "files": 19,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 711,
+      "deletions": 145
+    },
+    {
+      "path": "PhysLean/ClassicalMechanics",
+      "files": 7,
+      "filesAdded": 1,
+      "filesRemoved": 0,
+      "additions": 532,
+      "deletions": 230
+    },
+    {
+      "path": "PhysLean/Mathematics",
+      "files": 14,
+      "filesAdded": 2,
+      "filesRemoved": 0,
+      "additions": 339,
+      "deletions": 202
+    },
+    {
+      "path": "PhysLean/QFT",
+      "files": 39,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 176,
+      "deletions": 183
+    },
+    {
+      "path": "PhysLean/SpaceAndTime",
+      "files": 14,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 107,
+      "deletions": 95
+    },
+    {
+      "path": "lake-manifest.json",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 16,
+      "deletions": 16
+    },
+    {
+      "path": "docs",
+      "files": 1,
+      "filesAdded": 1,
+      "filesRemoved": 0,
+      "additions": 26,
+      "deletions": 0
+    },
+    {
+      "path": "PhysLean/Electromagnetism",
+      "files": 4,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 12,
+      "deletions": 12
+    },
+    {
+      "path": "PhysLean/Thermodynamics",
+      "files": 2,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 9,
+      "deletions": 9
+    },
+    {
+      "path": "PhysLean.lean",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 12,
+      "deletions": 0
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 7,
+      "deletions": 4
+    },
+    {
+      "path": "PhysLean/StatisticalMechanics",
+      "files": 3,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 5,
+      "deletions": 5
+    },
+    {
+      "path": "PhysLean/CondensedMatter",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 5,
+      "deletions": 4
+    },
+    {
+      "path": "PhysLean/Units",
+      "files": 2,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 3,
+      "deletions": 3
+    },
+    {
+      "path": "lakefile.toml",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 2,
+      "deletions": 2
+    },
+    {
+      "path": "PhysLean/Meta",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 1,
+      "deletions": 2
+    },
+    {
+      "path": "README.md",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 1,
+      "deletions": 1
+    },
+    {
+      "path": "docs/_data",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 1,
+      "deletions": 1
+    },
+    {
+      "path": "lean-toolchain",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 1,
+      "deletions": 1
+    },
+    {
+      "path": "scripts/MetaPrograms",
+      "files": 1,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "additions": 0,
+      "deletions": 1
+    }
+  ],
+  "contributors": [
+    {
+      "login": "gloges",
+      "name": "Gregory Loges",
+      "html_url": "https://github.com/gloges",
+      "avatar_url": "https://avatars.githubusercontent.com/u/11429491?v=4",
+      "commits": 4,
+      "linesChanged": 2812,
+      "firstTime": true
+    },
+    {
+      "login": "zhikaip",
+      "name": "Zhi Kai Pong",
+      "html_url": "https://github.com/zhikaip",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46996788?v=4",
+      "commits": 16,
+      "linesChanged": 1106,
+      "firstTime": false
+    },
+    {
+      "login": "jstoobysmith",
+      "name": "Joseph Tooby-Smith",
+      "html_url": "https://github.com/jstoobysmith",
+      "avatar_url": "https://avatars.githubusercontent.com/u/72603918?v=4",
+      "commits": 5,
+      "linesChanged": 839,
+      "firstTime": false
+    },
+    {
+      "login": "NicolaBernini",
+      "name": "Nicola Bernini",
+      "html_url": "https://github.com/NicolaBernini",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6381645?v=4",
+      "commits": 1,
+      "linesChanged": 690,
+      "firstTime": false
+    },
+    {
+      "login": "kastch",
+      "name": "Nikolai Kashcheev",
+      "html_url": "https://github.com/kastch",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5752579?v=4",
+      "commits": 4,
+      "linesChanged": 612,
+      "firstTime": false
+    },
+    {
+      "login": "ichxorya",
+      "name": "Curly-Howard-Chungus Correspondence | Lamport-Cabot-Codd-Backus-Naur Form",
+      "html_url": "https://github.com/ichxorya",
+      "avatar_url": "https://avatars.githubusercontent.com/u/26222301?v=4",
+      "commits": 1,
+      "linesChanged": 342,
+      "firstTime": true
+    },
+    {
+      "login": "pitmonticone",
+      "name": "Pietro Monticone",
+      "html_url": "https://github.com/pitmonticone",
+      "avatar_url": "https://avatars.githubusercontent.com/u/38562595?v=4",
+      "commits": 5,
+      "linesChanged": 127,
+      "firstTime": false
+    },
+    {
+      "login": "morrison-daniel",
+      "name": "Daniel Morrison",
+      "html_url": "https://github.com/morrison-daniel",
+      "avatar_url": "https://avatars.githubusercontent.com/u/39346894?v=4",
+      "commits": 4,
+      "linesChanged": 9,
+      "firstTime": false
+    }
+  ],
+  "reviewers": [
+    {
+      "login": "jstoobysmith",
+      "html_url": "https://github.com/jstoobysmith",
+      "avatar_url": "https://avatars.githubusercontent.com/u/72603918?u=e36d367e18c3569e632096b1bb61e1079cdce1ae&v=4",
+      "reviews": 14,
+      "name": "Joseph Tooby-Smith"
+    },
+    {
+      "login": "morrison-daniel",
+      "html_url": "https://github.com/morrison-daniel",
+      "avatar_url": "https://avatars.githubusercontent.com/u/39346894?v=4",
+      "reviews": 3,
+      "name": "Daniel Morrison"
+    },
+    {
+      "login": "zhikaip",
+      "html_url": "https://github.com/zhikaip",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46996788?v=4",
+      "reviews": 1,
+      "name": "Zhi Kai Pong"
+    }
+  ],
+  "kindTotals": {
+    "lemma": 254,
+    "structure": 3,
+    "instance": 28,
+    "def": 36,
+    "abbrev": 2
+  },
+  "files": [
+    {
+      "filename": "PhysLean/ClassicalMechanics/DampedHarmonicOscillator/Basic.lean",
+      "entries": [
+        {
+          "file": "PhysLean/ClassicalMechanics/DampedHarmonicOscillator/Basic.lean",
+          "kind": "lemma",
+          "name": "ClassicalMechanics.DampedHarmonicOscillator.k_ne_zero",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma k_ne_zero : S.k ≠ 0",
+          "line": 115
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/DampedHarmonicOscillator/Basic.lean",
+          "kind": "lemma",
+          "name": "ClassicalMechanics.DampedHarmonicOscillator.m_ne_zero",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma m_ne_zero : S.m ≠ 0",
+          "line": 118
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/ClassicalMechanics/HarmonicOscillator/Basic.lean",
+      "entries": [
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/Basic.lean",
+          "kind": "lemma",
+          "name": "ClassicalMechanics.HarmonicOscillator.k_ne_zero",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma k_ne_zero : S.k ≠ 0",
+          "line": 116
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/Basic.lean",
+          "kind": "lemma",
+          "name": "ClassicalMechanics.HarmonicOscillator.m_ne_zero",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma m_ne_zero : S.m ≠ 0",
+          "line": 119
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/Basic.lean",
+          "kind": "lemma",
+          "name": "ClassicalMechanics.HarmonicOscillator.ω_ne_zero",
+          "docstring": "The angular frequency of the classical harmonic oscillator is not equal to zero.",
+          "snippet": "lemma ω_ne_zero : S.ω ≠ 0",
+          "line": 149
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/Basic.lean",
+          "kind": "lemma",
+          "name": "ClassicalMechanics.HarmonicOscillator.toDual_symm_innerSL",
+          "docstring": null,
+          "snippet": "lemma toDual_symm_innerSL (x : ConfigurationSpace) :\n    (InnerProductSpace.toDual ℝ ConfigurationSpace).symm (innerSL ℝ x) = x",
+          "line": 378
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/Basic.lean",
+          "kind": "lemma",
+          "name": "ClassicalMechanics.HarmonicOscillator.gradient_inner_self",
+          "docstring": null,
+          "snippet": "lemma gradient_inner_self (x : ConfigurationSpace) :\n    gradient (fun y : ConfigurationSpace => ⟪y, y⟫_ℝ) x = (2 : ℝ) • x",
+          "line": 384
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/Basic.lean",
+          "kind": "lemma",
+          "name": "ClassicalMechanics.HarmonicOscillator.gradient_const_mul_inner_self",
+          "docstring": null,
+          "snippet": "lemma gradient_const_mul_inner_self (c : ℝ) (x : ConfigurationSpace) :\n    gradient (fun y : ConfigurationSpace => c * ⟪y, y⟫_ℝ) x = (2 * c) • x",
+          "line": 397
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/Basic.lean",
+          "kind": "lemma",
+          "name": "ClassicalMechanics.HarmonicOscillator.gradient_add_const'",
+          "docstring": null,
+          "snippet": "private lemma gradient_add_const' {f : ConfigurationSpace → ℝ} {c : ℝ}\n    (x : ConfigurationSpace) :\n    gradient (fun y => f y + c) x = gradient f x",
+          "line": 422
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+      "entries": [
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+          "kind": "structure",
+          "name": "ClassicalMechanics.HarmonicOscillator.ConfigurationSpace",
+          "docstring": "The configuration space of the harmonic oscillator.",
+          "snippet": "structure ConfigurationSpace where\n  val : ℝ",
+          "line": 20
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+          "kind": "lemma",
+          "name": "ClassicalMechanics.HarmonicOscillator.ConfigurationSpace.ext",
+          "docstring": null,
+          "snippet": "@[ext]\nlemma ext {x y : ConfigurationSpace} (h : x.val = y.val) : x = y",
+          "line": 27
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+          "kind": "instance",
+          "name": "ClassicalMechanics.HarmonicOscillator.ConfigurationSpace.«instance@cfd530f6»",
+          "docstring": null,
+          "snippet": "instance : Zero ConfigurationSpace",
+          "line": 37
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+          "kind": "instance",
+          "name": "ClassicalMechanics.HarmonicOscillator.ConfigurationSpace.«instance@c64c2ebe»",
+          "docstring": null,
+          "snippet": "instance : OfNat ConfigurationSpace 0",
+          "line": 39
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+          "kind": "lemma",
+          "name": "ClassicalMechanics.HarmonicOscillator.ConfigurationSpace.zero_val",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma zero_val : (0 : ConfigurationSpace).val = 0",
+          "line": 42
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+          "kind": "instance",
+          "name": "ClassicalMechanics.HarmonicOscillator.ConfigurationSpace.«instance@9d7f7534»",
+          "docstring": null,
+          "snippet": "instance : Add ConfigurationSpace where",
+          "line": 44
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+          "kind": "lemma",
+          "name": "ClassicalMechanics.HarmonicOscillator.ConfigurationSpace.add_val",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma add_val (x y : ConfigurationSpace) : (x + y).val = x.val + y.val",
+          "line": 48
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+          "kind": "instance",
+          "name": "ClassicalMechanics.HarmonicOscillator.ConfigurationSpace.«instance@994e180e»",
+          "docstring": null,
+          "snippet": "instance : Neg ConfigurationSpace where",
+          "line": 50
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+          "kind": "lemma",
+          "name": "ClassicalMechanics.HarmonicOscillator.ConfigurationSpace.neg_val",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma neg_val (x : ConfigurationSpace) : (-x).val = -x.val",
+          "line": 54
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+          "kind": "instance",
+          "name": "ClassicalMechanics.HarmonicOscillator.ConfigurationSpace.«instance@59539da1»",
+          "docstring": null,
+          "snippet": "instance : Sub ConfigurationSpace where",
+          "line": 56
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+          "kind": "lemma",
+          "name": "ClassicalMechanics.HarmonicOscillator.ConfigurationSpace.sub_val",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma sub_val (x y : ConfigurationSpace) : (x - y).val = x.val - y.val",
+          "line": 60
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+          "kind": "instance",
+          "name": "ClassicalMechanics.HarmonicOscillator.ConfigurationSpace.«instance@c33d6063»",
+          "docstring": null,
+          "snippet": "instance : SMul ℝ ConfigurationSpace where",
+          "line": 62
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+          "kind": "lemma",
+          "name": "ClassicalMechanics.HarmonicOscillator.ConfigurationSpace.smul_val",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma smul_val (r : ℝ) (x : ConfigurationSpace) : (r • x).val = r * x.val",
+          "line": 66
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+          "kind": "instance",
+          "name": "ClassicalMechanics.HarmonicOscillator.ConfigurationSpace.«instance@67e1a65d»",
+          "docstring": null,
+          "snippet": "instance : CoeFun ConfigurationSpace (fun _ => Fin 1 → ℝ) where",
+          "line": 68
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+          "kind": "lemma",
+          "name": "ClassicalMechanics.HarmonicOscillator.ConfigurationSpace.apply_zero",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma apply_zero (x : ConfigurationSpace) : x 0 = x.val",
+          "line": 72
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+          "kind": "lemma",
+          "name": "ClassicalMechanics.HarmonicOscillator.ConfigurationSpace.apply_eq_val",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma apply_eq_val (x : ConfigurationSpace) (i : Fin 1) : x i = x.val",
+          "line": 75
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+          "kind": "instance",
+          "name": "ClassicalMechanics.HarmonicOscillator.ConfigurationSpace.«instance@6dbe8f96»",
+          "docstring": null,
+          "snippet": "instance : AddGroup ConfigurationSpace where",
+          "line": 77
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+          "kind": "instance",
+          "name": "ClassicalMechanics.HarmonicOscillator.ConfigurationSpace.«instance@8f4de8e0»",
+          "docstring": null,
+          "snippet": "instance : AddCommGroup ConfigurationSpace where",
+          "line": 85
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+          "kind": "instance",
+          "name": "ClassicalMechanics.HarmonicOscillator.ConfigurationSpace.«instance@d302e109»",
+          "docstring": null,
+          "snippet": "instance : Module ℝ ConfigurationSpace where",
+          "line": 88
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+          "kind": "instance",
+          "name": "ClassicalMechanics.HarmonicOscillator.ConfigurationSpace.«instance@0bb937f2»",
+          "docstring": null,
+          "snippet": "instance : Norm ConfigurationSpace where",
+          "line": 96
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+          "kind": "instance",
+          "name": "ClassicalMechanics.HarmonicOscillator.ConfigurationSpace.«instance@9813dc99»",
+          "docstring": null,
+          "snippet": "instance : Dist ConfigurationSpace where",
+          "line": 99
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+          "kind": "lemma",
+          "name": "ClassicalMechanics.HarmonicOscillator.ConfigurationSpace.dist_eq_val",
+          "docstring": null,
+          "snippet": "lemma dist_eq_val (x y : ConfigurationSpace) :\n    dist x y = ‖x.val - y.val‖",
+          "line": 102
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+          "kind": "instance",
+          "name": "ClassicalMechanics.HarmonicOscillator.ConfigurationSpace.«instance@2eb294e1»",
+          "docstring": null,
+          "snippet": "instance : SeminormedAddCommGroup ConfigurationSpace where",
+          "line": 105
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+          "kind": "instance",
+          "name": "ClassicalMechanics.HarmonicOscillator.ConfigurationSpace.«instance@acec9cc3»",
+          "docstring": null,
+          "snippet": "instance : NormedAddCommGroup ConfigurationSpace where",
+          "line": 112
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+          "kind": "instance",
+          "name": "ClassicalMechanics.HarmonicOscillator.ConfigurationSpace.«instance@be088fad»",
+          "docstring": null,
+          "snippet": "instance : NormedSpace ℝ ConfigurationSpace where",
+          "line": 120
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+          "kind": "instance",
+          "name": "ClassicalMechanics.HarmonicOscillator.ConfigurationSpace.«instance@c51c89a6»",
+          "docstring": null,
+          "snippet": "instance : Inner ℝ ConfigurationSpace where",
+          "line": 126
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+          "kind": "lemma",
+          "name": "ClassicalMechanics.HarmonicOscillator.ConfigurationSpace.inner_def",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma inner_def (x y : ConfigurationSpace) : ⟪x, y⟫_ℝ = x.val * y.val",
+          "line": 130
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+          "kind": "instance",
+          "name": "ClassicalMechanics.HarmonicOscillator.ConfigurationSpace.«instance@af0a8c3c»",
+          "docstring": null,
+          "snippet": "noncomputable instance : InnerProductSpace ℝ ConfigurationSpace where",
+          "line": 132
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+          "kind": "lemma",
+          "name": "ClassicalMechanics.HarmonicOscillator.ConfigurationSpace.differentiable_inner_self",
+          "docstring": null,
+          "snippet": "@[fun_prop]\nlemma differentiable_inner_self :\n    Differentiable ℝ (fun x : ConfigurationSpace => ⟪x, x⟫_ℝ)",
+          "line": 151
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+          "kind": "lemma",
+          "name": "ClassicalMechanics.HarmonicOscillator.ConfigurationSpace.differentiableAt_inner_self",
+          "docstring": null,
+          "snippet": "@[fun_prop]\nlemma differentiableAt_inner_self (x : ConfigurationSpace) :\n    DifferentiableAt ℝ (fun y : ConfigurationSpace => ⟪y, y⟫_ℝ) x",
+          "line": 158
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+          "kind": "lemma",
+          "name": "ClassicalMechanics.HarmonicOscillator.ConfigurationSpace.contDiff_inner_self",
+          "docstring": null,
+          "snippet": "@[fun_prop]\nlemma contDiff_inner_self (n : WithTop ℕ∞) :\n    ContDiff ℝ n (fun x : ConfigurationSpace => ⟪x, x⟫_ℝ)",
+          "line": 165
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+          "kind": "def",
+          "name": "ClassicalMechanics.HarmonicOscillator.ConfigurationSpace.toRealLM",
+          "docstring": "Linear map sending a configuration space element to its underlying real value.",
+          "snippet": "noncomputable def toRealLM : ConfigurationSpace →ₗ[ℝ] ℝ",
+          "line": 172
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+          "kind": "def",
+          "name": "ClassicalMechanics.HarmonicOscillator.ConfigurationSpace.fromRealLM",
+          "docstring": "Linear map embedding a real value into the configuration space.",
+          "snippet": "noncomputable def fromRealLM : ℝ →ₗ[ℝ] ConfigurationSpace",
+          "line": 178
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+          "kind": "def",
+          "name": "ClassicalMechanics.HarmonicOscillator.ConfigurationSpace.toRealCLM",
+          "docstring": "Continuous linear map sending a configuration space element to its underlying real value.",
+          "snippet": "noncomputable def toRealCLM : ConfigurationSpace →L[ℝ] ℝ",
+          "line": 190
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+          "kind": "def",
+          "name": "ClassicalMechanics.HarmonicOscillator.ConfigurationSpace.fromRealCLM",
+          "docstring": "Continuous linear map embedding a real value into the configuration space.",
+          "snippet": "noncomputable def fromRealCLM : ℝ →L[ℝ] ConfigurationSpace",
+          "line": 196
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+          "kind": "def",
+          "name": "ClassicalMechanics.HarmonicOscillator.ConfigurationSpace.valHomeomorphism",
+          "docstring": "Homeomorphism between configuration space and `ℝ` given by `ConfigurationSpace.val`.",
+          "snippet": "noncomputable def valHomeomorphism : ConfigurationSpace ≃ₜ ℝ where",
+          "line": 202
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+          "kind": "instance",
+          "name": "ClassicalMechanics.HarmonicOscillator.ConfigurationSpace.«instance@9aafce1e»",
+          "docstring": "The structure of a charted space on `ConfigurationSpace`.",
+          "snippet": "noncomputable instance : ChartedSpace ℝ ConfigurationSpace where",
+          "line": 218
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+          "kind": "instance",
+          "name": "ClassicalMechanics.HarmonicOscillator.ConfigurationSpace.«instance@ae2266e2»",
+          "docstring": "The structure of a smooth manifold on `ConfigurationSpace`.",
+          "snippet": "noncomputable instance : IsManifold 𝓘(ℝ, ℝ) ω ConfigurationSpace where",
+          "line": 230
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+          "kind": "instance",
+          "name": "ClassicalMechanics.HarmonicOscillator.ConfigurationSpace.«instance@9fa3d06b»",
+          "docstring": null,
+          "snippet": "instance : FiniteDimensional ℝ ConfigurationSpace",
+          "line": 237
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+          "kind": "instance",
+          "name": "ClassicalMechanics.HarmonicOscillator.ConfigurationSpace.«instance@7ca1ca8f»",
+          "docstring": null,
+          "snippet": "instance : CompleteSpace ConfigurationSpace",
+          "line": 244
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+          "kind": "def",
+          "name": "ClassicalMechanics.HarmonicOscillator.ConfigurationSpace.toSpace",
+          "docstring": "The position in one-dimensional space associated to the configuration.",
+          "snippet": "def toSpace (q : ConfigurationSpace) : Space 1",
+          "line": 253
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/HarmonicOscillator/ConfigurationSpace.lean",
+          "kind": "lemma",
+          "name": "ClassicalMechanics.HarmonicOscillator.ConfigurationSpace.toSpace_apply",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma toSpace_apply (q : ConfigurationSpace) (i : Fin 1) : q.toSpace i = q.val",
+          "line": 256
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/ClassicalMechanics/Mass/MassUnit.lean",
+      "entries": [
+        {
+          "file": "PhysLean/ClassicalMechanics/Mass/MassUnit.lean",
+          "kind": "lemma",
+          "name": "MassUnit.val_ne_zero",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma val_ne_zero (x : MassUnit) : x.val ≠ 0",
+          "line": 39
+        },
+        {
+          "file": "PhysLean/ClassicalMechanics/Mass/MassUnit.lean",
+          "kind": "lemma",
+          "name": "MassUnit.div_ne_zero",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma div_ne_zero (x y : MassUnit) : ¬ x / y = (0 : ℝ≥0)",
+          "line": 60
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/Electromagnetism/Charge/ChargeUnit.lean",
+      "entries": [
+        {
+          "file": "PhysLean/Electromagnetism/Charge/ChargeUnit.lean",
+          "kind": "lemma",
+          "name": "ChargeUnit.val_ne_zero",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma val_ne_zero (x : ChargeUnit) : x.val ≠ 0",
+          "line": 46
+        },
+        {
+          "file": "PhysLean/Electromagnetism/Charge/ChargeUnit.lean",
+          "kind": "lemma",
+          "name": "ChargeUnit.div_ne_zero",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma div_ne_zero (x y : ChargeUnit) : ¬ x / y = (0 : ℝ≥0)",
+          "line": 67
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/Mathematics/InnerProductSpace/Submodule.lean",
+      "entries": [
+        {
+          "file": "PhysLean/Mathematics/InnerProductSpace/Submodule.lean",
+          "kind": "def",
+          "name": "InnerProductSpaceSubmodule.submoduleToLp",
+          "docstring": "The submodule of `WithLp 2 (E × E)` defined by `M`.",
+          "snippet": "def submoduleToLp : Submodule ℂ (WithLp 2 (E × E)) where",
+          "line": 27
+        },
+        {
+          "file": "PhysLean/Mathematics/InnerProductSpace/Submodule.lean",
+          "kind": "lemma",
+          "name": "InnerProductSpaceSubmodule.mem_submodule_iff_mem_submoduleToLp",
+          "docstring": null,
+          "snippet": "lemma mem_submodule_iff_mem_submoduleToLp (f : E × E) :\n    f ∈ M ↔ (WithLp.toLp 2 f) ∈ submoduleToLp M",
+          "line": 37
+        },
+        {
+          "file": "PhysLean/Mathematics/InnerProductSpace/Submodule.lean",
+          "kind": "lemma",
+          "name": "InnerProductSpaceSubmodule.submoduleToLp_closure",
+          "docstring": null,
+          "snippet": "lemma submoduleToLp_closure :\n    (submoduleToLp M.topologicalClosure) = (submoduleToLp M).topologicalClosure",
+          "line": 40
+        },
+        {
+          "file": "PhysLean/Mathematics/InnerProductSpace/Submodule.lean",
+          "kind": "lemma",
+          "name": "InnerProductSpaceSubmodule.mem_submodule_closure_iff_mem_submoduleToLp_closure",
+          "docstring": null,
+          "snippet": "lemma mem_submodule_closure_iff_mem_submoduleToLp_closure (f : E × E) :\n    f ∈ M.topologicalClosure ↔ (WithLp.toLp 2 f) ∈ (submoduleToLp M).topologicalClosure",
+          "line": 70
+        },
+        {
+          "file": "PhysLean/Mathematics/InnerProductSpace/Submodule.lean",
+          "kind": "lemma",
+          "name": "InnerProductSpaceSubmodule.mem_submodule_adjoint_iff_mem_submoduleToLp_orthogonal",
+          "docstring": null,
+          "snippet": "lemma mem_submodule_adjoint_iff_mem_submoduleToLp_orthogonal (f : E × E) :\n    f ∈ M.adjoint ↔ WithLp.toLp 2 (f.2, -f.1) ∈ (submoduleToLp M)ᗮ",
+          "line": 75
+        },
+        {
+          "file": "PhysLean/Mathematics/InnerProductSpace/Submodule.lean",
+          "kind": "lemma",
+          "name": "InnerProductSpaceSubmodule.mem_submodule_adjoint_adjoint_iff_mem_submoduleToLp_orthogonal_orthogonal",
+          "docstring": null,
+          "snippet": "lemma mem_submodule_adjoint_adjoint_iff_mem_submoduleToLp_orthogonal_orthogonal (f : E × E) :\n    f ∈ M.adjoint.adjoint ↔ WithLp.toLp 2 f ∈ (submoduleToLp M)ᗮᗮ",
+          "line": 94
+        },
+        {
+          "file": "PhysLean/Mathematics/InnerProductSpace/Submodule.lean",
+          "kind": "lemma",
+          "name": "InnerProductSpaceSubmodule.mem_submodule_closure_adjoint_iff_mem_submoduleToLp_closure_orthogonal",
+          "docstring": null,
+          "snippet": "lemma mem_submodule_closure_adjoint_iff_mem_submoduleToLp_closure_orthogonal (f : E × E) :\n    f ∈ M.topologicalClosure.adjoint ↔\n    WithLp.toLp 2 (f.2, -f.1) ∈ (submoduleToLp M).topologicalClosureᗮ",
+          "line": 115
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/Mathematics/KroneckerDelta.lean",
+      "entries": [
+        {
+          "file": "PhysLean/Mathematics/KroneckerDelta.lean",
+          "kind": "def",
+          "name": "KroneckerDelta.kroneckerDelta",
+          "docstring": "The Kronecker delta function, `ite (i = j) 1 0`.",
+          "snippet": "def kroneckerDelta [Ring R] (i j : Fin d) : R",
+          "line": 20
+        },
+        {
+          "file": "PhysLean/Mathematics/KroneckerDelta.lean",
+          "kind": "lemma",
+          "name": "KroneckerDelta.kroneckerDelta_symm",
+          "docstring": null,
+          "snippet": "lemma kroneckerDelta_symm [Ring R] (i j : Fin d) :\n    kroneckerDelta (R := R) i j = kroneckerDelta j i",
+          "line": 25
+        },
+        {
+          "file": "PhysLean/Mathematics/KroneckerDelta.lean",
+          "kind": "lemma",
+          "name": "KroneckerDelta.kroneckerDelta_self",
+          "docstring": null,
+          "snippet": "lemma kroneckerDelta_self [Ring R] : ∀ i : Fin d, kroneckerDelta (R := R) i i = 1",
+          "line": 29
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/Particles/BeyondTheStandardModel/RHN/AnomalyCancellation/PlusU1/QuadSol.lean",
+      "entries": [
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/RHN/AnomalyCancellation/PlusU1/QuadSol.lean",
+          "kind": "lemma",
+          "name": "SMRHN.PlusU1.QuadSol.genericToQuad_ne_zero",
+          "docstring": null,
+          "snippet": "lemma genericToQuad_ne_zero (S : (PlusU1 n).QuadSols) (h : α₁ C S.1 ≠ 0) :\n    (α₁ C S.1)⁻¹ • genericToQuad C S.1 = S",
+          "line": 73
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/Particles/BeyondTheStandardModel/RHN/AnomalyCancellation/PlusU1/QuadSolToSol.lean",
+      "entries": [
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/RHN/AnomalyCancellation/PlusU1/QuadSolToSol.lean",
+          "kind": "lemma",
+          "name": "SMRHN.PlusU1.quadSolToSolInv_α₁_α₂_ne_zero",
+          "docstring": null,
+          "snippet": "lemma quadSolToSolInv_α₁_α₂_ne_zero (S : (PlusU1 n).Sols) (h : α₁ S.1 ≠ 0) :\n    ¬ (α₁ (quadSolToSolInv S).1 = 0 ∧ α₂ (quadSolToSolInv S).1 = 0)",
+          "line": 112
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean",
+      "entries": [
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.gramVector_eq",
+          "docstring": "The lemma manifesting the definitional equality for the gramVector.",
+          "snippet": "lemma gramVector_eq (H : TwoHiggsDoublet) : H.gramVector = fun μ =>\n    2 * PauliMatrix.pauliBasis.repr ⟨gramMatrix H, gramMatrix_selfAdjoint H⟩ μ",
+          "line": 326
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.mem_orbit_gaugeGroupI_iff_gramVector",
+          "docstring": null,
+          "snippet": "lemma mem_orbit_gaugeGroupI_iff_gramVector (H1 H2 : TwoHiggsDoublet) :\n    H1 ∈ MulAction.orbit GaugeGroupI H2 ↔ H1.gramVector = H2.gramVector",
+          "line": 517
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+      "entries": [
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "instance",
+          "name": "TwoHiggsDoublet.PotentialParameters.«instance@d9bc6c7a»",
+          "docstring": null,
+          "snippet": "instance : Zero PotentialParameters where",
+          "line": 105
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.PotentialParameters.ξ_zero",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma ξ_zero : (0 : PotentialParameters).ξ = 0",
+          "line": 157
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.PotentialParameters.η_zero",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma η_zero : (0 : PotentialParameters).η = 0",
+          "line": 186
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "def",
+          "name": "TwoHiggsDoublet.PotentialParameters.stabilityCounterExample",
+          "docstring": "An example of potential parameters that serve as a counterexample to the stability\n  condition given in arXiv:hep-ph/0605184.\n  This corresponds to the potential:\n  `2 * (⟪H.Φ1, H.Φ2⟫_ℂ).im + ‖H.Φ1 - H.Φ2‖ ^ 4`\n  which has the property that the quartic term is non-negative and only zero if\n  the mass term is also zero, but the potential is not stable.\n  In the proof that `stabilityCounterExample_not_potentialIsStable`, we give\n  explicit vectors `H.Φ1` and `H.Φ2` that show this potential is not stable.\n\n  This is the first occurrence of such a counterexample in the literature to the best of\n  the author's knowledge.",
+          "snippet": "def stabilityCounterExample : PotentialParameters",
+          "line": 208
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.PotentialParameters.stabilityCounterExample_ξ",
+          "docstring": null,
+          "snippet": "lemma stabilityCounterExample_ξ :\n    stabilityCounterExample.ξ = fun\n      | .inl 0 => 0\n      | .inr 0 => 0\n      | .inr 1 => 1\n      | .inr 2 => 0",
+          "line": 218
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.PotentialParameters.stabilityCounterExample_η",
+          "docstring": null,
+          "snippet": "lemma stabilityCounterExample_η :\n    stabilityCounterExample.η = fun μ => fun ν =>\n    match μ, ν with\n    | .inl 0, .inl 0 => 1\n    | .inl 0, .inr 0 => -1\n    | .inl 0, .inr 1 => 0\n    | .inl 0, .inr 2 => 0\n    | .inr 0, .inl 0 => -1\n    | .inr 1, .inl 0 => 0\n    | .inr 2, .inl 0 => 0\n    | .inr 0, .inr 0 => 1\n    | .inr 1, .inr 1 => 0\n    | .inr 2, .inr 2 => 0\n    | .inr 0, .inr 1 => 0\n    | .inr 2, .inr 0 => 0\n    | .inr 2, .inr 1 => 0\n    | .inr 1, .inr 0 => 0\n    | .inr 0, .inr 2 => 0\n    | .inr 1, .inr 2 => 0",
+          "line": 227
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.massTerm_zero",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma massTerm_zero : massTerm 0 = 0",
+          "line": 282
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.massTerm_stabilityCounterExample",
+          "docstring": null,
+          "snippet": "lemma massTerm_stabilityCounterExample (H : TwoHiggsDoublet) :\n    massTerm PotentialParameters.stabilityCounterExample H =\n    2 * (⟪H.Φ1, H.Φ2⟫_ℂ).im",
+          "line": 286
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.quarticTerm_zero",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma quarticTerm_zero : quarticTerm 0 = 0",
+          "line": 346
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.quarticTerm_stabilityCounterExample",
+          "docstring": null,
+          "snippet": "lemma quarticTerm_stabilityCounterExample (H : TwoHiggsDoublet) :\n    quarticTerm .stabilityCounterExample H =\n    (‖H.Φ1‖ ^ 2 + ‖H.Φ2‖ ^ 2 - 2 * (⟪H.Φ1, H.Φ2⟫_ℂ).re) ^ 2",
+          "line": 350
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.quarticTerm_stabilityCounterExample_eq_norm_pow_four",
+          "docstring": null,
+          "snippet": "lemma quarticTerm_stabilityCounterExample_eq_norm_pow_four (H : TwoHiggsDoublet) :\n    quarticTerm .stabilityCounterExample H = ‖H.Φ1 - H.Φ2‖ ^ 4",
+          "line": 385
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.quarticTerm_stabilityCounterExample_nonneg",
+          "docstring": null,
+          "snippet": "lemma quarticTerm_stabilityCounterExample_nonneg (H : TwoHiggsDoublet) :\n    0 ≤ quarticTerm .stabilityCounterExample H",
+          "line": 403
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.massTerm_zero_of_quarticTerm_zero_stabilityCounterExample",
+          "docstring": null,
+          "snippet": "lemma massTerm_zero_of_quarticTerm_zero_stabilityCounterExample (H : TwoHiggsDoublet)\n    (h : quarticTerm .stabilityCounterExample H = 0) :\n    massTerm .stabilityCounterExample H = 0",
+          "line": 408
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.potential_zero",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma potential_zero : potential 0 = 0",
+          "line": 438
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.potential_stabilityCounterExample",
+          "docstring": null,
+          "snippet": "lemma potential_stabilityCounterExample (H : TwoHiggsDoublet) :\n    potential .stabilityCounterExample H = 2 * (⟪H.Φ1, H.Φ2⟫_ℂ).im + ‖H.Φ1 - H.Φ2‖ ^ 4",
+          "line": 442
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.potential_eq_gramVector",
+          "docstring": null,
+          "snippet": "lemma potential_eq_gramVector (P : PotentialParameters) (H : TwoHiggsDoublet) :\n    potential P H = ∑ μ, P.ξ μ * H.gramVector μ +\n    ∑ a, ∑ b, H.gramVector a * H.gramVector b * P.η a b",
+          "line": 447
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "def",
+          "name": "TwoHiggsDoublet.PotentialIsStable",
+          "docstring": "The condition that the potential is stable.",
+          "snippet": "def PotentialIsStable (P : PotentialParameters) : Prop",
+          "line": 467
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.stabilityCounterExample_not_potentialIsStable",
+          "docstring": "The potential `stabilityCounterExample` is not stable.",
+          "snippet": "lemma stabilityCounterExample_not_potentialIsStable :\n    ¬ PotentialIsStable .stabilityCounterExample",
+          "line": 479
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.massTermReduced_zero",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma massTermReduced_zero : massTermReduced 0 = 0",
+          "line": 622
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.massTermReduced_stabilityCounterExample",
+          "docstring": null,
+          "snippet": "lemma massTermReduced_stabilityCounterExample (k : EuclideanSpace ℝ (Fin 3)) :\n    massTermReduced .stabilityCounterExample k = k 1",
+          "line": 626
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.quarticTermReduced_zero",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma quarticTermReduced_zero : quarticTermReduced 0 = 0",
+          "line": 648
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.quarticTermReduced_stabilityCounterExample",
+          "docstring": null,
+          "snippet": "lemma quarticTermReduced_stabilityCounterExample (k : EuclideanSpace ℝ (Fin 3)) :\n    quarticTermReduced .stabilityCounterExample k = (1 - k 0) ^ 2",
+          "line": 652
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.quarticTermReduced_stabilityCounterExample_nonneg",
+          "docstring": null,
+          "snippet": "lemma quarticTermReduced_stabilityCounterExample_nonneg (k : EuclideanSpace ℝ (Fin 3)) :\n    0 ≤ quarticTermReduced .stabilityCounterExample k",
+          "line": 658
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.potentialIsStable_iff_forall_gramVector",
+          "docstring": null,
+          "snippet": "lemma potentialIsStable_iff_forall_gramVector (P : PotentialParameters) :\n    PotentialIsStable P ↔ ∃ c : ℝ, ∀ K : Fin 1 ⊕ Fin 3 → ℝ, 0 ≤ K (Sum.inl 0) →\n      ∑ μ : Fin 3, K (Sum.inr μ) ^ 2 ≤ K (Sum.inl 0) ^ 2 →\n      c ≤ ∑ μ, P.ξ μ * K μ + ∑ a, ∑ b, K a * K b * P.η a b",
+          "line": 676
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.potentialIsStable_iff_forall_euclid",
+          "docstring": null,
+          "snippet": "lemma potentialIsStable_iff_forall_euclid (P : PotentialParameters) :\n    PotentialIsStable P ↔ ∃ c, ∀ K0 : ℝ, ∀ K : EuclideanSpace ℝ (Fin 3), 0 ≤ K0 →\n      ‖K‖ ^ 2 ≤ K0 ^ 2 → c ≤ P.ξ (Sum.inl 0) * K0 + ∑ μ, P.ξ (Sum.inr μ) * K μ\n      + K0 ^ 2 * P.η (Sum.inl 0) (Sum.inl 0)\n      + 2 * K0 * ∑ b, K b * P.η (Sum.inl 0) (Sum.inr b) +\n      ∑ a, ∑ b, K a * K b * P.η (Sum.inr a) (Sum.inr b)",
+          "line": 698
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.potentialIsStable_iff_forall_euclid_lt",
+          "docstring": null,
+          "snippet": "lemma potentialIsStable_iff_forall_euclid_lt (P : PotentialParameters) :\n    PotentialIsStable P ↔ ∃ c ≤ 0, ∀ K0 : ℝ, ∀ K : EuclideanSpace ℝ (Fin 3), 0 < K0 →\n      ‖K‖ ^ 2 ≤ K0 ^ 2 → c ≤ P.ξ (Sum.inl 0) * K0 + ∑ μ, P.ξ (Sum.inr μ) * K μ\n      + K0 ^ 2 * P.η (Sum.inl 0) (Sum.inl 0)\n      + 2 * K0 * ∑ b, K b * P.η (Sum.inl 0) (Sum.inr b) +\n      ∑ a, ∑ b, K a * K b * P.η (Sum.inr a) (Sum.inr b)",
+          "line": 734
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.potentialIsStable_iff_exists_forall_forall_reduced",
+          "docstring": null,
+          "snippet": "lemma potentialIsStable_iff_exists_forall_forall_reduced (P : PotentialParameters) :\n    PotentialIsStable P ↔ ∃ c ≤ 0, ∀ K0 : ℝ, ∀ k : EuclideanSpace ℝ (Fin 3), 0 < K0 →\n      ‖k‖ ^ 2 ≤ 1 → c ≤ K0 * massTermReduced P k + K0 ^ 2 * quarticTermReduced P k",
+          "line": 759
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.quarticTermReduced_nonneg_of_potentialIsStable",
+          "docstring": null,
+          "snippet": "lemma quarticTermReduced_nonneg_of_potentialIsStable (P : PotentialParameters)\n    (hP : PotentialIsStable P) (k : EuclideanSpace ℝ (Fin 3))\n    (hk : ‖k‖ ^ 2 ≤ 1) : 0 ≤ quarticTermReduced P k",
+          "line": 788
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.potentialIsStable_iff_massTermReduced_sq_le_quarticTermReduced",
+          "docstring": null,
+          "snippet": "lemma potentialIsStable_iff_massTermReduced_sq_le_quarticTermReduced (P : PotentialParameters) :\n    PotentialIsStable P ↔ ∃ c, 0 ≤ c ∧ ∀ k : EuclideanSpace ℝ (Fin 3), ‖k‖ ^ 2 ≤ 1 →\n      0 ≤ quarticTermReduced P k ∧\n      (massTermReduced P k < 0 →\n      massTermReduced P k ^ 2 ≤ 4 * quarticTermReduced P k * c)",
+          "line": 831
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.massTermReduced_pos_of_quarticTermReduced_zero_potentialIsStable",
+          "docstring": null,
+          "snippet": "lemma massTermReduced_pos_of_quarticTermReduced_zero_potentialIsStable (P : PotentialParameters)\n    (hP : PotentialIsStable P) (k : EuclideanSpace ℝ (Fin 3))\n    (hk : ‖k‖ ^ 2 ≤ 1) (hq : quarticTermReduced P k = 0) : 0 ≤ massTermReduced P k",
+          "line": 897
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.potentialIsStable_of_strong",
+          "docstring": "The potential is stable if it is strongly stable, i.e. its quartic term is always positive.\n    The proof of this result relies on the compactness of the closed unit ball in\n    `EuclideanSpace ℝ (Fin 3)`, and the `extreme value theorem`.",
+          "snippet": "lemma potentialIsStable_of_strong (P : PotentialParameters)\n    (h : ∀ k, ‖k‖ ^ 2 ≤ 1 → 0 < quarticTermReduced P k) :\n    PotentialIsStable P",
+          "line": 920
+        },
+        {
+          "file": "PhysLean/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "kind": "lemma",
+          "name": "TwoHiggsDoublet.forall_reduced_exists_not_potentialIsStable",
+          "docstring": "A lemma invalidating the step in https://arxiv.org/pdf/hep-ph/0605184 leading to\n  equation (4.4).",
+          "snippet": "lemma forall_reduced_exists_not_potentialIsStable :\n    ∃ P, ¬ PotentialIsStable P ∧ (∀ k : EuclideanSpace ℝ (Fin 3), ‖k‖ ^ 2 ≤ 1 →\n    0 ≤ quarticTermReduced P k ∧ (quarticTermReduced P k = 0 → 0 ≤ massTermReduced P k))",
+          "line": 964
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/Particles/FlavorPhysics/CKMMatrix/Relations.lean",
+      "entries": [
+        {
+          "file": "PhysLean/Particles/FlavorPhysics/CKMMatrix/Relations.lean",
+          "kind": "lemma",
+          "name": "CKMMatrix.ud_us_ne_zero_iff_ub_ne_one",
+          "docstring": null,
+          "snippet": "lemma ud_us_ne_zero_iff_ub_ne_one (V : CKMMatrix) :\n    [V]ud ≠ 0 ∨ [V]us ≠ 0 ↔ norm [V]ub ≠ 1",
+          "line": 79
+        },
+        {
+          "file": "PhysLean/Particles/FlavorPhysics/CKMMatrix/Relations.lean",
+          "kind": "lemma",
+          "name": "CKMMatrix.normSq_Vud_plus_normSq_Vus_ne_zero_ℝ",
+          "docstring": null,
+          "snippet": "lemma normSq_Vud_plus_normSq_Vus_ne_zero_ℝ {V : CKMMatrix} (hb : [V]ud ≠ 0 ∨ [V]us ≠ 0) :\n    normSq [V]ud + normSq [V]us ≠ 0",
+          "line": 96
+        },
+        {
+          "file": "PhysLean/Particles/FlavorPhysics/CKMMatrix/Relations.lean",
+          "kind": "lemma",
+          "name": "CKMMatrix.VAbsub_ne_zero_Vud_Vus_ne_zero",
+          "docstring": null,
+          "snippet": "lemma VAbsub_ne_zero_Vud_Vus_ne_zero {V : Quotient CKMMatrixSetoid}\n    (hV : VAbs 0 2 V ≠ 1) :(VudAbs V ^ 2 + VusAbs V ^ 2) ≠ 0",
+          "line": 112
+        },
+        {
+          "file": "PhysLean/Particles/FlavorPhysics/CKMMatrix/Relations.lean",
+          "kind": "lemma",
+          "name": "CKMMatrix.VAbsub_ne_zero_sqrt_Vud_Vus_ne_zero",
+          "docstring": null,
+          "snippet": "lemma VAbsub_ne_zero_sqrt_Vud_Vus_ne_zero {V : Quotient CKMMatrixSetoid}\n    (hV : VAbs 0 2 V ≠ 1) : √(VudAbs V ^ 2 + VusAbs V ^ 2) ≠ 0",
+          "line": 120
+        },
+        {
+          "file": "PhysLean/Particles/FlavorPhysics/CKMMatrix/Relations.lean",
+          "kind": "lemma",
+          "name": "CKMMatrix.normSq_Vud_plus_normSq_Vus_ne_zero_ℂ",
+          "docstring": null,
+          "snippet": "lemma normSq_Vud_plus_normSq_Vus_ne_zero_ℂ {V : CKMMatrix} (hb : [V]ud ≠ 0 ∨ [V]us ≠ 0) :\n    (normSq [V]ud : ℂ) + normSq [V]us ≠ 0",
+          "line": 129
+        },
+        {
+          "file": "PhysLean/Particles/FlavorPhysics/CKMMatrix/Relations.lean",
+          "kind": "lemma",
+          "name": "CKMMatrix.Vabs_sq_add_ne_zero",
+          "docstring": null,
+          "snippet": "lemma Vabs_sq_add_ne_zero {V : CKMMatrix} (hb : [V]ud ≠ 0 ∨ [V]us ≠ 0) :\n    ((VudAbs ⟦V⟧ : ℂ) * ↑(VudAbs ⟦V⟧) + ↑(VusAbs ⟦V⟧) * ↑(VusAbs ⟦V⟧)) ≠ 0",
+          "line": 136
+        },
+        {
+          "file": "PhysLean/Particles/FlavorPhysics/CKMMatrix/Relations.lean",
+          "kind": "lemma",
+          "name": "CKMMatrix.cb_tb_ne_zero_iff_ub_ne_one",
+          "docstring": null,
+          "snippet": "lemma cb_tb_ne_zero_iff_ub_ne_one (V : CKMMatrix) :\n    [V]cb ≠ 0 ∨ [V]tb ≠ 0 ↔ norm [V]ub ≠ 1",
+          "line": 341
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/Particles/FlavorPhysics/CKMMatrix/StandardParameterization/StandardParameters.lean",
+      "entries": [
+        {
+          "file": "PhysLean/Particles/FlavorPhysics/CKMMatrix/StandardParameterization/StandardParameters.lean",
+          "kind": "lemma",
+          "name": "S₂₃_of_Vub_ne_one",
+          "docstring": null,
+          "snippet": "lemma S₂₃_of_Vub_ne_one {V : Quotient CKMMatrixSetoid} (ha : VubAbs V ≠ 1) :\n    S₂₃ V = VcbAbs V / √ (VudAbs V ^ 2 + VusAbs V ^ 2)",
+          "line": 174
+        },
+        {
+          "file": "PhysLean/Particles/FlavorPhysics/CKMMatrix/StandardParameterization/StandardParameters.lean",
+          "kind": "lemma",
+          "name": "C₂₃_of_Vub_ne_one",
+          "docstring": null,
+          "snippet": "lemma C₂₃_of_Vub_ne_one {V : Quotient CKMMatrixSetoid} (ha : VubAbs V ≠ 1) :\n    C₂₃ V = VtbAbs V / √ (VudAbs V ^ 2 + VusAbs V ^ 2)",
+          "line": 252
+        },
+        {
+          "file": "PhysLean/Particles/FlavorPhysics/CKMMatrix/StandardParameterization/StandardParameters.lean",
+          "kind": "lemma",
+          "name": "standParam.mulExpδ₁₃_on_param_ne_zero_arg",
+          "docstring": null,
+          "snippet": "lemma mulExpδ₁₃_on_param_ne_zero_arg (V : CKMMatrix) (δ₁₃ : ℝ)\n    (h1 : mulExpδ₁₃ ⟦standParam (θ₁₂ ⟦V⟧) (θ₁₃ ⟦V⟧) (θ₂₃ ⟦V⟧) δ₁₃⟧ ≠ 0) :\n    cexp (arg (mulExpδ₁₃ ⟦standParam (θ₁₂ ⟦V⟧) (θ₁₃ ⟦V⟧) (θ₂₃ ⟦V⟧) δ₁₃⟧) * I) =\n    cexp (δ₁₃ * I)",
+          "line": 378
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/Particles/StandardModel/AnomalyCancellation/NoGrav/One/Lemmas.lean",
+      "entries": [
+        {
+          "file": "PhysLean/Particles/StandardModel/AnomalyCancellation/NoGrav/One/Lemmas.lean",
+          "kind": "lemma",
+          "name": "SM.SMNoGrav.One.accGrav_Q_ne_zero",
+          "docstring": "For a set of 1-family SM charges satisfying all ACCs except the gravitational,\n  if the `Q` charge is not zero then the charges satisfy the gravitational ACCs.",
+          "snippet": "lemma accGrav_Q_ne_zero {S : (SMNoGrav 1).Sols} (hQ : Q S.val (0 : Fin 1) ≠ 0) :\n    accGrav S.val = 0",
+          "line": 53
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/Particles/SuperSymmetry/SU5/ChargeSpectrum/MinimalSuperSet.lean",
+      "entries": [
+        {
+          "file": "PhysLean/Particles/SuperSymmetry/SU5/ChargeSpectrum/MinimalSuperSet.lean",
+          "kind": "lemma",
+          "name": "SuperSymmetry.SU5.ChargeSpectrum.self_ne_mem_minimalSuperSet",
+          "docstring": null,
+          "snippet": "lemma self_ne_mem_minimalSuperSet (S5 S10 : Finset 𝓩) (x y : ChargeSpectrum 𝓩)\n    (hy : y ∈ minimalSuperSet S5 S10 x) : x ≠ y",
+          "line": 128
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/QFT/PerturbationTheory/CreateAnnihilate.lean",
+      "entries": [
+        {
+          "file": "PhysLean/QFT/PerturbationTheory/CreateAnnihilate.lean",
+          "kind": "instance",
+          "name": "CreateAnnihilate.«instance@f605e044»",
+          "docstring": "Normal ordering is total.",
+          "snippet": "instance : Std.Total normalOrder where",
+          "line": 51
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/QFT/PerturbationTheory/FieldOpFreeAlgebra/SuperCommute.lean",
+      "entries": [
+        {
+          "file": "PhysLean/QFT/PerturbationTheory/FieldOpFreeAlgebra/SuperCommute.lean",
+          "kind": "lemma",
+          "name": "FieldSpecification.FieldOpFreeAlgebra.statistic_ne_of_superCommuteF_fermionic",
+          "docstring": null,
+          "snippet": "lemma statistic_ne_of_superCommuteF_fermionic {φs φs' : List 𝓕.CrAnFieldOp}\n    (h : [ofCrAnListF φs, ofCrAnListF φs']ₛF ∈ statisticSubmodule fermionic) :\n    (𝓕 |>ₛ φs) ≠ (𝓕 |>ₛ φs') ∨ [ofCrAnListF φs, ofCrAnListF φs']ₛF = 0",
+          "line": 864
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/QFT/PerturbationTheory/FieldSpecification/NormalOrder.lean",
+      "entries": [
+        {
+          "file": "PhysLean/QFT/PerturbationTheory/FieldSpecification/NormalOrder.lean",
+          "kind": "instance",
+          "name": "FieldSpecification.«instance@0424a67e»",
+          "docstring": "Normal ordering is total.",
+          "snippet": "instance : Std.Total 𝓕.normalOrderRel where",
+          "line": 29
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/QFT/PerturbationTheory/FieldSpecification/TimeOrder.lean",
+      "entries": [
+        {
+          "file": "PhysLean/QFT/PerturbationTheory/FieldSpecification/TimeOrder.lean",
+          "kind": "instance",
+          "name": "FieldSpecification.«instance@61ef50bd»",
+          "docstring": "Time ordering is total.",
+          "snippet": "instance : Std.Total 𝓕.timeOrderRel where",
+          "line": 48
+        },
+        {
+          "file": "PhysLean/QFT/PerturbationTheory/FieldSpecification/TimeOrder.lean",
+          "kind": "instance",
+          "name": "FieldSpecification.«instance@246eab91»",
+          "docstring": "Time ordering of `CrAnFieldOp` is total.",
+          "snippet": "instance : Std.Total 𝓕.crAnTimeOrderRel where",
+          "line": 216
+        },
+        {
+          "file": "PhysLean/QFT/PerturbationTheory/FieldSpecification/TimeOrder.lean",
+          "kind": "instance",
+          "name": "FieldSpecification.«instance@bb7b68e2»",
+          "docstring": "Norm-Time ordering of `CrAnFieldOp` is total.",
+          "snippet": "instance : Std.Total 𝓕.normTimeOrderRel where",
+          "line": 517
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/QFT/PerturbationTheory/FieldStatistics/Basic.lean",
+      "entries": [
+        {
+          "file": "PhysLean/QFT/PerturbationTheory/FieldStatistics/Basic.lean",
+          "kind": "lemma",
+          "name": "FieldStatistic.bosonic_ne_iff_fermionic_eq",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma bosonic_ne_iff_fermionic_eq (a : FieldStatistic) : ¬ bosonic = a ↔ fermionic = a",
+          "line": 110
+        },
+        {
+          "file": "PhysLean/QFT/PerturbationTheory/FieldStatistics/Basic.lean",
+          "kind": "lemma",
+          "name": "FieldStatistic.fermionic_ne_iff_bosonic_eq",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma fermionic_ne_iff_bosonic_eq (a : FieldStatistic) : ¬ fermionic = a ↔ bosonic = a",
+          "line": 116
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/QFT/PerturbationTheory/WickAlgebra/TimeContraction.lean",
+      "entries": [
+        {
+          "file": "PhysLean/QFT/PerturbationTheory/WickAlgebra/TimeContraction.lean",
+          "kind": "lemma",
+          "name": "FieldSpecification.WickAlgebra.timeOrder_timeContract_ne_time",
+          "docstring": null,
+          "snippet": "lemma timeOrder_timeContract_ne_time {φ ψ : 𝓕.FieldOp}\n    (h1 : ¬ (timeOrderRel φ ψ ∧ timeOrderRel ψ φ)) :\n    𝓣(timeContract φ ψ) = 0",
+          "line": 152
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/QFT/PerturbationTheory/WickAlgebra/TimeOrder.lean",
+      "entries": [
+        {
+          "file": "PhysLean/QFT/PerturbationTheory/WickAlgebra/TimeOrder.lean",
+          "kind": "lemma",
+          "name": "FieldSpecification.WickAlgebra.ι_timeOrderF_superCommuteF_ne_time",
+          "docstring": null,
+          "snippet": "lemma ι_timeOrderF_superCommuteF_ne_time {φ ψ : 𝓕.CrAnFieldOp}\n    (hφψ : ¬ (crAnTimeOrderRel φ ψ ∧ crAnTimeOrderRel ψ φ)) (a b : 𝓕.FieldOpFreeAlgebra) :\n    ι 𝓣ᶠ(a * [ofCrAnOpF φ, ofCrAnOpF ψ]ₛF * b) = 0",
+          "line": 281
+        },
+        {
+          "file": "PhysLean/QFT/PerturbationTheory/WickAlgebra/TimeOrder.lean",
+          "kind": "lemma",
+          "name": "FieldSpecification.WickAlgebra.timeOrder_superCommute_ne_time",
+          "docstring": null,
+          "snippet": "lemma timeOrder_superCommute_ne_time {φ ψ : 𝓕.CrAnFieldOp}\n    (hφψ : ¬ (crAnTimeOrderRel φ ψ ∧ crAnTimeOrderRel ψ φ)) :\n    𝓣([ofCrAnOp φ, ofCrAnOp ψ]ₛ) = 0",
+          "line": 470
+        },
+        {
+          "file": "PhysLean/QFT/PerturbationTheory/WickAlgebra/TimeOrder.lean",
+          "kind": "lemma",
+          "name": "FieldSpecification.WickAlgebra.timeOrder_superCommute_anPart_ofFieldOp_ne_time",
+          "docstring": null,
+          "snippet": "lemma timeOrder_superCommute_anPart_ofFieldOp_ne_time {φ ψ : 𝓕.FieldOp}\n    (hφψ : ¬ (timeOrderRel φ ψ ∧ timeOrderRel ψ φ)) :\n    𝓣([anPart φ,ofFieldOp ψ]ₛ) = 0",
+          "line": 481
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/QFT/PerturbationTheory/WickContraction/Basic.lean",
+      "entries": [
+        {
+          "file": "PhysLean/QFT/PerturbationTheory/WickContraction/Basic.lean",
+          "kind": "lemma",
+          "name": "WickContraction.self_ne_getDual?_get",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma self_ne_getDual?_get (i : Fin n) (h : (c.getDual? i).isSome) :\n    ¬ i = (c.getDual? i).get h",
+          "line": 212
+        },
+        {
+          "file": "PhysLean/QFT/PerturbationTheory/WickContraction/Basic.lean",
+          "kind": "lemma",
+          "name": "WickContraction.fstFieldOfContract_ne_sndFieldOfContract",
+          "docstring": null,
+          "snippet": "lemma fstFieldOfContract_ne_sndFieldOfContract (c : WickContraction n) (a : c.1) :\n    c.fstFieldOfContract a ≠ c.sndFieldOfContract a",
+          "line": 337
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/QFT/PerturbationTheory/WickContraction/InsertAndContractNat.lean",
+      "entries": [
+        {
+          "file": "PhysLean/QFT/PerturbationTheory/WickContraction/InsertAndContractNat.lean",
+          "kind": "lemma",
+          "name": "WickContraction.insertAndContractNat_some_getDual?_ne_none",
+          "docstring": null,
+          "snippet": "lemma insertAndContractNat_some_getDual?_ne_none (c : WickContraction n) (i : Fin n.succ)\n    (j : c.uncontracted) (k : Fin n) (hkj : k ≠ j.1) :\n    (insertAndContractNat c i (some j)).getDual? (i.succAbove k) = none ↔ c.getDual? k = none",
+          "line": 392
+        },
+        {
+          "file": "PhysLean/QFT/PerturbationTheory/WickContraction/InsertAndContractNat.lean",
+          "kind": "lemma",
+          "name": "WickContraction.insertAndContractNat_some_getDual?_ne_isSome",
+          "docstring": null,
+          "snippet": "lemma insertAndContractNat_some_getDual?_ne_isSome (c : WickContraction n) (i : Fin n.succ)\n    (j : c.uncontracted) (k : Fin n) (hkj : k ≠ j.1) :\n    ((insertAndContractNat c i (some j)).getDual? (i.succAbove k)).isSome ↔\n    (c.getDual? k).isSome",
+          "line": 413
+        },
+        {
+          "file": "PhysLean/QFT/PerturbationTheory/WickContraction/InsertAndContractNat.lean",
+          "kind": "lemma",
+          "name": "WickContraction.insertAndContractNat_some_getDual?_ne_isSome_get",
+          "docstring": null,
+          "snippet": "lemma insertAndContractNat_some_getDual?_ne_isSome_get (c : WickContraction n) (i : Fin n.succ)\n    (j : c.uncontracted) (k : Fin n) (hkj : k ≠ j.1)\n    (h : ((insertAndContractNat c i (some j)).getDual? (i.succAbove k)).isSome) :\n    ((insertAndContractNat c i (some j)).getDual? (i.succAbove k)).get h =\n    i.succAbove ((c.getDual? k).get\n      (by simpa [hkj, insertAndContractNat_some_getDual?_ne_isSome] using h))",
+          "line": 420
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/QFT/PerturbationTheory/WickContraction/Join.lean",
+      "entries": [
+        {
+          "file": "PhysLean/QFT/PerturbationTheory/WickContraction/Join.lean",
+          "kind": "lemma",
+          "name": "WickContraction.jointLiftLeft_ne_joinLiftRight",
+          "docstring": null,
+          "snippet": "lemma jointLiftLeft_ne_joinLiftRight {φs : List 𝓕.FieldOp} {φsΛ : WickContraction φs.length}\n    {φsucΛ : WickContraction [φsΛ]ᵘᶜ.length} (a : φsΛ.1) (b : φsucΛ.1) :\n    joinLiftLeft a ≠ joinLiftRight b",
+          "line": 115
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/QFT/PerturbationTheory/WickContraction/Singleton.lean",
+      "entries": [
+        {
+          "file": "PhysLean/QFT/PerturbationTheory/WickContraction/Singleton.lean",
+          "kind": "lemma",
+          "name": "WickContraction.singleton_uncontractedEmd_ne_left",
+          "docstring": null,
+          "snippet": "lemma singleton_uncontractedEmd_ne_left {φs : List 𝓕.FieldOp} {i j : Fin φs.length} (hij : i < j)\n    (a : Fin [singleton hij]ᵘᶜ.length) :\n    (singleton hij).uncontractedListEmd a ≠ i",
+          "line": 85
+        },
+        {
+          "file": "PhysLean/QFT/PerturbationTheory/WickContraction/Singleton.lean",
+          "kind": "lemma",
+          "name": "WickContraction.singleton_uncontractedEmd_ne_right",
+          "docstring": null,
+          "snippet": "lemma singleton_uncontractedEmd_ne_right {φs : List 𝓕.FieldOp} {i j : Fin φs.length} (hij : i < j)\n    (a : Fin [singleton hij]ᵘᶜ.length) :\n    (singleton hij).uncontractedListEmd a ≠ j",
+          "line": 96
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/QFT/PerturbationTheory/WickContraction/UncontractedList.lean",
+      "entries": [
+        {
+          "file": "PhysLean/QFT/PerturbationTheory/WickContraction/UncontractedList.lean",
+          "kind": "lemma",
+          "name": "WickContraction.uncontractedListOrderPos_le_length",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma uncontractedListOrderPos_le_length (c : WickContraction n) (i : Fin n.succ) :\n    c.uncontractedListOrderPos i ≤ c.uncontractedList.length",
+          "line": 596
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/Basic.lean",
+      "entries": [
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/Basic.lean",
+          "kind": "structure",
+          "name": "QuantumMechanics.HydrogenAtom",
+          "docstring": "A hydrogen atom is characterized by the number of spatial dimensions `d`,\n  the mass `m` and the coefficient `k` for the `1/r` potential.",
+          "snippet": "structure HydrogenAtom where\n  d : ℕ\n  m : ℝ\n  hm : 0 < m\n  k : ℝ",
+          "line": 32
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/Basic.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.HydrogenAtom.m_ne_zero",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma m_ne_zero : H.m ≠ 0",
+          "line": 49
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/Basic.lean",
+          "kind": "def",
+          "name": "QuantumMechanics.HydrogenAtom.hamiltonianReg",
+          "docstring": "The hydrogen atom Hamiltonian regularized by `ε > 0` is defined to be\n  `𝐇(ε) ≔ (2m)⁻¹𝐩² - k(𝐫(ε)⁻¹ + ½ε²𝐫(ε)⁻³)`.",
+          "snippet": "def hamiltonianReg (ε : ℝ) : 𝓢(Space H.d, ℂ) →L[ℂ] 𝓢(Space H.d, ℂ)",
+          "line": 53
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+      "entries": [
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "def",
+          "name": "QuantumMechanics.HydrogenAtom.lrlOperator",
+          "docstring": "The (regularized) Laplace-Runge-Lenz vector operator for the `d`-dimensional hydrogen atom,\n  `𝐀(ε)ᵢ ≔ ½(𝐩ⱼ𝐋ᵢⱼ + 𝐋ᵢⱼ𝐩ⱼ) - mk·𝐫(ε)⁻¹𝐱ᵢ`.",
+          "snippet": "def lrlOperator (ε : ℝ) (i : Fin H.d) : 𝓢(Space H.d, ℂ) →L[ℂ] 𝓢(Space H.d, ℂ)",
+          "line": 36
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "def",
+          "name": "QuantumMechanics.HydrogenAtom.lrlOperatorSqr",
+          "docstring": "The square of the LRL vector operator, `𝐀(ε)² ≔ 𝐀(ε)ᵢ𝐀(ε)ᵢ`.",
+          "snippet": "def lrlOperatorSqr (ε : ℝ) : 𝓢(Space H.d, ℂ) →L[ℂ] 𝓢(Space H.d, ℂ)",
+          "line": 40
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.HydrogenAtom.lrlOperator_eq",
+          "docstring": "`𝐀(ε)ᵢ = 𝐱ᵢ𝐩² - (𝐱ⱼ𝐩ⱼ)𝐩ᵢ + ½iℏ(d-1)𝐩ᵢ - mk·𝐫(ε)⁻¹𝐱ᵢ`",
+          "snippet": "lemma lrlOperator_eq (i : Fin H.d) :\n    H.lrlOperator ε i = 𝐱[i] ∘L 𝐩² - (∑ j, 𝐱[j] ∘L 𝐩[j]) ∘L 𝐩[i]\n    + (2⁻¹ * Complex.I * ℏ * (H.d - 1)) • 𝐩[i] - (H.m * H.k) • 𝐫[ε,-1] ∘L 𝐱[i]",
+          "line": 44
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.HydrogenAtom.lrlOperator_eq'",
+          "docstring": "`𝐀(ε)ᵢ = 𝐋ᵢⱼ𝐩ⱼ + ½iℏ(d-1)𝐩ᵢ - mk·𝐫(ε)⁻¹𝐱ᵢ`",
+          "snippet": "lemma lrlOperator_eq' (i : Fin H.d) : H.lrlOperator ε i = ∑ j, 𝐋[i,j] ∘L 𝐩[j]\n    + (2⁻¹ * Complex.I * ℏ * (H.d - 1)) • 𝐩[i] - (H.m * H.k) • 𝐫[ε,-1] ∘L 𝐱[i]",
+          "line": 71
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.HydrogenAtom.lrlOperator_eq''",
+          "docstring": "`𝐀(ε)ᵢ = 𝐩ⱼ𝐋ᵢⱼ - ½iℏ(d-1)𝐩ᵢ - mk·𝐫(ε)⁻¹𝐱ᵢ`",
+          "snippet": "lemma lrlOperator_eq'' (i : Fin H.d) : H.lrlOperator ε i = ∑ j, 𝐩[j] ∘L 𝐋[i,j]\n    - (2⁻¹ * Complex.I * ℏ * (H.d - 1)) • 𝐩[i] - (H.m * H.k) • 𝐫[ε,-1] ∘L 𝐱[i]",
+          "line": 90
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "def",
+          "name": "QuantumMechanics.HydrogenAtom.positionDotMomentum",
+          "docstring": "The operator `𝐱ᵢ𝐩ᵢ` on Schwartz maps.",
+          "snippet": "private def positionDotMomentum {d}",
+          "line": 110
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "def",
+          "name": "QuantumMechanics.HydrogenAtom.positionCompMomentumSqr",
+          "docstring": "The operator `𝐱ᵢ𝐩²` on Schwartz maps.",
+          "snippet": "private def positionCompMomentumSqr {d} (i : Fin d)",
+          "line": 113
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "def",
+          "name": "QuantumMechanics.HydrogenAtom.positionDotMomentumCompMomentum",
+          "docstring": "The operator `(𝐱ⱼ𝐩ⱼ)𝐱ᵢ` on Schwartz maps.",
+          "snippet": "private def positionDotMomentumCompMomentum {d} (i : Fin d)",
+          "line": 116
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "def",
+          "name": "QuantumMechanics.HydrogenAtom.constMomentum",
+          "docstring": "The operator `½iℏ(d-1)𝐩ᵢ` on Schwartz maps.",
+          "snippet": "private def constMomentum {d} (i : Fin d)",
+          "line": 119
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "def",
+          "name": "QuantumMechanics.HydrogenAtom.constRadiusRegInvCompPosition",
+          "docstring": "The operator `mk·𝐫(ε)⁻¹𝐱ᵢ` on Schwartz maps.",
+          "snippet": "private def constRadiusRegInvCompPosition (ε : ℝ) (i : Fin H.d)",
+          "line": 122
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.HydrogenAtom.angularMomentum_commutation_lrl",
+          "docstring": "`⁅𝐋ᵢⱼ, 𝐀(ε)ₖ⁆ = iℏ(δᵢₖ𝐀(ε)ⱼ - δⱼₖ𝐀(ε)ᵢ)`",
+          "snippet": "lemma angularMomentum_commutation_lrl (hε : 0 < ε) (i j k : Fin H.d) :\n    ⁅𝐋[i,j], H.lrlOperator ε k⁆ = (Complex.I * ℏ * δ[i,k]) • H.lrlOperator ε j\n    - (Complex.I * ℏ * δ[j,k]) • H.lrlOperator ε i",
+          "line": 129
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.HydrogenAtom.angularMomentum_commutation_lrlSqr",
+          "docstring": "`⁅𝐋ᵢⱼ, 𝐀(ε)²⁆ = 0`",
+          "snippet": "lemma angularMomentum_commutation_lrlSqr (hε : 0 < ε) (i j : Fin H.d) :\n    ⁅𝐋[i,j], H.lrlOperatorSqr ε⁆ = 0",
+          "line": 167
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.HydrogenAtom.angularMomentumSqr_commutation_lrlSqr",
+          "docstring": "`⁅𝐋², 𝐀(ε)²⁆ = 0`",
+          "snippet": "lemma angularMomentumSqr_commutation_lrlSqr (hε : 0 < ε) :\n    ⁅angularMomentumOperatorSqr (d := H.d), H.lrlOperatorSqr ε⁆ = 0",
+          "line": 176
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.HydrogenAtom.positionDotMomentum_commutation_position",
+          "docstring": null,
+          "snippet": "private lemma positionDotMomentum_commutation_position {d} (i : Fin d) :\n    ⁅positionDotMomentum (d := d), 𝐱[i]⁆ = (-Complex.I * ℏ) • 𝐱[i]",
+          "line": 196
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.HydrogenAtom.positionDotMomentum_commutation_momentum",
+          "docstring": null,
+          "snippet": "private lemma positionDotMomentum_commutation_momentum {d} (i : Fin d) :\n    ⁅positionDotMomentum (d := d), 𝐩[i]⁆ = (Complex.I * ℏ) • 𝐩[i]",
+          "line": 203
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.HydrogenAtom.positionDotMomentum_commutation_momentumSqr",
+          "docstring": null,
+          "snippet": "private lemma positionDotMomentum_commutation_momentumSqr {d} :\n    ⁅positionDotMomentum (d := d), momentumOperatorSqr (d := d)⁆ = (2 * Complex.I * ℏ) • 𝐩²",
+          "line": 210
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.HydrogenAtom.positionDotMomentum_commutation_radiusRegPow",
+          "docstring": null,
+          "snippet": "private lemma positionDotMomentum_commutation_radiusRegPow {d} (hε : 0 < ε) :\n    ⁅positionDotMomentum (d := d), radiusRegPowOperator (d := d) ε s⁆ =\n    (-s * Complex.I * ℏ) • (𝐫[ε,s] - ε ^ 2 • 𝐫[ε,s-2])",
+          "line": 222
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.HydrogenAtom.positionCompMomentumSqr_comm",
+          "docstring": null,
+          "snippet": "private lemma positionCompMomentumSqr_comm {d} (i j : Fin d) :\n    ⁅positionCompMomentumSqr (d := d) i, positionCompMomentumSqr j⁆ =\n    (-2 * Complex.I * ℏ) • 𝐩² ∘L 𝐋[i,j]",
+          "line": 238
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.HydrogenAtom.positionCompMomentumSqr_comm_positionDotMomentumCompMomentum_add",
+          "docstring": null,
+          "snippet": "private lemma positionCompMomentumSqr_comm_positionDotMomentumCompMomentum_add {d} (i j : Fin d) :\n    ⁅positionCompMomentumSqr (d := d) i, positionDotMomentumCompMomentum j⁆ +\n    ⁅positionDotMomentumCompMomentum i, positionCompMomentumSqr j⁆ =\n    (-Complex.I * ℏ) • 𝐩² ∘L 𝐋[i,j]",
+          "line": 255
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.HydrogenAtom.positionDotMomentumCompMomentum_comm",
+          "docstring": null,
+          "snippet": "private lemma positionDotMomentumCompMomentum_comm {d} (i j : Fin d) :\n    ⁅positionDotMomentumCompMomentum i, positionDotMomentumCompMomentum j⁆ = 0",
+          "line": 280
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.HydrogenAtom.positionCompMomentumSqr_comm_constMomentum_add",
+          "docstring": null,
+          "snippet": "private lemma positionCompMomentumSqr_comm_constMomentum_add {d} (i j : Fin d) :\n    ⁅positionCompMomentumSqr i, constMomentum j⁆ +\n    ⁅constMomentum i, positionCompMomentumSqr j⁆ = 0",
+          "line": 289
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.HydrogenAtom.positionDotMomentumCompMomentum_comm_constMomentum_add",
+          "docstring": null,
+          "snippet": "private lemma positionDotMomentumCompMomentum_comm_constMomentum_add {d} (i j : Fin d) :\n    ⁅positionDotMomentumCompMomentum (d := d) i, constMomentum j⁆ +\n    ⁅constMomentum i, positionDotMomentumCompMomentum j⁆ = 0",
+          "line": 298
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.HydrogenAtom.constMomentum_comm_constMomentum",
+          "docstring": null,
+          "snippet": "private lemma constMomentum_comm_constMomentum {d} (i j : Fin d) :\n    ⁅constMomentum i, constMomentum j⁆ = 0",
+          "line": 307
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.HydrogenAtom.positionCompMomentumSqr_comm_constRadiusRegInvCompPosition_add",
+          "docstring": null,
+          "snippet": "private lemma positionCompMomentumSqr_comm_constRadiusRegInvCompPosition_add\n    (hε : 0 < ε) (i j : Fin H.d) :\n    ⁅positionCompMomentumSqr i, constRadiusRegInvCompPosition H ε j⁆ +\n    ⁅constRadiusRegInvCompPosition H ε i, positionCompMomentumSqr j⁆ =\n    - (2 * H.m * H.k * Complex.I * ℏ) • 𝐫[ε,-1] ∘L 𝐋[i,j]",
+          "line": 312
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.HydrogenAtom.positionDotMomentumCompMomentum_comm_constRadiusRegInvCompPosition_add",
+          "docstring": null,
+          "snippet": "private lemma positionDotMomentumCompMomentum_comm_constRadiusRegInvCompPosition_add\n    (hε : 0 < ε) (i j : Fin H.d) :\n    ⁅positionDotMomentumCompMomentum i, constRadiusRegInvCompPosition H ε j⁆ +\n    ⁅constRadiusRegInvCompPosition H ε i, positionDotMomentumCompMomentum j⁆ =\n    (H.m * H.k * Complex.I * ℏ * ε ^ 2) • 𝐫[ε,-3] ∘L 𝐋[i,j]",
+          "line": 355
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.HydrogenAtom.constMomentum_comm_constRadiusRegInvCompPosition_add",
+          "docstring": null,
+          "snippet": "private lemma constMomentum_comm_constRadiusRegInvCompPosition_add (hε : 0 < ε) (i j : Fin H.d) :\n    ⁅constMomentum i, constRadiusRegInvCompPosition H ε j⁆ +\n    ⁅constRadiusRegInvCompPosition H ε i, constMomentum j⁆ = 0",
+          "line": 380
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.HydrogenAtom.constRadiusRegInvCompPosition_comm_constRadiusRegInvCompPosition",
+          "docstring": null,
+          "snippet": "private lemma constRadiusRegInvCompPosition_comm_constRadiusRegInvCompPosition\n    (hε : 0 < ε) (i j : Fin H.d) :\n    ⁅constRadiusRegInvCompPosition H ε i, constRadiusRegInvCompPosition H ε j⁆ = 0",
+          "line": 399
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.HydrogenAtom.lrl_commutation_lrl",
+          "docstring": "`⁅𝐀(ε)ᵢ, 𝐀(ε)ⱼ⁆ = -iℏ 2m 𝐇(ε)𝐋ᵢⱼ`",
+          "snippet": "lemma lrl_commutation_lrl (hε : 0 < ε) (i j : Fin H.d) : ⁅H.lrlOperator ε i, H.lrlOperator ε j⁆\n    = (-2 * Complex.I * ℏ * H.m) • (H.hamiltonianReg ε) ∘L 𝐋[i,j]",
+          "line": 411
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.HydrogenAtom.pSqr_comm_pL_Lp",
+          "docstring": null,
+          "snippet": "private lemma pSqr_comm_pL_Lp (i : Fin H.d) :\n    ⁅momentumOperatorSqr (d := H.d), ∑ j, (𝐩[j] ∘L 𝐋[i,j] + 𝐋[i,j] ∘L 𝐩[j])⁆ = 0",
+          "line": 460
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.HydrogenAtom.rr_comm_rx",
+          "docstring": null,
+          "snippet": "private lemma rr_comm_rx (hε : 0 < ε) (i : Fin H.d) :\n    ⁅radiusRegPowOperator (d := H.d) ε (-1) + (2⁻¹ * ε ^ 2) • 𝐫[ε,-3], 𝐫[ε,-1] ∘L 𝐱[i]⁆ = 0",
+          "line": 470
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.HydrogenAtom.pSqr_comm_rx",
+          "docstring": null,
+          "snippet": "private lemma pSqr_comm_rx (hε : 0 < ε) (i : Fin H.d) :\n    ⁅momentumOperatorSqr (d := H.d), 𝐫[ε,-1] ∘L 𝐱[i]⁆ =\n    (-2 * Complex.I * ℏ) • 𝐫[ε,-1] ∘L 𝐩[i]\n    + (ℏ ^ 2 * (H.d - 3) : ℝ) • 𝐫[ε,-3] ∘L 𝐱[i]\n    + (3 * ℏ ^ 2 * ε ^ 2) • 𝐫[ε,-5] ∘L 𝐱[i]\n    + (2 * Complex.I * ℏ) • 𝐫[ε,-3] ∘L (∑ j, 𝐱[j] ∘L 𝐩[j]) ∘L 𝐱[i]",
+          "line": 477
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.HydrogenAtom.rr_comm_pL_Lp",
+          "docstring": null,
+          "snippet": "private lemma rr_comm_pL_Lp (hε : 0 < ε) (i : Fin H.d) :\n    ⁅radiusRegPowOperator (d := H.d) ε (-1) + (2⁻¹ * ε ^ 2) • 𝐫[ε,-3],\n      ∑ j, (𝐩[j] ∘L 𝐋[i,j] + 𝐋[i,j] ∘L 𝐩[j])⁆ =\n    (- Complex.I * ℏ) •\n    (𝐫[ε,-3] + (3 * 2⁻¹ * ε ^ 2) • 𝐫[ε,-5]) ∘L ∑ j, (𝐱[j] ∘L 𝐋[i,j] + 𝐋[i,j] ∘L 𝐱[j])",
+          "line": 497
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.HydrogenAtom.xL_Lx_eq",
+          "docstring": null,
+          "snippet": "private lemma xL_Lx_eq (hε : 0 < ε) (i : Fin H.d) : ∑ j, (𝐱[j] ∘L 𝐋[i,j] + 𝐋[i,j] ∘L 𝐱[j]) =\n    (2 : ℝ) • (∑ j, 𝐱[j] ∘L 𝐩[j]) ∘L 𝐱[i] - (2 : ℝ) • 𝐫[ε,2] ∘L 𝐩[i] + (2 * ε ^ 2) • 𝐩[i]\n    - (Complex.I * ℏ * (H.d - 3)) • 𝐱[i]",
+          "line": 524
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.HydrogenAtom.hamiltonianReg_commutation_lrl",
+          "docstring": "`⁅𝐇(ε), 𝐀(ε)ᵢ⁆ = iℏkε²(¾𝐫(ε)⁻⁵(𝐱ⱼ𝐋ᵢⱼ + 𝐋ᵢⱼ𝐱ⱼ) + 3iℏ/2 𝐫(ε)⁻⁵𝐱ᵢ + 𝐫(ε)⁻³𝐩ᵢ)`",
+          "snippet": "lemma hamiltonianReg_commutation_lrl (hε : 0 < ε) (i : Fin H.d) :\n    ⁅H.hamiltonianReg ε, H.lrlOperator ε i⁆ = (Complex.I * ℏ * H.k * ε ^ 2) •\n    ((3 * 4⁻¹ : ℝ) • 𝐫[ε,-5] ∘L ∑ j, (𝐱[j] ∘L 𝐋[i,j] + 𝐋[i,j] ∘L 𝐱[j])\n      + (3 * 2⁻¹ * Complex.I * ℏ) • 𝐫[ε,-5] ∘L 𝐱[i] + 𝐫[ε,-3] ∘L 𝐩[i])",
+          "line": 579
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.HydrogenAtom.sum_symmetrize",
+          "docstring": null,
+          "snippet": "private lemma sum_symmetrize (f : Fin H.d → Fin H.d → 𝓢(Space H.d, ℂ) →L[ℂ] 𝓢(Space H.d, ℂ)) :\n    ∑ i, ∑ j, f i j = (2 : ℂ)⁻¹ • ∑ i, ∑ j, (f i j + f j i)",
+          "line": 625
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.HydrogenAtom.sum_symmetrize'",
+          "docstring": null,
+          "snippet": "private lemma sum_symmetrize'\n    (f : Fin H.d → Fin H.d → Fin H.d → 𝓢(Space H.d, ℂ) →L[ℂ] 𝓢(Space H.d, ℂ)) :\n    ∑ i, ∑ j, ∑ k, f i j k = (2 : ℂ)⁻¹ • ∑ i, ∑ k, ∑ j, (f i j k + f k j i)",
+          "line": 634
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.HydrogenAtom.sum_Lpp_zero",
+          "docstring": null,
+          "snippet": "private lemma sum_Lpp_zero : ∑ i : Fin H.d, ∑ j, 𝐋[i,j] ∘L 𝐩[j] ∘L 𝐩[i] = 0",
+          "line": 650
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.HydrogenAtom.sum_ppL_zero",
+          "docstring": null,
+          "snippet": "private lemma sum_ppL_zero : ∑ i : Fin H.d, ∑ j, 𝐩[i] ∘L 𝐩[j] ∘L 𝐋[i,j] = 0",
+          "line": 657
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.HydrogenAtom.sum_LppL",
+          "docstring": null,
+          "snippet": "private lemma sum_LppL : ∑ i : Fin H.d, ∑ j, ∑ k, 𝐋[i,j] ∘L 𝐩[j] ∘L 𝐩[k] ∘L 𝐋[i,k]\n    = 𝐩² ∘L 𝐋²",
+          "line": 665
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.HydrogenAtom.sum_Lprx",
+          "docstring": null,
+          "snippet": "private lemma sum_Lprx (hε : 0 < ε) :\n    ∑ i : Fin H.d, ∑ j, 𝐋[i,j] ∘L 𝐩[j] ∘L 𝐫[ε,-1] ∘L 𝐱[i] = 𝐫[ε,-1] ∘L 𝐋²",
+          "line": 707
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.HydrogenAtom.sum_rxpL",
+          "docstring": null,
+          "snippet": "private lemma sum_rxpL :\n    ∑ i : Fin H.d, ∑ j, 𝐫[ε,-1] ∘L 𝐱[i] ∘L 𝐩[j] ∘L 𝐋[i,j] = 𝐫[ε,-1] ∘L 𝐋²",
+          "line": 723
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.HydrogenAtom.sum_prx",
+          "docstring": null,
+          "snippet": "private lemma sum_prx (hε : 0 < ε) : ∑ i : Fin H.d, 𝐩[i] ∘L 𝐫[ε,-1] ∘L 𝐱[i] =\n    𝐫[ε,-1] ∘L ∑ i : Fin H.d, 𝐱[i] ∘L 𝐩[i] - (Complex.I * ℏ * (H.d - 1)) • 𝐫[ε,-1]\n    - (Complex.I * ℏ * ε ^ 2) • 𝐫[ε,-3]",
+          "line": 733
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.HydrogenAtom.sum_rxp",
+          "docstring": null,
+          "snippet": "private lemma sum_rxp : ∑ i : Fin H.d, 𝐫[ε,-1] ∘L 𝐱[i] ∘L 𝐩[i] =\n    𝐫[ε,-1] ∘L ∑ i : Fin H.d, 𝐱[i] ∘L 𝐩[i]",
+          "line": 755
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.HydrogenAtom.sum_rxrx",
+          "docstring": null,
+          "snippet": "private lemma sum_rxrx (hε : 0 < ε) : ∑ i, 𝐫[ε,-1] ∘L 𝐱[i] ∘L 𝐫[ε,-1] ∘L 𝐱[i] =\n    ContinuousLinearMap.id ℂ 𝓢(Space H.d, ℂ) - (ε ^ 2) • 𝐫[ε,-2]",
+          "line": 758
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Hydrogen/LaplaceRungeLenzVector.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.HydrogenAtom.lrlOperatorSqr_eq",
+          "docstring": "The square of the (regularized) LRL vector operator is related to the (regularized) Hamiltonian\n  `𝐇(ε)` of the hydrogen atom, square of the angular momentum `𝐋²` and powers of `𝐫(ε)` as\n  `𝐀(ε)² = 2m 𝐇(ε)(𝐋² + ¼ℏ²(d-1)²) + m²k² - m²k²ε²𝐫(ε)⁻² + mkε²𝐫(ε)⁻³(𝐋² + ¼ℏ²(d-1)(d-3))`.",
+          "snippet": "lemma lrlOperatorSqr_eq (hε : 0 < ε) : H.lrlOperatorSqr ε =\n    (2 * H.m) • (H.hamiltonianReg ε) ∘L\n      (𝐋² + (4⁻¹ * ℏ ^ 2 * (H.d - 1) ^ 2 : ℝ) • ContinuousLinearMap.id ℂ 𝓢(Space H.d, ℂ))\n    + (H.m * H.k) ^ 2 • ContinuousLinearMap.id ℂ 𝓢(Space H.d, ℂ)\n    - ((H.m * H.k) ^ 2 * ε ^ 2) • 𝐫[ε,-2]\n    + (H.m * H.k * ε ^ 2) • 𝐫[ε,-3] ∘L\n      (𝐋² + (4⁻¹ * ℏ^2 * (H.d - 1) * (H.d - 3) : ℝ) •\n      ContinuousLinearMap.id ℂ 𝓢(Space H.d, ℂ))",
+          "line": 777
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/QuantumMechanics/DDimensions/Operators/AngularMomentum.lean",
+      "entries": [
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/AngularMomentum.lean",
+          "kind": "def",
+          "name": "QuantumMechanics.angularMomentumOperator",
+          "docstring": "Component `i j` of the angular momentum operator is the continuous linear map\nfrom `𝓢(Space d, ℂ)` to itself defined by `𝐋ᵢⱼ ≔ 𝐱ᵢ∘𝐩ⱼ - 𝐱ⱼ∘𝐩ᵢ`.",
+          "snippet": "def angularMomentumOperator {d : ℕ} (i j : Fin d) : 𝓢(Space d, ℂ) →L[ℂ] 𝓢(Space d, ℂ)",
+          "line": 32
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/AngularMomentum.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.angularMomentumOperator_apply_fun",
+          "docstring": null,
+          "snippet": "lemma angularMomentumOperator_apply_fun {d : ℕ} (i j : Fin d) (ψ : 𝓢(Space d, ℂ)) :\n    𝐋[i,j] ψ = 𝐱[i] (𝐩[j] ψ) - 𝐱[j] (𝐩[i] ψ)",
+          "line": 38
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/AngularMomentum.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.angularMomentumOperator_apply",
+          "docstring": null,
+          "snippet": "lemma angularMomentumOperator_apply {d : ℕ} (i j : Fin d) (ψ : 𝓢(Space d, ℂ)) (x : Space d) :\n    𝐋[i,j] ψ x = 𝐱[i] (𝐩[j] ψ) x - 𝐱[j] (𝐩[i] ψ) x",
+          "line": 41
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/AngularMomentum.lean",
+          "kind": "def",
+          "name": "QuantumMechanics.angularMomentumOperatorSqr",
+          "docstring": "The square of the angular momentum operator, `𝐋² ≔ ½ ∑ᵢⱼ 𝐋ᵢⱼ∘𝐋ᵢⱼ`.",
+          "snippet": "def angularMomentumOperatorSqr {d : ℕ} : 𝓢(Space d, ℂ) →L[ℂ] 𝓢(Space d, ℂ)",
+          "line": 45
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/AngularMomentum.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.angularMomentumOperatorSqr_apply_fun",
+          "docstring": null,
+          "snippet": "lemma angularMomentumOperatorSqr_apply_fun {d : ℕ} (ψ : 𝓢(Space d, ℂ)) :\n    𝐋² ψ = (2 : ℂ)⁻¹ • ∑ i, ∑ j, 𝐋[i,j] (𝐋[i,j] ψ)",
+          "line": 51
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/AngularMomentum.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.angularMomentumOperatorSqr_apply",
+          "docstring": null,
+          "snippet": "lemma angularMomentumOperatorSqr_apply {d : ℕ} (ψ : 𝓢(Space d, ℂ)) (x : Space d) :\n    𝐋² ψ x = (2 : ℂ)⁻¹ * ∑ i, ∑ j, 𝐋[i,j] (𝐋[i,j] ψ) x",
+          "line": 57
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/AngularMomentum.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.angularMomentumOperator_antisymm",
+          "docstring": "The angular momentum operator is antisymmetric, `𝐋ᵢⱼ = -𝐋ⱼᵢ`",
+          "snippet": "lemma angularMomentumOperator_antisymm {d : ℕ} (i j : Fin d) : 𝐋[i,j] = - 𝐋[j,i]",
+          "line": 69
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/AngularMomentum.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.angularMomentumOperator_eq_zero",
+          "docstring": "Angular momentum operator components with repeated index vanish, `𝐋ᵢᵢ = 0`.",
+          "snippet": "lemma angularMomentumOperator_eq_zero {d : ℕ} (i : Fin d) : 𝐋[i,i] = 0",
+          "line": 73
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/AngularMomentum.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.angularMomentumOperator1D_trivial",
+          "docstring": "In one dimension the angular momentum operator is trivial.",
+          "snippet": "lemma angularMomentumOperator1D_trivial : ∀ (i j : Fin 1), 𝐋[i,j] = 0",
+          "line": 91
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/AngularMomentum.lean",
+          "kind": "def",
+          "name": "QuantumMechanics.angularMomentumOperator2D",
+          "docstring": "The angular momentum (pseudo)scalar operator in two dimensions, `𝐋 ≔ 𝐋₀₁`.",
+          "snippet": "def angularMomentumOperator2D : 𝓢(Space 2, ℂ) →L[ℂ] 𝓢(Space 2, ℂ)",
+          "line": 97
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/AngularMomentum.lean",
+          "kind": "def",
+          "name": "QuantumMechanics.angularMomentumOperator3D",
+          "docstring": "The angular momentum (pseudo)vector operator in three dimension, `𝐋ᵢ ≔ ½ ∑ⱼₖ εᵢⱼₖ 𝐋ⱼₖ`.",
+          "snippet": "def angularMomentumOperator3D (i : Fin 3) : 𝓢(Space 3, ℂ) →L[ℂ] 𝓢(Space 3, ℂ)",
+          "line": 100
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/QuantumMechanics/DDimensions/Operators/Commutation.lean",
+      "entries": [
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Commutation.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.ite_cond_symm",
+          "docstring": null,
+          "snippet": "private lemma ite_cond_symm (i j : Fin d) :\n    (if i = j then A else B) = (if j = i then A else B)",
+          "line": 20
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Commutation.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.leibniz_lie",
+          "docstring": null,
+          "snippet": "lemma leibniz_lie {d : ℕ} (A B C : 𝓢(Space d, ℂ) →L[ℂ] 𝓢(Space d, ℂ)) :\n    ⁅A ∘L B, C⁆ = A ∘L ⁅B, C⁆ + ⁅A, C⁆ ∘L B",
+          "line": 24
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Commutation.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.lie_leibniz",
+          "docstring": null,
+          "snippet": "lemma lie_leibniz {d : ℕ} (A B C : 𝓢(Space d, ℂ) →L[ℂ] 𝓢(Space d, ℂ)) :\n    ⁅A, B ∘L C⁆ = B ∘L ⁅A, C⁆ + ⁅A, B⁆ ∘L C",
+          "line": 29
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Commutation.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.comp_eq_comp_add_commute",
+          "docstring": null,
+          "snippet": "lemma comp_eq_comp_add_commute (A B : 𝓢(Space d, ℂ) →L[ℂ] 𝓢(Space d, ℂ)) :\n    A ∘L B = B ∘L A + ⁅A, B⁆",
+          "line": 34
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Commutation.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.comp_eq_comp_sub_commute",
+          "docstring": null,
+          "snippet": "lemma comp_eq_comp_sub_commute (A B : 𝓢(Space d, ℂ) →L[ℂ] 𝓢(Space d, ℂ)) :\n    A ∘L B = B ∘L A - ⁅B, A⁆",
+          "line": 39
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Commutation.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.position_commutation_position",
+          "docstring": "Position operators commute: `[xᵢ, xⱼ] = 0`.",
+          "snippet": "lemma position_commutation_position {d : ℕ} (i j : Fin d) : ⁅𝐱[i], 𝐱[j]⁆ = 0",
+          "line": 49
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Commutation.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.position_comp_commute",
+          "docstring": null,
+          "snippet": "lemma position_comp_commute {d : ℕ} (i j : Fin d) : 𝐱[i] ∘L 𝐱[j] = 𝐱[j] ∘L 𝐱[i]",
+          "line": 56
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Commutation.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.position_commutation_radiusRegPow",
+          "docstring": null,
+          "snippet": "lemma position_commutation_radiusRegPow (hε : 0 < ε) (i : Fin d) :\n    ⁅𝐱[i], radiusRegPowOperator (d := d) ε s⁆ = 0",
+          "line": 60
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Commutation.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.position_comp_radiusRegPow_commute",
+          "docstring": null,
+          "snippet": "lemma position_comp_radiusRegPow_commute (hε : 0 < ε) (i : Fin d) :\n    𝐱[i] ∘L 𝐫[ε,s] = 𝐫[ε,s] ∘L 𝐱[i]",
+          "line": 69
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Commutation.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.radiusRegPow_commutation_radiusRegPow",
+          "docstring": null,
+          "snippet": "lemma radiusRegPow_commutation_radiusRegPow (hε : 0 < ε) :\n    ⁅radiusRegPowOperator (d := d) ε s, radiusRegPowOperator (d := d) ε t⁆ = 0",
+          "line": 74
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Commutation.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.momentum_commutation_momentum",
+          "docstring": "Momentum operators commute: `[pᵢ, pⱼ] = 0`.",
+          "snippet": "lemma momentum_commutation_momentum {d : ℕ} (i j : Fin d) : ⁅𝐩[i], 𝐩[j]⁆ = 0",
+          "line": 84
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Commutation.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.momentum_comp_commute",
+          "docstring": null,
+          "snippet": "lemma momentum_comp_commute {d : ℕ} (i j : Fin d) : 𝐩[i] ∘L 𝐩[j] = 𝐩[j] ∘L 𝐩[i]",
+          "line": 94
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Commutation.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.momentumSqr_commutation_momentum",
+          "docstring": null,
+          "snippet": "lemma momentumSqr_commutation_momentum {d : ℕ} (i : Fin d) :\n    ⁅momentumOperatorSqr (d := d), 𝐩[i]⁆ = 0",
+          "line": 98
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Commutation.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.momentumSqr_comp_momentum_commute",
+          "docstring": null,
+          "snippet": "lemma momentumSqr_comp_momentum_commute {d : ℕ} (i : Fin d) : 𝐩² ∘L 𝐩[i] = 𝐩[i] ∘L 𝐩²",
+          "line": 111
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Commutation.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.position_commutation_momentum",
+          "docstring": "The canonical commutation relations: `[xᵢ, pⱼ] = iℏ δᵢⱼ𝟙`.",
+          "snippet": "lemma position_commutation_momentum {d : ℕ} (i j : Fin d) : ⁅𝐱[i], 𝐩[j]⁆ =\n    (Complex.I * ℏ * δ[i,j]) • ContinuousLinearMap.id ℂ 𝓢(Space d, ℂ)",
+          "line": 120
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Commutation.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.momentum_comp_position_eq",
+          "docstring": null,
+          "snippet": "lemma momentum_comp_position_eq (i j : Fin d) : 𝐩[j] ∘L 𝐱[i] =\n    𝐱[i] ∘L 𝐩[j] - (Complex.I * ℏ * δ[i,j]) • ContinuousLinearMap.id ℂ 𝓢(Space d, ℂ)",
+          "line": 138
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Commutation.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.position_position_commutation_momentum",
+          "docstring": null,
+          "snippet": "lemma position_position_commutation_momentum {d : ℕ} (i j k : Fin d) : ⁅𝐱[i] ∘L 𝐱[j], 𝐩[k]⁆ =\n    (Complex.I * ℏ * δ[i,k]) • 𝐱[j] + (Complex.I * ℏ * δ[j,k]) • 𝐱[i]",
+          "line": 144
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Commutation.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.position_commutation_momentum_momentum",
+          "docstring": null,
+          "snippet": "lemma position_commutation_momentum_momentum {d : ℕ} (i j k : Fin d) : ⁅𝐱[i], 𝐩[j] ∘L 𝐩[k]⁆ =\n    (Complex.I * ℏ * δ[i,k]) • 𝐩[j] + (Complex.I * ℏ * δ[i,j]) • 𝐩[k]",
+          "line": 152
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Commutation.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.position_commutation_momentumSqr",
+          "docstring": null,
+          "snippet": "lemma position_commutation_momentumSqr {d : ℕ} (i : Fin d) : ⁅𝐱[i], 𝐩²⁆ =\n    (2 * Complex.I * ℏ) • 𝐩[i]",
+          "line": 159
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Commutation.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.radiusRegPow_commutation_momentum",
+          "docstring": null,
+          "snippet": "lemma radiusRegPow_commutation_momentum (hε : 0 < ε) (i : Fin d) :\n    ⁅radiusRegPowOperator (d := d) ε s, 𝐩[i]⁆ = (s * Complex.I * ℏ) • 𝐫[ε,s-2] ∘L 𝐱[i]",
+          "line": 172
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Commutation.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.momentum_comp_radiusRegPow_eq",
+          "docstring": null,
+          "snippet": "lemma momentum_comp_radiusRegPow_eq (hε : 0 < ε) (i : Fin d) :\n    𝐩[i] ∘L 𝐫[ε,s] = 𝐫[ε,s] ∘L 𝐩[i] - (s * Complex.I * ℏ) • 𝐫[ε,s-2] ∘L 𝐱[i]",
+          "line": 213
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Commutation.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.radiusRegPow_commutation_momentumSqr",
+          "docstring": null,
+          "snippet": "lemma radiusRegPow_commutation_momentumSqr (hε : 0 < ε) :\n    ⁅radiusRegPowOperator (d := d) ε s, momentumOperatorSqr (d := d)⁆ =\n    (2 * s * Complex.I * ℏ) • 𝐫[ε,s-2] ∘L ∑ i, 𝐱[i] ∘L 𝐩[i]\n    + (s * ℏ ^ 2) • ((d + s - 2) • 𝐫[ε,s-2] - (ε ^ 2 * (s - 2)) • 𝐫[ε,s-4])",
+          "line": 219
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Commutation.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.angularMomentum_commutation_position",
+          "docstring": null,
+          "snippet": "lemma angularMomentum_commutation_position {d : ℕ} (i j k : Fin d) : ⁅𝐋[i,j], 𝐱[k]⁆ =\n    (Complex.I * ℏ * δ[i,k]) • 𝐱[j] - (Complex.I * ℏ * δ[j,k]) • 𝐱[i]",
+          "line": 250
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Commutation.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.angularMomentum_commutation_radiusRegPow",
+          "docstring": null,
+          "snippet": "lemma angularMomentum_commutation_radiusRegPow (hε : 0 < ε) (i j : Fin d) :\n    ⁅𝐋[i,j], radiusRegPowOperator (d := d) ε s⁆ = 0",
+          "line": 262
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Commutation.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.angularMomentumSqr_commutation_radiusRegPow",
+          "docstring": null,
+          "snippet": "lemma angularMomentumSqr_commutation_radiusRegPow (hε : 0 < ε) :\n    ⁅angularMomentumOperatorSqr (d := d), radiusRegPowOperator (d := d) ε s⁆ = 0",
+          "line": 274
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Commutation.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.angularMomentum_commutation_momentum",
+          "docstring": null,
+          "snippet": "lemma angularMomentum_commutation_momentum {d : ℕ} (i j k : Fin d) : ⁅𝐋[i,j], 𝐩[k]⁆ =\n    (Complex.I * ℏ * δ[i,k]) • 𝐩[j] - (Complex.I * ℏ * δ[j,k]) • 𝐩[i]",
+          "line": 284
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Commutation.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.momentum_comp_angularMomentum_eq",
+          "docstring": null,
+          "snippet": "lemma momentum_comp_angularMomentum_eq {d : ℕ} (i j k : Fin d) : 𝐩[k] ∘L 𝐋[i,j] =\n    𝐋[i,j] ∘L 𝐩[k] - (Complex.I * ℏ * δ[i,k]) • 𝐩[j] + (Complex.I * ℏ * δ[j,k]) • 𝐩[i]",
+          "line": 293
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Commutation.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.angularMomentum_commutation_momentumSqr",
+          "docstring": null,
+          "snippet": "lemma angularMomentum_commutation_momentumSqr {d : ℕ} (i j : Fin d) :\n    ⁅𝐋[i,j], momentumOperatorSqr (d := d)⁆ = 0",
+          "line": 300
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Commutation.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.momentumSqr_comp_angularMomentum_commute",
+          "docstring": null,
+          "snippet": "lemma momentumSqr_comp_angularMomentum_commute {d : ℕ} (i j : Fin d) :\n    𝐩² ∘L 𝐋[i,j] = 𝐋[i,j] ∘L 𝐩²",
+          "line": 313
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Commutation.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.angularMomentumSqr_commutation_momentumSqr",
+          "docstring": null,
+          "snippet": "lemma angularMomentumSqr_commutation_momentumSqr {d : ℕ} :\n    ⁅angularMomentumOperatorSqr (d := d), momentumOperatorSqr (d := d)⁆ = 0",
+          "line": 319
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Commutation.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.angularMomentum_commutation_angularMomentum",
+          "docstring": null,
+          "snippet": "lemma angularMomentum_commutation_angularMomentum {d : ℕ} (i j k l : Fin d) : ⁅𝐋[i,j], 𝐋[k,l]⁆ =\n    (Complex.I * ℏ * δ[i,k]) • 𝐋[j,l] - (Complex.I * ℏ * δ[i,l]) • 𝐋[j,k]\n    - (Complex.I * ℏ * δ[j,k]) • 𝐋[i,l] + (Complex.I * ℏ * δ[j,l]) • 𝐋[i,k]",
+          "line": 329
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Commutation.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.angularMomentumSqr_commutation_angularMomentum",
+          "docstring": null,
+          "snippet": "lemma angularMomentumSqr_commutation_angularMomentum {d : ℕ} (i j : Fin d) :\n    ⁅angularMomentumOperatorSqr (d := d), 𝐋[i,j]⁆ = 0",
+          "line": 345
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/QuantumMechanics/DDimensions/Operators/Momentum.lean",
+      "entries": [
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Momentum.lean",
+          "kind": "def",
+          "name": "QuantumMechanics.momentumOperator",
+          "docstring": "Component `i` of the momentum operator is the continuous linear map\nfrom `𝓢(Space d, ℂ)` to itself which maps `ψ` to `-iℏ ∂ᵢψ`.",
+          "snippet": "def momentumOperator {d : ℕ} (i : Fin d) : 𝓢(Space d, ℂ) →L[ℂ] 𝓢(Space d, ℂ)",
+          "line": 26
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Momentum.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.momentumOperator_apply_fun",
+          "docstring": null,
+          "snippet": "lemma momentumOperator_apply_fun {d : ℕ} (i : Fin d) (ψ : 𝓢(Space d, ℂ)) :\n    𝐩[i] ψ = (- Complex.I * ℏ) • ∂[i] ψ",
+          "line": 33
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Momentum.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.momentumOperator_apply",
+          "docstring": null,
+          "snippet": "lemma momentumOperator_apply {d : ℕ} (i : Fin d) (ψ : 𝓢(Space d, ℂ)) (x : Space d) :\n    𝐩[i] ψ x = - Complex.I * ℏ * ∂[i] ψ x",
+          "line": 36
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Momentum.lean",
+          "kind": "def",
+          "name": "QuantumMechanics.momentumOperatorSqr",
+          "docstring": "The square of the momentum operator, `𝐩² ≔ ∑ᵢ 𝐩ᵢ∘𝐩ᵢ`.",
+          "snippet": "def momentumOperatorSqr {d : ℕ} : 𝓢(Space d, ℂ) →L[ℂ] 𝓢(Space d, ℂ)",
+          "line": 40
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Momentum.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.momentumOperatorSqr_apply",
+          "docstring": null,
+          "snippet": "lemma momentumOperatorSqr_apply {d : ℕ} (ψ : 𝓢(Space d, ℂ)) (x : Space d) :\n    𝐩² ψ x = ∑ i, 𝐩[i] (𝐩[i] ψ) x",
+          "line": 45
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/QuantumMechanics/DDimensions/Operators/Position.lean",
+      "entries": [
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Position.lean",
+          "kind": "def",
+          "name": "QuantumMechanics.positionOperator",
+          "docstring": "Component `i` of the position operator is the continuous linear map\nfrom `𝓢(Space d, ℂ)` to itself which maps `ψ` to `xᵢψ`.",
+          "snippet": "def positionOperator (i : Fin d) : 𝓢(Space d, ℂ) →L[ℂ] 𝓢(Space d, ℂ)",
+          "line": 28
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Position.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.positionOperator_apply_fun",
+          "docstring": null,
+          "snippet": "lemma positionOperator_apply_fun (i : Fin d) (ψ : 𝓢(Space d, ℂ)) :\n    𝐱[i] ψ = (fun x ↦ x i * ψ x)",
+          "line": 34
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Position.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.positionOperator_apply",
+          "docstring": null,
+          "snippet": "lemma positionOperator_apply (i : Fin d) (ψ : 𝓢(Space d, ℂ)) (x : Space d) :\n    𝐱[i] ψ x = x i * ψ x",
+          "line": 43
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Position.lean",
+          "kind": "def",
+          "name": "QuantumMechanics.normRegularizedPow",
+          "docstring": "Power of regularized norm, `(‖x‖² + ε²)^(s/2)`",
+          "snippet": "private def normRegularizedPow (ε s : ℝ) : Space d → ℝ",
+          "line": 54
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Position.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.normRegularizedPow_hasTemperateGrowth",
+          "docstring": null,
+          "snippet": "private lemma normRegularizedPow_hasTemperateGrowth (hε : 0 < ε) :\n    HasTemperateGrowth (normRegularizedPow (d := d) ε s)",
+          "line": 57
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Position.lean",
+          "kind": "def",
+          "name": "QuantumMechanics.radiusRegPowOperator",
+          "docstring": "The radius operator to power `s`, regularized by `ε ≠ 0`, is the continuous linear map\n  from `𝓢(Space d, ℂ)` to itself which maps `ψ` to `(‖x‖² + ε²)^(s/2) • ψ`.",
+          "snippet": "def radiusRegPowOperator (ε s : ℝ) : 𝓢(Space d, ℂ) →L[ℂ] 𝓢(Space d, ℂ)",
+          "line": 82
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Position.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.radiusRegPowOperator_apply_fun",
+          "docstring": null,
+          "snippet": "lemma radiusRegPowOperator_apply_fun (hε : 0 < ε) :\n    𝐫[ε,s] ψ = fun x ↦ (‖x‖ ^ 2 + ε ^ 2) ^ (s / 2) • ψ x",
+          "line": 88
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Position.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.radiusRegPowOperator_apply",
+          "docstring": null,
+          "snippet": "lemma radiusRegPowOperator_apply (hε : 0 < ε) :\n    𝐫[ε,s] ψ x = (‖x‖ ^ 2 + ε ^ 2) ^ (s / 2) • ψ x",
+          "line": 97
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Position.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.radiusRegPowOperator_comp_eq",
+          "docstring": null,
+          "snippet": "lemma radiusRegPowOperator_comp_eq (hε : 0 < ε) (s t : ℝ) :\n    (radiusRegPowOperator (d := d) ε s) ∘L 𝐫[ε,t] = 𝐫[ε,s+t]",
+          "line": 101
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Position.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.radiusRegPowOperator_zero",
+          "docstring": null,
+          "snippet": "lemma radiusRegPowOperator_zero (hε : 0 < ε) :\n    𝐫[ε,0] = ContinuousLinearMap.id ℂ 𝓢(Space d, ℂ)",
+          "line": 116
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Position.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.positionOperatorSqr_eq",
+          "docstring": null,
+          "snippet": "lemma positionOperatorSqr_eq (hε : 0 < ε) : ∑ i, 𝐱[i] ∘L 𝐱[i] =\n    𝐫[ε,2] - ε ^ 2 • ContinuousLinearMap.id ℂ 𝓢(Space d, ℂ)",
+          "line": 122
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/QuantumMechanics/DDimensions/Operators/Unbounded.lean",
+      "entries": [
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Unbounded.lean",
+          "kind": "structure",
+          "name": "QuantumMechanics.UnboundedOperator",
+          "docstring": "An `UnboundedOperator` is a linear map from a submodule of the Hilbert space\n  to the Hilbert space, assumed to be both densely defined and closable.",
+          "snippet": "@[ext]\nstructure UnboundedOperator\n    (HS : Type*) [NormedAddCommGroup HS] [InnerProductSpace ℂ HS] [CompleteSpace HS]\n    extends LinearPMap ℂ HS HS where\n  dense_domain : Dense (domain : Set HS)\n  is_closable : toLinearPMap.IsClosable",
+          "line": 37
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Unbounded.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.UnboundedOperator.ext'",
+          "docstring": null,
+          "snippet": "lemma ext' (U T : UnboundedOperator HS) (h : U.toLinearPMap = T.toLinearPMap) : U = T",
+          "line": 51
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Unbounded.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.UnboundedOperator.ext_iff'",
+          "docstring": null,
+          "snippet": "lemma ext_iff' (U T : UnboundedOperator HS) : U = T ↔ U.toLinearPMap = T.toLinearPMap",
+          "line": 56
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Unbounded.lean",
+          "kind": "def",
+          "name": "QuantumMechanics.UnboundedOperator.ofSymmetric",
+          "docstring": "An `UnboundedOperator` constructed from a symmetric linear map on a dense submodule `E`.",
+          "snippet": "def ofSymmetric (f : E →ₗ[ℂ] E) (hf : f.IsSymmetric) : UnboundedOperator HS where",
+          "line": 68
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Unbounded.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.UnboundedOperator.ofSymmetric_apply",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma ofSymmetric_apply {f : E →ₗ[ℂ] E} {hf : f.IsSymmetric} (ψ : E) :\n    (ofSymmetric (hE := hE) f hf).toLinearPMap ψ = E.subtypeL (f ψ)",
+          "line": 77
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Unbounded.lean",
+          "kind": "def",
+          "name": "QuantumMechanics.UnboundedOperator.closure",
+          "docstring": "The closure of an unbounded operator.",
+          "snippet": "noncomputable def closure : UnboundedOperator HS where",
+          "line": 87
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Unbounded.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.UnboundedOperator.closure_toLinearPMap",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma closure_toLinearPMap : U.closure.toLinearPMap = U.toLinearPMap.closure",
+          "line": 93
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Unbounded.lean",
+          "kind": "def",
+          "name": "QuantumMechanics.UnboundedOperator.IsClosed",
+          "docstring": "An unbounded operator is closed iff the graph of its defining LinearPMap is closed.",
+          "snippet": "def IsClosed : Prop",
+          "line": 96
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Unbounded.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.UnboundedOperator.closure_isClosed",
+          "docstring": null,
+          "snippet": "lemma closure_isClosed : U.closure.IsClosed",
+          "line": 98
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Unbounded.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.UnboundedOperator.adjoint_isClosable_dense",
+          "docstring": "The adjoint of a densely defined, closable `LinearPMap` is densely defined.",
+          "snippet": "lemma adjoint_isClosable_dense (f : LinearPMap ℂ HS HS) (h_dense : Dense (f.domain : Set HS))\n    (h_closable : f.IsClosable) : Dense (f†.domain : Set HS)",
+          "line": 111
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Unbounded.lean",
+          "kind": "def",
+          "name": "QuantumMechanics.UnboundedOperator.adjoint",
+          "docstring": "The adjoint of an unbounded operator, denoted as `U†`.",
+          "snippet": "noncomputable def adjoint : UnboundedOperator HS where",
+          "line": 139
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Unbounded.lean",
+          "kind": "instance",
+          "name": "QuantumMechanics.UnboundedOperator.instStar",
+          "docstring": null,
+          "snippet": "noncomputable instance instStar : Star (UnboundedOperator HS) where",
+          "line": 147
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Unbounded.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.UnboundedOperator.adjoint_toLinearPMap",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma adjoint_toLinearPMap : U†.toLinearPMap = U.toLinearPMap†",
+          "line": 151
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Unbounded.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.UnboundedOperator.isSelfAdjoint_def",
+          "docstring": null,
+          "snippet": "lemma isSelfAdjoint_def : IsSelfAdjoint U ↔ U† = U",
+          "line": 153
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Unbounded.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.UnboundedOperator.isSelfAdjoint_iff",
+          "docstring": null,
+          "snippet": "lemma isSelfAdjoint_iff : IsSelfAdjoint U ↔ IsSelfAdjoint U.toLinearPMap",
+          "line": 155
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Unbounded.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.UnboundedOperator.adjoint_isClosed",
+          "docstring": null,
+          "snippet": "lemma adjoint_isClosed : (U†).IsClosed",
+          "line": 159
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Unbounded.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.UnboundedOperator.closure_adjoint_eq_adjoint",
+          "docstring": null,
+          "snippet": "lemma closure_adjoint_eq_adjoint : U.closure† = U†",
+          "line": 161
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Unbounded.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.UnboundedOperator.adjoint_adjoint_eq_closure",
+          "docstring": null,
+          "snippet": "lemma adjoint_adjoint_eq_closure : U†† = U.closure",
+          "line": 172
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Unbounded.lean",
+          "kind": "def",
+          "name": "QuantumMechanics.UnboundedOperator.IsGeneralizedEigenvector",
+          "docstring": "A map `F : D(U) →L[ℂ] ℂ` is a generalized eigenvector of an unbounded operator `U`\n  if there is an eigenvalue `c` such that for all `ψ ∈ D(U)`, `F (U ψ) = c ⬝ F ψ`.",
+          "snippet": "def IsGeneralizedEigenvector (F : U.domain →L[ℂ] ℂ) (c : ℂ) : Prop",
+          "line": 191
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/Operators/Unbounded.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.UnboundedOperator.isGeneralizedEigenvector_ofSymmetric_iff",
+          "docstring": null,
+          "snippet": "lemma isGeneralizedEigenvector_ofSymmetric_iff\n    {f : E →ₗ[ℂ] E} (hf : f.IsSymmetric) (F : E →L[ℂ] ℂ) (c : ℂ) :\n    IsGeneralizedEigenvector (ofSymmetric (hE := hE) f hf) F c ↔ ∀ ψ : E, F (f ψ) = c • F ψ",
+          "line": 194
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/QuantumMechanics/DDimensions/SpaceDHilbertSpace/Basic.lean",
+      "entries": [
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/SpaceDHilbertSpace/Basic.lean",
+          "kind": "abbrev",
+          "name": "QuantumMechanics.SpaceDHilbertSpace",
+          "docstring": "The Hilbert space for single-particle quantum mechanics on `Space d` is defined to be\n  `L²(Space d, ℂ)`, the space of almost-everywhere equal equivalence classes of square-integrable\n  functions from `Space d` to `ℂ`.",
+          "snippet": "abbrev SpaceDHilbertSpace (d : ℕ)",
+          "line": 22
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/SpaceDHilbertSpace/Basic.lean",
+          "kind": "def",
+          "name": "QuantumMechanics.SpaceDHilbertSpace.toBra",
+          "docstring": "The anti-linear map from the Hilbert space to its dual.",
+          "snippet": "def toBra {d : ℕ} : SpaceDHilbertSpace d →ₛₗ[starRingEnd ℂ] (StrongDual ℂ (SpaceDHilbertSpace d))",
+          "line": 29
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/SpaceDHilbertSpace/Basic.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.SpaceDHilbertSpace.toBra_apply",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma toBra_apply (f g : SpaceDHilbertSpace d) : toBra f g = ⟪f, g⟫_ℂ",
+          "line": 33
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/SpaceDHilbertSpace/Basic.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.SpaceDHilbertSpace.toBra_surjective",
+          "docstring": "The anti-linear map `toBra` taking a ket to its corresponding bra is surjective.",
+          "snippet": "lemma toBra_surjective : Function.Surjective (toBra (d := d))",
+          "line": 36
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/SpaceDHilbertSpace/Basic.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.SpaceDHilbertSpace.toBra_injective",
+          "docstring": "The anti-linear map `toBra` taking a ket to its corresponding bra is injective.",
+          "snippet": "lemma toBra_injective : Function.Injective (toBra (d := d))",
+          "line": 40
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/SpaceDHilbertSpace/Basic.lean",
+          "kind": "def",
+          "name": "QuantumMechanics.SpaceDHilbertSpace.MemHS",
+          "docstring": "The proposition `MemHS f` for a function `f : Space d → ℂ` is defined\n  to be true if the function `f` can be lifted to the Hilbert space.",
+          "snippet": "def MemHS (f : Space d → ℂ) : Prop",
+          "line": 50
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/SpaceDHilbertSpace/Basic.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.SpaceDHilbertSpace.aeStronglyMeasurable_of_memHS",
+          "docstring": null,
+          "snippet": "lemma aeStronglyMeasurable_of_memHS {f : Space d → ℂ} (h : MemHS f) : AEStronglyMeasurable f",
+          "line": 52
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/SpaceDHilbertSpace/Basic.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.SpaceDHilbertSpace.memHS_iff",
+          "docstring": "A function `f` satisfies `MemHS f` if and only if it is almost everywhere\n  strongly measurable and square integrable.",
+          "snippet": "lemma memHS_iff {f : Space d → ℂ} : MemHS f ↔\n    AEStronglyMeasurable f ∧ Integrable (fun x ↦ ‖f x‖ ^ 2)",
+          "line": 57
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/SpaceDHilbertSpace/Basic.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.SpaceDHilbertSpace.zero_memHS",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma zero_memHS : MemHS (d := d) 0",
+          "line": 69
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/SpaceDHilbertSpace/Basic.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.SpaceDHilbertSpace.zero_fun_memHS",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma zero_fun_memHS : MemHS (fun _ : Space d ↦ (0 : ℂ))",
+          "line": 76
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/SpaceDHilbertSpace/Basic.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.SpaceDHilbertSpace.memHS_add",
+          "docstring": null,
+          "snippet": "lemma memHS_add {f g : Space d → ℂ} (hf : MemHS f) (hg : MemHS g) : MemHS (f + g)",
+          "line": 78
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/SpaceDHilbertSpace/Basic.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.SpaceDHilbertSpace.memHS_const_smul",
+          "docstring": null,
+          "snippet": "lemma memHS_const_smul {f : Space d → ℂ} {c : ℂ} (hf : MemHS f) : MemHS (c • f)",
+          "line": 81
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/SpaceDHilbertSpace/Basic.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.SpaceDHilbertSpace.memHS_of_ae",
+          "docstring": null,
+          "snippet": "lemma memHS_of_ae {g : Space d → ℂ} (f : Space d → ℂ) (hf : MemHS f) (hfg : f =ᵐ[volume] g) :\n    MemHS g",
+          "line": 84
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/SpaceDHilbertSpace/Basic.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.SpaceDHilbertSpace.aeEqFun_mk_mem_iff",
+          "docstring": null,
+          "snippet": "lemma aeEqFun_mk_mem_iff (f : Space d → ℂ) (hf : AEStronglyMeasurable f volume) :\n    AEEqFun.mk f hf ∈ SpaceDHilbertSpace d ↔ MemHS f",
+          "line": 91
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/SpaceDHilbertSpace/Basic.lean",
+          "kind": "def",
+          "name": "QuantumMechanics.SpaceDHilbertSpace.mk",
+          "docstring": "Given a function `f : Space d → ℂ` such that `MemHS f` is true via `hf`,\n  `SpaceDHilbertSpace.mk f` is the element of the Hilbert space defined by `f`.",
+          "snippet": "def mk {f : Space d → ℂ} (hf : MemHS f) : SpaceDHilbertSpace d",
+          "line": 98
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/SpaceDHilbertSpace/Basic.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.SpaceDHilbertSpace.coe_hilbertSpace_memHS",
+          "docstring": null,
+          "snippet": "lemma coe_hilbertSpace_memHS (f : SpaceDHilbertSpace d) : MemHS (f : Space d → ℂ)",
+          "line": 101
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/SpaceDHilbertSpace/Basic.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.SpaceDHilbertSpace.mk_surjective",
+          "docstring": null,
+          "snippet": "lemma mk_surjective (f : SpaceDHilbertSpace d) :\n    ∃ (g : Space d → ℂ) (hg : MemHS g), mk hg = f",
+          "line": 106
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/SpaceDHilbertSpace/Basic.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.SpaceDHilbertSpace.coe_mk_ae",
+          "docstring": null,
+          "snippet": "lemma coe_mk_ae {f : Space d → ℂ} (hf : MemHS f) : (mk hf) =ᵐ[volume] f",
+          "line": 111
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/SpaceDHilbertSpace/Basic.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.SpaceDHilbertSpace.inner_mk_mk",
+          "docstring": null,
+          "snippet": "lemma inner_mk_mk {f g : Space d → ℂ} (hf : MemHS f) (hg : MemHS g) :\n    ⟪mk hf, mk hg⟫_ℂ = ∫ x : Space d, starRingEnd ℂ (f x) * g x",
+          "line": 114
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/SpaceDHilbertSpace/Basic.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.SpaceDHilbertSpace.eLpNorm_mk",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma eLpNorm_mk {f : Space d → ℂ} {hf : MemHS f} : eLpNorm (mk hf) 2 = eLpNorm f 2",
+          "line": 121
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/SpaceDHilbertSpace/Basic.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.SpaceDHilbertSpace.mem_iff",
+          "docstring": null,
+          "snippet": "lemma mem_iff {f : Space d → ℂ} (hf : AEStronglyMeasurable f volume) :\n    AEEqFun.mk f hf ∈ SpaceDHilbertSpace d ↔ Integrable (fun x ↦ ‖f x‖ ^ 2)",
+          "line": 124
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/SpaceDHilbertSpace/Basic.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.SpaceDHilbertSpace.mk_add",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma mk_add {f g : Space d → ℂ} {hf : MemHS f} {hg : MemHS g} :\n    mk (memHS_add hf hg) = mk hf + mk hg",
+          "line": 136
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/SpaceDHilbertSpace/Basic.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.SpaceDHilbertSpace.mk_const_smul",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma mk_const_smul {f : Space d → ℂ} {c : ℂ} {hf : MemHS f} :\n    mk (memHS_const_smul (c := c) hf) = c • mk hf",
+          "line": 140
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/SpaceDHilbertSpace/Basic.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.SpaceDHilbertSpace.mk_eq_iff",
+          "docstring": null,
+          "snippet": "lemma mk_eq_iff {f g : Space d → ℂ} {hf : MemHS f} {hg : MemHS g} :\n    mk hf = mk hg ↔ f =ᵐ[volume] g",
+          "line": 143
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/SpaceDHilbertSpace/Basic.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.SpaceDHilbertSpace.ext_iff",
+          "docstring": null,
+          "snippet": "lemma ext_iff {f g : SpaceDHilbertSpace d} :\n    f = g ↔ (f : Space d → ℂ) =ᵐ[volume] (g : Space d → ℂ)",
+          "line": 146
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/QuantumMechanics/DDimensions/SpaceDHilbertSpace/SchwartzSubmodule.lean",
+      "entries": [
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/SpaceDHilbertSpace/SchwartzSubmodule.lean",
+          "kind": "def",
+          "name": "QuantumMechanics.SpaceDHilbertSpace.schwartzIncl",
+          "docstring": "The continuous linear map including Schwartz functions into `SpaceDHilbertSpace d`.",
+          "snippet": "def schwartzIncl {d : ℕ} : 𝓢(Space d, ℂ) →L[ℂ] SpaceDHilbertSpace d",
+          "line": 24
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/SpaceDHilbertSpace/SchwartzSubmodule.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.SpaceDHilbertSpace.schwartzIncl_injective",
+          "docstring": null,
+          "snippet": "lemma schwartzIncl_injective {d : ℕ} : Function.Injective (schwartzIncl (d := d))",
+          "line": 26
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/SpaceDHilbertSpace/SchwartzSubmodule.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.SpaceDHilbertSpace.schwartzIncl_coe_ae",
+          "docstring": null,
+          "snippet": "lemma schwartzIncl_coe_ae {d : ℕ} (f : 𝓢(Space d, ℂ)) : f.1 =ᵐ[volume] (schwartzIncl f)",
+          "line": 29
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/SpaceDHilbertSpace/SchwartzSubmodule.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.SpaceDHilbertSpace.schwartzIncl_inner",
+          "docstring": null,
+          "snippet": "lemma schwartzIncl_inner {d : ℕ} (f g : 𝓢(Space d, ℂ)) :\n    ⟪schwartzIncl f, schwartzIncl g⟫_ℂ = ∫ x : Space d, starRingEnd ℂ (f x) * g x",
+          "line": 32
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/SpaceDHilbertSpace/SchwartzSubmodule.lean",
+          "kind": "abbrev",
+          "name": "QuantumMechanics.SpaceDHilbertSpace.schwartzSubmodule",
+          "docstring": "The submodule of `SpaceDHilbertSpace d` consisting of Schwartz functions.",
+          "snippet": "abbrev schwartzSubmodule (d : ℕ)",
+          "line": 40
+        },
+        {
+          "file": "PhysLean/QuantumMechanics/DDimensions/SpaceDHilbertSpace/SchwartzSubmodule.lean",
+          "kind": "lemma",
+          "name": "QuantumMechanics.SpaceDHilbertSpace.schwartzSubmodule_dense",
+          "docstring": null,
+          "snippet": "lemma schwartzSubmodule_dense {d : ℕ} :\n    Dense (schwartzSubmodule d : Set (SpaceDHilbertSpace d))",
+          "line": 42
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/Relativity/Tensors/Contraction/Pure.lean",
+      "entries": [
+        {
+          "file": "PhysLean/Relativity/Tensors/Contraction/Pure.lean",
+          "kind": "lemma",
+          "name": "TensorSpecies.Tensor.Pure.fst_ne_dropPairEmb_pre",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma fst_ne_dropPairEmb_pre (i j : Fin (n + 1 + 1)) (m : Fin n) :\n    ¬ i = dropPairEmb i j m",
+          "line": 232
+        },
+        {
+          "file": "PhysLean/Relativity/Tensors/Contraction/Pure.lean",
+          "kind": "lemma",
+          "name": "TensorSpecies.Tensor.Pure.dropPairEmb_ne_fst",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma dropPairEmb_ne_fst (i j : Fin (n + 1 + 1)) (m : Fin n) :\n    ¬ dropPairEmb i j m = i",
+          "line": 249
+        },
+        {
+          "file": "PhysLean/Relativity/Tensors/Contraction/Pure.lean",
+          "kind": "lemma",
+          "name": "TensorSpecies.Tensor.Pure.snd_ne_dropPairEmb_pre",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma snd_ne_dropPairEmb_pre (i j : Fin (n + 1 + 1)) (m : Fin n) :\n    ¬ j = (dropPairEmb i j) m",
+          "line": 255
+        },
+        {
+          "file": "PhysLean/Relativity/Tensors/Contraction/Pure.lean",
+          "kind": "lemma",
+          "name": "TensorSpecies.Tensor.Pure.dropPairEmb_ne_snd",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma dropPairEmb_ne_snd (i j : Fin (n + 1 + 1)) (m : Fin n) :\n    ¬ dropPairEmb i j m = j",
+          "line": 261
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/Relativity/Tensors/Evaluation.lean",
+      "entries": [
+        {
+          "file": "PhysLean/Relativity/Tensors/Evaluation.lean",
+          "kind": "lemma",
+          "name": "TensorSpecies.Tensor.evalT_pure",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma evalT_pure {n : ℕ} {c : Fin (n + 1) → C} (i : Fin (n + 1))\n    (b : Fin (S.repDim (c i))) (p : Pure S c) :\n    evalT i b p.toTensor = Pure.evalP i b p",
+          "line": 121
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/Relativity/Tensors/RealTensor/ToComplex.lean",
+      "entries": [
+        {
+          "file": "PhysLean/Relativity/Tensors/RealTensor/ToComplex.lean",
+          "kind": "lemma",
+          "name": "realLorentzTensor.ComponentIdx.complexify_apply",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma ComponentIdx.complexify_apply {n} {c : Fin n → realLorentzTensor.Color}\n    (f : ComponentIdx (S := realLorentzTensor) c) (j : Fin n) :\n    (ComponentIdx.complexify f) j = Fin.cast (by\n      simp only [repDim_eq_one_plus_dim, Nat.reduceAdd, Function.comp_apply]\n      generalize c j = cj\n      match cj with\n      | .up => rfl\n      | .down => rfl) (f j)",
+          "line": 105
+        },
+        {
+          "file": "PhysLean/Relativity/Tensors/RealTensor/ToComplex.lean",
+          "kind": "lemma",
+          "name": "realLorentzTensor.ComponentIdx.complexify_toFun_apply",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma ComponentIdx.complexify_toFun_apply {n} {c : Fin n → realLorentzTensor.Color}\n    (f : ComponentIdx (S := realLorentzTensor) c) (j : Fin n) :\n    (ComponentIdx.complexify.toFun f) j = (ComponentIdx.complexify f) j",
+          "line": 116
+        },
+        {
+          "file": "PhysLean/Relativity/Tensors/RealTensor/ToComplex.lean",
+          "kind": "lemma",
+          "name": "realLorentzTensor.toComplex_basis",
+          "docstring": "`toComplex` sends basis elements to basis elements.",
+          "snippet": "@[simp]\nlemma toComplex_basis {n} {c : Fin n → realLorentzTensor.Color}\n    (i : ComponentIdx (S := realLorentzTensor) c) :\n    toComplex (c := c) ((Tensor.basis (S := realLorentzTensor) c) i) =\n      (Tensor.basis (S := complexLorentzTensor) (colorToComplex ∘ c)) i.complexify",
+          "line": 162
+        },
+        {
+          "file": "PhysLean/Relativity/Tensors/RealTensor/ToComplex.lean",
+          "kind": "lemma",
+          "name": "realLorentzTensor.toComplex_pure_basisVector",
+          "docstring": "`toComplex` on a pure basis vector.",
+          "snippet": "@[simp]\nlemma toComplex_pure_basisVector {n} {c : Fin n → realLorentzTensor.Color}\n    (b : ComponentIdx (S := realLorentzTensor) c) :\n    toComplex (c := c) (Pure.basisVector c b |>.toTensor)\n      =\n    (Pure.basisVector (colorToComplex ∘ c) b.complexify).toTensor",
+          "line": 180
+        },
+        {
+          "file": "PhysLean/Relativity/Tensors/RealTensor/ToComplex.lean",
+          "kind": "lemma",
+          "name": "realLorentzTensor.toComplex_map_smul",
+          "docstring": null,
+          "snippet": "lemma toComplex_map_smul {n} (c : Fin n → realLorentzTensor.Color) (r : ℝ) (t : ℝT(3, c)) :\n    toComplex (c := c) (r • t) = (Complex.ofReal r) • toComplex (c := c) t",
+          "line": 191
+        },
+        {
+          "file": "PhysLean/Relativity/Tensors/RealTensor/ToComplex.lean",
+          "kind": "lemma",
+          "name": "realLorentzTensor.permCond_prodTColorToComplex",
+          "docstring": null,
+          "snippet": "lemma permCond_prodTColorToComplex {n m : ℕ}\n    {c : Fin n → realLorentzTensor.Color} {c1 : Fin m → realLorentzTensor.Color} :\n    PermCond (Fin.append (colorToComplex ∘ c) (colorToComplex ∘ c1))\n      (colorToComplex ∘ Fin.append c c1)\n      (id : Fin (n + m) → Fin (n + m))",
+          "line": 346
+        },
+        {
+          "file": "PhysLean/Relativity/Tensors/RealTensor/ToComplex.lean",
+          "kind": "lemma",
+          "name": "realLorentzTensor.cast_componentIdx_apply",
+          "docstring": null,
+          "snippet": "private lemma cast_componentIdx_apply {n : ℕ} {c c' : Fin n → complexLorentzTensor.Color}\n    (h : c' = c) (f : ComponentIdx (S := complexLorentzTensor) c') (x : Fin n) :\n    (cast (congr_arg ComponentIdx h) f) x =\n      Fin.cast (congr_arg (fun c => complexLorentzTensor.repDim (c x)) h) (f x)",
+          "line": 373
+        },
+        {
+          "file": "PhysLean/Relativity/Tensors/RealTensor/ToComplex.lean",
+          "kind": "lemma",
+          "name": "realLorentzTensor.cast_componentIdx_eq_fun",
+          "docstring": null,
+          "snippet": "@[simp]\nprivate lemma cast_componentIdx_eq_fun {n : ℕ}\n    {c c' : Fin n → complexLorentzTensor.Color}\n    (h : c' = c) (f : ComponentIdx (S := complexLorentzTensor) c') :\n    cast (congr_arg ComponentIdx h) f =\n      (fun x =>\n        Fin.cast (congr_arg (fun col => complexLorentzTensor.repDim (col x)) h) (f x))",
+          "line": 381
+        },
+        {
+          "file": "PhysLean/Relativity/Tensors/RealTensor/ToComplex.lean",
+          "kind": "lemma",
+          "name": "realLorentzTensor.complexify_prod",
+          "docstring": "`complexify` commutes with `prod` of component indices.",
+          "snippet": "@[simp]\nlemma complexify_prod {n m : ℕ}\n    {c : Fin n → realLorentzTensor.Color} {c1 : Fin m → realLorentzTensor.Color}\n    (b : ComponentIdx (S := realLorentzTensor) c)\n    (b1 : ComponentIdx (S := realLorentzTensor) c1) :\n    ComponentIdx.complexify (c := Fin.append c c1) (b.prod b1)\n      =\n    cast (congr_arg ComponentIdx (colorToComplex_append c c1).symm)\n      ((ComponentIdx.complexify (c := c) b).prod (ComponentIdx.complexify (c := c1) b1))",
+          "line": 392
+        },
+        {
+          "file": "PhysLean/Relativity/Tensors/RealTensor/ToComplex.lean",
+          "kind": "lemma",
+          "name": "realLorentzTensor.ComponentIdx.complexify_comp_dropPairEmb",
+          "docstring": "`complexify` commutes with precomposition by `dropPairEmb`.\n  We use `fun k => b (Pure.dropPairEmb i j k)` and direct application\n  `(ComponentIdx.complexify b) (Pure.dropPairEmb i j m)` rather than composition so that\n  dependent `ComponentIdx` types unify correctly (avoiding `Function.comp` type mismatch).",
+          "snippet": "@[simp]\nlemma ComponentIdx.complexify_comp_dropPairEmb\n    {n : ℕ} {c : Fin (n + 1 + 1) → realLorentzTensor.Color}\n    {i j : Fin (n + 1 + 1)} (b : ComponentIdx (S := realLorentzTensor) c) (m : Fin n) :\n    (ComponentIdx.complexify (c := c ∘ Pure.dropPairEmb i j)\n      (fun k => b (Pure.dropPairEmb i j k))) m =\n    (ComponentIdx.complexify (c := c) b) (Pure.dropPairEmb i j m)",
+          "line": 535
+        },
+        {
+          "file": "PhysLean/Relativity/Tensors/RealTensor/ToComplex.lean",
+          "kind": "lemma",
+          "name": "realLorentzTensor.toComplex_contrP_basisVector",
+          "docstring": "For a real basis vector, `toComplex(contrP(basisVector c b))` equals\n  `contrP(basisVector (colorToComplex ∘ c) (complexify b))` (complex species).",
+          "snippet": "lemma toComplex_contrP_basisVector {n : ℕ} {c : Fin (n + 1 + 1) → realLorentzTensor.Color}\n    {i j : Fin (n + 1 + 1)} (h : i ≠ j ∧ (realLorentzTensor).τ (c i) = c j)\n    (b : ComponentIdx (S := realLorentzTensor) c) :\n    toComplex (c := c ∘ Pure.dropPairEmb i j)\n      (Pure.contrP (S := realLorentzTensor) i j h (Pure.basisVector c b))\n      =\n    Pure.contrP (S := complexLorentzTensor) i j\n      (by\n        simpa [Function.comp_apply] using And.intro h.1\n          (by simpa [tau_colorToComplex] using congrArg colorToComplex h.2))\n      (Pure.basisVector (colorToComplex ∘ c) (ComponentIdx.complexify b))",
+          "line": 545
+        },
+        {
+          "file": "PhysLean/Relativity/Tensors/RealTensor/ToComplex.lean",
+          "kind": "lemma",
+          "name": "realLorentzTensor.ComponentIdx.complexify_comp_succAbove",
+          "docstring": "`complexify` commutes with precomposition by `succAbove`.",
+          "snippet": "@[simp]\nlemma ComponentIdx.complexify_comp_succAbove\n    {n : ℕ} {c : Fin (n + 1) → realLorentzTensor.Color} (i : Fin (n + 1))\n    (b : ComponentIdx (S := realLorentzTensor) c) (m : Fin n) :\n    (ComponentIdx.complexify (c := c ∘ i.succAbove) (fun k => b (i.succAbove k))) m =\n    (ComponentIdx.complexify (c := c) b) (i.succAbove m)",
+          "line": 687
+        },
+        {
+          "file": "PhysLean/Relativity/Tensors/RealTensor/ToComplex.lean",
+          "kind": "lemma",
+          "name": "realLorentzTensor.toComplex_evalP_basisVector",
+          "docstring": "For a real basis vector, `toComplex(evalP(basisVector c b))` equals\n  `evalP(basisVector (colorToComplex ∘ c) (complexify b))` (complex species).",
+          "snippet": "lemma toComplex_evalP_basisVector {n : ℕ} {c : Fin (n + 1) → realLorentzTensor.Color}\n    (i : Fin (n + 1)) (b : Fin ((realLorentzTensor).repDim (c i)))\n    (b' : ComponentIdx (S := realLorentzTensor) c) :\n    toComplex (c := c ∘ i.succAbove)\n      (Pure.evalP (S := realLorentzTensor) i b (Pure.basisVector c b'))\n      =\n    permT (S := complexLorentzTensor) (σ := (id : Fin n → Fin n))\n      (by simp [Function.comp_apply])\n      (Pure.evalP (S := complexLorentzTensor) i (evalIdxToComplex (c := c) i b)\n        (Pure.basisVector (colorToComplex ∘ c) (ComponentIdx.complexify b')))",
+          "line": 730
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/Relativity/Tensors/RealTensor/Velocity/Basic.lean",
+      "entries": [
+        {
+          "file": "PhysLean/Relativity/Tensors/RealTensor/Velocity/Basic.lean",
+          "kind": "lemma",
+          "name": "Lorentz.Velocity.one_add_minkowskiProduct_ne_zero",
+          "docstring": null,
+          "snippet": "lemma one_add_minkowskiProduct_ne_zero (u v : Velocity d) :\n    1 + ⟪u.1, v.1⟫ₘ ≠ 0",
+          "line": 85
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/Relativity/Tensors/TensorSpecies/Basic.lean",
+      "entries": [
+        {
+          "file": "PhysLean/Relativity/Tensors/TensorSpecies/Basic.lean",
+          "kind": "lemma",
+          "name": "TensorSpecies.castToField_eq_self",
+          "docstring": null,
+          "snippet": "lemma castToField_eq_self {S : TensorSpecies k C G} {c}\n    (v : (↑((𝟙_ (Discrete C ⥤ Rep k G)).obj { as := c }).V)) :\n    S.castToField v = v",
+          "line": 136
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/SpaceAndTime/Space/Basic.lean",
+      "entries": [
+        {
+          "file": "PhysLean/SpaceAndTime/Space/Basic.lean",
+          "kind": "lemma",
+          "name": "Space.volume_closedBall_ne_zero",
+          "docstring": null,
+          "snippet": "lemma volume_closedBall_ne_zero {d : ℕ} (x : Space d.succ) (r : ℝ) (hr : 0 < r) :\n    volume (Metric.closedBall x r) ≠ 0",
+          "line": 733
+        },
+        {
+          "file": "PhysLean/SpaceAndTime/Space/Basic.lean",
+          "kind": "lemma",
+          "name": "Space.volume_closedBall_ne_top",
+          "docstring": null,
+          "snippet": "lemma volume_closedBall_ne_top {d : ℕ} (x : Space d.succ) (r : ℝ) :\n    volume (Metric.closedBall x r) ≠ ⊤",
+          "line": 754
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/SpaceAndTime/Space/Derivatives/Basic.lean",
+      "entries": [
+        {
+          "file": "PhysLean/SpaceAndTime/Space/Derivatives/Basic.lean",
+          "kind": "lemma",
+          "name": "Space.deriv_const_smul",
+          "docstring": "Space derivatives on scalar times function.",
+          "snippet": "lemma deriv_const_smul [NormedAddCommGroup M] [NormedSpace ℝ M] [Semiring R]\n    [Module R M] [SMulCommClass ℝ R M] [ContinuousConstSMul R M] {f : Space d → M} (c : R)\n    (h : Differentiable ℝ f) : ∂[u] (c • f) = c • ∂[u] f",
+          "line": 145
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/SpaceAndTime/Space/LengthUnit.lean",
+      "entries": [
+        {
+          "file": "PhysLean/SpaceAndTime/Space/LengthUnit.lean",
+          "kind": "lemma",
+          "name": "LengthUnit.val_ne_zero",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma val_ne_zero (x : LengthUnit) : x.val ≠ 0",
+          "line": 36
+        },
+        {
+          "file": "PhysLean/SpaceAndTime/Space/LengthUnit.lean",
+          "kind": "lemma",
+          "name": "LengthUnit.div_ne_zero",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma div_ne_zero (x y : LengthUnit) : ¬ x / y = (0 : ℝ≥0)",
+          "line": 59
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/SpaceAndTime/Time/TimeUnit.lean",
+      "entries": [
+        {
+          "file": "PhysLean/SpaceAndTime/Time/TimeUnit.lean",
+          "kind": "lemma",
+          "name": "TimeUnit.val_ne_zero",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma val_ne_zero (x : TimeUnit) : x.val ≠ 0",
+          "line": 41
+        },
+        {
+          "file": "PhysLean/SpaceAndTime/Time/TimeUnit.lean",
+          "kind": "lemma",
+          "name": "TimeUnit.div_ne_zero",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma div_ne_zero (x y : TimeUnit) : ¬ x / y = (0 : ℝ≥0)",
+          "line": 62
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/StatisticalMechanics/BoltzmannConstant.lean",
+      "entries": [
+        {
+          "file": "PhysLean/StatisticalMechanics/BoltzmannConstant.lean",
+          "kind": "lemma",
+          "name": "Constants.kB_ne_zero",
+          "docstring": "The Boltzmann constant is not equal to zero.",
+          "snippet": "lemma kB_ne_zero : kB ≠ 0",
+          "line": 37
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/Thermodynamics/Temperature/TemperatureUnits.lean",
+      "entries": [
+        {
+          "file": "PhysLean/Thermodynamics/Temperature/TemperatureUnits.lean",
+          "kind": "lemma",
+          "name": "TemperatureUnit.val_ne_zero",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma val_ne_zero (x : TemperatureUnit) : x.val ≠ 0",
+          "line": 40
+        },
+        {
+          "file": "PhysLean/Thermodynamics/Temperature/TemperatureUnits.lean",
+          "kind": "lemma",
+          "name": "TemperatureUnit.div_ne_zero",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma div_ne_zero (x y : TemperatureUnit) : ¬ x / y = (0 : ℝ≥0)",
+          "line": 61
+        }
+      ]
+    },
+    {
+      "filename": "PhysLean/Units/Basic.lean",
+      "entries": [
+        {
+          "file": "PhysLean/Units/Basic.lean",
+          "kind": "lemma",
+          "name": "UnitChoices.dimScale_ne_zero",
+          "docstring": null,
+          "snippet": "@[simp]\nlemma dimScale_ne_zero (u1 u2 : UnitChoices) (d : Dimension) :\n    dimScale u1 u2 d ≠ 0",
+          "line": 159
+        }
+      ]
+    }
+  ],
+  "pdfUrl": "/monthly-updates/2026-02.pdf",
+  "generatedAt": "2026-08-14T10:20:50.063Z"
+}
