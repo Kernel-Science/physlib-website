@@ -46,6 +46,13 @@ export function MonthSidebar() {
             </ul>
           </div>
         ))}
+
+        {/* Earlier months not included*/}
+        <div className="mt-8 border-t border-border/60 px-2 pt-4">
+          <p className="text-[11px] leading-relaxed text-muted/70">
+            Earlier months are not included here as they did not follow Physlib&apos;s current code standards
+          </p>
+        </div>
       </nav>
     </aside>
   );
