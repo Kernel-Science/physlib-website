@@ -5,10 +5,8 @@ import type { MonthlyContributor, MonthlyUpdate } from "@/lib/yaml";
 import { site } from "@/lib/site";
 import { CheckIcon, CopyIcon, QuoteIcon } from "./icons";
 
-// Publisher / institution is derived from the repo owner ("Kernel-Science"
-// → "Kernel Science") so we don't hard-code a name that goes stale if the
-// project ever moves organisations.
-function publisherFrom(repo: string): string {
+// gets the name of the repo
+function repoFrom(repo: string): string {
   const owner = repo.split("/")[0] ?? "";
   return owner.replace(/[-_]+/g, " ").trim() || "Physlib";
 }
@@ -74,14 +72,9 @@ function longPeriod(data: MonthlyUpdate): string {
   }).format(new Date(Date.UTC(data.year, data.month - 1, 1)));
 }
 
-// Harvard (University of Bath) style, corporate-report variant, applied to
-// an authored technical report:
-//   Author(s) (Year) Title [Format]. Publisher. Available from: URL
-//   [Accessed date].
-// The DOI, when we have one, is appended per the same guide's preference
-// for including a persistent identifier over a plain URL.
+// replace links with DOI links when available
 function harvardBathReference(data: MonthlyUpdate, accessed: Date): string {
-  const publisher = publisherFrom(data.repo);
+  const publisher = "Zenodo";
   const accessedStr = new Intl.DateTimeFormat("en-GB", {
     day: "numeric",
     month: "long",
@@ -132,7 +125,7 @@ function bibTexAuthorField(data: MonthlyUpdate): string {
 }
 
 function bibTexRecord(data: MonthlyUpdate, accessed: Date): string {
-  const publisher = publisherFrom(data.repo);
+  const publisher = "Zenodo";
   const monthMacro = BIBTEX_MONTHS[data.month - 1] ?? "jan";
   const key = `physlib-${data.slug}`;
   const urldate = accessed.toISOString().slice(0, 10);
