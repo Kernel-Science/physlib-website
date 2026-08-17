@@ -5,11 +5,14 @@ Disallow: /
 User-agent: GPTBot
 Disallow: /
 
+# Allow the openAI bots to look at monthly updates for the AI summary
 User-agent: OAI-SearchBot
 Disallow: /
+Allow: /monthly-updates/
 
 User-agent: ChatGPT-User
 Disallow: /
+Allow: /monthly-updates/
 
 User-agent: AmazonBot
 Disallow: /

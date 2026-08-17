@@ -1,3 +1,4 @@
+import { site } from "@/lib/site";
 import type { MonthlyUpdate } from "@/lib/yaml";
 import { CitationButton } from "./citation-button";
 import { ContributorPill, ReviewerPill } from "./contributor-pill";
@@ -9,9 +10,6 @@ function formatNumber(n: number): string {
   return new Intl.NumberFormat("en-US").format(n);
 }
 
-// No link in the prompt - ChatGPT can't fetch physlib.io from most contexts,
-// and pasting the actual content gets a real answer instead of a "please
-// provide the text" reply.
 function chatGptSummaryUrl(prompt: string): string {
   const params = new URLSearchParams({
     q: prompt,
@@ -19,47 +17,6 @@ function chatGptSummaryUrl(prompt: string): string {
     "temporary-chat": "true",
   });
   return `https://chatgpt.com/?${params.toString()}`;
-}
-
-// The documented declarations under a subfolder path, formatted as "name
-// (kind): first line of its docstring" - the same underlying data the PDF's
-// own text is generated from, not a re-scrape of the rendered PDF. Capped to
-// a character budget so the ChatGPT URL stays a reasonable length.
-//
-// Undocumented entries are dropped entirely rather than listed bare: Lean
-// gives anonymous instances hash-based names like `«instance@180d6a48»`,
-// and a prompt half-full of those (with nothing to say about them) reads as
-// noise, not content - it doesn't summarize to anything meaningful.
-function sectionContent(data: MonthlyUpdate, subfolderPath: string): string {
-  const prefix = `${subfolderPath}/`;
-  const entries = data.files
-    .filter((f) => f.filename === subfolderPath || f.filename.startsWith(prefix))
-    .flatMap((f) => f.entries)
-    .filter((e) => e.docstring?.trim());
-
-  // Lines can move in a subfolder (refactors, renames, undocumented
-  // instances) with no *documented* declaration recorded there - fall back
-  // to what we do know in that case.
-  if (entries.length === 0) {
-    return `${subfolderPath} had lines changed this month but no documented declarations.`;
-  }
-
-  const BUDGET = 1000;
-  const lines: string[] = [];
-  let used = 0;
-  let shown = 0;
-  for (const e of entries) {
-    const docstring = e.docstring!.trim().split("\n")[0];
-    const line = `${e.name} (${e.kind}): ${docstring}`;
-    if (used + line.length > BUDGET) break;
-    lines.push(line);
-    used += line.length;
-    shown += 1;
-  }
-
-  const remaining = entries.length - shown;
-  const body = lines.join("; ");
-  return remaining > 0 ? `${body}; and ${remaining} more documented declarations` : body;
 }
 
 function formatDateRange(startISO: string, endISOExclusive: string): string {
@@ -249,17 +206,19 @@ export function MonthDetail({ data }: { data: MonthlyUpdate }) {
                   </span>
                   <span className="flex shrink-0 items-baseline gap-1.5">
                     <span className="text-muted">{formatNumber(s.linesChanged)}</span>
-                    <a
-                      href={chatGptSummaryUrl(
-                        `Summarise this section of the physlib library: ${sectionContent(data, s.path)}`,
-                      )}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      title={`Ask ChatGPT about ${s.path}`}
-                      className="text-muted/50 transition-colors hover:text-accent"
-                    >
-                      <SparkleIcon className="size-3" />
-                    </a>
+                    {data.pdfUrl && (
+                      <a
+                        href={chatGptSummaryUrl(
+                          `Summarise the ${s.path} section of this PDF: ${site.url}${data.pdfUrl}`,
+                        )}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title={`Ask ChatGPT about ${s.path}`}
+                        className="text-muted/50 transition-colors hover:text-accent"
+                      >
+                        <SparkleIcon className="size-3" />
+                      </a>
+                    )}
                   </span>
                 </div>
               ))}
