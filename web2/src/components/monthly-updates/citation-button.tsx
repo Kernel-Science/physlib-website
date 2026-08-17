@@ -88,8 +88,7 @@ function harvardBathReference(data: MonthlyUpdate, accessed: Date): string {
   const doiSuffix = data.zenodoDoi ? ` doi: ${data.zenodoDoi}.` : "";
   return (
     `${authors} (${data.year}) ` +
-    `Physlib monthly progress report: ${longPeriod(data)} [PDF]. ` +
-    `${publisher}. Available from: ${url} ` +
+    `Physlib: ${longPeriod(data)} [PDF]. Available from: ${url} ` +
     `[Accessed ${accessedStr}].${doiSuffix}`
   );
 }
@@ -136,8 +135,7 @@ function bibTexRecord(data: MonthlyUpdate, accessed: Date): string {
   const lines = [
     `@techreport{${key},`,
     `  author       = {${bibTexAuthorField(data)}},`,
-    `  title        = {Physlib monthly progress report: ${longPeriod(data)}},`,
-    `  institution  = {${publisher}},`,
+    `  title        = {Physlib: ${longPeriod(data)}},`,
     `  year         = {${data.year}},`,
     `  month        = ${monthMacro},`,
     `  date         = {${pubDate}},`,
@@ -226,18 +224,18 @@ export function CitationButton({ data }: { data: MonthlyUpdate }) {
         className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-sm font-medium text-foreground/80 transition-colors hover:border-accent/40 hover:text-accent"
       >
         <QuoteIcon />
-        Cite
+        Cite this month
       </button>
 
       {open && (
         <div
           id={panelId}
           role="dialog"
-          aria-label="Cite this report"
+          aria-label="Cite this month"
           className="absolute right-0 top-[calc(100%+0.5rem)] z-20 w-[min(32rem,calc(100vw-2rem))] rounded-xl border border-border bg-surface p-4 shadow-lg"
         >
           <div className="mb-3 flex items-center justify-between">
-            <h3 className="text-sm font-semibold">Cite this report</h3>
+            <h3 className="text-sm font-semibold">Cite this month</h3>
             <button
               type="button"
               onClick={close}

@@ -227,7 +227,7 @@ export function MonthDetail({ data }: { data: MonthlyUpdate }) {
         )}
 
         {hasCitation && (
-          <SidebarSection title="Cite this report">
+          <SidebarSection title="Cite this month">
             <div className="rounded-xl border border-border bg-surface-secondary/40 p-3">
               <p className="text-xs text-foreground/90">
                 Archived on Zenodo with a permanent DOI for citation.

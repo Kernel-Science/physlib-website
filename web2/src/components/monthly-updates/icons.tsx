@@ -15,7 +15,7 @@ export function TopRightArrowIcon({ className = "size-3.5" }: { className?: stri
   );
 }
 
-/** Left double-quote glyph, used as the trigger for the "Cite this report"
+/** Left double-quote glyph, used as the trigger for the "Cite this month"
  *  popover - visually the same idea as Google Scholar's quote-mark button. */
 export function QuoteIcon({ className = "size-3.5" }: { className?: string }) {
   return (

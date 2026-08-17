@@ -26,8 +26,7 @@ export default function MonthlyUpdatesLayout({
         >
           leanprover-community/physlib
         </a>
-        . Pick a month in the sidebar for a breakdown of contributors, new
-        definitions, theorems and lemmas, and a link to the full report.
+        . This is currently a draft feature, so please give any feedback or improvement suggestions for this page.
       </p>
 
       {children}
