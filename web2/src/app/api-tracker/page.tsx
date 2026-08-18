@@ -19,7 +19,8 @@ export default async function APITrackerPage() {
         API&apos;s <code>API-map.yaml</code> file. Green nodes have all their
         requirements done, yellow nodes are in progress, and red nodes have no
         requirements done yet. White nodes are referenced as a parent API but
-        don&apos;t have their own API-map.yaml yet.
+        don&apos;t have their own API-map.yaml yet. Click a name in the list to
+        highlight it in the graph.
       </p>
       <APITrackerClient nodes={nodes} />
     </div>
