@@ -42,17 +42,17 @@ export default function DependenciesPage() {
 }
 
 const premadeLinks = [
-  { label: "Everything", href: "/dependencies?sources=&targets=PhysLean" },
+  { label: "Everything", href: "/dependencies?sources=&targets=Physlib" },
   {
     label: "Proof of Wick's theorem",
-    href: "/dependencies?sources=PhysLean.SpaceAndTime.SpaceTime.Basic,PhysLean.Mathematics.List.InsertIdx,PhysLean.Mathematics.Fin,PhysLean.QFT.PerturbationTheory.CreateAnnihilate&targets=PhysLean.QFT.PerturbationTheory.WickAlgebra.WicksTheorem",
+    href: "/dependencies?sources=Physlib.SpaceAndTime.SpaceTime.Basic,Physlib.Mathematics.List.InsertIdx,Physlib.Mathematics.Fin,Physlib.QFT.PerturbationTheory.CreateAnnihilate&targets=Physlib.QFT.PerturbationTheory.WickAlgebra.WicksTheorem",
   },
   {
     label: "Everything dependent on space-time",
-    href: "/dependencies?sources=PhysLean.SpaceAndTime.Space.Basic",
+    href: "/dependencies?sources=Physlib.SpaceAndTime.Space.Basic",
   },
   {
     label: "1d QM harmonic oscillator",
-    href: "/dependencies?sources=&targets=PhysLean.QuantumMechanics.OneDimension.HarmonicOscillator.TISE",
+    href: "/dependencies?sources=&targets=Physlib.QuantumMechanics.OneDimension.HarmonicOscillator.TISE",
   },
 ];

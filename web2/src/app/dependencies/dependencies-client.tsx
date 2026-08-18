@@ -92,8 +92,8 @@ export function DependenciesClient() {
         const sorted = Array.from(found).sort();
         setNodes(sorted);
 
-        const defaultSrc = ["PhysLean.ClassicalMechanics.HamiltonsEquations"];
-        const defaultTgt = ["PhysLean"];
+        const defaultSrc = ["Physlib.ClassicalMechanics.HamiltonsEquations"];
+        const defaultTgt = ["Physlib"];
         setSources(parseUrlParam(srcParam, defaultSrc));
         setTargets(parseUrlParam(tgtParam, defaultTgt));
         setDotReady(true);
