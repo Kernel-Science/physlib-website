@@ -34,9 +34,11 @@ function loadScript(src: string): Promise<void> {
 type NodeEntry = {
   name: string;
   el: SVGGraphicsElement;
+  href: string;
 };
 
-const HIGHLIGHT_STROKE = "#2563eb";
+const MATCH_STROKE = "#2563eb";
+const SELECTED_STROKE = "#16a34a";
 const HIGHLIGHT_WIDTH = "3";
 const READ_SCALE = 1.4;
 const ZOOM_STEP = 1.4;
@@ -55,6 +57,7 @@ export function GraphvizView({ getDot, height = "70vh" }: Props) {
   const highlightedRef = useRef<SVGGraphicsElement[]>([]);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const initialTransformRef = useRef<any>(null);
+  const selectedRef = useRef<NodeEntry | null>(null);
 
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -62,28 +65,37 @@ export function GraphvizView({ getDot, height = "70vh" }: Props) {
   const [matches, setMatches] = useState<NodeEntry[]>([]);
   const [matchIndex, setMatchIndex] = useState(0);
   const [searched, setSearched] = useState(false);
+  const [selected, setSelected] = useState<NodeEntry | null>(null);
 
-  const clearHighlights = useCallback(() => {
+  useEffect(() => {
+    selectedRef.current = selected;
+  }, [selected]);
+
+  // Keep the DOM highlight in sync with React state: matches get a blue
+  // outline, the selected node (from either search or a click) gets green
+  // and wins if it's also a match.
+  useEffect(() => {
     for (const el of highlightedRef.current) {
-      const ellipse = el.querySelector("ellipse, polygon");
-      ellipse?.removeAttribute("stroke");
-      ellipse?.removeAttribute("stroke-width");
+      const shape = el.querySelector("ellipse, polygon");
+      shape?.removeAttribute("stroke");
+      shape?.removeAttribute("stroke-width");
     }
-    highlightedRef.current = [];
-  }, []);
-
-  const applyHighlights = useCallback(
-    (entries: NodeEntry[]) => {
-      clearHighlights();
-      for (const entry of entries) {
-        const ellipse = entry.el.querySelector("ellipse, polygon");
-        ellipse?.setAttribute("stroke", HIGHLIGHT_STROKE);
-        ellipse?.setAttribute("stroke-width", HIGHLIGHT_WIDTH);
-      }
-      highlightedRef.current = entries.map((e) => e.el);
-    },
-    [clearHighlights],
-  );
+    const styled: SVGGraphicsElement[] = [];
+    for (const m of matches) {
+      if (selected && m.el === selected.el) continue;
+      const shape = m.el.querySelector("ellipse, polygon");
+      shape?.setAttribute("stroke", MATCH_STROKE);
+      shape?.setAttribute("stroke-width", HIGHLIGHT_WIDTH);
+      styled.push(m.el);
+    }
+    if (selected) {
+      const shape = selected.el.querySelector("ellipse, polygon");
+      shape?.setAttribute("stroke", SELECTED_STROKE);
+      shape?.setAttribute("stroke-width", HIGHLIGHT_WIDTH);
+      styled.push(selected.el);
+    }
+    highlightedRef.current = styled;
+  }, [matches, selected]);
 
   const jumpToEntry = useCallback((entry: NodeEntry, scale?: number) => {
     const gv = graphvizRef.current;
@@ -106,32 +118,30 @@ export function GraphvizView({ getDot, height = "70vh" }: Props) {
     zoomBehavior.transform(zoomSelection, transform);
   }, []);
 
-  const runSearch = useCallback(
-    (raw: string, jump: boolean) => {
-      const q = raw.trim().toLowerCase();
-      setSearched(q.length > 0);
-      if (!q) {
-        setMatches([]);
-        setMatchIndex(0);
-        clearHighlights();
-        return;
-      }
-      const found = nodeIndexRef.current.filter((n) =>
-        n.name.toLowerCase().includes(q),
-      );
-      setMatches(found);
+  const runSearch = useCallback((raw: string) => {
+    const q = raw.trim().toLowerCase();
+    setSearched(q.length > 0);
+    if (!q) {
+      setMatches([]);
       setMatchIndex(0);
-      applyHighlights(found);
-      if (jump && found[0]) jumpToEntry(found[0]);
-    },
-    [applyHighlights, clearHighlights, jumpToEntry],
-  );
+      return;
+    }
+    const found = nodeIndexRef.current.filter((n) =>
+      n.name.toLowerCase().includes(q),
+    );
+    setMatches(found);
+    setMatchIndex(0);
+    // Select the first hit so there's always a clear "current" match, but
+    // don't move the view until the user explicitly asks to (Enter).
+    if (found[0]) setSelected(found[0]);
+  }, []);
 
   const goToMatch = useCallback(
     (delta: number) => {
       if (matches.length === 0) return;
       const next = (matchIndex + delta + matches.length) % matches.length;
       setMatchIndex(next);
+      setSelected(matches[next]);
       jumpToEntry(matches[next]);
     },
     [matches, matchIndex, jumpToEntry],
@@ -158,6 +168,37 @@ export function GraphvizView({ getDot, height = "70vh" }: Props) {
     const zoomSelection = gv?.zoomSelection();
     if (!zoomBehavior || !zoomSelection || !initialTransformRef.current) return;
     zoomBehavior.transform(zoomSelection, initialTransformRef.current);
+  }, []);
+
+  // Clicking a graph node is a two-step confirm: the first click just
+  // selects it (green highlight + info panel below the search box) without
+  // navigating, so panning/exploring the graph can't accidentally send you
+  // to GitHub. Clicking the *same*, already-selected node again opens it.
+  // Attached once via delegation (nodes are inserted by d3-graphviz, not
+  // React) and reads selection state through a ref to avoid staleness.
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    function handleClick(e: MouseEvent) {
+      const target = e.target as Element | null;
+      const a = target?.closest("a");
+      if (!a || !container!.contains(a)) return;
+      // NodeEntry.el is the enclosing <g class="node"> (where <title>
+      // lives), not the <a> itself — climb back up to match it.
+      const nodeG = a.closest("g.node");
+      const entry = nodeIndexRef.current.find((n) => n.el === nodeG);
+      if (!entry) return;
+      e.preventDefault();
+      if (selectedRef.current?.el === entry.el && entry.href) {
+        window.open(entry.href, "_blank", "noopener,noreferrer");
+      } else {
+        setSelected(entry);
+      }
+    }
+
+    container.addEventListener("click", handleClick);
+    return () => container.removeEventListener("click", handleClick);
   }, []);
 
   useEffect(() => {
@@ -223,13 +264,22 @@ export function GraphvizView({ getDot, height = "70vh" }: Props) {
 
           // Build a searchable index of node names -> elements. Graphviz
           // emits a <title> for every node and edge; edges look like
-          // "A->B" so filter those out.
+          // "A->B" so filter those out. Only nodes with a URL attribute in
+          // the source dot get wrapped in <a>, so href may be empty.
           const entries: NodeEntry[] = [];
           svg.querySelectorAll("title").forEach((titleEl) => {
             const name = titleEl.textContent ?? "";
             if (!name || name.includes("->")) return;
             const parent = titleEl.parentElement as SVGGraphicsElement | null;
-            if (parent) entries.push({ name, el: parent });
+            if (!parent) return;
+            // The <title> sits directly under <g class="node">, but the
+            // href-bearing <a> is nested a level or two deeper inside it.
+            const link = parent.querySelector("a");
+            const href =
+              link?.getAttribute("xlink:href") ??
+              link?.getAttribute("href") ??
+              "";
+            entries.push({ name, el: parent, href });
           });
           nodeIndexRef.current = entries;
 
@@ -295,13 +345,10 @@ export function GraphvizView({ getDot, height = "70vh" }: Props) {
           value={query}
           onChange={(e) => {
             setQuery(e.target.value);
-            runSearch(e.target.value, false);
+            runSearch(e.target.value);
           }}
           onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              if (matches.length > 0) goToMatch(1);
-              else runSearch(query, true);
-            }
+            if (e.key === "Enter" && selected) jumpToEntry(selected);
           }}
           placeholder="Search for a file…"
           className="flex-1 min-w-0 rounded-lg border border-border bg-surface px-3 py-2 text-sm"
@@ -332,6 +379,29 @@ export function GraphvizView({ getDot, height = "70vh" }: Props) {
           </div>
         )}
       </div>
+
+      {selected && (
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-surface px-3 py-2 text-sm">
+          <span
+            className="inline-block h-2.5 w-2.5 shrink-0 rounded-full"
+            style={{ background: SELECTED_STROKE }}
+            aria-hidden
+          />
+          <span className="font-mono text-xs text-foreground/90 truncate">
+            {selected.name}
+          </span>
+          {selected.href && (
+            <a
+              href={selected.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ml-auto whitespace-nowrap text-accent hover:underline"
+            >
+              View on GitHub ↗
+            </a>
+          )}
+        </div>
+      )}
 
       <div
         className="relative rounded-xl border border-border overflow-hidden bg-white"
