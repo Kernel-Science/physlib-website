@@ -13,30 +13,31 @@ const PANEL_MARGIN = 8;
 const PANEL_GAP = 6;
 /** Below this, a side counts as cramped and the panel considers flipping. */
 const PANEL_COMFORTABLE_HEIGHT = 280;
-/** Breathing room left either side of a box revealed by horizontal scroll. */
-const REVEAL_MARGIN = 24;
-
 /**
- * Brings a box into view left-to-right by scrolling only the flowchart's own
- * horizontal scroller. Deliberately not `el.scrollIntoView` even with
+ * Centers a box in the flowchart's viewport by scrolling only the flowchart's
+ * own horizontal scroller. Deliberately not `el.scrollIntoView` even with
  * `block: "nearest"`: that is free to scroll the *page* vertically too, and
- * selecting an API should never move the page under the reader. (It also
- * happens to no-op here with `behavior: "smooth"` on this nested
- * overflow container, while plain `scrollLeft` animation works fine.)
+ * selecting an API should never move the page under the reader.
+ *
+ * Clamping to the scroll range is what makes centering best-effort: boxes in
+ * the first or last screenful settle flush against that end instead.
  */
-function revealHorizontally(el: HTMLElement): void {
+function centerHorizontally(el: HTMLElement): void {
   const container = el.closest<HTMLElement>("[data-api-flowchart-scroller]");
   if (!container) return;
   const box = el.getBoundingClientRect();
   const view = container.getBoundingClientRect();
-  let delta = 0;
-  if (box.left < view.left + REVEAL_MARGIN) {
-    delta = box.left - view.left - REVEAL_MARGIN;
-  } else if (box.right > view.right - REVEAL_MARGIN) {
-    delta = box.right - view.right + REVEAL_MARGIN;
-  }
-  if (delta !== 0) {
-    container.scrollTo({ left: container.scrollLeft + delta, behavior: "smooth" });
+  // The box's midpoint in the scroller's own content coordinates.
+  const boxCenter = container.scrollLeft + (box.left - view.left) + box.width / 2;
+  const left = Math.max(
+    0,
+    Math.min(
+      boxCenter - container.clientWidth / 2,
+      container.scrollWidth - container.clientWidth,
+    ),
+  );
+  if (Math.abs(left - container.scrollLeft) > 1) {
+    container.scrollTo({ left, behavior: "smooth" });
   }
 }
 
@@ -329,7 +330,7 @@ export function ApiFlowchart({ nodes }: { nodes: ApiMapNode[] }) {
       // lands before the scroll animation starts.
       requestAnimationFrame(() => {
         const el = document.getElementById(path);
-        if (el) revealHorizontally(el);
+        if (el) centerHorizontally(el);
       });
     };
     onHashChange();
