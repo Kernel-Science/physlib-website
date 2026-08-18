@@ -156,8 +156,85 @@ body {
 }
 
 /* ─── TOC anchor offset (clears fixed navbar) ───────────────── */
-h2[id], h3[id] {
+h2[id], h3[id], .api-tree a[id] {
   scroll-margin-top: 5rem;
+}
+
+/*
+ * ─── API tracker flowchart connectors ─────────────────────────
+ * Classic pure-CSS org-chart technique: every non-root <li> draws a vertical
+ * stem up to a shared horizontal bus (::before), and contributes half of
+ * that bus itself (::after) - the first child's half starts at its own
+ * center, the last child's half ends at its own center, and middle children
+ * draw the full width, so the segments chain into one continuous line
+ * spanning exactly from the first sibling's center to the last. A parent
+ * with children gets its own stem down to that bus, drawn on the <ul> that
+ * holds them so it's centered on the group rather than on any one sibling.
+ */
+.api-tree, .api-tree ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.api-tree {
+  padding: 2rem 1.5rem;
+}
+.api-tree li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 0.75rem;
+}
+.api-tree li > ul {
+  position: relative;
+  padding-top: 2.5rem;
+}
+/* Parent's own stem down to the bus connecting its children - top:0 here
+   sits at the <ul>'s own top edge (absolute positioning ignores the box's
+   own padding), spanning down across the whole reserved padding-top zone. */
+.api-tree li > ul::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 2.5rem;
+  background: var(--border);
+}
+/* Each child's stem up to that bus - top:-2.5rem because the <li> itself has
+   no reserved space above it; the stem has to reach backward into its
+   parent <ul>'s padding-top zone rather than grow down into its own box. */
+.api-tree ul li::before {
+  content: "";
+  position: absolute;
+  top: -2.5rem;
+  left: 50%;
+  width: 1px;
+  height: 2.5rem;
+  background: var(--border);
+}
+/* This child's segment of the horizontal bus, at the same y as the stem's
+   top end. */
+.api-tree ul li::after {
+  content: "";
+  position: absolute;
+  top: -2.5rem;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--border);
+}
+.api-tree ul li:first-child::after {
+  left: 50%;
+  width: 50%;
+}
+.api-tree ul li:last-child::after {
+  width: 50%;
+}
+.api-tree ul li:only-child::after {
+  display: none;
 }
 
 @keyframes shimmer {

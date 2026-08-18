@@ -93,9 +93,25 @@ uses the same markup:
   `<main>`, not a child of the page component), coordinate selection through
   the URL — `router`/`pathname` for route-based active state (`MonthSidebar`),
   or `window.location.hash` + a `hashchange` listener for in-page selection
-  that isn't a route change (`ApiTrackerSidebar` / `api-tracker-client.tsx`).
+  that isn't a route change (`ApiTrackerSidebar` / `api-flowchart.tsx`).
   Don't reach for cross-tree React context for this — the existing sidebars
   don't use it, and the URL is already the natural shared channel.
+- `<aside>` should normally stay a plain fixed `w-52` (that's what the flex
+  layout actually reserves, so it doesn't push `<main>`'s centered
+  `max-w-5xl` content over) while `<nav>` inside it is free to be visually
+  wider - it can overflow past `<aside>`'s edge with no layout effect, which
+  `ApiTrackerSidebar` uses twice: by default, `<nav>` is sized with
+  `clamp(13rem, calc(100vw - 992px), 20rem)` so it fills the gutter up to
+  where the centered content actually starts instead of leaving it blank
+  (992 = max-w-5xl's 1024px + the content's own 16px px-4, solved so the
+  sidebar's right edge lands exactly on the content's left edge - see that
+  file's comment before reusing this elsewhere, since the constant is
+  coupled to page.tsx's own max-w-5xl/px-4 and needs to move with it); on
+  `hover:`, it goes wider still (`w-96`, a fixed target so the transition
+  actually animates - browsers don't tween to/from `max-content`/`w-max`)
+  to fit whatever's still truncated at the default's cap, gaining a
+  background/shadow only in that state since only then is it overlapping
+  real content rather than empty gutter.
 
 ## Color tokens
 
