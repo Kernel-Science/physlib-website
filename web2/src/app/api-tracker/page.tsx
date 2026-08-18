@@ -20,8 +20,7 @@ export default async function APITrackerPage() {
         parent shown above it. Green boxes have all their requirements done,
         yellow boxes are in progress, and red boxes have no requirements done
         yet. Dashed boxes are referenced as a parent API but don&apos;t have
-        their own API-map.yaml yet. Click a name in the sidebar or a box to
-        highlight it.
+        their own API-map.yaml yet.
       </p>
       <ApiFlowchart nodes={nodes} />
     </div>

@@ -148,15 +148,22 @@ function parseParentEntry(entry) {
     }
 
     const dir = file.slice(0, file.length - FILE_NAME.length - 1);
-    const requirements = Array.isArray(doc.Requirements) ? doc.Requirements : [];
-    const requirementsDone = requirements.filter((r) => r && r.done === true).length;
+    const requirements = (Array.isArray(doc.Requirements) ? doc.Requirements : []).map((r) => ({
+      description: r && r.description ? String(r.description).trim() : "",
+      done: !!(r && r.done === true),
+      location: r && r.location ? String(r.location).trim() : "N/A",
+    }));
+    const references = (Array.isArray(doc.References) ? doc.References : [])
+      .map((r) => String(r).trim())
+      .filter(Boolean);
     const parents = (Array.isArray(doc.ParentAPIs) ? doc.ParentAPIs : []).map(parseParentEntry);
 
     nodes.push({
       path: dir,
       title: doc.Title ? String(doc.Title).trim() : dir,
-      requirementsDone,
-      requirementsTotal: requirements.length,
+      overview: doc.Overview ? String(doc.Overview).trim() : "",
+      references,
+      requirements,
       parents,
       url: `https://github.com/${OWNER}/${REPO}/blob/${branch.name}/${file}`,
     });

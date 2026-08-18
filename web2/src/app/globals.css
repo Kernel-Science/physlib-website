@@ -170,8 +170,13 @@ h2[id], h3[id], .api-tree a[id] {
  * spanning exactly from the first sibling's center to the last. A parent
  * with children gets its own stem down to that bus, drawn on the <ul> that
  * holds them so it's centered on the group rather than on any one sibling.
+ *
+ * Everything here is keyed off the explicit .api-tree__branch/__node classes
+ * rather than bare ul/li descendant selectors: the node boxes contain their
+ * own ordinary lists (the hover panel's requirements/references), and bare
+ * selectors would lay those out as org-chart rows too.
  */
-.api-tree, .api-tree ul {
+.api-tree, .api-tree__branch {
   display: flex;
   list-style: none;
   margin: 0;
@@ -180,21 +185,21 @@ h2[id], h3[id], .api-tree a[id] {
 .api-tree {
   padding: 2rem 1.5rem;
 }
-.api-tree li {
+.api-tree__node {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 0 0.75rem;
 }
-.api-tree li > ul {
+.api-tree__node > .api-tree__branch {
   position: relative;
   padding-top: 2.5rem;
 }
 /* Parent's own stem down to the bus connecting its children - top:0 here
    sits at the <ul>'s own top edge (absolute positioning ignores the box's
    own padding), spanning down across the whole reserved padding-top zone. */
-.api-tree li > ul::before {
+.api-tree__node > .api-tree__branch::before {
   content: "";
   position: absolute;
   top: 0;
@@ -206,7 +211,7 @@ h2[id], h3[id], .api-tree a[id] {
 /* Each child's stem up to that bus - top:-2.5rem because the <li> itself has
    no reserved space above it; the stem has to reach backward into its
    parent <ul>'s padding-top zone rather than grow down into its own box. */
-.api-tree ul li::before {
+.api-tree__branch > .api-tree__node::before {
   content: "";
   position: absolute;
   top: -2.5rem;
@@ -217,7 +222,7 @@ h2[id], h3[id], .api-tree a[id] {
 }
 /* This child's segment of the horizontal bus, at the same y as the stem's
    top end. */
-.api-tree ul li::after {
+.api-tree__branch > .api-tree__node::after {
   content: "";
   position: absolute;
   top: -2.5rem;
@@ -226,14 +231,14 @@ h2[id], h3[id], .api-tree a[id] {
   height: 1px;
   background: var(--border);
 }
-.api-tree ul li:first-child::after {
+.api-tree__branch > .api-tree__node:first-child::after {
   left: 50%;
   width: 50%;
 }
-.api-tree ul li:last-child::after {
+.api-tree__branch > .api-tree__node:last-child::after {
   width: 50%;
 }
-.api-tree ul li:only-child::after {
+.api-tree__branch > .api-tree__node:only-child::after {
   display: none;
 }
 
