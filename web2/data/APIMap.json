@@ -1,0 +1,551 @@
+{
+  "repo": "leanprover-community/physlib",
+  "branch": "master",
+  "generatedAt": "2026-08-18T16:52:46.574Z",
+  "nodes": [
+    {
+      "path": "Physlib/ClassicalFieldTheory/GaugeTheory",
+      "title": "Gauge theory",
+      "requirementsDone": 8,
+      "requirementsTotal": 15,
+      "parents": [
+        {
+          "name": "Electromagnetic potential",
+          "path": "Physlib/Electromagnetism/Kinematics/EMPotential.lean"
+        },
+        {
+          "name": "Field strength",
+          "path": "Physlib/Electromagnetism/Kinematics/FieldStrength.lean"
+        },
+        {
+          "name": "Standard Model gauge group",
+          "path": "Physlib/Particles/StandardModel/Basic.lean"
+        }
+      ],
+      "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalFieldTheory/GaugeTheory/API-map.yaml"
+    },
+    {
+      "path": "Physlib/ClassicalMechanics/DampedHarmonicOscillator",
+      "title": "Damped harmonic oscillator",
+      "requirementsDone": 14,
+      "requirementsTotal": 14,
+      "parents": [
+        {
+          "name": "Harmonic oscillator",
+          "path": "Physlib/ClassicalMechanics/HarmonicOscillator"
+        },
+        {
+          "name": "Time",
+          "path": "Physlib/SpaceAndTime/Time"
+        }
+      ],
+      "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/DampedHarmonicOscillator/API-map.yaml"
+    },
+    {
+      "path": "Physlib/ClassicalMechanics/HarmonicOscillator/Geometric",
+      "title": "Configuration space of the harmonic oscillator",
+      "requirementsDone": 9,
+      "requirementsTotal": 9,
+      "parents": [
+        {
+          "name": "Harmonic oscillator",
+          "path": "Physlib/ClassicalMechanics/HarmonicOscillator"
+        },
+        {
+          "name": "Space",
+          "path": "Physlib/SpaceAndTime/Space"
+        },
+        {
+          "name": "Time",
+          "path": "Physlib/SpaceAndTime/Time"
+        }
+      ],
+      "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/HarmonicOscillator/Geometric/API-map.yaml"
+    },
+    {
+      "path": "Physlib/ClassicalMechanics/Lagrangian",
+      "title": "Configuration Space",
+      "requirementsDone": 0,
+      "requirementsTotal": 2,
+      "parents": [
+        {
+          "name": "Space",
+          "path": "Physlib/SpaceAndTime/Space"
+        }
+      ],
+      "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Lagrangian/API-map.yaml"
+    },
+    {
+      "path": "Physlib/ClassicalMechanics/Pendulum",
+      "title": "Configuration space for pendulum",
+      "requirementsDone": 1,
+      "requirementsTotal": 5,
+      "parents": [
+        {
+          "name": "Classical mechanics Lagrangian",
+          "path": "Physlib/ClassicalMechanics/Lagrangian"
+        },
+        {
+          "name": "Space",
+          "path": "Physlib/SpaceAndTime/Space"
+        }
+      ],
+      "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Pendulum/API-map.yaml"
+    },
+    {
+      "path": "Physlib/ClassicalMechanics/RigidBody",
+      "title": "Rigid body",
+      "requirementsDone": 10,
+      "requirementsTotal": 13,
+      "parents": [
+        {
+          "name": "Space",
+          "path": "Physlib/SpaceAndTime/Space"
+        }
+      ],
+      "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/RigidBody/API-map.yaml"
+    },
+    {
+      "path": "Physlib/Cosmology/FLRW",
+      "title": "FLRW cosmology",
+      "requirementsDone": 5,
+      "requirementsTotal": 7,
+      "parents": [
+        {
+          "name": "Time",
+          "path": "Physlib/SpaceAndTime/Time"
+        }
+      ],
+      "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Cosmology/FLRW/API-map.yaml"
+    },
+    {
+      "path": "Physlib/Electromagnetism/Kinematics",
+      "title": "Electromagnetic Potential",
+      "requirementsDone": 7,
+      "requirementsTotal": 8,
+      "parents": [
+        {
+          "name": "SpaceTime",
+          "path": "Physlib/SpaceAndTime/SpaceTime"
+        },
+        {
+          "name": "LorentzGroup",
+          "path": "Physlib/Relativity/LorentzGroup"
+        }
+      ],
+      "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Electromagnetism/Kinematics/API-map.yaml"
+    },
+    {
+      "path": "Physlib/FluidDynamics",
+      "title": "Fluid",
+      "requirementsDone": 5,
+      "requirementsTotal": 9,
+      "parents": [
+        {
+          "name": "Space",
+          "path": "Physlib/SpaceAndTime/Space"
+        },
+        {
+          "name": "Time",
+          "path": "Physlib/SpaceAndTime/Time"
+        }
+      ],
+      "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/FluidDynamics/API-map.yaml"
+    },
+    {
+      "path": "Physlib/Particles/BeyondTheStandardModel/TwoHDM",
+      "title": "Two Higgs Doublet Model",
+      "requirementsDone": 13,
+      "requirementsTotal": 15,
+      "parents": [
+        {
+          "name": "Higgs Field",
+          "path": "Physlib/Particles/StandardModel/HiggsBoson"
+        },
+        {
+          "name": "Pauli matrices",
+          "path": "Physlib/Relativity/PauliMatrices"
+        }
+      ],
+      "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/BeyondTheStandardModel/TwoHDM/API-map.yaml"
+    },
+    {
+      "path": "Physlib/Particles/StandardModel",
+      "title": "Standard Model gauge group",
+      "requirementsDone": 10,
+      "requirementsTotal": 15,
+      "parents": [],
+      "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/StandardModel/API-map.yaml"
+    },
+    {
+      "path": "Physlib/Particles/StandardModel/HiggsBoson",
+      "title": "Higgs Field",
+      "requirementsDone": 16,
+      "requirementsTotal": 21,
+      "parents": [
+        {
+          "name": "SpaceTime",
+          "path": "Physlib/SpaceAndTime/SpaceTime"
+        },
+        {
+          "name": "Standard Model gauge group",
+          "path": "Physlib/Particles/StandardModel"
+        }
+      ],
+      "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/StandardModel/HiggsBoson/API-map.yaml"
+    },
+    {
+      "path": "Physlib/QFT/PerturbationTheory/FeynmanDiagrams",
+      "title": "Feynman diagrams",
+      "requirementsDone": 0,
+      "requirementsTotal": 6,
+      "parents": [
+        {
+          "name": "Field specification",
+          "path": "Physlib/QFT/PerturbationTheory/FieldSpecification"
+        },
+        {
+          "name": "Field operator free algebra",
+          "path": "Physlib/QFT/PerturbationTheory/FieldOpFreeAlgebra"
+        },
+        {
+          "name": "Wick algebra",
+          "path": "Physlib/QFT/PerturbationTheory/WickAlgebra"
+        },
+        {
+          "name": "Wick contractions",
+          "path": "Physlib/QFT/PerturbationTheory/WickContraction"
+        },
+        {
+          "name": "Koszul signs",
+          "path": "Physlib/QFT/PerturbationTheory/Koszul"
+        },
+        {
+          "name": "Field statistics",
+          "path": "Physlib/QFT/PerturbationTheory/FieldStatistics"
+        },
+        {
+          "name": "Lorentz group",
+          "path": "Physlib/Relativity/LorentzGroup"
+        }
+      ],
+      "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QFT/PerturbationTheory/FeynmanDiagrams/API-map.yaml"
+    },
+    {
+      "path": "Physlib/QFT/TopologicalFieldTheory",
+      "title": "Topological field theory",
+      "requirementsDone": 0,
+      "requirementsTotal": 17,
+      "parents": [
+        {
+          "name": "Time",
+          "path": "Physlib/SpaceAndTime/Time"
+        }
+      ],
+      "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QFT/TopologicalFieldTheory/API-map.yaml"
+    },
+    {
+      "path": "Physlib/QuantumMechanics/HilbertSpaces/SpaceD",
+      "title": "Hilbert spaces on Space",
+      "requirementsDone": 8,
+      "requirementsTotal": 15,
+      "parents": [
+        {
+          "name": "Space",
+          "path": "Physlib/SpaceAndTime/Space"
+        }
+      ],
+      "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QuantumMechanics/HilbertSpaces/SpaceD/API-map.yaml"
+    },
+    {
+      "path": "Physlib/QuantumMechanics/HilbertSpaces/TensorProducts",
+      "title": "Hilbert space tensor products",
+      "requirementsDone": 3,
+      "requirementsTotal": 7,
+      "parents": [],
+      "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QuantumMechanics/HilbertSpaces/TensorProducts/API-map.yaml"
+    },
+    {
+      "path": "Physlib/QuantumMechanics/Operators",
+      "title": "Operator algebra",
+      "requirementsDone": 25,
+      "requirementsTotal": 29,
+      "parents": [
+        {
+          "name": "Hilbert spaces on Space",
+          "path": "Physlib/QuantumMechanics/HilbertSpaces/SpaceD"
+        },
+        {
+          "name": "Space",
+          "path": "Physlib/SpaceAndTime/Space"
+        },
+        {
+          "name": "Planck constant",
+          "path": "Physlib/QuantumMechanics/PlanckConstant.lean"
+        },
+        {
+          "name": "Partially defined linear maps",
+          "path": "Physlib/Mathematics/LinearPMap.lean"
+        },
+        {
+          "name": "Inner product spaces",
+          "path": "Physlib/Mathematics/InnerProductSpace"
+        }
+      ],
+      "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QuantumMechanics/Operators/API-map.yaml"
+    },
+    {
+      "path": "Physlib/QuantumMechanics/Operators/SpectralTheory",
+      "title": "Spectral theory of unbounded operators",
+      "requirementsDone": 14,
+      "requirementsTotal": 17,
+      "parents": [
+        {
+          "name": "Operator algebra",
+          "path": "Physlib/QuantumMechanics/Operators"
+        },
+        {
+          "name": "Partially defined linear maps",
+          "path": "Physlib/Mathematics/LinearPMap.lean"
+        },
+        {
+          "name": "Inner product spaces",
+          "path": "Physlib/Mathematics/InnerProductSpace"
+        }
+      ],
+      "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QuantumMechanics/Operators/SpectralTheory/API-map.yaml"
+    },
+    {
+      "path": "Physlib/QuantumMechanics/QuantumSystem",
+      "title": "QuantumSystem",
+      "requirementsDone": 3,
+      "requirementsTotal": 9,
+      "parents": [],
+      "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QuantumMechanics/QuantumSystem/API-map.yaml"
+    },
+    {
+      "path": "Physlib/QuantumMechanics/Qubit",
+      "title": "Qubits",
+      "requirementsDone": 7,
+      "requirementsTotal": 21,
+      "parents": [
+        {
+          "name": "Kets and bras of a finite dimensional system",
+          "path": "QuantumInfo/States/Pure"
+        },
+        {
+          "name": "Mixed states",
+          "path": "QuantumInfo/States/Mixed"
+        }
+      ],
+      "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QuantumMechanics/Qubit/API-map.yaml"
+    },
+    {
+      "path": "Physlib/Relativity/Fermions/Dirac",
+      "title": "Dirac Fermions",
+      "requirementsDone": 9,
+      "requirementsTotal": 16,
+      "parents": [
+        {
+          "name": "Weyl Fermions",
+          "path": "Physlib/Relativity/Fermions/Weyl"
+        },
+        {
+          "name": "Lorentz Group",
+          "path": "Physlib/Relativity/LorentzGroup"
+        }
+      ],
+      "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Relativity/Fermions/Dirac/API-map.yaml"
+    },
+    {
+      "path": "Physlib/Relativity/Fermions/Weyl",
+      "title": "Weyl Fermions",
+      "requirementsDone": 14,
+      "requirementsTotal": 18,
+      "parents": [
+        {
+          "name": "Lorentz Group",
+          "path": "Physlib/Relativity/LorentzGroup"
+        }
+      ],
+      "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Relativity/Fermions/Weyl/API-map.yaml"
+    },
+    {
+      "path": "Physlib/Relativity/LorentzGroup",
+      "title": "Lorentz Group",
+      "requirementsDone": 9,
+      "requirementsTotal": 12,
+      "parents": [
+        {
+          "name": "MinkowskiMatrix",
+          "path": "Physlib/Relativity/MinkowskiMatrix.lean"
+        }
+      ],
+      "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Relativity/LorentzGroup/API-map.yaml"
+    },
+    {
+      "path": "Physlib/Relativity/Tensors",
+      "title": "Tensors",
+      "requirementsDone": 16,
+      "requirementsTotal": 22,
+      "parents": [
+        {
+          "name": "Lorentz Group",
+          "path": "Physlib/Relativity/LorentzGroup"
+        },
+        {
+          "name": "Weyl Fermions",
+          "path": "Physlib/Relativity/Fermions/Weyl"
+        }
+      ],
+      "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Relativity/Tensors/API-map.yaml"
+    },
+    {
+      "path": "Physlib/SpaceAndTime/GalileanGroup",
+      "title": "Galilean group",
+      "requirementsDone": 8,
+      "requirementsTotal": 9,
+      "parents": [
+        {
+          "name": "Space",
+          "path": "Physlib/SpaceAndTime/Space"
+        },
+        {
+          "name": "Time",
+          "path": "Physlib/SpaceAndTime/Time"
+        },
+        {
+          "name": "Euclidean group",
+          "path": "Physlib/SpaceAndTime/Space/EuclideanGroup"
+        }
+      ],
+      "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/SpaceAndTime/GalileanGroup/API-map.yaml"
+    },
+    {
+      "path": "Physlib/SpaceAndTime/Space",
+      "title": "Space",
+      "requirementsDone": 16,
+      "requirementsTotal": 18,
+      "parents": [
+        {
+          "name": "Distribution",
+          "path": "Physlib/Mathematics/Distribution"
+        },
+        {
+          "name": "Time",
+          "path": "Physlib/SpaceAndTime/Time"
+        },
+        {
+          "name": "Lorentz vectors",
+          "path": "Physlib/Relativity/Tensors/RealTensor/Vector"
+        }
+      ],
+      "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/SpaceAndTime/Space/API-map.yaml"
+    },
+    {
+      "path": "Physlib/SpaceAndTime/SpaceTime",
+      "title": "SpaceTime",
+      "requirementsDone": 9,
+      "requirementsTotal": 10,
+      "parents": [
+        {
+          "name": "Lorentz vectors",
+          "path": "Physlib/Relativity/Tensors/RealTensor/Vector"
+        },
+        {
+          "name": "Space",
+          "path": "Physlib/SpaceAndTime/Space"
+        },
+        {
+          "name": "Time",
+          "path": "Physlib/SpaceAndTime/Time"
+        },
+        {
+          "name": "Lorentz group",
+          "path": "Physlib/Relativity/LorentzGroup"
+        }
+      ],
+      "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/SpaceAndTime/SpaceTime/API-map.yaml"
+    },
+    {
+      "path": "Physlib/SpaceAndTime/Time",
+      "title": "Time",
+      "requirementsDone": 11,
+      "requirementsTotal": 16,
+      "parents": [
+        {
+          "name": "Space",
+          "path": "Physlib/SpaceAndTime/Space"
+        },
+        {
+          "name": "Lorentz vectors",
+          "path": "Physlib/Relativity/Tensors/RealTensor/Vector"
+        }
+      ],
+      "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/SpaceAndTime/Time/API-map.yaml"
+    },
+    {
+      "path": "Physlib/SpaceAndTime/TimeAndSpace",
+      "title": "TimeAndSpace",
+      "requirementsDone": 6,
+      "requirementsTotal": 6,
+      "parents": [
+        {
+          "name": "Time",
+          "path": "Physlib/SpaceAndTime/Time"
+        },
+        {
+          "name": "Space",
+          "path": "Physlib/SpaceAndTime/Space"
+        },
+        {
+          "name": "Euclidean group",
+          "path": "Physlib/SpaceAndTime/Space/EuclideanGroup"
+        }
+      ],
+      "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/SpaceAndTime/TimeAndSpace/API-map.yaml"
+    },
+    {
+      "path": "Physlib/StatisticalMechanics/CanonicalEnsemble",
+      "title": "Canonical ensemble",
+      "requirementsDone": 11,
+      "requirementsTotal": 13,
+      "parents": [
+        {
+          "name": "Temperature",
+          "path": "Physlib/Thermodynamics/Temperature"
+        }
+      ],
+      "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/StatisticalMechanics/CanonicalEnsemble/API-map.yaml"
+    },
+    {
+      "path": "Physlib/Units",
+      "title": "Units",
+      "requirementsDone": 63,
+      "requirementsTotal": 67,
+      "parents": [
+        {
+          "name": "Time",
+          "path": "Physlib/SpaceAndTime/Time"
+        },
+        {
+          "name": "Space",
+          "path": "Physlib/SpaceAndTime/Space"
+        },
+        {
+          "name": "Mass",
+          "path": "Physlib/ClassicalMechanics/Mass"
+        },
+        {
+          "name": "Charge",
+          "path": "Physlib/Electromagnetism/Charge"
+        },
+        {
+          "name": "Temperature",
+          "path": "Physlib/Thermodynamics/Temperature"
+        }
+      ],
+      "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Units/API-map.yaml"
+    }
+  ]
+}

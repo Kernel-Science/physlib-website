@@ -2,43 +2,64 @@
 
 import { useCallback } from "react";
 import { GraphvizView } from "@/components/graphviz-view";
+import type { ApiMapNode } from "@/lib/yaml";
 
-async function buildDot(): Promise<string> {
-  const res = await fetch(
-    "https://api.github.com/repos/leanprover-community/Physlib/issues?labels=API&per_page=100",
-  );
-  const data = await res.json();
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
 
-  if (!Array.isArray(data)) throw new Error("Unexpected API response");
+function escapeDotId(str: string): string {
+  return str.replace(/"/g, '\\"');
+}
 
-  const apiIssues = data.filter((issue: { labels: { name: string }[] }) =>
-    issue.labels.some((l: { name: string }) => l.name === "API"),
-  );
+function buildDot(nodes: ApiMapNode[]): string {
+  const byPath = new Map(nodes.map((n) => [n.path, n]));
+  // Parents referenced by path but with no API-map.yaml of their own get a
+  // plain node using the first name they were introduced under.
+  const phantomNames = new Map<string, string>();
+  for (const node of nodes) {
+    for (const parent of node.parents) {
+      if (!byPath.has(parent.path) && !phantomNames.has(parent.path)) {
+        phantomNames.set(parent.path, parent.name);
+      }
+    }
+  }
 
   let dot = "digraph G {\n  rankdir=TB;\n  node [shape=box, style=filled];\n";
 
-  for (const issue of apiIssues) {
-    const needsReqs = issue.labels.some(
-      (l: { name: string }) => l.name === "requirements-needed",
-    );
-    const body: string = issue.body ?? "";
-    const total = (body.match(/- \[[ x]\]/g) ?? []).length;
-    const checked = (body.match(/- \[x\]/g) ?? []).length;
+  for (const node of nodes) {
+    let subLabel: string;
+    let fillColor: string;
+    if (node.requirementsTotal === 0) {
+      subLabel = "No requirements defined yet";
+      fillColor = "#EEEEEE";
+    } else if (node.requirementsDone === node.requirementsTotal) {
+      subLabel = "Complete";
+      fillColor = "#CCFFCC";
+    } else if (node.requirementsDone === 0) {
+      subLabel = `Next step: build requirements (0/${node.requirementsTotal})`;
+      fillColor = "#FFCCCC";
+    } else {
+      subLabel = `${node.requirementsDone}/${node.requirementsTotal} requirements done`;
+      fillColor = "#FFE8A3";
+    }
 
-    const fillColor = needsReqs ? "#FFCCCC" : "#CCFFCC";
-    const rawLabel = issue.title.replace(/"/g, '\\"').replace("API: ", "");
-    const subLabel = needsReqs
-      ? "Next step: Specify requirements"
-      : `Next step: Build requirements (${checked}/${total})`;
+    const label = escapeHtml(node.title);
+    const id = escapeDotId(node.path);
+    dot += `  "${id}" [label=<${label}<BR/><FONT POINT-SIZE="10">${subLabel}</FONT>>, fillcolor="${fillColor}", URL="${node.url}"];\n`;
+  }
 
-    dot += `  "${issue.number}" [label=<${rawLabel}<BR/><FONT POINT-SIZE="10">${subLabel}</FONT>>, fillcolor="${fillColor}", URL="${issue.html_url}"];\n`;
+  for (const [nodePath, name] of phantomNames) {
+    const id = escapeDotId(nodePath);
+    dot += `  "${id}" [label=<${escapeHtml(name)}>, fillcolor="#FFFFFF"];\n`;
+  }
 
-    const parentMatch = body.match(/## Parent APIs\s+((?:#\d+\s*)+)/);
-    if (parentMatch) {
-      const parents = parentMatch[1].match(/#(\d+)/g) ?? [];
-      for (const p of parents) {
-        dot += `  "${parseInt(p.slice(1))}" -> "${issue.number}";\n`;
-      }
+  for (const node of nodes) {
+    for (const parent of node.parents) {
+      dot += `  "${escapeDotId(parent.path)}" -> "${escapeDotId(node.path)}";\n`;
     }
   }
 
@@ -46,7 +67,7 @@ async function buildDot(): Promise<string> {
   return dot;
 }
 
-export function APITrackerClient() {
-  const getDot = useCallback(() => buildDot(), []);
+export function APITrackerClient({ nodes }: { nodes: ApiMapNode[] }) {
+  const getDot = useCallback(() => Promise.resolve(buildDot(nodes)), [nodes]);
   return <GraphvizView getDot={getDot} />;
 }
