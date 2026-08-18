@@ -188,6 +188,7 @@ function FlowNode({
 
   return (
     <li className="api-tree__node">
+      <span className="api-tree__arrow" aria-hidden />
       {/* A dedicated wrapper, sized to match the box exactly, so the corner
           icon positions off the box itself rather than off this <li> - which
           can be much wider than the box whenever a sibling branch has

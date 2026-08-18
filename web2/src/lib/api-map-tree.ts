@@ -84,18 +84,25 @@ export function buildApiMapForest(nodes: ApiMapNode[]): ApiMapTreeEntry[] {
   // re-entering its own ancestors (the cycle itself).
   const placed = new Set<string>();
 
+  // `parentPath` is the parent this entry is actually drawn under, which is
+  // null for a top-level entry - notably including a node rooted because it
+  // sits at a cycle's entry point. Reporting its would-be parent here instead
+  // would let the UI hide that dependency (it filters the drawn parent out of
+  // the "also needs" list), silently erasing the very edge that closes the
+  // cycle.
   function toEntry(
     path: string,
     title: string,
     node: ApiMapNode | null,
+    parentPath: string | null,
     pathVisited: Set<string>,
   ): ApiMapTreeEntry {
     placed.add(path);
     const children = (childrenOf.get(path) ?? [])
       .filter((c) => !pathVisited.has(c.path) && !placed.has(c.path))
       .sort(byTitle)
-      .map((c) => toEntry(c.path, c.title, c, new Set(pathVisited).add(c.path)));
-    return { path, title, node, primaryParentPath: primaryParentOf.get(path)?.path ?? null, children };
+      .map((c) => toEntry(c.path, c.title, c, path, new Set(pathVisited).add(c.path)));
+    return { path, title, node, primaryParentPath: parentPath, children };
   }
 
   // A real node roots the forest itself when it has no parent at all, or
@@ -117,10 +124,10 @@ export function buildApiMapForest(nodes: ApiMapNode[]): ApiMapTreeEntry[] {
   }
 
   const forest = [
-    ...realRoots.map((n) => toEntry(n.path, n.title, n, new Set([n.path]))),
+    ...realRoots.map((n) => toEntry(n.path, n.title, n, null, new Set([n.path]))),
     ...phantomRoots
       .filter((p) => !placed.has(p.path))
-      .map((p) => toEntry(p.path, p.name, null, new Set([p.path]))),
+      .map((p) => toEntry(p.path, p.name, null, null, new Set([p.path]))),
   ];
 
   return forest.sort(byTitle);
