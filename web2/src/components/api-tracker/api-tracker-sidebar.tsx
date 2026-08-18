@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import type { ApiMap } from "@/lib/yaml";
 import { buildApiMapForest, type ApiMapTreeEntry } from "@/lib/api-map-tree";
+import { selectApiMapEntry } from "@/lib/api-map-hash";
 
 function decodeHash(): string {
   return decodeURIComponent(window.location.hash.replace(/^#/, ""));
@@ -26,6 +27,10 @@ function TreeList({
           <li key={path}>
             <a
               href={`#${path}`}
+              onClick={(e) => {
+                e.preventDefault();
+                selectApiMapEntry(path);
+              }}
               title={isPhantom ? `${title} (no API-map.yaml yet)` : title}
               className={`flex items-center truncate rounded-lg py-1.5 pr-3 text-sm transition-colors ${
                 isActive

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import type { ApiMapNode } from "@/lib/yaml";
 import { buildApiMapForest, type ApiMapTreeEntry } from "@/lib/api-map-tree";
+import { selectApiMapEntry } from "@/lib/api-map-hash";
 
 function statusStyle(node: ApiMapNode): { box: string; label: string } {
   if (node.requirementsTotal === 0) {
@@ -47,6 +48,10 @@ function FlowNode({
       <a
         id={path}
         href={`#${path}`}
+        onClick={(e) => {
+          e.preventDefault();
+          selectApiMapEntry(path);
+        }}
         title={node ? title : `${title} (no API-map.yaml yet)`}
         className={`flex w-44 flex-col gap-0.5 rounded-lg border px-3 py-2 text-left shadow-sm transition-shadow hover:shadow-md ${style.box} ${
           isActive ? "ring-2 ring-accent ring-offset-2 ring-offset-background" : ""
@@ -79,8 +84,21 @@ export function ApiFlowchart({ nodes }: { nodes: ApiMapNode[] }) {
   const [activePath, setActivePath] = useState("");
 
   useEffect(() => {
-    const onHashChange = () =>
-      setActivePath(decodeURIComponent(window.location.hash.replace(/^#/, "")));
+    const onHashChange = () => {
+      const path = decodeURIComponent(window.location.hash.replace(/^#/, ""));
+      setActivePath(path);
+      // "nearest" on both axes: scrolls the horizontally-scrolling flowchart
+      // container as needed to reveal the box left-to-right, but leaves the
+      // page's own vertical scroll alone whenever the box is already
+      // vertically visible instead of forcing it to the top (the browser's
+      // native hash-jump behavior, which selectApiMapEntry deliberately
+      // bypasses).
+      if (path) {
+        document
+          .getElementById(path)
+          ?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
+      }
+    };
     onHashChange();
     window.addEventListener("hashchange", onHashChange);
     return () => window.removeEventListener("hashchange", onHashChange);
