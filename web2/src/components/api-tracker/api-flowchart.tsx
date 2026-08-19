@@ -1,19 +1,12 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import type { ApiMapNode } from "@/lib/yaml";
 import { buildApiMapForest, type ApiMapTreeEntry } from "@/lib/api-map-tree";
 import { selectApiMapEntry } from "@/lib/api-map-hash";
 import { apiStatusKind } from "@/lib/api-map-status";
 import { TopRightArrowIcon } from "@/components/monthly-updates/icons";
 
-const PANEL_WIDTH = 320;
-/** Breathing room between the panel and the viewport edge. */
-const PANEL_MARGIN = 8;
-/** Space left between the panel and the box it describes. */
-const PANEL_GAP = 6;
-/** Below this, a side counts as cramped and the panel considers flipping. */
-const PANEL_COMFORTABLE_HEIGHT = 280;
 /**
  * Centers a box in the flowchart's viewport by scrolling only the flowchart's
  * own horizontal scroller. Deliberately not `el.scrollIntoView` even with
@@ -60,120 +53,14 @@ function statusStyle(node: ApiMapNode): { box: string; label: string } {
   }
 }
 
-type HoverState = {
-  node: ApiMapNode;
-  top: number;
-  left: number;
-  maxHeight: number;
-  placement: "below" | "above";
-};
-
-/**
- * The details panel for one box. Rendered once, at the flowchart level, and
- * positioned with `fixed` off the hovered box's viewport rect: the flowchart
- * scrolls horizontally, and an `overflow-x` container clips on *both* axes,
- * so a panel nested inside it as a normal absolutely-positioned child gets
- * cut off at the container's edges. `fixed` escapes that clipping entirely.
- */
-function DetailsPanel({
-  hover,
-  panelRef,
-  onEnter,
-  onLeave,
-}: {
-  hover: HoverState;
-  panelRef: React.RefObject<HTMLDivElement | null>;
-  onEnter: () => void;
-  onLeave: () => void;
-}) {
-  const { node, top, left, maxHeight, placement } = hover;
-  const paragraphs = node.overview.split(/\n\s*\n/).filter(Boolean);
-  const doneCount = node.requirements.filter((r) => r.done).length;
-
-  return (
-    <div
-      ref={panelRef}
-      onMouseEnter={onEnter}
-      onMouseLeave={onLeave}
-      style={{
-        top,
-        left,
-        width: PANEL_WIDTH,
-        // Capped to the room actually available on the chosen side, so a
-        // long API's panel scrolls internally instead of running off the
-        // top or bottom of the viewport.
-        maxHeight,
-        // Anchoring by the bottom edge when placed above keeps the panel's
-        // gap to the box fixed regardless of how tall its content is.
-        ...(placement === "above" ? { transform: "translateY(-100%)" } : null),
-      }}
-      // overscroll-contain stops a wheel gesture that reaches the panel's end
-      // from chaining to the page, which would scroll it and dismiss the panel.
-      className="fixed z-50 overflow-y-auto overscroll-contain rounded-lg border border-border bg-surface p-4 text-left shadow-xl"
-    >
-      <h4 className="mb-1 text-sm font-semibold text-foreground">{node.title}</h4>
-      <p className="mb-2 font-mono text-[10px] leading-snug text-muted/70">{node.path}</p>
-      {paragraphs.length > 0 && (
-        <div className="mb-3 space-y-2 text-xs leading-relaxed text-muted">
-          {paragraphs.map((p, i) => (
-            <p key={i}>{p}</p>
-          ))}
-        </div>
-      )}
-      <p className="mb-1.5 text-[10px] font-semibold uppercase tracking-wide text-muted/70">
-        Requirements ({doneCount}/{node.requirements.length})
-      </p>
-      {node.requirements.length > 0 ? (
-        <ul className="mb-3 space-y-2">
-          {node.requirements.map((r, i) => (
-            <li key={i} className="flex gap-1.5 text-xs">
-              <span className={`shrink-0 ${r.done ? "text-success" : "text-muted/50"}`}>
-                {r.done ? "✓" : "○"}
-              </span>
-              <span>
-                <span className={r.done ? "text-foreground/80" : "text-muted"}>
-                  {r.description}
-                </span>
-                {r.location !== "N/A" && (
-                  <span className="mt-0.5 block break-all font-mono text-[10px] text-muted/60">
-                    {r.location}
-                  </span>
-                )}
-              </span>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p className="mb-3 text-xs text-muted">No requirements defined yet.</p>
-      )}
-      {node.references.length > 0 && (
-        <>
-          <p className="mb-1 text-[10px] font-semibold uppercase tracking-wide text-muted/70">
-            References
-          </p>
-          <ul className="space-y-1">
-            {node.references.map((ref, i) => (
-              <li key={i} className="break-words text-[11px] leading-snug text-muted">
-                {ref}
-              </li>
-            ))}
-          </ul>
-        </>
-      )}
-    </div>
-  );
-}
-
 function FlowNode({
   entry,
   activePath,
-  onHover,
-  onUnhover,
+  onSelect,
 }: {
   entry: ApiMapTreeEntry;
   activePath: string;
-  onHover: (node: ApiMapNode, boxEl: HTMLElement) => void;
-  onUnhover: () => void;
+  onSelect: (path: string, boxEl: HTMLElement) => void;
 }) {
   const { path, title, node, children, primaryParentPath } = entry;
   const isActive = path === activePath;
@@ -195,17 +82,13 @@ function FlowNode({
           can be much wider than the box whenever a sibling branch has
           deeper/wider descendants (see the connector CSS in globals.css for
           the same box-vs-li distinction). */}
-      <div
-        className="relative w-44"
-        onMouseEnter={node ? (e) => onHover(node, e.currentTarget) : undefined}
-        onMouseLeave={node ? onUnhover : undefined}
-      >
+      <div className="relative w-44">
         <a
           id={path}
           href={`#${path}`}
           onClick={(e) => {
             e.preventDefault();
-            selectApiMapEntry(path);
+            onSelect(path, e.currentTarget);
           }}
           title={node ? title : `${title} (no API-map.yaml yet)`}
           className={`flex w-44 flex-col gap-0.5 rounded-lg border px-3 py-2 text-left shadow-sm transition-shadow hover:shadow-md ${style.box} ${
@@ -243,8 +126,7 @@ function FlowNode({
               key={child.path}
               entry={child}
               activePath={activePath}
-              onHover={onHover}
-              onUnhover={onUnhover}
+              onSelect={onSelect}
             />
           ))}
         </ul>
@@ -255,72 +137,33 @@ function FlowNode({
 
 export function ApiFlowchart({ nodes }: { nodes: ApiMapNode[] }) {
   const [activePath, setActivePath] = useState("");
-  const [hover, setHover] = useState<HoverState | null>(null);
-  // Closing is delayed so the pointer can cross the gap between a box and its
-  // panel without the panel vanishing mid-travel.
-  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const panelRef = useRef<HTMLDivElement | null>(null);
 
-  const cancelClose = useCallback(() => {
-    if (closeTimer.current) {
-      clearTimeout(closeTimer.current);
-      closeTimer.current = null;
-    }
+  /**
+   * Selecting from the map changes the detail card *above* the map, and that
+   * card's height varies a lot between APIs - so the map itself gets pushed
+   * up or down under the pointer even though the scroll position never
+   * changed. Record where the clicked box sat in the viewport, then put it
+   * back after the re-render, so the map appears to stay still.
+   */
+  const anchor = useRef<{ el: HTMLElement; top: number } | null>(null);
+
+  const handleSelect = useCallback((path: string, boxEl: HTMLElement) => {
+    anchor.current = { el: boxEl, top: boxEl.getBoundingClientRect().top };
+    selectApiMapEntry(path);
   }, []);
 
-  const handleHover = useCallback(
-    (node: ApiMapNode, boxEl: HTMLElement) => {
-      cancelClose();
-      const rect = boxEl.getBoundingClientRect();
-      const spaceBelow = window.innerHeight - rect.bottom - PANEL_GAP - PANEL_MARGIN;
-      const spaceAbove = rect.top - PANEL_GAP - PANEL_MARGIN;
-      // Prefer below (the panel then reads as hanging off the box), but flip
-      // above when below is cramped and above genuinely has more room.
-      const placement: "below" | "above" =
-        spaceBelow < PANEL_COMFORTABLE_HEIGHT && spaceAbove > spaceBelow ? "above" : "below";
-      const left = Math.min(
-        Math.max(PANEL_MARGIN, rect.left + rect.width / 2 - PANEL_WIDTH / 2),
-        window.innerWidth - PANEL_WIDTH - PANEL_MARGIN,
-      );
-      setHover({
-        node,
-        left,
-        top: placement === "below" ? rect.bottom + PANEL_GAP : rect.top - PANEL_GAP,
-        maxHeight: Math.max(120, placement === "below" ? spaceBelow : spaceAbove),
-        placement,
-      });
-    },
-    [cancelClose],
-  );
-
-  const handleUnhover = useCallback(() => {
-    cancelClose();
-    closeTimer.current = setTimeout(() => setHover(null), 120);
-  }, [cancelClose]);
-
-  useEffect(() => cancelClose, [cancelClose]);
-
-  // A fixed-position panel doesn't travel with the content it's anchored to,
-  // so it has to go away once that content moves.
-  useEffect(() => {
-    if (!hover) return;
-    const onScroll = (e: Event) => {
-      // Capture phase is required to see scrolls of nested containers (scroll
-      // events don't bubble), but that also surfaces the panel's *own*
-      // overflow scrolling - which must not close the very panel the reader
-      // is scrolling through.
-      const target = e.target;
-      if (target instanceof Node && panelRef.current?.contains(target)) return;
-      setHover(null);
-    };
-    const onResize = () => setHover(null);
-    window.addEventListener("scroll", onScroll, true);
-    window.addEventListener("resize", onResize);
-    return () => {
-      window.removeEventListener("scroll", onScroll, true);
-      window.removeEventListener("resize", onResize);
-    };
-  }, [hover]);
+  // No dependency array: this must run after whichever commit actually
+  // resized the card, and it no-ops unless a map click armed the anchor.
+  // useLayoutEffect (not useEffect) so the correction lands in the same frame
+  // as the mutation that caused the shift - otherwise the jump is painted
+  // first and the fix reads as a flicker.
+  useLayoutEffect(() => {
+    const pending = anchor.current;
+    if (!pending) return;
+    anchor.current = null;
+    const delta = pending.el.getBoundingClientRect().top - pending.top;
+    if (Math.abs(delta) > 1) window.scrollBy({ top: delta, behavior: "auto" });
+  });
 
   useEffect(() => {
     const onHashChange = () => {
@@ -340,34 +183,23 @@ export function ApiFlowchart({ nodes }: { nodes: ApiMapNode[] }) {
     return () => window.removeEventListener("hashchange", onHashChange);
   }, []);
 
-  const forest = buildApiMapForest(nodes);
+  const forest = useMemo(() => buildApiMapForest(nodes), [nodes]);
 
   return (
-    <>
-      <div
-        data-api-flowchart-scroller
-        className="overflow-x-auto rounded-xl border border-border bg-surface"
-      >
-        <ul className="api-tree">
-          {forest.map((entry) => (
-            <FlowNode
-              key={entry.path}
-              entry={entry}
-              activePath={activePath}
-              onHover={handleHover}
-              onUnhover={handleUnhover}
-            />
-          ))}
-        </ul>
-      </div>
-      {hover && (
-        <DetailsPanel
-          hover={hover}
-          panelRef={panelRef}
-          onEnter={cancelClose}
-          onLeave={handleUnhover}
-        />
-      )}
-    </>
+    <div
+      data-api-flowchart-scroller
+      className="overflow-x-auto rounded-xl border border-border bg-surface"
+    >
+      <ul className="api-tree">
+        {forest.map((entry) => (
+          <FlowNode
+            key={entry.path}
+            entry={entry}
+            activePath={activePath}
+            onSelect={handleSelect}
+          />
+        ))}
+      </ul>
+    </div>
   );
 }

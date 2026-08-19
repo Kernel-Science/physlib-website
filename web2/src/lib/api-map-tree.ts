@@ -20,6 +20,23 @@ export type ApiMapTreeEntry = {
 type PrimaryParent = { path: string; name: string };
 
 /**
+ * Depth-first flattening of the forest, which is exactly the top-to-bottom
+ * order the sidebar renders - so "previous/next" steps through APIs in the
+ * order the reader sees them listed rather than some unrelated sequence.
+ */
+export function flattenApiMapForest(forest: ApiMapTreeEntry[]): ApiMapTreeEntry[] {
+  const out: ApiMapTreeEntry[] = [];
+  const walk = (entries: ApiMapTreeEntry[]) => {
+    for (const entry of entries) {
+      out.push(entry);
+      walk(entry.children);
+    }
+  };
+  walk(forest);
+  return out;
+}
+
+/**
  * Each real node's first parent - preferring one that also has its own
  * API-map.yaml, but falling back to the first phantom parent when it has no
  * real one. ParentAPIs is a DAG, not a tree; picking one edge per node is

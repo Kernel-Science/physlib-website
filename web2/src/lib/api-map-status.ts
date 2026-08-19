@@ -16,11 +16,19 @@ export function apiStatusKind(node: ApiMapNode): ApiStatusKind {
   return "partial";
 }
 
-/** Fill for a small status dot. Solid rather than the box's translucent tint,
- *  which is too faint to read at a few pixels across. */
+/** Solid fill for small status indicators - a sidebar dot, a progress bar.
+ *  Solid rather than the box's translucent tint, which is too faint to read
+ *  at a few pixels across. */
 export const API_STATUS_DOT: Record<ApiStatusKind, string> = {
   none: "bg-muted/40",
   unstarted: "bg-danger",
   partial: "bg-warning",
   complete: "bg-success",
+};
+
+export const API_STATUS_LABEL: Record<ApiStatusKind, string> = {
+  none: "No requirements yet",
+  unstarted: "Not started",
+  partial: "In progress",
+  complete: "Complete",
 };
