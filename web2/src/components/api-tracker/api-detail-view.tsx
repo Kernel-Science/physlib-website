@@ -10,6 +10,7 @@ import {
 import { selectApiMapEntry } from "@/lib/api-map-hash";
 import { API_STATUS_DOT, API_STATUS_LABEL, apiStatusKind } from "@/lib/api-map-status";
 import { TopRightArrowIcon } from "@/components/monthly-updates/icons";
+import { SuggestRequirementDialog } from "@/components/api-tracker/suggest-requirement-dialog";
 
 function ChevronIcon({ direction }: { direction: "left" | "right" }) {
   return (
@@ -30,9 +31,17 @@ function ChevronIcon({ direction }: { direction: "left" | "right" }) {
   );
 }
 
-function SectionHeading({ children }: { children: React.ReactNode }) {
+function SectionHeading({
+  children,
+  className = "mb-2",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
   return (
-    <h2 className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-muted/70">
+    <h2
+      className={`text-[11px] font-semibold uppercase tracking-wide text-muted/70 ${className}`}
+    >
       {children}
     </h2>
   );
@@ -155,6 +164,9 @@ export function ApiDetailView({ apiMap }: { apiMap: ApiMap }) {
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.metaKey || e.ctrlKey || e.altKey || e.shiftKey) return;
+      // Don't page the article out from under an open modal - the reader is
+      // writing a suggestion about *this* API.
+      if (document.querySelector("dialog[open]")) return;
       const target = e.target as HTMLElement | null;
       if (
         target?.isContentEditable ||
@@ -265,9 +277,17 @@ export function ApiDetailView({ apiMap }: { apiMap: ApiMap }) {
           </section>
         )}
 
-        {node && total > 0 && (
+        {node && (
           <section className="mb-6">
-            <SectionHeading>Requirements</SectionHeading>
+            <div className="mb-2 flex items-center justify-between gap-3">
+              <SectionHeading className="">Requirements</SectionHeading>
+              <SuggestRequirementDialog node={node} repo={repo} />
+            </div>
+            {total === 0 && (
+              <p className="text-sm text-muted">
+                No requirements defined for this API yet.
+              </p>
+            )}
             <ul className="space-y-2">
               {node.requirements.map((r, i) => (
                 <li
