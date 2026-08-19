@@ -10,7 +10,7 @@ import {
 import { selectApiMapEntry } from "@/lib/api-map-hash";
 import { API_STATUS_DOT, API_STATUS_LABEL, apiStatusKind } from "@/lib/api-map-status";
 import { TopRightArrowIcon } from "@/components/monthly-updates/icons";
-import { SuggestRequirementDialog } from "@/components/api-tracker/suggest-requirement-dialog";
+import { SuggestDialog } from "@/components/api-tracker/suggest-dialog";
 
 function ChevronIcon({ direction }: { direction: "left" | "right" }) {
   return (
@@ -266,14 +266,23 @@ export function ApiDetailView({ apiMap }: { apiMap: ApiMap }) {
           </p>
         )}
 
-        {overviewParagraphs.length > 0 && (
+        {node && (
           <section className="mb-6">
-            <SectionHeading>Overview</SectionHeading>
-            <div className="space-y-3 text-sm leading-relaxed text-foreground/80">
-              {overviewParagraphs.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
+            <div className="mb-2 flex items-center justify-between gap-3">
+              <SectionHeading className="">Overview</SectionHeading>
+              <SuggestDialog node={node} repo={repo} kind="overview" />
             </div>
+            {overviewParagraphs.length > 0 ? (
+              <div className="space-y-3 text-sm leading-relaxed text-foreground/80">
+                {overviewParagraphs.map((p, i) => (
+                  <p key={i}>{p}</p>
+                ))}
+              </div>
+            ) : (
+              <p className="text-sm text-muted">
+                No overview written for this API yet.
+              </p>
+            )}
           </section>
         )}
 
@@ -281,7 +290,7 @@ export function ApiDetailView({ apiMap }: { apiMap: ApiMap }) {
           <section className="mb-6">
             <div className="mb-2 flex items-center justify-between gap-3">
               <SectionHeading className="">Requirements</SectionHeading>
-              <SuggestRequirementDialog node={node} repo={repo} />
+              <SuggestDialog node={node} repo={repo} kind="requirement" />
             </div>
             {total === 0 && (
               <p className="text-sm text-muted">
