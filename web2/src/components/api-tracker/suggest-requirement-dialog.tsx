@@ -159,38 +159,35 @@ export function SuggestRequirementDialog({
           <div className="overflow-y-auto px-6 pb-6 pt-1">
           <p className="text-sm leading-relaxed text-muted">
             For <span className="text-foreground">{node.title}</span>. You are
-            describing what the API <em>should</em> contain, in plain English —
-            you do not need to know any Lean. Submitting opens a prefilled
-            GitHub issue for a maintainer to review.
+            describing what the API <em>should</em> contain, in plain English. You 
+            do not need to know any Lean. Submitting opens a prefilled
+            GitHub issue for a maintainer to look at. You may also make a pull request linked to the issue if you 
+            would like to implement the requirement yourself.
           </p>
 
           <div className="mt-4 rounded-lg border border-border bg-surface-secondary/50 p-4">
             <p className="mb-2 text-xs font-semibold">
-              First time? Here is exactly what happens
+              Helpful tips:
             </p>
             <ol className="list-decimal space-y-1.5 pl-4 text-xs leading-relaxed text-muted">
               <li>
                 <span className="font-medium text-foreground">Describe.</span>{" "}
                 Write the requirement as one sentence, in the style of the
-                existing ones — most begin &ldquo;The API shall contain…&rdquo;.
+                existing ones. Most begin: &ldquo;The API shall contain…&rdquo;.
               </li>
               <li>
                 <span className="font-medium text-foreground">
                   Say why (optional).
                 </span>{" "}
-                One line telling a maintainer why it matters makes a suggestion
-                much easier to accept.
+                A short explanation telling a maintainer why it matters makes a suggestion
+                much easier to understand.
               </li>
               <li>
                 <span className="font-medium text-foreground">Propose.</span>{" "}
                 The button opens GitHub with everything filled in; you press{" "}
-                <em>Submit new issue</em>. Nothing is posted until you do.
+                <em>Submit new issue</em>.
               </li>
             </ol>
-            <p className="mt-2 text-xs leading-relaxed text-muted">
-              Nothing you do here can break the library: suggestions are
-              reviewed before anything changes.
-            </p>
           </div>
 
           <label className="mt-5 block">
@@ -207,7 +204,7 @@ export function SuggestRequirementDialog({
           <label className="mt-3 block">
             <span className="text-xs font-medium">
               Why the change?{" "}
-              <span className="font-normal text-muted">(optional, one line)</span>
+              <span className="font-normal text-muted">(optional)</span>
             </span>
             <input
               value={why}
@@ -218,20 +215,11 @@ export function SuggestRequirementDialog({
           </label>
 
           <p className="mt-4 rounded-lg border border-border bg-surface-secondary/50 p-3 text-xs leading-relaxed text-muted">
-            🔒 Submitting opens GitHub in a new tab. You must be{" "}
+            Submitting opens GitHub in a new tab. You must be{" "}
             <span className="font-medium text-foreground">
               signed in to a GitHub account
             </span>{" "}
-            to post the suggestion — it&apos;s free to{" "}
-            <a
-              href="https://github.com/signup"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-accent hover:underline underline-offset-2"
-            >
-              create one
-            </a>
-            . If your suggestion is accepted, you&apos;ll be credited as a
+            to post the suggestion. If your suggestion is accepted, you&apos;ll be credited as a
             co-author.
           </p>
 
