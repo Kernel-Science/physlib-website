@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import type { ApiMap } from "@/lib/yaml";
 import { buildApiMapForest, type ApiMapTreeEntry } from "@/lib/api-map-tree";
 import { selectApiMapEntry } from "@/lib/api-map-hash";
+import { API_STATUS_DOT, apiStatusKind } from "@/lib/api-map-status";
 
 function decodeHash(): string {
   return decodeURIComponent(window.location.hash.replace(/^#/, ""));
@@ -41,9 +42,19 @@ function TreeList({
               }`}
               style={{ letterSpacing: "-0.01em", paddingLeft: `${8 + depth * 16}px` }}
             >
-              {isActive && (
-                <span className="mr-2 size-1 rounded-full bg-accent flex-shrink-0" />
-              )}
+              {/* Status dot, matching the colour of this API's flowchart box.
+                  Phantom entries (dashed boxes, no API-map.yaml) have no
+                  status to report, so theirs is invisible rather than absent -
+                  dropping the element would unindent their titles out of line
+                  with their siblings. Unlike the other sidebars, the dot here
+                  carries status, so the active row is marked by its accent
+                  text alone rather than by an accent dot. */}
+              <span
+                aria-hidden
+                className={`mr-2 size-1.5 shrink-0 rounded-full ${
+                  node ? API_STATUS_DOT[apiStatusKind(node)] : "invisible"
+                }`}
+              />
               {title}
             </a>
             {children.length > 0 && (

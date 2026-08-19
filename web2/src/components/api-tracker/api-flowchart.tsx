@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import type { ApiMapNode } from "@/lib/yaml";
 import { buildApiMapForest, type ApiMapTreeEntry } from "@/lib/api-map-tree";
 import { selectApiMapEntry } from "@/lib/api-map-hash";
+import { apiStatusKind } from "@/lib/api-map-status";
 import { TopRightArrowIcon } from "@/components/monthly-updates/icons";
 
 const PANEL_WIDTH = 320;
@@ -44,19 +45,19 @@ function centerHorizontally(el: HTMLElement): void {
 function statusStyle(node: ApiMapNode): { box: string; label: string } {
   const total = node.requirements.length;
   const done = node.requirements.filter((r) => r.done).length;
-  if (total === 0) {
-    return { box: "bg-surface-secondary border-border", label: "No requirements yet" };
+  switch (apiStatusKind(node)) {
+    case "none":
+      return { box: "bg-surface-secondary border-border", label: "No requirements yet" };
+    case "complete":
+      return { box: "bg-success/15 border-success/40", label: "Complete" };
+    case "unstarted":
+      return { box: "bg-danger/10 border-danger/30", label: `0/${total} requirements done` };
+    case "partial":
+      return {
+        box: "bg-warning/15 border-warning/40",
+        label: `${done}/${total} requirements done`,
+      };
   }
-  if (done === total) {
-    return { box: "bg-success/15 border-success/40", label: "Complete" };
-  }
-  if (done === 0) {
-    return { box: "bg-danger/10 border-danger/30", label: `0/${total} requirements done` };
-  }
-  return {
-    box: "bg-warning/15 border-warning/40",
-    label: `${done}/${total} requirements done`,
-  };
 }
 
 type HoverState = {
