@@ -1,0 +1,75 @@
+name: Generate API map
+
+on:
+  schedule:
+    # Weekly refresh — API-map.yaml files change far less often than commits.
+    - cron: "20 4 * * 1"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+# Two runs committing to the same branch would race on push.
+concurrency:
+  group: api-map
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      HAS_MIRROR_PAT: ${{ secrets.MIRROR_PAT != '' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # Shared with the monthly-updates generator, which also reads this repo.
+      - name: Cache physlib clone
+        uses: actions/cache@v4
+        with:
+          path: web2/.cache/physlib.git
+          key: physlib-clone-${{ github.run_id }}
+          restore-keys: physlib-clone-
+
+      - name: Run generator
+        working-directory: web2
+        run: node scripts/generate-api-map.js
+
+      - name: Commit & push updated API map
+        id: commit
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add web2/data/APIMap.json
+          if git diff --cached --quiet; then
+            echo "No API map changes to commit."
+            echo "committed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git commit -m "chore(api-map): auto-generated update"
+          git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+          echo "committed=true" >> "$GITHUB_OUTPUT"
+
+      # See monthly-updates.yml for why this step exists: pushes made with the
+      # default GITHUB_TOKEN don't trigger mirror-to-personal.yml, so without
+      # this the API map would never reach the deployed (Vercel) site.
+      - name: Mirror to personal repo (Vercel)
+        if: steps.commit.outputs.committed == 'true' && env.HAS_MIRROR_PAT == 'true'
+        env:
+          MIRROR_PAT: ${{ secrets.MIRROR_PAT }}
+        run: |
+          git config --unset-all http.https://github.com/.extraheader || true
+          git config --global credential.helper store
+          echo "https://x-access-token:${MIRROR_PAT}@github.com" > ~/.git-credentials
+          git remote add mirror https://github.com/Gabrielebattimelli/Physlib-Website.git
+          git push mirror "HEAD:refs/heads/${GITHUB_REF_NAME}"

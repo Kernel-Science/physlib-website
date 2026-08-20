@@ -76,6 +76,32 @@ export async function getTodo(): Promise<TodoData> {
   return loadYaml<TodoData>("TODO.yml");
 }
 
+// ─── API map ────────────────────────────────────────────────────────────
+export type ApiMapParent = {
+  name: string;
+  path: string;
+};
+
+export type ApiMapNode = {
+  path: string;
+  title: string;
+  requirementsDone: number;
+  requirementsTotal: number;
+  parents: ApiMapParent[];
+  url: string;
+};
+
+export type ApiMap = {
+  repo: string;
+  branch: string;
+  generatedAt: string;
+  nodes: ApiMapNode[];
+};
+
+export async function getApiMap(): Promise<ApiMap> {
+  return loadJson<ApiMap>(path.join(dataDir, "APIMap.json"));
+}
+
 // ─── Monthly updates ──────────────────────────────────────────────────────
 export type MonthlyContributor = {
   login: string | null;
