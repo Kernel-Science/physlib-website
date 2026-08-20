@@ -82,11 +82,18 @@ export type ApiMapParent = {
   path: string;
 };
 
+export type ApiMapRequirement = {
+  description: string;
+  done: boolean;
+  location: string;
+};
+
 export type ApiMapNode = {
   path: string;
   title: string;
-  requirementsDone: number;
-  requirementsTotal: number;
+  overview: string;
+  references: string[];
+  requirements: ApiMapRequirement[];
   parents: ApiMapParent[];
   url: string;
 };

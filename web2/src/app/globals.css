@@ -156,8 +156,121 @@ body {
 }
 
 /* ─── TOC anchor offset (clears fixed navbar) ───────────────── */
-h2[id], h3[id] {
+h2[id], h3[id], .api-tree a[id] {
   scroll-margin-top: 5rem;
+}
+
+/*
+ * ─── API tracker flowchart connectors ─────────────────────────
+ * Classic pure-CSS org-chart technique. The gap between a parent row and its
+ * children is split in half: the parent drops a stem through the TOP half
+ * (drawn on the <ul> holding the children, so it centres on the group rather
+ * than on any one sibling), a horizontal bus runs across the midpoint, and
+ * each child raises a stem through the BOTTOM half to meet it. The two halves
+ * must not both span the full gap - that puts the bus at the parent's own
+ * edge and leaves the parent's stem running past it down to the children row,
+ * which reads as a stray disconnected line.
+ *
+ * Each child contributes its own segment of the bus (::after): the first
+ * child's starts at its centre, the last child's ends at its centre, and
+ * middle children draw the full width, so the segments chain into one
+ * continuous line spanning first-sibling-centre to last-sibling-centre.
+ *
+ * Everything here is keyed off the explicit .api-tree__branch/__node classes
+ * rather than bare ul/li descendant selectors: the node boxes contain their
+ * own ordinary lists (the hover panel's requirements/references), and bare
+ * selectors would lay those out as org-chart rows too.
+ */
+.api-tree {
+  /* Full vertical gap between a parent row and its children. */
+  --api-tree-gap: 2.5rem;
+  --api-tree-half: 1.25rem;
+  --api-tree-line: color-mix(in oklch, var(--muted) 40%, transparent);
+}
+.api-tree, .api-tree__branch {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.api-tree {
+  padding: 2rem 1.5rem;
+}
+.api-tree__node {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 0.75rem;
+}
+.api-tree__node > .api-tree__branch {
+  position: relative;
+  padding-top: var(--api-tree-gap);
+}
+/* Parent's stem: top half of the gap, from the parent box down to the bus. */
+.api-tree__node > .api-tree__branch::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: var(--api-tree-half);
+  background: var(--api-tree-line);
+}
+/* Each child's stem: bottom half, reaching back up from the child box to the
+   bus. Negative offsets because the <li> reserves no space above itself. */
+.api-tree__branch > .api-tree__node::before {
+  content: "";
+  position: absolute;
+  top: calc(-1 * var(--api-tree-half));
+  left: 50%;
+  width: 1px;
+  height: var(--api-tree-half);
+  background: var(--api-tree-line);
+}
+/* This child's segment of the horizontal bus, sitting at the gap's midpoint. */
+.api-tree__branch > .api-tree__node::after {
+  content: "";
+  position: absolute;
+  top: calc(-1 * var(--api-tree-half));
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--api-tree-line);
+}
+.api-tree__branch > .api-tree__node:first-child::after {
+  left: 50%;
+  width: 50%;
+}
+.api-tree__branch > .api-tree__node:last-child::after {
+  width: 50%;
+}
+.api-tree__branch > .api-tree__node:only-child::after {
+  display: none;
+}
+/*
+ * Arrowhead at the child end of each edge, pointing parent -> child ("this
+ * API builds on the one above"). Its own element rather than a third
+ * pseudo-element, since ::before/::after on the <li> are both already the
+ * stem and the bus. Hidden by default so top-level nodes - which have no
+ * incoming edge - don't sprout a floating arrow.
+ */
+.api-tree__arrow {
+  display: none;
+}
+.api-tree__branch > .api-tree__node > .api-tree__arrow {
+  display: block;
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  width: 0;
+  height: 0;
+  transform: translateX(-50%);
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  /* A border triangle's tip is its bottom edge, so top:-5px lands the point
+     exactly on the child box's top edge. */
+  border-top: 5px solid var(--api-tree-line);
 }
 
 @keyframes shimmer {
