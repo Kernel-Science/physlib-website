@@ -5,6 +5,7 @@ export const site = {
     "An open-source community project to digitalize results from physics into Lean 4. Formerly PhysLean & Lean-QuantumInfo.",
   url: "https://physlib.io",
   github: "https://github.com/leanprover-community/physlib",
+  websiteRepo: "https://github.com/Kernel-Science/physlib-website",
   zulip: "https://leanprover.zulipchat.com/#narrow/channel/479953-physlib",
   search: "https://physlibsearch.net",
   docs: "/docs/index.html",

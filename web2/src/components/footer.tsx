@@ -23,6 +23,7 @@ const footerLinks = {
     { label: "Dependency Graphs", href: "/dependencies" },
     { label: "Search Physlib", href: site.search, external: true },
     { label: "GitHub", href: site.github, external: true },
+    { label: "Website Source", href: site.websiteRepo, external: true },
   ],
   Support: [
     { label: "Sponsor", href: "/sponsor" },
