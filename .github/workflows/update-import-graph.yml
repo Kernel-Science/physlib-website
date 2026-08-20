@@ -1,0 +1,91 @@
+name: Update import graph
+
+on:
+  schedule:
+    # Runs daily at 04:00 UTC - offset from monthly-updates' 1st-of-month run
+    # so the two don't compete for the shared physlib-clone cache.
+    - cron: "0 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# Two runs committing to the same branch would race on push.
+concurrency:
+  group: update-import-graph
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      # The `secrets` context is not available to a step's `if`, so the
+      # presence of the mirror credential is hoisted here as a plain boolean.
+      # Deliberately not the secret itself: this keeps it out of every step's
+      # environment.
+      HAS_MIRROR_PAT: ${{ secrets.MIRROR_PAT != '' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # Same cache location and key prefix as monthly-updates.yml's physlib
+      # clone, so either workflow can warm-start from whichever last ran.
+      - name: Cache physlib clone
+        uses: actions/cache@v4
+        with:
+          path: web2/.cache/physlib.git
+          key: physlib-clone-${{ github.run_id }}
+          restore-keys: physlib-clone-
+
+      - name: Run generator
+        working-directory: web2
+        run: node scripts/generate-import-graph.js
+
+      - name: Commit & push if changed
+        id: commit
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add web2/public/my_graph.dot
+          if git diff --cached --quiet; then
+            echo "No import graph changes to commit."
+            echo "committed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git commit -m "chore(import-graph): auto-generated from physlib"
+          # main may have moved while the clone was fetching.
+          git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+          echo "committed=true" >> "$GITHUB_OUTPUT"
+
+      # The site deploys via Gabrielebattimelli/Physlib-Website (Vercel), which
+      # mirror-to-personal.yml normally keeps in sync on push. That workflow
+      # will NOT fire for the commit above: GitHub deliberately does not trigger
+      # workflows for pushes made with the default GITHUB_TOKEN, to avoid
+      # recursion. Without this step the update lands on main and never reaches
+      # the live site. So mirror it here, using the same secret and target as
+      # mirror-to-personal.yml.
+      #
+      # Guarded on the secret being present: without it this fails with an
+      # opaque git credential error, and it fails *after* the update has
+      # already been committed and pushed to this repo, which reads as "the
+      # run broke" rather than "the mirror isn't configured".
+      - name: Mirror to personal repo (Vercel)
+        if: steps.commit.outputs.committed == 'true' && env.HAS_MIRROR_PAT == 'true'
+        env:
+          MIRROR_PAT: ${{ secrets.MIRROR_PAT }}
+        run: |
+          git config --unset-all http.https://github.com/.extraheader || true
+          git config --global credential.helper store
+          echo "https://x-access-token:${MIRROR_PAT}@github.com" > ~/.git-credentials
+          git remote add mirror https://github.com/Gabrielebattimelli/Physlib-Website.git
+          git push mirror "HEAD:refs/heads/${GITHUB_REF_NAME}"
