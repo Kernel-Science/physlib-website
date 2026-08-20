@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 declare global {
   interface Window {
@@ -31,15 +31,175 @@ function loadScript(src: string): Promise<void> {
   return promise;
 }
 
+type NodeEntry = {
+  name: string;
+  el: SVGGraphicsElement;
+  href: string;
+};
+
+const MATCH_STROKE = "#2563eb";
+const SELECTED_STROKE = "#16a34a";
+const HIGHLIGHT_WIDTH = "3";
+const READ_SCALE = 1.4;
+const ZOOM_STEP = 1.4;
+const ZOOM_EXTENT: [number, number] = [0.02, 12];
+
 type Props = {
   getDot: () => Promise<string>;
   height?: string;
 };
 
-export function GraphvizView({ getDot, height = "500px" }: Props) {
+export function GraphvizView({ getDot, height = "70vh" }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const graphvizRef = useRef<any>(null);
+  const nodeIndexRef = useRef<NodeEntry[]>([]);
+  const highlightedRef = useRef<SVGGraphicsElement[]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const initialTransformRef = useRef<any>(null);
+  const selectedRef = useRef<NodeEntry | null>(null);
+
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [query, setQuery] = useState("");
+  const [matches, setMatches] = useState<NodeEntry[]>([]);
+  const [matchIndex, setMatchIndex] = useState(0);
+  const [searched, setSearched] = useState(false);
+  const [selected, setSelected] = useState<NodeEntry | null>(null);
+
+  useEffect(() => {
+    selectedRef.current = selected;
+  }, [selected]);
+
+  // Keep the DOM highlight in sync with React state: matches get a blue
+  // outline, the selected node (from either search or a click) gets green
+  // and wins if it's also a match.
+  useEffect(() => {
+    for (const el of highlightedRef.current) {
+      const shape = el.querySelector("ellipse, polygon");
+      shape?.removeAttribute("stroke");
+      shape?.removeAttribute("stroke-width");
+    }
+    const styled: SVGGraphicsElement[] = [];
+    for (const m of matches) {
+      if (selected && m.el === selected.el) continue;
+      const shape = m.el.querySelector("ellipse, polygon");
+      shape?.setAttribute("stroke", MATCH_STROKE);
+      shape?.setAttribute("stroke-width", HIGHLIGHT_WIDTH);
+      styled.push(m.el);
+    }
+    if (selected) {
+      const shape = selected.el.querySelector("ellipse, polygon");
+      shape?.setAttribute("stroke", SELECTED_STROKE);
+      shape?.setAttribute("stroke-width", HIGHLIGHT_WIDTH);
+      styled.push(selected.el);
+    }
+    highlightedRef.current = styled;
+  }, [matches, selected]);
+
+  const jumpToEntry = useCallback((entry: NodeEntry, scale?: number) => {
+    const gv = graphvizRef.current;
+    const zoomBehavior = gv?.zoomBehavior();
+    const zoomSelection = gv?.zoomSelection();
+    if (!zoomBehavior || !zoomSelection || !containerRef.current) return;
+
+    const bbox = entry.el.getBBox();
+    const nodeX = bbox.x + bbox.width / 2;
+    const nodeY = bbox.y + bbox.height / 2;
+    const cw = containerRef.current.clientWidth;
+    const ch = containerRef.current.clientHeight;
+    const targetScale = scale ?? READ_SCALE;
+
+    const transform = window
+      .d3!.zoomIdentity.translate(cw / 2, ch / 2)
+      .scale(targetScale)
+      .translate(-nodeX, -nodeY);
+
+    zoomBehavior.transform(zoomSelection, transform);
+  }, []);
+
+  const runSearch = useCallback((raw: string) => {
+    const q = raw.trim().toLowerCase();
+    setSearched(q.length > 0);
+    if (!q) {
+      setMatches([]);
+      setMatchIndex(0);
+      return;
+    }
+    const found = nodeIndexRef.current.filter((n) =>
+      n.name.toLowerCase().includes(q),
+    );
+    setMatches(found);
+    setMatchIndex(0);
+    // Select the first hit so there's always a clear "current" match, but
+    // don't move the view until the user explicitly asks to (Enter).
+    if (found[0]) setSelected(found[0]);
+  }, []);
+
+  const goToMatch = useCallback(
+    (delta: number) => {
+      if (matches.length === 0) return;
+      const next = (matchIndex + delta + matches.length) % matches.length;
+      setMatchIndex(next);
+      setSelected(matches[next]);
+      jumpToEntry(matches[next]);
+    },
+    [matches, matchIndex, jumpToEntry],
+  );
+
+  const zoomBy = useCallback((factor: number) => {
+    const gv = graphvizRef.current;
+    const zoomBehavior = gv?.zoomBehavior();
+    const zoomSelection = gv?.zoomSelection();
+    if (!zoomBehavior || !zoomSelection || !containerRef.current) return;
+    // scaleBy's default zoom-around point is the center of the *SVG
+    // element's own* box — which is the native (huge) graph size, not the
+    // visible container — so it has to be given explicitly here.
+    const point: [number, number] = [
+      containerRef.current.clientWidth / 2,
+      containerRef.current.clientHeight / 2,
+    ];
+    zoomBehavior.scaleBy(zoomSelection, factor, point);
+  }, []);
+
+  const resetView = useCallback(() => {
+    const gv = graphvizRef.current;
+    const zoomBehavior = gv?.zoomBehavior();
+    const zoomSelection = gv?.zoomSelection();
+    if (!zoomBehavior || !zoomSelection || !initialTransformRef.current) return;
+    zoomBehavior.transform(zoomSelection, initialTransformRef.current);
+  }, []);
+
+  // Clicking a graph node is a two-step confirm: the first click just
+  // selects it (green highlight + info panel below the search box) without
+  // navigating, so panning/exploring the graph can't accidentally send you
+  // to GitHub. Clicking the *same*, already-selected node again opens it.
+  // Attached once via delegation (nodes are inserted by d3-graphviz, not
+  // React) and reads selection state through a ref to avoid staleness.
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    function handleClick(e: MouseEvent) {
+      const target = e.target as Element | null;
+      const a = target?.closest("a");
+      if (!a || !container!.contains(a)) return;
+      // NodeEntry.el is the enclosing <g class="node"> (where <title>
+      // lives), not the <a> itself — climb back up to match it.
+      const nodeG = a.closest("g.node");
+      const entry = nodeIndexRef.current.find((n) => n.el === nodeG);
+      if (!entry) return;
+      e.preventDefault();
+      if (selectedRef.current?.el === entry.el && entry.href) {
+        window.open(entry.href, "_blank", "noopener,noreferrer");
+      } else {
+        setSelected(entry);
+      }
+    }
+
+    container.addEventListener("click", handleClick);
+    return () => container.removeEventListener("click", handleClick);
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -65,16 +225,103 @@ export function GraphvizView({ getDot, height = "500px" }: Props) {
 
         setLoading(false);
 
-        window
+        // Deliberately don't set .fit()/.width()/.height() here: those make
+        // d3-graphviz leave the SVG's viewBox at its native size while
+        // stretching the width/height attrs to the container via CSS. That
+        // mismatch between "pixels the pointer moves in" and "units the pan
+        // transform is expressed in" makes drag-to-pan track the cursor at
+        // the wrong rate. Instead we render at native scale (viewBox ==
+        // pixel size, so 1:1 tracking) and set the *zoom transform* below.
+        const gv = window
           .d3!.select(containerRef.current)
           .graphviz()
           .zoom(true)
-          .zoomScaleExtent([0.1, Infinity])
-          .fit(true)
-          .width("100%")
-          .height(height)
-          .engine("dot")
-          .renderDot(dot);
+          .zoomScaleExtent(ZOOM_EXTENT)
+          .engine("dot");
+
+        graphvizRef.current = gv;
+
+        gv.on("end", () => {
+          if (cancelled || !containerRef.current) return;
+          const svg: SVGSVGElement | null =
+            containerRef.current.querySelector("svg");
+          if (!svg) return;
+
+          // Graphviz emits width/height in "pt", which browsers convert to
+          // px at a fixed 4/3 ratio — a second scale factor layered on top
+          // of the viewBox, independent of our zoom transform's own scale.
+          // Strip the units so 1 viewBox unit == 1 px == 1 zoom-transform
+          // unit; that's what keeps the math below (and pointer dragging)
+          // consistent.
+          const viewBox = (svg.getAttribute("viewBox") ?? "")
+            .split(/\s+/)
+            .map(Number);
+          const [, , vbWidth, vbHeight] = viewBox;
+          if (vbWidth && vbHeight) {
+            svg.setAttribute("width", String(vbWidth));
+            svg.setAttribute("height", String(vbHeight));
+          }
+
+          // Build a searchable index of node names -> elements. Graphviz
+          // emits a <title> for every node and edge; edges look like
+          // "A->B" so filter those out. Only nodes with a URL attribute in
+          // the source dot get wrapped in <a>, so href may be empty.
+          const entries: NodeEntry[] = [];
+          svg.querySelectorAll("title").forEach((titleEl) => {
+            const name = titleEl.textContent ?? "";
+            if (!name || name.includes("->")) return;
+            const parent = titleEl.parentElement as SVGGraphicsElement | null;
+            if (!parent) return;
+            // The <title> sits directly under <g class="node">, but the
+            // href-bearing <a> is nested a level or two deeper inside it.
+            const link = parent.querySelector("a");
+            const href =
+              link?.getAttribute("xlink:href") ??
+              link?.getAttribute("href") ??
+              "";
+            entries.push({ name, el: parent, href });
+          });
+          nodeIndexRef.current = entries;
+
+          // Fit the graph's height to the container so the initial view is
+          // an overview rather than a single native-scale corner. Built as
+          // an absolute transform (not a relative scaleBy) because d3-zoom's
+          // default zoom-around point for scaleBy is the *element's own*
+          // center — which, before any width/height fixup, is the native
+          // (huge) SVG box, not the visible container.
+          //
+          // Graphviz's node coordinates are NOT 0-based — they live in
+          // whatever raw coordinate space the layout engine picked (often
+          // with negative values), and it's the top-level <g>'s own
+          // translate — which we're about to overwrite — that normally
+          // shifts them into the visible 0..viewBox range. So measure the
+          // graph's actual content box via getBBox() rather than assuming
+          // it spans (0,0)..(vbWidth,vbHeight); this is also the same
+          // coordinate space getBBox() returns for individual nodes in
+          // jumpToEntry, keeping both consistent.
+          const zoomBehavior = gv.zoomBehavior();
+          const zoomSelection = gv.zoomSelection();
+          const graphG = svg.querySelector("g") as SVGGraphicsElement | null;
+          if (zoomBehavior && zoomSelection && containerRef.current && graphG) {
+            const cw = containerRef.current.clientWidth;
+            const ch = containerRef.current.clientHeight;
+            const bbox = graphG.getBBox();
+            const fitScale = Math.min(
+              ZOOM_EXTENT[1],
+              Math.max(ZOOM_EXTENT[0], ch / (bbox.height || 1)),
+            );
+            const domainCenterX = bbox.x + bbox.width / 2;
+            const domainCenterY = bbox.y + bbox.height / 2;
+            const transform = window
+              .d3!.zoomIdentity.translate(cw / 2, ch / 2)
+              .scale(fitScale)
+              .translate(-domainCenterX, -domainCenterY);
+            zoomBehavior.transform(zoomSelection, transform);
+            initialTransformRef.current = transform;
+          }
+        });
+
+        gv.renderDot(dot);
       } catch (err) {
         if (!cancelled) {
           console.error(err);
@@ -88,21 +335,117 @@ export function GraphvizView({ getDot, height = "500px" }: Props) {
     return () => {
       cancelled = true;
     };
-  }, [getDot, height]);
+  }, [getDot]);
 
   return (
-    <div className="relative rounded-xl border border-border overflow-hidden bg-white">
-      {loading && (
-        <div className="absolute inset-0 flex items-center justify-center text-muted text-sm">
-          Loading graph…
+    <div className="flex flex-col gap-2">
+      <div className="flex flex-wrap items-center gap-2">
+        <input
+          type="text"
+          value={query}
+          onChange={(e) => {
+            setQuery(e.target.value);
+            runSearch(e.target.value);
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && selected) jumpToEntry(selected);
+          }}
+          placeholder="Search for a file…"
+          className="flex-1 min-w-0 rounded-lg border border-border bg-surface px-3 py-2 text-sm"
+        />
+        {searched && (
+          <span className="text-xs text-muted whitespace-nowrap">
+            {matches.length === 0
+              ? "No matches"
+              : `${matchIndex + 1} / ${matches.length}`}
+          </span>
+        )}
+        {matches.length > 1 && (
+          <div className="flex gap-1">
+            <button
+              onClick={() => goToMatch(-1)}
+              className="rounded-lg border border-border px-2 py-1 text-sm hover:bg-surface"
+              aria-label="Previous match"
+            >
+              ↑
+            </button>
+            <button
+              onClick={() => goToMatch(1)}
+              className="rounded-lg border border-border px-2 py-1 text-sm hover:bg-surface"
+              aria-label="Next match"
+            >
+              ↓
+            </button>
+          </div>
+        )}
+      </div>
+
+      {selected && (
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-surface px-3 py-2 text-sm">
+          <span
+            className="inline-block h-2.5 w-2.5 shrink-0 rounded-full"
+            style={{ background: SELECTED_STROKE }}
+            aria-hidden
+          />
+          <span className="font-mono text-xs text-foreground/90 truncate">
+            {selected.name}
+          </span>
+          {selected.href && (
+            <a
+              href={selected.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ml-auto whitespace-nowrap text-accent hover:underline"
+            >
+              View on GitHub ↗
+            </a>
+          )}
         </div>
       )}
-      {error && (
-        <div className="absolute inset-0 flex items-center justify-center text-danger text-sm px-4 text-center">
-          {error}
-        </div>
-      )}
-      <div ref={containerRef} style={{ height, width: "100%" }} />
+
+      <div
+        className="relative rounded-xl border border-border overflow-hidden bg-white"
+        style={{ height }}
+      >
+        {loading && (
+          <div className="absolute inset-0 flex items-center justify-center text-muted text-sm">
+            Loading graph…
+          </div>
+        )}
+        {error && (
+          <div className="absolute inset-0 flex items-center justify-center text-danger text-sm px-4 text-center">
+            {error}
+          </div>
+        )}
+        <div ref={containerRef} style={{ height: "100%", width: "100%" }} />
+
+        {!loading && !error && (
+          <div className="absolute bottom-3 right-3 flex flex-col gap-1">
+            <button
+              onClick={() => zoomBy(ZOOM_STEP)}
+              className="h-8 w-8 rounded-lg border border-border bg-white/90 text-lg leading-none shadow-sm hover:bg-surface"
+              aria-label="Zoom in"
+            >
+              +
+            </button>
+            <button
+              onClick={() => zoomBy(1 / ZOOM_STEP)}
+              className="h-8 w-8 rounded-lg border border-border bg-white/90 text-lg leading-none shadow-sm hover:bg-surface"
+              aria-label="Zoom out"
+            >
+              −
+            </button>
+            <button
+              onClick={resetView}
+              className="h-8 w-8 rounded-lg border border-border bg-white/90 text-xs shadow-sm hover:bg-surface"
+              aria-label="Reset view"
+              title="Reset view"
+            >
+              ⟲
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
