@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getApiMap } from "@/lib/yaml";
 import { ApiDetailView } from "@/components/api-tracker/api-detail-view";
 import { ApiFlowchart } from "@/components/api-tracker/api-flowchart";
+import { SuggestNewApiDialog } from "@/components/api-tracker/suggest-dialog";
 
 export const metadata: Metadata = {
   title: "API Tracker | Physlib",
@@ -14,6 +15,14 @@ export default async function APITrackerPage() {
 
   return (
     <div className="mx-auto w-full max-w-5xl px-4 py-10 md:py-14">
+      <div className="mb-4 flex items-center justify-end">
+        <SuggestNewApiDialog
+          repo={apiMap.repo}
+          branch={apiMap.branch}
+          existingPaths={apiMap.nodes.map((n) => n.path)}
+        />
+      </div>
+
       <ApiDetailView apiMap={apiMap} />
 
       <section className="mt-10">
