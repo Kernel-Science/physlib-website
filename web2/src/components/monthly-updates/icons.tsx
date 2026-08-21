@@ -1,7 +1,6 @@
-/** The GitHub mark, used on buttons that hand off to a GitHub-hosted action
- *  (open an issue, open a pull request) - same path data as the navbar and
- *  footer's own copies, kept here too since this file is what the API
- *  tracker's dialogs already import icons from. */
+/** The GitHub mark - the one shared copy the navbar, footer, and the API
+ *  tracker's suggestion dialogs all import, rather than each carrying its
+ *  own inline SVG. */
 export function GitHubIcon({ className = "size-4" }: { className?: string }) {
   return (
     <svg aria-hidden className={className} fill="currentColor" viewBox="0 0 24 24">
