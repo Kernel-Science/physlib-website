@@ -56,7 +56,7 @@ function TabSwitcher({
               : "text-muted hover:text-foreground"
           }`}
         >
-          {t === "issue" ? "Issue" : "Pull request"}
+          {t === "issue" ? "Create a GitHub issue" : "Change the code directly"}
         </button>
       ))}
     </div>
@@ -744,8 +744,8 @@ export function SuggestNewApiDialog({
           ) : (
             <>
               <p className="mt-4 text-sm leading-relaxed text-muted">
-                This opens a new file on GitHub, prefilled with what&apos;s
-                above - review it and commit. GitHub forks the repo for you
+                This opens a new file on GitHub, prefilled with the text
+                above - add any extra information and commit. GitHub forks the repo for you
                 and opens a pull request automatically. You&apos;ll need to
                 be signed in to a GitHub account.
               </p>
