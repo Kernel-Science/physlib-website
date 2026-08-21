@@ -165,8 +165,8 @@ export function Navbar() {
               rel="noopener noreferrer"
               className="hidden sm:inline-flex items-center gap-1.5 h-8 rounded px-3 text-xs font-medium transition-opacity hover:opacity-80"
               style={{
-                background: "var(--section-emphasis)",
-                color: "var(--section-emphasis-fg)",
+                background: "var(--github-button-bg)",
+                color: "var(--github-button-fg)",
                 letterSpacing: "-0.01em",
               }}
             >
@@ -243,7 +243,7 @@ export function Navbar() {
                 rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
                 className="inline-flex items-center gap-2 h-11 rounded px-4 text-sm font-medium w-full justify-center transition-opacity hover:opacity-80"
-                style={{ background: "var(--section-emphasis)", color: "var(--section-emphasis-fg)" }}
+                style={{ background: "var(--github-button-bg)", color: "var(--github-button-fg)" }}
               >
                 <GitHubIcon />
                 GitHub

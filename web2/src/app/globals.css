@@ -23,6 +23,12 @@
   --section-emphasis: oklch(0.085 0.04 270);
   --section-emphasis-border: oklch(1 0 0 / 0.12);
   --section-emphasis-fg: oklch(1 0 0);
+  /* The black "GitHub" pill buttons (navbar, suggest dialogs). Deliberately
+     its own token rather than reusing section-emphasis: that one is meant
+     to stay dark-toned in both themes, but a button needs to actually
+     contrast against its surroundings - so this one inverts instead. */
+  --github-button-bg: oklch(0.085 0.04 270);
+  --github-button-fg: oklch(1 0 0);
 }
 
 /* Dark mode — midnight blue */
@@ -39,6 +45,11 @@
   --section-emphasis: oklch(0.14 0.04 270);
   --section-emphasis-border: oklch(1 0 0 / 0.10);
   --section-emphasis-fg: oklch(1 0 0);
+  /* Inverted from light mode: white pill, dark text - same two colours as
+     the light-mode button, roles swapped, so it still reads clearly against
+     the dark page instead of nearly vanishing into it. */
+  --github-button-bg: oklch(1 0 0);
+  --github-button-fg: oklch(0.085 0.04 270);
 }
 
 /* ─── Base ──────────────────────────────────────────────────── */

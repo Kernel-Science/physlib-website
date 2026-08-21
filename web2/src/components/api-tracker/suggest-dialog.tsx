@@ -21,8 +21,8 @@ function githubButtonClasses(ready: boolean): string {
   return ready ? `${base} hover:opacity-80` : `${base} opacity-40`;
 }
 const githubButtonStyle = {
-  background: "var(--section-emphasis)",
-  color: "var(--section-emphasis-fg)",
+  background: "var(--github-button-bg)",
+  color: "var(--github-button-fg)",
   letterSpacing: "-0.01em",
 } as const;
 
