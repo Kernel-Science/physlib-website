@@ -2,7 +2,29 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { ApiMapNode } from "@/lib/yaml";
-import { TopRightArrowIcon } from "@/components/monthly-updates/icons";
+import { GitHubIcon } from "@/components/monthly-updates/icons";
+
+/** The site's one filled "does a thing on GitHub" button style - same
+ *  black/white tokens and layout as the navbar's own GitHub button, so
+ *  these dialogs hand off to GitHub looking like every other GitHub link on
+ *  the site rather than inventing their own accent-colored variant.
+ *
+ *  `ready` fades it to 40% with no hover brightening, standing in for a
+ *  disabled look - but it's never actually the `disabled` attribute, since
+ *  a truly disabled element can't be clicked, and clicking while incomplete
+ *  is exactly what's supposed to redden the empty fields below. Hover was
+ *  deliberately left out of the faded state: `hover:opacity-80` would have
+ *  beaten the fade the moment the pointer landed on the button to click it -
+ *  the one moment the grey cue most needs to hold. */
+function githubButtonClasses(ready: boolean): string {
+  const base = "flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium transition-opacity";
+  return ready ? `${base} hover:opacity-80` : `${base} opacity-40`;
+}
+const githubButtonStyle = {
+  background: "var(--section-emphasis)",
+  color: "var(--section-emphasis-fg)",
+  letterSpacing: "-0.01em",
+} as const;
 
 /** Known to exist on the repo - it's the label the API issues already use. */
 const ISSUE_LABEL = "API";
@@ -180,6 +202,10 @@ export function SuggestDialog({
   const [text, setText] = useState(c.initialText);
   const [why, setWhy] = useState("");
   const [copiedNotice, setCopiedNotice] = useState(false);
+  // Set only inside submitIssue, on a failed attempt - never cleared by
+  // typing, so the red border stays put until the reader clicks again and
+  // it's re-checked (and cleared, if they've since fixed it).
+  const [textInvalid, setTextInvalid] = useState(false);
 
   // Openness lives on the element, never mirrored into React state. Mirroring
   // it desyncs: Esc closes the dialog natively and sets the state false, and
@@ -199,6 +225,7 @@ export function SuggestDialog({
     setText(kind === "overview" ? node.overview : "");
     setWhy("");
     setCopiedNotice(false);
+    setTextInvalid(false);
   }, [node.path, node.overview, kind]);
 
   const filePath = `${node.path}/API-map.yaml`;
@@ -208,6 +235,15 @@ export function SuggestDialog({
   const editUrl = `https://github.com/${repo}/edit/${branch}/${filePath}`;
 
   const submitIssue = async () => {
+    if (text.trim().length === 0) {
+      setTextInvalid(true);
+      return;
+    }
+    setTextInvalid(false);
+    // Filed but unchanged: not a missing field, just nothing new to
+    // propose - the hint below the field already says so.
+    if (kind === "overview" && text.trim() === node.overview.trim()) return;
+
     const body = buildIssueBody({
       node,
       text,
@@ -240,7 +276,10 @@ export function SuggestDialog({
   const filled = text.trim().length > 0;
   // Proposing the overview back unchanged would file a no-op issue.
   const unchanged = kind === "overview" && text.trim() === node.overview.trim();
-  const canSubmitIssue = filled && !unchanged;
+  // Greyed out when there's nothing to submit yet - but never actually
+  // `disabled`: a disabled button can't be clicked at all, and clicking
+  // while empty is exactly what's supposed to redden the field.
+  const ready = filled && !unchanged;
 
   return (
     <>
@@ -356,7 +395,9 @@ export function SuggestDialog({
                   onChange={(e) => setText(e.target.value)}
                   rows={c.rows}
                   placeholder={c.placeholder}
-                  className="mt-1.5 w-full resize-y rounded-lg border border-border bg-surface-secondary/40 p-2.5 text-sm outline-none placeholder:text-muted/50 focus:border-accent"
+                  className={`mt-1.5 w-full resize-y rounded-lg border bg-surface-secondary/40 p-2.5 text-sm outline-none placeholder:text-muted/50 focus:border-accent ${
+                    textInvalid ? "border-red-500" : "border-border"
+                  }`}
                 />
               </label>
 
@@ -403,11 +444,11 @@ export function SuggestDialog({
                   <button
                     type="button"
                     onClick={submitIssue}
-                    disabled={!canSubmitIssue}
-                    className="flex items-center gap-1.5 rounded-lg bg-accent px-3 py-1.5 text-sm font-medium text-accent-foreground transition-opacity disabled:opacity-40"
+                    className={githubButtonClasses(ready)}
+                    style={githubButtonStyle}
                   >
+                    <GitHubIcon />
                     Create issue
-                    <TopRightArrowIcon className="size-3" />
                   </button>
                 </div>
               </div>
@@ -436,10 +477,11 @@ export function SuggestDialog({
                   href={editUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 rounded-lg bg-accent px-3 py-1.5 text-sm font-medium text-accent-foreground"
+                  className={githubButtonClasses(true)}
+                  style={githubButtonStyle}
                 >
+                  <GitHubIcon />
                   Edit on GitHub
-                  <TopRightArrowIcon className="size-3" />
                 </a>
               </div>
             </>
@@ -531,6 +573,11 @@ export function SuggestNewApiDialog({
   const [overview, setOverview] = useState("");
   const [why, setWhy] = useState("");
   const [copiedNotice, setCopiedNotice] = useState(false);
+  // Set only by validateRequired, on a failed attempt - never cleared by
+  // typing, so a red border stays put until the reader clicks again.
+  const [titleInvalid, setTitleInvalid] = useState(false);
+  const [pathInvalid, setPathInvalid] = useState(false);
+  const [overviewInvalid, setOverviewInvalid] = useState(false);
 
   const openDialog = () => dialogRef.current?.showModal();
   const closeDialog = () => dialogRef.current?.close();
@@ -545,13 +592,32 @@ export function SuggestNewApiDialog({
     setOverview("");
     setWhy("");
     setCopiedNotice(false);
+    setTitleInvalid(false);
+    setPathInvalid(false);
+    setOverviewInvalid(false);
   }, [initialPath, initialTitle]);
 
   const cleanPath = path.trim().replace(/^\/+|\/+$/g, "");
   const collides = existingPaths.includes(cleanPath);
   const filled =
     title.trim().length > 0 && cleanPath.length > 0 && overview.trim().length > 0;
-  const canSubmit = filled && !collides;
+  // Greyed out when there's nothing submittable yet - but never actually
+  // `disabled`: a disabled element can't be clicked at all, and clicking
+  // while incomplete is exactly what's supposed to redden the empty fields.
+  const ready = filled && !collides;
+
+  // Shared by both tabs' actions: mark whichever required fields are still
+  // empty (so their border goes red) and report whether it's safe to
+  // proceed. Called only at click time, never on every keystroke.
+  const validateRequired = () => {
+    const missingTitle = title.trim().length === 0;
+    const missingPath = cleanPath.length === 0;
+    const missingOverview = overview.trim().length === 0;
+    setTitleInvalid(missingTitle);
+    setPathInvalid(missingPath);
+    setOverviewInvalid(missingOverview);
+    return !missingTitle && !missingPath && !missingOverview;
+  };
 
   const issueTitle = `API-map: new API — ${title.trim() || "untitled"}`;
   const filePath = `${cleanPath}/API-map.yaml`;
@@ -578,6 +644,11 @@ export function SuggestNewApiDialog({
       : `${newFileBase}${newFileNameParam}`;
 
   const submitIssue = async () => {
+    if (!validateRequired()) return;
+    // A colliding path already has its own warning under the Path field;
+    // nothing more to say here.
+    if (collides) return;
+
     const body = buildNewApiBody({ title, path: cleanPath, overview, why });
     const base =
       `https://github.com/${repo}/issues/new` +
@@ -597,6 +668,14 @@ export function SuggestNewApiDialog({
       setCopiedNotice(false);
     }
     window.open(url, "_blank", "noopener,noreferrer");
+  };
+
+  // The pull-request link stays a real <a href> (so it's a genuine link -
+  // hover preview, open-in-new-tab, the works) rather than a button that
+  // calls window.open; a click handler just cancels the navigation when
+  // required fields are still empty.
+  const handleOpenPullRequest = (e: React.MouseEvent) => {
+    if (!validateRequired() || collides) e.preventDefault();
   };
 
   return (
@@ -657,7 +736,9 @@ export function SuggestNewApiDialog({
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="e.g. Minkowski Metric"
-              className="mt-1.5 w-full rounded-lg border border-border bg-surface-secondary/40 p-2.5 text-sm outline-none placeholder:text-muted/50 focus:border-accent"
+              className={`mt-1.5 w-full rounded-lg border bg-surface-secondary/40 p-2.5 text-sm outline-none placeholder:text-muted/50 focus:border-accent ${
+                titleInvalid ? "border-red-500" : "border-border"
+              }`}
             />
           </label>
 
@@ -673,7 +754,9 @@ export function SuggestNewApiDialog({
               value={path}
               onChange={(e) => setPath(e.target.value)}
               placeholder="e.g. Physlib/Relativity/MinkowskiMetric"
-              className="mt-1.5 w-full rounded-lg border border-border bg-surface-secondary/40 p-2.5 font-mono text-sm outline-none placeholder:text-muted/50 focus:border-accent"
+              className={`mt-1.5 w-full rounded-lg border bg-surface-secondary/40 p-2.5 font-mono text-sm outline-none placeholder:text-muted/50 focus:border-accent ${
+                pathInvalid ? "border-red-500" : "border-border"
+              }`}
             />
             {collides && (
               <span className="mt-1 block text-xs text-red-500">
@@ -690,7 +773,9 @@ export function SuggestNewApiDialog({
               onChange={(e) => setOverview(e.target.value)}
               rows={4}
               placeholder="Describe what this API is for…"
-              className="mt-1.5 w-full resize-y rounded-lg border border-border bg-surface-secondary/40 p-2.5 text-sm outline-none placeholder:text-muted/50 focus:border-accent"
+              className={`mt-1.5 w-full resize-y rounded-lg border bg-surface-secondary/40 p-2.5 text-sm outline-none placeholder:text-muted/50 focus:border-accent ${
+                overviewInvalid ? "border-red-500" : "border-border"
+              }`}
             />
           </label>
 
@@ -733,11 +818,11 @@ export function SuggestNewApiDialog({
                 <button
                   type="button"
                   onClick={submitIssue}
-                  disabled={!canSubmit}
-                  className="flex items-center gap-1.5 rounded-lg bg-accent px-3 py-1.5 text-sm font-medium text-accent-foreground transition-opacity disabled:opacity-40"
+                  className={githubButtonClasses(ready)}
+                  style={githubButtonStyle}
                 >
+                  <GitHubIcon />
                   Create issue
-                  <TopRightArrowIcon className="size-3" />
                 </button>
               </div>
             </>
@@ -758,28 +843,17 @@ export function SuggestNewApiDialog({
                 >
                   Cancel
                 </button>
-                {/* An <a> can't carry a disabled state, so the incomplete
-                    case is a matching inert <span> rather than a live link
-                    to an editor that would open on a half-written file. */}
-                {canSubmit ? (
-                  <a
-                    href={newFileUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 rounded-lg bg-accent px-3 py-1.5 text-sm font-medium text-accent-foreground"
-                  >
-                    Open a pull request
-                    <TopRightArrowIcon className="size-3" />
-                  </a>
-                ) : (
-                  <span
-                    aria-disabled="true"
-                    className="flex items-center gap-1.5 rounded-lg bg-accent px-3 py-1.5 text-sm font-medium text-accent-foreground opacity-40"
-                  >
-                    Open a pull request
-                    <TopRightArrowIcon className="size-3" />
-                  </span>
-                )}
+                <a
+                  href={newFileUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={handleOpenPullRequest}
+                  className={githubButtonClasses(ready)}
+                  style={githubButtonStyle}
+                >
+                  <GitHubIcon />
+                  Open a pull request
+                </a>
               </div>
             </>
           )}
