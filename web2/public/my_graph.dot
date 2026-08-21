@@ -115,6 +115,7 @@ digraph "import_graph" {
   "Physlib.Mathematics.Fin.Involutions" [shape=ellipse];
   "Physlib.Mathematics.Geometry.Metric.PseudoRiemannian.Defs" [shape=ellipse];
   "Physlib.Mathematics.Geometry.Metric.Riemannian.Defs" [shape=ellipse];
+  "Physlib.Mathematics.HasTemperateGrowth" [shape=ellipse];
   "Physlib.Mathematics.InnerProductSpace.Adjoint" [shape=ellipse];
   "Physlib.Mathematics.InnerProductSpace.Basic" [shape=ellipse];
   "Physlib.Mathematics.InnerProductSpace.Calculus" [shape=ellipse];
@@ -309,6 +310,7 @@ digraph "import_graph" {
   "Physlib.QuantumMechanics.FiniteTarget" [shape=ellipse];
   "Physlib.QuantumMechanics.FreeParticle.Basic" [shape=ellipse];
   "Physlib.QuantumMechanics.HarmonicOscillator.Basic" [shape=ellipse];
+  "Physlib.QuantumMechanics.HarmonicOscillator.Eigenstates" [shape=ellipse];
   "Physlib.QuantumMechanics.HarmonicOscillator.LadderOperators" [shape=ellipse];
   "Physlib.QuantumMechanics.HarmonicOscillator.OneDimension.Basic" [shape=ellipse];
   "Physlib.QuantumMechanics.HarmonicOscillator.OneDimension.Completeness" [shape=ellipse];
@@ -333,6 +335,7 @@ digraph "import_graph" {
   "Physlib.QuantumMechanics.Hydrogen.Basic" [shape=ellipse];
   "Physlib.QuantumMechanics.Hydrogen.LaplaceRungeLenzVector" [shape=ellipse];
   "Physlib.QuantumMechanics.InfiniteSquareWell.Basic" [shape=ellipse];
+  "Physlib.QuantumMechanics.OperatorAlgebra.Basic" [shape=ellipse];
   "Physlib.QuantumMechanics.Operators.AngularMomentum" [shape=ellipse];
   "Physlib.QuantumMechanics.Operators.Commutation" [shape=ellipse];
   "Physlib.QuantumMechanics.Operators.Covariance" [shape=ellipse];
@@ -376,6 +379,7 @@ digraph "import_graph" {
   "Physlib.Relativity.LorentzAlgebra.ExponentialMap" [shape=ellipse];
   "Physlib.Relativity.LorentzGroup.Basic" [shape=ellipse];
   "Physlib.Relativity.LorentzGroup.Boosts.Apply" [shape=ellipse];
+  "Physlib.Relativity.LorentzGroup.Boosts.Axis" [shape=ellipse];
   "Physlib.Relativity.LorentzGroup.Boosts.Basic" [shape=ellipse];
   "Physlib.Relativity.LorentzGroup.Boosts.Generalized" [shape=ellipse];
   "Physlib.Relativity.LorentzGroup.Orthochronous.Basic" [shape=ellipse];
@@ -391,6 +395,7 @@ digraph "import_graph" {
   "Physlib.Relativity.PauliMatrices.Relations" [shape=ellipse];
   "Physlib.Relativity.PauliMatrices.SelfAdjoint" [shape=ellipse];
   "Physlib.Relativity.PauliMatrices.ToTensor" [shape=ellipse];
+  "Physlib.Relativity.SL2C.AxisRotations" [shape=ellipse];
   "Physlib.Relativity.SL2C.Basic" [shape=ellipse];
   "Physlib.Relativity.SL2C.SelfAdjoint" [shape=ellipse];
   "Physlib.Relativity.Special.ProperTime" [shape=ellipse];
@@ -764,6 +769,8 @@ digraph "import_graph" {
   "Physlib.Mathematics.Geometry.Metric.PseudoRiemannian.Defs" -> "Physlib";
   "Physlib.Mathematics.Geometry.Metric.PseudoRiemannian.Defs" -> "Physlib.Mathematics.Geometry.Metric.Riemannian.Defs";
   "Physlib.Mathematics.Geometry.Metric.Riemannian.Defs" -> "Physlib";
+  "Physlib.Mathematics.HasTemperateGrowth" -> "Physlib";
+  "Physlib.Mathematics.HasTemperateGrowth" -> "Physlib.QuantumMechanics.HarmonicOscillator.Eigenstates";
   "Physlib.Mathematics.InnerProductSpace.Adjoint" -> "Physlib";
   "Physlib.Mathematics.InnerProductSpace.Adjoint" -> "Physlib.Mathematics.Calculus.AdjFDeriv";
   "Physlib.Mathematics.InnerProductSpace.Basic" -> "Physlib";
@@ -773,11 +780,13 @@ digraph "import_graph" {
   "Physlib.Mathematics.InnerProductSpace.Calculus" -> "Physlib";
   "Physlib.Mathematics.InnerProductSpace.Calculus" -> "Physlib.Mathematics.Calculus.AdjFDeriv";
   "Physlib.Mathematics.InnerProductSpace.Gaussian" -> "Physlib";
+  "Physlib.Mathematics.InnerProductSpace.Gaussian" -> "Physlib.QuantumMechanics.HarmonicOscillator.Eigenstates";
   "Physlib.Mathematics.InnerProductSpace.Submodule" -> "Physlib";
   "Physlib.Mathematics.InnerProductSpace.Submodule" -> "Physlib.QuantumMechanics.Operators.Unbounded";
   "Physlib.Mathematics.KroneckerDelta.Basic" -> "Physlib";
   "Physlib.Mathematics.KroneckerDelta.Basic" -> "Physlib.Mathematics.KroneckerDelta.Contraction";
   "Physlib.Mathematics.KroneckerDelta.Basic" -> "Physlib.Mathematics.LeviCivita.Basic";
+  "Physlib.Mathematics.KroneckerDelta.Basic" -> "Physlib.QuantumMechanics.HarmonicOscillator.Eigenstates";
   "Physlib.Mathematics.KroneckerDelta.Basic" -> "Physlib.QuantumMechanics.Operators.Commutation";
   "Physlib.Mathematics.KroneckerDelta.Basic" -> "Physlib.Relativity.PauliMatrices.Basic";
   "Physlib.Mathematics.KroneckerDelta.Contraction" -> "Physlib";
@@ -813,6 +822,7 @@ digraph "import_graph" {
   "Physlib.Mathematics.SchurTriangulation" -> "Physlib.Mathematics.DataStructures.Matrix.LieTrace";
   "Physlib.Mathematics.SchurTriangulation" -> "Physlib.Relativity.SL2C.SelfAdjoint";
   "Physlib.Mathematics.SpecialFunctions.PhysHermite" -> "Physlib";
+  "Physlib.Mathematics.SpecialFunctions.PhysHermite" -> "Physlib.QuantumMechanics.HarmonicOscillator.Eigenstates";
   "Physlib.Mathematics.SpecialFunctions.PhysHermite" -> "Physlib.QuantumMechanics.HarmonicOscillator.OneDimension.Eigenfunction";
   "Physlib.Mathematics.Trigonometry.Tanh" -> "Physlib";
   "Physlib.Mathematics.Trigonometry.Tanh" -> "Physlib.QuantumMechanics.PoschlTeller.Basic";
@@ -877,6 +887,7 @@ digraph "import_graph" {
   "Physlib.Meta.Remark.Basic" -> "Physlib.Meta.Remark.Properties";
   "Physlib.Meta.Remark.Properties" -> "Physlib";
   "Physlib.Meta.Sorry" -> "Physlib";
+  "Physlib.Meta.Sorry" -> "Physlib.QuantumMechanics.HarmonicOscillator.Eigenstates";
   "Physlib.Meta.Sorry" -> "Physlib.Relativity.Tensors.Evaluation";
   "Physlib.Meta.Sorry" -> "Physlib.Relativity.Tensors.LeviCivita.Basic";
   "Physlib.Meta.Sorry" -> "Physlib.StatisticalMechanics.MicroCanonicalEnsemble.Basic";
@@ -1257,7 +1268,9 @@ digraph "import_graph" {
   "Physlib.QuantumMechanics.FiniteTarget" -> "Physlib";
   "Physlib.QuantumMechanics.FreeParticle.Basic" -> "Physlib";
   "Physlib.QuantumMechanics.HarmonicOscillator.Basic" -> "Physlib";
+  "Physlib.QuantumMechanics.HarmonicOscillator.Basic" -> "Physlib.QuantumMechanics.HarmonicOscillator.Eigenstates";
   "Physlib.QuantumMechanics.HarmonicOscillator.Basic" -> "Physlib.QuantumMechanics.HarmonicOscillator.LadderOperators";
+  "Physlib.QuantumMechanics.HarmonicOscillator.Eigenstates" -> "Physlib";
   "Physlib.QuantumMechanics.HarmonicOscillator.LadderOperators" -> "Physlib";
   "Physlib.QuantumMechanics.HarmonicOscillator.OneDimension.Basic" -> "Physlib";
   "Physlib.QuantumMechanics.HarmonicOscillator.OneDimension.Basic" -> "Physlib.QuantumMechanics.HarmonicOscillator.OneDimension.Eigenfunction";
@@ -1305,6 +1318,7 @@ digraph "import_graph" {
   "Physlib.QuantumMechanics.Hydrogen.Basic" -> "Physlib.QuantumMechanics.Hydrogen.LaplaceRungeLenzVector";
   "Physlib.QuantumMechanics.Hydrogen.LaplaceRungeLenzVector" -> "Physlib";
   "Physlib.QuantumMechanics.InfiniteSquareWell.Basic" -> "Physlib";
+  "Physlib.QuantumMechanics.OperatorAlgebra.Basic" -> "Physlib";
   "Physlib.QuantumMechanics.Operators.AngularMomentum" -> "Physlib";
   "Physlib.QuantumMechanics.Operators.AngularMomentum" -> "Physlib.QuantumMechanics.Operators.Commutation";
   "Physlib.QuantumMechanics.Operators.Commutation" -> "Physlib";
@@ -1424,6 +1438,7 @@ digraph "import_graph" {
   "Physlib.Relativity.LorentzGroup.Basic" -> "Physlib.Relativity.Tensors.RealTensor.Vector.Pre.Modules";
   "Physlib.Relativity.LorentzGroup.Basic" -> "Physlib.Relativity.Tensors.RealTensor.Vector.Representation";
   "Physlib.Relativity.LorentzGroup.Boosts.Apply" -> "Physlib";
+  "Physlib.Relativity.LorentzGroup.Boosts.Axis" -> "Physlib";
   "Physlib.Relativity.LorentzGroup.Boosts.Basic" -> "Physlib";
   "Physlib.Relativity.LorentzGroup.Boosts.Basic" -> "Physlib.Relativity.LorentzGroup.Boosts.Apply";
   "Physlib.Relativity.LorentzGroup.Boosts.Basic" -> "Physlib.SpaceAndTime.SpaceTime.Boosts";
@@ -1459,11 +1474,14 @@ digraph "import_graph" {
   "Physlib.Relativity.PauliMatrices.ToTensor" -> "Physlib";
   "Physlib.Relativity.PauliMatrices.ToTensor" -> "Physlib.Relativity.Bispinors.Basic";
   "Physlib.Relativity.PauliMatrices.ToTensor" -> "Physlib.Relativity.PauliMatrices.Relations";
+  "Physlib.Relativity.SL2C.AxisRotations" -> "Physlib";
+  "Physlib.Relativity.SL2C.AxisRotations" -> "Physlib.Relativity.LorentzGroup.Boosts.Axis";
   "Physlib.Relativity.SL2C.Basic" -> "Physlib";
   "Physlib.Relativity.SL2C.Basic" -> "Physlib.Relativity.Fermions.Weyl.DualLeftHanded";
   "Physlib.Relativity.SL2C.Basic" -> "Physlib.Relativity.Fermions.Weyl.DualRightHanded";
   "Physlib.Relativity.SL2C.Basic" -> "Physlib.Relativity.Fermions.Weyl.LeftHanded";
   "Physlib.Relativity.SL2C.Basic" -> "Physlib.Relativity.Fermions.Weyl.RightHanded";
+  "Physlib.Relativity.SL2C.Basic" -> "Physlib.Relativity.SL2C.AxisRotations";
   "Physlib.Relativity.SL2C.Basic" -> "Physlib.Relativity.Tensors.ComplexTensor.Vector.Pre.Modules";
   "Physlib.Relativity.SL2C.SelfAdjoint" -> "Physlib";
   "Physlib.Relativity.SL2C.SelfAdjoint" -> "Physlib.Relativity.SL2C.Basic";
