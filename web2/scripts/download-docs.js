@@ -51,25 +51,43 @@ async function downloadZip(url, dest) {
   });
 }
 
-async function run() {
-  console.log('Fetching latest workflow run for DocsArtifact.yml...');
-  const runsData = await fetchJson(`https://api.github.com/repos/${REPO}/actions/workflows/DocsArtifact.yml/runs?status=completed&per_page=1`);
-  
-  if (!runsData.workflow_runs || runsData.workflow_runs.length === 0) {
-    console.warn('⚠️ No completed runs found for DocsArtifact.yml in ' + REPO);
-    console.warn('⚠️ Skipping docs download for this build. Please run the workflow manually in GitHub Actions!');
-    process.exit(0); // Exit gracefully so Vercel build succeeds without docs
+const RUNS_TO_SEARCH = 10;
+
+// DocsArtifact.yml builds an upstream Lean project, so it fails from time to
+// time and produces no artifact. Asking only for the newest run would then
+// abort the site build even though a perfectly good artifact still exists, so
+// walk back through recent successful runs and take the newest usable one.
+async function findDocArtifact() {
+  const runsData = await fetchJson(`https://api.github.com/repos/${REPO}/actions/workflows/DocsArtifact.yml/runs?status=success&per_page=${RUNS_TO_SEARCH}`);
+  const runs = runsData.workflow_runs || [];
+
+  if (runs.length === 0) {
+    console.warn('⚠️ No successful runs found for DocsArtifact.yml in ' + REPO);
+    return null;
   }
 
-  const runId = runsData.workflow_runs[0].id;
-  console.log(`Found run ID: ${runId}`);
+  for (const workflowRun of runs) {
+    const artifactsData = await fetchJson(`https://api.github.com/repos/${REPO}/actions/runs/${workflowRun.id}/artifacts`);
+    const artifact = (artifactsData.artifacts || []).find(a => a.name === 'documentation' && !a.expired);
 
-  console.log('Fetching artifacts for run...');
-  const artifactsData = await fetchJson(`https://api.github.com/repos/${REPO}/actions/runs/${runId}/artifacts`);
-  
-  const docArtifact = artifactsData.artifacts.find(a => a.name === 'documentation');
+    if (artifact) {
+      console.log(`Using documentation artifact from run ${workflowRun.id} (${workflowRun.created_at}).`);
+      return artifact;
+    }
+
+    console.warn(`Run ${workflowRun.id} has no usable documentation artifact, falling back to an older run...`);
+  }
+
+  return null;
+}
+
+async function run() {
+  console.log('Looking for the newest usable documentation artifact...');
+  const docArtifact = await findDocArtifact();
+
   if (!docArtifact) {
-    console.error('Documentation artifact not found in the latest run.');
+    console.error(`No documentation artifact found in the last ${RUNS_TO_SEARCH} successful runs of DocsArtifact.yml.`);
+    console.error('Failing the build so the previous deployment, which still has docs, keeps serving.');
     process.exit(1);
   }
 

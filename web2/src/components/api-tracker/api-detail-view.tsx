@@ -10,7 +10,7 @@ import {
 import { selectApiMapEntry } from "@/lib/api-map-hash";
 import { API_STATUS_DOT, API_STATUS_LABEL, apiStatusKind } from "@/lib/api-map-status";
 import { TopRightArrowIcon } from "@/components/monthly-updates/icons";
-import { SuggestDialog } from "@/components/api-tracker/suggest-dialog";
+import { SuggestDialog, SuggestNewApiDialog } from "@/components/api-tracker/suggest-dialog";
 
 function ChevronIcon({ direction }: { direction: "left" | "right" }) {
   return (
@@ -259,18 +259,28 @@ export function ApiDetailView({ apiMap }: { apiMap: ApiMap }) {
         </header>
 
         {!node && (
-          <p className="mb-5 rounded-lg border border-dashed border-border bg-surface-secondary/50 p-4 text-sm text-muted">
-            This API is referenced as a dependency but has no{" "}
-            <code>API-map.yaml</code> of its own yet, so there is no overview or
-            requirements list to show.
-          </p>
+          <div className="mb-5 flex flex-wrap items-center justify-between gap-3 rounded-lg border border-dashed border-border bg-surface-secondary/50 p-4 text-sm text-muted">
+            <p>
+              This API is referenced as a dependency but has no{" "}
+              <code>API-map.yaml</code> of its own yet, so there is no
+              overview or requirements list to show.
+            </p>
+            <SuggestNewApiDialog
+              repo={repo}
+              branch={branch}
+              existingPaths={nodes.map((n) => n.path)}
+              initialPath={path.replace(/\.lean$/i, "")}
+              initialTitle={title}
+              triggerLabel="Suggest an API-map.yaml"
+            />
+          </div>
         )}
 
         {node && (
           <section className="mb-6">
             <div className="mb-2 flex items-center justify-between gap-3">
               <SectionHeading className="">Overview</SectionHeading>
-              <SuggestDialog node={node} repo={repo} kind="overview" />
+              <SuggestDialog node={node} repo={repo} branch={branch} kind="overview" />
             </div>
             {overviewParagraphs.length > 0 ? (
               <div className="space-y-3 text-sm leading-relaxed text-foreground/80">
@@ -290,7 +300,7 @@ export function ApiDetailView({ apiMap }: { apiMap: ApiMap }) {
           <section className="mb-6">
             <div className="mb-2 flex items-center justify-between gap-3">
               <SectionHeading className="">Requirements</SectionHeading>
-              <SuggestDialog node={node} repo={repo} kind="requirement" />
+              <SuggestDialog node={node} repo={repo} branch={branch} kind="requirement" />
             </div>
             {total === 0 && (
               <p className="text-sm text-muted">
