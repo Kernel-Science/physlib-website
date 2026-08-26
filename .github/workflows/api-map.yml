@@ -31,6 +31,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
+          cache: "npm"
+          cache-dependency-path: web2/package-lock.json
+
+      # The generator parses API-map.yaml with js-yaml, a dependency of web2.
+      - name: Install dependencies
+        working-directory: web2
+        run: npm ci
 
       # Shared with the monthly-updates generator, which also reads this repo.
       - name: Cache physlib clone

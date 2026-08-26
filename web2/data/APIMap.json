@@ -1,7 +1,7 @@
 {
   "repo": "leanprover-community/physlib",
   "branch": "master",
-  "generatedAt": "2026-08-18T18:16:57.897Z",
+  "generatedAt": "2026-08-25T09:09:46.805Z",
   "nodes": [
     {
       "path": "Physlib/ClassicalFieldTheory/GaugeTheory",
@@ -299,7 +299,7 @@
     {
       "path": "Physlib/ClassicalMechanics/Pendulum",
       "title": "Configuration space for pendulum",
-      "overview": "A pendulum is a mass swinging under gravity on a string or rod; its\nconfiguration is set by angles and, for a moving support, the support position,\nso its configuration space is naturally a product of circles and lines. This API\ncovers the pendulum problems of Landau and Lifshitz, Mechanics, 3rd ed.,\nChapter 1, Section 5.\n\nAt present only the sliding pendulum has a defined configuration space, with\nthe horizontal support position and the string angle as its generalized\ncoordinates. The coplanar double pendulum's configuration space is declared but\nnot yet defined, and the miscellaneous pivot-motion problems have documentation\nonly. The remaining requirements, a manifold structure on the configuration\nspace, a map into real space, trajectories, and the lagrangian, are open and\nrecorded below with location N/A.",
+      "overview": "A pendulum is a mass swinging under gravity on a string or rod; its\nconfiguration is set by angles and, for a moving support, the support position,\nso its configuration space is naturally a product of circles and lines. This API\ncovers the pendulum problems of Landau and Lifshitz, Mechanics, 3rd ed.,\nChapter 1, Section 5.\n\nThe sliding pendulum has a defined configuration space in the generalized coordinates of the\nsupport position and the string angle. The simple pendulum's configuration space, an angle\nmodulo a full turn, carries the manifold structure and the map into `Space`; it has its own API\nmap in `Physlib/ClassicalMechanics/Pendulum/SimplePendulum`. The coplanar double pendulum's\nconfiguration space is declared but not yet defined, and the miscellaneous pivot-motion problems\nhave documentation only. The simple pendulum's Lagrangian and equation of motion on the\nEuclidean lift are recorded in its own API map; the trajectory based on the configuration\nspace, and the Lagrangian derived from it, remain open and are recorded below with location\nN/A.",
       "references": [
         "Landau & Lifshitz, Mechanics, 3rd Edition, Chapter 1 (The Equations of motion), Section 5 (The Lagrangian for a system of particles)."
       ],
@@ -310,14 +310,14 @@
           "location": "Physlib/ClassicalMechanics/Pendulum/SlidingPendulum.lean (ConfigurationSpace)"
         },
         {
-          "description": "The API shall contain the structure of a manifold on the configuration space.",
-          "done": false,
-          "location": "N/A"
+          "description": "The API contains the structure of a manifold on the configuration space (for the simple pendulum).",
+          "done": true,
+          "location": "Physlib/ClassicalMechanics/Pendulum/SimplePendulum/Geometric/Basic.lean (SimplePendulum.ConfigurationSpace.instIsManifold)"
         },
         {
-          "description": "The API shall contain a map from the configuration space to `Space`, giving the position of the pendulum in real space.",
-          "done": false,
-          "location": "N/A"
+          "description": "The API contains a map from the configuration space to `Space`, giving the position of the pendulum in real space (for the simple pendulum).",
+          "done": true,
+          "location": "Physlib/ClassicalMechanics/Pendulum/SimplePendulum/Geometric/Basic.lean (SimplePendulum.ConfigurationSpace.toSpace)"
         },
         {
           "description": "The API shall contain the definition of a trajectory based on the configuration space.",
@@ -341,6 +341,64 @@
         }
       ],
       "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Pendulum/API-map.yaml"
+    },
+    {
+      "path": "Physlib/ClassicalMechanics/Pendulum/SimplePendulum",
+      "title": "Simple pendulum",
+      "overview": "A simple pendulum is a bob on a rigid massless rod of length ℓ, pinned at a pivot and swinging\nin a vertical plane under gravity g. Its configuration is the angle of the rod from the downward\nvertical, taken modulo a full turn, so the configuration space is a circle; the position of the\nbob in the plane is (ℓ sin θ, −ℓ cos θ). The motion is governed by θ̈ + (g/ℓ) sin θ = 0. For\nsmall amplitudes it is harmonic with period 2π√(ℓ/g); for librations (amplitudes below the\ninverted position) the period grows with the amplitude and is given by a complete elliptic\nintegral. This API records the configuration space with its manifold structure and its\nembedding into physical space, together with the lifted Lagrangian and equation of motion;\nthe small-angle limit and the period follow in later modules.",
+      "references": [
+        "Landau & Lifshitz, Mechanics, 3rd Edition, Chapter 1 (The Equations of motion), Section 5 (The Lagrangian for a system of particles).",
+        "Landau & Lifshitz, Mechanics, 3rd Edition, Chapter 3 (Integration of the equations of motion), Section 11 (Motion in one dimension).",
+        "Landau & Lifshitz, Mechanics, 3rd Edition, Chapter 5 (Small oscillations), Section 21 (Free oscillations in one dimension)."
+      ],
+      "requirements": [
+        {
+          "description": "The key data structure, the configuration space of the simple pendulum, is defined as the angle of the rod from the downward vertical modulo a full turn.",
+          "done": true,
+          "location": "Physlib/ClassicalMechanics/Pendulum/SimplePendulum/Geometric/Basic.lean (SimplePendulum.ConfigurationSpace, SimplePendulum.ConfigurationSpace.circleHomeomorph)"
+        },
+        {
+          "description": "The API contains the structure of a manifold on the configuration space.",
+          "done": true,
+          "location": "Physlib/ClassicalMechanics/Pendulum/SimplePendulum/Geometric/Basic.lean (SimplePendulum.ConfigurationSpace.instChartedSpace, SimplePendulum.ConfigurationSpace.instIsManifold)"
+        },
+        {
+          "description": "The API contains the angular lift from the real line to the configuration space, periodic with period 2π.",
+          "done": true,
+          "location": "Physlib/ClassicalMechanics/Pendulum/SimplePendulum/Geometric/Basic.lean (SimplePendulum.ConfigurationSpace.ofAngle, SimplePendulum.ConfigurationSpace.ofAngle_periodic, SimplePendulum.ConfigurationSpace.ofAngle_eq_iff)"
+        },
+        {
+          "description": "The API contains a map from the configuration space to `Space`, giving the position of the bob in real space, together with the rod-length constraint.",
+          "done": true,
+          "location": "Physlib/ClassicalMechanics/Pendulum/SimplePendulum/Geometric/Basic.lean (SimplePendulum.ConfigurationSpace.toSpace, SimplePendulum.ConfigurationSpace.toSpace_ofAngle, SimplePendulum.ConfigurationSpace.toSpace_norm)"
+        },
+        {
+          "description": "The API shall contain the definition of a trajectory based on the configuration space.",
+          "done": false,
+          "location": "N/A"
+        },
+        {
+          "description": "The API contains the Lagrangian of the simple pendulum and its equation of motion.",
+          "done": true,
+          "location": "Physlib/ClassicalMechanics/Pendulum/SimplePendulum/Basic.lean (SimplePendulum.lagrangian, SimplePendulum.torque, SimplePendulum.EquationOfMotion, SimplePendulum.equationOfMotion_iff_scalar)"
+        },
+        {
+          "description": "The API shall contain the equivalence of the equation of motion with the vanishing of the variational gradient of the action, and energy conservation.",
+          "done": false,
+          "location": "N/A"
+        }
+      ],
+      "parents": [
+        {
+          "name": "Space",
+          "path": "Physlib/SpaceAndTime/Space"
+        },
+        {
+          "name": "Configuration space for pendulum",
+          "path": "Physlib/ClassicalMechanics/Pendulum"
+        }
+      ],
+      "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Pendulum/SimplePendulum/API-map.yaml"
     },
     {
       "path": "Physlib/ClassicalMechanics/RigidBody",
@@ -2031,9 +2089,9 @@
           "location": "Physlib/Relativity/Tensors/UnitTensor.lean (unitTensor, unitTensor_eq_permT_dual, contrT_single_unitTensor, unitTensor_invariant); Physlib/Relativity/Tensors/MetricTensor.lean (metricTensor, metricTensor_invariant, contrT_metricTensor_metricTensor, contrT_metricTensor_metricTensor_eq_dual_unit); Physlib/Relativity/Tensors/Contraction/UnitTensorContraction.lean (crossToEnd_unitTensor, crossToEnd_round_trip_of_unit_slot, crossToSlot_raise_lower_round_trip, crossToSlotEquiv); Physlib/Relativity/Tensors/Dual.lean (toDualMapAtIndex, fromDualMapAtIndex, toDualMapAtIndex_toDualMapAtIndex, toDualMapAtIndex_equivariant, toDualAtIndex)"
         },
         {
-          "description": "The API contains the evaluation of one index of a tensor at a fixed basis label, its components in the basis, its commutation with permutations, contractions and products, and the reconstruction of a tensor as the sum over basis labels of the evaluations of its last index, each tensored with the matching rank-one basis tensor and permuted back into the last slot.",
+          "description": "The API contains the evaluation of one index of a tensor at a fixed basis label, its components in the basis, its commutation with permutations, other evaluations, contractions and products, and the reconstruction of a tensor as the sum over basis labels of the evaluations of its last index, each tensored with the matching rank-one basis tensor and permuted back into the last slot.",
           "done": true,
-          "location": "Physlib/Relativity/Tensors/Evaluation.lean (Pure.evalPCoeff, Pure.evalP, Pure.evalPMultilinear, evalT, evalT_basis, evalT_permT, contrT_evalT, evalT_prodT_right, eq_sum_evalT, ext_of_evalT)"
+          "location": "Physlib/Relativity/Tensors/Evaluation.lean (Pure.evalPCoeff, Pure.evalP, Pure.evalPMultilinear, evalT, evalT_basis, evalT_permT, evalT_evalT, contrT_evalT, evalT_prodT_right, eq_sum_evalT, ext_of_evalT)"
         },
         {
           "description": "The API contains explicit constructors of tensors from vectors, from elements of a tensor product of two or three carriers, and from invariant maps, together with tensors specified by integer or rational components in the standard basis.",
@@ -2190,6 +2248,115 @@
         }
       ],
       "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/SpaceAndTime/GalileanGroup/API-map.yaml"
+    },
+    {
+      "path": "Physlib/SpaceAndTime/ReferenceFrame",
+      "title": "Reference frame",
+      "overview": "An observer describing motion needs a coordinate grid, and the grid is a\nchoice rather than a feature of space. Two points of space determine a\ndisplacement, and a displacement acquires numerical components only once\naxes have been picked. Space carries a zero point of its own, but an\nobserver is under no obligation to use it: which point the coordinates call\nzero is part of the observer's choice. A reference frame is that pair of\nchoices, an origin and a set of axes, carried along through time.\n\nAn inertial frame is one whose grid is not being pushed around. Its axes are\nthe same at every time, and its origin drifts in a straight line at constant\nspeed, both measured against the affine structure that space itself\nsupplies. This is a restriction on the observer rather than on whatever is\nbeing observed, and it is the setting in which the familiar Newtonian\nstatements about free motion hold.\n\nA vector quantity measured by an observer, a relative position, a velocity,\nan acceleration, a force, a momentum, is a list of components read off that\nobserver's axes. Such lists add and scale componentwise regardless of which\nquantity they stand for, so they share one carrier here; the physical\ndimension, units and transformation law belong to whatever definition\nsupplies the quantity. Lengths and angles are the exception, since they are\ngeometric facts about the displacement rather than about the numbers: they\nare taken from the underlying space through the frame's axes, so that a grid\nwith skew or unequal axes cannot make the same physical displacement appear\nto change length. When the axes are orthonormal this reduces to the familiar\nEuclidean formulas, the sum of the squared components giving the squared\nlength and the sum of the componentwise products giving the inner product.",
+      "references": [],
+      "requirements": [
+        {
+          "description": "The key data structure `ReferenceFrame d`, recording an affine origin and a displacement basis at each time, is defined.",
+          "done": true,
+          "location": "Physlib/SpaceAndTime/ReferenceFrame.lean (ReferenceFrame, ReferenceFrame.origin, ReferenceFrame.basis)"
+        },
+        {
+          "description": "The API contains a construction of a frame from the trajectories of a collection of reference points forming an affine basis at each time.",
+          "done": true,
+          "location": "Physlib/SpaceAndTime/ReferenceFrame.lean (ReferenceFrame.fromReferencePoints)"
+        },
+        {
+          "description": "The API contains the condition that a frame induces the same inner product on coordinates at every time.",
+          "done": true,
+          "location": "Physlib/SpaceAndTime/ReferenceFrame.lean (ReferenceFrame.IsMetricConserved)"
+        },
+        {
+          "description": "The API contains the condition that a frame's axes are orthonormal at every time, the result that such a frame conserves its coordinate metric, and the instance making that available to typeclass inference.",
+          "done": true,
+          "location": "Physlib/SpaceAndTime/ReferenceFrame.lean (ReferenceFrame.Orthonormal, Orthonormal.isMetricConserved, Fact frame.IsMetricConserved)"
+        },
+        {
+          "description": "The API contains the condition for a frame to be inertial, namely that its origin moves with constant velocity and its axes are the same at every time.",
+          "done": true,
+          "location": "Physlib/SpaceAndTime/ReferenceFrame.lean (ReferenceFrame.IsInertial, origin_moves_uniformly, basis_conserved)"
+        },
+        {
+          "description": "The API contains the constant velocity of an inertial frame's origin.",
+          "done": true,
+          "location": "Physlib/SpaceAndTime/ReferenceFrame.lean (IsInertial.velocity)"
+        },
+        {
+          "description": "The API contains the result that an inertial frame conserves its coordinate metric, and the instance making that available to typeclass inference.",
+          "done": true,
+          "location": "Physlib/SpaceAndTime/ReferenceFrame.lean (IsInertial.isMetricConserved, Fact frame.IsMetricConserved)"
+        },
+        {
+          "description": "The API contains the carrier `frame.Vector` for the components of a vector quantity measured relative to a frame, together with its equivalence to coordinate tuples.",
+          "done": true,
+          "location": "Physlib/SpaceAndTime/ReferenceFrame.lean (ReferenceFrame.Vector, components, componentEquiv, componentLinearEquiv)"
+        },
+        {
+          "description": "The API contains the additive and scalar structure on frame vectors, inherited componentwise.",
+          "done": true,
+          "location": "Physlib/SpaceAndTime/ReferenceFrame.lean (AddCommGroup frame.Vector, Module ℝ frame.Vector)"
+        },
+        {
+          "description": "The API contains the identification of a frame vector with a geometric displacement in space at a given time, through the frame's basis, in both linear and continuous linear form.",
+          "done": true,
+          "location": "Physlib/SpaceAndTime/ReferenceFrame.lean (dispEquiv, contDispEquiv)"
+        },
+        {
+          "description": "The API contains the topology on frame vectors, its continuous linear equivalence with coordinate tuples, and finite dimensionality.",
+          "done": true,
+          "location": "Physlib/SpaceAndTime/ReferenceFrame.lean (componentContLinearEquiv, TopologicalSpace frame.Vector, FiniteDimensional ℝ frame.Vector)"
+        },
+        {
+          "description": "The API contains the norm and inner product on frame vectors of a frame with conserved coordinate metric, pulled back through the frame basis from geometric displacement space, so that a displacement keeps its length and its angles when the axes are skew or unequally scaled.",
+          "done": true,
+          "location": "Physlib/SpaceAndTime/ReferenceFrame.lean (NormedAddCommGroup frame.Vector, InnerProductSpace ℝ frame.Vector)"
+        },
+        {
+          "description": "The API contains the Euclidean component formulas for the norm and inner product in an orthonormal frame.",
+          "done": true,
+          "location": "Physlib/SpaceAndTime/ReferenceFrame.lean (norm_euclidean_if_orthonormal, inner_euclidean_if_orthonormal)"
+        },
+        {
+          "description": "The API shall contain a choice of time origin for a frame, so that time translations can act on frames.",
+          "done": false,
+          "location": "N/A"
+        },
+        {
+          "description": "The API shall contain the defining property of an inertial frame's origin velocity, and the origin and basis of a frame built from reference points.",
+          "done": false,
+          "location": "N/A"
+        },
+        {
+          "description": "The API shall contain the relative motion of two inertial frames, expressed as the boost, rotation and translation carrying one to the other, together with the induced transformation law for frame vectors.",
+          "done": false,
+          "location": "N/A"
+        },
+        {
+          "description": "The API shall contain the derivative of a trajectory expressed in a frame, giving the velocity and acceleration measured by that frame as the time derivative of its coordinate components.",
+          "done": false,
+          "location": "N/A"
+        },
+        {
+          "description": "The API shall contain the statement that a frame whose axes are constant and whose origin moves with constant velocity relative to an inertial frame is itself inertial.",
+          "done": false,
+          "location": "N/A"
+        }
+      ],
+      "parents": [
+        {
+          "name": "Space",
+          "path": "Physlib/SpaceAndTime/Space"
+        },
+        {
+          "name": "Time",
+          "path": "Physlib/SpaceAndTime/Time"
+        }
+      ],
+      "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/SpaceAndTime/ReferenceFrame/API-map.yaml"
     },
     {
       "path": "Physlib/SpaceAndTime/Space",
@@ -2619,6 +2786,99 @@
       "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/StatisticalMechanics/CanonicalEnsemble/API-map.yaml"
     },
     {
+      "path": "Physlib/Thermodynamics/Temperature",
+      "title": "Temperature",
+      "overview": "Temperature here is measured from absolute zero and is taken to be\nnonnegative: no scale used here places a state below absolute zero, which\nexcludes the negative absolute temperatures a system with a bounded energy\nspectrum can carry. A choice of scale is a choice of how large one degree\nis, and nothing more, so two such choices differ by a positive ratio, and\nkelvin is the scale from which the others here are obtained by rescaling.\n\nIn statistical mechanics the quantity that actually appears is not the\ntemperature itself but its reciprocal, weighted by the Boltzmann constant:\nthe inverse temperature that multiplies an energy in a Boltzmann factor. On\npositive temperatures the correspondence is a bijection onto the positive\ninverse temperatures and reverses order, so a hot system is one with a small\ninverse temperature; the boundary value zero is paired with itself, which is\na convention of the underlying nonnegative reals rather than a physical\nstatement. The limit of large inverse temperature is the one recorded here:\nsending the inverse temperature to infinity drives the temperature to\nabsolute zero, the regime in which a system settles into its lowest energy\nstates.\n\nThermodynamic quantities are differentiated with respect to one or the other\nof these variables, so the change of variable between them is smooth at\npositive temperature, and a derivative in one variable determines the\nderivative in the other.",
+      "references": [
+        "L. D. Landau & E. M. Lifshitz, Statistical Physics, Part 1 (§9 temperature, §31 the Gibbs distribution).",
+        "N. F. Ramsey, Thermodynamics and statistical mechanics at negative absolute temperatures, Physical Review 103 (1956), 20-28."
+      ],
+      "requirements": [
+        {
+          "description": "The key data structure `Temperature`, an absolute temperature in an arbitrary scale that puts absolute zero at zero, is defined, with its coercions, topology, zero and extensionality.",
+          "done": true,
+          "location": "Physlib/Thermodynamics/Temperature/Basic.lean (Temperature, val, toReal, ext, Coe Temperature ℝ≥0, Coe Temperature ℝ, TopologicalSpace Temperature, Zero Temperature)"
+        },
+        {
+          "description": "The API contains the inverse temperature attached to a temperature, its defining formula in terms of the Boltzmann constant, and the construction of a temperature from an inverse temperature.",
+          "done": true,
+          "location": "Physlib/Thermodynamics/Temperature/Basic.lean (β, β_toReal, ofβ, ofβ_eq, ofβ_toReal)"
+        },
+        {
+          "description": "The API contains the result that passing to the inverse temperature and back is the identity in both directions.",
+          "done": true,
+          "location": "Physlib/Thermodynamics/Temperature/Basic.lean (β_ofβ, ofβ_β)"
+        },
+        {
+          "description": "The API contains the result that a strictly positive temperature has strictly positive inverse temperature.",
+          "done": true,
+          "location": "Physlib/Thermodynamics/Temperature/Basic.lean (beta_pos)"
+        },
+        {
+          "description": "The API contains the continuity of the temperature as a function of the inverse temperature at positive inverse temperature, and the differentiability of its real coordinate on the positive reals.",
+          "done": true,
+          "location": "Physlib/Thermodynamics/Temperature/Basic.lean (ofβ_continuousOn, ofβ_differentiableOn)"
+        },
+        {
+          "description": "The API contains the behaviour in the limit of large inverse temperature, namely eventual positivity and convergence of the temperature to absolute zero from above.",
+          "done": true,
+          "location": "Physlib/Thermodynamics/Temperature/Basic.lean (eventually_pos_ofβ, tendsto_toReal_ofβ_atTop, tendsto_ofβ_atTop)"
+        },
+        {
+          "description": "The API contains constructions of a temperature from a nonnegative real and from a real together with a proof of nonnegativity, with their defining equations.",
+          "done": true,
+          "location": "Physlib/Thermodynamics/Temperature/Basic.lean (ofNNReal, ofNNReal_val, coe_ofNNReal_coe, coe_ofNNReal_real, ofRealNonneg, ofRealNonneg_val)"
+        },
+        {
+          "description": "The API contains the derivative of the inverse temperature with respect to the temperature at positive temperature, and the chain rule converting a derivative with respect to the inverse temperature into a derivative with respect to the temperature.",
+          "done": true,
+          "location": "Physlib/Thermodynamics/Temperature/Basic.lean (betaFromReal, beta_fun_T_formula, beta_fun_T_eq_on_Ioi, deriv_beta_wrt_T, chain_rule_T_beta)"
+        },
+        {
+          "description": "The key data structure `TemperatureUnit`, a choice of temperature scale carrying a positive scale factor, is defined.",
+          "done": true,
+          "location": "Physlib/Thermodynamics/Temperature/TemperatureUnits.lean (TemperatureUnit, val_ne_zero, val_pos, Inhabited TemperatureUnit)"
+        },
+        {
+          "description": "The API contains the ratio of two temperature units as a nonnegative real, with its positivity and its reflexivity, symmetry and composition properties.",
+          "done": true,
+          "location": "Physlib/Thermodynamics/Temperature/TemperatureUnits.lean (HDiv TemperatureUnit TemperatureUnit ℝ≥0, div_eq_val, div_ne_zero, div_pos, div_self, div_symm, div_mul_div, div_mul_div_coe)"
+        },
+        {
+          "description": "The API contains the rescaling of a temperature unit by a positive real, with the ratios it induces and its composition law.",
+          "done": true,
+          "location": "Physlib/Thermodynamics/Temperature/TemperatureUnits.lean (scale, scale_div_self, self_div_scale, scale_one, scale_div_scale, scale_scale)"
+        },
+        {
+          "description": "The API contains kelvin as the reference temperature unit, together with the units obtained from it by rescaling.",
+          "done": true,
+          "location": "Physlib/Thermodynamics/Temperature/TemperatureUnits.lean (kelvin, nanokelvin, microkelvin, millikelvin, absoluteFahrenheit)"
+        },
+        {
+          "description": "The API shall contain the temperature manifold, diffeomorphic to the nonnegative reals, of which a temperature unit is a translationally invariant metric.",
+          "done": false,
+          "location": "N/A"
+        },
+        {
+          "description": "The API shall contain the conversion of a temperature value between two temperature units.",
+          "done": false,
+          "location": "N/A"
+        },
+        {
+          "description": "The API shall contain scales whose zero is offset from absolute zero, namely degrees Celsius and degrees Fahrenheit as ordinarily used, as opposed to the absolute Fahrenheit-sized degree already present, together with their conversion to absolute scales.",
+          "done": false,
+          "location": "N/A"
+        }
+      ],
+      "parents": [
+        {
+          "name": "Boltzmann constant",
+          "path": "Physlib/StatisticalMechanics/BoltzmannConstant.lean"
+        }
+      ],
+      "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Thermodynamics/Temperature/API-map.yaml"
+    },
+    {
       "path": "Physlib/Units",
       "title": "Units",
       "overview": "Every physical quantity has a dimension: a rational power of each base dimension,\nrecording how the numerical value of the quantity changes when the unit of each base\nquantity is changed. The LTMCT set has five base dimensions: length, time, mass,\ncharge and temperature, whose initials give the name; they are written L𝓭, T𝓭,\nM𝓭, C𝓭 and Θ𝓭. Dimensions multiply by adding exponents and invert by negating\nthem, so they form a commutative group with a rational power operation. The\nInternational System of Quantities (ISQ) uses a different set of seven base\nquantities, in which electric charge is derived as current times time;\nboth sets are available and are related by a faithful inclusion and a reduction.\nLTMCT is the set over which the typed unit layer (LTMCTUnitChoices and its SI choice)\nand the named derived quantities are built; the ISQ set carries SIUnitChoices.\n\nA unit system fixes one concrete unit for each base quantity. Changing from one system\nto another multiplies a quantity of dimension d by a positive factor: the product,\nover the base quantities, of the ratio of the two units raised to the exponent that d\nassigns to that base quantity. That factor is multiplicative in the dimension, equals\none when the two systems agree, and composes along a chain, so the value of a quantity\nin one system determines its value in every other. The statement is proved once for a\ngeneral set of base dimensions and specialises to the LTMCT set and to the ISQ set\nwithout being restated.\n\nA value carrying a dimension inherits the additive, order and scalar structure of its\nunderlying type, while products and quotients add and subtract the exponents. Area,\nspeed, energy, pressure and momentum appear as named dimensions with concrete units.\nA statement is dimensionally correct when its truth does not depend on the unit system\nin which it is written, which is the formal content of dimensional analysis; the API\nexpresses that condition for values, functions and propositions, and proves that the\nderivative and the integral of a dimensionally correct quantity are again\ndimensionally correct.",
@@ -2807,8 +3067,8 @@
         },
         {
           "description": "The unit types for electric current, amount of substance and luminous intensity shall carry the same rescaling operation as the other five, so that a decimal multiple such as the milliampere can be named.",
-          "done": false,
-          "location": "N/A"
+          "done": true,
+          "location": "Physlib/Units/SIUnitChoices.lean (CurrentUnit.scale, CurrentUnit.scale_div_self, CurrentUnit.self_div_scale, CurrentUnit.scale_one, CurrentUnit.scale_div_scale, CurrentUnit.scale_scale, CurrentUnit.milliamperes, AmountUnit.scale, AmountUnit.scale_div_self, AmountUnit.self_div_scale, AmountUnit.scale_one, AmountUnit.scale_div_scale, AmountUnit.scale_scale, LuminousIntensityUnit.scale, LuminousIntensityUnit.scale_div_self, LuminousIntensityUnit.self_div_scale, LuminousIntensityUnit.scale_one, LuminousIntensityUnit.scale_div_scale, LuminousIntensityUnit.scale_scale)"
         },
         {
           "description": "A unit-dependent type comes with the transformation of its elements induced by a change of unit, subject to composition along a chain of unit choices and triviality on an unchanged choice.",

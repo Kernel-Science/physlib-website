@@ -12,9 +12,21 @@ export const metadata: Metadata = {
 
 export default async function APITrackerPage() {
   const apiMap = await getApiMap();
+  const lastUpdated = apiMap.generatedAt
+    ? new Intl.DateTimeFormat("en-US", {
+        dateStyle: "medium",
+        timeStyle: "short",
+        timeZone: "UTC",
+      }).format(new Date(apiMap.generatedAt))
+    : null;
 
   return (
     <div className="mx-auto w-full max-w-5xl px-4 py-10 md:py-14">
+
+      <p className="text-xs text-muted mb-4">
+        {lastUpdated ? `Last updated: ${lastUpdated} UTC` : "Last updated: unknown"}
+      </p>
+
       <div className="mb-4 flex items-center justify-end">
         <SuggestNewApiDialog
           repo={apiMap.repo}
@@ -22,6 +34,7 @@ export default async function APITrackerPage() {
           existingPaths={apiMap.nodes.map((n) => n.path)}
         />
       </div>
+
 
       <ApiDetailView apiMap={apiMap} />
 
