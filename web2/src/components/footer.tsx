@@ -12,7 +12,6 @@ const footerLinks = {
   ],
   Learn: [
     { label: "Getting Started", href: "/getting-started" },
-    { label: "APIs", href: "/apis" },
     { label: "Project Ideas", href: "/project-ideas" },
   ],
   Community: [
