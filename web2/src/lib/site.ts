@@ -67,6 +67,7 @@ export const navSections: NavSection[] = [
     label: "Explore",
     items: [
       { label: "Dependency graphs", href: "/dependencies" },
+      { label: "References", href: "/references" },
       { label: "Search Physlib", href: site.search, external: true },
     ],
   },

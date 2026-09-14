@@ -1,0 +1,2769 @@
+{
+  "repo": "leanprover-community/physlib",
+  "branch": "master",
+  "generatedAt": "2026-09-11T21:52:24.021Z",
+  "references": [
+    {
+      "key": "abramowitz_stegun_1964",
+      "inBib": true,
+      "type": "book",
+      "authors": [
+        "Milton Abramowitz",
+        "Irene A. Stegun"
+      ],
+      "authorSortKey": "abramowitz",
+      "title": "Handbook of Mathematical Functions",
+      "year": "1964",
+      "venue": "National Bureau of Standards, (1964)",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/ClassicalMechanics/Pendulum/SimplePendulum/PeriodFormula.lean",
+          "line": 91,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Pendulum/SimplePendulum/PeriodFormula.lean#L91"
+        },
+        {
+          "file": "Physlib/Mathematics/SpecialFunctions/EllipticIntegral.lean",
+          "line": 69,
+          "subfolder": "Physlib/Mathematics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Mathematics/SpecialFunctions/EllipticIntegral.lean#L69"
+        }
+      ],
+      "count": 2
+    },
+    {
+      "key": "Allanach:2021yjy",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "B. C. Allanach",
+        "Maeve Madigan",
+        "Joseph Tooby-Smith"
+      ],
+      "authorSortKey": "allanach",
+      "title": "A nu supersymmetric anomaly-free atlas",
+      "year": "2022",
+      "venue": "JHEP 02 pp. 144 (2022)",
+      "url": "https://arxiv.org/abs/2107.07926",
+      "citations": [
+        {
+          "file": "Physlib/Particles/SuperSymmetry/MSSMNu/AnomalyCancellation/B3.lean",
+          "line": 17,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/SuperSymmetry/MSSMNu/AnomalyCancellation/B3.lean#L17"
+        },
+        {
+          "file": "Physlib/Particles/SuperSymmetry/MSSMNu/AnomalyCancellation/LineY3B3.lean",
+          "line": 19,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/SuperSymmetry/MSSMNu/AnomalyCancellation/LineY3B3.lean#L19"
+        },
+        {
+          "file": "Physlib/Particles/SuperSymmetry/MSSMNu/AnomalyCancellation/OrthogY3B3/Basic.lean",
+          "line": 18,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/SuperSymmetry/MSSMNu/AnomalyCancellation/OrthogY3B3/Basic.lean#L18"
+        },
+        {
+          "file": "Physlib/Particles/SuperSymmetry/MSSMNu/AnomalyCancellation/OrthogY3B3/PlaneWithY3B3.lean",
+          "line": 16,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/SuperSymmetry/MSSMNu/AnomalyCancellation/OrthogY3B3/PlaneWithY3B3.lean#L16"
+        },
+        {
+          "file": "Physlib/Particles/SuperSymmetry/MSSMNu/AnomalyCancellation/OrthogY3B3/ToSols.lean",
+          "line": 23,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/SuperSymmetry/MSSMNu/AnomalyCancellation/OrthogY3B3/ToSols.lean#L23"
+        },
+        {
+          "file": "Physlib/Particles/SuperSymmetry/MSSMNu/AnomalyCancellation/Y3.lean",
+          "line": 18,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/SuperSymmetry/MSSMNu/AnomalyCancellation/Y3.lean#L18"
+        }
+      ],
+      "count": 6
+    },
+    {
+      "key": "alvarez_gaume_ginsparg_1985",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "L. Alvarez-Gaume",
+        "P. H. Ginsparg"
+      ],
+      "authorSortKey": "alvarez-gaume",
+      "title": "The structure of gauge and gravitational anomalies",
+      "year": "1985",
+      "venue": "Annals of Physics 161 no. 2 pp. 423-490 (1985)",
+      "url": "https://doi.org/10.1016/0003-4916(85)90087-9",
+      "citations": [
+        {
+          "file": "Physlib/QFT/AnomalyCancellation/Basic.lean",
+          "line": 74,
+          "subfolder": "Physlib/QFT",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QFT/AnomalyCancellation/Basic.lean#L74"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "arnold_mechanics",
+      "inBib": true,
+      "type": "book",
+      "authors": [
+        "V. I. Arnold"
+      ],
+      "authorSortKey": "arnold",
+      "title": "Mathematical Methods of Classical Mechanics",
+      "year": "1989",
+      "venue": "Springer, Graduate Texts in Mathematics, (1989)",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/ClassicalMechanics/Pendulum/SimplePendulum/Basic.lean",
+          "line": 106,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Pendulum/SimplePendulum/Basic.lean#L106"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/Pendulum/SimplePendulum/Equilibria.lean",
+          "line": 69,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Pendulum/SimplePendulum/Equilibria.lean#L69"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/Pendulum/SimplePendulum/LiftInvariance.lean",
+          "line": 54,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Pendulum/SimplePendulum/LiftInvariance.lean#L54"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/Pendulum/SimplePendulum/Solution.lean",
+          "line": 81,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Pendulum/SimplePendulum/Solution.lean#L81"
+        }
+      ],
+      "count": 4
+    },
+    {
+      "key": "arnold_ode",
+      "inBib": true,
+      "type": "book",
+      "authors": [
+        "V. I. Arnold"
+      ],
+      "authorSortKey": "arnold",
+      "title": "Ordinary Differential Equations",
+      "year": "1973",
+      "venue": "MIT Press, (1973)",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/ClassicalMechanics/Pendulum/SimplePendulum/Solution.lean",
+          "line": 83,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Pendulum/SimplePendulum/Solution.lean#L83"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "arxiv_0912_0853",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "Emilian Dudas",
+        "Eran Palti"
+      ],
+      "authorSortKey": "dudas",
+      "title": "Froggatt-Nielsen models from E8 in F-theory GUTs",
+      "year": "2010",
+      "venue": "JHEP 01 pp. 127 (2010)",
+      "url": "https://arxiv.org/abs/0912.0853",
+      "citations": [
+        {
+          "file": "Physlib/Particles/SuperSymmetry/SU5/Potential.lean",
+          "line": 49,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/SuperSymmetry/SU5/Potential.lean#L49"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "arxiv_1401_5084",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "Sven Krippendorf",
+        "Damian Kaloni Mayorga Pena",
+        "Paul-Konstantin Oehlmann",
+        "Fabian Ruehle"
+      ],
+      "authorSortKey": "krippendorf",
+      "title": "Rational F-Theory GUTs without exotics",
+      "year": "2014",
+      "venue": "JHEP 07 pp. 013 (2014)",
+      "url": "https://arxiv.org/abs/1401.5084",
+      "citations": [
+        {
+          "file": "Physlib/StringTheory/FTheory/SU5/Fluxes/Basic.lean",
+          "line": 121,
+          "subfolder": "Physlib/StringTheory",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/StringTheory/FTheory/SU5/Fluxes/Basic.lean#L121"
+        },
+        {
+          "file": "Physlib/StringTheory/FTheory/SU5/Quanta/Basic.lean",
+          "line": 50,
+          "subfolder": "Physlib/StringTheory",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/StringTheory/FTheory/SU5/Quanta/Basic.lean#L50"
+        },
+        {
+          "file": "Physlib/StringTheory/FTheory/SU5/Quanta/Basic.lean",
+          "line": 211,
+          "subfolder": "Physlib/StringTheory",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/StringTheory/FTheory/SU5/Quanta/Basic.lean#L211"
+        },
+        {
+          "file": "Physlib/StringTheory/FTheory/SU5/Quanta/FiveQuanta.lean",
+          "line": 82,
+          "subfolder": "Physlib/StringTheory",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/StringTheory/FTheory/SU5/Quanta/FiveQuanta.lean#L82"
+        },
+        {
+          "file": "Physlib/StringTheory/FTheory/SU5/Quanta/FiveQuanta.lean",
+          "line": 914,
+          "subfolder": "Physlib/StringTheory",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/StringTheory/FTheory/SU5/Quanta/FiveQuanta.lean#L914"
+        },
+        {
+          "file": "Physlib/StringTheory/FTheory/SU5/Quanta/FiveQuanta.lean",
+          "line": 915,
+          "subfolder": "Physlib/StringTheory",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/StringTheory/FTheory/SU5/Quanta/FiveQuanta.lean#L915"
+        },
+        {
+          "file": "Physlib/StringTheory/FTheory/SU5/Quanta/TenQuanta.lean",
+          "line": 84,
+          "subfolder": "Physlib/StringTheory",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/StringTheory/FTheory/SU5/Quanta/TenQuanta.lean#L84"
+        },
+        {
+          "file": "Physlib/StringTheory/FTheory/SU5/Quanta/TenQuanta.lean",
+          "line": 1057,
+          "subfolder": "Physlib/StringTheory",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/StringTheory/FTheory/SU5/Quanta/TenQuanta.lean#L1057"
+        },
+        {
+          "file": "Physlib/StringTheory/FTheory/SU5/Quanta/TenQuanta.lean",
+          "line": 1058,
+          "subfolder": "Physlib/StringTheory",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/StringTheory/FTheory/SU5/Quanta/TenQuanta.lean#L1058"
+        }
+      ],
+      "count": 9
+    },
+    {
+      "key": "arxiv_1507_05961",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "Sven Krippendorf",
+        "Sakura Schafer-Nameki",
+        "Jin-Mann Wong"
+      ],
+      "authorSortKey": "krippendorf",
+      "title": "Froggatt-Nielsen meets Mordell-Weil: A Phenomenological Survey of Global F-theory GUTs with U(1)s",
+      "year": "2015",
+      "venue": "2015",
+      "url": "https://arxiv.org/abs/1507.05961",
+      "citations": [
+        {
+          "file": "Physlib/StringTheory/FTheory/SU5/Basic.lean",
+          "line": 59,
+          "subfolder": "Physlib/StringTheory",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/StringTheory/FTheory/SU5/Basic.lean#L59"
+        },
+        {
+          "file": "Physlib/StringTheory/FTheory/SU5/Charges/OfRationalSection.lean",
+          "line": 52,
+          "subfolder": "Physlib/StringTheory",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/StringTheory/FTheory/SU5/Charges/OfRationalSection.lean#L52"
+        },
+        {
+          "file": "Physlib/StringTheory/FTheory/SU5/Quanta/IsViable.lean",
+          "line": 58,
+          "subfolder": "Physlib/StringTheory",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/StringTheory/FTheory/SU5/Quanta/IsViable.lean#L58"
+        }
+      ],
+      "count": 3
+    },
+    {
+      "key": "arxiv_1605_03237",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "Patrick Draper",
+        "Howard E. Haber",
+        "Joshua T. Ruderman"
+      ],
+      "authorSortKey": "draper",
+      "title": "Partially Natural Two Higgs Doublet Models",
+      "year": "2016",
+      "venue": "JHEP 06 pp. 124 (2016)",
+      "url": "https://arxiv.org/abs/1605.03237",
+      "citations": [
+        {
+          "file": "Physlib/Particles/BeyondTheStandardModel/TwoHDM/Basic.lean",
+          "line": 23,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/BeyondTheStandardModel/TwoHDM/Basic.lean#L23"
+        },
+        {
+          "file": "Physlib/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "line": 47,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean#L47"
+        },
+        {
+          "file": "Physlib/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "line": 64,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean#L64"
+        },
+        {
+          "file": "Physlib/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "line": 73,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean#L73"
+        }
+      ],
+      "count": 4
+    },
+    {
+      "key": "arxiv_1912_04804",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "B. C. Allanach",
+        "Ben Gripaios",
+        "Joseph Tooby-Smith"
+      ],
+      "authorSortKey": "allanach",
+      "title": "Geometric General Solution to the U(1) Anomaly Equations",
+      "year": "2020",
+      "venue": "JHEP 05 pp. 065 (2020)",
+      "url": "https://arxiv.org/abs/1912.04804",
+      "citations": [
+        {
+          "file": "Physlib/QFT/QED/AnomalyCancellation/Even/BasisLinear.lean",
+          "line": 79,
+          "subfolder": "Physlib/QFT",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QFT/QED/AnomalyCancellation/Even/BasisLinear.lean#L79"
+        },
+        {
+          "file": "Physlib/QFT/QED/AnomalyCancellation/Even/LineInCubic.lean",
+          "line": 23,
+          "subfolder": "Physlib/QFT",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QFT/QED/AnomalyCancellation/Even/LineInCubic.lean#L23"
+        },
+        {
+          "file": "Physlib/QFT/QED/AnomalyCancellation/Even/Parameterization.lean",
+          "line": 18,
+          "subfolder": "Physlib/QFT",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QFT/QED/AnomalyCancellation/Even/Parameterization.lean#L18"
+        },
+        {
+          "file": "Physlib/QFT/QED/AnomalyCancellation/LineInPlaneCond.lean",
+          "line": 19,
+          "subfolder": "Physlib/QFT",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QFT/QED/AnomalyCancellation/LineInPlaneCond.lean#L19"
+        },
+        {
+          "file": "Physlib/QFT/QED/AnomalyCancellation/Odd/BasisLinear.lean",
+          "line": 74,
+          "subfolder": "Physlib/QFT",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QFT/QED/AnomalyCancellation/Odd/BasisLinear.lean#L74"
+        },
+        {
+          "file": "Physlib/QFT/QED/AnomalyCancellation/Odd/LineInCubic.lean",
+          "line": 23,
+          "subfolder": "Physlib/QFT",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QFT/QED/AnomalyCancellation/Odd/LineInCubic.lean#L23"
+        },
+        {
+          "file": "Physlib/QFT/QED/AnomalyCancellation/Odd/Parameterization.lean",
+          "line": 17,
+          "subfolder": "Physlib/QFT",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QFT/QED/AnomalyCancellation/Odd/Parameterization.lean#L17"
+        }
+      ],
+      "count": 7
+    },
+    {
+      "key": "arxiv_2006_03588",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "B. C. Allanach",
+        "Ben Gripaios",
+        "Joseph Tooby-Smith"
+      ],
+      "authorSortKey": "allanach",
+      "title": "Anomaly cancellation with an extra gauge boson",
+      "year": "2020",
+      "venue": "Phys. Rev. Lett. 125 pp. 161601 (2020)",
+      "url": "https://arxiv.org/abs/2006.03588",
+      "citations": [
+        {
+          "file": "Physlib/Particles/BeyondTheStandardModel/RHN/AnomalyCancellation/PlusU1/QuadSol.lean",
+          "line": 19,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/BeyondTheStandardModel/RHN/AnomalyCancellation/PlusU1/QuadSol.lean#L19"
+        },
+        {
+          "file": "Physlib/Particles/BeyondTheStandardModel/RHN/AnomalyCancellation/PlusU1/QuadSolToSol.lean",
+          "line": 16,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/BeyondTheStandardModel/RHN/AnomalyCancellation/PlusU1/QuadSolToSol.lean#L16"
+        }
+      ],
+      "count": 2
+    },
+    {
+      "key": "arxiv_2201_07245",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "Joe Davighi",
+        "Joseph Tooby-Smith"
+      ],
+      "authorSortKey": "davighi",
+      "title": "Electroweak flavour unification",
+      "year": "2022",
+      "venue": "JHEP 09 pp. 193 (2022)",
+      "url": "https://arxiv.org/abs/2201.07245",
+      "citations": [
+        {
+          "file": "Physlib/Particles/BeyondTheStandardModel/PatiSalam/Basic.lean",
+          "line": 21,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/BeyondTheStandardModel/PatiSalam/Basic.lean#L21"
+        },
+        {
+          "file": "Physlib/Particles/BeyondTheStandardModel/PatiSalam/Basic.lean",
+          "line": 51,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/BeyondTheStandardModel/PatiSalam/Basic.lean#L51"
+        }
+      ],
+      "count": 2
+    },
+    {
+      "key": "arxiv_2411_14941",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "F. Erman",
+        "O. T. Turgut"
+      ],
+      "authorSortKey": "erman",
+      "title": "Completeness of Energy Eigenfunctions for the Reflectionless Potential in Quantum Mechanics",
+      "year": "2024",
+      "venue": "American Journal of Physics 92 pp. 950-956 (2024)",
+      "url": "https://arxiv.org/abs/2411.14941",
+      "citations": [
+        {
+          "file": "Physlib/QuantumMechanics/PoschlTeller/Basic.lean",
+          "line": 40,
+          "subfolder": "Physlib/QuantumMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QuantumMechanics/PoschlTeller/Basic.lean#L40"
+        },
+        {
+          "file": "Physlib/QuantumMechanics/PoschlTeller/Basic.lean",
+          "line": 48,
+          "subfolder": "Physlib/QuantumMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QuantumMechanics/PoschlTeller/Basic.lean#L48"
+        }
+      ],
+      "count": 2
+    },
+    {
+      "key": "arxiv_hep_ph_0605184",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "M. Maniatis",
+        "A. von Manteuffel",
+        "O. Nachtmann",
+        "F. Nagel"
+      ],
+      "authorSortKey": "maniatis",
+      "title": "Stability and Symmetry Breaking in the General Two-Higgs-Doublet Model",
+      "year": "2006",
+      "venue": "Eur. Phys. J. C 48 pp. 805-823 (2006)",
+      "url": "https://arxiv.org/abs/hep-ph/0605184",
+      "citations": [
+        {
+          "file": "Physlib/Particles/BeyondTheStandardModel/TwoHDM/Basic.lean",
+          "line": 22,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/BeyondTheStandardModel/TwoHDM/Basic.lean#L22"
+        },
+        {
+          "file": "Physlib/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean",
+          "line": 18,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean#L18"
+        },
+        {
+          "file": "Physlib/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean",
+          "line": 35,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/BeyondTheStandardModel/TwoHDM/GramMatrix.lean#L35"
+        },
+        {
+          "file": "Physlib/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "line": 50,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean#L50"
+        },
+        {
+          "file": "Physlib/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "line": 68,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean#L68"
+        },
+        {
+          "file": "Physlib/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "line": 145,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean#L145"
+        },
+        {
+          "file": "Physlib/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "line": 199,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean#L199"
+        },
+        {
+          "file": "Physlib/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "line": 532,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean#L532"
+        },
+        {
+          "file": "Physlib/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "line": 538,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean#L538"
+        },
+        {
+          "file": "Physlib/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "line": 578,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean#L578"
+        },
+        {
+          "file": "Physlib/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "line": 584,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean#L584"
+        },
+        {
+          "file": "Physlib/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "line": 612,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean#L612"
+        },
+        {
+          "file": "Physlib/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean",
+          "line": 886,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/BeyondTheStandardModel/TwoHDM/Potential.lean#L886"
+        },
+        {
+          "file": "PhyslibAlpha/Particles/BeyondTheStandardModel/TwoHDM/Invariants.lean",
+          "line": 24,
+          "subfolder": "PhyslibAlpha/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/Particles/BeyondTheStandardModel/TwoHDM/Invariants.lean#L24"
+        },
+        {
+          "file": "PhyslibAlpha/Particles/BeyondTheStandardModel/TwoHDM/Invariants.lean",
+          "line": 65,
+          "subfolder": "PhyslibAlpha/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/Particles/BeyondTheStandardModel/TwoHDM/Invariants.lean#L65"
+        }
+      ],
+      "count": 15
+    },
+    {
+      "key": "baez_guts_notes",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "John C. Baez",
+        "John Huerta"
+      ],
+      "authorSortKey": "baez",
+      "title": "The Algebra of Grand Unified Theories",
+      "year": "2010",
+      "venue": "Bull. Amer. Math. Soc. 47 pp. 483-552 (2010)",
+      "url": "https://arxiv.org/abs/0904.1556",
+      "citations": [
+        {
+          "file": "Physlib/Particles/BeyondTheStandardModel/GeorgiGlashow/Basic.lean",
+          "line": 20,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/BeyondTheStandardModel/GeorgiGlashow/Basic.lean#L20"
+        },
+        {
+          "file": "Physlib/Particles/BeyondTheStandardModel/GeorgiGlashow/Basic.lean",
+          "line": 37,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/BeyondTheStandardModel/GeorgiGlashow/Basic.lean#L37"
+        },
+        {
+          "file": "Physlib/Particles/BeyondTheStandardModel/GeorgiGlashow/Basic.lean",
+          "line": 45,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/BeyondTheStandardModel/GeorgiGlashow/Basic.lean#L45"
+        },
+        {
+          "file": "Physlib/Particles/BeyondTheStandardModel/PatiSalam/Basic.lean",
+          "line": 20,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/BeyondTheStandardModel/PatiSalam/Basic.lean#L20"
+        },
+        {
+          "file": "Physlib/Particles/BeyondTheStandardModel/PatiSalam/Basic.lean",
+          "line": 43,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/BeyondTheStandardModel/PatiSalam/Basic.lean#L43"
+        },
+        {
+          "file": "Physlib/Particles/BeyondTheStandardModel/PatiSalam/Basic.lean",
+          "line": 72,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/BeyondTheStandardModel/PatiSalam/Basic.lean#L72"
+        },
+        {
+          "file": "Physlib/Particles/BeyondTheStandardModel/PatiSalam/Basic.lean",
+          "line": 81,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/BeyondTheStandardModel/PatiSalam/Basic.lean#L81"
+        },
+        {
+          "file": "Physlib/Particles/BeyondTheStandardModel/Spin10/Basic.lean",
+          "line": 19,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/BeyondTheStandardModel/Spin10/Basic.lean#L19"
+        },
+        {
+          "file": "Physlib/Particles/BeyondTheStandardModel/Spin10/Basic.lean",
+          "line": 37,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/BeyondTheStandardModel/Spin10/Basic.lean#L37"
+        },
+        {
+          "file": "Physlib/Particles/BeyondTheStandardModel/Spin10/Basic.lean",
+          "line": 46,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/BeyondTheStandardModel/Spin10/Basic.lean#L46"
+        },
+        {
+          "file": "Physlib/Particles/BeyondTheStandardModel/Spin10/Basic.lean",
+          "line": 54,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/BeyondTheStandardModel/Spin10/Basic.lean#L54"
+        },
+        {
+          "file": "Physlib/Particles/StandardModel/Basic.lean",
+          "line": 18,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/StandardModel/Basic.lean#L18"
+        },
+        {
+          "file": "Physlib/Particles/StandardModel/Basic.lean",
+          "line": 288,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/StandardModel/Basic.lean#L288"
+        },
+        {
+          "file": "Physlib/Particles/StandardModel/Basic.lean",
+          "line": 314,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/StandardModel/Basic.lean#L314"
+        },
+        {
+          "file": "Physlib/Particles/StandardModel/Basic.lean",
+          "line": 395,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/StandardModel/Basic.lean#L395"
+        },
+        {
+          "file": "Physlib/Particles/StandardModel/Basic.lean",
+          "line": 425,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/StandardModel/Basic.lean#L425"
+        },
+        {
+          "file": "Physlib/Particles/StandardModel/Basic.lean",
+          "line": 506,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/StandardModel/Basic.lean#L506"
+        },
+        {
+          "file": "Physlib/Particles/StandardModel/Basic.lean",
+          "line": 536,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/StandardModel/Basic.lean#L536"
+        },
+        {
+          "file": "Physlib/Particles/StandardModel/Basic.lean",
+          "line": 584,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/StandardModel/Basic.lean#L584"
+        }
+      ],
+      "count": 19
+    },
+    {
+      "key": "barenblatt_1996_scaling",
+      "inBib": true,
+      "type": "book",
+      "authors": [
+        "G. I. Barenblatt"
+      ],
+      "authorSortKey": "barenblatt",
+      "title": "Scaling, Self-similarity, and Intermediate Asymptotics",
+      "year": "1996",
+      "venue": "Cambridge University Press, (1996)",
+      "url": null,
+      "citations": [],
+      "count": 0
+    },
+    {
+      "key": "bargmann1964",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "V. Bargmann"
+      ],
+      "authorSortKey": "bargmann",
+      "title": "Note on Wigner's theorem on symmetry operations",
+      "year": "1964",
+      "venue": "J. Math. Phys. 5 pp. 862-868 (1964)",
+      "url": "https://doi.org/10.1063/1.1704188",
+      "citations": [
+        {
+          "file": "QuantumInfo/States/Pure/BargmannInvariant.lean",
+          "line": 34,
+          "subfolder": "QuantumInfo/States",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/QuantumInfo/States/Pure/BargmannInvariant.lean#L34"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "berry1984",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "M. V. Berry"
+      ],
+      "authorSortKey": "berry",
+      "title": "Quantal phase factors accompanying adiabatic changes",
+      "year": "1984",
+      "venue": "Proc. R. Soc. London A 392 no. 1802 pp. 45-57 (1984)",
+      "url": "https://doi.org/10.1098/rspa.1984.0023",
+      "citations": [
+        {
+          "file": "QuantumInfo/States/Pure/BlochSphere.lean",
+          "line": 35,
+          "subfolder": "QuantumInfo/States",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/QuantumInfo/States/Pure/BlochSphere.lean#L35"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "bilal_2008_anomalies",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "A. Bilal"
+      ],
+      "authorSortKey": "bilal",
+      "title": "Lectures on Anomalies",
+      "year": "2008",
+      "venue": "2008",
+      "url": "https://arxiv.org/abs/0802.0634",
+      "citations": [
+        {
+          "file": "Physlib/QFT/AnomalyCancellation/Basic.lean",
+          "line": 75,
+          "subfolder": "Physlib/QFT",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QFT/AnomalyCancellation/Basic.lean#L75"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "bipm_si_brochure_2019",
+      "inBib": true,
+      "type": "misc",
+      "authors": [],
+      "authorSortKey": "bipm_si_brochure_2019",
+      "title": "International Bureau of Weights and Measures (BIPM), The International System of Units (SI Brochure)",
+      "year": "2019",
+      "venue": "2019",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/SpaceAndTime/Space/LengthUnit.lean",
+          "line": 29,
+          "subfolder": "Physlib/SpaceAndTime",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/SpaceAndTime/Space/LengthUnit.lean#L29"
+        },
+        {
+          "file": "Physlib/SpaceAndTime/Space/LengthUnit.lean",
+          "line": 72,
+          "subfolder": "Physlib/SpaceAndTime",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/SpaceAndTime/Space/LengthUnit.lean#L72"
+        }
+      ],
+      "count": 2
+    },
+    {
+      "key": "caldirola_1941",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "P. Caldirola"
+      ],
+      "authorSortKey": "caldirola",
+      "title": "Forze non conservative nella meccanica quantistica",
+      "year": "1941",
+      "venue": "Nuovo Cimento 18 pp. 393-400 (1941)",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/ClassicalMechanics/DampedHarmonicOscillator/Basic.lean",
+          "line": 90,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/DampedHarmonicOscillator/Basic.lean#L90"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "cobos_2015_lorentz_group",
+      "inBib": true,
+      "type": "misc",
+      "authors": [
+        "Guillem Cobos"
+      ],
+      "authorSortKey": "cobos",
+      "title": "The Lorentz Group",
+      "year": "2015",
+      "venue": "2015",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/Relativity/LorentzGroup/Boosts/Generalized.lean",
+          "line": 25,
+          "subfolder": "Physlib/Relativity",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Relativity/LorentzGroup/Boosts/Generalized.lean#L25"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "cortes_haupt_2016",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "Vicente Cortes",
+        "Alexander S. Haupt"
+      ],
+      "authorSortKey": "cortes",
+      "title": "Lecture Notes on Mathematical Methods of Classical Physics",
+      "year": "2016",
+      "venue": "2016",
+      "url": "https://arxiv.org/abs/1612.03100",
+      "citations": [
+        {
+          "file": "PhyslibAlpha/ClassicalFieldTheory/Local/Action.lean",
+          "line": 41,
+          "subfolder": "PhyslibAlpha/ClassicalFieldTheory",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/ClassicalFieldTheory/Local/Action.lean#L41"
+        },
+        {
+          "file": "PhyslibAlpha/ClassicalFieldTheory/Local/EulerLagrange.lean",
+          "line": 36,
+          "subfolder": "PhyslibAlpha/ClassicalFieldTheory",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/ClassicalFieldTheory/Local/EulerLagrange.lean#L36"
+        },
+        {
+          "file": "PhyslibAlpha/ClassicalFieldTheory/Local/EulerLagrangeEquation.lean",
+          "line": 40,
+          "subfolder": "PhyslibAlpha/ClassicalFieldTheory",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/ClassicalFieldTheory/Local/EulerLagrangeEquation.lean#L40"
+        },
+        {
+          "file": "PhyslibAlpha/ClassicalFieldTheory/Local/FirstOrder.lean",
+          "line": 46,
+          "subfolder": "PhyslibAlpha/ClassicalFieldTheory",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/ClassicalFieldTheory/Local/FirstOrder.lean#L46"
+        },
+        {
+          "file": "PhyslibAlpha/ClassicalFieldTheory/Local/FirstVariation.lean",
+          "line": 35,
+          "subfolder": "PhyslibAlpha/ClassicalFieldTheory",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/ClassicalFieldTheory/Local/FirstVariation.lean#L35"
+        },
+        {
+          "file": "PhyslibAlpha/ClassicalFieldTheory/Local/FirstVariation/Basic.lean",
+          "line": 31,
+          "subfolder": "PhyslibAlpha/ClassicalFieldTheory",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/ClassicalFieldTheory/Local/FirstVariation/Basic.lean#L31"
+        },
+        {
+          "file": "PhyslibAlpha/ClassicalFieldTheory/Local/FirstVariation/Criterion.lean",
+          "line": 33,
+          "subfolder": "PhyslibAlpha/ClassicalFieldTheory",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/ClassicalFieldTheory/Local/FirstVariation/Criterion.lean#L33"
+        },
+        {
+          "file": "PhyslibAlpha/ClassicalFieldTheory/Local/FirstVariation/Density.lean",
+          "line": 32,
+          "subfolder": "PhyslibAlpha/ClassicalFieldTheory",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/ClassicalFieldTheory/Local/FirstVariation/Density.lean#L32"
+        },
+        {
+          "file": "PhyslibAlpha/ClassicalFieldTheory/Local/FirstVariation/IntegrationByParts.lean",
+          "line": 32,
+          "subfolder": "PhyslibAlpha/ClassicalFieldTheory",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/ClassicalFieldTheory/Local/FirstVariation/IntegrationByParts.lean#L32"
+        },
+        {
+          "file": "PhyslibAlpha/ClassicalFieldTheory/Local/FirstVariation/Regularity.lean",
+          "line": 31,
+          "subfolder": "PhyslibAlpha/ClassicalFieldTheory",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/ClassicalFieldTheory/Local/FirstVariation/Regularity.lean#L31"
+        },
+        {
+          "file": "PhyslibAlpha/ClassicalFieldTheory/Local/FirstVariation/Support.lean",
+          "line": 32,
+          "subfolder": "PhyslibAlpha/ClassicalFieldTheory",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/ClassicalFieldTheory/Local/FirstVariation/Support.lean#L32"
+        },
+        {
+          "file": "PhyslibAlpha/ClassicalFieldTheory/Local/JetPoint.lean",
+          "line": 45,
+          "subfolder": "PhyslibAlpha/ClassicalFieldTheory",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/ClassicalFieldTheory/Local/JetPoint.lean#L45"
+        },
+        {
+          "file": "PhyslibAlpha/ClassicalFieldTheory/Local/Lagrangian.lean",
+          "line": 42,
+          "subfolder": "PhyslibAlpha/ClassicalFieldTheory",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/ClassicalFieldTheory/Local/Lagrangian.lean#L42"
+        },
+        {
+          "file": "PhyslibAlpha/ClassicalFieldTheory/Local/TotalDivergence.lean",
+          "line": 46,
+          "subfolder": "PhyslibAlpha/ClassicalFieldTheory",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/ClassicalFieldTheory/Local/TotalDivergence.lean#L46"
+        },
+        {
+          "file": "PhyslibAlpha/ClassicalFieldTheory/Local/TotalDivergenceEquivalence.lean",
+          "line": 46,
+          "subfolder": "PhyslibAlpha/ClassicalFieldTheory",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/ClassicalFieldTheory/Local/TotalDivergenceEquivalence.lean#L46"
+        }
+      ],
+      "count": 15
+    },
+    {
+      "key": "doi_1063_1_3290740",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "Richard L. Hall",
+        "Nasser Saad",
+        "K. D. Sen"
+      ],
+      "authorSortKey": "hall",
+      "title": "Soft-core Coulomb potentials and Heun's differential equation",
+      "year": "2010",
+      "venue": "J. Math. Phys. 51 pp. 022107 (2010)",
+      "url": "https://doi.org/10.1063/1.3290740",
+      "citations": [
+        {
+          "file": "Physlib/QuantumMechanics/Hydrogen/Basic.lean",
+          "line": 27,
+          "subfolder": "Physlib/QuantumMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QuantumMechanics/Hydrogen/Basic.lean#L27"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "doi_physreva_80_032507",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "Richard L. Hall",
+        "Nasser Saad",
+        "K. D. Sen",
+        "Hakan Ciftci"
+      ],
+      "authorSortKey": "hall",
+      "title": "Energies and wave functions for a soft-core Coulomb potential",
+      "year": "2009",
+      "venue": "Phys. Rev. A 80 pp. 032507 (2009)",
+      "url": "https://doi.org/10.1103/PhysRevA.80.032507",
+      "citations": [
+        {
+          "file": "Physlib/QuantumMechanics/Hydrogen/Basic.lean",
+          "line": 26,
+          "subfolder": "Physlib/QuantumMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QuantumMechanics/Hydrogen/Basic.lean#L26"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "Dreiner:2008tw",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "Herbi K. Dreiner",
+        "Howard E. Haber",
+        "Stephen P. Martin"
+      ],
+      "authorSortKey": "dreiner",
+      "title": "Two-component spinor techniques and Feynman rules for quantum field theory and supersymmetry",
+      "year": "2010",
+      "venue": "Phys. Rept. 494 pp. 1-196 (2010)",
+      "url": "https://arxiv.org/abs/0812.1594",
+      "citations": [
+        {
+          "file": "Physlib/Relativity/Fermions/Dirac/Basic.lean",
+          "line": 22,
+          "subfolder": "Physlib/Relativity",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Relativity/Fermions/Dirac/Basic.lean#L22"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "github_leandojo_extractdata",
+      "inBib": true,
+      "type": "misc",
+      "authors": [],
+      "authorSortKey": "github_leandojo_extractdata",
+      "title": null,
+      "year": null,
+      "venue": "",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/Meta/TransverseTactics.lean",
+          "line": 22,
+          "subfolder": "Physlib/Meta",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Meta/TransverseTactics.lean#L22"
+        },
+        {
+          "file": "scripts/MetaPrograms/check_rfl.lean",
+          "line": 23,
+          "subfolder": "scripts/MetaPrograms",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/scripts/MetaPrograms/check_rfl.lean#L23"
+        },
+        {
+          "file": "scripts/MetaPrograms/free_simps.lean",
+          "line": 22,
+          "subfolder": "scripts/MetaPrograms",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/scripts/MetaPrograms/free_simps.lean#L22"
+        }
+      ],
+      "count": 3
+    },
+    {
+      "key": "github_tryateachstep",
+      "inBib": true,
+      "type": "misc",
+      "authors": [],
+      "authorSortKey": "github_tryateachstep",
+      "title": null,
+      "year": null,
+      "venue": "",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/Meta/TransverseTactics.lean",
+          "line": 20,
+          "subfolder": "Physlib/Meta",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Meta/TransverseTactics.lean#L20"
+        },
+        {
+          "file": "scripts/MetaPrograms/check_rfl.lean",
+          "line": 21,
+          "subfolder": "scripts/MetaPrograms",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/scripts/MetaPrograms/check_rfl.lean#L21"
+        },
+        {
+          "file": "scripts/MetaPrograms/free_simps.lean",
+          "line": 20,
+          "subfolder": "scripts/MetaPrograms",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/scripts/MetaPrograms/free_simps.lean#L20"
+        }
+      ],
+      "count": 3
+    },
+    {
+      "key": "goldstein_classicalmechanics",
+      "inBib": true,
+      "type": "book",
+      "authors": [
+        "Herbert Goldstein",
+        "Charles P. Poole",
+        "John L. Safko"
+      ],
+      "authorSortKey": "goldstein",
+      "title": "Classical Mechanics",
+      "year": "2002",
+      "venue": "Addison-Wesley, (2002)",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/ClassicalMechanics/DampedHarmonicOscillator/Basic.lean",
+          "line": 86,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/DampedHarmonicOscillator/Basic.lean#L86"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/DampedHarmonicOscillator/Solution.lean",
+          "line": 55,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/DampedHarmonicOscillator/Solution.lean#L55"
+        }
+      ],
+      "count": 2
+    },
+    {
+      "key": "hall2013quantum",
+      "inBib": true,
+      "type": "book",
+      "authors": [
+        "Brian C. Hall"
+      ],
+      "authorSortKey": "hall",
+      "title": "Quantum Theory for Mathematicians",
+      "year": "2013",
+      "venue": "Springer, (2013)",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/QuantumMechanics/Operators/Covariance.lean",
+          "line": 32,
+          "subfolder": "Physlib/QuantumMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QuantumMechanics/Operators/Covariance.lean#L32"
+        },
+        {
+          "file": "Physlib/QuantumMechanics/Operators/StateObservables/ExpectedValue.lean",
+          "line": 27,
+          "subfolder": "Physlib/QuantumMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QuantumMechanics/Operators/StateObservables/ExpectedValue.lean#L27"
+        },
+        {
+          "file": "Physlib/QuantumMechanics/Operators/StateObservables/Variance.lean",
+          "line": 35,
+          "subfolder": "Physlib/QuantumMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QuantumMechanics/Operators/StateObservables/Variance.lean#L35"
+        },
+        {
+          "file": "Physlib/QuantumMechanics/Operators/Uncertainty.lean",
+          "line": 50,
+          "subfolder": "Physlib/QuantumMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QuantumMechanics/Operators/Uncertainty.lean#L50"
+        }
+      ],
+      "count": 4
+    },
+    {
+      "key": "huygens_1673",
+      "inBib": true,
+      "type": "book",
+      "authors": [
+        "Christiaan Huygens"
+      ],
+      "authorSortKey": "huygens",
+      "title": "Horologium Oscillatorium",
+      "year": "1673",
+      "venue": "1673",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/ClassicalMechanics/Pendulum/SimplePendulum/SmallAngle.lean",
+          "line": 110,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Pendulum/SimplePendulum/SmallAngle.lean#L110"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "iau_2012_resolution_b2",
+      "inBib": true,
+      "type": "misc",
+      "authors": [],
+      "authorSortKey": "iau_2012_resolution_b2",
+      "title": "IAU 2012 Resolution B2 (the astronomical unit)",
+      "year": null,
+      "venue": "",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/SpaceAndTime/Space/LengthUnit.lean",
+          "line": 32,
+          "subfolder": "Physlib/SpaceAndTime",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/SpaceAndTime/Space/LengthUnit.lean#L32"
+        },
+        {
+          "file": "Physlib/SpaceAndTime/Space/LengthUnit.lean",
+          "line": 77,
+          "subfolder": "Physlib/SpaceAndTime",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/SpaceAndTime/Space/LengthUnit.lean#L77"
+        }
+      ],
+      "count": 2
+    },
+    {
+      "key": "iau_2015_resolution_b2",
+      "inBib": true,
+      "type": "misc",
+      "authors": [],
+      "authorSortKey": "iau_2015_resolution_b2",
+      "title": "IAU 2015 Resolution B2 (the exact parsec convention)",
+      "year": null,
+      "venue": "",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/SpaceAndTime/Space/LengthUnit.lean",
+          "line": 35,
+          "subfolder": "Physlib/SpaceAndTime",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/SpaceAndTime/Space/LengthUnit.lean#L35"
+        },
+        {
+          "file": "Physlib/SpaceAndTime/Space/LengthUnit.lean",
+          "line": 82,
+          "subfolder": "Physlib/SpaceAndTime",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/SpaceAndTime/Space/LengthUnit.lean#L82"
+        }
+      ],
+      "count": 2
+    },
+    {
+      "key": "iau_style_manual_units",
+      "inBib": true,
+      "type": "misc",
+      "authors": [
+        "G. A. Wilkins"
+      ],
+      "authorSortKey": "wilkins",
+      "title": "Recommendations concerning Units (SI Units)",
+      "year": null,
+      "venue": "",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/SpaceAndTime/Space/LengthUnit.lean",
+          "line": 34,
+          "subfolder": "Physlib/SpaceAndTime",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/SpaceAndTime/Space/LengthUnit.lean#L34"
+        },
+        {
+          "file": "Physlib/SpaceAndTime/Space/LengthUnit.lean",
+          "line": 80,
+          "subfolder": "Physlib/SpaceAndTime",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/SpaceAndTime/Space/LengthUnit.lean#L80"
+        }
+      ],
+      "count": 2
+    },
+    {
+      "key": "ioffe_1957",
+      "inBib": true,
+      "type": "book",
+      "authors": [
+        "A. F. Ioffe"
+      ],
+      "authorSortKey": "ioffe",
+      "title": "Semiconductor Thermoelements and Thermoelectric Cooling",
+      "year": "1957",
+      "venue": "Infosearch, (1957)",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/CondensedMatter/Thermoelectric/Basic.lean",
+          "line": 72,
+          "subfolder": "Physlib/CondensedMatter",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/CondensedMatter/Thermoelectric/Basic.lean#L72"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "iso_80000_1_2009",
+      "inBib": true,
+      "type": "misc",
+      "authors": [],
+      "authorSortKey": "iso_80000_1_2009",
+      "title": "ISO/IEC 80000-1:2009, Quantities and units - Part 1: General",
+      "year": null,
+      "venue": "",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/Units/ISQDimensionBase.lean",
+          "line": 30,
+          "subfolder": "Physlib/Units",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Units/ISQDimensionBase.lean#L30"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "jaffe_lorentz_notes",
+      "inBib": true,
+      "type": "misc",
+      "authors": [
+        "Arthur Jaffe"
+      ],
+      "authorSortKey": "jaffe",
+      "title": "Lorentz Transformations, Rotations, and Boosts",
+      "year": null,
+      "venue": "",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/Relativity/LorentzGroup/Basic.lean",
+          "line": 23,
+          "subfolder": "Physlib/Relativity",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Relativity/LorentzGroup/Basic.lean#L23"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "jcgm_200_2012",
+      "inBib": true,
+      "type": "misc",
+      "authors": [],
+      "authorSortKey": "jcgm_200_2012",
+      "title": "JCGM 200:2012, International vocabulary of metrology - Basic and general concepts and associated terms (VIM, 3rd edition)",
+      "year": null,
+      "venue": "",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/Units/ISQDimensionBase.lean",
+          "line": 32,
+          "subfolder": "Physlib/Units",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Units/ISQDimensionBase.lean#L32"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "kanai_1948",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "E. Kanai"
+      ],
+      "authorSortKey": "kanai",
+      "title": "On the Quantization of the Dissipative Systems",
+      "year": "1948",
+      "venue": "Progress of Theoretical Physics 3 no. 4 pp. 440-442 (1948)",
+      "url": "https://doi.org/10.1143/ptp/3.4.440",
+      "citations": [
+        {
+          "file": "Physlib/ClassicalMechanics/DampedHarmonicOscillator/Basic.lean",
+          "line": 91,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/DampedHarmonicOscillator/Basic.lean#L91"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "koor_et_al_2023_wirtinger",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "B. Koor",
+        "Y. Qiu",
+        "L. Kwek",
+        "P. Rebentrost"
+      ],
+      "authorSortKey": "koor",
+      "title": "A short tutorial on Wirtinger Calculus with applications in quantum information",
+      "year": null,
+      "venue": "",
+      "url": "https://arxiv.org/abs/2312.04858",
+      "citations": [
+        {
+          "file": "Physlib/Mathematics/Calculus/Wirtinger/Basic.lean",
+          "line": 143,
+          "subfolder": "Physlib/Mathematics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Mathematics/Calculus/Wirtinger/Basic.lean#L143"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "kreutz_delgado_cr_calculus",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "K. Kreutz-Delgado"
+      ],
+      "authorSortKey": "kreutz-delgado",
+      "title": "The Complex Gradient Operator and the CR-Calculus",
+      "year": null,
+      "venue": "",
+      "url": "https://arxiv.org/abs/0906.4835",
+      "citations": [
+        {
+          "file": "Physlib/Mathematics/Calculus/Wirtinger/Basic.lean",
+          "line": 137,
+          "subfolder": "Physlib/Mathematics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Mathematics/Calculus/Wirtinger/Basic.lean#L137"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "landau_fluidmechanics",
+      "inBib": true,
+      "type": "book",
+      "authors": [
+        "L. D. Landau",
+        "E. M. Lifshitz"
+      ],
+      "authorSortKey": "landau",
+      "title": "Fluid Mechanics",
+      "year": "1987",
+      "venue": "Pergamon Press, Course of Theoretical Physics, (1987)",
+      "url": null,
+      "citations": [],
+      "count": 0
+    },
+    {
+      "key": "landau_mechanics",
+      "inBib": true,
+      "type": "book",
+      "authors": [
+        "L. D. Landau",
+        "E. M. Lifshitz"
+      ],
+      "authorSortKey": "landau",
+      "title": "Mechanics",
+      "year": "1976",
+      "venue": "Butterworth-Heinemann, Course of Theoretical Physics, (1976)",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/ClassicalMechanics/DampedHarmonicOscillator/Basic.lean",
+          "line": 84,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/DampedHarmonicOscillator/Basic.lean#L84"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/DampedHarmonicOscillator/Solution.lean",
+          "line": 53,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/DampedHarmonicOscillator/Solution.lean#L53"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/HarmonicOscillator/Basic.lean",
+          "line": 89,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/HarmonicOscillator/Basic.lean#L89"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/HarmonicOscillator/Solution.lean",
+          "line": 68,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/HarmonicOscillator/Solution.lean#L68"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/Lagrangian/TotalDerivativeEquivalence.lean",
+          "line": 57,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Lagrangian/TotalDerivativeEquivalence.lean#L57"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/Lagrangian/TotalDerivativeEquivalence.lean",
+          "line": 58,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Lagrangian/TotalDerivativeEquivalence.lean#L58"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/Pendulum/SimplePendulum/Basic.lean",
+          "line": 105,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Pendulum/SimplePendulum/Basic.lean#L105"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/Pendulum/SimplePendulum/Equilibria.lean",
+          "line": 67,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Pendulum/SimplePendulum/Equilibria.lean#L67"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/Pendulum/SimplePendulum/Geometric/Basic.lean",
+          "line": 59,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Pendulum/SimplePendulum/Geometric/Basic.lean#L59"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/Pendulum/SimplePendulum/Geometric/PhysicalSpace.lean",
+          "line": 53,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Pendulum/SimplePendulum/Geometric/PhysicalSpace.lean#L53"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/Pendulum/SimplePendulum/Hamiltonian.lean",
+          "line": 65,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Pendulum/SimplePendulum/Hamiltonian.lean#L65"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/Pendulum/SimplePendulum/LiftInvariance.lean",
+          "line": 53,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Pendulum/SimplePendulum/LiftInvariance.lean#L53"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/Pendulum/SimplePendulum/PeriodFormula.lean",
+          "line": 89,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Pendulum/SimplePendulum/PeriodFormula.lean#L89"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/Pendulum/SimplePendulum/SmallAngle.lean",
+          "line": 111,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Pendulum/SimplePendulum/SmallAngle.lean#L111"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/Pendulum/SimplePendulum/Solution.lean",
+          "line": 79,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Pendulum/SimplePendulum/Solution.lean#L79"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/RigidBody/AngularMomentum.lean",
+          "line": 22,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/RigidBody/AngularMomentum.lean#L22"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/RigidBody/AngularVelocity.lean",
+          "line": 49,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/RigidBody/AngularVelocity.lean#L49"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/RigidBody/Basic.lean",
+          "line": 30,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/RigidBody/Basic.lean#L30"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/RigidBody/KineticEnergy.lean",
+          "line": 35,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/RigidBody/KineticEnergy.lean#L35"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/RigidBody/Motion.lean",
+          "line": 26,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/RigidBody/Motion.lean#L26"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/Scattering/RigidSphere.lean",
+          "line": 15,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Scattering/RigidSphere.lean#L15"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/Vibrations/LinearTriatomic.lean",
+          "line": 15,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Vibrations/LinearTriatomic.lean#L15"
+        },
+        {
+          "file": "Physlib/Mathematics/SpecialFunctions/EllipticIntegral.lean",
+          "line": 72,
+          "subfolder": "Physlib/Mathematics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Mathematics/SpecialFunctions/EllipticIntegral.lean#L72"
+        },
+        {
+          "file": "Physlib/Mathematics/Trigonometry/SinSq.lean",
+          "line": 38,
+          "subfolder": "Physlib/Mathematics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Mathematics/Trigonometry/SinSq.lean#L38"
+        }
+      ],
+      "count": 24
+    },
+    {
+      "key": "landau_statphys1",
+      "inBib": true,
+      "type": "book",
+      "authors": [
+        "L. D. Landau",
+        "E. M. Lifshitz"
+      ],
+      "authorSortKey": "landau",
+      "title": "Statistical Physics, Part 1",
+      "year": "1980",
+      "venue": "Butterworth-Heinemann, Course of Theoretical Physics, (1980)",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/StatisticalMechanics/CanonicalEnsemble/Basic.lean",
+          "line": 90,
+          "subfolder": "Physlib/StatisticalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/StatisticalMechanics/CanonicalEnsemble/Basic.lean#L90"
+        },
+        {
+          "file": "Physlib/StatisticalMechanics/CanonicalEnsemble/Finite.lean",
+          "line": 44,
+          "subfolder": "Physlib/StatisticalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/StatisticalMechanics/CanonicalEnsemble/Finite.lean#L44"
+        },
+        {
+          "file": "Physlib/StatisticalMechanics/CanonicalEnsemble/Lemmas.lean",
+          "line": 51,
+          "subfolder": "Physlib/StatisticalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/StatisticalMechanics/CanonicalEnsemble/Lemmas.lean#L51"
+        }
+      ],
+      "count": 3
+    },
+    {
+      "key": "lawrie_schafer_nameki_wong_2015",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "Craig Lawrie",
+        "Sakura Schafer-Nameki",
+        "Jin-Mann Wong"
+      ],
+      "authorSortKey": "lawrie",
+      "title": "F-theory and All Things Rational: Surveying U(1) Symmetries with Rational Sections",
+      "year": "2015",
+      "venue": "JHEP 09 pp. 144 (2015)",
+      "url": "https://arxiv.org/abs/1504.05593",
+      "citations": [
+        {
+          "file": "Physlib/StringTheory/FTheory/SU5/Basic.lean",
+          "line": 46,
+          "subfolder": "Physlib/StringTheory",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/StringTheory/FTheory/SU5/Basic.lean#L46"
+        },
+        {
+          "file": "Physlib/StringTheory/FTheory/SU5/Charges/OfRationalSection.lean",
+          "line": 18,
+          "subfolder": "Physlib/StringTheory",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/StringTheory/FTheory/SU5/Charges/OfRationalSection.lean#L18"
+        },
+        {
+          "file": "Physlib/StringTheory/FTheory/SU5/Charges/OfRationalSection.lean",
+          "line": 23,
+          "subfolder": "Physlib/StringTheory",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/StringTheory/FTheory/SU5/Charges/OfRationalSection.lean#L23"
+        },
+        {
+          "file": "Physlib/StringTheory/FTheory/SU5/Charges/OfRationalSection.lean",
+          "line": 51,
+          "subfolder": "Physlib/StringTheory",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/StringTheory/FTheory/SU5/Charges/OfRationalSection.lean#L51"
+        },
+        {
+          "file": "Physlib/StringTheory/FTheory/SU5/Charges/OfRationalSection.lean",
+          "line": 59,
+          "subfolder": "Physlib/StringTheory",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/StringTheory/FTheory/SU5/Charges/OfRationalSection.lean#L59"
+        }
+      ],
+      "count": 5
+    },
+    {
+      "key": "Lohitsiri:2019fuu",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "Nakarin Lohitsiri",
+        "David Tong"
+      ],
+      "authorSortKey": "lohitsiri",
+      "title": "Hypercharge Quantisation and Fermat's Last Theorem",
+      "year": "2020",
+      "venue": "SciPost Phys. 8 no. 1 pp. 009 (2020)",
+      "url": "https://arxiv.org/abs/1907.00514",
+      "citations": [
+        {
+          "file": "Physlib/Particles/StandardModel/AnomalyCancellation/NoGrav/One/Lemmas.lean",
+          "line": 13,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/StandardModel/AnomalyCancellation/NoGrav/One/Lemmas.lean#L13"
+        },
+        {
+          "file": "Physlib/Particles/StandardModel/AnomalyCancellation/NoGrav/One/Lemmas.lean",
+          "line": 19,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/StandardModel/AnomalyCancellation/NoGrav/One/Lemmas.lean#L19"
+        },
+        {
+          "file": "Physlib/Particles/StandardModel/AnomalyCancellation/NoGrav/One/LinearParameterization.lean",
+          "line": 20,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/StandardModel/AnomalyCancellation/NoGrav/One/LinearParameterization.lean#L20"
+        }
+      ],
+      "count": 3
+    },
+    {
+      "key": "mdpi_khinchin_fourth_axiom",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "Zhiyi Zhang",
+        "Hongwei Huang",
+        "Hao Xu"
+      ],
+      "authorSortKey": "zhang",
+      "title": "Khinchin's Fourth Axiom of Entropy Revisited",
+      "year": "2023",
+      "venue": "Stats 6 no. 3 pp. 763-772 (2023)",
+      "url": "https://doi.org/10.3390/stats6030049",
+      "citations": [
+        {
+          "file": "QuantumInfo/Entropy/Axiomatized/Defs.lean",
+          "line": 38,
+          "subfolder": "QuantumInfo/Entropy",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/QuantumInfo/Entropy/Axiomatized/Defs.lean#L38"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "mortini_rupp_2022",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "R. Mortini",
+        "R. Rupp"
+      ],
+      "authorSortKey": "mortini",
+      "title": "The Clairaut-Schwarz Theorem for Mixed Wirtinger Derivatives",
+      "year": "2022",
+      "venue": "Bull. Iranian Math. Soc. 48 no. 5 pp. 2643-2647 (2022)",
+      "url": "https://doi.org/10.1007/s41980-021-00660-1",
+      "citations": [
+        {
+          "file": "Physlib/Mathematics/Calculus/Wirtinger/Basic.lean",
+          "line": 140,
+          "subfolder": "Physlib/Mathematics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Mathematics/Calculus/Wirtinger/Basic.lean#L140"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "nasa_ntrs_20140002333",
+      "inBib": true,
+      "type": "techreport",
+      "authors": [
+        "James C. Simpson",
+        "John E. Lane",
+        "Christopher D. Immer",
+        "Robert C. Youngquist"
+      ],
+      "authorSortKey": "simpson",
+      "title": "Simple Analytic Expressions for the Magnetic Field of a Circular Current Loop",
+      "year": "2001",
+      "venue": "2001",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/Electromagnetism/Current/CircularCoil.lean",
+          "line": 27,
+          "subfolder": "Physlib/Electromagnetism",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Electromagnetism/Current/CircularCoil.lean#L27"
+        },
+        {
+          "file": "Physlib/Electromagnetism/Current/CircularCoil.lean",
+          "line": 34,
+          "subfolder": "Physlib/Electromagnetism",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Electromagnetism/Current/CircularCoil.lean#L34"
+        }
+      ],
+      "count": 2
+    },
+    {
+      "key": "nash_1991_dtqft",
+      "inBib": true,
+      "type": "book",
+      "authors": [
+        "C. Nash"
+      ],
+      "authorSortKey": "nash",
+      "title": "Differential topology and quantum field theory",
+      "year": "1991",
+      "venue": "Elsevier, (1991)",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/QFT/AnomalyCancellation/Basic.lean",
+          "line": 76,
+          "subfolder": "Physlib/QFT",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QFT/AnomalyCancellation/Basic.lean#L76"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "nielsen_chuang_qci",
+      "inBib": true,
+      "type": "book",
+      "authors": [
+        "M. A. Nielsen",
+        "I. L. Chuang"
+      ],
+      "authorSortKey": "nielsen",
+      "title": "Quantum Computation and Quantum Information",
+      "year": "2010",
+      "venue": "Cambridge University Press, (2010)",
+      "url": null,
+      "citations": [],
+      "count": 0
+    },
+    {
+      "key": "nist_dlmf",
+      "inBib": true,
+      "type": "misc",
+      "authors": [],
+      "authorSortKey": "nist_dlmf",
+      "title": "NIST Digital Library of Mathematical Functions",
+      "year": null,
+      "venue": "",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/Mathematics/SpecialFunctions/EllipticIntegral.lean",
+          "line": 70,
+          "subfolder": "Physlib/Mathematics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Mathematics/SpecialFunctions/EllipticIntegral.lean#L70"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "nist_hb44_2023",
+      "inBib": true,
+      "type": "misc",
+      "authors": [],
+      "authorSortKey": "nist_hb44_2023",
+      "title": "NIST Handbook 44, Appendix C (international foot-based units and the international nautical mile)",
+      "year": null,
+      "venue": "",
+      "url": "https://doi.org/10.6028/NIST.HB.44-2023",
+      "citations": [
+        {
+          "file": "Physlib/SpaceAndTime/Space/LengthUnit.lean",
+          "line": 31,
+          "subfolder": "Physlib/SpaceAndTime",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/SpaceAndTime/Space/LengthUnit.lean#L31"
+        },
+        {
+          "file": "Physlib/SpaceAndTime/Space/LengthUnit.lean",
+          "line": 75,
+          "subfolder": "Physlib/SpaceAndTime",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/SpaceAndTime/Space/LengthUnit.lean#L75"
+        }
+      ],
+      "count": 2
+    },
+    {
+      "key": "nominal_solar_mass_article",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "Andrej Prsa",
+        "others"
+      ],
+      "authorSortKey": "prsa",
+      "title": "Nominal values for selected solar and planetary quantities: IAU 2015 Resolution B3",
+      "year": "2016",
+      "venue": "Astron. J. 152 no. 2 pp. 41 (2016)",
+      "url": "https://doi.org/10.3847/0004-6256/152/2/41",
+      "citations": [
+        {
+          "file": "Physlib/ClassicalMechanics/Mass/MassUnit.lean",
+          "line": 29,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Mass/MassUnit.lean#L29"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/Mass/MassUnit.lean",
+          "line": 105,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Mass/MassUnit.lean#L105"
+        }
+      ],
+      "count": 2
+    },
+    {
+      "key": "oneill_1983_semi_riemannian",
+      "inBib": true,
+      "type": "book",
+      "authors": [
+        "Barrett O'Neill"
+      ],
+      "authorSortKey": "o'neill",
+      "title": "Semi-Riemannian Geometry With Applications to Relativity",
+      "year": "1983",
+      "venue": "Academic Press, (1983)",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/Mathematics/Geometry/Metric/PseudoRiemannian/Defs.lean",
+          "line": 50,
+          "subfolder": "Physlib/Mathematics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Mathematics/Geometry/Metric/PseudoRiemannian/Defs.lean#L50"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "pancharatnam1956",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "S. Pancharatnam"
+      ],
+      "authorSortKey": "pancharatnam",
+      "title": "Generalized theory of interference, and its applications",
+      "year": "1956",
+      "venue": "Proc. Indian Acad. Sci. A 44 no. 5 pp. 247-262 (1956)",
+      "url": "https://doi.org/10.1007/bf03046050",
+      "citations": [
+        {
+          "file": "QuantumInfo/States/Pure/BargmannInvariant.lean",
+          "line": 36,
+          "subfolder": "QuantumInfo/States",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/QuantumInfo/States/Pure/BargmannInvariant.lean#L36"
+        },
+        {
+          "file": "QuantumInfo/States/Pure/BlochSphere.lean",
+          "line": 33,
+          "subfolder": "QuantumInfo/States",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/QuantumInfo/States/Pure/BlochSphere.lean#L33"
+        }
+      ],
+      "count": 2
+    },
+    {
+      "key": "ParticleDataGroup:2018ovx",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "Particle Data Group"
+      ],
+      "authorSortKey": "particle data group",
+      "title": "Review of Particle Physics",
+      "year": "2018",
+      "venue": "Phys. Rev. D 98 no. 3 pp. 030001 (2018)",
+      "url": "https://doi.org/10.1103/PhysRevD.98.030001",
+      "citations": [
+        {
+          "file": "Physlib/Particles/StandardModel/HiggsBoson/Basic.lean",
+          "line": 68,
+          "subfolder": "Physlib/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/StandardModel/HiggsBoson/Basic.lean#L68"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "peskin_schroeder_qft",
+      "inBib": true,
+      "type": "book",
+      "authors": [
+        "Michael E. Peskin",
+        "Daniel V. Schroeder"
+      ],
+      "authorSortKey": "peskin",
+      "title": "An Introduction to Quantum Field Theory",
+      "year": "1995",
+      "venue": "Westview Press, (1995)",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/Relativity/LorentzAlgebra/Basis.lean",
+          "line": 37,
+          "subfolder": "Physlib/Relativity",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Relativity/LorentzAlgebra/Basis.lean#L37"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "qmul_emt10_notes",
+      "inBib": true,
+      "type": "misc",
+      "authors": [],
+      "authorSortKey": "qmul_emt10_notes",
+      "title": "MSci 4261 Electromagnetism: Lecture Notes X.10.1, The Energy-Momentum Tensor",
+      "year": null,
+      "venue": "",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/Electromagnetism/Distributional/Basic.lean",
+          "line": 40,
+          "subfolder": "Physlib/Electromagnetism",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Electromagnetism/Distributional/Basic.lean#L40"
+        },
+        {
+          "file": "Physlib/Electromagnetism/Distributional/Dynamics/Lagrangian.lean",
+          "line": 42,
+          "subfolder": "Physlib/Electromagnetism",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Electromagnetism/Distributional/Dynamics/Lagrangian.lean#L42"
+        },
+        {
+          "file": "Physlib/Electromagnetism/Dynamics/Hamiltonian.lean",
+          "line": 42,
+          "subfolder": "Physlib/Electromagnetism",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Electromagnetism/Dynamics/Hamiltonian.lean#L42"
+        },
+        {
+          "file": "Physlib/Electromagnetism/Dynamics/Lagrangian.lean",
+          "line": 59,
+          "subfolder": "Physlib/Electromagnetism",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Electromagnetism/Dynamics/Lagrangian.lean#L59"
+        },
+        {
+          "file": "Physlib/Electromagnetism/Kinematics/EMPotential.lean",
+          "line": 53,
+          "subfolder": "Physlib/Electromagnetism",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Electromagnetism/Kinematics/EMPotential.lean#L53"
+        }
+      ],
+      "count": 5
+    },
+    {
+      "key": "raynor2021graphical",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "Sophie Raynor"
+      ],
+      "authorSortKey": "raynor",
+      "title": "Graphical combinatorics and a distributive law for modular operads",
+      "year": "2021",
+      "venue": "Advances in Mathematics 392 pp. 108011 (2021)",
+      "url": null,
+      "citations": [],
+      "count": 0
+    },
+    {
+      "key": "Reed1972",
+      "inBib": true,
+      "type": "book",
+      "authors": [
+        "Michael Reed",
+        "Barry Simon"
+      ],
+      "authorSortKey": "reed",
+      "title": "Functional Analysis",
+      "year": "1972",
+      "venue": "Academic Press, Methods of Modern Mathematical Physics, (1972)",
+      "url": "https://doi.org/10.1016/B978-0-12-585001-8.X5001-6",
+      "citations": [
+        {
+          "file": "Physlib/QuantumMechanics/Operators/Unbounded.lean",
+          "line": 86,
+          "subfolder": "Physlib/QuantumMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QuantumMechanics/Operators/Unbounded.lean#L86"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "robertson1929uncertainty",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "H. P. Robertson"
+      ],
+      "authorSortKey": "robertson",
+      "title": "The Uncertainty Principle",
+      "year": "1929",
+      "venue": "Phys. Rev. 34 pp. 163-164 (1929)",
+      "url": "https://doi.org/10.1103/PhysRev.34.163",
+      "citations": [
+        {
+          "file": "Physlib/QuantumMechanics/Operators/Uncertainty.lean",
+          "line": 48,
+          "subfolder": "Physlib/QuantumMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QuantumMechanics/Operators/Uncertainty.lean#L48"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "Schmudgen2012",
+      "inBib": true,
+      "type": "book",
+      "authors": [
+        "Konrad Schmudgen"
+      ],
+      "authorSortKey": "schmudgen",
+      "title": "Unbounded Self-Adjoint Operators on Hilbert Space",
+      "year": "2012",
+      "venue": "Springer, Graduate Texts in Mathematics, (2012)",
+      "url": "https://doi.org/10.1007/978-94-007-4753-1",
+      "citations": [
+        {
+          "file": "Physlib/QuantumMechanics/Operators/Multiplication.lean",
+          "line": 61,
+          "subfolder": "Physlib/QuantumMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QuantumMechanics/Operators/Multiplication.lean#L61"
+        },
+        {
+          "file": "Physlib/QuantumMechanics/Operators/SpectralTheory/Basic.lean",
+          "line": 22,
+          "subfolder": "Physlib/QuantumMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QuantumMechanics/Operators/SpectralTheory/Basic.lean#L22"
+        },
+        {
+          "file": "Physlib/QuantumMechanics/Operators/SpectralTheory/Basic.lean",
+          "line": 84,
+          "subfolder": "Physlib/QuantumMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QuantumMechanics/Operators/SpectralTheory/Basic.lean#L84"
+        },
+        {
+          "file": "Physlib/QuantumMechanics/Operators/Unbounded.lean",
+          "line": 87,
+          "subfolder": "Physlib/QuantumMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QuantumMechanics/Operators/Unbounded.lean#L87"
+        }
+      ],
+      "count": 4
+    },
+    {
+      "key": "schrodinger1930heisenberg",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "Erwin Schrodinger"
+      ],
+      "authorSortKey": "schrodinger",
+      "title": "Zum Heisenbergschen Unscharfeprinzip",
+      "year": "1930",
+      "venue": "Sitzungsberichte der Preussischen Akademie der Wissenschaften, Physikalisch-mathematische Klasse pp. 296-303 (1930)",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/QuantumMechanics/Operators/Uncertainty.lean",
+          "line": 49,
+          "subfolder": "Physlib/QuantumMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QuantumMechanics/Operators/Uncertainty.lean#L49"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "snyder_toberer_2008",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "G. J. Snyder",
+        "E. S. Toberer"
+      ],
+      "authorSortKey": "snyder",
+      "title": "Complex thermoelectric materials",
+      "year": "2008",
+      "venue": "Nature Materials 7 pp. 105-114 (2008)",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/CondensedMatter/Thermoelectric/Basic.lean",
+          "line": 74,
+          "subfolder": "Physlib/CondensedMatter",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/CondensedMatter/Thermoelectric/Basic.lean#L74"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "stackexchange_qc_12953",
+      "inBib": true,
+      "type": "misc",
+      "authors": [],
+      "authorSortKey": "stackexchange_qc_12953",
+      "title": "Quantum Computing Stack Exchange answer 12953",
+      "year": null,
+      "venue": "",
+      "url": null,
+      "citations": [
+        {
+          "file": "QuantumInfo/Entropy/Axiomatized/Defs.lean",
+          "line": 43,
+          "subfolder": "QuantumInfo/Entropy",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/QuantumInfo/Entropy/Axiomatized/Defs.lean#L43"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "stone_1930",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "M. H. Stone"
+      ],
+      "authorSortKey": "stone",
+      "title": "Linear Transformations in Hilbert Space III. Operational Methods and Group Theory",
+      "year": "1930",
+      "venue": "Proc. Natl. Acad. Sci. 16 pp. 172-175 (1930)",
+      "url": "https://doi.org/10.1073/pnas.16.2.172",
+      "citations": [
+        {
+          "file": "Physlib/Mathematics/OneParameterSubgroups/Unitary.lean",
+          "line": 35,
+          "subfolder": "Physlib/Mathematics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Mathematics/OneParameterSubgroups/Unitary.lean#L35"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "sussman_wisdom_sicm",
+      "inBib": true,
+      "type": "book",
+      "authors": [
+        "Gerald Jay Sussman",
+        "Jack Wisdom"
+      ],
+      "authorSortKey": "sussman",
+      "title": "Structure and Interpretation of Classical Mechanics",
+      "year": "2001",
+      "venue": "MIT Press, (2001)",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/ClassicalMechanics/HamiltonsEquations.lean",
+          "line": 26,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/HamiltonsEquations.lean#L26"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "terek_variational_manifolds",
+      "inBib": true,
+      "type": "misc",
+      "authors": [
+        "Ivo Terek"
+      ],
+      "authorSortKey": "terek",
+      "title": "Introductory Variational Calculus on Manifolds",
+      "year": null,
+      "venue": "",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/ClassicalMechanics/HarmonicOscillator/Basic.lean",
+          "line": 94,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/HarmonicOscillator/Basic.lean#L94"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/HarmonicOscillator/Basic.lean",
+          "line": 108,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/HarmonicOscillator/Basic.lean#L108"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/HarmonicOscillator/Geometric/Basic.lean",
+          "line": 61,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/HarmonicOscillator/Geometric/Basic.lean#L61"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/HarmonicOscillator/Geometric/KineticEnergy.lean",
+          "line": 52,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/HarmonicOscillator/Geometric/KineticEnergy.lean#L52"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/HarmonicOscillator/Geometric/Trajectory.lean",
+          "line": 44,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/HarmonicOscillator/Geometric/Trajectory.lean#L44"
+        }
+      ],
+      "count": 5
+    },
+    {
+      "key": "tomamichel_relative_entropy_masterclass",
+      "inBib": true,
+      "type": "misc",
+      "authors": [],
+      "authorSortKey": "tomamichel_relative_entropy_masterclass",
+      "title": "Tomamichel, Quantum Relative Entropy - An Axiomatic Approach",
+      "year": null,
+      "venue": "",
+      "url": null,
+      "citations": [
+        {
+          "file": "QuantumInfo/Entropy/Axiomatized/Defs.lean",
+          "line": 42,
+          "subfolder": "QuantumInfo/Entropy",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/QuantumInfo/Entropy/Axiomatized/Defs.lean#L42"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "tong_line_operators_sm",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "D. Tong"
+      ],
+      "authorSortKey": "tong",
+      "title": "Line Operators in the Standard Model",
+      "year": "2017",
+      "venue": "JHEP 07 pp. 104 (2017)",
+      "url": "https://arxiv.org/abs/1705.01853",
+      "citations": [],
+      "count": 0
+    },
+    {
+      "key": "tong_statistical_physics",
+      "inBib": true,
+      "type": "misc",
+      "authors": [
+        "David Tong"
+      ],
+      "authorSortKey": "tong",
+      "title": "Lectures on Statistical Physics",
+      "year": null,
+      "venue": "",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/CondensedMatter/TightBindingChain/Basic.lean",
+          "line": 66,
+          "subfolder": "Physlib/CondensedMatter",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/CondensedMatter/TightBindingChain/Basic.lean#L66"
+        },
+        {
+          "file": "Physlib/StatisticalMechanics/CanonicalEnsemble/Finite.lean",
+          "line": 45,
+          "subfolder": "Physlib/StatisticalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/StatisticalMechanics/CanonicalEnsemble/Finite.lean#L45"
+        },
+        {
+          "file": "Physlib/StatisticalMechanics/CanonicalEnsemble/Lemmas.lean",
+          "line": 53,
+          "subfolder": "Physlib/StatisticalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/StatisticalMechanics/CanonicalEnsemble/Lemmas.lean#L53"
+        }
+      ],
+      "count": 3
+    },
+    {
+      "key": "tong_statphys_notes_one",
+      "inBib": true,
+      "type": "misc",
+      "authors": [
+        "David Tong"
+      ],
+      "authorSortKey": "tong",
+      "title": "Cambridge Lecture Notes on Statistical Physics, part one",
+      "year": null,
+      "venue": "",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/StatisticalMechanics/CanonicalEnsemble/Basic.lean",
+          "line": 92,
+          "subfolder": "Physlib/StatisticalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/StatisticalMechanics/CanonicalEnsemble/Basic.lean#L92"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "tong_statphys_notes_two",
+      "inBib": true,
+      "type": "misc",
+      "authors": [
+        "David Tong"
+      ],
+      "authorSortKey": "tong",
+      "title": "Cambridge Lecture Notes on Statistical Physics, part two",
+      "year": null,
+      "venue": "",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/StatisticalMechanics/CanonicalEnsemble/Basic.lean",
+          "line": 93,
+          "subfolder": "Physlib/StatisticalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/StatisticalMechanics/CanonicalEnsemble/Basic.lean#L93"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "tooby_smith_2024_index_notation",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "Joseph Tooby-Smith"
+      ],
+      "authorSortKey": "tooby-smith",
+      "title": "Formalization of physics index notation in Lean 4",
+      "year": "2024",
+      "venue": "2024",
+      "url": "https://arxiv.org/abs/2411.07667",
+      "citations": [
+        {
+          "file": "Physlib/Relativity/Tensors/Product.lean",
+          "line": 71,
+          "subfolder": "Physlib/Relativity",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Relativity/Tensors/Product.lean#L71"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "ucdavis_spinorfeynrules",
+      "inBib": true,
+      "type": "misc",
+      "authors": [
+        "John Terning"
+      ],
+      "authorSortKey": "terning",
+      "title": "Modern Supersymmetry: Slides -- Spinor Feynman Rules",
+      "year": null,
+      "venue": "",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/QFT/PerturbationTheory/FieldSpecification/Basic.lean",
+          "line": 29,
+          "subfolder": "Physlib/QFT",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QFT/PerturbationTheory/FieldSpecification/Basic.lean#L29"
+        },
+        {
+          "file": "Physlib/Relativity/Fermions/Weyl/DualLeftHanded.lean",
+          "line": 25,
+          "subfolder": "Physlib/Relativity",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Relativity/Fermions/Weyl/DualLeftHanded.lean#L25"
+        }
+      ],
+      "count": 2
+    },
+    {
+      "key": "ucsd_ph130a_node452",
+      "inBib": true,
+      "type": "misc",
+      "authors": [
+        "James Branson"
+      ],
+      "authorSortKey": "branson",
+      "title": "Quantum Physics (UCSD Physics 130) -- Course Notes",
+      "year": null,
+      "venue": "",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/Electromagnetism/Distributional/Basic.lean",
+          "line": 39,
+          "subfolder": "Physlib/Electromagnetism",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Electromagnetism/Distributional/Basic.lean#L39"
+        },
+        {
+          "file": "Physlib/Electromagnetism/Distributional/Dynamics/KineticTerm.lean",
+          "line": 38,
+          "subfolder": "Physlib/Electromagnetism",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Electromagnetism/Distributional/Dynamics/KineticTerm.lean#L38"
+        },
+        {
+          "file": "Physlib/Electromagnetism/Distributional/Dynamics/Lagrangian.lean",
+          "line": 41,
+          "subfolder": "Physlib/Electromagnetism",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Electromagnetism/Distributional/Dynamics/Lagrangian.lean#L41"
+        },
+        {
+          "file": "Physlib/Electromagnetism/Dynamics/Hamiltonian.lean",
+          "line": 41,
+          "subfolder": "Physlib/Electromagnetism",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Electromagnetism/Dynamics/Hamiltonian.lean#L41"
+        },
+        {
+          "file": "Physlib/Electromagnetism/Dynamics/KineticTerm.lean",
+          "line": 56,
+          "subfolder": "Physlib/Electromagnetism",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Electromagnetism/Dynamics/KineticTerm.lean#L56"
+        },
+        {
+          "file": "Physlib/Electromagnetism/Dynamics/Lagrangian.lean",
+          "line": 58,
+          "subfolder": "Physlib/Electromagnetism",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Electromagnetism/Dynamics/Lagrangian.lean#L58"
+        },
+        {
+          "file": "Physlib/Electromagnetism/Kinematics/EMPotential.lean",
+          "line": 52,
+          "subfolder": "Physlib/Electromagnetism",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Electromagnetism/Kinematics/EMPotential.lean#L52"
+        }
+      ],
+      "count": 7
+    },
+    {
+      "key": "warwick_alpha_z_relative_entropies",
+      "inBib": true,
+      "type": "misc",
+      "authors": [],
+      "authorSortKey": "warwick_alpha_z_relative_entropies",
+      "title": "alpha-z Relative Entropies",
+      "year": null,
+      "venue": "",
+      "url": null,
+      "citations": [
+        {
+          "file": "QuantumInfo/Entropy/Axiomatized/Defs.lean",
+          "line": 39,
+          "subfolder": "QuantumInfo/Entropy",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/QuantumInfo/Entropy/Axiomatized/Defs.lean#L39"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "watrous_qit_notes_02",
+      "inBib": true,
+      "type": "misc",
+      "authors": [],
+      "authorSortKey": "watrous_qit_notes_02",
+      "title": "Watrous, Max-relative entropy and conditional min-entropy",
+      "year": null,
+      "venue": "",
+      "url": null,
+      "citations": [
+        {
+          "file": "QuantumInfo/Entropy/Axiomatized/Defs.lean",
+          "line": 40,
+          "subfolder": "QuantumInfo/Entropy",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/QuantumInfo/Entropy/Axiomatized/Defs.lean#L40"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "watrous_tqi_ch8",
+      "inBib": true,
+      "type": "book",
+      "authors": [
+        "John Watrous"
+      ],
+      "authorSortKey": "watrous",
+      "title": "The Theory of Quantum Information",
+      "year": "2018",
+      "venue": "Cambridge University Press, (2018)",
+      "url": null,
+      "citations": [
+        {
+          "file": "QuantumInfo/Capacity/Capacity.lean",
+          "line": 98,
+          "subfolder": "QuantumInfo/Capacity",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/QuantumInfo/Capacity/Capacity.lean#L98"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "weinberg_qft1",
+      "inBib": true,
+      "type": "book",
+      "authors": [
+        "Steven Weinberg"
+      ],
+      "authorSortKey": "weinberg",
+      "title": "The Quantum Theory of Fields, Volume 1: Foundations",
+      "year": "1995",
+      "venue": "Cambridge University Press, (1995)",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/Relativity/LorentzAlgebra/Basis.lean",
+          "line": 36,
+          "subfolder": "Physlib/Relativity",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Relativity/LorentzAlgebra/Basis.lean#L36"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "wiki_classical_em_and_sr",
+      "inBib": true,
+      "type": "misc",
+      "authors": [],
+      "authorSortKey": "wiki_classical_em_and_sr",
+      "title": "Classical electromagnetism and special relativity",
+      "year": null,
+      "venue": "",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/Electromagnetism/Kinematics/Boosts.lean",
+          "line": 42,
+          "subfolder": "Physlib/Electromagnetism",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Electromagnetism/Kinematics/Boosts.lean#L42"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "wiki_complex_differential_form",
+      "inBib": true,
+      "type": "misc",
+      "authors": [],
+      "authorSortKey": "wiki_complex_differential_form",
+      "title": "Complex differential form (Dolbeault operators)",
+      "year": null,
+      "venue": "",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/Mathematics/Calculus/Wirtinger/Basic.lean",
+          "line": 146,
+          "subfolder": "Physlib/Mathematics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Mathematics/Calculus/Wirtinger/Basic.lean#L146"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "wiki_em_field_gauge_freedom",
+      "inBib": true,
+      "type": "misc",
+      "authors": [],
+      "authorSortKey": "wiki_em_field_gauge_freedom",
+      "title": "Mathematical descriptions of the electromagnetic field (gauge freedom)",
+      "year": null,
+      "venue": "",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/Electromagnetism/Kinematics/GaugeTransformation.lean",
+          "line": 59,
+          "subfolder": "Physlib/Electromagnetism",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Electromagnetism/Kinematics/GaugeTransformation.lean#L59"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "wiki_levi_civita_symbol",
+      "inBib": true,
+      "type": "misc",
+      "authors": [],
+      "authorSortKey": "wiki_levi_civita_symbol",
+      "title": "Levi-Civita symbol",
+      "year": null,
+      "venue": "",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/Mathematics/LeviCivita/Basic.lean",
+          "line": 45,
+          "subfolder": "Physlib/Mathematics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Mathematics/LeviCivita/Basic.lean#L45"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "wiki_lorentz_transformation",
+      "inBib": true,
+      "type": "misc",
+      "authors": [],
+      "authorSortKey": "wiki_lorentz_transformation",
+      "title": "Lorentz transformation",
+      "year": null,
+      "venue": "",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/SpaceAndTime/SpaceTime/Boosts.lean",
+          "line": 31,
+          "subfolder": "Physlib/SpaceAndTime",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/SpaceAndTime/SpaceTime/Boosts.lean#L31"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "wiki_rigged_hilbert_space",
+      "inBib": true,
+      "type": "misc",
+      "authors": [],
+      "authorSortKey": "wiki_rigged_hilbert_space",
+      "title": "Rigged Hilbert space",
+      "year": null,
+      "venue": "",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/QuantumMechanics/HilbertSpaces/SpaceD/MomentumStates.lean",
+          "line": 27,
+          "subfolder": "Physlib/QuantumMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QuantumMechanics/HilbertSpaces/SpaceD/MomentumStates.lean#L27"
+        },
+        {
+          "file": "Physlib/QuantumMechanics/HilbertSpaces/SpaceD/PositionStates.lean",
+          "line": 27,
+          "subfolder": "Physlib/QuantumMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QuantumMechanics/HilbertSpaces/SpaceD/PositionStates.lean#L27"
+        }
+      ],
+      "count": 2
+    }
+  ]
+}

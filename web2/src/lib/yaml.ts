@@ -109,6 +109,39 @@ export async function getApiMap(): Promise<ApiMap> {
   return loadJson<ApiMap>(path.join(dataDir, "APIMap.json"));
 }
 
+// ─── References ─────────────────────────────────────────────────────────────
+export type ReferenceCitation = {
+  file: string;
+  line: number;
+  subfolder: string;
+  url: string;
+};
+
+export type Reference = {
+  key: string;
+  inBib: boolean;
+  type: string | null;
+  authors: string[];
+  authorSortKey: string;
+  title: string | null;
+  year: string | null;
+  venue: string;
+  url: string | null;
+  citations: ReferenceCitation[];
+  count: number;
+};
+
+export type ReferenceLibrary = {
+  repo: string;
+  branch: string;
+  generatedAt: string;
+  references: Reference[];
+};
+
+export async function getReferences(): Promise<ReferenceLibrary> {
+  return loadJson<ReferenceLibrary>(path.join(dataDir, "References.json"));
+}
+
 // ─── Monthly updates ──────────────────────────────────────────────────────
 export type MonthlyContributor = {
   login: string | null;
