@@ -46,10 +46,19 @@ jobs:
         - name: Ensure docs data directory exists
           run: mkdir -p docs/_data
           
+        # The TODO list, informal graph and stats page come from upstream
+        # metaprograms that break independently of the library itself (e.g.
+        # TODO_to_yml imports Physlib, QuantumInfo and PhyslibAlpha together
+        # and fails whenever two of them declare the same name). They must not
+        # hold the documentation hostage, so each may fail; the site then keeps
+        # the TODO.yml committed in web2/data until the next good run.
         - name: make TODO list
+          id: todo
+          continue-on-error: true
           run : lake exe TODO_to_yml mkFile
 
         - name: Add generation timestamp to TODO list
+          if: steps.todo.outcome == 'success'
           run: |
             python3 - docs/_data/TODO.yml << 'PYEOF'
             import sys, datetime, yaml
@@ -62,6 +71,7 @@ jobs:
             PYEOF
 
         - name: Fetch GitHub issues into TODO list
+          if: steps.todo.outcome == 'success'
           run: |
             curl -sf \
               "https://api.github.com/repos/leanprover-community/physlib/issues?state=open&per_page=100&labels=TODO" \
@@ -99,12 +109,17 @@ jobs:
             PYEOF
 
         - name: make list of informal proofs and lemmas
+          id: informal
+          continue-on-error: true
           run : lake exe informal mkFile mkDot mkHTML
-  
+
         - name: make stats page
+          id: stats
+          continue-on-error: true
           run : lake exe stats mkHTML
-  
+
         - name: Generate svg from dot
+          if: steps.informal.outcome == 'success'
           run : dot -Tsvg -o ./docs/graph.svg ./docs/InformalDot.dot
   
         - name: Replace template file with custom
@@ -123,13 +138,16 @@ jobs:
         - name : Move the data sets
           run: mv docs/_data doc-artifact/_data
         
-        - name : Move the stats file 
-          run : mv docs/Stats.html doc-artifact/Stats.html    
-        
+        - name : Move the stats file
+          if: steps.stats.outcome == 'success'
+          run : mv docs/Stats.html doc-artifact/Stats.html
+
         - name : Move the informal proofs and lemmas dot file
+          if: steps.informal.outcome == 'success'
           run : mv docs/InformalDot.dot doc-artifact/InformalDot.dot
 
         - name : Move the informal proofs and lemmas
+          if: steps.informal.outcome == 'success'
           run : mv docs/InformalGraph.html doc-artifact/InformalGraph.html
 
         - name: Copy documentation to `doc-artifact/docs`
@@ -154,3 +172,10 @@ jobs:
             else
               echo "VERCEL_DEPLOY_HOOK_URL is not set. Skipping Vercel trigger."
             fi
+
+        # continue-on-error leaves the run green, so surface the failures as an
+        # annotation on the run instead of letting them go unnoticed.
+        - name: Report failed metadata steps
+          if: steps.todo.outcome == 'failure' || steps.informal.outcome == 'failure' || steps.stats.outcome == 'failure'
+          run: |
+            echo "::warning::Docs were published, but some metadata steps failed (TODO list: ${{ steps.todo.outcome }}, informal graph: ${{ steps.informal.outcome }}, stats: ${{ steps.stats.outcome }}). The site keeps the previous data for those."
