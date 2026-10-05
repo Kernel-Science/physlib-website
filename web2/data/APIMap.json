@@ -1,7 +1,7 @@
 {
   "repo": "leanprover-community/physlib",
   "branch": "master",
-  "generatedAt": "2026-09-28T10:59:37.277Z",
+  "generatedAt": "2026-10-05T11:35:17.414Z",
   "nodes": [
     {
       "path": "Physlib/ClassicalFieldTheory/GaugeTheory",
@@ -531,7 +531,7 @@
     {
       "path": "Physlib/Cosmology/FLRW",
       "title": "FLRW cosmology",
-      "overview": "A Friedmann-Lemaître-Robertson-Walker (FLRW) spacetime models a homogeneous\nand isotropic universe. Its geometry is set by a scale factor a(t), a function\nof cosmic time, together with the curvature of the spatial slices, which is\nspherical, flat, or saddle. The expansion rate is the Hubble parameter\nH = (∂ₜ a) / a, and the change of the expansion rate is measured by the\ndeceleration parameter q = -(∂ₜ ∂ₜ a) a / (∂ₜ a)^2. The dynamics is governed\nby the Friedmann equations, which relate the scale factor to the energy\ndensity and pressure of the cosmic fluid, the spatial curvature, and the\ncosmological constant.\n\nThe formal content lives in FLRW/Basic.lean: the spatial geometry with its\nmetric profile function S and the flat limits of the spherical and saddle\ncases, the first- and second-order Friedmann equations as propositions on a\nscale factor, the Hubble parameter, and the deceleration parameter with the\nrelation ∂ₜ H = -H^2 (1 + q). The FLRW type itself is a placeholder; the file\nrecords a TODO to replace it with a structure bundling a positive scale\nfactor and a spatial geometry. Six further modules, ConformalTime.lean,\nDensityParameters.lean, Distances.lean, Dynamics.lean, MatterContent.lean and\nSolutions.lean, contain only TODO items: conformal time and the conformal\nHubble factor, the critical density and density parameters, cosmological\ndistances and redshift, energy conditions and the Big-Bang singularity, the\nmatter content with its continuity equation and scaling laws, and the exact\nde Sitter, radiation-dominated, Einstein-de Sitter, Milne and Einstein static\nsolutions. The requirements below record the two most basic of those open\nitems. Cosmology/Basic.lean is a placeholder module doc with no declarations.",
+      "overview": "A Friedmann-Lemaître-Robertson-Walker (FLRW) spacetime models a homogeneous\nand isotropic universe. Its geometry is set by a scale factor a(t), a function\nof cosmic time, together with the curvature of the spatial slices, which is\nspherical, flat, or saddle. The expansion rate is the Hubble parameter\nH = (∂ₜ a) / a, and the change of the expansion rate is measured by the\ndeceleration parameter q = -(∂ₜ ∂ₜ a) a / (∂ₜ a)^2. The dynamics is governed\nby the Friedmann equations, which relate the scale factor to the energy\ndensity and pressure of the cosmic fluid, the spatial curvature, and the\ncosmological constant.\n\nThe formal content lives in FLRW/Basic.lean: the spatial geometry with its\nmetric profile function S and the flat limits of the spherical and saddle\ncases, the first- and second-order Friedmann equations as propositions on a\nscale factor, the Hubble parameter, and the deceleration parameter with the\nrelation ∂ₜ H = -H^2 (1 + q). The FLRW type itself is a placeholder; the file\nrecords a TODO to replace it with a structure bundling a positive scale\nfactor and a spatial geometry. MatterContent.lean contains the continuity\nequation of the cosmic fluid and its relation to the two Friedmann equations,\nthe barotropic equation of state with the density scaling laws, and the\ncosmological constant as a fluid. Solutions.lean contains the exact de\nSitter, radiation-dominated, Einstein-de Sitter, Milne and Einstein static\nsolutions. Four further modules, ConformalTime.lean, DensityParameters.lean,\nDistances.lean and Dynamics.lean, contain only TODO items: conformal time and\nthe conformal Hubble factor, the critical density and density parameters,\ncosmological distances and redshift, energy conditions and the Big-Bang\nsingularity. Cosmology/Basic.lean is a placeholder module doc with no\ndeclarations.",
       "references": [
         "D. Baumann, Cosmology, Cambridge University Press (2022), Chapter 2 (FLRW geometry, Hubble parameter, Friedmann equations, matter content)",
         "S. Dodelson and F. Schmidt, Modern Cosmology, 2nd ed., Chapter 2 (the smooth, expanding universe)",
@@ -569,9 +569,19 @@
           "location": "Physlib/Cosmology/FLRW/Basic.lean (decelerationParameter, deriv_hubbleConstant, decelerationParameter_eq_one_plus_hubbleConstant, deriv_hubbleConstant_eq_neg_sq_mul, deriv_hubbleConstant_neg_iff, exists_deriv_hubbleConstant_neg_iff)"
         },
         {
-          "description": "The continuity equation ∂ₜ ρ + 3 H (ρ + P/c^2) = 0 of the cosmic fluid, the barotropic equation of state P = w ρ c^2, and the density scaling law ρ ∝ a^(-3(1+w)) with its dust, radiation and vacuum-energy special cases. Recorded as TODO items in Physlib/Cosmology/FLRW/MatterContent.lean; no declarations exist yet.",
-          "done": false,
-          "location": "N/A"
+          "description": "The continuity equation ∂ₜ ρ + 3 H (ρ + P/c^2) = 0 of the cosmic fluid is defined as a proposition at an instant, and the API relates it to the two Friedmann equations: it follows from the first-order equation holding at all times together with the second-order equation, and conversely the second-order equation follows from the first-order equation and the continuity equation wherever ∂ₜ a ≠ 0.",
+          "done": true,
+          "location": "Physlib/Cosmology/FLRW/MatterContent.lean (ContinuityEquation, deriv_firstOrderFriedmann, continuityEquation_of_friedmann, secondOrderFriedmann_of_continuityEquation)"
+        },
+        {
+          "description": "The barotropic equation of state P = w ρ c^2 is defined, and the API contains the density scaling law ρ t = ρ t₀ (a t / a t₀)^(-3(1+w)) under the barotropic continuity equation holding at all times, its converse, and its dust, radiation and vacuum-energy special cases.",
+          "done": true,
+          "location": "Physlib/Cosmology/FLRW/MatterContent.lean (barotropicPressure, deriv_of_continuityEquation_barotropic, density_scaling, continuityEquation_of_scaling, density_scaling_dust, density_scaling_radiation, density_scaling_vacuum)"
+        },
+        {
+          "description": "The API contains the cosmological constant as a fluid: the density ρ_Λ = Λ c^2 / (8πG) and the pressure p_Λ = -ρ_Λ c^2 are defined, each Friedmann equation with Λ is equivalent to the same equation without Λ for the fluid ρ + ρ_Λ, p + p_Λ, and p_Λ is the w = -1 barotropic pressure of ρ_Λ.",
+          "done": true,
+          "location": "Physlib/Cosmology/FLRW/MatterContent.lean (cosmologicalConstantDensity, cosmologicalConstantPressure, firstOrderFriedmann_iff_lambdaFluid, secondOrderFriedmann_iff_lambdaFluid, cosmologicalConstantPressure_eq_barotropic)"
         }
       ],
       "parents": [
@@ -1512,7 +1522,7 @@
         },
         {
           "name": "Partially defined linear maps",
-          "path": "Physlib/Mathematics/LinearPMap.lean"
+          "path": "Physlib/Mathematics/ForMathlib/LinearPMap.lean"
         },
         {
           "name": "Inner product spaces",
@@ -1624,7 +1634,7 @@
         },
         {
           "name": "Partially defined linear maps",
-          "path": "Physlib/Mathematics/LinearPMap.lean"
+          "path": "Physlib/Mathematics/ForMathlib/LinearPMap.lean"
         },
         {
           "name": "Inner product spaces",
