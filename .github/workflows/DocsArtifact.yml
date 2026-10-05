@@ -108,7 +108,7 @@ jobs:
           run : dot -Tsvg -o ./docs/graph.svg ./docs/InformalDot.dot
   
         - name: Replace template file with custom
-          run : cp ./scripts/Template.lean .lake/packages/doc-gen4/DocGen4/Output/Template.lean
+          run : cp ./scripts/website/Template.lean .lake/packages/doc-gen4/DocGen4/Output/Template.lean
   
         - name: Build documentation
           run: lake -Kenv=dev build Physlib:docs QuantumInfo:docs

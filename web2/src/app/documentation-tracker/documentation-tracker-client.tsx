@@ -7,7 +7,7 @@ async function buildDot(): Promise<string> {
   const [dotRes, undocRes] = await Promise.all([
     fetch("/my_graph.dot"),
     fetch(
-      "https://raw.githubusercontent.com/leanprover-community/physlib/master/scripts/MetaPrograms/module_doc_no_lint.txt",
+      "https://raw.githubusercontent.com/leanprover-community/physlib/master/scripts/lint/exemptions/module_doc_no_lint.txt",
     ),
   ]);
 

@@ -270,7 +270,7 @@ export default function GettingStartedPage() {
           <Card.Title>Linting Locally</Card.Title>
         </Card.Header>
         <Card.Content className="flex flex-col gap-3 text-sm text-foreground/90">
-          <CodeBlock language="bash" code={`lake exe lint_all\n./scripts/lint-style.sh`} />
+          <CodeBlock language="bash" code={`lake exe lint_all\n./scripts/lint/required/lint-style.sh`} />
           <p className="text-muted text-xs">
             Ensuring these commands produce no errors helps maintain the quality
             of Physlib.
