@@ -746,7 +746,9 @@ function texEscape(str) {
   for (const [ch, rep] of TEXT_UNICODE_SUBST) {
     if (out.includes(ch)) out = out.split(ch).join(rep);
   }
-  return out;
+  // Whatever is left has no hand-written mapping. Latin letters are safe in
+  // the body font; everything beyond them goes through the font fallback.
+  return out.replace(BEYOND_LATIN_RE, uniFallback);
 }
 
 /**
@@ -759,6 +761,8 @@ function texEscape(str) {
  * `β _toReal`, and every heading with a Greek letter or subscript picked up a
  * gap in the middle of an identifier. Only glyphs DejaVu genuinely lacks fall
  * back to math, where the spacing is the lesser problem against not rendering.
+ * Everything else goes through `\uni`, which typesets the character itself
+ * when the mono font has it and so leaves the spacing untouched.
  */
 function texEscapeMono(str) {
   if (str == null) return "";
@@ -771,7 +775,7 @@ function texEscapeMono(str) {
     .replace(/>/g, "\\textgreater{}")
     .replace(NON_ASCII_RE, (ch) => {
       const math = SNIPPET_GLYPH_MATH.get(ch);
-      return math ? `\\ensuremath{${math}}` : ch;
+      return math ? `\\ensuremath{${math}}` : uniFallback(ch);
     });
 }
 
@@ -1023,6 +1027,18 @@ const MISSING_GLYPH_MATH = [
   ["ẋ", "\\dot{x}"], ["⋅", "\\cdot"],
   // Half-arrow, alongside the harpoon combinator ⥤ above.
   ["↿", "\\upharpoonleft"],
+  // Fraktur g (a Lie algebra), alongside the Fraktur letters above.
+  ["𝔤", "\\mathfrak{g}"],
+  // Superscript n, alongside the other modifier letters above.
+  ["ⁿ", "^{n}"],
+  // Big intersection and direct sum, alongside ⋃ and ⨂ above.
+  ["⋂", "\\bigcap"], ["⨁", "\\bigoplus"],
+  // Musical sharp (the ♯ of the musical isomorphisms) - already in
+  // LEAN_LITERATE for snippets, but docstring prose needs it too.
+  ["♯", "\\sharp"],
+  // Card suits and a white diamond, used as notation symbols.
+  ["♠", "\\spadesuit"], ["♣", "\\clubsuit"], ["♡", "\\heartsuit"],
+  ["◇", "\\Diamond"],
 ];
 
 for (const [ch, body] of MISSING_GLYPH_MATH) {
@@ -1049,6 +1065,47 @@ const SNIPPET_GLYPH_MATH = new Map([
 ]);
 
 const NON_ASCII_RE = /[^\x00-\x7F]/gu;
+// Past Latin Extended-B: the first codepoint the body font may not cover.
+const BEYOND_LATIN_RE = /[^\x00-\u024F]/gu;
+// Emoji, and the invisible selector/joiner that ride along with them. No TeX
+// Live font draws these, so they are dropped rather than shown as a
+// placeholder - they are decoration in a docstring, never notation.
+const DROPPED_CHAR_RE = /^(?:\p{Emoji_Presentation}|[\uFE0E\uFE0F\u200D])$/u;
+
+/**
+ * Typeset one character that has no hand-written LaTeX mapping.
+ *
+ * XeLaTeX has no font fallback, so a codepoint the current font lacks
+ * typesets as nothing. New symbols turn up in physlib every month, and a
+ * table of known ones can only ever cover last month's. `\uni` (defined in
+ * the preamble) does the fallback at typesetting time instead: the current
+ * font if it has the glyph, else the first font in `FALLBACK_FONT_FILES` that
+ * does, else a visible `[U+XXXX]` marker. The codepoint is passed in hex
+ * because TeX has no convenient way to print one.
+ *
+ * `MISSING_GLYPH_MATH` is still the way to make a symbol look *right*; this
+ * only guarantees an unknown one never renders blank or fails the build.
+ */
+function uniFallback(ch) {
+  if (DROPPED_CHAR_RE.test(ch)) return "{}";
+  const hex = ch.codePointAt(0).toString(16).toUpperCase().padStart(4, "0");
+  return `\\uni{${ch}}{${hex}}`;
+}
+
+// Tried in order by `\uni` when the current font lacks a glyph. All ship with
+// TeX Live (and so with tectonic's bundle); one that is absent is skipped.
+// The mono and body fonts are both listed so each can borrow from the other.
+const FALLBACK_FONT_FILES = [
+  "DejaVuSansMono.ttf",
+  "DejaVuSans.ttf",
+  "lmroman10-regular.otf",
+  "FreeSerif.otf",
+  "FreeMono.otf",
+  "STIXTwoMath-Regular.otf",
+  "latinmodern-math.otf",
+];
+// Written to the TeX log by `\uni` when no font at all has the glyph.
+const NO_GLYPH_LOG_TAG = "PHYSLIB-NO-GLYPH";
 
 /**
  * Route every non-ASCII character in a snippet through an `escapeinside`
@@ -1074,148 +1131,13 @@ const NON_ASCII_RE = /[^\x00-\x7F]/gu;
 function escapeSnippetGlyphs(snippet) {
   return String(snippet).replace(NON_ASCII_RE, (ch) => {
     const math = SNIPPET_GLYPH_MATH.get(ch);
-    const body = math ? `\\ensuremath{${math}}` : `\\texttt{${ch}}`;
+    const body = math ? `\\ensuremath{${math}}` : `\\texttt{${uniFallback(ch)}}`;
     return `${LST_ESCAPE_OPEN}${body}${LST_ESCAPE_CLOSE}`;
   });
 }
 
-// The monospace font the preamble loads, and the one every raw non-ASCII
-// character left in the .tex is ultimately typeset with: snippets are
-// listings, and declaration names in headings are \texttt too. Anything in
-// text mode has already been replaced by a LaTeX command via texEscape.
+// The monospace font the preamble loads.
 const MONO_FONT_FILE = "DejaVuSansMono.ttf";
-
-/** Absolute path to `MONO_FONT_FILE`, or null when it isn't on disk (tectonic
- *  serves fonts from its own bundle, so in CI there is nothing to read). */
-function findMonoFontFile() {
-  const res = spawnSync("kpsewhich", [MONO_FONT_FILE], { encoding: "utf8" });
-  if (res.status === 0) {
-    const found = String(res.stdout ?? "").trim().split("\n")[0];
-    if (found && fs.existsSync(found)) return found;
-  }
-  return null;
-}
-
-/**
- * Build a `codepoint -> boolean` coverage test from a TrueType `cmap`.
- *
- * Only coverage is needed, not glyph ids, so this reads the best available
- * subtable (format 12 for the full range, else format 4 for the BMP) and
- * answers whether a codepoint maps to a non-zero glyph. Returns null if the
- * font can't be understood, in which case the caller skips the check rather
- * than inventing failures.
- */
-function readCmapLookup(fontPath) {
-  let buf;
-  try {
-    buf = fs.readFileSync(fontPath);
-  } catch {
-    return null;
-  }
-  try {
-    const numTables = buf.readUInt16BE(4);
-    let cmapOff = 0;
-    for (let i = 0; i < numTables; i++) {
-      const rec = 12 + i * 16;
-      if (buf.toString("ascii", rec, rec + 4) === "cmap") {
-        cmapOff = buf.readUInt32BE(rec + 8);
-        break;
-      }
-    }
-    if (!cmapOff) return null;
-
-    const subtables = buf.readUInt16BE(cmapOff + 2);
-    let best = null;
-    let bestScore = -1;
-    for (let i = 0; i < subtables; i++) {
-      const rec = cmapOff + 4 + i * 8;
-      const platform = buf.readUInt16BE(rec);
-      const encoding = buf.readUInt16BE(rec + 2);
-      const off = cmapOff + buf.readUInt32BE(rec + 4);
-      const format = buf.readUInt16BE(off);
-      let score = -1;
-      if (format === 12 && platform === 3 && encoding === 10) score = 3;
-      else if (format === 4 && platform === 3 && encoding === 1) score = 2;
-      else if (format === 12) score = 1;
-      else if (format === 4) score = 0;
-      if (score > bestScore) {
-        bestScore = score;
-        best = { off, format };
-      }
-    }
-    if (!best) return null;
-
-    if (best.format === 12) {
-      const groups = buf.readUInt32BE(best.off + 12);
-      return (cp) => {
-        for (let g = 0; g < groups; g++) {
-          const p = best.off + 16 + g * 12;
-          if (cp >= buf.readUInt32BE(p) && cp <= buf.readUInt32BE(p + 4)) return true;
-        }
-        return false;
-      };
-    }
-
-    const segX2 = buf.readUInt16BE(best.off + 6);
-    const endO = best.off + 14;
-    const startO = endO + segX2 + 2;
-    const deltaO = startO + segX2;
-    const rangeO = deltaO + segX2;
-    return (cp) => {
-      if (cp > 0xffff) return false;
-      for (let s = 0; s < segX2 / 2; s++) {
-        if (cp > buf.readUInt16BE(endO + s * 2)) continue;
-        const start = buf.readUInt16BE(startO + s * 2);
-        if (cp < start) return false;
-        const rangeOffset = buf.readUInt16BE(rangeO + s * 2);
-        if (rangeOffset === 0) {
-          return ((cp + buf.readInt16BE(deltaO + s * 2)) & 0xffff) !== 0;
-        }
-        const gi = rangeO + s * 2 + rangeOffset + (cp - start) * 2;
-        if (gi + 1 >= buf.length) return false;
-        return buf.readUInt16BE(gi) !== 0;
-      }
-      return false;
-    };
-  } catch {
-    return null;
-  }
-}
-
-/**
- * Refuse to compile a document containing a character the font cannot draw.
- *
- * XeLaTeX has no font fallback, so an uncovered codepoint typesets as nothing
- * whatsoever - a theorem statement quietly missing a symbol. Checking the
- * emitted source against the font's own cmap turns that into an error naming
- * the exact codepoints, before spending four minutes on a compile, and
- * catches glyphs the log scrape would only report afterwards.
- *
- * Skips when the font isn't on disk (tectonic bundles its own). That is not a
- * hole: `compileLatex`'s log scrape is fatal too, so the same characters still
- * fail the run, just later.
- */
-function assertGlyphsCovered(tex) {
-  const fontPath = findMonoFontFile();
-  if (!fontPath) return;
-  const covered = readCmapLookup(fontPath);
-  if (!covered) return;
-
-  const missing = new Map();
-  for (const ch of new Set(String(tex).match(NON_ASCII_RE) ?? [])) {
-    const cp = ch.codePointAt(0);
-    if (!covered(cp)) missing.set(ch, cp);
-  }
-  if (missing.size === 0) return;
-
-  const listed = [...missing]
-    .map(([ch, cp]) => `${ch} (U+${cp.toString(16).toUpperCase().padStart(4, "0")})`)
-    .join(", ");
-  throw new Error(
-    `${missing.size} character(s) in the generated LaTeX have no glyph in ${MONO_FONT_FILE} ` +
-      `and would typeset as nothing: ${listed}. Add each to MISSING_GLYPH_MATH.`,
-  );
-}
 
 /** Guard the escapeinside assumption: source containing the opening delimiter
  *  would start executing listing content as LaTeX. */
@@ -1227,6 +1149,12 @@ function assertNoEscapeDelimiter(snippet, where) {
     return String(snippet).split(LST_ESCAPE_OPEN).join("(*");
   }
   return snippet;
+}
+
+/** Warn about an unrenderable glyph, as a run annotation when in Actions. */
+function warnGlyphs(message) {
+  console.warn(`  ⚠ ${message}`);
+  if (process.env.GITHUB_ACTIONS) console.log(`::warning title=Monthly report glyphs::${message}`);
 }
 
 function humanKind(kind) {
@@ -1462,9 +1390,7 @@ function renderLatex(report) {
 % \bigsqcup, its union counterpart, is standard) - Lean's big-square-cap
 % glyph (U+2A05) needs one for lattice-style indexed infima. \mathop +
 % \vcenter give it the same subscript/limit placement behaviour as the real
-% big operators. (No literal U+2A05 in this comment on purpose: the
-% pre-compile glyph-coverage check scans the whole generated .tex file,
-% comments included, for characters DejaVu Sans Mono can't draw.)
+% big operators.
 \newcommand{\bigsqcap}{\mathop{\vcenter{\hbox{\huge$\sqcap$}}}}
 
 % Every changed file is a subsection, so a busy month runs past 2.99 and the
@@ -1483,6 +1409,34 @@ function renderLatex(report) {
   BoldItalicFont = DejaVuSansMono-BoldOblique.ttf,
   Scale          = MatchLowercase,
 ]
+
+% Font fallback for a character with no hand-written mapping: the current
+% font if it has the glyph, else the first fallback font that does, else a
+% visible [U+XXXX] marker plus a line in the log. #1 is the character, #2 its
+% codepoint in hex. A fallback font that is not installed loads as \nullfont
+% (hence \suppressfontnotfounderror), which has no glyphs and is skipped.
+\makeatletter
+\suppressfontnotfounderror=1
+\newif\ifuni@found
+\newcommand{\uni@try}[2]{%
+  \ifuni@found\else
+    \font\uni@font="[#1]" at \f@size pt\relax
+    \iffontchar\uni@font${"`"}#2\relax
+      \uni@foundtrue{\uni@font #2}%
+    \fi
+  \fi}
+\DeclareRobustCommand{\uni}[2]{%
+  \iffontchar\font${"`"}#1\relax #1\else
+    \uni@foundfalse
+${FALLBACK_FONT_FILES.map((f) => `    \\uni@try{${f}}{#1}%`).join("\n")}
+    \ifuni@found\else
+      \immediate\write-1{${NO_GLYPH_LOG_TAG} U+#2}%
+      {\ttfamily\scriptsize[U+#2]}%
+    \fi
+  \fi}
+\makeatother
+% In PDF bookmarks and metadata the character stands for itself.
+\pdfstringdefDisableCommands{\def\uni#1#2{#1}}
 
 \definecolor{addcol}{HTML}{047857}
 \definecolor{delcol}{HTML}{be123c}
@@ -1795,7 +1749,7 @@ function which(cmd) {
 /**
  * Compile `texPath` → `pdfPath`.
  *
- * Returns { ok, missingGlyphs, overfull } on success, or { ok: false,
+ * Returns { ok, missingGlyphs, noGlyph, overfull } on success, or { ok: false,
  * noEngine: true } when neither engine is installed. Throws on genuine
  * compilation errors, having first salvaged the log next to the .tex.
  *
@@ -1860,6 +1814,7 @@ function compileLatex(texPath, pdfPath) {
 
     // Scrape the log before the temp dir goes away.
     let missingGlyphs = [];
+    let noGlyph = [];
     let overfull = 0;
     try {
       const log = fs.readFileSync(path.join(tmpDir, `${base}.log`), "utf8");
@@ -1870,13 +1825,20 @@ function compileLatex(texPath, pdfPath) {
           ),
         ),
       ];
+      noGlyph = [
+        ...new Set(
+          (log.match(new RegExp(`${NO_GLYPH_LOG_TAG} U\\+[0-9A-F]+`, "g")) ?? []).map((m) =>
+            m.slice(NO_GLYPH_LOG_TAG.length + 1),
+          ),
+        ),
+      ];
       overfull = (log.match(/Overfull \\hbox/g) ?? []).length;
     } catch {
       /* log is advisory only */
     }
 
     fs.copyFileSync(producedPdf, pdfPath);
-    return { ok: true, missingGlyphs, overfull };
+    return { ok: true, missingGlyphs, noGlyph, overfull };
   } catch (err) {
     salvageLog();
     throw err;
@@ -2151,7 +2113,6 @@ async function generateMonth(year, monthIdx, branch, opts = {}) {
     const tex = renderLatex(report);
     fs.writeFileSync(texPath, tex, "utf8");
     console.log(`  … wrote ${path.relative(process.cwd(), texPath)}`);
-    assertGlyphsCovered(tex);
 
     const pdfPath = path.join(PDF_DIR, `${slug}.pdf`);
     const compiled = compileLatex(texPath, pdfPath);
@@ -2161,14 +2122,19 @@ async function generateMonth(year, monthIdx, branch, opts = {}) {
           "Install tectonic (https://tectonic-typesetting.github.io), or pass --no-pdf to write the JSON alone.",
       );
     }
-    // Fatal, not a warning: a glyph the font lacks typesets as nothing at
-    // all, so the alternative is publishing a report with blank characters
-    // inside theorem statements and finding out from an Actions log nobody
-    // reads. Add each listed codepoint to MISSING_GLYPH_MATH.
+    // A warning, not a failure: new symbols appear in physlib every month,
+    // and a report with one marker in it beats no report at all. Both cases
+    // are annotated on the workflow run so they still get noticed.
+    if (compiled.noGlyph.length) {
+      warnGlyphs(
+        `${slug}: no font has a glyph for ${compiled.noGlyph.join(", ")}; ` +
+          "each is shown as a [U+XXXX] marker in the PDF. Add a mapping to MISSING_GLYPH_MATH.",
+      );
+    }
     if (compiled.missingGlyphs.length) {
-      throw new Error(
-        `${compiled.missingGlyphs.length} glyph(s) are missing from the font and would render as blank: ` +
-          `${compiled.missingGlyphs.join(", ")}. Add them to MISSING_GLYPH_MATH.`,
+      warnGlyphs(
+        `${slug}: ${compiled.missingGlyphs.join(", ")} bypassed the font fallback and ` +
+          "rendered blank in the PDF. Add a mapping to MISSING_GLYPH_MATH.",
       );
     }
     console.log(`  … compiled ${path.relative(process.cwd(), pdfPath)}`);
