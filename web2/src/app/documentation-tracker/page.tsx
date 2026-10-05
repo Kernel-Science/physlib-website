@@ -70,7 +70,7 @@ const docSteps = [
     title: "Phase 2: Choose a File to Document",
     items: [
       "Use the graph above to identify an undocumented file (a red node) where you think you could help.",
-      "In your local copy of physlib, open the file <code class='font-mono text-xs'>./scripts/MetaPrograms/module_doc_no_lint.txt</code>.",
+      "In your local copy of physlib, open the file <code class='font-mono text-xs'>./scripts/lint/exemptions/module_doc_no_lint.txt</code>.",
       "Remove the line corresponding to the file you want to document.",
       "Navigate to the file you want to document.",
     ],

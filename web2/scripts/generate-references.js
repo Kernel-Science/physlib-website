@@ -229,7 +229,7 @@ function bibEntryVenue(fields) {
 }
 
 // ─── Citation scanning ──────────────────────────────────────────────────────
-// Physlib's citation tag, exactly as scripts/check_references.py validates it:
+// Physlib's citation tag, exactly as scripts/lint/optional/check_references.py validates it:
 // a `[ref: <bibkey>]` tag inside a module's `## References` doc-comment
 // section, resolving to an entry in docs/references.bib.
 const CITATION_RE = /\[ref:\s*([^\]]+?)\]/g;
