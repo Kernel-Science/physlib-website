@@ -107,11 +107,19 @@ jobs:
         - name: Generate svg from dot
           run : dot -Tsvg -o ./docs/graph.svg ./docs/InformalDot.dot
   
+        # doc-gen4 is not a dependency of Physlib but of the nested `docs/build` project
+        # (https://github.com/leanprover/doc-gen4#usage). It shares Physlib's packages directory,
+        # so loading it fetches doc-gen4 into `.lake/packages/doc-gen4`, ready for the template.
+        - name: Fetch doc-gen4
+          working-directory: docs/build
+          run: lake env true
+
         - name: Replace template file with custom
           run : cp ./scripts/website/Template.lean .lake/packages/doc-gen4/DocGen4/Output/Template.lean
   
         - name: Build documentation
-          run: lake -Kenv=dev build Physlib:docs QuantumInfo:docs
+          working-directory: docs/build
+          run: lake build Physlib:docs QuantumInfo:docs
         #End Section
         ##################
 
@@ -134,7 +142,7 @@ jobs:
 
         - name: Copy documentation to `doc-artifact/docs`
           run: |
-            mv .lake/build/doc doc-artifact/docs
+            mv docs/build/.lake/build/doc doc-artifact/docs
         
         # Upload the documentation artifact
         - name: Upload documentation artifact
