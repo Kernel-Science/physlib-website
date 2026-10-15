@@ -88,6 +88,28 @@ export default function HomePage() {
               View Code
             </a>
           </div>
+
+          {/* Contribution reports */}
+          <div className="mt-9 max-w-md border-t border-border pt-7">
+            <p className="label-mono text-accent mb-2">See contributions to Physlib</p>
+            <p
+              className="mb-4 text-sm text-muted"
+              style={{ letterSpacing: "-0.01em", lineHeight: 1.45 }}
+            >
+              Core work on Physlib by individuals can be published in signed,
+              verifiable reports covering reviewing, formalisation, foundations,
+              refactoring, maintenance and documentation.
+            </p>
+            <a
+              href={site.contributions}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-11 items-center gap-2 rounded border border-accent/40 bg-accent/10 px-6 text-sm font-medium text-accent transition-colors hover:bg-accent/20"
+              style={{ letterSpacing: "-0.01em" }}
+            >
+              Contribution reports
+            </a>
+          </div>
         </div>
       </div>
 

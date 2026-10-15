@@ -8,6 +8,8 @@ export const site = {
   websiteRepo: "https://github.com/Kernel-Science/physlib-website",
   zulip: "https://leanprover.zulipchat.com/#narrow/channel/479953-physlib",
   search: "https://physlibsearch.net",
+  // Signed Open Badges 3.0 reports for contributions to Physlib.
+  contributions: "https://contributions.physlib.io",
   docs: "/docs/index.html",
   // Same report the "/reviews" Zulip bot command sends - see
   // https://github.com/Alex-Zughaid/PhyslibBots (zulip-dm-bots/src/index.js)
