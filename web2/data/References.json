@@ -1,7 +1,7 @@
 {
   "repo": "leanprover-community/physlib",
   "branch": "master",
-  "generatedAt": "2026-10-12T12:11:19.805Z",
+  "generatedAt": "2026-10-19T10:02:56.529Z",
   "references": [
     {
       "key": "abramowitz_stegun_1964",
@@ -123,6 +123,18 @@
       "url": null,
       "citations": [
         {
+          "file": "Physlib/ClassicalMechanics/ConfigurationSpace/Basic.lean",
+          "line": 29,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/ConfigurationSpace/Basic.lean#L29"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/Lagrangian/Basic.lean",
+          "line": 34,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Lagrangian/Basic.lean#L34"
+        },
+        {
           "file": "Physlib/ClassicalMechanics/Pendulum/SimplePendulum/Basic.lean",
           "line": 106,
           "subfolder": "Physlib/ClassicalMechanics",
@@ -147,7 +159,7 @@
           "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Pendulum/SimplePendulum/Solution.lean#L81"
         }
       ],
-      "count": 4
+      "count": 6
     },
     {
       "key": "arnold_ode",
@@ -346,6 +358,35 @@
       "count": 4
     },
     {
+      "key": "arxiv_1705_04663",
+      "inBib": true,
+      "type": "misc",
+      "authors": [
+        "Linda Mawhinney",
+        "Ivan G. Todorov"
+      ],
+      "authorSortKey": "mawhinney",
+      "title": "Inductive limits in the operator system and related categories",
+      "year": "2017",
+      "venue": "2017",
+      "url": "https://arxiv.org/abs/1705.04663",
+      "citations": [
+        {
+          "file": "Physlib/ProbabilisticTheory/LocalNet/Basic.lean",
+          "line": 30,
+          "subfolder": "Physlib/ProbabilisticTheory",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ProbabilisticTheory/LocalNet/Basic.lean#L30"
+        },
+        {
+          "file": "Physlib/ProbabilisticTheory/LocalNet/Basic.lean",
+          "line": 57,
+          "subfolder": "Physlib/ProbabilisticTheory",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ProbabilisticTheory/LocalNet/Basic.lean#L57"
+        }
+      ],
+      "count": 2
+    },
+    {
       "key": "arxiv_1912_04804",
       "inBib": true,
       "type": "article",
@@ -489,9 +530,15 @@
           "line": 56,
           "subfolder": "Physlib/QuantumMechanics",
           "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QuantumMechanics/PoschlTeller/Basic.lean#L56"
+        },
+        {
+          "file": "Physlib/QuantumMechanics/PoschlTeller/Scattering.lean",
+          "line": 47,
+          "subfolder": "Physlib/QuantumMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QuantumMechanics/PoschlTeller/Scattering.lean#L47"
         }
       ],
-      "count": 2
+      "count": 3
     },
     {
       "key": "arxiv_hep_ph_0605184",
@@ -1089,9 +1136,27 @@
       "citations": [
         {
           "file": "Physlib/Relativity/Fermions/Dirac/Basic.lean",
-          "line": 23,
+          "line": 22,
           "subfolder": "Physlib/Relativity",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Relativity/Fermions/Dirac/Basic.lean#L23"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Relativity/Fermions/Dirac/Basic.lean#L22"
+        },
+        {
+          "file": "Physlib/Relativity/Fermions/Weyl/DualRightHanded.lean",
+          "line": 45,
+          "subfolder": "Physlib/Relativity",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Relativity/Fermions/Weyl/DualRightHanded.lean#L45"
+        },
+        {
+          "file": "Physlib/Relativity/Fermions/Weyl/LeftHanded.lean",
+          "line": 44,
+          "subfolder": "Physlib/Relativity",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Relativity/Fermions/Weyl/LeftHanded.lean#L44"
+        },
+        {
+          "file": "Physlib/Relativity/Fermions/Weyl/RightHanded.lean",
+          "line": 44,
+          "subfolder": "Physlib/Relativity",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Relativity/Fermions/Weyl/RightHanded.lean#L44"
         },
         {
           "file": "Physlib/Relativity/PauliMatrices/Relations.lean",
@@ -1100,7 +1165,7 @@
           "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Relativity/PauliMatrices/Relations.lean#L25"
         }
       ],
-      "count": 2
+      "count": 5
     },
     {
       "key": "github_leandojo_extractdata",
@@ -1162,6 +1227,40 @@
           "line": 20,
           "subfolder": "scripts/dev",
           "url": "https://github.com/leanprover-community/physlib/blob/master/scripts/dev/free_simps.lean#L20"
+        }
+      ],
+      "count": 3
+    },
+    {
+      "key": "goehmann_solid_state_2021",
+      "inBib": true,
+      "type": "misc",
+      "authors": [
+        "Frank Göhmann"
+      ],
+      "authorSortKey": "göhmann",
+      "title": "Introduction to Solid State Physics",
+      "year": "2021",
+      "venue": "2021",
+      "url": "https://arxiv.org/abs/2101.01780",
+      "citations": [
+        {
+          "file": "Physlib/CondensedMatter/Crystal/Basic.lean",
+          "line": 53,
+          "subfolder": "Physlib/CondensedMatter",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/CondensedMatter/Crystal/Basic.lean#L53"
+        },
+        {
+          "file": "Physlib/CondensedMatter/Crystal/Bonds.lean",
+          "line": 32,
+          "subfolder": "Physlib/CondensedMatter",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/CondensedMatter/Crystal/Bonds.lean#L32"
+        },
+        {
+          "file": "Physlib/CondensedMatter/Crystal/PeriodicGraph.lean",
+          "line": 47,
+          "subfolder": "Physlib/CondensedMatter",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/CondensedMatter/Crystal/PeriodicGraph.lean#L47"
         }
       ],
       "count": 3
@@ -1276,6 +1375,29 @@
           "line": 110,
           "subfolder": "Physlib/ClassicalMechanics",
           "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Pendulum/SimplePendulum/SmallAngle.lean#L110"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "hylleraas_undheim_1930",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "Egil A. Hylleraas",
+        "Bjarne Undheim"
+      ],
+      "authorSortKey": "hylleraas",
+      "title": "Numerische Berechnung der 2S-Terme von Ortho- und Par-Helium",
+      "year": "1930",
+      "venue": "Z. Phys. 65 pp. 759--772 (1930)",
+      "url": "https://doi.org/10.1007/BF01397263",
+      "citations": [
+        {
+          "file": "PhyslibAlpha/Mathematics/TauCeti/Analysis/InnerProductSpace/CourantFischer.lean",
+          "line": 66,
+          "subfolder": "PhyslibAlpha/Mathematics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/Mathematics/TauCeti/Analysis/InnerProductSpace/CourantFischer.lean#L66"
         }
       ],
       "count": 1
@@ -1833,6 +1955,28 @@
       "count": 3
     },
     {
+      "key": "macdonald_1933",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "J. K. L. MacDonald"
+      ],
+      "authorSortKey": "macdonald",
+      "title": "Successive Approximations by the Rayleigh-Ritz Variation Method",
+      "year": "1933",
+      "venue": "Phys. Rev. 43 pp. 830--833 (1933)",
+      "url": "https://doi.org/10.1103/PhysRev.43.830",
+      "citations": [
+        {
+          "file": "PhyslibAlpha/Mathematics/TauCeti/Analysis/InnerProductSpace/CourantFischer.lean",
+          "line": 68,
+          "subfolder": "PhyslibAlpha/Mathematics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/Mathematics/TauCeti/Analysis/InnerProductSpace/CourantFischer.lean#L68"
+        }
+      ],
+      "count": 1
+    },
+    {
       "key": "mdpi_khinchin_fourth_axiom",
       "inBib": true,
       "type": "article",
@@ -1938,8 +2082,15 @@
       "year": "2010",
       "venue": "Cambridge University Press, (2010)",
       "url": null,
-      "citations": [],
-      "count": 0
+      "citations": [
+        {
+          "file": "QuantumInfo/States/Pure/Qubit.lean",
+          "line": 54,
+          "subfolder": "QuantumInfo/States",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/QuantumInfo/States/Pure/Qubit.lean#L54"
+        }
+      ],
+      "count": 1
     },
     {
       "key": "nist_dlmf",
@@ -2116,18 +2267,6 @@
       "url": null,
       "citations": [
         {
-          "file": "Physlib/Electromagnetism/Distributional/Basic.lean",
-          "line": 38,
-          "subfolder": "Physlib/Electromagnetism",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Electromagnetism/Distributional/Basic.lean#L38"
-        },
-        {
-          "file": "Physlib/Electromagnetism/Distributional/Dynamics/Lagrangian.lean",
-          "line": 41,
-          "subfolder": "Physlib/Electromagnetism",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Electromagnetism/Distributional/Dynamics/Lagrangian.lean#L41"
-        },
-        {
           "file": "Physlib/Electromagnetism/Dynamics/Hamiltonian.lean",
           "line": 42,
           "subfolder": "Physlib/Electromagnetism",
@@ -2144,6 +2283,18 @@
           "line": 53,
           "subfolder": "Physlib/Electromagnetism",
           "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Electromagnetism/Kinematics/EMPotential.lean#L53"
+        },
+        {
+          "file": "Physlib/Electromagnetism/TemperedDistributional/Basic.lean",
+          "line": 38,
+          "subfolder": "Physlib/Electromagnetism",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Electromagnetism/TemperedDistributional/Basic.lean#L38"
+        },
+        {
+          "file": "Physlib/Electromagnetism/TemperedDistributional/Dynamics/Lagrangian.lean",
+          "line": 41,
+          "subfolder": "Physlib/Electromagnetism",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Electromagnetism/TemperedDistributional/Dynamics/Lagrangian.lean#L41"
         }
       ],
       "count": 5
@@ -2390,9 +2541,9 @@
         },
         {
           "file": "Physlib/ClassicalMechanics/HamiltonianMechanics/PoissonBracket.lean",
-          "line": 54,
+          "line": 59,
           "subfolder": "Physlib/ClassicalMechanics",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/HamiltonianMechanics/PoissonBracket.lean#L54"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/HamiltonianMechanics/PoissonBracket.lean#L59"
         }
       ],
       "count": 2
@@ -2410,6 +2561,12 @@
       "venue": "",
       "url": null,
       "citations": [
+        {
+          "file": "Physlib/ClassicalMechanics/ConfigurationSpace/Variation.lean",
+          "line": 30,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/ConfigurationSpace/Variation.lean#L30"
+        },
         {
           "file": "Physlib/ClassicalMechanics/HarmonicOscillator/Basic.lean",
           "line": 94,
@@ -2439,9 +2596,15 @@
           "line": 42,
           "subfolder": "Physlib/ClassicalMechanics",
           "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/HarmonicOscillator/Geometric/Trajectory.lean#L42"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/Lagrangian/Basic.lean",
+          "line": 35,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Lagrangian/Basic.lean#L35"
         }
       ],
-      "count": 5
+      "count": 7
     },
     {
       "key": "tomamichel_relative_entropy_masterclass",
@@ -2503,91 +2666,115 @@
           "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/StatisticalMechanics/CanonicalEnsemble/Lemmas.lean#L53"
         },
         {
-          "file": "PhyslibAlpha/CondensedMatter/TightBindingChain/Cube.lean",
-          "line": 60,
+          "file": "PhyslibAlpha/CondensedMatter/TightBindingChain/Cube/Basic.lean",
+          "line": 61,
           "subfolder": "PhyslibAlpha/CondensedMatter",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/CondensedMatter/TightBindingChain/Cube.lean#L60"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/CondensedMatter/TightBindingChain/Cube/Basic.lean#L61"
         },
         {
-          "file": "PhyslibAlpha/CondensedMatter/TightBindingChain/Current.lean",
-          "line": 37,
+          "file": "PhyslibAlpha/CondensedMatter/TightBindingChain/Cube/MandelstamTamm.lean",
+          "line": 30,
           "subfolder": "PhyslibAlpha/CondensedMatter",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/CondensedMatter/TightBindingChain/Current.lean#L37"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/CondensedMatter/TightBindingChain/Cube/MandelstamTamm.lean#L30"
         },
         {
-          "file": "PhyslibAlpha/CondensedMatter/TightBindingChain/CurrentEigenstates.lean",
+          "file": "PhyslibAlpha/CondensedMatter/TightBindingChain/Current/Basic.lean",
+          "line": 52,
+          "subfolder": "PhyslibAlpha/CondensedMatter",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/CondensedMatter/TightBindingChain/Current/Basic.lean#L52"
+        },
+        {
+          "file": "PhyslibAlpha/CondensedMatter/TightBindingChain/Current/Eigenstates.lean",
           "line": 34,
           "subfolder": "PhyslibAlpha/CondensedMatter",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/CondensedMatter/TightBindingChain/CurrentEigenstates.lean#L34"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/CondensedMatter/TightBindingChain/Current/Eigenstates.lean#L34"
         },
         {
-          "file": "PhyslibAlpha/CondensedMatter/TightBindingChain/ElementalUncertainty.lean",
-          "line": 36,
-          "subfolder": "PhyslibAlpha/CondensedMatter",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/CondensedMatter/TightBindingChain/ElementalUncertainty.lean#L36"
-        },
-        {
-          "file": "PhyslibAlpha/CondensedMatter/TightBindingChain/LongChainLimit.lean",
-          "line": 38,
-          "subfolder": "PhyslibAlpha/CondensedMatter",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/CondensedMatter/TightBindingChain/LongChainLimit.lean#L38"
-        },
-        {
-          "file": "PhyslibAlpha/CondensedMatter/TightBindingChain/LongChainMonotonicity.lean",
-          "line": 38,
-          "subfolder": "PhyslibAlpha/CondensedMatter",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/CondensedMatter/TightBindingChain/LongChainMonotonicity.lean#L38"
-        },
-        {
-          "file": "PhyslibAlpha/CondensedMatter/TightBindingChain/MandelstamTamm.lean",
+          "file": "PhyslibAlpha/CondensedMatter/TightBindingChain/Current/MandelstamTamm.lean",
           "line": 44,
           "subfolder": "PhyslibAlpha/CondensedMatter",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/CondensedMatter/TightBindingChain/MandelstamTamm.lean#L44"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/CondensedMatter/TightBindingChain/Current/MandelstamTamm.lean#L44"
         },
         {
-          "file": "PhyslibAlpha/CondensedMatter/TightBindingChain/MandelstamTammMaxCurrent.lean",
-          "line": 36,
+          "file": "PhyslibAlpha/CondensedMatter/TightBindingChain/Current/SpeedLimit.lean",
+          "line": 39,
           "subfolder": "PhyslibAlpha/CondensedMatter",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/CondensedMatter/TightBindingChain/MandelstamTammMaxCurrent.lean#L36"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/CondensedMatter/TightBindingChain/Current/SpeedLimit.lean#L39"
         },
         {
-          "file": "PhyslibAlpha/CondensedMatter/TightBindingChain/MaxCurrentState.lean",
+          "file": "PhyslibAlpha/CondensedMatter/TightBindingChain/Current/TimeReversal.lean",
+          "line": 34,
+          "subfolder": "PhyslibAlpha/CondensedMatter",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/CondensedMatter/TightBindingChain/Current/TimeReversal.lean#L34"
+        },
+        {
+          "file": "PhyslibAlpha/CondensedMatter/TightBindingChain/MaxCurrentState/Basic.lean",
           "line": 42,
           "subfolder": "PhyslibAlpha/CondensedMatter",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/CondensedMatter/TightBindingChain/MaxCurrentState.lean#L42"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/CondensedMatter/TightBindingChain/MaxCurrentState/Basic.lean#L42"
         },
         {
-          "file": "PhyslibAlpha/CondensedMatter/TightBindingChain/MaxCurrentVariances.lean",
-          "line": 41,
-          "subfolder": "PhyslibAlpha/CondensedMatter",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/CondensedMatter/TightBindingChain/MaxCurrentVariances.lean#L41"
-        },
-        {
-          "file": "PhyslibAlpha/CondensedMatter/TightBindingChain/OpenBoundary.lean",
+          "file": "PhyslibAlpha/CondensedMatter/TightBindingChain/MaxCurrentState/LongChainLimit.lean",
           "line": 39,
           "subfolder": "PhyslibAlpha/CondensedMatter",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/CondensedMatter/TightBindingChain/OpenBoundary.lean#L39"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/CondensedMatter/TightBindingChain/MaxCurrentState/LongChainLimit.lean#L39"
         },
         {
-          "file": "PhyslibAlpha/CondensedMatter/TightBindingChain/Saturation.lean",
+          "file": "PhyslibAlpha/CondensedMatter/TightBindingChain/MaxCurrentState/LongChainMonotonicity.lean",
+          "line": 40,
+          "subfolder": "PhyslibAlpha/CondensedMatter",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/CondensedMatter/TightBindingChain/MaxCurrentState/LongChainMonotonicity.lean#L40"
+        },
+        {
+          "file": "PhyslibAlpha/CondensedMatter/TightBindingChain/MaxCurrentState/MandelstamTamm.lean",
+          "line": 33,
+          "subfolder": "PhyslibAlpha/CondensedMatter",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/CondensedMatter/TightBindingChain/MaxCurrentState/MandelstamTamm.lean#L33"
+        },
+        {
+          "file": "PhyslibAlpha/CondensedMatter/TightBindingChain/MaxCurrentState/Saturation.lean",
           "line": 36,
           "subfolder": "PhyslibAlpha/CondensedMatter",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/CondensedMatter/TightBindingChain/Saturation.lean#L36"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/CondensedMatter/TightBindingChain/MaxCurrentState/Saturation.lean#L36"
         },
         {
-          "file": "PhyslibAlpha/CondensedMatter/TightBindingChain/SpeedLimit.lean",
-          "line": 39,
+          "file": "PhyslibAlpha/CondensedMatter/TightBindingChain/MaxCurrentState/UncertaintyRatio.lean",
+          "line": 36,
           "subfolder": "PhyslibAlpha/CondensedMatter",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/CondensedMatter/TightBindingChain/SpeedLimit.lean#L39"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/CondensedMatter/TightBindingChain/MaxCurrentState/UncertaintyRatio.lean#L36"
         },
         {
-          "file": "PhyslibAlpha/CondensedMatter/TightBindingChain/VelocityBand.lean",
+          "file": "PhyslibAlpha/CondensedMatter/TightBindingChain/MaxCurrentState/Variances.lean",
           "line": 41,
           "subfolder": "PhyslibAlpha/CondensedMatter",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/CondensedMatter/TightBindingChain/VelocityBand.lean#L41"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/CondensedMatter/TightBindingChain/MaxCurrentState/Variances.lean#L41"
+        },
+        {
+          "file": "PhyslibAlpha/CondensedMatter/TightBindingChain/Open/Basic.lean",
+          "line": 39,
+          "subfolder": "PhyslibAlpha/CondensedMatter",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/CondensedMatter/TightBindingChain/Open/Basic.lean#L39"
+        },
+        {
+          "file": "PhyslibAlpha/CondensedMatter/TightBindingChain/Open/LocalizedUncertainty.lean",
+          "line": 43,
+          "subfolder": "PhyslibAlpha/CondensedMatter",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/CondensedMatter/TightBindingChain/Open/LocalizedUncertainty.lean#L43"
+        },
+        {
+          "file": "PhyslibAlpha/CondensedMatter/TightBindingChain/VelocityBand/Basic.lean",
+          "line": 41,
+          "subfolder": "PhyslibAlpha/CondensedMatter",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/CondensedMatter/TightBindingChain/VelocityBand/Basic.lean#L41"
+        },
+        {
+          "file": "PhyslibAlpha/CondensedMatter/TightBindingChain/VelocityBand/Width.lean",
+          "line": 38,
+          "subfolder": "PhyslibAlpha/CondensedMatter",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/CondensedMatter/TightBindingChain/VelocityBand/Width.lean#L38"
         }
       ],
-      "count": 17
+      "count": 21
     },
     {
       "key": "tong_statphys_notes_one",
@@ -2676,9 +2863,9 @@
         },
         {
           "file": "Physlib/Relativity/Fermions/Weyl/DualLeftHanded.lean",
-          "line": 24,
+          "line": 45,
           "subfolder": "Physlib/Relativity",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Relativity/Fermions/Weyl/DualLeftHanded.lean#L24"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Relativity/Fermions/Weyl/DualLeftHanded.lean#L45"
         }
       ],
       "count": 2
@@ -2696,24 +2883,6 @@
       "venue": "",
       "url": null,
       "citations": [
-        {
-          "file": "Physlib/Electromagnetism/Distributional/Basic.lean",
-          "line": 37,
-          "subfolder": "Physlib/Electromagnetism",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Electromagnetism/Distributional/Basic.lean#L37"
-        },
-        {
-          "file": "Physlib/Electromagnetism/Distributional/Dynamics/KineticTerm.lean",
-          "line": 38,
-          "subfolder": "Physlib/Electromagnetism",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Electromagnetism/Distributional/Dynamics/KineticTerm.lean#L38"
-        },
-        {
-          "file": "Physlib/Electromagnetism/Distributional/Dynamics/Lagrangian.lean",
-          "line": 40,
-          "subfolder": "Physlib/Electromagnetism",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Electromagnetism/Distributional/Dynamics/Lagrangian.lean#L40"
-        },
         {
           "file": "Physlib/Electromagnetism/Dynamics/Hamiltonian.lean",
           "line": 41,
@@ -2737,6 +2906,24 @@
           "line": 52,
           "subfolder": "Physlib/Electromagnetism",
           "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Electromagnetism/Kinematics/EMPotential.lean#L52"
+        },
+        {
+          "file": "Physlib/Electromagnetism/TemperedDistributional/Basic.lean",
+          "line": 37,
+          "subfolder": "Physlib/Electromagnetism",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Electromagnetism/TemperedDistributional/Basic.lean#L37"
+        },
+        {
+          "file": "Physlib/Electromagnetism/TemperedDistributional/Dynamics/KineticTerm.lean",
+          "line": 38,
+          "subfolder": "Physlib/Electromagnetism",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Electromagnetism/TemperedDistributional/Dynamics/KineticTerm.lean#L38"
+        },
+        {
+          "file": "Physlib/Electromagnetism/TemperedDistributional/Dynamics/Lagrangian.lean",
+          "line": 40,
+          "subfolder": "Physlib/Electromagnetism",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Electromagnetism/TemperedDistributional/Dynamics/Lagrangian.lean#L40"
         }
       ],
       "count": 7
