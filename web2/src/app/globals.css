@@ -114,30 +114,6 @@ body {
 .delay-100 { animation-delay: 100ms; }
 .delay-200 { animation-delay: 200ms; }
 
-@keyframes carousel-in-right {
-  from { opacity: 0; transform: translateX(24px); }
-  to   { opacity: 1; transform: translateX(0);    }
-}
-@keyframes carousel-in-left {
-  from { opacity: 0; transform: translateX(-24px); }
-  to   { opacity: 1; transform: translateX(0);     }
-}
-
-@keyframes carousel-progress {
-  from { transform: scaleX(0); }
-  to   { transform: scaleX(1); }
-}
-
-.carousel-progress {
-  animation-name: carousel-progress;
-  animation-timing-function: linear;
-  animation-fill-mode: forwards;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .carousel-progress { animation: none; }
-}
-
 /* ─── Prose ─────────────────────────────────────────────────── */
 @layer components {
   .prose-physlib { @apply text-foreground leading-relaxed; }
@@ -288,3 +264,257 @@ h2[id], h3[id], .api-tree a[id] {
   0%   { background-position: -200% 0; }
   100% { background-position:  200% 0; }
 }
+
+/*
+ * ─── API map articles ─────────────────────────────────────────
+ * The API tracker renders each API-map.md as an article: abstract, sections
+ * with a suggest-edit control, superscript citations, footnote-style
+ * reference lists, a summary card and an "On this page" list. Everything is
+ * drawn from the site's tokens and type, so it follows light and dark mode.
+ */
+.apimap-h2 {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-size: 1.375rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.3;
+  margin: 2.25rem 0 0.75rem;
+  scroll-margin-top: 5rem;
+}
+.apimap-h3 {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 1.5rem 0 0.5rem;
+  scroll-margin-top: 5rem;
+}
+/* The per-section "Edit": quiet until the heading is hovered or it is
+   focused, but always there for touch screens. */
+.apimap-edit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--muted);
+  opacity: 0.55;
+  transition: opacity 120ms, color 120ms;
+}
+.group:hover .apimap-edit, .apimap-edit:focus-visible { opacity: 1; }
+.apimap-edit:hover { color: var(--accent); }
+
+.apimap-body { font-size: 0.9375rem; line-height: 1.7; }
+.apimap-body::after { content: ""; display: block; clear: both; }
+.apimap-body p { margin: 0.5em 0 1em; color: color-mix(in oklch, var(--foreground) 88%, transparent); }
+.apimap-lead p { font-size: 1.0625rem; color: var(--foreground); }
+.apimap-body em { font-style: italic; }
+.apimap-body strong, .apimap-body b { font-weight: 600; }
+.apimap-prose ul { list-style: disc; padding-left: 1.5rem; margin: 0.4em 0 1em; }
+.apimap-prose ol { list-style: decimal; padding-left: 1.5rem; margin: 0.4em 0 1em; }
+.apimap-body code, .apimap-code {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.85em;
+  background: var(--surface-secondary);
+  border-radius: 0.25rem;
+  padding: 0.1em 0.35em;
+}
+
+.apimap-link, .apimap-external, .apimap-decl { color: var(--accent); }
+.apimap-link:hover, .apimap-external:hover, .apimap-decl:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.apimap-external::after {
+  content: "↗";
+  font-size: 0.7em;
+  margin-left: 0.15em;
+  vertical-align: 0.15em;
+  opacity: 0.7;
+}
+/* A link to an API map (or Lean file) that doesn't exist yet - dashed, like
+   the flowchart's boxes for maps that are cited but not written. */
+.apimap-missing {
+  color: var(--muted);
+  text-decoration: underline dashed;
+  text-underline-offset: 3px;
+}
+a.apimap-missing:hover { color: var(--accent); }
+.apimap-file {
+  color: var(--foreground);
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.85em;
+}
+.apimap-decl {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.85em;
+}
+
+/* Summary card: beside the abstract from md up, above it on phones. */
+.apimap-summary {
+  width: 100%;
+  margin: 0 0 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: var(--surface);
+  overflow: hidden;
+}
+@media (min-width: 768px) {
+  .apimap-summary { float: right; clear: right; width: 17rem; margin: 0.25rem 0 1.25rem 1.75rem; }
+}
+
+.apimap-toc {
+  display: inline-block;
+  min-width: 15rem;
+  max-width: 100%;
+  margin: 0.25rem 0 0.75rem;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: color-mix(in oklch, var(--surface-secondary) 50%, transparent);
+}
+
+/* Citations. */
+.apimap-cite {
+  font-size: 0.7em;
+  line-height: 1;
+  vertical-align: super;
+  white-space: nowrap;
+}
+.apimap-cite a { color: var(--accent); padding: 0 0.05em; }
+.apimap-cite a:hover { text-decoration: underline; }
+.apimap-cite-broken a { color: var(--danger); }
+/* A claim not yet formalized: the site's warning status pill, in miniature. */
+.apimap-todo {
+  display: inline-block;
+  margin-left: 0.2em;
+  padding: 0 0.35em;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+  vertical-align: 0.2em;
+  color: var(--warning);
+  background: color-mix(in oklch, var(--warning) 14%, transparent);
+  border: 1px solid color-mix(in oklch, var(--warning) 35%, transparent);
+  border-radius: 9999px;
+}
+
+.apimap-hint {
+  font-size: 0.8125rem;
+  color: var(--muted);
+  margin: -0.25rem 0 0.75rem;
+}
+
+/* Reference lists. */
+.apimap-reflist {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+.apimap-reflist li {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.35rem 0.5rem;
+  border-radius: 0.5rem;
+  scroll-margin-top: 5rem;
+}
+.apimap-reflist li + li { border-top: 1px solid var(--border); }
+.apimap-refnum {
+  flex-shrink: 0;
+  min-width: 1.4rem;
+  text-align: right;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.apimap-backlink { color: var(--muted); font-size: 0.85em; }
+.apimap-backlink:hover { color: var(--accent); }
+.apimap-backlink sup { font-size: 0.7em; }
+
+/* Highlight what a citation or "On this page" link jumped to. */
+@keyframes apimap-flash {
+  from { background: color-mix(in oklch, var(--accent) 18%, transparent); }
+  to   { background: transparent; }
+}
+.apimap-flash { animation: apimap-flash 2s ease-out; }
+
+/* Edit view. */
+.apimap-diff {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.8rem;
+  line-height: 1.55;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+.apimap-diff-line { display: flex; gap: 0.6rem; padding: 0 0.6rem; }
+.apimap-diff-op { width: 0.8rem; flex-shrink: 0; color: var(--muted); }
+.apimap-diff-add { background: color-mix(in oklch, var(--success) 16%, transparent); }
+.apimap-diff-del { background: color-mix(in oklch, var(--danger) 14%, transparent); }
+.apimap-diff-ctx { color: var(--muted); }
+.apimap-diff-gap { padding: 0 0.6rem; color: var(--muted); background: var(--surface-secondary); }
+
+/* Create page. */
+.apimap-guide {
+  padding: 1rem 1.25rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: color-mix(in oklch, var(--surface-secondary) 50%, transparent);
+}
+.apimap-guide-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.25rem;
+}
+.apimap-guide ol { list-style: decimal; padding-left: 1.25rem; margin: 0.5rem 0; color: var(--muted); }
+.apimap-guide li { margin: 0.3rem 0; }
+.apimap-guide li b { color: var(--foreground); font-weight: 600; }
+.apimap-choice {
+  display: flex;
+  gap: 0.6rem;
+  padding: 0.75rem 0.9rem;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  transition: border-color 120ms;
+}
+.apimap-choice:hover { border-color: color-mix(in oklch, var(--accent) 50%, transparent); }
+.apimap-choice-active {
+  border-color: var(--accent);
+  background: color-mix(in oklch, var(--accent) 6%, transparent);
+}
+.apimap-dirlist {
+  max-height: 16rem;
+  overflow-y: auto;
+  margin-top: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+}
+.apimap-dir {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.8rem;
+  text-align: left;
+}
+.apimap-dir:hover { background: var(--surface-secondary); }
+.apimap-dir-selected, .apimap-dir-selected:hover {
+  background: color-mix(in oklch, var(--accent) 12%, transparent);
+  color: var(--accent);
+}
+.apimap-dir-mapped { color: var(--muted); }

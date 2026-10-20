@@ -101,12 +101,13 @@ uses the same markup:
   `max-w-5xl` content over) while `<nav>` inside it is free to be visually
   wider - it can overflow past `<aside>`'s edge with no layout effect, which
   `ApiTrackerSidebar` uses twice: by default, `<nav>` is sized with
-  `clamp(13rem, calc(100vw - 992px), 20rem)` so it fills the gutter up to
+  `clamp(13rem, calc(50vw - 400px), 20rem)` so it fills the gutter up to
   where the centered content actually starts instead of leaving it blank
-  (992 = max-w-5xl's 1024px + the content's own 16px px-4, solved so the
-  sidebar's right edge lands exactly on the content's left edge - see that
-  file's comment before reusing this elsewhere, since the constant is
-  coupled to page.tsx's own max-w-5xl/px-4 and needs to move with it); on
+  (the content's text starts at `13rem + (100vw - 13rem - 1024px)/2 + 16px
+  = 50vw - 392px`: `<main>` is the viewport minus the aside's fixed w-52,
+  centering max-w-5xl's 1024px plus its own 16px px-4; 400 leaves 8px of
+  air - see that file's comment before reusing this elsewhere, since the
+  constant is coupled to page.tsx's max-w-5xl/px-4 and the aside's w-52); on
   `hover:`, it goes wider still (`w-96`, a fixed target so the transition
   actually animates - browsers don't tween to/from `max-content`/`w-max`)
   to fit whatever's still truncated at the default's cap, gaining a

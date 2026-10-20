@@ -3,14 +3,29 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import type { ApiMap, ApiMapNode } from "@/lib/yaml";
 import {
-  buildApiMapForest,
-  flattenApiMapForest,
-  type ApiMapTreeEntry,
-} from "@/lib/api-map-tree";
+  buildArticle,
+  claimCounts,
+  editFileUrl,
+  NEW_SECTION_TEMPLATE,
+  NEW_SECTION_TITLE,
+  newSectionPositions,
+  newSectionTarget,
+  wholeArticleTarget,
+  type EditTarget,
+} from "@/lib/api-map-article";
+import { buildFolderTree, flattenFolderTree } from "@/lib/api-map-folders";
 import { selectApiMapEntry } from "@/lib/api-map-hash";
-import { API_STATUS_DOT, API_STATUS_LABEL, apiStatusKind } from "@/lib/api-map-status";
-import { TopRightArrowIcon } from "@/components/monthly-updates/icons";
-import { SuggestDialog, SuggestNewApiDialog } from "@/components/api-tracker/suggest-dialog";
+import { ArticleContext, type ArticleContextValue, scrollToArticleId } from "@/components/api-tracker/article-prose";
+import {
+  ArticleReadView,
+  ArticleToolbar,
+  Breadcrumb,
+  Callout,
+  MissingApiMapView,
+  StatusPills,
+} from "@/components/api-tracker/article-view";
+import { ArticleEditor } from "@/components/api-tracker/article-editor";
+import { apiMapIssue, type IssueDraft } from "@/lib/api-map-issue";
 
 function ChevronIcon({ direction }: { direction: "left" | "right" }) {
   return (
@@ -31,101 +46,84 @@ function ChevronIcon({ direction }: { direction: "left" | "right" }) {
   );
 }
 
-function SectionHeading({
-  children,
-  className = "mb-2",
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
-  return (
-    <h2
-      className={`text-[11px] font-semibold uppercase tracking-wide text-muted/70 ${className}`}
-    >
-      {children}
-    </h2>
-  );
+/** The issue a suggested change to one map files (see api-map-issue.ts). */
+function editIssue(node: ApiMapNode, target: EditTarget, commit: string): IssueDraft {
+  const { done, total } = claimCounts(node);
+  const isNew = target.shape === "new";
+  return apiMapIssue({
+    title: isNew
+      ? `API-map: new section for ${node.title}`
+      : target.shape === "article"
+        ? `API-map: edit to ${node.title}`
+        : `API-map: edit to ${node.title} (${target.label})`,
+    heading: isNew ? "Suggested new section" : "Suggested edit",
+    facts: [
+      `**API map:** [${node.title}](${node.url}) (\`${node.file}\`)`,
+      isNew ? `**Adds:** ${target.location}` : `**Replaces:** ${target.location}`,
+      `**Currently:** ${done} of ${total} claims formalized.`,
+    ],
+    file: node.file,
+    commit,
+    operation: target.operation,
+    base: isNew ? null : target.source,
+  });
 }
 
-/**
- * A requirement's `location` is free text, but is conventionally a repo path
- * optionally followed by the declaration names in parentheses. Link the path
- * part when it looks unambiguously like one, and otherwise leave the whole
- * string as plain text - a guessed link that 404s is worse than no link.
- */
-function RequirementLocation({
+/** The skeleton must have been turned into a real section. */
+function validateNewSection(text: string): string | null {
+  const heading = text.split("\n").find((l) => /^### /.test(l));
+  if (!heading) return "Start the section with a ### title.";
+  if (heading.slice(4).trim() === NEW_SECTION_TITLE) return "Give the section a title.";
+  if (text.trim() === NEW_SECTION_TEMPLATE.trim()) return "Write the section first.";
+  return null;
+}
+
+/** Where a new section goes: at the start of the Alpha content, or after one
+ *  of its sections. A map without Alpha content gets a new such section, so
+ *  there is nothing to choose. */
+function NewSectionPosition({
+  node,
   location,
-  repo,
-  branch,
+  onChange,
 }: {
+  node: ApiMapNode;
   location: string;
-  repo: string;
-  branch: string;
+  onChange: (after: string | null) => void;
 }) {
-  const match = location.match(/^([A-Za-z0-9_./-]+\.lean)(.*)$/);
-  if (!match) {
-    return <span className="text-muted/70">{location}</span>;
-  }
-  const [, file, rest] = match;
+  const positions = newSectionPositions(node);
+  const current = positions.find((p) => location.endsWith(`after \`### ${p}\``)) ?? "";
   return (
-    <span className="text-muted/70">
-      <a
-        href={`https://github.com/${repo}/blob/${branch}/${file}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-accent hover:underline underline-offset-2"
-      >
-        {file}
-      </a>
-      {rest}
-    </span>
-  );
-}
-
-/** A related API. Only navigable when it actually appears in the list the
- *  sidebar and the pager walk; secondary parents pointing at a bare .lean
- *  file often don't, and a dead link would strand the reader. */
-function RelationChip({
-  label,
-  path,
-  navigable,
-}: {
-  label: string;
-  path: string;
-  navigable: boolean;
-}) {
-  const shared = "rounded-lg border border-border px-2.5 py-1 text-xs";
-  if (!navigable) {
-    return (
-      <span className={`${shared} bg-surface-secondary/50 text-muted`} title={path}>
-        {label}
-      </span>
-    );
-  }
-  return (
-    <button
-      type="button"
-      onClick={() => selectApiMapEntry(path)}
-      title={path}
-      className={`${shared} bg-surface-secondary text-foreground transition-colors hover:border-accent hover:text-accent`}
-    >
-      {label}
-    </button>
+    <label className="mb-4 flex flex-wrap items-center gap-2 text-sm">
+      <span className="text-xs font-medium">Place it</span>
+      {positions.length > 0 ? (
+        <select
+          value={current}
+          onChange={(e) => onChange(e.target.value || null)}
+          className="rounded-lg border border-border bg-surface px-2 py-1.5 text-sm outline-none focus:border-accent"
+        >
+          <option value="">At the start of the content</option>
+          {positions.map((p) => (
+            <option key={p} value={p}>
+              After “{p}”
+            </option>
+          ))}
+        </select>
+      ) : (
+        <span className="text-xs text-muted">in a new Alpha content section, after the existing content</span>
+      )}
+    </label>
   );
 }
 
 export function ApiDetailView({ apiMap }: { apiMap: ApiMap }) {
-  const { nodes, repo, branch } = apiMap;
+  const { nodes, repo, branch, commit, generatedAt } = apiMap;
 
-  const entries = useMemo(
-    () => flattenApiMapForest(buildApiMapForest(nodes)),
-    [nodes],
-  );
-  const knownPaths = useMemo(() => new Set(entries.map((e) => e.path)), [entries]);
+  // Menu order: Physlib's folders, as in the sidebar.
+  const entries = useMemo(() => flattenFolderTree(buildFolderTree(nodes)), [nodes]);
+  const byPath = useMemo(() => new Map(nodes.map((n) => [n.path, n])), [nodes]);
 
-  /** Inverse of ParentAPIs: who lists this path as a dependency. Without the
-   *  tree drawing them, this is the only way the downstream edges stay
-   *  visible from a single API's page. */
+  /** Who cites this map - the "Used by" of the infobox and "What links
+   *  here" of a map that doesn't exist yet. */
   const dependentsOf = useMemo(() => {
     const map = new Map<string, ApiMapNode[]>();
     for (const node of nodes) {
@@ -148,10 +146,47 @@ export function ApiDetailView({ apiMap }: { apiMap: ApiMap }) {
   }, []);
 
   const found = entries.findIndex((e) => e.path === activePath);
+  // A map other maps cite but nobody has written yet (a dashed box in the
+  // flowchart) - shown as such, outside the menu order.
+  const citedName = useMemo(() => {
+    for (const n of nodes) {
+      const p = n.parents.find((q) => q.path === activePath);
+      if (p) return p.name;
+    }
+    return null;
+  }, [nodes, activePath]);
+  const missing = found < 0 && citedName !== null;
   // Nothing selected yet (or a hash naming something that isn't in the map):
   // fall back to the first entry so the page is never blank.
   const index = found >= 0 ? found : 0;
-  const current: ApiMapTreeEntry | undefined = entries[index];
+  const current: { path: string; title: string; node: ApiMapNode | null } | undefined = missing
+    ? { path: activePath, title: citedName, node: null }
+    : entries[index] && { path: entries[index].path, title: entries[index].title, node: entries[index] };
+  const node = current?.node ?? null;
+
+  // The edit view is per API: moving to another one returns to reading.
+  const [editing, setEditing] = useState<{
+    path: string;
+    target: EditTarget;
+    sectionId?: string;
+    addReference?: boolean;
+  } | null>(null);
+  const edit = editing && editing.path === current?.path ? editing : null;
+
+  const startEdit = useCallback(
+    (target: EditTarget, sectionId?: string, addReference = false) => {
+      if (!current) return;
+      setEditing({ path: current.path, target, sectionId, addReference });
+      window.scrollTo({ top: 0 });
+    },
+    [current],
+  );
+  const stopEdit = useCallback(() => {
+    const sectionId = edit?.sectionId;
+    setEditing(null);
+    // Back to the section the reader chose to edit.
+    if (sectionId) requestAnimationFrame(() => scrollToArticleId(sectionId));
+  }, [edit]);
 
   const go = useCallback(
     (delta: number) => {
@@ -162,10 +197,10 @@ export function ApiDetailView({ apiMap }: { apiMap: ApiMap }) {
   );
 
   useEffect(() => {
+    // Never page away from a half-written edit.
+    if (edit) return;
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.metaKey || e.ctrlKey || e.altKey || e.shiftKey) return;
-      // Don't page the article out from under an open modal - the reader is
-      // writing a suggestion about *this* API.
       if (document.querySelector("dialog[open]")) return;
       const target = e.target as HTMLElement | null;
       if (
@@ -179,225 +214,165 @@ export function ApiDetailView({ apiMap }: { apiMap: ApiMap }) {
     };
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [go]);
+  }, [go, edit]);
+
+  const article = useMemo(
+    () => (node ? buildArticle(node.abstractHeading, node.abstract, node.content) : null),
+    [node],
+  );
+
+  const context: ArticleContextValue = useMemo(
+    () => ({
+      repo,
+      branch,
+      leanReferences: node?.leanReferences ?? [],
+      references: node?.references ?? [],
+      byPath,
+    }),
+    [repo, branch, node, byPath],
+  );
 
   if (!current) return null;
 
-  const { node, title, path } = current;
-  const kind = node ? apiStatusKind(node) : null;
-  const done = node ? node.requirements.filter((r) => r.done).length : 0;
-  const total = node ? node.requirements.length : 0;
-  const overviewParagraphs = node ? node.overview.split(/\n\s*\n/).filter(Boolean) : [];
-  const dependents = dependentsOf.get(path) ?? [];
-
   const navButton =
-    "flex size-9 items-center justify-center rounded-lg border border-border text-muted transition-colors enabled:hover:border-accent enabled:hover:text-accent disabled:opacity-30";
+    "flex size-7 items-center justify-center rounded-lg border border-border text-muted transition-colors enabled:hover:border-accent enabled:hover:text-accent disabled:opacity-30";
 
   return (
-    <div>
-      {/* Pager */}
-      <div className="mb-4 flex items-center justify-between gap-4">
-        <button
-          type="button"
-          onClick={() => go(-1)}
-          disabled={index === 0}
-          aria-label="Previous API"
-          className={navButton}
-        >
-          <ChevronIcon direction="left" />
-        </button>
-        <p className="text-xs text-muted">
-          {index + 1} of {entries.length}
-        </p>
-        <button
-          type="button"
-          onClick={() => go(1)}
-          disabled={index === entries.length - 1}
-          aria-label="Next API"
-          className={navButton}
-        >
-          <ChevronIcon direction="right" />
-        </button>
-      </div>
-
-      <article className="rounded-xl border border-border bg-surface p-6">
-        <header className="mb-5">
-          <div className="flex items-start justify-between gap-4">
-            <div className="min-w-0">
-              <h1 className="text-2xl font-semibold tracking-tight">{title}</h1>
-              <p className="mt-1 break-all font-mono text-xs text-muted">{path}</p>
-            </div>
-            {node && (
-              <a
-                href={node.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex shrink-0 items-center gap-1.5 rounded-lg border border-border px-2.5 py-1.5 text-xs text-muted transition-colors hover:border-accent hover:text-accent"
-              >
-                View on GitHub
-                <TopRightArrowIcon className="size-3" />
-              </a>
+    <ArticleContext.Provider value={context}>
+      <div className="apimap">
+        <header className="mb-6">
+          <div className="mb-3 flex items-center justify-between gap-4">
+            <Breadcrumb path={current.path} repo={repo} branch={branch} />
+            {!edit && !missing && (
+              <div className="flex shrink-0 items-center gap-1.5 text-xs text-muted">
+                <button type="button" onClick={() => go(-1)} disabled={index === 0} aria-label="Previous API map" className={navButton}>
+                  <ChevronIcon direction="left" />
+                </button>
+                <span className="tabular-nums">
+                  {index + 1} of {entries.length}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => go(1)}
+                  disabled={index === entries.length - 1}
+                  aria-label="Next API map"
+                  className={navButton}
+                >
+                  <ChevronIcon direction="right" />
+                </button>
+              </div>
             )}
           </div>
-
-          {node && kind && (
-            <div className="mt-4">
-              <div className="mb-1.5 flex items-baseline justify-between text-xs">
-                <span className="font-medium">{API_STATUS_LABEL[kind]}</span>
-                <span className="text-muted">
-                  {total > 0 ? `${done} of ${total} requirements done` : "—"}
-                </span>
-              </div>
-              <div className="h-1.5 w-full overflow-hidden rounded-full bg-border">
-                <div
-                  className={`h-full rounded-full ${API_STATUS_DOT[kind]}`}
-                  style={{ width: total > 0 ? `${(done / total) * 100}%` : "0%" }}
-                />
-              </div>
-            </div>
+          {edit ? (
+            <>
+              <button type="button" onClick={stopEdit} className="mb-2 text-xs text-muted hover:text-accent">
+                ← Back to {current.title}
+              </button>
+              <h1 className="text-3xl font-bold tracking-tight md:text-4xl">
+                {edit.target.shape === "new" ? "Add a section" : "Suggest an edit"}
+              </h1>
+              <p className="mt-1 text-sm text-muted">
+                {current.title}
+                {edit.target.shape !== "article" && edit.target.shape !== "new" && <> · {edit.target.label}</>}
+              </p>
+            </>
+          ) : (
+            <>
+              <h1 className="text-3xl font-bold tracking-tight md:text-4xl">{current.title}</h1>
+              {node && (
+                <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
+                  <StatusPills node={node} />
+                  <ArticleToolbar node={node} repo={repo} branch={branch} onEdit={() => startEdit(wholeArticleTarget(node))} />
+                </div>
+              )}
+            </>
           )}
         </header>
 
-        {!node && (
-          <div className="mb-5 flex flex-wrap items-center justify-between gap-3 rounded-lg border border-dashed border-border bg-surface-secondary/50 p-4 text-sm text-muted">
-            <p>
-              This API is referenced as a dependency but has no{" "}
-              <code>API-map.yaml</code> of its own yet, so there is no
-              overview or requirements list to show.
-            </p>
-            <SuggestNewApiDialog
-              repo={repo}
-              branch={branch}
-              existingPaths={nodes.map((n) => n.path)}
-              initialPath={path.replace(/\.lean$/i, "")}
-              initialTitle={title}
-              triggerLabel="Suggest an API-map.yaml"
-            />
-          </div>
-        )}
-
-        {node && (
-          <section className="mb-6">
-            <div className="mb-2 flex items-center justify-between gap-3">
-              <SectionHeading className="">Overview</SectionHeading>
-              <SuggestDialog node={node} repo={repo} branch={branch} kind="overview" />
-            </div>
-            {overviewParagraphs.length > 0 ? (
-              <div className="space-y-3 text-sm leading-relaxed text-foreground/80">
-                {overviewParagraphs.map((p, i) => (
-                  <p key={i}>{p}</p>
-                ))}
-              </div>
-            ) : (
-              <p className="text-sm text-muted">
-                No overview written for this API yet.
-              </p>
-            )}
-          </section>
-        )}
-
-        {node && (
-          <section className="mb-6">
-            <div className="mb-2 flex items-center justify-between gap-3">
-              <SectionHeading className="">Requirements</SectionHeading>
-              <SuggestDialog node={node} repo={repo} branch={branch} kind="requirement" />
-            </div>
-            {total === 0 && (
-              <p className="text-sm text-muted">
-                No requirements defined for this API yet.
-              </p>
-            )}
-            <ul className="space-y-2">
-              {node.requirements.map((r, i) => (
-                <li
-                  key={i}
-                  className="flex gap-3 rounded-lg border border-border/60 bg-surface-secondary/40 p-3"
+        {edit && node ? (
+          <ArticleEditor
+            // Stable while the new section's position changes, so the text
+            // being written survives it.
+            key={`${node.path}:${edit.target.shape === "new" ? "new" : edit.target.location}`}
+            notice={
+              <Callout>
+                {edit.target.shape === "new" ? (
+                  <>
+                    You are proposing a new section for this API map. Give it a{" "}
+                    <code className="apimap-code">###</code> title and write it as
+                    the other sections are; it is added to the Alpha content,
+                    since it has not been reviewed yet.
+                  </>
+                ) : (
+                  <>
+                    You are suggesting a change to{" "}
+                    <span className="font-medium text-foreground">
+                      {edit.target.shape === "article" ? edit.target.label : `“${edit.target.label}”`}
+                    </span>
+                    .
+                  </>
+                )}{" "}
+                API maps are files in the Physlib repository, so the suggestion is
+                filed as a GitHub issue for a maintainer to review. Cite Lean
+                declarations with <code className="apimap-code">[n]</code>,
+                literature with <code className="apimap-code">{"{n}"}</code>,
+                and mark claims not yet formalized with{" "}
+                <code className="apimap-code">[TODO]</code>; the abstract has
+                no citations.
+              </Callout>
+            }
+            initial={edit.target.source}
+            baseline={edit.target.shape === "new" ? "" : undefined}
+            startAddingReference={edit.addReference}
+            shape={edit.target.shape}
+            validate={edit.target.shape === "new" ? validateNewSection : undefined}
+            before={
+              edit.target.shape === "new" ? (
+                <NewSectionPosition
+                  node={node}
+                  location={edit.target.location}
+                  onChange={(after) => setEditing({ ...edit, target: newSectionTarget(node, after) })}
+                />
+              ) : undefined
+            }
+            context={context}
+            repo={repo}
+            issue={editIssue(node, edit.target, commit)}
+            onCancel={stopEdit}
+            footer={
+              <>
+                Comfortable with Git?{" "}
+                <a
+                  href={editFileUrl(repo, branch, node.file)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="apimap-external"
                 >
-                  <span
-                    aria-hidden
-                    className={`mt-0.5 shrink-0 text-sm ${r.done ? "text-success" : "text-muted/50"}`}
-                  >
-                    {r.done ? "✓" : "○"}
-                  </span>
-                  <div className="min-w-0 flex-1">
-                    <p
-                      className={`text-sm leading-snug ${r.done ? "text-foreground/80" : "text-muted"}`}
-                    >
-                      {r.description}
-                    </p>
-                    {r.location !== "N/A" && (
-                      <p className="mt-1 break-all font-mono text-[11px] leading-snug">
-                        <RequirementLocation
-                          location={r.location}
-                          repo={repo}
-                          branch={branch}
-                        />
-                      </p>
-                    )}
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </section>
+                  Edit API-map.md on GitHub
+                </a>{" "}
+                to open a pull request directly.
+              </>
+            }
+          />
+        ) : node && article ? (
+          <ArticleReadView
+            node={node}
+            article={article}
+            dependents={dependentsOf.get(node.path) ?? []}
+            repo={repo}
+            branch={branch}
+            generatedAt={generatedAt}
+            onEdit={startEdit}
+            onAddReference={() => startEdit(wholeArticleTarget(node), undefined, true)}
+          />
+        ) : (
+          <MissingApiMapView
+            path={current.path}
+            title={current.title}
+            citedBy={dependentsOf.get(current.path) ?? []}
+          />
         )}
-
-        {node && node.references.length > 0 && (
-          <section className="mb-6">
-            <SectionHeading>References</SectionHeading>
-            <ul className="space-y-1.5">
-              {node.references.map((ref, i) => (
-                <li key={i} className="text-sm leading-snug text-muted">
-                  {/^https?:\/\//.test(ref) ? (
-                    <a
-                      href={ref}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="break-all text-accent hover:underline underline-offset-2"
-                    >
-                      {ref}
-                    </a>
-                  ) : (
-                    ref
-                  )}
-                </li>
-              ))}
-            </ul>
-          </section>
-        )}
-
-        <div className="grid gap-6 sm:grid-cols-2">
-          {node && node.parents.length > 0 && (
-            <section>
-              <SectionHeading>Depends on</SectionHeading>
-              <div className="flex flex-wrap gap-1.5">
-                {node.parents.map((p) => (
-                  <RelationChip
-                    key={p.path}
-                    label={p.name}
-                    path={p.path}
-                    navigable={knownPaths.has(p.path)}
-                  />
-                ))}
-              </div>
-            </section>
-          )}
-          {dependents.length > 0 && (
-            <section>
-              <SectionHeading>Required by</SectionHeading>
-              <div className="flex flex-wrap gap-1.5">
-                {dependents.map((d) => (
-                  <RelationChip
-                    key={d.path}
-                    label={d.title}
-                    path={d.path}
-                    navigable={knownPaths.has(d.path)}
-                  />
-                ))}
-              </div>
-            </section>
-          )}
-        </div>
-      </article>
-    </div>
+      </div>
+    </ArticleContext.Provider>
   );
 }

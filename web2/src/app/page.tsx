@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { site } from "@/lib/site";
-import { GetInvolvedCarousel } from "@/components/get-involved-carousel";
+import { ContributeLinks } from "@/components/contribute-links";
 import { GitHubIcon } from "@/components/monthly-updates/icons";
 
 export default function HomePage() {
@@ -123,7 +123,7 @@ export default function HomePage() {
           >
             How you can contribute:
           </h2>
-          <GetInvolvedCarousel />
+          <ContributeLinks />
         </div>
       </div>
     </section>

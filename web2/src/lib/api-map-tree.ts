@@ -2,9 +2,9 @@ import type { ApiMapNode } from "@/lib/yaml";
 
 /**
  * One entry in the API tree. `node` is null for a "phantom" entry - a path
- * named in some API's ParentAPIs that has no API-map.yaml of its own. Those
+ * cited in some API map's References that has no API-map.md of its own. Those
  * still get a path/title and are still navigable (sidebar link, flowchart
- * box), just with no requirements/progress data behind them.
+ * box), just with no claims/progress data behind them.
  */
 export type ApiMapTreeEntry = {
   path: string;
@@ -38,8 +38,8 @@ export function flattenApiMapForest(forest: ApiMapTreeEntry[]): ApiMapTreeEntry[
 
 /**
  * Each real node's first parent - preferring one that also has its own
- * API-map.yaml, but falling back to the first phantom parent when it has no
- * real one. ParentAPIs is a DAG, not a tree; picking one edge per node is
+ * API-map.md, but falling back to the first phantom parent when it has no
+ * real one. The citations form a DAG, not a tree; picking one edge per node is
  * what makes a tree renderable at all.
  */
 function buildPrimaryParentMap(nodes: ApiMapNode[]): Map<string, PrimaryParent> {
@@ -56,7 +56,7 @@ function buildPrimaryParentMap(nodes: ApiMapNode[]): Map<string, PrimaryParent> 
 /**
  * Nests every real API under its primary parent (see above), and gives every
  * phantom parent its own top-level entry so it's still visible and clickable
- * even though it has no API-map.yaml behind it.
+ * even though it has no API-map.md behind it.
  */
 export function buildApiMapForest(nodes: ApiMapNode[]): ApiMapTreeEntry[] {
   const byPath = new Map(nodes.map((n) => [n.path, n]));
@@ -72,7 +72,7 @@ export function buildApiMapForest(nodes: ApiMapNode[]): ApiMapTreeEntry[] {
     }
   }
 
-  // ParentAPIs can contain a cycle among *real* nodes (e.g. two APIs each
+  // The citations can contain a cycle among *real* nodes (e.g. two APIs each
   // listing the other as a parent - Space and Time do). Each real node's
   // primary-parent pointer forms a functional graph (out-degree <= 1), so
   // every chain either terminates (at a true root or a phantom) or loops

@@ -47,7 +47,7 @@ const PROMPTS: PromptDef[] = [
     summary:
       "Have the agent compare a folder against the standard textbook treatment of its topic and come back with a prioritized list of what's missing.",
     template: (folder, source) =>
-      `Research \`${folder}\` and its existing API-map.yaml (if any) against the standard textbook/reference treatment of this topic.${sourceSentence(source)} Identify definitions, theorems, or edge cases that are missing and would be worth formalizing next, and explain why each one matters. Don't write any Lean code — just produce a prioritized list of suggestions.`,
+      `Research \`${folder}\` and its existing API-map.md (if any) against the standard textbook/reference treatment of this topic.${sourceSentence(source)} Identify definitions, theorems, or edge cases that are missing and would be worth formalizing next, and explain why each one matters. Don't write any Lean code — just produce a prioritized list of suggestions.`,
   },
   {
     id: "physlib-alpha",
@@ -74,9 +74,9 @@ const PROMPTS: PromptDef[] = [
     category: "Docs",
     chipColor: "accent",
     summary:
-      "Create or refresh the API-map.yaml describing a folder's API, so the API tracker and dependency map stay accurate as the folder evolves.",
+      "Create or refresh the API-map.md describing a folder's API, so the API tracker and dependency map stay accurate as the folder evolves.",
     template: (folder, source) =>
-      `Look at \`${folder}\` and either create a new \`API-map.yaml\` or update the existing one, listing each concrete requirement of the API implemented there, whether it's done, and its file/declaration location — following the schema used elsewhere in \`Physlib/**/API-map.yaml\`.${sourceSentence(source)}`,
+      `Look at \`${folder}\` and either create a new \`API-map.md\` or update the existing one, following docs/API_MAP_GUIDE.md: explain the physics of the API in prose, close each claim with a numbered citation of the Lean declarations that formalize it (or [TODO] if it is not formalized yet), and list those declarations under Lean References and the literature under References. Check the result with \`lake exe api_map_lint\`.${sourceSentence(source)}`,
   },
   {
     id: "todo",

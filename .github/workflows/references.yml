@@ -4,7 +4,7 @@ on:
   schedule:
     # Weekly refresh, same cadence as api-map.yml — docs/references.bib and
     # the per-file citation comments it tracks change about as rarely as
-    # API-map.yaml does. Offset five minutes from api-map.yml's run so the
+    # API-map.md does. Offset five minutes from api-map.yml's run so the
     # two don't start in the same minute.
     - cron: "25 4 * * 1"
   workflow_dispatch: {}

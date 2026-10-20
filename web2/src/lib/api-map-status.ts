@@ -1,7 +1,7 @@
 import type { ApiMapNode } from "@/lib/yaml";
 
 /**
- * How far along an API is, derived from its API-map.yaml requirements.
+ * How far along an API is, derived from the claims of its API-map.md - runs of [n] citations, done unless one is [TODO].
  * Shared so the flowchart boxes and the sidebar dots classify identically -
  * two copies of these thresholds would eventually disagree.
  */
@@ -27,7 +27,7 @@ export const API_STATUS_DOT: Record<ApiStatusKind, string> = {
 };
 
 export const API_STATUS_LABEL: Record<ApiStatusKind, string> = {
-  none: "No requirements yet",
+  none: "No claims yet",
   unstarted: "Not started",
   partial: "In progress",
   complete: "Complete",

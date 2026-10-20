@@ -77,32 +77,100 @@ export async function getTodo(): Promise<TodoData> {
 }
 
 // ─── API map ────────────────────────────────────────────────────────────
+// Generated from Physlib's API-map.md files by scripts/generate-api-map.js.
+
+/** Another API map this one cites in its references - the edges of the
+ *  dependency map. */
 export type ApiMapParent = {
   name: string;
   path: string;
 };
 
+/** One claim of the content: a run of `[n]` citations, done unless the run
+ *  contains `[TODO]`. Only counted, for the progress shown on the page. */
 export type ApiMapRequirement = {
-  description: string;
   done: boolean;
-  location: string;
+  citations: number[];
+  alpha: boolean;
+};
+
+/** A declaration named in a Lean reference. `fullName` is present when it
+ *  was found in the cited file, and is what doc-gen4 anchors on; notations
+ *  and instance types (`kind` "notation" / "instance") are never resolved. */
+export type ApiMapDeclaration = {
+  text: string;
+  fullName?: string;
+  kind?: string;
+  line?: number;
+  doc?: string | null;
+  signature?: string | null;
+};
+
+/** One entry of `## Lean References`, cited in the content as `[index]`. */
+export type ApiMapLeanReference = {
+  index: number;
+  file: string;
+  exists: boolean;
+  declarations: ApiMapDeclaration[];
+};
+
+/** One entry of `## References`, cited in the content as `{index}`.
+ *  `apiMap` is the directory of the API map it points at, when it is one. */
+export type ApiMapReference = {
+  index: number;
+  text: string;
+  apiMap: string | null;
+};
+
+/** One `### ` subsection of a content section, verbatim markdown. */
+export type ApiMapSubsection = {
+  title: string;
+  body: string;
+};
+
+/** A `## Content` or `## Content (Alpha)` section: the text before its first
+ *  subsection, then the subsections. */
+export type ApiMapContentSection = {
+  heading: string;
+  alpha: boolean;
+  intro: string;
+  subsections: ApiMapSubsection[];
 };
 
 export type ApiMapNode = {
+  /** The API's directory, which is also its id on the page. */
   path: string;
+  /** The API-map.md itself. */
+  file: string;
   title: string;
-  overview: string;
-  references: string[];
+  /** Whether the abstract is `## Abstract (Alpha)`. */
+  alpha: boolean;
+  abstract: string;
+  abstractHeading: string;
+  content: ApiMapContentSection[];
+  leanReferences: ApiMapLeanReference[];
+  references: ApiMapReference[];
   requirements: ApiMapRequirement[];
   parents: ApiMapParent[];
   url: string;
 };
 
+/** A directory of the libraries holding Lean files - a place a new API map
+ *  could go. */
+export type ApiMapDirectory = {
+  path: string;
+  leanFiles: number;
+  hasApiMap: boolean;
+};
+
 export type ApiMap = {
   repo: string;
   branch: string;
+  /** The Physlib commit the maps were read at. */
+  commit: string;
   generatedAt: string;
   nodes: ApiMapNode[];
+  directories: ApiMapDirectory[];
 };
 
 export async function getApiMap(): Promise<ApiMap> {

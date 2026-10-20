@@ -40,15 +40,15 @@ function statusStyle(node: ApiMapNode): { box: string; label: string } {
   const done = node.requirements.filter((r) => r.done).length;
   switch (apiStatusKind(node)) {
     case "none":
-      return { box: "bg-surface-secondary border-border", label: "No requirements yet" };
+      return { box: "bg-surface-secondary border-border", label: "No claims yet" };
     case "complete":
       return { box: "bg-success/15 border-success/40", label: "Complete" };
     case "unstarted":
-      return { box: "bg-danger/10 border-danger/30", label: `0/${total} requirements done` };
+      return { box: "bg-danger/10 border-danger/30", label: `0/${total} claims formalized` };
     case "partial":
       return {
         box: "bg-warning/15 border-warning/40",
-        label: `${done}/${total} requirements done`,
+        label: `${done}/${total} claims formalized`,
       };
   }
 }
@@ -72,7 +72,7 @@ function FlowNode({
 
   const style = node
     ? statusStyle(node)
-    : { box: "border-dashed border-border bg-surface-secondary/60", label: "No API-map.yaml yet" };
+    : { box: "border-dashed border-border bg-surface-secondary/60", label: "No API-map.md yet" };
 
   return (
     <li className="api-tree__node">
@@ -84,13 +84,15 @@ function FlowNode({
           the same box-vs-li distinction). */}
       <div className="relative w-44">
         <a
-          id={path}
+          // Not the bare path: the URL hash is the path, and a matching id
+          // would make the browser jump down here on every link to an API.
+          id={`flow-${path}`}
           href={`#${path}`}
           onClick={(e) => {
             e.preventDefault();
             onSelect(path, e.currentTarget);
           }}
-          title={node ? title : `${title} (no API-map.yaml yet)`}
+          title={node ? title : `${title} (no API-map.md yet)`}
           className={`flex w-44 flex-col gap-0.5 rounded-lg border px-3 py-2 text-left shadow-sm transition-shadow hover:shadow-md ${style.box} ${
             isActive ? "ring-2 ring-accent ring-offset-2 ring-offset-background" : ""
           }`}
@@ -103,7 +105,7 @@ function FlowNode({
           <span className="truncate text-[11px] text-muted">{style.label}</span>
           {otherParents.length > 0 && (
             <span className="line-clamp-2 text-[10px] leading-snug text-muted/70">
-              Also needs: {otherParents.map((p) => p.name).join(", ")}
+              Also cites: {otherParents.map((p) => p.name).join(", ")}
             </span>
           )}
         </a>
@@ -112,7 +114,7 @@ function FlowNode({
             href={node.url}
             target="_blank"
             rel="noopener noreferrer"
-            title="View API-map.yaml on GitHub"
+            title="View API-map.md on GitHub"
             className="absolute right-1.5 top-1.5 rounded p-0.5 text-muted/60 hover:bg-surface hover:text-accent"
           >
             <TopRightArrowIcon className="size-3" />
@@ -174,7 +176,7 @@ export function ApiFlowchart({ nodes }: { nodes: ApiMapNode[] }) {
       // (which changes classes on both the previously and newly active box)
       // lands before the scroll animation starts.
       requestAnimationFrame(() => {
-        const el = document.getElementById(path);
+        const el = document.getElementById(`flow-${path}`);
         if (el) centerHorizontally(el);
       });
     };

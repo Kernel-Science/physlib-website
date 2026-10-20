@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { getApiMap } from "@/lib/yaml";
 import { ApiDetailView } from "@/components/api-tracker/api-detail-view";
 import { ApiFlowchart } from "@/components/api-tracker/api-flowchart";
-import { SuggestNewApiDialog } from "@/components/api-tracker/suggest-dialog";
 
 export const metadata: Metadata = {
   title: "API Tracker | Physlib",
   description:
-    "Browse the APIs defined across Physlib, from their API-map.yaml files.",
+    "Read Physlib's API maps: articles on each area of physics in Physlib, linked to the Lean declarations that formalize them.",
 };
 
 export default async function APITrackerPage() {
@@ -22,29 +22,34 @@ export default async function APITrackerPage() {
 
   return (
     <div className="mx-auto w-full max-w-5xl px-4 py-10 md:py-14">
-
-      <p className="text-xs text-muted mb-4">
-        {lastUpdated ? `Last updated: ${lastUpdated} UTC` : "Last updated: unknown"}
-      </p>
-
-      <div className="mb-4 flex items-center justify-end">
-        <SuggestNewApiDialog
-          repo={apiMap.repo}
-          branch={apiMap.branch}
-          existingPaths={apiMap.nodes.map((n) => n.path)}
-        />
+      <div className="mb-8 flex flex-wrap items-center justify-between gap-3 border-b border-border pb-4">
+        <p className="text-sm leading-relaxed text-muted">
+          <span className="text-foreground">API maps</span> are short articles
+          on each area of physics in Physlib, linked to the Lean that
+          formalizes it. Anyone can suggest an edit or start a new one.
+          <span className="block text-xs">
+            {apiMap.nodes.length} API maps ·{" "}
+            {lastUpdated ? `Last updated: ${lastUpdated} UTC` : "Last updated: unknown"}
+          </span>
+        </p>
+        <Link
+          href="/api-tracker/new"
+          className="flex shrink-0 items-center gap-1.5 rounded-lg border border-border px-2.5 py-1.5 text-xs text-muted transition-colors hover:border-accent hover:text-accent"
+        >
+          <span aria-hidden>＋</span>
+          Create an API map
+        </Link>
       </div>
-
 
       <ApiDetailView apiMap={apiMap} />
 
-      <section className="mt-10">
+      <section className="mt-14">
         <h2 className="mb-1 text-sm font-semibold tracking-tight">Dependency map</h2>
         <p className="text-muted mb-4 text-sm leading-relaxed">
-          Every API, with each one shown below the parent it builds on. Click a
-          box to open it above. Green boxes have all their requirements done,
-          yellow are in progress, and red have none done yet; dashed boxes are
-          referenced as a parent but have no <code>API-map.yaml</code> of their
+          Every API map, each shown below an API map it cites. Click a
+          box to open it above. Green boxes have every claim formalized, yellow
+          are in progress, and red have none formalized yet; dashed boxes are
+          cited by another map but have no <code>API-map.md</code> of their
           own yet.
         </p>
         <ApiFlowchart nodes={apiMap.nodes} />
