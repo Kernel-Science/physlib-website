@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
-import { PageHeader } from "@/components/page-header";
 import { parseContributionTips } from "@/lib/contribution-tips-content";
 import { site } from "@/lib/site";
 import { TipsMarkdown } from "./tips-markdown";
+import { TipsAccordion } from "./tips-accordion";
 
 export const metadata: Metadata = {
   title: "Contribution tips",
@@ -37,25 +37,30 @@ export default async function ContributionTipsPage() {
         A collection of tips from the Physlib community.
       </p>
 
-      <nav aria-label="Contents" className="mb-12 lg:hidden">
-        <p className="label-mono mb-3 text-muted">On this page</p>
-        <ol className="grid gap-x-6 gap-y-2 text-sm sm:grid-cols-2">
-          {sections.map((tip) => (
-            <li key={tip.id}>
-              <a className="text-accent hover:underline underline-offset-2" href={`#${tip.id}`}>
+      <TipsAccordion>
+        {sections.map((tip) => (
+          <details key={tip.id} id={tip.id} className="group scroll-mt-24">
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-5 py-5 text-foreground hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent [&::-webkit-details-marker]:hidden">
+              <h2 className="text-xl font-medium tracking-heading sm:text-2xl">
                 {tip.number}. {tip.title}
-              </a>
-            </li>
-          ))}
-        </ol>
-      </nav>
-
-      {sections.map((tip) => (
-        <section key={tip.id} className="mb-12 last:mb-0">
-          <PageHeader id={tip.id} title={`${tip.number}. ${tip.title}`} />
-          <TipsMarkdown>{tip.body}</TipsMarkdown>
-        </section>
-      ))}
+              </h2>
+              <svg
+                aria-hidden="true"
+                className="size-5 shrink-0 text-muted transition-transform group-open:rotate-180 motion-reduce:transition-none"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+              >
+                <path d="m6 9 6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </summary>
+            <div className="pb-6">
+              <TipsMarkdown>{tip.body}</TipsMarkdown>
+            </div>
+          </details>
+        ))}
+      </TipsAccordion>
       <p className="mt-8 text-sm">
         <a
           href={`${site.github}/edit/master/docs/contribution-tips.md`}
