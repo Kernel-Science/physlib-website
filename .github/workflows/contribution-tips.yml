@@ -1,0 +1,67 @@
+name: Sync contribution tips
+
+on:
+  schedule:
+    - cron: "40 4 * * *"
+  workflow_dispatch: {}
+  pull_request:
+    paths:
+      - ".github/workflows/contribution-tips.yml"
+      - "web2/scripts/sync-contribution-tips*"
+      - "web2/src/lib/contribution-tips-content.js"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: contribution-tips-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Test contribution tips synchronization
+        working-directory: web2
+        run: node --test scripts/sync-contribution-tips.test.js
+
+  sync:
+    needs: test
+    if: >-
+      github.repository == 'Kernel-Science/physlib-website' &&
+      github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Retrieve contribution tips from Physlib
+        working-directory: web2
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node scripts/sync-contribution-tips.js
+      - name: Commit updated tips
+        run: |
+          git add web2/data/contribution-tips.md web2/data/contribution-tips.source.json
+          if git diff --cached --quiet; then
+            echo "Contribution tips are unchanged."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "docs: sync contribution tips from Physlib"
+          git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+
+# mirror-to-personal.yml listens for this workflow's completion so commits
+# created with GITHUB_TOKEN also reach the Vercel deployment mirror.

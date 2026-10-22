@@ -30,6 +30,14 @@ export default function GettingStartedPage() {
         experience or who are new to the project.
       </p>
 
+      <p className="text-sm text-muted mb-10">
+        Before making a contribution, read our{" "}
+        <a href="/contribution-tips" className="text-accent hover:underline underline-offset-2">
+          contribution tips
+        </a>{" "}
+        for advice from the Physlib community.
+      </p>
+
       {/* In-page navigation */}
       <div className="mb-12 grid gap-6 sm:grid-cols-3 border-b border-border pb-10">
         {tocSections.map((section) => (

@@ -15,6 +15,7 @@ on:
       - Generate monthly update
       - Generate API map
       - Generate references
+      - Sync contribution tips
     types: [completed]
 
 # Force-pushes to the mirror must not race each other.

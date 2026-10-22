@@ -45,6 +45,12 @@ const steps: Step[] = [
     linkLabel: "Read the Guide",
   },
   {
+    title: "Contribution tips",
+    body: "Advice from the Physlib community on preparing and reviewing contributions.",
+    href: "/contribution-tips",
+    linkLabel: "Read the Tips",
+  },
+  {
     title: "Golfing & Documentation",
     body: "Golfing is the process of making the code more concise and readable, whilst documentation is the process of adding comments and explanations to the code.",
   },

@@ -8,7 +8,7 @@ import { ReferencesSidebar } from "./references/references-sidebar";
 
 export function ConditionalSidebar() {
   const pathname = usePathname();
-  if (pathname === "/") return null;
+  if (pathname === "/" || pathname === "/contribution-tips") return null;
   if (pathname.startsWith("/monthly-updates")) return <MonthSidebar />;
   if (pathname.startsWith("/api-tracker")) return <ApiTrackerSidebar />;
   if (pathname.startsWith("/references")) return <ReferencesSidebar />;
