@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { parseContributionTips } from "@/lib/contribution-tips-content";
-import { site } from "@/lib/site";
 import { TipsMarkdown } from "./tips-markdown";
 import { TipsAccordion } from "./tips-accordion";
 
@@ -61,16 +60,6 @@ export default async function ContributionTipsPage() {
           </details>
         ))}
       </TipsAccordion>
-      <p className="mt-8 text-sm">
-        <a
-          href={`${site.github}/edit/master/docs/contribution-tips.md`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-accent hover:underline underline-offset-2"
-        >
-          Edit these tips on GitHub ↗
-        </a>
-      </p>
     </article>
   );
 }
