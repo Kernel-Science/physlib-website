@@ -1,7 +1,7 @@
 {
   "repo": "leanprover-community/physlib",
   "branch": "master",
-  "generatedAt": "2026-10-19T10:02:56.529Z",
+  "generatedAt": "2026-10-26T10:17:35.489Z",
   "references": [
     {
       "key": "abramowitz_stegun_1964",
@@ -130,9 +130,9 @@
         },
         {
           "file": "Physlib/ClassicalMechanics/Lagrangian/Basic.lean",
-          "line": 34,
+          "line": 35,
           "subfolder": "Physlib/ClassicalMechanics",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Lagrangian/Basic.lean#L34"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Lagrangian/Basic.lean#L35"
         },
         {
           "file": "Physlib/ClassicalMechanics/Pendulum/SimplePendulum/Basic.lean",
@@ -883,9 +883,15 @@
           "line": 71,
           "subfolder": "Physlib/SpaceAndTime",
           "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/SpaceAndTime/Space/LengthUnit.lean#L71"
+        },
+        {
+          "file": "Physlib/Units/Constants.lean",
+          "line": 40,
+          "subfolder": "Physlib/Units",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Units/Constants.lean#L40"
         }
       ],
-      "count": 2
+      "count": 3
     },
     {
       "key": "bloch_1929",
@@ -937,6 +943,26 @@
           "line": 96,
           "subfolder": "Physlib/ClassicalMechanics",
           "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/DampedHarmonicOscillator/Basic.lean#L96"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "cambridge_m3p18_ch2",
+      "inBib": false,
+      "type": null,
+      "authors": [],
+      "authorSortKey": "cambridge_m3p18_ch2",
+      "title": null,
+      "year": null,
+      "venue": "",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/Electromagnetism/Distributional/Basic.lean",
+          "line": 39,
+          "subfolder": "Physlib/Electromagnetism",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Electromagnetism/Distributional/Basic.lean#L39"
         }
       ],
       "count": 1
@@ -1087,9 +1113,9 @@
       "citations": [
         {
           "file": "Physlib/QuantumMechanics/Hydrogen/Basic.lean",
-          "line": 27,
+          "line": 30,
           "subfolder": "Physlib/QuantumMechanics",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QuantumMechanics/Hydrogen/Basic.lean#L27"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QuantumMechanics/Hydrogen/Basic.lean#L30"
         }
       ],
       "count": 1
@@ -1112,9 +1138,9 @@
       "citations": [
         {
           "file": "Physlib/QuantumMechanics/Hydrogen/Basic.lean",
-          "line": 26,
+          "line": 29,
           "subfolder": "Physlib/QuantumMechanics",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QuantumMechanics/Hydrogen/Basic.lean#L26"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QuantumMechanics/Hydrogen/Basic.lean#L29"
         }
       ],
       "count": 1
@@ -1334,6 +1360,29 @@
         }
       ],
       "count": 4
+    },
+    {
+      "key": "Harrigan:2007wfc",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "Nicholas Harrigan",
+        "Robert W. Spekkens"
+      ],
+      "authorSortKey": "harrigan",
+      "title": "Einstein, Incompleteness, and the Epistemic View of~Quantum States",
+      "year": "2010",
+      "venue": "Found. Phys. 40 no. 2 pp. 125--157 (2010)",
+      "url": "https://arxiv.org/abs/0706.2661",
+      "citations": [
+        {
+          "file": "PhyslibAlpha/QuantumMechanics/Foundations/OntologicalModel.lean",
+          "line": 65,
+          "subfolder": "PhyslibAlpha/QuantumMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/QuantumMechanics/Foundations/OntologicalModel.lean#L65"
+        }
+      ],
+      "count": 1
     },
     {
       "key": "haukkanen_2019_formal_power_series",
@@ -1714,6 +1763,12 @@
           "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/HarmonicOscillator/Solution.lean#L67"
         },
         {
+          "file": "Physlib/ClassicalMechanics/Lagrangian/FirstVariation.lean",
+          "line": 36,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Lagrangian/FirstVariation.lean#L36"
+        },
+        {
           "file": "Physlib/ClassicalMechanics/Lagrangian/TotalDerivativeEquivalence.lean",
           "line": 52,
           "subfolder": "Physlib/ClassicalMechanics",
@@ -1834,7 +1889,7 @@
           "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Mathematics/SpecialFunctions/EllipticIntegral.lean#L72"
         }
       ],
-      "count": 24
+      "count": 25
     },
     {
       "key": "landau_statphys1",
@@ -1920,6 +1975,28 @@
       "count": 5
     },
     {
+      "key": "Leifer:2014sza",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "Matthew Saul Leifer"
+      ],
+      "authorSortKey": "leifer",
+      "title": "Is the Quantum State Real? An Extended Review of \\ensuremath\\psi-ontology Theorems",
+      "year": "2014",
+      "venue": "Quanta 3 no. 1 pp. 67--155 (2014)",
+      "url": "https://arxiv.org/abs/1409.1570",
+      "citations": [
+        {
+          "file": "PhyslibAlpha/QuantumMechanics/Foundations/OntologicalModel.lean",
+          "line": 69,
+          "subfolder": "PhyslibAlpha/QuantumMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/QuantumMechanics/Foundations/OntologicalModel.lean#L69"
+        }
+      ],
+      "count": 1
+    },
+    {
       "key": "Lohitsiri:2019fuu",
       "inBib": true,
       "type": "article",
@@ -1992,6 +2069,29 @@
       "url": "https://doi.org/10.3390/stats6030049",
       "citations": [],
       "count": 0
+    },
+    {
+      "key": "michalek_sturmfels_2021",
+      "inBib": true,
+      "type": "book",
+      "authors": [
+        "Mateusz Micha\\lek",
+        "Bernd Sturmfels"
+      ],
+      "authorSortKey": "micha\\lek",
+      "title": "Invitation to Nonlinear Algebra",
+      "year": "2021",
+      "venue": "American Mathematical Society, Graduate Studies in Mathematics, (2021)",
+      "url": null,
+      "citations": [
+        {
+          "file": "QuantumInfo/ForMathlib/ExchangeRelations.lean",
+          "line": 50,
+          "subfolder": "QuantumInfo/ForMathlib",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/QuantumInfo/ForMathlib/ExchangeRelations.lean#L50"
+        }
+      ],
+      "count": 1
     },
     {
       "key": "mortini_rupp_2022",
@@ -2248,12 +2348,48 @@
       "citations": [
         {
           "file": "Physlib/Relativity/LorentzAlgebra/Basis.lean",
-          "line": 37,
+          "line": 56,
           "subfolder": "Physlib/Relativity",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Relativity/LorentzAlgebra/Basis.lean#L37"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Relativity/LorentzAlgebra/Basis.lean#L56"
         }
       ],
       "count": 1
+    },
+    {
+      "key": "Pusey:2011de",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "Matthew F. Pusey",
+        "Jonathan Barrett",
+        "Terry Rudolph"
+      ],
+      "authorSortKey": "pusey",
+      "title": "On the reality of the quantum state",
+      "year": "2012",
+      "venue": "Nature Phys. 8 pp. 475--478 (2012)",
+      "url": "https://arxiv.org/abs/1111.3328",
+      "citations": [
+        {
+          "file": "PhyslibAlpha/Mathematics/SpecialFunctions/Walsh.lean",
+          "line": 49,
+          "subfolder": "PhyslibAlpha/Mathematics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/Mathematics/SpecialFunctions/Walsh.lean#L49"
+        },
+        {
+          "file": "PhyslibAlpha/QuantumMechanics/Foundations/OntologicalModel.lean",
+          "line": 67,
+          "subfolder": "PhyslibAlpha/QuantumMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/QuantumMechanics/Foundations/OntologicalModel.lean#L67"
+        },
+        {
+          "file": "PhyslibAlpha/QuantumMechanics/Foundations/PBR/Phases.lean",
+          "line": 43,
+          "subfolder": "PhyslibAlpha/QuantumMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/QuantumMechanics/Foundations/PBR/Phases.lean#L43"
+        }
+      ],
+      "count": 3
     },
     {
       "key": "qmul_emt10_notes",
@@ -2374,9 +2510,9 @@
       "citations": [
         {
           "file": "Physlib/QuantumMechanics/Operators/Multiplication.lean",
-          "line": 61,
+          "line": 63,
           "subfolder": "Physlib/QuantumMechanics",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QuantumMechanics/Operators/Multiplication.lean#L61"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QuantumMechanics/Operators/Multiplication.lean#L63"
         },
         {
           "file": "Physlib/QuantumMechanics/Operators/SpectralTheory/Basic.lean",
@@ -2417,6 +2553,26 @@
           "line": 49,
           "subfolder": "Physlib/QuantumMechanics",
           "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QuantumMechanics/Operators/Uncertainty.lean#L49"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "schwartz1950",
+      "inBib": false,
+      "type": null,
+      "authors": [],
+      "authorSortKey": "schwartz1950",
+      "title": null,
+      "year": null,
+      "venue": "",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/Electromagnetism/Distributional/Basic.lean",
+          "line": 40,
+          "subfolder": "Physlib/Electromagnetism",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Electromagnetism/Distributional/Basic.lean#L40"
         }
       ],
       "count": 1
@@ -2541,9 +2697,9 @@
         },
         {
           "file": "Physlib/ClassicalMechanics/HamiltonianMechanics/PoissonBracket.lean",
-          "line": 59,
+          "line": 61,
           "subfolder": "Physlib/ClassicalMechanics",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/HamiltonianMechanics/PoissonBracket.lean#L59"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/HamiltonianMechanics/PoissonBracket.lean#L61"
         }
       ],
       "count": 2
@@ -2599,12 +2755,18 @@
         },
         {
           "file": "Physlib/ClassicalMechanics/Lagrangian/Basic.lean",
+          "line": 36,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Lagrangian/Basic.lean#L36"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/Lagrangian/FirstVariation.lean",
           "line": 35,
           "subfolder": "Physlib/ClassicalMechanics",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Lagrangian/Basic.lean#L35"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Lagrangian/FirstVariation.lean#L35"
         }
       ],
-      "count": 7
+      "count": 8
     },
     {
       "key": "tomamichel_relative_entropy_masterclass",
@@ -2649,9 +2811,9 @@
       "citations": [
         {
           "file": "Physlib/CondensedMatter/TightBindingChain/Basic.lean",
-          "line": 66,
+          "line": 72,
           "subfolder": "Physlib/CondensedMatter",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/CondensedMatter/TightBindingChain/Basic.lean#L66"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/CondensedMatter/TightBindingChain/Basic.lean#L72"
         },
         {
           "file": "Physlib/StatisticalMechanics/CanonicalEnsemble/Finite.lean",
@@ -2991,9 +3153,9 @@
       "citations": [
         {
           "file": "Physlib/Relativity/LorentzAlgebra/Basis.lean",
-          "line": 36,
+          "line": 55,
           "subfolder": "Physlib/Relativity",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Relativity/LorentzAlgebra/Basis.lean#L36"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Relativity/LorentzAlgebra/Basis.lean#L55"
         }
       ],
       "count": 1
@@ -3074,9 +3236,15 @@
           "line": 48,
           "subfolder": "Physlib/Mathematics",
           "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Mathematics/LeviCivita/Basic.lean#L48"
+        },
+        {
+          "file": "PhyslibAlpha/Mathematics/LeviCivita/Basic.lean",
+          "line": 38,
+          "subfolder": "PhyslibAlpha/Mathematics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/Mathematics/LeviCivita/Basic.lean#L38"
         }
       ],
-      "count": 1
+      "count": 2
     },
     {
       "key": "wiki_lorentz_transformation",
@@ -3111,15 +3279,15 @@
       "citations": [
         {
           "file": "Physlib/QuantumMechanics/HilbertSpaces/SpaceD/MomentumStates.lean",
-          "line": 28,
+          "line": 38,
           "subfolder": "Physlib/QuantumMechanics",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QuantumMechanics/HilbertSpaces/SpaceD/MomentumStates.lean#L28"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QuantumMechanics/HilbertSpaces/SpaceD/MomentumStates.lean#L38"
         },
         {
           "file": "Physlib/QuantumMechanics/HilbertSpaces/SpaceD/PositionStates.lean",
-          "line": 28,
+          "line": 36,
           "subfolder": "Physlib/QuantumMechanics",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QuantumMechanics/HilbertSpaces/SpaceD/PositionStates.lean#L28"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QuantumMechanics/HilbertSpaces/SpaceD/PositionStates.lean#L36"
         }
       ],
       "count": 2
