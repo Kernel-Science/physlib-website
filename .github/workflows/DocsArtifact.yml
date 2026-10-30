@@ -14,7 +14,7 @@ permissions:
 jobs:
   build_project:
       if: github.repository == 'kernel-science/physlib-website'
-      runs-on: ubuntu-latest
+      runs-on: ubuntu-24.04  # since ubuntu-latest became 26.04, doc-gen4 fails with ENOMEM; cause not yet known
       name: Build project
       steps:
         - name: Checkout project
