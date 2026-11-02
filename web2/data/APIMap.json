@@ -1,8 +1,8 @@
 {
   "repo": "leanprover-community/physlib",
   "branch": "master",
-  "commit": "2ccd195173606b072a6bc74b239fe555b0751850",
-  "generatedAt": "2026-10-26T10:13:25.761Z",
+  "commit": "1640f52035c1e0422371b6d344fd257b78fc7da5",
+  "generatedAt": "2026-11-02T12:33:30.267Z",
   "nodes": [
     {
       "path": "Physlib/ClassicalFieldTheory/GaugeTheory",
@@ -31,7 +31,7 @@
       "leanReferences": [
         {
           "index": 1,
-          "file": "Physlib/Particles/StandardModel/Basic.lean",
+          "file": "Physlib/Particles/StandardModel/GaugeGroup/Basic.lean",
           "declarations": [
             {
               "text": "GaugeGroupI",
@@ -484,8 +484,8 @@
         },
         {
           "index": 3,
-          "text": "Standard Model gauge group API map — Physlib/Particles/StandardModel/API-map.md",
-          "apiMap": "Physlib/Particles/StandardModel"
+          "text": "Standard Model gauge group API map — Physlib/Particles/StandardModel/GaugeGroup/API-map.md",
+          "apiMap": "Physlib/Particles/StandardModel/GaugeGroup"
         },
         {
           "index": 4,
@@ -656,7 +656,7 @@
         },
         {
           "name": "Standard Model gauge group",
-          "path": "Physlib/Particles/StandardModel"
+          "path": "Physlib/Particles/StandardModel/GaugeGroup"
         }
       ],
       "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalFieldTheory/GaugeTheory/API-map.md"
@@ -685,7 +685,7 @@
               "text": "ConfigurationSpace",
               "fullName": "ClassicalMechanics.ConfigurationSpace",
               "kind": "structure",
-              "line": 45,
+              "line": 46,
               "doc": "A smooth manifold without boundary.",
               "signature": "structure ConfigurationSpace (I : ModelWithCorners ℝ E H) where\n  carrier : Type*\n  [topologicalSpace : TopologicalSpace carrier]\n  [chartedSpace : ChartedSpace H carrier]\n  [isManifold : IsManifold I ∞ carrier]\n  [boundarylessManifold : B…"
             }
@@ -1676,11 +1676,11 @@
           "subsections": [
             {
               "title": "Lagrangian systems and the action",
-              "body": "A Lagrangian system on a configuration space M {1} is a smooth function L : Time × TM → ℝ of\ntime {2} and of the positions and velocities, depending on first derivatives only. [1] A smooth\nvariation of a curve γ on [t₀, t₁] is a smooth family of curves starting at γ and fixing γ(t₀)\nand γ(t₁). [2] The action of γ is ∫ L(t, γ, γ̇) dt over [t₀, t₁], and γ is a critical point of\nthe action when it is smooth and every variation has zero first variation of the action {3}.\n[3]"
+              "body": "A Lagrangian system on a configuration space M {1} is a smooth function L : Time × TM → ℝ of\ntime {2} and of the positions and velocities, depending on first derivatives only. [1] A smooth\nvariation of a curve γ on [t₀, t₁] is a smooth family of curves starting at γ and fixing γ(t₀)\nand γ(t₁). [2] The action of γ is ∫ L(t, γ, γ̇) dt over [t₀, t₁], and γ is a critical point of\nthe action when it is smooth and every variation has zero first variation of the action {3}.\n[3] On a normed space, the action is the integral of L(t, q, q̇) along the coordinate curve. [4]"
             },
             {
               "title": "Equations of motion",
-              "body": "A smooth curve is a critical point of the action if and only if the Euler–Lagrange equations hold\nin every chart {4}. [TODO] Lagrangians L(q, q̇, t) written in generalised coordinates are\nLagrangian systems {5}. [TODO]"
+              "body": "On a normed space, a smooth curve is a critical point of the action over [t₀, t₁] with\nt₀ ≠ t₁ if and only if the Euler–Lagrange equations hold. [5] A smooth curve is a critical point\nof the action if and only if the Euler–Lagrange equations hold in every chart {4}. [TODO]\nLagrangians L(q, q̇, t) written in generalised coordinates are Lagrangian systems {5}. [TODO]"
             },
             {
               "title": "Symmetries and conservation laws",
@@ -1712,7 +1712,7 @@
               "text": "Variation",
               "fullName": "ClassicalMechanics.Variation",
               "kind": "structure",
-              "line": 49,
+              "line": 55,
               "doc": "A smooth variation of `γ` on `[t₀, t₁]` fixing `γ t₀` and `γ t₁`.",
               "signature": "structure Variation (γ : Time → M) (t₀ t₁ : Time) where\n  toFun : C^∞⟮𝓘(ℝ, ℝ).prod 𝓘(ℝ, ℝ), ℝ × Time; I, M⟯\n  apply_zero : ∀ s ∈ Set.Icc 0 (t₁ -ᵥ t₀), toFun (0, s +ᵥ t₀) = γ (s +ᵥ t₀)\n  apply_left : ∀ s, toFun (s, t₀) = γ t₀\n  apply_righ…"
             }
@@ -1727,17 +1727,47 @@
               "text": "LagrangianSystem.action",
               "fullName": "ClassicalMechanics.LagrangianSystem.action",
               "kind": "def",
-              "line": 96,
+              "line": 125,
               "doc": "The action `∫ L(t, γ, γ̇) dt` over `[t₀, t₁]`.",
               "signature": "noncomputable def action (γ : Time → M) (t₀ t₁ : Time) : ℝ"
-            },
+            }
+          ],
+          "exists": true
+        },
+        {
+          "index": 4,
+          "file": "Physlib/ClassicalMechanics/Lagrangian/Basic.lean",
+          "declarations": [
+            {
+              "text": "LagrangianSystem.action_eq_integral_coord",
+              "fullName": "ClassicalMechanics.LagrangianSystem.action_eq_integral_coord",
+              "kind": "lemma",
+              "line": 134,
+              "doc": "The action is the integral over `[0, t₁ -ᵥ t₀]` of `S.coord t₀ (s, q s, q' s)`, where `q τ = γ (τ +ᵥ t₀)` and `q' = deriv q`.",
+              "signature": "lemma action_eq_integral_coord (S : LagrangianSystem 𝓘(ℝ, E) ⟨E⟩) (γ : Time → E) (t₀ t₁ : Time) :\n    S.action γ t₀ t₁ = ∫ s in Set.Icc 0 (t₁ -ᵥ t₀),\n      S.coord t₀ (s, γ (s +ᵥ t₀), deriv (fun τ : ℝ ↦ γ (τ +ᵥ t₀)) s)"
+            }
+          ],
+          "exists": true
+        },
+        {
+          "index": 5,
+          "file": "Physlib/ClassicalMechanics/Lagrangian/CriticalPoint.lean",
+          "declarations": [
             {
               "text": "LagrangianSystem.IsCriticalPoint",
               "fullName": "ClassicalMechanics.LagrangianSystem.IsCriticalPoint",
               "kind": "def",
-              "line": 100,
-              "doc": "`γ` is smooth and every variation has zero first variation of the action.",
+              "line": 70,
+              "doc": "`γ` is smooth and every variation of `γ` fixing the endpoints has zero first variation of the action, i.e. `d/ds S[γ_s]` vanishes at `s = 0` (Hamilton's principle).",
               "signature": "def IsCriticalPoint (γ : Time → M) (t₀ t₁ : Time) : Prop"
+            },
+            {
+              "text": "LagrangianSystem.isCriticalPoint_iff_eulerLagrange",
+              "fullName": "ClassicalMechanics.LagrangianSystem.isCriticalPoint_iff_eulerLagrange",
+              "kind": "lemma",
+              "line": 134,
+              "doc": "For `t₁ -ᵥ t₀ ≠ 0`, `γ` is a critical point iff `q σ = γ (σ +ᵥ t₀)` is smooth and `eulerLagrange S t₀ q = 0` on `[0, t₁ -ᵥ t₀]`.",
+              "signature": "lemma isCriticalPoint_iff_eulerLagrange (ht : t₁ -ᵥ t₀ ≠ 0) :\n    S.IsCriticalPoint γ t₀ t₁ ↔ ContDiff ℝ ∞ (fun σ : ℝ ↦ γ (σ +ᵥ t₀)) ∧\n      ∀ τ ∈ Icc 0 (t₁ -ᵥ t₀), eulerLagrange S t₀ (fun σ : ℝ ↦ γ (σ +ᵥ t₀)) τ = 0"
             }
           ],
           "exists": true
@@ -1789,6 +1819,20 @@
           "done": true,
           "citations": [
             3
+          ],
+          "alpha": true
+        },
+        {
+          "done": true,
+          "citations": [
+            4
+          ],
+          "alpha": true
+        },
+        {
+          "done": true,
+          "citations": [
+            5
           ],
           "alpha": true
         },
@@ -2497,7 +2541,7 @@
               "text": "SimplePendulum.toHarmonicOscillator",
               "fullName": "ClassicalMechanics.SimplePendulum.toHarmonicOscillator",
               "kind": "def",
-              "line": 150,
+              "line": 154,
               "doc": "The harmonic oscillator to which the pendulum linearizes: mass `I = m ℓ²`, spring constant `m g ℓ`.",
               "signature": "noncomputable def toHarmonicOscillator : HarmonicOscillator where"
             },
@@ -2505,7 +2549,7 @@
               "text": "SimplePendulum.linearizedEquationOfMotion_iff",
               "fullName": "ClassicalMechanics.SimplePendulum.linearizedEquationOfMotion_iff",
               "kind": "lemma",
-              "line": 240,
+              "line": 244,
               "doc": "For a smooth lift of the angle, the linearized equation of motion of the simple pendulum is the equation of motion of the associated harmonic oscillator. The oscillator's equation of motion is the vanishing of the variational gradient of its action, which is totalized; smoothness is the regularity under which that variational description agrees with the pointwise one. The smoothness-free pointw…",
               "signature": "lemma linearizedEquationOfMotion_iff (θ : Time → EuclideanSpace ℝ (Fin 1))\n    (hθ : ContDiff ℝ ∞ θ) :\n    S.LinearizedEquationOfMotion θ ↔ S.toHarmonicOscillator.EquationOfMotion θ"
             },
@@ -2513,7 +2557,7 @@
               "text": "SimplePendulum.smallAngleTrajectory_linearizedEquationOfMotion",
               "fullName": "ClassicalMechanics.SimplePendulum.smallAngleTrajectory_linearizedEquationOfMotion",
               "kind": "lemma",
-              "line": 362,
+              "line": 366,
               "doc": "The small-angle trajectories satisfy the linearized equation of motion: for every choice of initial conditions the linearized equation has a smooth solution assuming them.",
               "signature": "lemma smallAngleTrajectory_linearizedEquationOfMotion\n    (IC : HarmonicOscillator.InitialConditions) :\n    S.LinearizedEquationOfMotion (S.smallAngleTrajectory IC)"
             },
@@ -2521,7 +2565,7 @@
               "text": "SimplePendulum.linearized_unique",
               "fullName": "ClassicalMechanics.SimplePendulum.linearized_unique",
               "kind": "lemma",
-              "line": 372,
+              "line": 376,
               "doc": "Uniqueness of the small-angle motions: a smooth solution of the linearized equation of motion is determined by its initial angle and initial angular velocity, being the small-angle trajectory of those initial conditions. This is the uniqueness theorem for the associated harmonic oscillator, transferred through `linearizedEquationOfMotion_iff`.",
               "signature": "lemma linearized_unique (IC : HarmonicOscillator.InitialConditions)\n    (θ : Time → EuclideanSpace ℝ (Fin 1)) (hθ : ContDiff ℝ ∞ θ)\n    (h : S.LinearizedEquationOfMotion θ) (h0 : θ 0 = IC.x₀) (hv : ∂ₜ θ 0 = IC.v₀) :\n    θ = S.smallAngleTra…"
             },
@@ -2529,7 +2573,7 @@
               "text": "SimplePendulum.smallAnglePeriod_eq",
               "fullName": "ClassicalMechanics.SimplePendulum.smallAnglePeriod_eq",
               "kind": "lemma",
-              "line": 414,
+              "line": 418,
               "doc": "The closed form of the small-angle period: `2π √(ℓ/g)`. Neither the mass of the bob nor the amplitude of the swing appears.",
               "signature": "lemma smallAnglePeriod_eq : S.smallAnglePeriod = 2 * Real.pi * √(S.ℓ / S.g)"
             }
@@ -2544,7 +2588,7 @@
               "text": "SimplePendulum.abs_torque_add_linear_le",
               "fullName": "ClassicalMechanics.SimplePendulum.abs_torque_add_linear_le",
               "kind": "lemma",
-              "line": 501,
+              "line": 505,
               "doc": "The torque of the simple pendulum differs from its linearization `-m g ℓ θ` by at most `m g ℓ |θ|³ / 6`: the error of the small-angle approximation is cubic in the angle.",
               "signature": "lemma abs_torque_add_linear_le (x : EuclideanSpace ℝ (Fin 1)) :\n    |S.torque x 0 + S.m * S.g * S.ℓ * x 0| ≤ S.m * S.g * S.ℓ * |x 0| ^ 3 / 6"
             },
@@ -2552,7 +2596,7 @@
               "text": "SimplePendulum.gradLagrangian_sub_toHarmonicOscillator",
               "fullName": "ClassicalMechanics.SimplePendulum.gradLagrangian_sub_toHarmonicOscillator",
               "kind": "lemma",
-              "line": 532,
+              "line": 536,
               "doc": "Along a smooth lift of the angle, the variational gradients of the actions of the simple pendulum and of its associated harmonic oscillator differ exactly by the difference between the torque and the linearized force: the inertial terms cancel.",
               "signature": "lemma gradLagrangian_sub_toHarmonicOscillator (θ : Time → EuclideanSpace ℝ (Fin 1))\n    (hθ : ContDiff ℝ ∞ θ) :\n    S.gradLagrangian θ - S.toHarmonicOscillator.gradLagrangian θ =\n      fun t => S.torque (θ t) - S.toHarmonicOscillator.force…"
             }
@@ -5976,8 +6020,8 @@
       "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/BeyondTheStandardModel/TwoHDM/API-map.md"
     },
     {
-      "path": "Physlib/Particles/StandardModel",
-      "file": "Physlib/Particles/StandardModel/API-map.md",
+      "path": "Physlib/Particles/StandardModel/GaugeGroup",
+      "file": "Physlib/Particles/StandardModel/GaugeGroup/API-map.md",
       "title": "Standard Model gauge group",
       "alpha": true,
       "abstract": "The gauge group of the Standard Model is SU(3) × SU(2) × U(1), but only up to a quotient: a finite\ncentral subgroup may be divided out, and which one is not settled by the physics known so far. This\narea therefore treats both the full group and the group obtained for a given choice of quotient, by\nthe sixth, second or third roots of unity, or by nothing at all, together with the projections onto\nthe three factors, the star structure, the roots of unity as central subgroups, the common quotient\nmap and its kernel, and the U(1) and fundamental SU(2) actions on the two-dimensional complex space\nof the Higgs sector; the Higgs field builds on this group.",
@@ -6006,7 +6050,7 @@
       "leanReferences": [
         {
           "index": 1,
-          "file": "Physlib/Particles/StandardModel/Basic.lean",
+          "file": "Physlib/Particles/StandardModel/GaugeGroup/Basic.lean",
           "declarations": [
             {
               "text": "GaugeGroupI",
@@ -6053,7 +6097,7 @@
         },
         {
           "index": 2,
-          "file": "Physlib/Particles/StandardModel/Basic.lean",
+          "file": "Physlib/Particles/StandardModel/GaugeGroup/Basic.lean",
           "declarations": [
             {
               "text": "star_eq",
@@ -6092,7 +6136,7 @@
         },
         {
           "index": 3,
-          "file": "Physlib/Particles/StandardModel/Basic.lean",
+          "file": "Physlib/Particles/StandardModel/GaugeGroup/Basic.lean",
           "declarations": [
             {
               "text": "ofU1Subgroup",
@@ -6131,7 +6175,7 @@
         },
         {
           "index": 4,
-          "file": "Physlib/Particles/StandardModel/Basic.lean",
+          "file": "Physlib/Particles/StandardModel/GaugeGroup/Basic.lean",
           "declarations": [
             {
               "text": "gaugeGroupℤ₆UnitaryOfRoot",
@@ -6218,7 +6262,7 @@
         },
         {
           "index": 5,
-          "file": "Physlib/Particles/StandardModel/Basic.lean",
+          "file": "Physlib/Particles/StandardModel/GaugeGroup/Basic.lean",
           "declarations": [
             {
               "text": "GaugeGroupℤ₆",
@@ -6249,7 +6293,7 @@
         },
         {
           "index": 6,
-          "file": "Physlib/Particles/StandardModel/Basic.lean",
+          "file": "Physlib/Particles/StandardModel/GaugeGroup/Basic.lean",
           "declarations": [
             {
               "text": "gaugeGroupℤ₂RootToℤ₆Root",
@@ -6336,7 +6380,7 @@
         },
         {
           "index": 7,
-          "file": "Physlib/Particles/StandardModel/Basic.lean",
+          "file": "Physlib/Particles/StandardModel/GaugeGroup/Basic.lean",
           "declarations": [
             {
               "text": "gaugeGroupℤ₃RootToℤ₆Root",
@@ -6415,7 +6459,7 @@
         },
         {
           "index": 8,
-          "file": "Physlib/Particles/StandardModel/Basic.lean",
+          "file": "Physlib/Particles/StandardModel/GaugeGroup/Basic.lean",
           "declarations": [
             {
               "text": "GaugeGroupQuot",
@@ -6470,7 +6514,7 @@
         },
         {
           "index": 9,
-          "file": "Physlib/Particles/StandardModel/Basic.lean",
+          "file": "Physlib/Particles/StandardModel/GaugeGroup/Basic.lean",
           "declarations": [
             {
               "text": "quotientMap",
@@ -6572,7 +6616,7 @@
         },
         {
           "index": 11,
-          "file": "Physlib/Particles/StandardModel/Basic.lean",
+          "file": "Physlib/Particles/StandardModel/GaugeGroup/Basic.lean",
           "declarations": [
             {
               "text": "gaugeGroupI_lie",
@@ -6595,7 +6639,7 @@
         },
         {
           "index": 12,
-          "file": "Physlib/Particles/StandardModel/Basic.lean",
+          "file": "Physlib/Particles/StandardModel/GaugeGroup/Basic.lean",
           "declarations": [
             {
               "text": "gaugeBundleI",
@@ -6736,7 +6780,7 @@
           "path": "Physlib/Particles/StandardModel/HiggsBoson"
         }
       ],
-      "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/StandardModel/API-map.md"
+      "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/StandardModel/GaugeGroup/API-map.md"
     },
     {
       "path": "Physlib/Particles/StandardModel/HiggsBoson",
@@ -7669,8 +7713,8 @@
       "references": [
         {
           "index": 1,
-          "text": "Standard Model gauge group API map — Physlib/Particles/StandardModel/API-map.md",
-          "apiMap": "Physlib/Particles/StandardModel"
+          "text": "Standard Model gauge group API map — Physlib/Particles/StandardModel/GaugeGroup/API-map.md",
+          "apiMap": "Physlib/Particles/StandardModel/GaugeGroup"
         },
         {
           "index": 2,
@@ -7846,7 +7890,7 @@
       "parents": [
         {
           "name": "Standard Model gauge group",
-          "path": "Physlib/Particles/StandardModel"
+          "path": "Physlib/Particles/StandardModel/GaugeGroup"
         },
         {
           "name": "Two Higgs Doublet Model",
@@ -9514,7 +9558,7 @@
               "text": "angularMomentumCLM",
               "fullName": "QuantumMechanics.angularMomentumCLM",
               "kind": "def",
-              "line": 75,
+              "line": 76,
               "doc": "Component `i j` of the angular momentum operator is the continuous linear map from `𝓢(Space d, ℂ)` to itself defined by `𝐋ᵢⱼ ≔ 𝐱ᵢ∘𝐩ⱼ - 𝐱ⱼ∘𝐩ᵢ`.",
               "signature": "def angularMomentumCLM {d : ℕ} (i j : Fin d) : 𝓢(Space d, ℂ) →L[ℂ] 𝓢(Space d, ℂ)"
             },
@@ -9526,7 +9570,7 @@
               "text": "angularMomentumCLM_apply",
               "fullName": "QuantumMechanics.angularMomentumCLM_apply",
               "kind": "lemma",
-              "line": 87,
+              "line": 88,
               "doc": null,
               "signature": "lemma angularMomentumCLM_apply {d : ℕ} (i j : Fin d) (ψ : 𝓢(Space d, ℂ)) (x : Space d) :\n    𝐋 i j ψ x = 𝐱 i (𝐩 j ψ) x - 𝐱 j (𝐩 i ψ) x"
             },
@@ -9534,7 +9578,7 @@
               "text": "angularMomentumCLM_antisymm",
               "fullName": "QuantumMechanics.angularMomentumCLM_antisymm",
               "kind": "lemma",
-              "line": 97,
+              "line": 98,
               "doc": "The angular momentum operator is antisymmetric, `𝐋ᵢⱼ = -𝐋ⱼᵢ`",
               "signature": "lemma angularMomentumCLM_antisymm {d : ℕ} (i j : Fin d) : 𝐋 i j = -𝐋 j i"
             },
@@ -9542,7 +9586,7 @@
               "text": "angularMomentumCLM_eq_zero",
               "fullName": "QuantumMechanics.angularMomentumCLM_eq_zero",
               "kind": "lemma",
-              "line": 101,
+              "line": 102,
               "doc": "Angular momentum operator components with repeated index vanish, `𝐋ᵢᵢ = 0`.",
               "signature": "lemma angularMomentumCLM_eq_zero {d : ℕ} (i : Fin d) : 𝐋 i i = 0"
             },
@@ -9550,7 +9594,7 @@
               "text": "angularMomentumOperatorSqr",
               "fullName": "QuantumMechanics.angularMomentumOperatorSqr",
               "kind": "def",
-              "line": 110,
+              "line": 111,
               "doc": "The square of the angular momentum operator, `𝐋² ≔ ½ ∑ᵢⱼ 𝐋ᵢⱼ∘𝐋ᵢⱼ`.",
               "signature": "def angularMomentumOperatorSqr {d : ℕ} : 𝓢(Space d, ℂ) →L[ℂ] 𝓢(Space d, ℂ)"
             },
@@ -9562,7 +9606,7 @@
               "text": "angularMomentumOperatorSqr_apply",
               "fullName": "QuantumMechanics.angularMomentumOperatorSqr_apply",
               "kind": "lemma",
-              "line": 124,
+              "line": 125,
               "doc": null,
               "signature": "lemma angularMomentumOperatorSqr_apply {d : ℕ} (ψ : 𝓢(Space d, ℂ)) (x : Space d) :\n    𝐋² ψ x = (2 : ℂ)⁻¹ * ∑ i, ∑ j, 𝐋 i j (𝐋 i j ψ) x"
             },
@@ -9570,7 +9614,7 @@
               "text": "angularMomentumOperator1D_trivial",
               "fullName": "QuantumMechanics.angularMomentumOperator1D_trivial",
               "kind": "lemma",
-              "line": 144,
+              "line": 145,
               "doc": "In one dimension the angular momentum operator is trivial.",
               "signature": "lemma angularMomentumOperator1D_trivial : 𝐋[1] = 0"
             },
@@ -9578,7 +9622,7 @@
               "text": "angularMomentumOperator2D",
               "fullName": "QuantumMechanics.angularMomentumOperator2D",
               "kind": "def",
-              "line": 149,
+              "line": 150,
               "doc": "The angular momentum (pseudo)scalar operator in two dimensions, `𝐋 ≔ 𝐋₀₁`.",
               "signature": "def angularMomentumOperator2D : 𝓢(Space 2, ℂ) →L[ℂ] 𝓢(Space 2, ℂ)"
             },
@@ -9586,7 +9630,7 @@
               "text": "angularMomentumOperator3D",
               "fullName": "QuantumMechanics.angularMomentumOperator3D",
               "kind": "def",
-              "line": 153,
+              "line": 154,
               "doc": "The angular momentum (pseudo)vector operator in three dimensions, `𝐋ᵢ ≔ ½ ∑ⱼₖ εᵢⱼₖ 𝐋ⱼₖ`. The transpose matches the convention of `Matrix.crossProductVee`, giving `(𝐋₁₂, 𝐋₂₀, 𝐋₀₁)`.",
               "signature": "def angularMomentumOperator3D (i : Fin 3) : 𝓢(Space 3, ℂ) →L[ℂ] 𝓢(Space 3, ℂ)"
             }
@@ -9601,7 +9645,7 @@
               "text": "angularMomentum_commutation_position",
               "fullName": "QuantumMechanics.angularMomentum_commutation_position",
               "kind": "lemma",
-              "line": 308,
+              "line": 309,
               "doc": null,
               "signature": "lemma angularMomentum_commutation_position :\n    ⁅𝐋 i j, 𝐱 k⁆ = (I * ℏ) • (δ[i,k] • 𝐱 j - δ[j,k] • 𝐱 i)"
             },
@@ -9609,7 +9653,7 @@
               "text": "angularMomentum_commutation_momentum",
               "fullName": "QuantumMechanics.angularMomentum_commutation_momentum",
               "kind": "lemma",
-              "line": 338,
+              "line": 351,
               "doc": null,
               "signature": "lemma angularMomentum_commutation_momentum :\n    ⁅𝐋 i j, 𝐩 k⁆ = (I * ℏ) • (δ[i,k] • 𝐩 j - δ[j,k] • 𝐩 i)"
             },
@@ -9617,7 +9661,7 @@
               "text": "angularMomentum_commutation_angularMomentum",
               "fullName": "QuantumMechanics.angularMomentum_commutation_angularMomentum",
               "kind": "lemma",
-              "line": 367,
+              "line": 389,
               "doc": null,
               "signature": "lemma angularMomentum_commutation_angularMomentum : ⁅𝐋 i j, 𝐋 k l⁆ =\n    (I * ℏ) • (δ[i,k] • 𝐋 j l - δ[i,l] • 𝐋 j k - δ[j,k] • 𝐋 i l + δ[j,l] • 𝐋 i k)"
             }
@@ -9632,7 +9676,7 @@
               "text": "angularMomentumSqr_commutation_angularMomentum",
               "fullName": "QuantumMechanics.angularMomentumSqr_commutation_angularMomentum",
               "kind": "lemma",
-              "line": 380,
+              "line": 398,
               "doc": null,
               "signature": "lemma angularMomentumSqr_commutation_angularMomentum : ⁅𝐋²[d], 𝐋 i j⁆ = 0"
             },
@@ -9640,7 +9684,7 @@
               "text": "angularMomentumSqr_commutation_momentumSqr",
               "fullName": "QuantumMechanics.angularMomentumSqr_commutation_momentumSqr",
               "kind": "lemma",
-              "line": 358,
+              "line": 371,
               "doc": null,
               "signature": "lemma angularMomentumSqr_commutation_momentumSqr : ⁅𝐋²[d], 𝐩[d] ⬝ᵥ 𝐩⁆ = 0"
             },
@@ -9648,7 +9692,7 @@
               "text": "angularMomentumSqr_commutation_radiusRegPow",
               "fullName": "QuantumMechanics.angularMomentumSqr_commutation_radiusRegPow",
               "kind": "lemma",
-              "line": 326,
+              "line": 327,
               "doc": null,
               "signature": "lemma angularMomentumSqr_commutation_radiusRegPow : ⁅𝐋²[d], 𝐫₀[d] ε s⁆ = 0"
             },
@@ -9656,7 +9700,7 @@
               "text": "angularMomentum_commutation_momentumSqr",
               "fullName": "QuantumMechanics.angularMomentum_commutation_momentumSqr",
               "kind": "lemma",
-              "line": 349,
+              "line": 362,
               "doc": null,
               "signature": "lemma angularMomentum_commutation_momentumSqr : ⁅𝐋 i j, 𝐩[d] ⬝ᵥ 𝐩⁆ = 0"
             },
@@ -9664,7 +9708,7 @@
               "text": "angularMomentum_commutation_radiusRegPow",
               "fullName": "QuantumMechanics.angularMomentum_commutation_radiusRegPow",
               "kind": "lemma",
-              "line": 316,
+              "line": 317,
               "doc": null,
               "signature": "lemma angularMomentum_commutation_radiusRegPow : ⁅𝐋 i j, 𝐫₀[d] ε s⁆ = 0"
             }
@@ -9679,7 +9723,7 @@
               "text": "angularMomentumOperator",
               "fullName": "QuantumMechanics.angularMomentumOperator",
               "kind": "def",
-              "line": 167,
+              "line": 168,
               "doc": "Component `i j` of angular momentum on the Hilbert space, with Schwartz domain. This transports the existing Schwartz-space operator `𝐋 i j`.",
               "signature": "def angularMomentumOperator : SpaceDHilbertSpace d →ₗ.[ℂ] SpaceDHilbertSpace d where"
             },
@@ -9687,7 +9731,7 @@
               "text": "angularMomentumOperator_domain_eq",
               "fullName": "QuantumMechanics.angularMomentumOperator_domain_eq",
               "kind": "lemma",
-              "line": 171,
+              "line": 172,
               "doc": null,
               "signature": "lemma angularMomentumOperator_domain_eq :\n    (angularMomentumOperator i j).domain = SchwartzSubmodule d"
             },
@@ -9695,7 +9739,7 @@
               "text": "angularMomentumOperator_apply",
               "fullName": "QuantumMechanics.angularMomentumOperator_apply",
               "kind": "lemma",
-              "line": 174,
+              "line": 175,
               "doc": null,
               "signature": "lemma angularMomentumOperator_apply (ψ : SchwartzSubmodule d) :\n    angularMomentumOperator i j ψ =\n      schwartzEquiv volume (𝐋 i j ((schwartzEquiv volume).symm ψ))"
             },
@@ -9703,7 +9747,7 @@
               "text": "angularMomentumOperator_apply_ae",
               "fullName": "QuantumMechanics.angularMomentumOperator_apply_ae",
               "kind": "lemma",
-              "line": 178,
+              "line": 179,
               "doc": null,
               "signature": "lemma angularMomentumOperator_apply_ae (ψ : SchwartzSubmodule d) :\n    angularMomentumOperator i j ψ =ᵐ[volume] 𝐋 i j ((schwartzEquiv volume).symm ψ)"
             },
@@ -9711,7 +9755,7 @@
               "text": "angularMomentumOperator_range",
               "fullName": "QuantumMechanics.angularMomentumOperator_range",
               "kind": "lemma",
-              "line": 182,
+              "line": 183,
               "doc": null,
               "signature": "lemma angularMomentumOperator_range (ψ : SchwartzSubmodule d) :\n    angularMomentumOperator i j ψ ∈ SchwartzSubmodule d"
             },
@@ -9719,7 +9763,7 @@
               "text": "angularMomentumOperator_hasDenseDomain",
               "fullName": "QuantumMechanics.angularMomentumOperator_hasDenseDomain",
               "kind": "lemma",
-              "line": 186,
+              "line": 187,
               "doc": null,
               "signature": "lemma angularMomentumOperator_hasDenseDomain :\n    (angularMomentumOperator i j).HasDenseDomain"
             },
@@ -9727,7 +9771,7 @@
               "text": "angularMomentumCLM_eq_momentum_position",
               "fullName": "QuantumMechanics.angularMomentumCLM_eq_momentum_position",
               "kind": "lemma",
-              "line": 190,
+              "line": 191,
               "doc": "Reversing the order of position and momentum leaves angular momentum unchanged.",
               "signature": "lemma angularMomentumCLM_eq_momentum_position :\n    𝐋 i j = 𝐩 j ∘L 𝐱 i - 𝐩 i ∘L 𝐱 j"
             },
@@ -9735,7 +9779,7 @@
               "text": "angularMomentumOperator_isSymmetric",
               "fullName": "QuantumMechanics.angularMomentumOperator_isSymmetric",
               "kind": "lemma",
-              "line": 196,
+              "line": 197,
               "doc": "Each angular momentum component is symmetric on the Schwartz domain.",
               "signature": "lemma angularMomentumOperator_isSymmetric :\n    (angularMomentumOperator i j).IsSymmetric"
             },
@@ -9743,7 +9787,7 @@
               "text": "angularMomentumOperator_isUnbounded",
               "fullName": "QuantumMechanics.angularMomentumOperator_isUnbounded",
               "kind": "lemma",
-              "line": 208,
+              "line": 209,
               "doc": "Angular momentum on the Schwartz domain is densely defined and closable.",
               "signature": "lemma angularMomentumOperator_isUnbounded :\n    (angularMomentumOperator i j).IsUnbounded"
             }
@@ -9758,7 +9802,7 @@
               "text": "angularMomentumSqOperator",
               "fullName": "QuantumMechanics.angularMomentumSqOperator",
               "kind": "def",
-              "line": 226,
+              "line": 227,
               "doc": "Angular momentum squared on the Hilbert space, with the invariant Schwartz domain. This transports the existing Schwartz operator `𝐋²`, including its factor `1/2`.",
               "signature": "def angularMomentumSqOperator : SpaceDHilbertSpace d →ₗ.[ℂ] SpaceDHilbertSpace d where"
             },
@@ -9766,7 +9810,7 @@
               "text": "angularMomentumSqOperator_apply",
               "fullName": "QuantumMechanics.angularMomentumSqOperator_apply",
               "kind": "lemma",
-              "line": 236,
+              "line": 237,
               "doc": null,
               "signature": "lemma angularMomentumSqOperator_apply (ψ : SchwartzSubmodule d) : angularMomentumSqOperator ψ =\n    schwartzEquiv volume (𝐋² ((schwartzEquiv volume).symm ψ))"
             },
@@ -9774,7 +9818,7 @@
               "text": "angularMomentumSqOperator_apply_ae",
               "fullName": "QuantumMechanics.angularMomentumSqOperator_apply_ae",
               "kind": "lemma",
-              "line": 239,
+              "line": 240,
               "doc": null,
               "signature": "lemma angularMomentumSqOperator_apply_ae (ψ : SchwartzSubmodule d) :\n    angularMomentumSqOperator ψ =ᵐ[volume] 𝐋² ((schwartzEquiv volume).symm ψ)"
             },
@@ -9782,7 +9826,7 @@
               "text": "angularMomentumSqOperator_range",
               "fullName": "QuantumMechanics.angularMomentumSqOperator_range",
               "kind": "lemma",
-              "line": 243,
+              "line": 244,
               "doc": null,
               "signature": "lemma angularMomentumSqOperator_range (ψ : SchwartzSubmodule d) :\n    angularMomentumSqOperator ψ ∈ SchwartzSubmodule d"
             },
@@ -9790,7 +9834,7 @@
               "text": "angularMomentumSqOperator_apply_eq_sum",
               "fullName": "QuantumMechanics.angularMomentumSqOperator_apply_eq_sum",
               "kind": "lemma",
-              "line": 250,
+              "line": 251,
               "doc": "The squared operator is the sum of squares of Hilbert-space components on their common invariant domain. The inner applications land in Schwartz by `angularMomentumOperator_range`.",
               "signature": "lemma angularMomentumSqOperator_apply_eq_sum (ψ : SchwartzSubmodule d) :\n    angularMomentumSqOperator ψ = (2 : ℂ)⁻¹ • ∑ i, ∑ j,\n      angularMomentumOperator i j\n        ⟨angularMomentumOperator i j ψ, angularMomentumOperator_range i j ψ⟩"
             },
@@ -9798,7 +9842,7 @@
               "text": "angularMomentumSqOperator_hasDenseDomain",
               "fullName": "QuantumMechanics.angularMomentumSqOperator_hasDenseDomain",
               "kind": "lemma",
-              "line": 268,
+              "line": 269,
               "doc": null,
               "signature": "lemma angularMomentumSqOperator_hasDenseDomain :\n    (angularMomentumSqOperator (d := d)).HasDenseDomain"
             },
@@ -9806,7 +9850,7 @@
               "text": "angularMomentumSqr_inner",
               "fullName": "QuantumMechanics.angularMomentumSqr_inner",
               "kind": "lemma",
-              "line": 272,
+              "line": 273,
               "doc": "Symmetry of `𝐋²` follows by moving each component across the inner product twice.",
               "signature": "lemma angularMomentumSqr_inner (f g : 𝓢(Space d, ℂ)) :\n    ⟪(schwartzEquiv volume (𝐋² f) : SpaceDHilbertSpace d), schwartzEquiv volume g⟫_ℂ =\n      ⟪(schwartzEquiv volume f : SpaceDHilbertSpace d), schwartzEquiv volume (𝐋² g)⟫_ℂ"
             },
@@ -9814,7 +9858,7 @@
               "text": "angularMomentumSqOperator_isSymmetric",
               "fullName": "QuantumMechanics.angularMomentumSqOperator_isSymmetric",
               "kind": "lemma",
-              "line": 280,
+              "line": 281,
               "doc": "Angular momentum squared is symmetric on the Schwartz domain.",
               "signature": "lemma angularMomentumSqOperator_isSymmetric : (angularMomentumSqOperator (d := d)).IsSymmetric"
             },
@@ -9822,7 +9866,7 @@
               "text": "angularMomentumSqOperator_isUnbounded",
               "fullName": "QuantumMechanics.angularMomentumSqOperator_isUnbounded",
               "kind": "lemma",
-              "line": 288,
+              "line": 289,
               "doc": "In Physlib terminology, the squared operator is densely defined and closable.",
               "signature": "lemma angularMomentumSqOperator_isUnbounded : (angularMomentumSqOperator (d := d)).IsUnbounded"
             }
@@ -13651,64 +13695,64 @@
               "text": "LeftHandedWeyl.contrBi",
               "fullName": "Fermion.LeftHandedWeyl.contrBi",
               "kind": "def",
-              "line": 38,
-              "doc": "The bi-linear map corresponding to contraction of a left-handed Weyl fermion with a dual-left-handed Weyl fermion.",
+              "line": 89,
+              "doc": "The bilinear map `(ψ, φ) ↦ ψ^a φ_a` underlying `LeftHandedWeyl.contr`.",
               "signature": "def LeftHandedWeyl.contrBi : LeftHandedWeyl →ₗ[ℂ] DualLeftHandedWeyl →ₗ[ℂ] ℂ where"
             },
             {
               "text": "DualLeftHandedWeyl.contrBi",
               "fullName": "Fermion.DualLeftHandedWeyl.contrBi",
               "kind": "def",
-              "line": 62,
-              "doc": "The bi-linear map corresponding to contraction of a dual-left-handed Weyl fermion with a left-handed Weyl fermion.",
+              "line": 157,
+              "doc": "The bilinear map `(φ, ψ) ↦ φ_a ψ^a` underlying `DualLeftHandedWeyl.contr`.",
               "signature": "def DualLeftHandedWeyl.contrBi : DualLeftHandedWeyl →ₗ[ℂ] LeftHandedWeyl →ₗ[ℂ] ℂ where"
             },
             {
               "text": "RightHandedWeyl.contrBi",
               "fullName": "Fermion.RightHandedWeyl.contrBi",
               "kind": "def",
-              "line": 85,
-              "doc": "The bi-linear map corresponding to contraction of a right-handed Weyl fermion with a dual-right-handed Weyl fermion.",
+              "line": 327,
+              "doc": "The bilinear map `(ψ, φ) ↦ ψ^{dot a} φ_{dot a}` underlying `RightHandedWeyl.contr`.",
               "signature": "def RightHandedWeyl.contrBi : RightHandedWeyl →ₗ[ℂ] DualRightHandedWeyl →ₗ[ℂ] ℂ where"
             },
             {
               "text": "DualRightHandedWeyl.contrBi",
               "fullName": "Fermion.DualRightHandedWeyl.contrBi",
               "kind": "def",
-              "line": 109,
-              "doc": "The bi-linear map corresponding to contraction of a dual-right-handed Weyl fermion with a right-handed Weyl fermion.",
+              "line": 407,
+              "doc": "The bilinear map `(φ, ψ) ↦ φ_{dot a} ψ^{dot a}` underlying `DualRightHandedWeyl.contr`.",
               "signature": "def DualRightHandedWeyl.contrBi : DualRightHandedWeyl →ₗ[ℂ] RightHandedWeyl →ₗ[ℂ] ℂ where"
             },
             {
               "text": "LeftHandedWeyl.contr",
               "fullName": "Fermion.LeftHandedWeyl.contr",
               "kind": "def",
-              "line": 135,
-              "doc": "The linear map from leftHandedWeyl ⊗ DualLeftHandedWeyl to ℂ given by summing over components of leftHandedWeyl and DualLeftHandedWeyl in the standard basis (i.e. the dot product). Physically, the contraction of a left-handed Weyl fermion with a dual-left-handed Weyl fermion. In index notation this is ψ^a φ_a.",
+              "line": 113,
+              "doc": "The contraction `ψ^a φ_a` of a left-handed with a dual-left-handed Weyl fermion, the dot product of their components, as an intertwining map to the trivial representation.",
               "signature": "def LeftHandedWeyl.contr : (LeftHandedWeyl.rep.tprod DualLeftHandedWeyl.rep).IntertwiningMap\n    (Representation.trivial ℂ SL(2,ℂ) ℂ) where"
             },
             {
               "text": "DualLeftHandedWeyl.contr",
               "fullName": "Fermion.DualLeftHandedWeyl.contr",
               "kind": "def",
-              "line": 164,
-              "doc": "The linear map from DualLeftHandedWeyl ⊗ leftHandedWeyl to ℂ given by summing over components of DualLeftHandedWeyl and leftHandedWeyl in the standard basis (i.e. the dot product). Physically, the contraction of a dual-left-handed Weyl fermion with a left-handed Weyl fermion. In index notation this is φ_a ψ^a.",
+              "line": 180,
+              "doc": "The contraction `φ_a ψ^a` of a dual-left-handed with a left-handed Weyl fermion, the dot product of their components, as an intertwining map to the trivial representation.",
               "signature": "def DualLeftHandedWeyl.contr : (DualLeftHandedWeyl.rep.tprod LeftHandedWeyl.rep).IntertwiningMap\n    (Representation.trivial ℂ SL(2,ℂ) ℂ) where"
             },
             {
               "text": "RightHandedWeyl.contr",
               "fullName": "Fermion.RightHandedWeyl.contr",
               "kind": "def",
-              "line": 194,
-              "doc": "The linear map from `rightHandedWeyl ⊗ DualRightHandedWeyl` to `ℂ` given by summing over components of `rightHandedWeyl` and `DualRightHandedWeyl` in the standard basis (i.e. the dot product). The contraction of a right-handed Weyl fermion with a left-handed Weyl fermion. In index notation this is `ψ^{dot a} φ_{dot a}`.",
+              "line": 352,
+              "doc": "The contraction `ψ^{dot a} φ_{dot a}` of a right-handed with a dual-right-handed Weyl fermion, the dot product of their components, as an intertwining map to the trivial representation.",
               "signature": "def RightHandedWeyl.contr : (RightHandedWeyl.rep.tprod DualRightHandedWeyl.rep).IntertwiningMap\n    (Representation.trivial ℂ SL(2,ℂ) ℂ) where"
             },
             {
               "text": "DualRightHandedWeyl.contr",
               "fullName": "Fermion.DualRightHandedWeyl.contr",
               "kind": "def",
-              "line": 236,
-              "doc": "The linear map from DualRightHandedWeyl ⊗ rightHandedWeyl to ℂ given by summing over components of DualRightHandedWeyl and rightHandedWeyl in the standard basis (i.e. the dot product). The contraction of a right-handed Weyl fermion with a left-handed Weyl fermion. In index notation this is φ_{dot a} ψ^{dot a}.",
+              "line": 431,
+              "doc": "The contraction `φ_{dot a} ψ^{dot a}` of a dual-right-handed with a right-handed Weyl fermion, the dot product of their components, as an intertwining map to the trivial representation.",
               "signature": "def DualRightHandedWeyl.contr : (DualRightHandedWeyl.rep.tprod RightHandedWeyl.rep).IntertwiningMap\n    (Representation.trivial ℂ SL(2,ℂ) ℂ) where"
             }
           ],
@@ -13722,7 +13766,7 @@
               "text": "LeftHandedWeyl.contr_basis",
               "fullName": "Fermion.LeftHandedWeyl.contr_basis",
               "kind": "lemma",
-              "line": 148,
+              "line": 132,
               "doc": null,
               "signature": "lemma LeftHandedWeyl.contr_basis (i j : Fin 2) :\n    LeftHandedWeyl.contr (LeftHandedWeyl.basis i ⊗ₜ DualLeftHandedWeyl.basis j) =\n      if i.1 = j.1 then (1 : ℂ) else 0"
             },
@@ -13730,7 +13774,7 @@
               "text": "DualLeftHandedWeyl.contr_basis",
               "fullName": "Fermion.DualLeftHandedWeyl.contr_basis",
               "kind": "lemma",
-              "line": 176,
+              "line": 198,
               "doc": null,
               "signature": "lemma DualLeftHandedWeyl.contr_basis (i j : Fin 2) :\n    DualLeftHandedWeyl.contr (DualLeftHandedWeyl.basis i ⊗ₜ LeftHandedWeyl.basis j) =\n      if i.1 = j.1 then (1 : ℂ) else 0"
             },
@@ -13738,7 +13782,7 @@
               "text": "RightHandedWeyl.contr_basis",
               "fullName": "Fermion.RightHandedWeyl.contr_basis",
               "kind": "lemma",
-              "line": 218,
+              "line": 382,
               "doc": null,
               "signature": "lemma RightHandedWeyl.contr_basis (i j : Fin 2) :\n    RightHandedWeyl.contr (RightHandedWeyl.basis i ⊗ₜ DualRightHandedWeyl.basis j) =\n    if i.1 = j.1 then (1 : ℂ) else 0"
             },
@@ -13746,7 +13790,7 @@
               "text": "DualRightHandedWeyl.contr_basis",
               "fullName": "Fermion.DualRightHandedWeyl.contr_basis",
               "kind": "lemma",
-              "line": 260,
+              "line": 461,
               "doc": null,
               "signature": "lemma DualRightHandedWeyl.contr_basis (i j : Fin 2) :\n    DualRightHandedWeyl.contr (DualRightHandedWeyl.basis i ⊗ₜ RightHandedWeyl.basis j) =\n    if i.1 = j.1 then (1 : ℂ) else 0"
             },
@@ -13754,7 +13798,7 @@
               "text": "LeftHandedWeyl.contr_tmul_symm",
               "fullName": "Fermion.LeftHandedWeyl.contr_tmul_symm",
               "kind": "lemma",
-              "line": 283,
+              "line": 215,
               "doc": null,
               "signature": "lemma LeftHandedWeyl.contr_tmul_symm (ψ : LeftHandedWeyl) (φ : DualLeftHandedWeyl) :\n    LeftHandedWeyl.contr (ψ ⊗ₜ[ℂ] φ) = DualLeftHandedWeyl.contr (φ ⊗ₜ[ℂ] ψ)"
             },
@@ -13762,7 +13806,7 @@
               "text": "DualLeftHandedWeyl.contr_tmul_symm",
               "fullName": "Fermion.DualLeftHandedWeyl.contr_tmul_symm",
               "kind": "lemma",
-              "line": 287,
+              "line": 219,
               "doc": null,
               "signature": "lemma DualLeftHandedWeyl.contr_tmul_symm (φ : DualLeftHandedWeyl) (ψ : LeftHandedWeyl) :\n    DualLeftHandedWeyl.contr (φ ⊗ₜ[ℂ] ψ) = LeftHandedWeyl.contr (ψ ⊗ₜ[ℂ] φ)"
             },
@@ -13770,7 +13814,7 @@
               "text": "RightHandedWeyl.contr_tmul_symm",
               "fullName": "Fermion.RightHandedWeyl.contr_tmul_symm",
               "kind": "lemma",
-              "line": 291,
+              "line": 478,
               "doc": null,
               "signature": "lemma RightHandedWeyl.contr_tmul_symm (ψ : RightHandedWeyl) (φ : DualRightHandedWeyl) :\n    RightHandedWeyl.contr (ψ ⊗ₜ[ℂ] φ) = DualRightHandedWeyl.contr (φ ⊗ₜ[ℂ] ψ)"
             },
@@ -13778,7 +13822,7 @@
               "text": "DualRightHandedWeyl.contr_tmul_symm",
               "fullName": "Fermion.DualRightHandedWeyl.contr_tmul_symm",
               "kind": "lemma",
-              "line": 295,
+              "line": 482,
               "doc": null,
               "signature": "lemma DualRightHandedWeyl.contr_tmul_symm (φ : DualRightHandedWeyl) (ψ : RightHandedWeyl) :\n    DualRightHandedWeyl.contr (φ ⊗ₜ[ℂ] ψ) = RightHandedWeyl.contr (ψ ⊗ₜ[ℂ] φ)"
             }
@@ -15871,15 +15915,15 @@
               "text": "crossToSlotInv",
               "fullName": "TensorSpecies.Tensor.crossToSlotInv",
               "kind": "def",
-              "line": 128,
-              "doc": "Contract slot `i` of a tensor whose color there is `d` against `M'`, then absorb the color cast the two `Function.update`s generate, landing back on `c`. This is the returning half of a raise-then-lower round trip; absorbing the cast here is what keeps the round trip cast-free at both ends.",
-              "signature": "noncomputable def crossToSlotInv {nA : ℕ} {c : Fin (nA + 1) → C} {b d e : C} (i : Fin (nA + 1))\n    (he : c i = e) (hb : S.τ d = b) (M' : S.Tensor ![b, e]) :\n    S.Tensor (Function.update c i d) →ₗ[k] S.Tensor c"
+              "line": 126,
+              "doc": "`crossToSlot` of slot `i` with the first index of `M'`, followed by renaming slot `i` back to its original colour `c i` (`he`).",
+              "signature": "noncomputable def crossToSlotInv {nA : ℕ} {c : Fin (nA + 1) → C} {d : C} {ds : Fin 2 → C}\n    (i : Fin (nA + 1)) (he : c i = ds 1) (hb : S.τ d = ds 0) (M' : S.Tensor ds) :\n    S.Tensor (Function.update c i d) →ₗ[k] S.Tensor c"
             },
             {
               "text": "crossToSlot_equivariant",
               "fullName": "TensorSpecies.Tensor.crossToSlot_equivariant",
               "kind": "lemma",
-              "line": 229,
+              "line": 227,
               "doc": "Cross contraction into a slot is `G`-equivariant, both constituents (`crossToEnd`, `permT`) being so.",
               "signature": "lemma crossToSlot_equivariant {nA : ℕ} {c : Fin (nA + 1) → C} {cM : Fin 2 → C}\n    (i : Fin (nA + 1)) (j : Fin 2) (hc : S.τ (c i) = cM j) (g : G)\n    (M : Tensor S cM) (t : Tensor S c) :\n    crossToSlot i j hc (g • M) (g • t) = g • crossTo…"
             }
@@ -16003,7 +16047,7 @@
               "text": "crossToEnd_unitTensor",
               "fullName": "TensorSpecies.Tensor.crossToEnd_unitTensor",
               "kind": "lemma",
-              "line": 160,
+              "line": 163,
               "doc": "Contracting slot `i` of `t1` against the unit tensor for that slot's color returns `t1`, the contracted slot relabelled by `move_last i`. The unit tensor acts as an identity for `crossToEnd` at any named slot.",
               "signature": "lemma crossToEnd_unitTensor {nA : ℕ} {cA : Fin (nA + 1) → C} {c : C}\n    (i : Fin (nA + 1)) (hc : cA i = c) (t1 : Tensor S cA) :\n    crossToEnd i (0 : Fin 2) (by simp [hc] : S.τ (cA i) = ![S.τ c, c] 0) t1 (unitTensor c) =\n      permT (Fin.…"
             },
@@ -16011,25 +16055,25 @@
               "text": "crossToEnd_round_trip_of_unit_slot",
               "fullName": "TensorSpecies.Tensor.crossToEnd_round_trip_of_unit_slot",
               "kind": "lemma",
-              "line": 216,
-              "doc": "Round trip of two contractions against a matched pair, in result-to-end form. Contracting slot `i` of `t` against `M₁`, then contracting the surviving `M₁`-index (deposited at slot `j`) against `M₂`, returns `t` up to the cycle that moves the round-tripped slot from the end back to `i`, whenever `M₁` and `M₂` collapse to the unit tensor. The last slot is threaded as a variable `j` with `hj : j …",
-              "signature": "lemma crossToEnd_round_trip_of_unit_slot {nA : ℕ} {c : Fin (nA + 1) → C} {d : C}\n    (i j : Fin (nA + 1)) (hj : j = Fin.last nA)\n    (M₁ : Tensor S ![S.τ (c i), d]) (M₂ : Tensor S ![S.τ d, c i])\n    (hM : crossToEnd (Fin.last 1) (0 : Fin 2…"
+              "line": 205,
+              "doc": "If `M₁_{μν} M₂^{νρ} = δ_μ^ρ`, contracting slot `i` of `t` with `M₁` and then with `M₂` gives back `t` with that slot moved to the end, because `crossToEnd` places the surviving index last. The last slot is a variable `j` with `hj : j = last nA`, so the lemma also applies where `j` is last only up to an equality.",
+              "signature": "lemma crossToEnd_round_trip_of_unit_slot {nA : ℕ} {c : Fin (nA + 1) → C} {d : C}\n    (i j : Fin (nA + 1)) (hj : j = Fin.last nA)\n    (M₁ : Tensor S ![S.τ (c i), d]) (M₂ : Tensor S ![S.τ d, c i])\n    (hM : contractInnerT rfl M₁ M₂ =\n      p…"
             },
             {
               "text": "crossToSlot_raise_lower_round_trip",
               "fullName": "TensorSpecies.Tensor.crossToSlot_raise_lower_round_trip",
               "kind": "lemma",
-              "line": 316,
-              "doc": "Raising then lowering a named index, with every color threaded propositionally. For a rank-2 metric `M : ![a, d]` and an inverse `M' : ![b, e]` collapsing to the unit tensor (`M · M' = δ`), at any rank and any slot `i`: contracting slot `i` with `M`, then contracting the result with `M'`, is the identity up to the `Function.update` color reindex.",
-              "signature": "lemma crossToSlot_raise_lower_round_trip {nA : ℕ} {c : Fin (nA + 1) → C} {a b d e : C}\n    (i : Fin (nA + 1)) (he : c i = e) (ha : S.τ (c i) = a) (hb : S.τ d = b)\n    (M : Tensor S ![a, d]) (M' : Tensor S ![b, e])\n    (hM : crossToEnd (Fin…"
+              "line": 302,
+              "doc": "If `M_{μν} M'^{νρ} = δ_μ^ρ`, contracting slot `i` of `t` with `M` and then with `M'` gives back `t` in place, up to renaming the colour of slot `i`. The equalities `ha`, `hb` and `he` match slot `i` with the indices of `M` and `M'`, so `M` and `M'` can have any colour lists.",
+              "signature": "lemma crossToSlot_raise_lower_round_trip {nA : ℕ} {c : Fin (nA + 1) → C} {cs ds : Fin 2 → C}\n    (i : Fin (nA + 1)) (he : c i = ds 1) (ha : S.τ (c i) = cs 0) (hb : S.τ (cs 1) = ds 0)\n    (M : Tensor S cs) (M' : Tensor S ds)\n    (hM : contr…"
             },
             {
               "text": "crossToSlotEquiv",
               "fullName": "TensorSpecies.Tensor.crossToSlotEquiv",
               "kind": "def",
-              "line": 391,
-              "doc": "Raising and lowering a named index against a mutually inverse pair, as a linear equivalence: the two color assignments `c` and `Function.update c i d` carry the same tensors. `M` and `M'` are matched only propositionally and `d` is unrelated to `c i`, so this covers a metric pairing two unrelated colors as well as a metric and its inverse at `S.τ (c i)`.",
-              "signature": "noncomputable def crossToSlotEquiv : Tensor S c ≃ₗ[k] Tensor S (Function.update c i d)"
+              "line": 383,
+              "doc": "The linear equivalence `crossToSlot` with `M`, with inverse `crossToSlotInv` with `M'`, when `M_{μν} M'^{νρ} = δ_μ^ρ` and `M'^{νρ} M_{ρσ} = δ^ν_σ`. Slot `i` has colour `c i` on one side and the colour `cs 1` of the second index of `M` on the other. For the metric this lowers and raises an index with `η_{μν}` and `η^{νρ}`.",
+              "signature": "noncomputable def crossToSlotEquiv : Tensor S c ≃ₗ[k] Tensor S (Function.update c i (cs 1))"
             }
           ],
           "exists": true
@@ -16050,7 +16094,7 @@
               "text": "fromDualMapAtIndex",
               "fullName": "TensorSpecies.Tensor.fromDualMapAtIndex",
               "kind": "def",
-              "line": 147,
+              "line": 148,
               "doc": "The linear map between `S.Tensor (Function.update c i (S.τ (c i)))` and `S.Tensor c` formed by contracting the index `i` with the metric tensor. It is the inverse of `toDualMapAtIndex`.",
               "signature": "noncomputable def fromDualMapAtIndex : {n : ℕ} → {c : Fin n → C} → (i : Fin n) →\n    S.Tensor (Function.update c i (S.τ (c i))) →ₗ[k] S.Tensor c\n  | 0, _, i => i.elim0\n  | _ + 1, c, i => crossToSlotInv i rfl (S.τ_τ_apply (c i)) (metricTens…"
             },
@@ -16058,7 +16102,7 @@
               "text": "toDualMapAtIndex_toDualMapAtIndex",
               "fullName": "TensorSpecies.Tensor.toDualMapAtIndex_toDualMapAtIndex",
               "kind": "lemma",
-              "line": 115,
+              "line": 116,
               "doc": "Dualising the index `i` twice returns the original tensor, up to the reindexing of the colors.",
               "signature": "lemma toDualMapAtIndex_toDualMapAtIndex {n : ℕ} {c : Fin n → C}\n    (i : Fin n) (t : S.Tensor c) :\n    toDualMapAtIndex (S := S) i (toDualMapAtIndex (S := S) i t) =\n      permT (id : Fin n → Fin n)\n        (IsReindexing.update_update_of_eq…"
             },
@@ -16066,7 +16110,7 @@
               "text": "toDualMapAtIndex_equivariant",
               "fullName": "TensorSpecies.Tensor.toDualMapAtIndex_equivariant",
               "kind": "lemma",
-              "line": 179,
+              "line": 183,
               "doc": "Dualising the index `i` commutes with the action of `G`.",
               "signature": "lemma toDualMapAtIndex_equivariant {n : ℕ} {c : Fin n → C} (i : Fin n) (g : G) (t : S.Tensor c) :\n    toDualMapAtIndex (S := S) i (g • t) = g • toDualMapAtIndex (S := S) i t"
             },
@@ -16074,7 +16118,7 @@
               "text": "toDualAtIndex",
               "fullName": "TensorSpecies.Tensor.toDualAtIndex",
               "kind": "def",
-              "line": 196,
+              "line": 200,
               "doc": "The linear equivalence between `S.Tensor c` and `S.Tensor (Function.update c i (S.τ (c i)))` formed by contracting the index `i` with the metric tensor.",
               "signature": "noncomputable def toDualAtIndex : {n : ℕ} → {c : Fin n → C} → (i : Fin n) →\n    S.Tensor c ≃ₗ[k] S.Tensor (Function.update c i (S.τ (c i)))\n  | 0, _, i => i.elim0\n  | _ + 1, c, i =>\n    crossToSlotEquiv i rfl rfl (S.τ_τ_apply (c i)) (metri…"
             }
@@ -16287,7 +16331,7 @@
               "fullName": "complexLorentzTensor.ofGaussianInt",
               "kind": "def",
               "line": 35,
-              "doc": "A complex Lorentz tensor from a map `(Π j, Fin (complexLorentzTensor.repDim (c j))) → GaussianInt`. All complex Lorentz tensors with Gaussian integer coefficients with respect to the basis are of this form.",
+              "doc": "A complex Lorentz tensor from a map `(Π j, complexLorentzTensor.basisIdx (c j)) → GaussianInt`. All complex Lorentz tensors with Gaussian integer coefficients with respect to the basis are of this form.",
               "signature": "noncomputable def ofGaussianInt {n : ℕ} {c : Fin n → complexLorentzTensor.Color} :\n    ((ComponentIdx (S := complexLorentzTensor) c) → GaussianInt) →ₛₗ[GaussianInt.toComplex]\n      ℂT(c) where"
             },
             {
@@ -16302,7 +16346,7 @@
               "text": "prodT_ofGaussianInt_ofGaussianInt",
               "fullName": "complexLorentzTensor.prodT_ofGaussianInt_ofGaussianInt",
               "kind": "lemma",
-              "line": 109,
+              "line": 81,
               "doc": null,
               "signature": "lemma prodT_ofGaussianInt_ofGaussianInt {n n1 : ℕ} {c : Fin n → complexLorentzTensor.Color}\n    (f : (ComponentIdx c) → GaussianInt)\n    {c1 : Fin n1 → complexLorentzTensor.Color}\n    (f1 : (ComponentIdx c1) → GaussianInt) :\n    (prodT (of…"
             },
@@ -16310,7 +16354,7 @@
               "text": "contrT_ofGaussianInt",
               "fullName": "complexLorentzTensor.contrT_ofGaussianInt",
               "kind": "lemma",
-              "line": 143,
+              "line": 115,
               "doc": null,
               "signature": "lemma contrT_ofGaussianInt {n : ℕ} {c : Fin (n + 1 + 1) → complexLorentzTensor.Color}\n    {i j : Fin (n + 1 + 1)} {h : i ≠ j ∧ complexLorentzTensor.τ (c i) = c j }\n    (f : (ComponentIdx c) → GaussianInt) :\n  (contrT n i j h (ofGaussianInt…"
             },
@@ -16318,7 +16362,7 @@
               "text": "permT_ofGaussianInt",
               "fullName": "complexLorentzTensor.permT_ofGaussianInt",
               "kind": "lemma",
-              "line": 168,
+              "line": 141,
               "doc": null,
               "signature": "lemma permT_ofGaussianInt {n m : ℕ} {c : Fin n → complexLorentzTensor.Color}\n    {c1 : Fin m → complexLorentzTensor.Color}\n    {σ : Fin m → Fin n} (h : IsReindexing c c1 σ)\n    (f : ComponentIdx c → GaussianInt) :\n    (permT σ h ((ofGaussi…"
             }
@@ -16457,7 +16501,7 @@
               "text": "conjEquiv",
               "fullName": "ConjTensorSpecies.conjEquiv",
               "kind": "def",
-              "line": 167,
+              "line": 171,
               "doc": "The conjugate-linear slot isomorphism `V c ≃ₛₗ[starRingEnd k] V (bar c)`: conjugate the coordinates in the species basis and relabel to the conjugate colour via `barIdx_eq`.",
               "signature": "def conjEquiv {c : C} : V c ≃ₛₗ[starRingEnd k] V (S.bar c)"
             },
@@ -16465,7 +16509,7 @@
               "text": "componentReindex",
               "fullName": "ConjTensorSpecies.componentReindex",
               "kind": "def",
-              "line": 220,
+              "line": 224,
               "doc": "Reindex component labels of `bar ∘ c` back to `c`, slotwise via the cast `barIdx_eq`.",
               "signature": "def componentReindex {n : ℕ} (c : Fin n → C) :\n    ComponentIdx (S := S.toTensorSpecies) (fun i => S.bar (c i)) ≃\n      ComponentIdx (S := S.toTensorSpecies) c"
             },
@@ -16473,7 +16517,7 @@
               "text": "conjT",
               "fullName": "ConjTensorSpecies.conjT",
               "kind": "def",
-              "line": 227,
+              "line": 231,
               "doc": "Conjugation of a tensor: conjugate the components and reindex the basis to the conjugate colours.",
               "signature": "def conjT {n : ℕ} {c : Fin n → C} : S.Tensor c →ₛₗ[starRingEnd k]\n    S.Tensor (fun i => S.bar (c i)) where"
             },
@@ -16481,7 +16525,7 @@
               "text": "conjT_basis",
               "fullName": "ConjTensorSpecies.conjT_basis",
               "kind": "lemma",
-              "line": 265,
+              "line": 269,
               "doc": null,
               "signature": "lemma conjT_basis {n : ℕ} {c : Fin n → C} (i : ComponentIdx (S := S.toTensorSpecies) c) :\n    S.conjT (basis c i) = basis (fun i => S.bar (c i)) ((S.componentReindex c).symm i)"
             },
@@ -16489,7 +16533,7 @@
               "text": "conjT_conjT",
               "fullName": "ConjTensorSpecies.conjT_conjT",
               "kind": "lemma",
-              "line": 362,
+              "line": 366,
               "doc": "Conjugation is an involution: conjugating twice returns the original tensor, up to the `bar_involution` recolouring (the identity permutation `permT`).",
               "signature": "lemma conjT_conjT {n : ℕ} {c : Fin n → C} (t : S.Tensor c) :\n    S.conjT (S.conjT t)\n      = permT id (S.isReindexing_bar_bar c) t"
             },
@@ -16497,7 +16541,7 @@
               "text": "conjT_contrT",
               "fullName": "ConjTensorSpecies.conjT_contrT",
               "kind": "lemma",
-              "line": 396,
+              "line": 400,
               "doc": "Conjugation commutes with contraction: conjugating a contracted tensor equals contracting the conjugate on the `bar`-images of the same two slots.",
               "signature": "lemma conjT_contrT {n : ℕ} {c : Fin (n + 1 + 1) → C} (i j : Fin (n + 1 + 1))\n    (h : i ≠ j ∧ S.τ (c i) = c j) (t : S.Tensor c) :\n    S.conjT (contrT n i j h t)\n      = contrT n i j (S.contrCond_bar h) (S.conjT t)"
             },
@@ -16505,7 +16549,7 @@
               "text": "conjT_eq_permT_iff",
               "fullName": "ConjTensorSpecies.conjT_eq_permT_iff",
               "kind": "lemma",
-              "line": 313,
+              "line": 317,
               "doc": "Componentwise criterion for `conjT t = permT σ h t'`. The conjugate of `t` equals the recolouring `permT σ h t'` exactly when, at every component, the `star`-conjugated reindexed component of `t` matches the corresponding component of `permT σ h t'`. This packages the `componentMap_conjT` expansion and the `repr`/`componentMap` bridge that the reality and Hermiticity proofs downstream would oth…",
               "signature": "lemma conjT_eq_permT_iff {n m : ℕ} {c : Fin n → C} {c' : Fin m → C}\n    {σ : Fin n → Fin m} (h : IsReindexing c' (fun i => S.bar (c i)) σ)\n    (t : S.Tensor c) (t' : S.Tensor c') :\n    S.conjT t = permT σ h t' ↔\n      ∀ φ : ComponentIdx (S…"
             },
@@ -16513,7 +16557,7 @@
               "text": "IsHermitian",
               "fullName": "ConjTensorSpecies.IsHermitian",
               "kind": "def",
-              "line": 457,
+              "line": 461,
               "doc": "A pairing `g : V c ⊗ V (bar c) → k` is Hermitian when conjugating and swapping its two slots via `conjEquiv` returns its `star`: `g (x ⊗ y) = star (g (conjEquiv.symm y ⊗ conjEquiv x))`.",
               "signature": "def IsHermitian {c : C} (g : V c ⊗[k] V (S.bar c) →ₗ[k] k) : Prop"
             }
@@ -17661,7 +17705,7 @@
               "text": "complexLorentzTensor",
               "fullName": "complexLorentzTensor",
               "kind": "def",
-              "line": 124,
+              "line": 150,
               "doc": "The tensor structure for complex Lorentz tensors.",
               "signature": "def complexLorentzTensor : TensorSpecies ℂ complexLorentzTensor.Color SL(2, ℂ)\n    (fun c => match c with\n      | Color.upL => Fermion.LeftHandedWeyl\n      | Color.downL => Fermion.DualLeftHandedWeyl\n      | Color.upR => Fermion.RightHande…"
             },
@@ -17685,15 +17729,15 @@
               "text": "basis",
               "fullName": "complexLorentzTensor.basis",
               "kind": "abbrev",
-              "line": 231,
+              "line": 257,
               "doc": "The basis associated with each of the different types of complex Lorentz vector space.",
-              "signature": "abbrev basis (c : Color) : Module.Basis (Fin (repDim c)) ℂ (modules c)"
+              "signature": "abbrev basis (c : Color) : Module.Basis (basisIdx c) ℂ (modules c)"
             },
             {
               "text": "rep",
               "fullName": "complexLorentzTensor.rep",
               "kind": "abbrev",
-              "line": 241,
+              "line": 267,
               "doc": "The reps associated with each of the different types of complex Lorentz vector space.",
               "signature": "abbrev rep (c : Color) : Representation ℂ SL(2, ℂ) (modules c)"
             },
@@ -17701,7 +17745,7 @@
               "text": "contrPCoeff_basis",
               "fullName": "complexLorentzTensor.contrPCoeff_basis",
               "kind": "lemma",
-              "line": 293,
+              "line": 326,
               "doc": null,
               "signature": "lemma contrPCoeff_basis {n : ℕ} {c : Fin n → complexLorentzTensor.Color} (i j : Fin n)\n    (hij : i ≠ j ∧ (complexLorentzTensor.τ (c i) = c j))\n    (b : ComponentIdx (S := complexLorentzTensor) c) :\n    Pure.contrPCoeff i j hij (Pure.basis…"
             }
@@ -17710,62 +17754,62 @@
         },
         {
           "index": 54,
-          "file": "Physlib/Relativity/Tensors/ComplexTensor/Vector/Pre/Modules.lean",
+          "file": "Physlib/Relativity/Tensors/ComplexTensor/Vector/Modules.lean",
           "declarations": [
             {
-              "text": "ContrℂModule",
-              "fullName": "Lorentz.ContrℂModule",
+              "text": "ComplexVector",
+              "fullName": "Lorentz.ComplexVector",
               "kind": "structure",
               "line": 29,
               "doc": "The module for contravariant (up-index) complex Lorentz vectors.",
-              "signature": "structure ContrℂModule where\n  val : Fin 1 ⊕ Fin 3 → ℂ"
+              "signature": "structure ComplexVector where\n  val : Fin 1 ⊕ Fin 3 → ℂ"
             },
             {
-              "text": "CoℂModule",
-              "fullName": "Lorentz.CoℂModule",
+              "text": "ComplexCoVector",
+              "fullName": "Lorentz.ComplexCoVector",
               "kind": "structure",
               "line": 105,
               "doc": "The module for covariant (up-index) complex Lorentz vectors.",
-              "signature": "structure CoℂModule where\n  val : Fin 1 ⊕ Fin 3 → ℂ"
+              "signature": "structure ComplexCoVector where\n  val : Fin 1 ⊕ Fin 3 → ℂ"
             },
             {
-              "text": "ContrℂModule.SL2CRep",
-              "fullName": "Lorentz.ContrℂModule.SL2CRep",
+              "text": "ComplexVector.SL2CRep",
+              "fullName": "Lorentz.ComplexVector.SL2CRep",
               "kind": "def",
               "line": 99,
-              "doc": "The representation of the SL(2, ℂ) on `ContrℂModule` induced by the representation of the Lorentz group.",
-              "signature": "def SL2CRep : Representation ℂ SL(2, ℂ) ContrℂModule"
+              "doc": "The representation of the SL(2, ℂ) on `ComplexVector` induced by the representation of the Lorentz group.",
+              "signature": "def SL2CRep : Representation ℂ SL(2, ℂ) ComplexVector"
             },
             {
-              "text": "CoℂModule.SL2CRep",
-              "fullName": "Lorentz.CoℂModule.SL2CRep",
+              "text": "ComplexCoVector.SL2CRep",
+              "fullName": "Lorentz.ComplexCoVector.SL2CRep",
               "kind": "def",
               "line": 180,
-              "doc": "The representation of the SL(2, ℂ) on `ContrℂModule` induced by the representation of the Lorentz group.",
-              "signature": "def SL2CRep : Representation ℂ SL(2, ℂ) CoℂModule"
+              "doc": "The representation of the SL(2, ℂ) on `ComplexCoVector` induced by the representation of the Lorentz group.",
+              "signature": "def SL2CRep : Representation ℂ SL(2, ℂ) ComplexCoVector"
             }
           ],
           "exists": true
         },
         {
           "index": 55,
-          "file": "Physlib/Relativity/Tensors/ComplexTensor/Vector/Pre/Contraction.lean",
+          "file": "Physlib/Relativity/Tensors/ComplexTensor/Vector/Contraction.lean",
           "declarations": [
             {
-              "text": "ContrℂModule.contr",
-              "fullName": "Lorentz.ContrℂModule.contr",
+              "text": "ComplexVector.contr",
+              "fullName": "Lorentz.ComplexVector.contr",
               "kind": "def",
               "line": 80,
               "doc": "The linear map from complexContr ⊗ complexCo to ℂ given by summing over components of contravariant Lorentz vector and covariant Lorentz vector in the standard basis (i.e. the dot product). In terms of index notation this is the contraction is ψⁱ φᵢ.",
-              "signature": "def ContrℂModule.contr : (ContrℂModule.SL2CRep.tprod CoℂModule.SL2CRep).IntertwiningMap\n    (Representation.trivial ℂ SL(2,ℂ) ℂ) where"
+              "signature": "def ComplexVector.contr : (ComplexVector.SL2CRep.tprod ComplexCoVector.SL2CRep).IntertwiningMap\n    (Representation.trivial ℂ SL(2,ℂ) ℂ) where"
             },
             {
-              "text": "CoℂModule.contr",
-              "fullName": "Lorentz.CoℂModule.contr",
+              "text": "ComplexCoVector.contr",
+              "fullName": "Lorentz.ComplexCoVector.contr",
               "kind": "def",
-              "line": 120,
+              "line": 121,
               "doc": "The linear map from complexCo ⊗ complexContr to ℂ given by summing over components of covariant Lorentz vector and contravariant Lorentz vector in the standard basis (i.e. the dot product). In terms of index notation this is the contraction is φᵢ ψⁱ.",
-              "signature": "def CoℂModule.contr : (CoℂModule.SL2CRep.tprod ContrℂModule.SL2CRep).IntertwiningMap\n    (Representation.trivial ℂ SL(2,ℂ) ℂ) where"
+              "signature": "def ComplexCoVector.contr : (ComplexCoVector.SL2CRep.tprod ComplexVector.SL2CRep).IntertwiningMap\n    (Representation.trivial ℂ SL(2,ℂ) ℂ) where"
             }
           ],
           "exists": true
@@ -17828,7 +17872,7 @@
               "kind": "lemma",
               "line": 369,
               "doc": null,
-              "signature": "lemma coMetric_eq_ofGaussianInt : η' = ofGaussianInt fun f =>\n    if f 0 = Fin.cast (by rfl) (0 : Fin 4) ∧ f 1 = Fin.cast (by rfl) (0 : Fin 4) then 1 else\n    if f 0 = f 1 then - 1 else 0"
+              "signature": "lemma coMetric_eq_ofGaussianInt : η' = ofGaussianInt fun f =>\n    if f 0 = (Sum.inl 0 : Fin 1 ⊕ Fin 3) ∧ f 1 = (Sum.inl 0 : Fin 1 ⊕ Fin 3) then 1 else\n    if f 0 = f 1 then - 1 else 0"
             },
             {
               "text": "leftMetric_eq_ofGaussianInt",
@@ -17836,7 +17880,7 @@
               "kind": "lemma",
               "line": 392,
               "doc": null,
-              "signature": "lemma leftMetric_eq_ofGaussianInt : εL = ofGaussianInt fun f =>\n    if f 0 = Fin.cast (by rfl) (0 : Fin 2) ∧ f 1 = Fin.cast (by rfl) (1 : Fin 2) then - 1 else\n    if f 1 = Fin.cast (by rfl) (0 : Fin 2) ∧ f 0 = Fin.cast (by rfl) (1 : Fin 2)…"
+              "signature": "lemma leftMetric_eq_ofGaussianInt : εL =\n    ofGaussianInt (c := ![Color.upL, Color.upL]) fun f =>\n    if f = (fun | 0 => (0 : Fin 2) | 1 => (1 : Fin 2)) then - 1 else\n    if f = (fun | 0 => (1 : Fin 2) | 1 => (0 : Fin 2)) then 1 else 0"
             }
           ],
           "exists": true
@@ -17929,7 +17973,7 @@
               "kind": "def",
               "line": 27,
               "doc": "Equivalence of `complexContr ⊗ complexContr` to `4 x 4` complex matrices.",
-              "signature": "def contrContrToMatrix : (ContrℂModule ⊗[ℂ] ContrℂModule) ≃ₗ[ℂ]\n    Matrix (Fin 1 ⊕ Fin 3) (Fin 1 ⊕ Fin 3) ℂ"
+              "signature": "def contrContrToMatrix : (ComplexVector ⊗[ℂ] ComplexVector) ≃ₗ[ℂ]\n    Matrix (Fin 1 ⊕ Fin 3) (Fin 1 ⊕ Fin 3) ℂ"
             },
             {
               "text": "coCoToMatrix",
@@ -17937,23 +17981,23 @@
               "kind": "def",
               "line": 47,
               "doc": "Equivalence of `complexCo ⊗ complexCo` to `4 x 4` complex matrices.",
-              "signature": "def coCoToMatrix : (CoℂModule ⊗[ℂ] CoℂModule) ≃ₗ[ℂ]\n    Matrix (Fin 1 ⊕ Fin 3) (Fin 1 ⊕ Fin 3) ℂ"
+              "signature": "def coCoToMatrix : (ComplexCoVector ⊗[ℂ] ComplexCoVector) ≃ₗ[ℂ]\n    Matrix (Fin 1 ⊕ Fin 3) (Fin 1 ⊕ Fin 3) ℂ"
             },
             {
               "text": "contrCoToMatrix",
               "fullName": "Lorentz.contrCoToMatrix",
               "kind": "def",
-              "line": 65,
+              "line": 66,
               "doc": "Equivalence of `complexContr ⊗ complexCo` to `4 x 4` complex matrices.",
-              "signature": "def contrCoToMatrix : (ContrℂModule ⊗[ℂ] CoℂModule) ≃ₗ[ℂ]\n    Matrix (Fin 1 ⊕ Fin 3) (Fin 1 ⊕ Fin 3) ℂ"
+              "signature": "def contrCoToMatrix : (ComplexVector ⊗[ℂ] ComplexCoVector) ≃ₗ[ℂ]\n    Matrix (Fin 1 ⊕ Fin 3) (Fin 1 ⊕ Fin 3) ℂ"
             },
             {
               "text": "coContrToMatrix",
               "fullName": "Lorentz.coContrToMatrix",
               "kind": "def",
-              "line": 84,
+              "line": 86,
               "doc": "Equivalence of `complexCo ⊗ complexContr` to `4 x 4` complex matrices.",
-              "signature": "def coContrToMatrix : (CoℂModule ⊗[ℂ] ContrℂModule) ≃ₗ[ℂ]\n    Matrix (Fin 1 ⊕ Fin 3) (Fin 1 ⊕ Fin 3) ℂ"
+              "signature": "def coContrToMatrix : (ComplexCoVector ⊗[ℂ] ComplexVector) ≃ₗ[ℂ]\n    Matrix (Fin 1 ⊕ Fin 3) (Fin 1 ⊕ Fin 3) ℂ"
             }
           ],
           "exists": true
@@ -17981,7 +18025,7 @@
               "text": "leviCivita",
               "fullName": "complexLorentzTensor.leviCivita",
               "kind": "def",
-              "line": 55,
+              "line": 47,
               "doc": "The Levi-Civita tensor `εᵘᵛᵖᵟ` as a complex Lorentz tensor, with `ε⁰¹²³ = 1`.",
               "signature": "noncomputable def leviCivita : ℂT[.up, .up, .up, .up]"
             },
@@ -17993,9 +18037,9 @@
               "text": "leviCivita_eq_ofGaussianInt",
               "fullName": "complexLorentzTensor.leviCivita_eq_ofGaussianInt",
               "kind": "lemma",
-              "line": 64,
+              "line": 56,
               "doc": "The complex Levi-Civita tensor has the Levi-Civita symbol as its real component and zero imaginary component in the standard basis.",
-              "signature": "lemma leviCivita_eq_ofGaussianInt : ε4ℂ = ofGaussianInt (fun\n    b : ComponentIdx (S := complexLorentzTensor) ![Color.up, Color.up, Color.up, Color.up] =>\n    (generalizedKroneckerDelta\n      (fun i => Fin.cast (by fin_cases i <;> rfl) (b …"
+              "signature": "lemma leviCivita_eq_ofGaussianInt : ε4ℂ = ofGaussianInt (fun\n    b : ComponentIdx (S := complexLorentzTensor) ![Color.up, Color.up, Color.up, Color.up] =>\n    (generalizedKroneckerDelta\n      (fun i => finSumFinEquiv (basisIdxCongr (c1 := …"
             }
           ],
           "exists": true
@@ -18016,7 +18060,7 @@
               "text": "ComponentIdx.complexify",
               "fullName": "TensorSpecies.Tensor.ComponentIdx.complexify",
               "kind": "def",
-              "line": 115,
+              "line": 118,
               "doc": "The complexification of the component index of a real Lorentz tensor to a complex Lorentz tensor.",
               "signature": "noncomputable def _root_.TensorSpecies.Tensor.ComponentIdx.complexify {n}\n    {c : Fin n → realLorentzTensor.Color} :\n    ComponentIdx (S := realLorentzTensor) c ≃\n      ComponentIdx (S := complexLorentzTensor) (colorToComplex ∘ c) where"
             },
@@ -18024,7 +18068,7 @@
               "text": "toComplex",
               "fullName": "realLorentzTensor.toComplex",
               "kind": "def",
-              "line": 149,
+              "line": 167,
               "doc": "The semilinear map from real Lorentz tensors to complex Lorentz tensors, defined through basis.",
               "signature": "noncomputable def toComplex {n} {c : Fin n → realLorentzTensor.Color} :\n    ℝT(3, c) →ₛₗ[Complex.ofRealHom] ℂT(colorToComplex ∘ c) where"
             },
@@ -18032,7 +18076,7 @@
               "text": "toComplex_basis",
               "fullName": "realLorentzTensor.toComplex_basis",
               "kind": "lemma",
-              "line": 188,
+              "line": 206,
               "doc": "`toComplex` sends basis elements to basis elements.",
               "signature": "lemma toComplex_basis {n} {c : Fin n → realLorentzTensor.Color}\n    (i : ComponentIdx (S := realLorentzTensor) c) :\n    toComplex (c := c) ((Tensor.basis (S := realLorentzTensor) c) i) =\n      (Tensor.basis (S := complexLorentzTensor) (col…"
             },
@@ -18040,7 +18084,7 @@
               "text": "toComplex_pure_basisVector",
               "fullName": "realLorentzTensor.toComplex_pure_basisVector",
               "kind": "lemma",
-              "line": 197,
+              "line": 215,
               "doc": "`toComplex` on a pure basis vector.",
               "signature": "lemma toComplex_pure_basisVector {n} {c : Fin n → realLorentzTensor.Color}\n    (b : ComponentIdx (S := realLorentzTensor) c) :\n    toComplex (c := c) (Pure.basisVector c b |>.toTensor)\n      =\n    (Pure.basisVector (colorToComplex ∘ c) b.c…"
             },
@@ -18048,7 +18092,7 @@
               "text": "toComplex_injective",
               "fullName": "realLorentzTensor.toComplex_injective",
               "kind": "lemma",
-              "line": 220,
+              "line": 238,
               "doc": "The map `toComplex` is injective.",
               "signature": "lemma toComplex_injective {n} (c : Fin n → realLorentzTensor.Color) :\n    Function.Injective (toComplex (c := c))"
             },
@@ -18056,7 +18100,7 @@
               "text": "toComplex_equivariant",
               "fullName": "realLorentzTensor.toComplex_equivariant",
               "kind": "lemma",
-              "line": 412,
+              "line": 394,
               "doc": "The map `toComplex` is equivariant.",
               "signature": "lemma toComplex_equivariant {n} {c : Fin n → realLorentzTensor.Color}\n    (v : ℝT(3, c)) (Λ : SL(2, ℂ)) :\n    Λ • (toComplex v) = toComplex (Lorentz.SL2C.toLorentzGroup Λ • v)"
             },
@@ -18064,7 +18108,7 @@
               "text": "permT_toComplex",
               "fullName": "realLorentzTensor.permT_toComplex",
               "kind": "lemma",
-              "line": 464,
+              "line": 441,
               "doc": "The map `toComplex` commutes with permT.",
               "signature": "lemma permT_toComplex {n m : ℕ}\n    {c : Fin n → realLorentzTensor.Color}\n    {c1 : Fin m → realLorentzTensor.Color}\n    {σ : Fin m → Fin n} (h : IsReindexing c c1 σ) (t : ℝT(3, c)) :\n    toComplex (permT (S := realLorentzTensor) σ h t)\n  …"
             },
@@ -18072,7 +18116,7 @@
               "text": "prodT_toComplex",
               "fullName": "realLorentzTensor.prodT_toComplex",
               "kind": "lemma",
-              "line": 551,
+              "line": 523,
               "doc": "The map `toComplex` commutes with prodT.",
               "signature": "lemma prodT_toComplex {n m : ℕ}\n    {c : Fin n → realLorentzTensor.Color}\n    {c1 : Fin m → realLorentzTensor.Color}\n    (t : ℝT(3, c)) (t1 : ℝT(3, c1)) :\n    toComplex (c := Fin.append c c1) (prodT (S := realLorentzTensor) t t1)\n      =\n …"
             },
@@ -18080,7 +18124,7 @@
               "text": "contrT_toComplex",
               "fullName": "realLorentzTensor.contrT_toComplex",
               "kind": "lemma",
-              "line": 631,
+              "line": 602,
               "doc": "The map `toComplex` commutes with `contrT`.",
               "signature": "lemma contrT_toComplex {n : ℕ}\n    {c : Fin (n + 1 + 1) → realLorentzTensor.Color} {i j : Fin (n + 1 + 1)}\n    (h : i ≠ j ∧ (realLorentzTensor).τ (c i) = c j) (t : ℝT(3, c)) :\n    toComplex (c := c ∘ Fin.succSuccAbove i j) (contrT (S := re…"
             },
@@ -18088,7 +18132,7 @@
               "text": "evalT_toComplex",
               "fullName": "realLorentzTensor.evalT_toComplex",
               "kind": "lemma",
-              "line": 722,
+              "line": 693,
               "doc": "The map `toComplex` commutes with `evalT`.",
               "signature": "lemma evalT_toComplex {n : ℕ}\n    {c : Fin (n + 1) → realLorentzTensor.Color}\n    (i : Fin (n + 1)) (b : Fin 1 ⊕ Fin 3) (t : ℝT(3, c)) :\n    toComplex (c := c ∘ i.succAbove)\n        ((TensorSpecies.Tensor.evalT (S := realLorentzTensor) (c …"
             }
@@ -26031,7 +26075,7 @@
   "directories": [
     {
       "path": "Physlib",
-      "leanFiles": 647,
+      "leanFiles": 667,
       "hasApiMap": false
     },
     {
@@ -26056,7 +26100,7 @@
     },
     {
       "path": "Physlib/ClassicalMechanics",
-      "leanFiles": 47,
+      "leanFiles": 55,
       "hasApiMap": false
     },
     {
@@ -26081,7 +26125,7 @@
     },
     {
       "path": "Physlib/ClassicalMechanics/HarmonicOscillator",
-      "leanFiles": 6,
+      "leanFiles": 13,
       "hasApiMap": false
     },
     {
@@ -26090,8 +26134,13 @@
       "hasApiMap": true
     },
     {
+      "path": "Physlib/ClassicalMechanics/HarmonicOscillator/Solution",
+      "leanFiles": 8,
+      "hasApiMap": false
+    },
+    {
       "path": "Physlib/ClassicalMechanics/Lagrangian",
-      "leanFiles": 3,
+      "leanFiles": 4,
       "hasApiMap": true
     },
     {
@@ -26151,7 +26200,7 @@
     },
     {
       "path": "Physlib/CondensedMatter",
-      "leanFiles": 13,
+      "leanFiles": 19,
       "hasApiMap": false
     },
     {
@@ -26161,7 +26210,17 @@
     },
     {
       "path": "Physlib/CondensedMatter/Crystal",
-      "leanFiles": 5,
+      "leanFiles": 11,
+      "hasApiMap": false
+    },
+    {
+      "path": "Physlib/CondensedMatter/Crystal/Bravais",
+      "leanFiles": 1,
+      "hasApiMap": false
+    },
+    {
+      "path": "Physlib/CondensedMatter/Crystal/Symmetry",
+      "leanFiles": 6,
       "hasApiMap": false
     },
     {
@@ -26296,7 +26355,7 @@
     },
     {
       "path": "Physlib/Mathematics",
-      "leanFiles": 56,
+      "leanFiles": 57,
       "hasApiMap": false
     },
     {
@@ -26406,7 +26465,7 @@
     },
     {
       "path": "Physlib/Mathematics/VariationalCalculus",
-      "leanFiles": 6,
+      "leanFiles": 7,
       "hasApiMap": false
     },
     {
@@ -26527,7 +26586,7 @@
     {
       "path": "Physlib/Particles/StandardModel",
       "leanFiles": 16,
-      "hasApiMap": true
+      "hasApiMap": false
     },
     {
       "path": "Physlib/Particles/StandardModel/AnomalyCancellation",
@@ -26548,6 +26607,11 @@
       "path": "Physlib/Particles/StandardModel/Fermions",
       "leanFiles": 5,
       "hasApiMap": false
+    },
+    {
+      "path": "Physlib/Particles/StandardModel/GaugeGroup",
+      "leanFiles": 1,
+      "hasApiMap": true
     },
     {
       "path": "Physlib/Particles/StandardModel/HiggsBoson",
@@ -26596,12 +26660,12 @@
     },
     {
       "path": "Physlib/ProbabilisticTheory",
-      "leanFiles": 21,
+      "leanFiles": 23,
       "hasApiMap": false
     },
     {
       "path": "Physlib/ProbabilisticTheory/Channel",
-      "leanFiles": 1,
+      "leanFiles": 3,
       "hasApiMap": false
     },
     {
@@ -26816,7 +26880,7 @@
     },
     {
       "path": "Physlib/Relativity",
-      "leanFiles": 112,
+      "leanFiles": 114,
       "hasApiMap": false
     },
     {
@@ -26876,7 +26940,7 @@
     },
     {
       "path": "Physlib/Relativity/SL2C",
-      "leanFiles": 4,
+      "leanFiles": 5,
       "hasApiMap": false
     },
     {
@@ -26891,7 +26955,7 @@
     },
     {
       "path": "Physlib/Relativity/Tensors",
-      "leanFiles": 66,
+      "leanFiles": 67,
       "hasApiMap": true
     },
     {
@@ -26920,18 +26984,13 @@
       "hasApiMap": false
     },
     {
-      "path": "Physlib/Relativity/Tensors/ComplexTensor/Vector/Pre",
-      "leanFiles": 3,
-      "hasApiMap": false
-    },
-    {
       "path": "Physlib/Relativity/Tensors/ComponentIdx",
       "leanFiles": 6,
       "hasApiMap": false
     },
     {
       "path": "Physlib/Relativity/Tensors/Conjugation",
-      "leanFiles": 1,
+      "leanFiles": 2,
       "hasApiMap": false
     },
     {
@@ -27001,7 +27060,7 @@
     },
     {
       "path": "Physlib/SpaceAndTime",
-      "leanFiles": 53,
+      "leanFiles": 54,
       "hasApiMap": false
     },
     {
@@ -27062,6 +27121,11 @@
     {
       "path": "Physlib/SpaceAndTime/TimeAndSpace/EuclideanGroup",
       "leanFiles": 2,
+      "hasApiMap": false
+    },
+    {
+      "path": "Physlib/SpaceAndTime/WaveVectorSpace",
+      "leanFiles": 1,
       "hasApiMap": false
     },
     {
@@ -27141,12 +27205,12 @@
     },
     {
       "path": "PhyslibAlpha",
-      "leanFiles": 724,
+      "leanFiles": 772,
       "hasApiMap": false
     },
     {
       "path": "PhyslibAlpha/ClassicalFieldTheory",
-      "leanFiles": 96,
+      "leanFiles": 114,
       "hasApiMap": false
     },
     {
@@ -27220,6 +27284,16 @@
       "hasApiMap": false
     },
     {
+      "path": "PhyslibAlpha/ClassicalFieldTheory/GreenOperator",
+      "leanFiles": 5,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/ClassicalFieldTheory/KleinGordon",
+      "leanFiles": 12,
+      "hasApiMap": false
+    },
+    {
       "path": "PhyslibAlpha/ClassicalFieldTheory/Local",
       "leanFiles": 19,
       "hasApiMap": false
@@ -27227,6 +27301,11 @@
     {
       "path": "PhyslibAlpha/ClassicalFieldTheory/Local/FirstVariation",
       "leanFiles": 6,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/ClassicalFieldTheory/WaveEquation",
+      "leanFiles": 1,
       "hasApiMap": false
     },
     {
@@ -27256,7 +27335,7 @@
     },
     {
       "path": "PhyslibAlpha/CondensedMatter",
-      "leanFiles": 66,
+      "leanFiles": 67,
       "hasApiMap": false
     },
     {
@@ -27291,12 +27370,12 @@
     },
     {
       "path": "PhyslibAlpha/CondensedMatter/TightBindingChain",
-      "leanFiles": 21,
+      "leanFiles": 22,
       "hasApiMap": false
     },
     {
       "path": "PhyslibAlpha/CondensedMatter/TightBindingChain/Cube",
-      "leanFiles": 3,
+      "leanFiles": 4,
       "hasApiMap": false
     },
     {
@@ -27331,17 +27410,22 @@
     },
     {
       "path": "PhyslibAlpha/Mathematics",
-      "leanFiles": 105,
+      "leanFiles": 119,
       "hasApiMap": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/Analysis",
-      "leanFiles": 2,
+      "leanFiles": 3,
       "hasApiMap": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/Analysis/Normed",
       "leanFiles": 1,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/Mathematics/Calculus",
+      "leanFiles": 2,
       "hasApiMap": false
     },
     {
@@ -27352,6 +27436,11 @@
     {
       "path": "PhyslibAlpha/Mathematics/Convex/Choquet",
       "leanFiles": 4,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/Mathematics/Distribution",
+      "leanFiles": 6,
       "hasApiMap": false
     },
     {
@@ -27366,6 +27455,11 @@
     },
     {
       "path": "PhyslibAlpha/Mathematics/ForMathlib/DataStructures/Matrix",
+      "leanFiles": 1,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/Mathematics/Fourier",
       "leanFiles": 1,
       "hasApiMap": false
     },
@@ -27396,7 +27490,7 @@
     },
     {
       "path": "PhyslibAlpha/Mathematics/Order",
-      "leanFiles": 10,
+      "leanFiles": 11,
       "hasApiMap": false
     },
     {
@@ -27426,7 +27520,12 @@
     },
     {
       "path": "PhyslibAlpha/Mathematics/SpecialFunctions",
-      "leanFiles": 2,
+      "leanFiles": 5,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/Mathematics/SpecialFunctions/SincPropagator",
+      "leanFiles": 3,
       "hasApiMap": false
     },
     {
@@ -28021,12 +28120,12 @@
     },
     {
       "path": "PhyslibAlpha/QuantumMechanics",
-      "leanFiles": 23,
+      "leanFiles": 36,
       "hasApiMap": false
     },
     {
       "path": "PhyslibAlpha/QuantumMechanics/AngularMomentum",
-      "leanFiles": 9,
+      "leanFiles": 17,
       "hasApiMap": false
     },
     {
@@ -28061,12 +28160,17 @@
     },
     {
       "path": "PhyslibAlpha/QuantumMechanics/Hydrogen",
-      "leanFiles": 4,
+      "leanFiles": 9,
       "hasApiMap": false
     },
     {
       "path": "PhyslibAlpha/Relativity",
-      "leanFiles": 31,
+      "leanFiles": 32,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/Relativity/Causality",
+      "leanFiles": 1,
       "hasApiMap": false
     },
     {
@@ -28135,11 +28239,6 @@
       "hasApiMap": false
     },
     {
-      "path": "PhyslibAlpha/Relativity/Tensors/ComplexTensor/Vector/Pre",
-      "leanFiles": 1,
-      "hasApiMap": false
-    },
-    {
       "path": "PhyslibAlpha/Relativity/Tensors/RealTensor",
       "leanFiles": 1,
       "hasApiMap": false
@@ -28151,7 +28250,7 @@
     },
     {
       "path": "PhyslibAlpha/SpaceAndTime",
-      "leanFiles": 12,
+      "leanFiles": 13,
       "hasApiMap": false
     },
     {
@@ -28166,7 +28265,7 @@
     },
     {
       "path": "PhyslibAlpha/SpaceAndTime/SpaceTime",
-      "leanFiles": 5,
+      "leanFiles": 6,
       "hasApiMap": false
     },
     {
