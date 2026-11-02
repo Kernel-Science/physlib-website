@@ -2,9 +2,9 @@ name: Generate references
 
 on:
   schedule:
-    # Weekly refresh, same cadence as api-map.yml — docs/references.bib and
+    # Weekly refresh, same cadence as atlas.yml — docs/references.bib and
     # the per-file citation comments it tracks change about as rarely as
-    # API-map.md does. Offset five minutes from api-map.yml's run so the
+    # Atlas.md does. Offset five minutes from atlas.yml's run so the
     # two don't start in the same minute.
     - cron: "25 4 * * 1"
   workflow_dispatch: {}
@@ -33,7 +33,7 @@ jobs:
         with:
           node-version: "20"
 
-      # Shared with the api-map and monthly-updates generators, which also
+      # Shared with the atlas and monthly-updates generators, which also
       # read this repo.
       - name: Cache physlib clone
         uses: actions/cache@v4

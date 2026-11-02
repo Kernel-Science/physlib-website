@@ -1,10 +1,10 @@
-import type { ApiMapNode } from "@/lib/yaml";
+import type { AtlasNode } from "@/lib/yaml";
 
 /**
- * The API maps arranged by where they live in Physlib's folders - the left
- * menu of the API tracker, and the order its previous/next arrows step
+ * The Atlas articles arranged by where they live in Physlib's folders - the left
+ * menu of the Atlas, and the order its previous/next arrows step
  * through. (How the maps cite one another is the flowchart's job, see
- * api-map-tree.ts.)
+ * atlas-tree.ts.)
  *
  * Only folders on the way to some map appear. A run of folders holding no
  * map and only one subfolder collapses to a single entry, e.g.
@@ -15,11 +15,11 @@ export type FolderEntry = {
   path: string;
   /** The map's title, or the folder name(s) for a folder without a map. */
   label: string;
-  node: ApiMapNode | null;
+  node: AtlasNode | null;
   children: FolderEntry[];
 };
 
-type Trie = { path: string; segment: string; node: ApiMapNode | null; children: Map<string, Trie> };
+type Trie = { path: string; segment: string; node: AtlasNode | null; children: Map<string, Trie> };
 
 function toEntry(t: Trie, labelPrefix = ""): FolderEntry {
   // Collapse a map-less folder whose only content is one map-less subfolder.
@@ -39,7 +39,7 @@ function toEntry(t: Trie, labelPrefix = ""): FolderEntry {
 }
 
 /** One entry per library root (`Physlib`, `QuantumInfo`, …) holding a map. */
-export function buildFolderTree(nodes: ApiMapNode[]): FolderEntry[] {
+export function buildFolderTree(nodes: AtlasNode[]): FolderEntry[] {
   const roots = new Map<string, Trie>();
   for (const node of nodes) {
     const segments = node.path.split("/");
@@ -69,8 +69,8 @@ export function buildFolderTree(nodes: ApiMapNode[]): FolderEntry[] {
 }
 
 /** The maps in menu order, top to bottom. */
-export function flattenFolderTree(tree: FolderEntry[]): ApiMapNode[] {
-  const out: ApiMapNode[] = [];
+export function flattenFolderTree(tree: FolderEntry[]): AtlasNode[] {
+  const out: AtlasNode[] = [];
   const walk = (entries: FolderEntry[]) => {
     for (const e of entries) {
       if (e.node) out.push(e.node);

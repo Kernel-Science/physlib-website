@@ -27,7 +27,7 @@ const footerLinks = {
   ],
   Support: [
     { label: "Sponsor", href: "/sponsor" },
-    { label: "API Tracker", href: "/api-tracker" },
+    { label: "Physlib Atlas", href: "/atlas" },
     { label: "PR Triage", href: "/pr-tracker" },
   ],
 };

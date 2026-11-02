@@ -4,7 +4,7 @@ on:
   push:
     branches: ['**']
   delete:
-  # The generator workflows (monthly-updates, api-map, references) commit
+  # The generator workflows (monthly-updates, atlas, references) commit
   # and push with the default GITHUB_TOKEN, which GitHub deliberately does
   # not trigger the `push` event above for, to avoid recursion. workflow_run
   # isn't subject to that restriction, so this is how their commits reach
@@ -13,7 +13,7 @@ on:
   workflow_run:
     workflows:
       - Generate monthly update
-      - Generate API map
+      - Generate Atlas
       - Generate references
     types: [completed]
 

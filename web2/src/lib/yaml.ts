@@ -76,19 +76,19 @@ export async function getTodo(): Promise<TodoData> {
   return loadYaml<TodoData>("TODO.yml");
 }
 
-// ─── API map ────────────────────────────────────────────────────────────
-// Generated from Physlib's API-map.md files by scripts/generate-api-map.js.
+// ─── Atlas article ────────────────────────────────────────────────────────────
+// Generated from Physlib's Atlas.md files by scripts/generate-atlas.js.
 
-/** Another API map this one cites in its references - the edges of the
+/** Another Atlas article this one cites in its references - the edges of the
  *  dependency map. */
-export type ApiMapParent = {
+export type AtlasParent = {
   name: string;
   path: string;
 };
 
 /** One claim of the content: a run of `[n]` citations, done unless the run
  *  contains `[TODO]`. Only counted, for the progress shown on the page. */
-export type ApiMapRequirement = {
+export type AtlasRequirement = {
   done: boolean;
   citations: number[];
   alpha: boolean;
@@ -97,7 +97,7 @@ export type ApiMapRequirement = {
 /** A declaration named in a Lean reference. `fullName` is present when it
  *  was found in the cited file, and is what doc-gen4 anchors on; notations
  *  and instance types (`kind` "notation" / "instance") are never resolved. */
-export type ApiMapDeclaration = {
+export type AtlasDeclaration = {
   text: string;
   fullName?: string;
   kind?: string;
@@ -107,74 +107,74 @@ export type ApiMapDeclaration = {
 };
 
 /** One entry of `## Lean References`, cited in the content as `[index]`. */
-export type ApiMapLeanReference = {
+export type AtlasLeanReference = {
   index: number;
   file: string;
   exists: boolean;
-  declarations: ApiMapDeclaration[];
+  declarations: AtlasDeclaration[];
 };
 
 /** One entry of `## References`, cited in the content as `{index}`.
- *  `apiMap` is the directory of the API map it points at, when it is one. */
-export type ApiMapReference = {
+ *  `atlas` is the directory of the Atlas article it points at, when it is one. */
+export type AtlasReference = {
   index: number;
   text: string;
-  apiMap: string | null;
+  atlas: string | null;
 };
 
 /** One `### ` subsection of a content section, verbatim markdown. */
-export type ApiMapSubsection = {
+export type AtlasSubsection = {
   title: string;
   body: string;
 };
 
 /** A `## Content` or `## Content (Alpha)` section: the text before its first
  *  subsection, then the subsections. */
-export type ApiMapContentSection = {
+export type AtlasContentSection = {
   heading: string;
   alpha: boolean;
   intro: string;
-  subsections: ApiMapSubsection[];
+  subsections: AtlasSubsection[];
 };
 
-export type ApiMapNode = {
+export type AtlasNode = {
   /** The API's directory, which is also its id on the page. */
   path: string;
-  /** The API-map.md itself. */
+  /** The Atlas.md itself. */
   file: string;
   title: string;
   /** Whether the abstract is `## Abstract (Alpha)`. */
   alpha: boolean;
   abstract: string;
   abstractHeading: string;
-  content: ApiMapContentSection[];
-  leanReferences: ApiMapLeanReference[];
-  references: ApiMapReference[];
-  requirements: ApiMapRequirement[];
-  parents: ApiMapParent[];
+  content: AtlasContentSection[];
+  leanReferences: AtlasLeanReference[];
+  references: AtlasReference[];
+  requirements: AtlasRequirement[];
+  parents: AtlasParent[];
   url: string;
 };
 
-/** A directory of the libraries holding Lean files - a place a new API map
+/** A directory of the libraries holding Lean files - a place a new Atlas article
  *  could go. */
-export type ApiMapDirectory = {
+export type AtlasDirectory = {
   path: string;
   leanFiles: number;
-  hasApiMap: boolean;
+  hasAtlas: boolean;
 };
 
-export type ApiMap = {
+export type Atlas = {
   repo: string;
   branch: string;
   /** The Physlib commit the maps were read at. */
   commit: string;
   generatedAt: string;
-  nodes: ApiMapNode[];
-  directories: ApiMapDirectory[];
+  nodes: AtlasNode[];
+  directories: AtlasDirectory[];
 };
 
-export async function getApiMap(): Promise<ApiMap> {
-  return loadJson<ApiMap>(path.join(dataDir, "APIMap.json"));
+export async function getAtlas(): Promise<Atlas> {
+  return loadJson<Atlas>(path.join(dataDir, "Atlas.json"));
 }
 
 // ─── References ─────────────────────────────────────────────────────────────

@@ -20,7 +20,7 @@ page whose sections are tabs/views that swap without navigating.
 
 For that case (or any page that wants real sidebar *navigation* rather than a
 same-page outline), give the route its own sidebar in `ConditionalSidebar`
-instead, following the `/api-tracker` and `/references` pattern:
+instead, following the `/atlas` and `/references` pattern:
 - A small `src/app/api/<name>/route.ts` re-serving `data/<Name>.json`, because
   the sidebar mounts outside the page's own tree (it's a sibling of `<main>`
   in the root layout) and can't receive server-fetched props - it fetches its
@@ -28,7 +28,7 @@ instead, following the `/api-tracker` and `/references` pattern:
 - A `src/lib/<name>-hash.ts` (`decodeXHash` / `selectXGroup`) so the sidebar
   and the page content, which don't share a React parent, coordinate through
   `history.pushState` + a manually-dispatched `hashchange` event instead - see
-  `references-hash.ts` / `api-map-hash.ts`.
+  `references-hash.ts` / `atlas-hash.ts`.
 - The page's client component listens for `hashchange` too, and on a match:
   switches to the right view/tab, force-opens that section even if the user
   had collapsed it, clears anything (like a search filter) that could hide

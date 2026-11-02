@@ -4,9 +4,9 @@ import { createContext, useContext, useRef, useState } from "react";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import type { ApiMapDeclaration, ApiMapLeanReference, ApiMapNode, ApiMapReference } from "@/lib/yaml";
+import type { AtlasDeclaration, AtlasLeanReference, AtlasNode, AtlasReference } from "@/lib/yaml";
 import {
-  apiMapHref,
+  atlasHref,
   backlinkLabel,
   claimCounts,
   docsUrl,
@@ -15,23 +15,23 @@ import {
   parseCiteHref,
   referenceId,
   sourceUrl,
-} from "@/lib/api-map-article";
-import { selectApiMapEntry } from "@/lib/api-map-hash";
-import { API_STATUS_DOT, apiStatusKind } from "@/lib/api-map-status";
+} from "@/lib/atlas-article";
+import { selectAtlasEntry } from "@/lib/atlas-hash";
+import { ATLAS_STATUS_DOT, atlasStatusKind } from "@/lib/atlas-status";
 
 /**
- * The pieces an API-map article is written in: prose whose citations render
+ * The pieces an Atlas article is written in: prose whose citations render
  * as superscripts that preview their reference on hover, links to Lean
- * declarations, links to other API maps (previewing the map on hover, or
+ * declarations, links to other Atlas articles (previewing the map on hover, or
  * marked as not written yet), and the reference lists' entries.
  */
 
 export type ArticleContextValue = {
   repo: string;
   branch: string;
-  leanReferences: ApiMapLeanReference[];
-  references: ApiMapReference[];
-  byPath: Map<string, ApiMapNode>;
+  leanReferences: AtlasLeanReference[];
+  references: AtlasReference[];
+  byPath: Map<string, AtlasNode>;
 };
 
 export const ArticleContext = createContext<ArticleContextValue | null>(null);
@@ -52,10 +52,10 @@ export function scrollToArticleId(id: string) {
   const el = document.getElementById(id);
   if (!el) return;
   el.scrollIntoView({ behavior: "smooth", block: "center" });
-  el.classList.remove("apimap-flash");
+  el.classList.remove("atlas-flash");
   // Restart the animation even when the same target is hit twice.
   void el.offsetWidth;
-  el.classList.add("apimap-flash");
+  el.classList.add("atlas-flash");
 }
 
 // ─── Hover cards ────────────────────────────────────────────────────────────
@@ -121,16 +121,16 @@ export function HoverCard({
 
 export function ExternalLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer" className="apimap-external">
+    <a href={href} target="_blank" rel="noopener noreferrer" className="atlas-external">
       {children}
     </a>
   );
 }
 
-/** A link to another API map. When no map exists at that path yet it is
+/** A link to another Atlas article. When no map exists at that path yet it is
  *  drawn dashed, like the flowchart's boxes for such maps, and leads to the
  *  create page instead. */
-export function ApiLink({
+export function AtlasLink({
   path,
   children,
   fallbackTitle,
@@ -145,29 +145,29 @@ export function ApiLink({
     const title = fallbackTitle ?? path.split("/").pop() ?? path;
     return (
       <Link
-        href={`/api-tracker/new?path=${encodeURIComponent(path)}&title=${encodeURIComponent(title)}`}
-        className="apimap-missing"
-        title={`${title} - no API map yet. Click to start one.`}
+        href={`/atlas/new?path=${encodeURIComponent(path)}&title=${encodeURIComponent(title)}`}
+        className="atlas-missing"
+        title={`${title} - no Atlas article yet. Click to start one.`}
       >
         {children ?? title}
       </Link>
     );
   }
-  const kind = apiStatusKind(target);
+  const kind = atlasStatusKind(target);
   const { done, total } = claimCounts(target);
   const excerpt = target.abstract.replace(/\s+/g, " ");
   return (
     <HoverCard
       trigger={
         <a
-          href={apiMapHref(path)}
+          href={atlasHref(path)}
           onClick={(e) => {
-            if (window.location.pathname !== "/api-tracker") return;
+            if (window.location.pathname !== "/atlas") return;
             e.preventDefault();
-            selectApiMapEntry(path);
+            selectAtlasEntry(path);
             window.scrollTo({ top: 0 });
           }}
-          className="apimap-link"
+          className="atlas-link"
         >
           {children ?? target.title}
         </a>
@@ -175,7 +175,7 @@ export function ApiLink({
     >
       <span className="block text-sm font-semibold">{target.title}</span>
       <span className="mt-0.5 flex items-center gap-1.5 text-[11px] text-muted">
-        <span className={`size-1.5 rounded-full ${API_STATUS_DOT[kind]}`} />
+        <span className={`size-1.5 rounded-full ${ATLAS_STATUS_DOT[kind]}`} />
         {total > 0 ? `${done} of ${total} claims formalized` : "No claims yet"}
       </span>
       <span className="mt-2 block text-foreground/85">
@@ -192,14 +192,14 @@ const KIND_LABEL: Record<string, string> = {
 
 /** A declaration named in a Lean reference: links to its doc-gen4 entry,
  *  previewing its signature and docstring on hover. */
-export function DeclarationLink({ file, decl }: { file: string; decl: ApiMapDeclaration }) {
+export function DeclarationLink({ file, decl }: { file: string; decl: AtlasDeclaration }) {
   const { repo, branch } = useArticle();
   const resolved = !!decl.fullName;
   return (
     <HoverCard
       width={420}
       trigger={
-        <a href={docsUrl(file, decl.fullName)} className="apimap-decl">
+        <a href={docsUrl(file, decl.fullName)} className="atlas-decl">
           {decl.text}
         </a>
       }
@@ -226,7 +226,7 @@ export function DeclarationLink({ file, decl }: { file: string; decl: ApiMapDecl
         </span>
       )}
       <span className="mt-2 flex gap-3 text-[12px]">
-        <a href={docsUrl(file, decl.fullName)} className="apimap-link">
+        <a href={docsUrl(file, decl.fullName)} className="atlas-link">
           Documentation
         </a>
         <ExternalLink href={sourceUrl(repo, branch, file, decl.line)}>Source</ExternalLink>
@@ -237,11 +237,11 @@ export function DeclarationLink({ file, decl }: { file: string; decl: ApiMapDecl
 
 /** A Lean file in a reference: its source on GitHub, marked when the file
  *  the map names doesn't exist. */
-export function LeanFileLink({ reference }: { reference: ApiMapLeanReference }) {
+export function LeanFileLink({ reference }: { reference: AtlasLeanReference }) {
   const { repo, branch } = useArticle();
   if (!reference.exists) {
     return (
-      <span className="apimap-missing font-mono text-[0.85em]" title="This file does not exist in Physlib">
+      <span className="atlas-missing font-mono text-[0.85em]" title="This file does not exist in Physlib">
         {reference.file}
       </span>
     );
@@ -251,7 +251,7 @@ export function LeanFileLink({ reference }: { reference: ApiMapLeanReference }) 
       href={sourceUrl(repo, branch, reference.file)}
       target="_blank"
       rel="noopener noreferrer"
-      className="apimap-external apimap-file"
+      className="atlas-external atlas-file"
     >
       {reference.file}
     </a>
@@ -263,16 +263,16 @@ export function LeanFileLink({ reference }: { reference: ApiMapLeanReference }) 
 const URL_RE = /https?:\/\/[^\s<>]+[^\s<>.,;:)]/g;
 
 /** One literature reference: italics from its markdown, bare URLs linked,
- *  and a reference to another API map turned into a link to it. */
-export function ReferenceText({ reference }: { reference: ApiMapReference }) {
-  if (reference.apiMap) {
-    const name = reference.text.split("—")[0].replace(/\s*API map\s*$/i, "").trim();
+ *  and a reference to another Atlas article turned into a link to it. */
+export function ReferenceText({ reference }: { reference: AtlasReference }) {
+  if (reference.atlas) {
+    const name = reference.text.split("—")[0].replace(/\s*Atlas article\s*$/i, "").trim();
     return (
       <>
-        <ApiLink path={reference.apiMap} fallbackTitle={name}>
+        <AtlasLink path={reference.atlas} fallbackTitle={name}>
           {name}
-        </ApiLink>{" "}
-        <span className="text-muted">(API map)</span>
+        </AtlasLink>{" "}
+        <span className="text-muted">(Atlas article)</span>
       </>
     );
   }
@@ -302,7 +302,7 @@ function Citation({ href }: { href: string }) {
       <HoverCard
         width={300}
         trigger={
-          <button type="button" className="apimap-todo">
+          <button type="button" className="atlas-todo">
             TODO
           </button>
         }
@@ -313,7 +313,7 @@ function Citation({ href }: { href: string }) {
           not yet proved or defined in Lean. Contributions are welcome.
         </span>
         <span className="mt-2 block text-[12px]">
-          <Link href="/get-involved" className="apimap-link">
+          <Link href="/get-involved" className="atlas-link">
             How to contribute
           </Link>
         </span>
@@ -330,7 +330,7 @@ function Citation({ href }: { href: string }) {
     <HoverCard
       width={cite.kind === "lean" ? 420 : 352}
       trigger={
-        <sup id={cite.id} className={`apimap-cite ${lean || lit ? "" : "apimap-cite-broken"}`}>
+        <sup id={cite.id} className={`atlas-cite ${lean || lit ? "" : "atlas-cite-broken"}`}>
           <a
             href={`#${target}`}
             onClick={(e) => {
@@ -352,7 +352,7 @@ function Citation({ href }: { href: string }) {
           <span className="mt-1.5 flex flex-col gap-1.5">
             {lean.declarations.map((d, i) => (
               <span key={i} className="block">
-                <a href={docsUrl(lean.file, d.fullName)} className="apimap-decl">
+                <a href={docsUrl(lean.file, d.fullName)} className="atlas-decl">
                   {d.text}
                 </a>
                 {d.doc && <span className="block text-[12px] text-muted line-clamp-2">{d.doc}</span>}
@@ -378,7 +378,7 @@ function Citation({ href }: { href: string }) {
 /** Article prose: markdown already passed through `linkCitations`. */
 export function ArticleProse({ markdown }: { markdown: string }) {
   return (
-    <div className="apimap-prose">
+    <div className="atlas-prose">
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
@@ -386,7 +386,7 @@ export function ArticleProse({ markdown }: { markdown: string }) {
             if (href?.startsWith("#cite-")) return <Citation href={href} />;
             if (href?.startsWith("/") || href?.startsWith("#"))
               return (
-                <a href={href} className="apimap-link">
+                <a href={href} className="atlas-link">
                   {children}
                 </a>
               );

@@ -20,7 +20,7 @@ type PromptDef = {
   template: (folder: string, source: string) => string;
 };
 
-// Appended by new-ideas/api-map when a source material path/URL is set -
+// Appended by new-ideas/atlas when a source material path/URL is set -
 // omitted entirely otherwise, rather than pointing the agent at nothing.
 function sourceSentence(source: string): string {
   return source
@@ -47,7 +47,7 @@ const PROMPTS: PromptDef[] = [
     summary:
       "Have the agent compare a folder against the standard textbook treatment of its topic and come back with a prioritized list of what's missing.",
     template: (folder, source) =>
-      `Research \`${folder}\` and its existing API-map.md (if any) against the standard textbook/reference treatment of this topic.${sourceSentence(source)} Identify definitions, theorems, or edge cases that are missing and would be worth formalizing next, and explain why each one matters. Don't write any Lean code — just produce a prioritized list of suggestions.`,
+      `Research \`${folder}\` and its existing Atlas.md (if any) against the standard textbook/reference treatment of this topic.${sourceSentence(source)} Identify definitions, theorems, or edge cases that are missing and would be worth formalizing next, and explain why each one matters. Don't write any Lean code — just produce a prioritized list of suggestions.`,
   },
   {
     id: "physlib-alpha",
@@ -69,14 +69,14 @@ const PROMPTS: PromptDef[] = [
       `Look at the proofs in \`${folder}\` and golf (shorten) any that are longer than necessary, without changing what they state. Preserve declaration names, types, and docstrings — only rewrite the proof term/tactic block. Run \`lake build\` afterwards to confirm nothing broke.`,
   },
   {
-    id: "api-map",
-    title: "APIMap",
+    id: "atlas",
+    title: "Atlas",
     category: "Docs",
     chipColor: "accent",
     summary:
-      "Create or refresh the API-map.md describing a folder's API, so the API tracker and dependency map stay accurate as the folder evolves.",
+      "Create or refresh the Atlas.md describing a folder's API, so the Atlas and dependency map stay accurate as the folder evolves.",
     template: (folder, source) =>
-      `Look at \`${folder}\` and either create a new \`API-map.md\` or update the existing one, following docs/API_MAP_GUIDE.md: explain the physics of the API in prose, close each claim with a numbered citation of the Lean declarations that formalize it (or [TODO] if it is not formalized yet), and list those declarations under Lean References and the literature under References. Check the result with \`lake exe api_map_lint\`.${sourceSentence(source)}`,
+      `Look at \`${folder}\` and either create a new \`Atlas.md\` or update the existing one, following docs/ATLAS_GUIDE.md: explain the physics of the API in prose, close each claim with a numbered citation of the Lean declarations that formalize it (or [TODO] if it is not formalized yet), and list those declarations under Lean References and the literature under References. Check the result with \`lake exe atlas_lint\`.${sourceSentence(source)}`,
   },
   {
     id: "todo",

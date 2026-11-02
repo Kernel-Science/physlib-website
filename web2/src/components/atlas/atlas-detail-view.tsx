@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import type { ApiMap, ApiMapNode } from "@/lib/yaml";
+import type { Atlas, AtlasNode } from "@/lib/yaml";
 import {
   buildArticle,
   claimCounts,
@@ -12,20 +12,20 @@ import {
   newSectionTarget,
   wholeArticleTarget,
   type EditTarget,
-} from "@/lib/api-map-article";
-import { buildFolderTree, flattenFolderTree } from "@/lib/api-map-folders";
-import { selectApiMapEntry } from "@/lib/api-map-hash";
-import { ArticleContext, type ArticleContextValue, scrollToArticleId } from "@/components/api-tracker/article-prose";
+} from "@/lib/atlas-article";
+import { buildFolderTree, flattenFolderTree } from "@/lib/atlas-folders";
+import { selectAtlasEntry } from "@/lib/atlas-hash";
+import { ArticleContext, type ArticleContextValue, scrollToArticleId } from "@/components/atlas/article-prose";
 import {
   ArticleReadView,
   ArticleToolbar,
   Breadcrumb,
   Callout,
-  MissingApiMapView,
+  MissingAtlasView,
   StatusPills,
-} from "@/components/api-tracker/article-view";
-import { ArticleEditor } from "@/components/api-tracker/article-editor";
-import { apiMapIssue, type IssueDraft } from "@/lib/api-map-issue";
+} from "@/components/atlas/article-view";
+import { ArticleEditor } from "@/components/atlas/article-editor";
+import { atlasIssue, type IssueDraft } from "@/lib/atlas-issue";
 
 function ChevronIcon({ direction }: { direction: "left" | "right" }) {
   return (
@@ -46,19 +46,19 @@ function ChevronIcon({ direction }: { direction: "left" | "right" }) {
   );
 }
 
-/** The issue a suggested change to one map files (see api-map-issue.ts). */
-function editIssue(node: ApiMapNode, target: EditTarget, commit: string): IssueDraft {
+/** The issue a suggested change to one map files (see atlas-issue.ts). */
+function editIssue(node: AtlasNode, target: EditTarget, commit: string): IssueDraft {
   const { done, total } = claimCounts(node);
   const isNew = target.shape === "new";
-  return apiMapIssue({
+  return atlasIssue({
     title: isNew
-      ? `API-map: new section for ${node.title}`
+      ? `Atlas: new section for ${node.title}`
       : target.shape === "article"
-        ? `API-map: edit to ${node.title}`
-        : `API-map: edit to ${node.title} (${target.label})`,
+        ? `Atlas: edit to ${node.title}`
+        : `Atlas: edit to ${node.title} (${target.label})`,
     heading: isNew ? "Suggested new section" : "Suggested edit",
     facts: [
-      `**API map:** [${node.title}](${node.url}) (\`${node.file}\`)`,
+      `**Atlas article:** [${node.title}](${node.url}) (\`${node.file}\`)`,
       isNew ? `**Adds:** ${target.location}` : `**Replaces:** ${target.location}`,
       `**Currently:** ${done} of ${total} claims formalized.`,
     ],
@@ -86,7 +86,7 @@ function NewSectionPosition({
   location,
   onChange,
 }: {
-  node: ApiMapNode;
+  node: AtlasNode;
   location: string;
   onChange: (after: string | null) => void;
 }) {
@@ -115,8 +115,8 @@ function NewSectionPosition({
   );
 }
 
-export function ApiDetailView({ apiMap }: { apiMap: ApiMap }) {
-  const { nodes, repo, branch, commit, generatedAt } = apiMap;
+export function AtlasDetailView({ atlas }: { atlas: Atlas }) {
+  const { nodes, repo, branch, commit, generatedAt } = atlas;
 
   // Menu order: Physlib's folders, as in the sidebar.
   const entries = useMemo(() => flattenFolderTree(buildFolderTree(nodes)), [nodes]);
@@ -125,7 +125,7 @@ export function ApiDetailView({ apiMap }: { apiMap: ApiMap }) {
   /** Who cites this map - the "Used by" of the infobox and "What links
    *  here" of a map that doesn't exist yet. */
   const dependentsOf = useMemo(() => {
-    const map = new Map<string, ApiMapNode[]>();
+    const map = new Map<string, AtlasNode[]>();
     for (const node of nodes) {
       for (const parent of node.parents) {
         const list = map.get(parent.path) ?? [];
@@ -159,7 +159,7 @@ export function ApiDetailView({ apiMap }: { apiMap: ApiMap }) {
   // Nothing selected yet (or a hash naming something that isn't in the map):
   // fall back to the first entry so the page is never blank.
   const index = found >= 0 ? found : 0;
-  const current: { path: string; title: string; node: ApiMapNode | null } | undefined = missing
+  const current: { path: string; title: string; node: AtlasNode | null } | undefined = missing
     ? { path: activePath, title: citedName, node: null }
     : entries[index] && { path: entries[index].path, title: entries[index].title, node: entries[index] };
   const node = current?.node ?? null;
@@ -191,7 +191,7 @@ export function ApiDetailView({ apiMap }: { apiMap: ApiMap }) {
   const go = useCallback(
     (delta: number) => {
       const next = entries[index + delta];
-      if (next) selectApiMapEntry(next.path);
+      if (next) selectAtlasEntry(next.path);
     },
     [entries, index],
   );
@@ -239,13 +239,13 @@ export function ApiDetailView({ apiMap }: { apiMap: ApiMap }) {
 
   return (
     <ArticleContext.Provider value={context}>
-      <div className="apimap">
+      <div className="atlas">
         <header className="mb-6">
           <div className="mb-3 flex items-center justify-between gap-4">
             <Breadcrumb path={current.path} repo={repo} branch={branch} />
             {!edit && !missing && (
               <div className="flex shrink-0 items-center gap-1.5 text-xs text-muted">
-                <button type="button" onClick={() => go(-1)} disabled={index === 0} aria-label="Previous API map" className={navButton}>
+                <button type="button" onClick={() => go(-1)} disabled={index === 0} aria-label="Previous Atlas article" className={navButton}>
                   <ChevronIcon direction="left" />
                 </button>
                 <span className="tabular-nums">
@@ -255,7 +255,7 @@ export function ApiDetailView({ apiMap }: { apiMap: ApiMap }) {
                   type="button"
                   onClick={() => go(1)}
                   disabled={index === entries.length - 1}
-                  aria-label="Next API map"
+                  aria-label="Next Atlas article"
                   className={navButton}
                 >
                   <ChevronIcon direction="right" />
@@ -298,8 +298,8 @@ export function ApiDetailView({ apiMap }: { apiMap: ApiMap }) {
               <Callout>
                 {edit.target.shape === "new" ? (
                   <>
-                    You are proposing a new section for this API map. Give it a{" "}
-                    <code className="apimap-code">###</code> title and write it as
+                    You are proposing a new section for this Atlas article. Give it a{" "}
+                    <code className="atlas-code">###</code> title and write it as
                     the other sections are; it is added to the Alpha content,
                     since it has not been reviewed yet.
                   </>
@@ -312,12 +312,12 @@ export function ApiDetailView({ apiMap }: { apiMap: ApiMap }) {
                     .
                   </>
                 )}{" "}
-                API maps are files in the Physlib repository, so the suggestion is
+                Atlas articles are files in the Physlib repository, so the suggestion is
                 filed as a GitHub issue for a maintainer to review. Cite Lean
-                declarations with <code className="apimap-code">[n]</code>,
-                literature with <code className="apimap-code">{"{n}"}</code>,
+                declarations with <code className="atlas-code">[n]</code>,
+                literature with <code className="atlas-code">{"{n}"}</code>,
                 and mark claims not yet formalized with{" "}
-                <code className="apimap-code">[TODO]</code>; the abstract has
+                <code className="atlas-code">[TODO]</code>; the abstract has
                 no citations.
               </Callout>
             }
@@ -346,9 +346,9 @@ export function ApiDetailView({ apiMap }: { apiMap: ApiMap }) {
                   href={editFileUrl(repo, branch, node.file)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="apimap-external"
+                  className="atlas-external"
                 >
-                  Edit API-map.md on GitHub
+                  Edit Atlas.md on GitHub
                 </a>{" "}
                 to open a pull request directly.
               </>
@@ -366,7 +366,7 @@ export function ApiDetailView({ apiMap }: { apiMap: ApiMap }) {
             onAddReference={() => startEdit(wholeArticleTarget(node), undefined, true)}
           />
         ) : (
-          <MissingApiMapView
+          <MissingAtlasView
             path={current.path}
             title={current.title}
             citedBy={dependentsOf.get(current.path) ?? []}

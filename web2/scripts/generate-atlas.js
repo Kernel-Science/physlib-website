@@ -1,36 +1,38 @@
 #!/usr/bin/env node
 /*
- * Generate the API map data for the API Tracker page.
+ * Generate the Atlas article data for the Physlib Atlas page.
  *
- * Physlib documents each API in an `API-map.md` file next to it - a prose
- * article with a fixed shape (see docs/API_MAP_GUIDE.md in Physlib):
+ * Physlib documents each API in an `Atlas.md` file next to it - a prose
+ * article with a fixed shape (see docs/ATLAS_GUIDE.md in Physlib):
  *
  *   # Title
  *   ## Abstract            (or ## Abstract (Alpha)) - one paragraph
  *   ## Content             (and/or ## Content (Alpha)) - prose, with ### subsections
  *   ## Lean References     - `n. File.lean — `decl`, `decl``, cited as [n]
- *   ## References          - literature and other API maps, cited as {n}
+ *   ## References          - literature and other Atlas articles, cited as {n}
  *
  * Claims in the content end in runs of `[n]` citations, or `[TODO]` when not
  * yet formalized. This script walks a clone of leanprover-community/physlib
  * for every such file, splits it into those sections, resolves each cited
  * declaration to its fully-qualified name (so the page can link straight to
- * its doc-gen4 entry and source line), and writes data/APIMap.json.
+ * its doc-gen4 entry and source line), and writes data/Atlas.json.
  *
  * The section texts are kept verbatim, not pre-rendered: the page renders
  * them itself, and its "edit" view loads exactly that text for the reader to
  * change.
  *
  * Why not fetch this at request time: there is no API that lists "every
- * API-map.md in the repo" apart from walking the git tree, and doing that from
+ * Atlas.md in the repo" apart from walking the git tree, and doing that from
  * the browser on every page load would mean dozens of raw-content fetches
  * against GitHub's anonymous rate limit. A local clone makes it one `ls-tree`
  * plus one `show` per file, and reuses the same .cache/physlib.git clone the
  * monthly-updates generator already keeps around.
  *
  * Usage:
- *   node scripts/generate-api-map.js
- *   node scripts/generate-api-map.js --repo <path>   # reuse an existing clone
+ *   node scripts/generate-atlas.js
+ *   node scripts/generate-atlas.js --repo <path>   # reuse an existing clone
+ *   node scripts/generate-atlas.js --repo <path> --ref HEAD --branch <name>
+ *     # preview a committed revision without fetching or changing the clone
  */
 
 const fs = require("node:fs");
@@ -42,8 +44,10 @@ const OWNER = "leanprover-community";
 const REPO = "physlib";
 const CLONE_URL = `https://github.com/${OWNER}/${REPO}.git`;
 const CACHE_REPO = path.join(__dirname, "..", ".cache", "physlib.git");
-const OUT_PATH = path.join(__dirname, "..", "data", "APIMap.json");
-const FILE_NAME = "API-map.md";
+const OUT_PATH = path.join(__dirname, "..", "data", "Atlas.json");
+const FILE_NAME = "Atlas.md";
+// Accept the old filename until Physlib and the website have both migrated.
+const LEGACY_FILE_NAME = "API-map.md";
 
 const args = process.argv.slice(2);
 function argValue(name) {
@@ -51,6 +55,9 @@ function argValue(name) {
   return i >= 0 && i + 1 < args.length ? args[i + 1] : null;
 }
 const repoArg = argValue("--repo") || process.env.PHYSLIB_REPO || "";
+const refArg = argValue("--ref");
+const branchArg = argValue("--branch");
+const outPath = argValue("--out") ? path.resolve(argValue("--out")) : OUT_PATH;
 
 // ─── Local git (same approach as generate-monthly-updates.js) ─────────────
 let REPO_DIR = "";
@@ -77,6 +84,7 @@ function ensureRepo() {
       execFileSync("git", ["clone", "--bare", CLONE_URL, REPO_DIR], { stdio: "inherit" });
     }
   }
+  if (refArg) return;
   try {
     git(["fetch", "--quiet", "origin", "+refs/heads/*:refs/remotes/origin/*", "--tags"]);
   } catch {
@@ -89,6 +97,10 @@ function ensureRepo() {
 }
 
 function resolveBranchRef() {
+  if (refArg) {
+    git(["rev-parse", "--verify", `${refArg}^{commit}`]);
+    return { rev: refArg, name: branchArg || refArg };
+  }
   const candidates = [];
   try {
     const remotes = git(["remote", "-v"])
@@ -121,8 +133,8 @@ function resolveBranchRef() {
   throw new Error(`could not resolve ${OWNER}/${REPO}'s default branch in ${REPO_DIR}`);
 }
 
-// ─── API-map.md parsing ─────────────────────────────────────────────────────
-// Mirrors Physlib's own reader (scripts/alpha/website/APIMapIndex.lean): line
+// ─── Atlas.md parsing ─────────────────────────────────────────────────────
+// Mirrors Physlib's own reader (scripts/alpha/website/AtlasIndex.lean): line
 // based and graceful - anything that doesn't fit the expected shape is left
 // out rather than failing the whole run.
 
@@ -194,12 +206,12 @@ function parseLeanReference({ index, text }) {
   return { index, file, declarations: backticked(rest) };
 }
 
-const API_MAP_PATH_RE = /((?:Physlib|PhyslibAlpha|QuantumInfo)\/[^\s,;)]*?)\/API-map\.md/;
+const ATLAS_PATH_RE = /((?:Physlib|PhyslibAlpha|QuantumInfo)\/[^\s,;)]*?)\/(?:Atlas|API-map)\.md/;
 
-/** A literature entry, noting the API map it points at when it is one. */
+/** A literature entry, noting the Atlas article it points at when it is one. */
 function parseLiteratureReference({ index, text }) {
-  const m = text.match(API_MAP_PATH_RE);
-  return { index, text, apiMap: m ? m[1] : null };
+  const m = text.match(ATLAS_PATH_RE);
+  return { index, text, atlas: m ? m[1] : null };
 }
 
 /** The claims of the content, exactly as Physlib's index counts them: each
@@ -292,11 +304,11 @@ function resolveDeclaration(text, decls) {
   };
 }
 
-/** Reads one `API-map.md`. */
-function parseApiMap(raw, file, rev, branchName, existingFiles) {
+/** Reads one `Atlas.md`. */
+function parseAtlas(raw, file, rev, branchName, existingFiles) {
   const lines = raw.replace(/\r\n/g, "\n").split("\n");
   const { title, sections } = splitSections(lines);
-  const dir = file.slice(0, file.length - FILE_NAME.length - 1);
+  const dir = file.slice(0, file.lastIndexOf("/"));
 
   const abstractSection = sections.find((s) => /^Abstract( \(Alpha\))?$/.test(s.heading));
   const contentSections = sections.filter((s) => /^Content( \(Alpha\))?$/.test(s.heading));
@@ -327,13 +339,13 @@ function parseApiMap(raw, file, rev, branchName, existingFiles) {
     paragraphsOf(s.body.join("\n")).flatMap((p) => claimsOf(p, s.heading.endsWith("(Alpha)"))),
   );
 
-  // Another API map cited in the references is what this one builds on - the
+  // Another Atlas article cited in the references is what this one builds on - the
   // edges of the dependency map.
   const parents = [];
   for (const ref of references) {
-    if (!ref.apiMap || ref.apiMap === dir || parents.some((p) => p.path === ref.apiMap)) continue;
-    const name = ref.text.split("—")[0].replace(/\s*API map\s*$/i, "").trim();
-    parents.push({ name: name || ref.apiMap.split("/").pop(), path: ref.apiMap });
+    if (!ref.atlas || ref.atlas === dir || parents.some((p) => p.path === ref.atlas)) continue;
+    const name = ref.text.split("—")[0].replace(/\s*(?:Atlas(?: article)?|API map)\s*$/i, "").trim();
+    parents.push({ name: name || ref.atlas.split("/").pop(), path: ref.atlas });
   }
 
   return {
@@ -357,8 +369,8 @@ const LIBRARY_ROOTS = ["Physlib", "PhyslibAlpha", "QuantumInfo"];
 
 /**
  * Every directory of the three libraries that holds Lean files (directly or
- * below it), with how many and whether it already has an API map - what the
- * "create an API map" page offers as places a new map could go.
+ * below it), with how many and whether it already has an Atlas article - what the
+ * "create an Atlas article" page offers as places a new map could go.
  */
 function leanDirectories(allFiles) {
   const counts = new Map();
@@ -370,31 +382,41 @@ function leanDirectories(allFiles) {
       counts.set(dir, (counts.get(dir) ?? 0) + 1);
     }
   }
-  const mapped = new Set(
-    allFiles.filter((f) => f.endsWith(`/${FILE_NAME}`)).map((f) => f.slice(0, -FILE_NAME.length - 1)),
-  );
+  const mapped = new Set(atlasFiles(allFiles).map((f) => f.slice(0, f.lastIndexOf("/"))));
   return [...counts]
-    .map(([path, leanFiles]) => ({ path, leanFiles, hasApiMap: mapped.has(path) }))
+    .map(([path, leanFiles]) => ({ path, leanFiles, hasAtlas: mapped.has(path) }))
     .sort((a, b) => a.path.localeCompare(b.path));
 }
 
 // ─── Main ───────────────────────────────────────────────────────────────────
-(function main() {
+/** One article per directory, preferring Atlas.md during the transition. */
+function atlasFiles(allFiles) {
+  const files = new Map();
+  for (const file of allFiles) {
+    if (!LIBRARY_ROOTS.includes(file.split("/")[0])) continue;
+    const name = file.slice(file.lastIndexOf("/") + 1);
+    if (name !== FILE_NAME && name !== LEGACY_FILE_NAME) continue;
+    const dir = file.slice(0, file.lastIndexOf("/"));
+    if (name === FILE_NAME || !files.has(dir)) files.set(dir, file);
+  }
+  return [...files.values()].sort();
+}
+
+function main() {
   ensureRepo();
   const branch = resolveBranchRef();
   console.log(`• reading ${FILE_NAME} files from ${OWNER}/${REPO}@${branch.name}`);
 
   const allFiles = git(["ls-tree", "-r", branch.rev, "--name-only"]).split("\n").filter(Boolean);
   const existingFiles = new Set(allFiles);
-  const files = allFiles.filter(
-    (f) => f.endsWith(`/${FILE_NAME}`) || f === FILE_NAME,
-  );
+  const files = atlasFiles(allFiles);
+  if (!files.length) throw new Error(`no Atlas articles found at ${branch.rev}`);
 
   const nodes = [];
   for (const file of files) {
     const raw = git(["show", `${branch.rev}:${file}`]);
     try {
-      nodes.push(parseApiMap(raw, file, branch.rev, branch.name, existingFiles));
+      nodes.push(parseAtlas(raw, file, branch.rev, branch.name, existingFiles));
     } catch (err) {
       console.warn(`  ⚠ skipping ${file}: ${err.message}`);
     }
@@ -406,18 +428,21 @@ function leanDirectories(allFiles) {
     repo: `${OWNER}/${REPO}`,
     branch: branch.name,
     // The commit the maps were read at - the base an edit suggested on the
-    // site applies to (see src/lib/api-map-issue.ts).
+    // site applies to (see src/lib/atlas-issue.ts).
     commit: git(["rev-parse", branch.rev]).trim(),
     generatedAt: new Date().toISOString(),
     nodes,
     directories: leanDirectories(allFiles),
   };
 
-  fs.mkdirSync(path.dirname(OUT_PATH), { recursive: true });
-  fs.writeFileSync(OUT_PATH, JSON.stringify(out, null, 2) + "\n", "utf8");
+  fs.mkdirSync(path.dirname(outPath), { recursive: true });
+  fs.writeFileSync(outPath, JSON.stringify(out, null, 2) + "\n", "utf8");
   const decls = nodes.flatMap((n) => n.leanReferences.flatMap((r) => r.declarations));
   const resolved = decls.filter((d) => d.fullName).length;
   console.log(
-    `• wrote ${nodes.length} API maps (${resolved}/${decls.length} cited declarations resolved) → ${path.relative(process.cwd(), OUT_PATH)}`,
+    `• wrote ${nodes.length} Atlas articles (${resolved}/${decls.length} cited declarations resolved) → ${path.relative(process.cwd(), outPath)}`,
   );
-})();
+}
+
+if (require.main === module) main();
+module.exports = { atlasFiles, parseLiteratureReference, leanDirectories };

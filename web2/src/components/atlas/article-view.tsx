@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import type { ApiMapLeanReference, ApiMapNode, ApiMapReference } from "@/lib/yaml";
+import type { AtlasLeanReference, AtlasNode, AtlasReference } from "@/lib/yaml";
 import {
   alphaParts,
   backlinkLabel,
@@ -19,21 +19,21 @@ import {
   type Article,
   type CitationOccurrences,
   type EditTarget,
-} from "@/lib/api-map-article";
-import { API_STATUS_DOT, apiStatusKind } from "@/lib/api-map-status";
+} from "@/lib/atlas-article";
+import { ATLAS_STATUS_DOT, atlasStatusKind } from "@/lib/atlas-status";
 import { TopRightArrowIcon } from "@/components/monthly-updates/icons";
 import {
-  ApiLink,
+  AtlasLink,
   DeclarationLink,
   ExternalLink,
   LeanFileLink,
   ReferenceText,
   ArticleProse,
   scrollToArticleId,
-} from "@/components/api-tracker/article-prose";
+} from "@/components/atlas/article-prose";
 
 /**
- * The read view of one API map: an article in the order the file is
+ * The read view of one Atlas article: an article in the order the file is
  * written - abstract, sections, Lean declarations, references - with a
  * summary card beside the abstract, an "On this page" list, a suggest-edit
  * control on every section, and footnote-style reference lists that link
@@ -60,7 +60,7 @@ export function ArticleToolbar({
   branch,
   onEdit,
 }: {
-  node: ApiMapNode;
+  node: AtlasNode;
   repo: string;
   branch: string;
   onEdit: () => void;
@@ -132,7 +132,7 @@ function alphaPartsPhrase(parts: AlphaParts): string {
     .join(" and ");
 }
 
-export function StatusPills({ node }: { node: ApiMapNode }) {
+export function StatusPills({ node }: { node: AtlasNode }) {
   const { done, total } = claimCounts(node);
   const parts = alphaParts(node);
   const phrase = alphaPartsPhrase(parts);
@@ -181,11 +181,11 @@ export function SectionHeading({
 }) {
   const H = level === 2 ? "h2" : "h3";
   return (
-    <H id={id} className={`group ${level === 2 ? "apimap-h2" : "apimap-h3"}`}>
+    <H id={id} className={`group ${level === 2 ? "atlas-h2" : "atlas-h3"}`}>
       <span>{children}</span>
       {alpha && <AlphaTag />}
       {onEdit && (
-        <button type="button" onClick={onEdit} className="apimap-edit" aria-label={`Suggest an edit to ${children}`}>
+        <button type="button" onClick={onEdit} className="atlas-edit" aria-label={`Suggest an edit to ${children}`}>
           <PencilIcon />
           Edit
         </button>
@@ -220,7 +220,7 @@ function Backlinks({ ids }: { ids: string[] | undefined }) {
         <button
           key={id}
           type="button"
-          className="apimap-backlink"
+          className="atlas-backlink"
           onClick={() => scrollToArticleId(id)}
           aria-label={`Back to citation ${i + 1}`}
         >
@@ -235,14 +235,14 @@ export function LeanReferenceList({
   references,
   occurrences,
 }: {
-  references: ApiMapLeanReference[];
+  references: AtlasLeanReference[];
   occurrences: CitationOccurrences;
 }) {
   return (
-    <ol className="apimap-reflist">
+    <ol className="atlas-reflist">
       {references.map((ref) => (
         <li key={ref.index} id={referenceId("lean", ref.index)}>
-          <span className="apimap-refnum">{ref.index}</span>
+          <span className="atlas-refnum">{ref.index}</span>
           <span className="min-w-0">
             <LeanFileLink reference={ref} />
             <Backlinks ids={occurrences.get(citeKey("lean", ref.index))} />
@@ -264,14 +264,14 @@ export function LiteratureList({
   references,
   occurrences,
 }: {
-  references: ApiMapReference[];
+  references: AtlasReference[];
   occurrences: CitationOccurrences;
 }) {
   return (
-    <ol className="apimap-reflist">
+    <ol className="atlas-reflist">
       {references.map((ref) => (
         <li key={ref.index} id={referenceId("lit", ref.index)}>
-          <span className="apimap-refnum">{backlinkLabel(ref.index - 1)}</span>
+          <span className="atlas-refnum">{backlinkLabel(ref.index - 1)}</span>
           <span className="min-w-0">
             <ReferenceText reference={ref} />
             <Backlinks ids={occurrences.get(citeKey("lit", ref.index))} />
@@ -303,13 +303,13 @@ export function ArticleBody({
   return (
     <>
       {linked.lead && (
-        <div className="apimap-lead group">
+        <div className="atlas-lead group">
           {(onEditLead || (tagAlpha && leadAlpha)) && (
             <div className="flex items-center gap-2">
               <span className="label-mono text-muted/80">Abstract</span>
               {tagAlpha && leadAlpha && <AlphaTag />}
               {onEditLead && (
-                <button type="button" onClick={onEditLead} className="apimap-edit" aria-label="Suggest an edit to the abstract">
+                <button type="button" onClick={onEditLead} className="atlas-edit" aria-label="Suggest an edit to the abstract">
                   <PencilIcon />
                   Edit
                 </button>
@@ -365,18 +365,18 @@ function SummaryCard({
   repo,
   branch,
 }: {
-  node: ApiMapNode;
-  dependents: ApiMapNode[];
+  node: AtlasNode;
+  dependents: AtlasNode[];
   repo: string;
   branch: string;
 }) {
-  const kind = apiStatusKind(node);
+  const kind = atlasStatusKind(node);
   const { done, total } = claimCounts(node);
   const parts = alphaParts(node);
   const files = new Set(node.leanReferences.map((r) => r.file)).size;
   const decls = node.leanReferences.reduce((n, r) => n + r.declarations.length, 0);
   return (
-    <aside className="apimap-summary" aria-label="Summary">
+    <aside className="atlas-summary" aria-label="Summary">
       <dl className="text-[13px] leading-snug">
         <SummaryRow label="Progress">
           {total > 0 ? (
@@ -386,7 +386,7 @@ function SummaryCard({
               </span>
               <span className="mt-1.5 block h-1.5 w-full overflow-hidden rounded-full bg-border">
                 <span
-                  className={`block h-full rounded-full ${API_STATUS_DOT[kind]}`}
+                  className={`block h-full rounded-full ${ATLAS_STATUS_DOT[kind]}`}
                   style={{ width: `${(done / total) * 100}%` }}
                 />
               </span>
@@ -425,7 +425,7 @@ function SummaryCard({
           <SummaryRow label="Builds on">
             <span className="flex flex-col gap-0.5">
               {node.parents.map((p) => (
-                <ApiLink key={p.path} path={p.path} fallbackTitle={p.name} />
+                <AtlasLink key={p.path} path={p.path} fallbackTitle={p.name} />
               ))}
             </span>
           </SummaryRow>
@@ -434,13 +434,13 @@ function SummaryCard({
           <SummaryRow label="Used by">
             <span className="flex flex-col gap-0.5">
               {dependents.map((d) => (
-                <ApiLink key={d.path} path={d.path} />
+                <AtlasLink key={d.path} path={d.path} />
               ))}
             </span>
           </SummaryRow>
         )}
         <SummaryRow label="Source">
-          <ExternalLink href={node.url}>API-map.md</ExternalLink>
+          <ExternalLink href={node.url}>Atlas.md</ExternalLink>
           <span className="text-muted"> · </span>
           <ExternalLink href={treeUrl(repo, branch, node.path)}>folder</ExternalLink>
         </SummaryRow>
@@ -455,7 +455,7 @@ function OnThisPage({ items }: { items: TocItem[] }) {
   const [open, setOpen] = useState(true);
   if (items.length < 2) return null;
   return (
-    <nav className="apimap-toc" aria-label="On this page">
+    <nav className="atlas-toc" aria-label="On this page">
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
@@ -502,9 +502,9 @@ export function ArticleReadView({
   onEdit,
   onAddReference,
 }: {
-  node: ApiMapNode;
+  node: AtlasNode;
   article: Article;
-  dependents: ApiMapNode[];
+  dependents: AtlasNode[];
   repo: string;
   branch: string;
   generatedAt: string;
@@ -522,9 +522,9 @@ export function ArticleReadView({
     level,
   }));
   const extra: { id: string; title: string; show: boolean }[] = [
-    { id: "apimap-see-also", title: "See also", show: node.parents.length > 0 },
-    { id: "apimap-lean-declarations", title: "Lean declarations", show: node.leanReferences.length > 0 },
-    { id: "apimap-references", title: "References", show: true },
+    { id: "atlas-see-also", title: "See also", show: node.parents.length > 0 },
+    { id: "atlas-lean-declarations", title: "Lean declarations", show: node.leanReferences.length > 0 },
+    { id: "atlas-references", title: "References", show: true },
   ];
   let n = article.sections.filter((s) => s.level === 2).length;
   for (const e of extra) if (e.show) toc.push({ id: e.id, number: String(++n), title: e.title, level: 2 });
@@ -541,19 +541,19 @@ export function ArticleReadView({
         <Callout tone="warning">
           <span className="font-medium text-foreground">Alpha.</span>{" "}
           {parts.mixed ? (
-            `In this API map ${phrase} ${phrase.includes(" and ") ? "are" : "is"} Alpha ` +
+            `In this Atlas article ${phrase} ${phrase.includes(" and ") ? "are" : "is"} Alpha ` +
             "(marked below) and the rest is reviewed. The Alpha parts have not yet been " +
             "through Physlib's full review, so they may be incomplete and are likely to change."
           ) : (
             <>
-              This API map has not yet been through Physlib&apos;s full review, so
+              This Atlas article has not yet been through Physlib&apos;s full review, so
               it may be incomplete and is likely to change.
             </>
           )}
         </Callout>
       )}
 
-      <div className="apimap-body">
+      <div className="atlas-body">
         <SummaryCard node={node} dependents={dependents} repo={repo} branch={branch} />
         <ArticleBody
           linked={linked}
@@ -578,13 +578,13 @@ export function ArticleReadView({
 
         {node.parents.length > 0 && (
           <section>
-            <SectionHeading id="apimap-see-also" level={2}>
+            <SectionHeading id="atlas-see-also" level={2}>
               See also
             </SectionHeading>
             <ul className="flex flex-wrap gap-1.5">
               {node.parents.map((p) => (
                 <li key={p.path} className="rounded-lg border border-border px-2.5 py-1 text-sm">
-                  <ApiLink path={p.path} fallbackTitle={p.name} />
+                  <AtlasLink path={p.path} fallbackTitle={p.name} />
                 </li>
               ))}
             </ul>
@@ -593,10 +593,10 @@ export function ArticleReadView({
 
         {node.leanReferences.length > 0 && (
           <section>
-            <SectionHeading id="apimap-lean-declarations" level={2}>
+            <SectionHeading id="atlas-lean-declarations" level={2}>
               Lean declarations
             </SectionHeading>
-            <p className="apimap-hint">
+            <p className="atlas-hint">
               The numbered citations in the text point here. Hover over a
               declaration for its signature and docstring; click it for the
               documentation.
@@ -606,13 +606,13 @@ export function ArticleReadView({
         )}
 
         <section>
-          <SectionHeading id="apimap-references" level={2}>
+          <SectionHeading id="atlas-references" level={2}>
             References
           </SectionHeading>
           {node.references.length > 0 ? (
             <LiteratureList references={node.references} occurrences={linked.occurrences} />
           ) : (
-            <p className="apimap-hint">No references yet.</p>
+            <p className="atlas-hint">No references yet.</p>
           )}
           <button
             type="button"
@@ -633,38 +633,38 @@ export function ArticleReadView({
   );
 }
 
-/** What a link to a cited-but-unwritten API map leads to. */
-export function MissingApiMapView({
+/** What a link to a cited-but-unwritten Atlas article leads to. */
+export function MissingAtlasView({
   path,
   title,
   citedBy,
 }: {
   path: string;
   title: string;
-  citedBy: ApiMapNode[];
+  citedBy: AtlasNode[];
 }) {
   return (
     <div className="rounded-xl border border-dashed border-border bg-surface-secondary/40 p-6">
       <p className="text-sm leading-relaxed text-muted">
-        There is no API map for <span className="text-foreground">{title}</span> yet. It
-        would live at <code className="apimap-code">{path}/API-map.md</code>
+        There is no Atlas article for <span className="text-foreground">{title}</span> yet. It
+        would live at <code className="atlas-code">{path}/Atlas.md</code>
         {citedBy.length > 0 && <>, and is already cited by other maps</>}.
       </p>
       {citedBy.length > 0 && (
         <div className="mt-3 flex flex-wrap gap-1.5">
           {citedBy.map((n) => (
             <span key={n.path} className="rounded-lg border border-border bg-surface px-2.5 py-1 text-xs">
-              <ApiLink path={n.path} />
+              <AtlasLink path={n.path} />
             </span>
           ))}
         </div>
       )}
       <a
-        href={`/api-tracker/new?path=${encodeURIComponent(path)}&title=${encodeURIComponent(title)}`}
+        href={`/atlas/new?path=${encodeURIComponent(path)}&title=${encodeURIComponent(title)}`}
         className={`${pill} mt-4 inline-flex w-fit`}
       >
         <span aria-hidden>＋</span>
-        Start this API map
+        Start this Atlas article
       </a>
     </div>
   );
