@@ -1,16 +1,16 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import type { ApiMap } from "@/lib/yaml";
-import { apiMapHref, newApiMapTemplate, parseFullApiMap } from "@/lib/api-map-article";
+import type { Atlas } from "@/lib/yaml";
+import { atlasGuideUrl, atlasHref, newAtlasTemplate, parseFullAtlas } from "@/lib/atlas-article";
 import { MAX_URL_LENGTH } from "@/components/suggest-dialog-shared";
-import { ArticleContext, type ArticleContextValue } from "@/components/api-tracker/article-prose";
-import { Callout } from "@/components/api-tracker/article-view";
-import { ArticleEditor } from "@/components/api-tracker/article-editor";
-import { apiMapIssue, type IssueDraft } from "@/lib/api-map-issue";
+import { ArticleContext, type ArticleContextValue } from "@/components/atlas/article-prose";
+import { Callout } from "@/components/atlas/article-view";
+import { ArticleEditor } from "@/components/atlas/article-editor";
+import { atlasIssue, type IssueDraft } from "@/lib/atlas-issue";
 
 /**
- * Starting a new API map. A short guide to writing one comes first, then
+ * Starting a new Atlas article. A short guide to writing one comes first, then
  * where the map will live
  * (a folder of Physlib that has no map yet, or an area Physlib doesn't cover
  * at all), then the source editor with a skeleton map to fill in.
@@ -18,49 +18,47 @@ import { apiMapIssue, type IssueDraft } from "@/lib/api-map-issue";
  * editor is offered for those who would rather open a pull request.
  */
 
-const GUIDE_URL =
-  "https://github.com/leanprover-community/physlib/blob/master/docs/API_MAP_GUIDE.md";
 const ROOTS = ["Physlib", "PhyslibAlpha", "QuantumInfo"];
 
-function WritingGuide({ examplePath }: { examplePath: string | null }) {
+function WritingGuide({ examplePath, guideUrl }: { examplePath: string | null; guideUrl: string }) {
   return (
-    <section className="apimap-guide" aria-labelledby="apimap-guide-title">
-      <h2 id="apimap-guide-title" className="apimap-guide-title">
-        How to write an API map
+    <section className="atlas-guide" aria-labelledby="atlas-guide-title">
+      <h2 id="atlas-guide-title" className="atlas-guide-title">
+        How to write an Atlas article
       </h2>
       <p>
-        An API map is a short article about one area of physics in Physlib.
+        An Atlas article is a short article about one area of physics in Physlib.
         It explains the physics in words, and points from each statement to
         the Lean declarations that formalize it.
       </p>
       <ol>
         <li>
-          <b>One file per API.</b> It is called <code className="apimap-code">API-map.md</code>{" "}
+          <b>One file per API.</b> It is called <code className="atlas-code">Atlas.md</code>{" "}
           and sits in the top folder of the API it describes.
         </li>
         <li>
-          <b>Fixed headings.</b> A <code className="apimap-code"># Title</code>, then{" "}
-          <code className="apimap-code">## Abstract (Alpha)</code> (one paragraph, no citations),{" "}
-          <code className="apimap-code">## Content (Alpha)</code> (prose, split by{" "}
-          <code className="apimap-code">###</code> subsections),{" "}
-          <code className="apimap-code">## Lean References</code> and{" "}
-          <code className="apimap-code">## References</code>.
+          <b>Fixed headings.</b> A <code className="atlas-code"># Title</code>, then{" "}
+          <code className="atlas-code">## Abstract (Alpha)</code> (one paragraph, no citations),{" "}
+          <code className="atlas-code">## Content (Alpha)</code> (prose, split by{" "}
+          <code className="atlas-code">###</code> subsections),{" "}
+          <code className="atlas-code">## Lean References</code> and{" "}
+          <code className="atlas-code">## References</code>.
         </li>
         <li>
           <b>Content first.</b> State the physics as you would to a colleague
           who does not know the Lean names. End each claim with a Lean citation
-          such as <code className="apimap-code">[1]</code>, one number per bracket. If it
-          is not formalized yet, write <code className="apimap-code">[TODO]</code>, so the
+          such as <code className="atlas-code">[1]</code>, one number per bracket. If it
+          is not formalized yet, write <code className="atlas-code">[TODO]</code>, so the
           map doubles as a roadmap.
         </li>
         <li>
           <b>Lean references.</b> Number them from 1 and cite each one. An entry is
           the file and its declarations, e.g.{" "}
-          <code className="apimap-code">1. Physlib/SpaceAndTime/Time/Basic.lean — `Time`, `Time.val`</code>.
+          <code className="atlas-code">1. Physlib/SpaceAndTime/Time/Basic.lean — `Time`, `Time.val`</code>.
         </li>
         <li>
-          <b>Literature and other API maps</b> go under References and are
-          cited with curly brackets, <code className="apimap-code">{"{1}"}</code>. Don&apos;t
+          <b>Literature and other Atlas articles</b> go under References and are
+          cited with curly brackets, <code className="atlas-code">{"{1}"}</code>. Don&apos;t
           put links in the text itself.
         </li>
         <li>
@@ -69,20 +67,20 @@ function WritingGuide({ examplePath }: { examplePath: string | null }) {
         </li>
       </ol>
       <p className="mt-2">
-        <a href={GUIDE_URL} target="_blank" rel="noopener noreferrer" className="apimap-external">
+        <a href={guideUrl} target="_blank" rel="noopener noreferrer" className="atlas-external">
           Read the full guide
         </a>
         {examplePath && (
           <>
             {" "}
             or{" "}
-            <a href={apiMapHref(examplePath)} className="apimap-link">
+            <a href={atlasHref(examplePath)} className="atlas-link">
               see an example
             </a>
           </>
         )}
         . Before opening a pull request, check the file with{" "}
-        <code className="apimap-code">lake exe api_map_lint</code>.
+        <code className="atlas-code">lake exe atlas_lint</code>.
       </p>
     </section>
   );
@@ -91,17 +89,17 @@ function WritingGuide({ examplePath }: { examplePath: string | null }) {
 type Where = "existing" | "new";
 
 function newFileUrl(repo: string, branch: string, path: string, text: string): string {
-  const base = `https://github.com/${repo}/new/${branch}?filename=${encodeURIComponent(`${path}/API-map.md`)}`;
+  const base = `https://github.com/${repo}/new/${branch}?filename=${encodeURIComponent(`${path}/Atlas.md`)}`;
   const full = `${base}&value=${encodeURIComponent(text)}`;
   return full.length <= MAX_URL_LENGTH ? full : base;
 }
 
-export function CreateApiMap({ apiMap }: { apiMap: ApiMap }) {
-  const { repo, branch, nodes, directories } = apiMap;
+export function CreateAtlas({ atlas }: { atlas: Atlas }) {
+  const { repo, branch, nodes, directories } = atlas;
   const byPath = useMemo(() => new Map(nodes.map((n) => [n.path, n])), [nodes]);
   const dirPaths = useMemo(() => new Set(directories.map((d) => d.path)), [directories]);
   const mapped = useMemo(
-    () => new Set([...nodes.map((n) => n.path), ...directories.filter((d) => d.hasApiMap).map((d) => d.path)]),
+    () => new Set([...nodes.map((n) => n.path), ...directories.filter((d) => d.hasAtlas).map((d) => d.path)]),
     [nodes, directories],
   );
 
@@ -110,7 +108,7 @@ export function CreateApiMap({ apiMap }: { apiMap: ApiMap }) {
   const [newPath, setNewPath] = useState("");
   const [filter, setFilter] = useState("");
   const [seed, setSeed] = useState<{ title: string; key: number }>({ title: "", key: 0 });
-  const [text, setText] = useState(() => newApiMapTemplate(""));
+  const [text, setText] = useState(() => newAtlasTemplate(""));
 
   // A red link arrives with ?path=…&title=…; read once on the client, which
   // keeps this page static.
@@ -130,18 +128,18 @@ export function CreateApiMap({ apiMap }: { apiMap: ApiMap }) {
     }
     if (title) {
       setSeed((s) => ({ title, key: s.key + 1 }));
-      setText(newApiMapTemplate(title));
+      setText(newAtlasTemplate(title));
     }
   }, [dirPaths]);
 
   const path = (where === "existing" ? existingPath : newPath).trim().replace(/^\/+|\/+$/g, "");
 
   const pathProblem = (() => {
-    if (!path) return where === "existing" ? "Choose a folder for the API map." : "Give the folder for the new area.";
+    if (!path) return where === "existing" ? "Choose a folder for the Atlas article." : "Give the folder for the new area.";
     if (!ROOTS.includes(path.split("/")[0]))
       return `The folder must be inside ${ROOTS.join(", ")}.`;
     if (!/^[\w./-]+$/u.test(path) || path.includes("//")) return "The folder path can only contain letters, digits, _, - and /.";
-    if (mapped.has(path)) return "That folder already has an API map - edit it instead.";
+    if (mapped.has(path)) return "That folder already has an Atlas article - edit it instead.";
     if (where === "new" && dirPaths.has(path)) return "That folder already exists in Physlib - choose it under “In an existing part of Physlib”.";
     return null;
   })();
@@ -158,30 +156,30 @@ export function CreateApiMap({ apiMap }: { apiMap: ApiMap }) {
     [repo, branch, byPath],
   );
 
-  const issue: IssueDraft = apiMapIssue({
-    title: `API-map: new API map — ${parseFullApiMap(text).title || "untitled"}`,
-    heading: "New API map",
+  const issue: IssueDraft = atlasIssue({
+    title: `Atlas: new Atlas article — ${parseFullAtlas(text).title || "untitled"}`,
+    heading: "New Atlas article",
     facts: [
-      `**Title:** ${parseFullApiMap(text).title || "_untitled_"}`,
-      `**Location:** \`${path}/API-map.md\``,
+      `**Title:** ${parseFullAtlas(text).title || "_untitled_"}`,
+      `**Location:** \`${path}/Atlas.md\``,
       `**Area:** ${where === "existing" ? "an existing folder of Physlib" : "a new area, not yet in Physlib"}`,
     ],
-    file: `${path}/API-map.md`,
-    commit: apiMap.commit,
+    file: `${path}/Atlas.md`,
+    commit: atlas.commit,
     operation: { op: "create-file" },
     base: null,
   });
 
   const validate = (file: string) => {
     if (pathProblem) return pathProblem;
-    const parsed = parseFullApiMap(file);
-    if (!parsed.title || parsed.title === "Title of the API") return "Give the API map a title on its first line (# Title).";
+    const parsed = parseFullAtlas(file);
+    if (!parsed.title || parsed.title === "Title of the API") return "Give the Atlas article a title on its first line (# Title).";
     if (!parsed.abstract || /^One paragraph saying/.test(parsed.abstract)) return "Write the abstract.";
     return null;
   };
 
   const option = (value: Where, title: string, text: string) => (
-    <label className={`apimap-choice ${where === value ? "apimap-choice-active" : ""}`}>
+    <label className={`atlas-choice ${where === value ? "atlas-choice-active" : ""}`}>
       <input
         type="radio"
         name="where"
@@ -199,23 +197,23 @@ export function CreateApiMap({ apiMap }: { apiMap: ApiMap }) {
 
   return (
     <ArticleContext.Provider value={context}>
-      <div className="apimap">
-        <a href="/api-tracker" className="mb-2 inline-block text-xs text-muted hover:text-accent">
-          ← API maps
+      <div className="atlas">
+        <a href="/atlas" className="mb-2 inline-block text-xs text-muted hover:text-accent">
+          ← Atlas articles
         </a>
-        <h1 className="mb-2 text-4xl font-bold tracking-tight">Create an API map</h1>
+        <h1 className="mb-2 text-4xl font-bold tracking-tight">Create an Atlas article</h1>
         <p className="mb-6 leading-relaxed text-muted">
-          Start the API map for an area of Physlib that doesn&apos;t have one,
+          Start the Atlas article for an area of Physlib that doesn&apos;t have one,
           or for physics that Physlib doesn&apos;t cover yet.
         </p>
 
-        <WritingGuide examplePath={byPath.has("Physlib/SpaceAndTime/Time") ? "Physlib/SpaceAndTime/Time" : nodes[0]?.path ?? null} />
+        <WritingGuide guideUrl={atlasGuideUrl(atlas)} examplePath={byPath.has("Physlib/SpaceAndTime/Time") ? "Physlib/SpaceAndTime/Time" : nodes[0]?.path ?? null} />
 
-        <h2 className="apimap-h2">
+        <h2 className="atlas-h2">
           <span>1. Where will it live?</span>
         </h2>
         <div className="grid gap-2 sm:grid-cols-2">
-          {option("existing", "In an existing part of Physlib", "A folder that already has Lean files but no API map yet.")}
+          {option("existing", "In an existing part of Physlib", "A folder that already has Lean files but no Atlas article yet.")}
           {option("new", "In a new area", "Physics that Physlib does not cover yet - the map can start as a roadmap of [TODO]s.")}
         </div>
 
@@ -228,14 +226,14 @@ export function CreateApiMap({ apiMap }: { apiMap: ApiMap }) {
               aria-label="Search folders"
               className="w-full rounded-md border border-border bg-surface px-3 py-2 text-sm outline-none placeholder:text-muted/60 focus:border-accent"
             />
-            <ul className="apimap-dirlist" role="listbox" aria-label="Folders">
+            <ul className="atlas-dirlist" role="listbox" aria-label="Folders">
               {candidates.map((d) => {
                 const has = mapped.has(d.path);
                 const selected = existingPath === d.path;
                 return (
                   <li key={d.path}>
                     {has ? (
-                      <a href={apiMapHref(d.path)} className="apimap-dir apimap-dir-mapped" title="Already has an API map">
+                      <a href={atlasHref(d.path)} className="atlas-dir atlas-dir-mapped" title="Already has an Atlas article">
                         <span className="truncate font-mono">{d.path}</span>
                         <span className="shrink-0 text-[11px]">has a map →</span>
                       </a>
@@ -245,7 +243,7 @@ export function CreateApiMap({ apiMap }: { apiMap: ApiMap }) {
                         role="option"
                         aria-selected={selected}
                         onClick={() => setExistingPath(d.path)}
-                        className={`apimap-dir ${selected ? "apimap-dir-selected" : ""}`}
+                        className={`atlas-dir ${selected ? "atlas-dir-selected" : ""}`}
                       >
                         <span className="truncate font-mono">{d.path}</span>
                         <span className="shrink-0 text-[11px] text-muted">
@@ -281,12 +279,12 @@ export function CreateApiMap({ apiMap }: { apiMap: ApiMap }) {
         <p className={`mt-2 text-sm ${pathProblem ? "text-muted" : "text-success"}`}>
           {pathProblem ?? (
             <>
-              The map will be created at <code className="apimap-code">{path}/API-map.md</code>.
+              The map will be created at <code className="atlas-code">{path}/Atlas.md</code>.
             </>
           )}
         </p>
 
-        <h2 className="apimap-h2">
+        <h2 className="atlas-h2">
           <span>2. Write it</span>
         </h2>
         <ArticleEditor
@@ -298,7 +296,7 @@ export function CreateApiMap({ apiMap }: { apiMap: ApiMap }) {
               readers will see it.
             </Callout>
           }
-          initial={newApiMapTemplate(seed.title)}
+          initial={newAtlasTemplate(seed.title)}
           shape="file"
           context={context}
           repo={repo}
@@ -313,7 +311,7 @@ export function CreateApiMap({ apiMap }: { apiMap: ApiMap }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-disabled={!!pathProblem}
-                className={pathProblem ? "text-muted" : "apimap-external"}
+                className={pathProblem ? "text-muted" : "atlas-external"}
               >
                 Create the file on GitHub
               </a>{" "}

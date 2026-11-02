@@ -1,20 +1,20 @@
-import type { ApiMapNode } from "@/lib/yaml";
+import type { AtlasNode } from "@/lib/yaml";
 
 /**
  * One entry in the API tree. `node` is null for a "phantom" entry - a path
- * cited in some API map's References that has no API-map.md of its own. Those
+ * cited in some Atlas article's References that has no Atlas.md of its own. Those
  * still get a path/title and are still navigable (sidebar link, flowchart
  * box), just with no claims/progress data behind them.
  */
-export type ApiMapTreeEntry = {
+export type AtlasTreeEntry = {
   path: string;
   title: string;
-  node: ApiMapNode | null;
+  node: AtlasNode | null;
   /** The parent this entry is nested under here - null for a top-level entry.
    *  A real node can have other (non-primary) parents too; see `node.parents`
    *  for those. */
   primaryParentPath: string | null;
-  children: ApiMapTreeEntry[];
+  children: AtlasTreeEntry[];
 };
 
 type PrimaryParent = { path: string; name: string };
@@ -24,9 +24,9 @@ type PrimaryParent = { path: string; name: string };
  * order the sidebar renders - so "previous/next" steps through APIs in the
  * order the reader sees them listed rather than some unrelated sequence.
  */
-export function flattenApiMapForest(forest: ApiMapTreeEntry[]): ApiMapTreeEntry[] {
-  const out: ApiMapTreeEntry[] = [];
-  const walk = (entries: ApiMapTreeEntry[]) => {
+export function flattenAtlasForest(forest: AtlasTreeEntry[]): AtlasTreeEntry[] {
+  const out: AtlasTreeEntry[] = [];
+  const walk = (entries: AtlasTreeEntry[]) => {
     for (const entry of entries) {
       out.push(entry);
       walk(entry.children);
@@ -38,11 +38,11 @@ export function flattenApiMapForest(forest: ApiMapTreeEntry[]): ApiMapTreeEntry[
 
 /**
  * Each real node's first parent - preferring one that also has its own
- * API-map.md, but falling back to the first phantom parent when it has no
+ * Atlas.md, but falling back to the first phantom parent when it has no
  * real one. The citations form a DAG, not a tree; picking one edge per node is
  * what makes a tree renderable at all.
  */
-function buildPrimaryParentMap(nodes: ApiMapNode[]): Map<string, PrimaryParent> {
+function buildPrimaryParentMap(nodes: AtlasNode[]): Map<string, PrimaryParent> {
   const byPath = new Map(nodes.map((n) => [n.path, n]));
   const map = new Map<string, PrimaryParent>();
   for (const node of nodes) {
@@ -56,13 +56,13 @@ function buildPrimaryParentMap(nodes: ApiMapNode[]): Map<string, PrimaryParent> 
 /**
  * Nests every real API under its primary parent (see above), and gives every
  * phantom parent its own top-level entry so it's still visible and clickable
- * even though it has no API-map.md behind it.
+ * even though it has no Atlas.md behind it.
  */
-export function buildApiMapForest(nodes: ApiMapNode[]): ApiMapTreeEntry[] {
+export function buildAtlasForest(nodes: AtlasNode[]): AtlasTreeEntry[] {
   const byPath = new Map(nodes.map((n) => [n.path, n]));
   const primaryParentOf = buildPrimaryParentMap(nodes);
 
-  const childrenOf = new Map<string, ApiMapNode[]>();
+  const childrenOf = new Map<string, AtlasNode[]>();
   for (const node of nodes) {
     const parent = primaryParentOf.get(node.path);
     if (parent) {
@@ -110,10 +110,10 @@ export function buildApiMapForest(nodes: ApiMapNode[]): ApiMapTreeEntry[] {
   function toEntry(
     path: string,
     title: string,
-    node: ApiMapNode | null,
+    node: AtlasNode | null,
     parentPath: string | null,
     pathVisited: Set<string>,
-  ): ApiMapTreeEntry {
+  ): AtlasTreeEntry {
     placed.add(path);
     const children = (childrenOf.get(path) ?? [])
       .filter((c) => !pathVisited.has(c.path) && !placed.has(c.path))

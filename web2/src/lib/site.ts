@@ -50,7 +50,7 @@ export const navSections: NavSection[] = [
   {
     label: "Goal trackers",
     items: [
-      { label: "API development", href: "/api-tracker" },
+      { label: "Physlib Atlas", href: "/atlas" },
       { label: "PR triage", href: "/pr-tracker" },
       { label: "Documentation", href: "/documentation-tracker" },
       { label: "TODO list", href: "/todo" },
@@ -97,7 +97,7 @@ export const primaryNav: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "Getting Started", href: "/getting-started" },
   { label: "Get Involved", href: "/get-involved" },
-  { label: "Trackers", href: "/api-tracker" },
+  { label: "Atlas", href: "/atlas" },
   { label: "Todo list", href: "/todo" },
   { label: "Sponsor", href: "/sponsor" },
 ];

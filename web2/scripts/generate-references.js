@@ -9,7 +9,7 @@
  * `[...][bibkey]` citation in every `.lean` file, and writes the merged
  * result to data/References.json.
  *
- * Same rationale as generate-api-map.js for doing this from a local clone
+ * Same rationale as generate-atlas.js for doing this from a local clone
  * rather than at request time: there's no API that lists "every citation in
  * the repo" apart from walking the tree, and it reuses the same
  * .cache/physlib.git bare clone the other generators already keep around.
@@ -37,7 +37,7 @@ function argValue(name) {
 }
 const repoArg = argValue("--repo") || process.env.PHYSLIB_REPO || "";
 
-// ─── Local git (same approach as generate-api-map.js) ──────────────────────
+// ─── Local git (same approach as generate-atlas.js) ──────────────────────
 let REPO_DIR = "";
 
 function git(gitArgs) {

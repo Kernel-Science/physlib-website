@@ -5,6 +5,16 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: '/api-tracker/:path*',
+        destination: '/atlas/:path*',
+        permanent: true,
+      },
+      {
+        source: '/api/api-map',
+        destination: '/api/atlas',
+        permanent: true,
+      },
+      {
         source: '/docs',
         destination: '/docs/index.html',
         permanent: true,

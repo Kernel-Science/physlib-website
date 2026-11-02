@@ -1,18 +1,18 @@
-import type { EditOperation } from "@/lib/api-map-article";
+import type { EditOperation } from "@/lib/atlas-article";
 
 /**
- * The GitHub issues the API map pages file, in a format a bot can apply as
+ * The GitHub issues the Atlas article pages file, in a format a bot can apply as
  * well as a person can read: api-map-edit v1.
  *
  * - The body opens with a hidden comment holding a JSON header:
  *
  *     <!-- api-map-edit
- *     {"format":"api-map-edit","version":1,"file":"Physlib/…/API-map.md",
+ *     {"format":"api-map-edit","version":1,"file":"Physlib/…/Atlas.md",
  *      "commit":"<sha>","op":"replace-subsection","section":"Content (Alpha)",
  *      "subsection":"Units of time","baseSha256":"<hex>","newReferences":1}
  *     -->
  *
- *   `op` and the fields beside it are an `EditOperation` (api-map-article.ts).
+ *   `op` and the fields beside it are an `EditOperation` (atlas-article.ts).
  *   `commit` is the Physlib commit the site read the map at, and
  *   `baseSha256` the SHA-256 of the text being replaced as it was there,
  *   normalized by `normalizeForHash` (trimmed, runs of blank lines
@@ -30,6 +30,7 @@ import type { EditOperation } from "@/lib/api-map-article";
  *   left out when the issue would be too long to prefill.
  */
 
+// Keep the existing wire format so issue-processing tools can read Atlas suggestions.
 export const ISSUE_FORMAT = "api-map-edit";
 export const ISSUE_FORMAT_VERSION = 1;
 
@@ -142,12 +143,12 @@ function header(fields: Record<string, unknown>): string {
 }
 
 /**
- * An issue for one suggested change to an API map.
+ * An issue for one suggested change to an Atlas article.
  *
  * `heading` and `facts` are the human-readable top of the issue; `base` is
  * the text being replaced, or null when there is none.
  */
-export function apiMapIssue({
+export function atlasIssue({
   title,
   heading,
   facts,
@@ -208,7 +209,7 @@ export function apiMapIssue({
         "_If this suggestion is accepted, please credit the issue author as a " +
           "co-author of the change (`Co-authored-by:`)._",
         "",
-        `*Suggested from the API map pages of the Physlib website, in the ` +
+        `*Suggested from the Atlas article pages of the Physlib website, in the ` +
           `machine-readable ${ISSUE_FORMAT} v${ISSUE_FORMAT_VERSION} format.*`,
         "",
       ].join("\n");

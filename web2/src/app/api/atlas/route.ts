@@ -1,17 +1,17 @@
 import { NextResponse } from "next/server";
-import { getApiMap } from "@/lib/yaml";
+import { getAtlas } from "@/lib/yaml";
 
-// The sidebar mounts outside the /api-tracker page tree (it's rendered by
+// The sidebar mounts outside the /atlas page tree (it's rendered by
 // ConditionalSidebar at the root layout, see the design-language skill), so
 // it can't receive the page's server-fetched props and needs its own way to
-// reach data/APIMap.json client-side. It only draws the tree, so it gets the
+// reach data/Atlas.json client-side. It only draws the tree, so it gets the
 // maps without their text and Lean references.
 export async function GET() {
-  const apiMap = await getApiMap();
+  const atlas = await getAtlas();
   return NextResponse.json({
-    ...apiMap,
+    ...atlas,
     directories: [],
-    nodes: apiMap.nodes.map((n) => ({
+    nodes: atlas.nodes.map((n) => ({
       ...n,
       abstract: "",
       content: [],

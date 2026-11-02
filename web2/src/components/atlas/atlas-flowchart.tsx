@@ -1,10 +1,10 @@
 "use client";
 
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import type { ApiMapNode } from "@/lib/yaml";
-import { buildApiMapForest, type ApiMapTreeEntry } from "@/lib/api-map-tree";
-import { selectApiMapEntry } from "@/lib/api-map-hash";
-import { apiStatusKind } from "@/lib/api-map-status";
+import type { AtlasNode } from "@/lib/yaml";
+import { buildAtlasForest, type AtlasTreeEntry } from "@/lib/atlas-tree";
+import { selectAtlasEntry } from "@/lib/atlas-hash";
+import { atlasStatusKind } from "@/lib/atlas-status";
 import { TopRightArrowIcon } from "@/components/monthly-updates/icons";
 
 /**
@@ -17,7 +17,7 @@ import { TopRightArrowIcon } from "@/components/monthly-updates/icons";
  * the first or last screenful settle flush against that end instead.
  */
 function centerHorizontally(el: HTMLElement): void {
-  const container = el.closest<HTMLElement>("[data-api-flowchart-scroller]");
+  const container = el.closest<HTMLElement>("[data-atlas-flowchart-scroller]");
   if (!container) return;
   const box = el.getBoundingClientRect();
   const view = container.getBoundingClientRect();
@@ -35,10 +35,10 @@ function centerHorizontally(el: HTMLElement): void {
   }
 }
 
-function statusStyle(node: ApiMapNode): { box: string; label: string } {
+function statusStyle(node: AtlasNode): { box: string; label: string } {
   const total = node.requirements.length;
   const done = node.requirements.filter((r) => r.done).length;
-  switch (apiStatusKind(node)) {
+  switch (atlasStatusKind(node)) {
     case "none":
       return { box: "bg-surface-secondary border-border", label: "No claims yet" };
     case "complete":
@@ -58,21 +58,21 @@ function FlowNode({
   activePath,
   onSelect,
 }: {
-  entry: ApiMapTreeEntry;
+  entry: AtlasTreeEntry;
   activePath: string;
   onSelect: (path: string, boxEl: HTMLElement) => void;
 }) {
   const { path, title, node, children, primaryParentPath } = entry;
   const isActive = path === activePath;
 
-  // Only one parent becomes this box's connector line (see api-map-tree.ts);
+  // Only one parent becomes this box's connector line (see atlas-tree.ts);
   // any others are still real dependencies, so surface them as text instead
   // of silently dropping them.
   const otherParents = node ? node.parents.filter((p) => p.path !== primaryParentPath) : [];
 
   const style = node
     ? statusStyle(node)
-    : { box: "border-dashed border-border bg-surface-secondary/60", label: "No API-map.md yet" };
+    : { box: "border-dashed border-border bg-surface-secondary/60", label: "No Atlas.md yet" };
 
   return (
     <li className="api-tree__node">
@@ -92,7 +92,7 @@ function FlowNode({
             e.preventDefault();
             onSelect(path, e.currentTarget);
           }}
-          title={node ? title : `${title} (no API-map.md yet)`}
+          title={node ? title : `${title} (no Atlas.md yet)`}
           className={`flex w-44 flex-col gap-0.5 rounded-lg border px-3 py-2 text-left shadow-sm transition-shadow hover:shadow-md ${style.box} ${
             isActive ? "ring-2 ring-accent ring-offset-2 ring-offset-background" : ""
           }`}
@@ -114,7 +114,7 @@ function FlowNode({
             href={node.url}
             target="_blank"
             rel="noopener noreferrer"
-            title="View API-map.md on GitHub"
+            title="View Atlas.md on GitHub"
             className="absolute right-1.5 top-1.5 rounded p-0.5 text-muted/60 hover:bg-surface hover:text-accent"
           >
             <TopRightArrowIcon className="size-3" />
@@ -137,7 +137,7 @@ function FlowNode({
   );
 }
 
-export function ApiFlowchart({ nodes }: { nodes: ApiMapNode[] }) {
+export function AtlasFlowchart({ nodes }: { nodes: AtlasNode[] }) {
   const [activePath, setActivePath] = useState("");
 
   /**
@@ -151,7 +151,7 @@ export function ApiFlowchart({ nodes }: { nodes: ApiMapNode[] }) {
 
   const handleSelect = useCallback((path: string, boxEl: HTMLElement) => {
     anchor.current = { el: boxEl, top: boxEl.getBoundingClientRect().top };
-    selectApiMapEntry(path);
+    selectAtlasEntry(path);
   }, []);
 
   // No dependency array: this must run after whichever commit actually
@@ -185,11 +185,11 @@ export function ApiFlowchart({ nodes }: { nodes: ApiMapNode[] }) {
     return () => window.removeEventListener("hashchange", onHashChange);
   }, []);
 
-  const forest = useMemo(() => buildApiMapForest(nodes), [nodes]);
+  const forest = useMemo(() => buildAtlasForest(nodes), [nodes]);
 
   return (
     <div
-      data-api-flowchart-scroller
+      data-atlas-flowchart-scroller
       className="overflow-x-auto rounded-xl border border-border bg-surface"
     >
       <ul className="api-tree">

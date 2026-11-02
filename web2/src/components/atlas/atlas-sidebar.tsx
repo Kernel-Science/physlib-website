@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import type { ApiMap } from "@/lib/yaml";
-import { buildFolderTree, type FolderEntry } from "@/lib/api-map-folders";
-import { selectApiMapEntry } from "@/lib/api-map-hash";
-import { API_STATUS_DOT, apiStatusKind } from "@/lib/api-map-status";
+import type { Atlas } from "@/lib/yaml";
+import { buildFolderTree, type FolderEntry } from "@/lib/atlas-folders";
+import { selectAtlasEntry } from "@/lib/atlas-hash";
+import { ATLAS_STATUS_DOT, atlasStatusKind } from "@/lib/atlas-status";
 
 function decodeHash(): string {
   return decodeURIComponent(window.location.hash.replace(/^#/, ""));
@@ -28,13 +28,13 @@ function TreeList({
           <li key={path}>
             {node ? (
               <a
-                href={`/api-tracker#${path}`}
+                href={`/atlas#${path}`}
                 onClick={(e) => {
-                  // Elsewhere under /api-tracker (the create page) this is an
+                  // Elsewhere under /atlas (the create page) this is an
                   // ordinary link back to the map.
-                  if (window.location.pathname !== "/api-tracker") return;
+                  if (window.location.pathname !== "/atlas") return;
                   e.preventDefault();
-                  selectApiMapEntry(path);
+                  selectAtlasEntry(path);
                 }}
                 title={`${label} (${path})`}
                 className={`flex items-center truncate rounded-lg py-1.5 pr-3 text-sm transition-colors ${
@@ -48,7 +48,7 @@ function TreeList({
                     dot as in the other sidebars. */}
                 <span
                   aria-hidden
-                  className={`mr-2 size-1.5 shrink-0 rounded-full ${API_STATUS_DOT[apiStatusKind(node)]}`}
+                  className={`mr-2 size-1.5 shrink-0 rounded-full ${ATLAS_STATUS_DOT[atlasStatusKind(node)]}`}
                 />
                 {label}
               </a>
@@ -72,15 +72,15 @@ function TreeList({
   );
 }
 
-export function ApiTrackerSidebar() {
+export function AtlasSidebar() {
   const [tree, setTree] = useState<FolderEntry[] | null>(null);
   const [activePath, setActivePath] = useState("");
 
   useEffect(() => {
     let cancelled = false;
-    fetch("/api/api-map")
+    fetch("/api/atlas")
       .then((res) => res.json())
-      .then((data: ApiMap) => {
+      .then((data: Atlas) => {
         if (!cancelled) setTree(buildFolderTree(data.nodes));
       })
       .catch(() => {});

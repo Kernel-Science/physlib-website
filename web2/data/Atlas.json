@@ -475,27 +475,27 @@
         {
           "index": 1,
           "text": "Electromagnetic Potential API map — Physlib/Electromagnetism/Kinematics/API-map.md",
-          "apiMap": "Physlib/Electromagnetism/Kinematics"
+          "atlas": "Physlib/Electromagnetism/Kinematics"
         },
         {
           "index": 2,
           "text": "Wikipedia, Mathematical descriptions of the electromagnetic field, Gauge freedom, https://en.wikipedia.org/wiki/Mathematical_descriptions_of_the_electromagnetic_field#Gauge_freedom",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 3,
           "text": "Standard Model gauge group API map — Physlib/Particles/StandardModel/API-map.md",
-          "apiMap": "Physlib/Particles/StandardModel"
+          "atlas": "Physlib/Particles/StandardModel"
         },
         {
           "index": 4,
           "text": "Wikipedia, Gauge theory, https://en.wikipedia.org/wiki/Gauge_theory",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 5,
           "text": "Physlib GitHub issue #859, https://github.com/leanprover-community/physlib/issues/859",
-          "apiMap": null
+          "atlas": null
         }
       ],
       "requirements": [
@@ -720,32 +720,32 @@
         {
           "index": 1,
           "text": "Ivo Terek, *Introductory Variational Calculus on Manifolds*.",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 2,
           "text": "V. I. Arnold, *Mathematical Methods of Classical Mechanics*.",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 3,
           "text": "Lagrangian mechanics API map — Physlib/ClassicalMechanics/Lagrangian/API-map.md",
-          "apiMap": "Physlib/ClassicalMechanics/Lagrangian"
+          "atlas": "Physlib/ClassicalMechanics/Lagrangian"
         },
         {
           "index": 4,
           "text": "L. D. Landau and E. M. Lifshitz, *Mechanics*.",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 5,
           "text": "Configuration space of the harmonic oscillator API map — Physlib/ClassicalMechanics/HarmonicOscillator/Geometric/API-map.md",
-          "apiMap": "Physlib/ClassicalMechanics/HarmonicOscillator/Geometric"
+          "atlas": "Physlib/ClassicalMechanics/HarmonicOscillator/Geometric"
         },
         {
           "index": 6,
           "text": "Configuration space for pendulum API map — Physlib/ClassicalMechanics/Pendulum/API-map.md",
-          "apiMap": "Physlib/ClassicalMechanics/Pendulum"
+          "atlas": "Physlib/ClassicalMechanics/Pendulum"
         }
       ],
       "requirements": [
@@ -1104,27 +1104,27 @@
         {
           "index": 1,
           "text": "Landau & Lifshitz, *Mechanics*, page 76, Section 25.",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 2,
           "text": "Goldstein, *Classical Mechanics*, Chapter 2.",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 3,
           "text": "Time API map — Physlib/SpaceAndTime/Time/API-map.md",
-          "apiMap": "Physlib/SpaceAndTime/Time"
+          "atlas": "Physlib/SpaceAndTime/Time"
         },
         {
           "index": 4,
           "text": "Caldirola, *Nuovo Cimento* 18 (1941) 393.",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 5,
           "text": "Kanai, *Progress of Theoretical Physics* 3 (1948) 440.",
-          "apiMap": null
+          "atlas": null
         }
       ],
       "requirements": [
@@ -1571,17 +1571,17 @@
         {
           "index": 1,
           "text": "Ivo Terek, *Introductory Variational Calculus on Manifolds*, Section 1 (pages 1-2), Basic definitions and examples.",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 2,
           "text": "Space API map — Physlib/SpaceAndTime/Space/API-map.md",
-          "apiMap": "Physlib/SpaceAndTime/Space"
+          "atlas": "Physlib/SpaceAndTime/Space"
         },
         {
           "index": 3,
           "text": "Time API map — Physlib/SpaceAndTime/Time/API-map.md",
-          "apiMap": "Physlib/SpaceAndTime/Time"
+          "atlas": "Physlib/SpaceAndTime/Time"
         }
       ],
       "requirements": [
@@ -1747,27 +1747,27 @@
         {
           "index": 1,
           "text": "Configuration Space API map — Physlib/ClassicalMechanics/ConfigurationSpace/API-map.md",
-          "apiMap": "Physlib/ClassicalMechanics/ConfigurationSpace"
+          "atlas": "Physlib/ClassicalMechanics/ConfigurationSpace"
         },
         {
           "index": 2,
           "text": "Time API map — Physlib/SpaceAndTime/Time/API-map.md",
-          "apiMap": "Physlib/SpaceAndTime/Time"
+          "atlas": "Physlib/SpaceAndTime/Time"
         },
         {
           "index": 3,
           "text": "Ivo Terek, *Introductory Variational Calculus on Manifolds*.",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 4,
           "text": "V. I. Arnold, *Mathematical Methods of Classical Mechanics*.",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 5,
           "text": "L. D. Landau and E. M. Lifshitz, *Mechanics*.",
-          "apiMap": null
+          "atlas": null
         }
       ],
       "requirements": [
@@ -1954,22 +1954,22 @@
         {
           "index": 1,
           "text": "Configuration Space API map — Physlib/ClassicalMechanics/Lagrangian/API-map.md",
-          "apiMap": "Physlib/ClassicalMechanics/Lagrangian"
+          "atlas": "Physlib/ClassicalMechanics/Lagrangian"
         },
         {
           "index": 2,
           "text": "Landau & Lifshitz, *Mechanics*, 3rd Edition, Chapter 1 (The Equations of motion), Section 5 (The Lagrangian for a system of particles).",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 3,
           "text": "Simple pendulum API map — Physlib/ClassicalMechanics/Pendulum/SimplePendulum/API-map.md",
-          "apiMap": "Physlib/ClassicalMechanics/Pendulum/SimplePendulum"
+          "atlas": "Physlib/ClassicalMechanics/Pendulum/SimplePendulum"
         },
         {
           "index": 4,
           "text": "Space API map — Physlib/SpaceAndTime/Space/API-map.md",
-          "apiMap": "Physlib/SpaceAndTime/Space"
+          "atlas": "Physlib/SpaceAndTime/Space"
         }
       ],
       "requirements": [
@@ -2683,32 +2683,32 @@
         {
           "index": 1,
           "text": "Configuration space for pendulum API map — Physlib/ClassicalMechanics/Pendulum/API-map.md",
-          "apiMap": "Physlib/ClassicalMechanics/Pendulum"
+          "atlas": "Physlib/ClassicalMechanics/Pendulum"
         },
         {
           "index": 2,
           "text": "Space API map — Physlib/SpaceAndTime/Space/API-map.md",
-          "apiMap": "Physlib/SpaceAndTime/Space"
+          "atlas": "Physlib/SpaceAndTime/Space"
         },
         {
           "index": 3,
           "text": "Landau & Lifshitz, *Mechanics*, 3rd Edition, Chapter 1 (The Equations of motion), Section 5 (The Lagrangian for a system of particles).",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 4,
           "text": "Landau & Lifshitz, *Mechanics*, 3rd Edition, Chapter 7 (The canonical equations), Section 40 (Hamilton's equations).",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 5,
           "text": "Landau & Lifshitz, *Mechanics*, 3rd Edition, Chapter 5 (Small oscillations), Section 21 (Free oscillations in one dimension).",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 6,
           "text": "Landau & Lifshitz, *Mechanics*, 3rd Edition, Chapter 3 (Integration of the equations of motion), Section 11 (Motion in one dimension), Problem 1.",
-          "apiMap": null
+          "atlas": null
         }
       ],
       "requirements": [
@@ -3084,12 +3084,12 @@
         {
           "index": 1,
           "text": "Landau and Lifshitz, *Mechanics*, Section 32 (page 100).",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 2,
           "text": "Space API map — Physlib/SpaceAndTime/Space/API-map.md",
-          "apiMap": "Physlib/SpaceAndTime/Space"
+          "atlas": "Physlib/SpaceAndTime/Space"
         }
       ],
       "requirements": [
@@ -4366,22 +4366,22 @@
         {
           "index": 1,
           "text": "Time API map — Physlib/SpaceAndTime/Time/API-map.md",
-          "apiMap": "Physlib/SpaceAndTime/Time"
+          "atlas": "Physlib/SpaceAndTime/Time"
         },
         {
           "index": 2,
           "text": "S. Weinberg, *Cosmology*, Oxford University Press (2008), Chapter 1.",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 3,
           "text": "D. Baumann, *Cosmology*, Cambridge University Press (2022), Chapter 2.",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 4,
           "text": "S. Dodelson and F. Schmidt, *Modern Cosmology*, 2nd ed., Chapter 2.",
-          "apiMap": null
+          "atlas": null
         }
       ],
       "requirements": [
@@ -4958,17 +4958,17 @@
         {
           "index": 1,
           "text": "Spacetime API map — Physlib/SpaceAndTime/SpaceTime/API-map.md",
-          "apiMap": "Physlib/SpaceAndTime/SpaceTime"
+          "atlas": "Physlib/SpaceAndTime/SpaceTime"
         },
         {
           "index": 2,
           "text": "Lorentz group API map — Physlib/Relativity/LorentzGroup/API-map.md",
-          "apiMap": "Physlib/Relativity/LorentzGroup"
+          "atlas": "Physlib/Relativity/LorentzGroup"
         },
         {
           "index": 3,
           "text": "J. D. Jackson, *Classical Electrodynamics*, 3rd ed., Sections 6.2-6.3, on vector and scalar potentials and gauge transformations.",
-          "apiMap": null
+          "atlas": null
         }
       ],
       "requirements": [
@@ -5256,17 +5256,17 @@
         {
           "index": 1,
           "text": "Landau, L. D. and Lifshitz, E. M., *Fluid Mechanics* (Course of Theoretical Physics, vol. 6), 2nd ed., Chapter 1 (continuity, Euler equation, Bernoulli equation, energy and momentum flux).",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 2,
           "text": "Space API map — Physlib/SpaceAndTime/Space/API-map.md",
-          "apiMap": "Physlib/SpaceAndTime/Space"
+          "atlas": "Physlib/SpaceAndTime/Space"
         },
         {
           "index": 3,
           "text": "Time API map — Physlib/SpaceAndTime/Time/API-map.md",
-          "apiMap": "Physlib/SpaceAndTime/Time"
+          "atlas": "Physlib/SpaceAndTime/Time"
         }
       ],
       "requirements": [
@@ -5381,7 +5381,7 @@
         {
           "index": 1,
           "text": "Gauge theory API map — Physlib/ClassicalFieldTheory/GaugeTheory/API-map.md",
-          "apiMap": "Physlib/ClassicalFieldTheory/GaugeTheory"
+          "atlas": "Physlib/ClassicalFieldTheory/GaugeTheory"
         }
       ],
       "requirements": [
@@ -5851,17 +5851,17 @@
         {
           "index": 1,
           "text": "Higgs field API map — Physlib/Particles/StandardModel/HiggsBoson/API-map.md",
-          "apiMap": "Physlib/Particles/StandardModel/HiggsBoson"
+          "atlas": "Physlib/Particles/StandardModel/HiggsBoson"
         },
         {
           "index": 2,
           "text": "arXiv:1605.03237, https://arxiv.org/abs/1605.03237",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 3,
           "text": "arXiv:hep-ph/0605184, https://arxiv.org/abs/hep-ph/0605184",
-          "apiMap": null
+          "atlas": null
         }
       ],
       "requirements": [
@@ -6621,12 +6621,12 @@
         {
           "index": 1,
           "text": "D. Tong, *Line Operators in the Standard Model*, JHEP 07 (2017) 104, arXiv:1705.01853, https://arxiv.org/abs/1705.01853",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 2,
           "text": "Higgs field API map — Physlib/Particles/StandardModel/HiggsBoson/API-map.md",
-          "apiMap": "Physlib/Particles/StandardModel/HiggsBoson"
+          "atlas": "Physlib/Particles/StandardModel/HiggsBoson"
         }
       ],
       "requirements": [
@@ -7670,22 +7670,22 @@
         {
           "index": 1,
           "text": "Standard Model gauge group API map — Physlib/Particles/StandardModel/API-map.md",
-          "apiMap": "Physlib/Particles/StandardModel"
+          "atlas": "Physlib/Particles/StandardModel"
         },
         {
           "index": 2,
           "text": "Two Higgs Doublet Model API map — Physlib/Particles/BeyondTheStandardModel/TwoHDM/API-map.md",
-          "apiMap": "Physlib/Particles/BeyondTheStandardModel/TwoHDM"
+          "atlas": "Physlib/Particles/BeyondTheStandardModel/TwoHDM"
         },
         {
           "index": 3,
           "text": "Spacetime API map — Physlib/SpaceAndTime/SpaceTime/API-map.md",
-          "apiMap": "Physlib/SpaceAndTime/SpaceTime"
+          "atlas": "Physlib/SpaceAndTime/SpaceTime"
         },
         {
           "index": 4,
           "text": "M. E. Peskin and D. V. Schroeder, *An Introduction to Quantum Field Theory*, Westview Press (1995), Ch. 20, on gauge theories with spontaneous symmetry breaking.",
-          "apiMap": null
+          "atlas": null
         }
       ],
       "requirements": [
@@ -7895,22 +7895,22 @@
         {
           "index": 1,
           "text": "Wikipedia, Feynman diagram, https://en.wikipedia.org/wiki/Feynman_diagram",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 2,
           "text": "M. E. Peskin and D. V. Schroeder, *An Introduction to Quantum Field Theory*, chapter 4.",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 3,
           "text": "Lorentz group API map — Physlib/Relativity/LorentzGroup/API-map.md",
-          "apiMap": "Physlib/Relativity/LorentzGroup"
+          "atlas": "Physlib/Relativity/LorentzGroup"
         },
         {
           "index": 4,
           "text": "Physlib GitHub issue #882, https://github.com/leanprover-community/physlib/issues/882",
-          "apiMap": null
+          "atlas": null
         }
       ],
       "requirements": [
@@ -7997,37 +7997,37 @@
         {
           "index": 1,
           "text": "M. F. Atiyah, *Topological quantum field theories*, Publications Mathématiques de l'IHÉS 68 (1988), 175–186.",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 2,
           "text": "G. Segal, *The definition of conformal field theory*, in *Differential Geometrical Methods in Theoretical Physics* (1988), 165–171.",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 3,
           "text": "J. Kock, *Frobenius Algebras and 2D Topological Quantum Field Theories*, Cambridge University Press (2003).",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 4,
           "text": "Time API map — Physlib/SpaceAndTime/Time/API-map.md",
-          "apiMap": "Physlib/SpaceAndTime/Time"
+          "atlas": "Physlib/SpaceAndTime/Time"
         },
         {
           "index": 5,
           "text": "Physlib GitHub issue #877, https://github.com/leanprover-community/physlib/issues/877",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 6,
           "text": "J. Lurie, *On the classification of topological field theories*, Current Developments in Mathematics 2008 (2009), 129–280.",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 7,
           "text": "E. Witten, *Quantum field theory and the Jones polynomial*, Communications in Mathematical Physics 121 (1989), 351–399.",
-          "apiMap": null
+          "atlas": null
         }
       ],
       "requirements": [
@@ -8298,12 +8298,12 @@
         {
           "index": 1,
           "text": "Space API map — Physlib/SpaceAndTime/Space/API-map.md",
-          "apiMap": "Physlib/SpaceAndTime/Space"
+          "atlas": "Physlib/SpaceAndTime/Space"
         },
         {
           "index": 2,
           "text": "Operator algebra API map — Physlib/QuantumMechanics/Operators/API-map.md",
-          "apiMap": "Physlib/QuantumMechanics/Operators"
+          "atlas": "Physlib/QuantumMechanics/Operators"
         }
       ],
       "requirements": [
@@ -10299,52 +10299,52 @@
         {
           "index": 1,
           "text": "B. C. Hall, *Quantum Theory for Mathematicians*, Springer (2013), Chapters 9 and 10 (unbounded self-adjoint operators) and Chapter 12 (position, momentum, expectation values and the uncertainty principle).",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 2,
           "text": "M. Reed and B. Simon, *Methods of Modern Mathematical Physics I. Functional Analysis*, Academic Press (1980), Chapter VIII (unbounded operators).",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 3,
           "text": "K. Schmüdgen, *Unbounded Self-Adjoint Operators on Hilbert Space*, Springer (2012), Chapters 1 to 3 (closed, symmetric and self-adjoint operators, and examples 1.3 and 3.8 on multiplication operators).",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 4,
           "text": "Spectral theory API map — Physlib/QuantumMechanics/Operators/SpectralTheory/API-map.md",
-          "apiMap": "Physlib/QuantumMechanics/Operators/SpectralTheory"
+          "atlas": "Physlib/QuantumMechanics/Operators/SpectralTheory"
         },
         {
           "index": 5,
           "text": "Space API map — Physlib/SpaceAndTime/Space/API-map.md",
-          "apiMap": "Physlib/SpaceAndTime/Space"
+          "atlas": "Physlib/SpaceAndTime/Space"
         },
         {
           "index": 6,
           "text": "Hilbert space on space API map — Physlib/QuantumMechanics/HilbertSpaces/SpaceD/API-map.md",
-          "apiMap": "Physlib/QuantumMechanics/HilbertSpaces/SpaceD"
+          "atlas": "Physlib/QuantumMechanics/HilbertSpaces/SpaceD"
         },
         {
           "index": 7,
           "text": "J. J. Sakurai and J. Napolitano, *Modern Quantum Mechanics*, 2nd ed., Cambridge University Press (2017), Chapter 1 (observables, expectation values, the canonical commutation relation, the uncertainty relation) and Chapter 3 (angular momentum).",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 8,
           "text": "D. J. Griffiths and D. F. Schroeter, *Introduction to Quantum Mechanics*, 3rd ed., Cambridge University Press (2018), Chapter 3 (observables, eigenfunctions of hermitian operators, the generalized uncertainty principle) and Chapter 4 (angular momentum).",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 9,
           "text": "H. P. Robertson, *The Uncertainty Principle*, Phys. Rev. 34, 163 (1929).",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 10,
           "text": "E. Schrödinger, *Zum Heisenbergschen Unschärfeprinzip*, Sitzungsberichte der Preussischen Akademie der Wissenschaften 19, 296 (1930).",
-          "apiMap": null
+          "atlas": null
         }
       ],
       "requirements": [
@@ -11200,22 +11200,22 @@
         {
           "index": 1,
           "text": "Operator algebra API map — Physlib/QuantumMechanics/Operators/API-map.md",
-          "apiMap": "Physlib/QuantumMechanics/Operators"
+          "atlas": "Physlib/QuantumMechanics/Operators"
         },
         {
           "index": 2,
           "text": "B. C. Hall, *Quantum Theory for Mathematicians*, Springer (2013), Chapters 9 and 10 (unbounded self-adjoint operators, the spectral theorem).",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 3,
           "text": "M. Reed and B. Simon, *Methods of Modern Mathematical Physics I. Functional Analysis*, Academic Press (1980), Chapters VII and VIII (the spectral theorem, unbounded operators).",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 4,
           "text": "K. Schmüdgen, *Unbounded Self-Adjoint Operators on Hilbert Space*, Springer (2012), Chapters 1 to 3 (closed, symmetric and self-adjoint operators, defect numbers, the spectrum).",
-          "apiMap": null
+          "atlas": null
         }
       ],
       "requirements": [
@@ -12036,17 +12036,17 @@
         {
           "index": 1,
           "text": "M. A. Nielsen and I. L. Chuang, *Quantum Computation and Quantum Information*, Chapters 1, 2, 4 and 9.",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 2,
           "text": "S. Pancharatnam, *Generalized theory of interference, and its applications*, Proc. Indian Acad. Sci. A 44, 247 (1956).",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 3,
           "text": "M. V. Berry, *Quantal phase factors accompanying adiabatic changes*, Proc. R. Soc. London A 392, 45 (1984).",
-          "apiMap": null
+          "atlas": null
         }
       ],
       "requirements": [
@@ -12919,17 +12919,17 @@
         {
           "index": 1,
           "text": "Weyl Fermions API map — Physlib/Relativity/Fermions/Weyl/API-map.md",
-          "apiMap": "Physlib/Relativity/Fermions/Weyl"
+          "atlas": "Physlib/Relativity/Fermions/Weyl"
         },
         {
           "index": 2,
           "text": "Lorentz Group API map — Physlib/Relativity/LorentzGroup/API-map.md",
-          "apiMap": "Physlib/Relativity/LorentzGroup"
+          "atlas": "Physlib/Relativity/LorentzGroup"
         },
         {
           "index": 3,
           "text": "H. K. Dreiner, H. E. Haber and S. P. Martin, *Two-component spinor techniques and Feynman rules for quantum field theory and supersymmetry*, Phys. Rept. 494 (2010) 1–196, arXiv:0812.1594, https://arxiv.org/abs/0812.1594 (Dirac fermions are treated on page 197 of the arXiv version).",
-          "apiMap": null
+          "atlas": null
         }
       ],
       "requirements": [
@@ -14482,17 +14482,17 @@
         {
           "index": 1,
           "text": "Lorentz Group API map — Physlib/Relativity/LorentzGroup/API-map.md",
-          "apiMap": "Physlib/Relativity/LorentzGroup"
+          "atlas": "Physlib/Relativity/LorentzGroup"
         },
         {
           "index": 2,
           "text": "Dirac Fermions API map — Physlib/Relativity/Fermions/Dirac/API-map.md",
-          "apiMap": "Physlib/Relativity/Fermions/Dirac"
+          "atlas": "Physlib/Relativity/Fermions/Dirac"
         },
         {
           "index": 3,
           "text": "H. K. Dreiner, H. E. Haber and S. P. Martin, *Two-component spinor techniques and Feynman rules for quantum field theory and supersymmetry*, Phys. Rept. 494 (2010) 1–196, arXiv:0812.1594, https://arxiv.org/abs/0812.1594.",
-          "apiMap": null
+          "atlas": null
         }
       ],
       "requirements": [
@@ -14886,27 +14886,27 @@
         {
           "index": 1,
           "text": "SpaceTime API map — Physlib/SpaceAndTime/SpaceTime/API-map.md",
-          "apiMap": "Physlib/SpaceAndTime/SpaceTime"
+          "atlas": "Physlib/SpaceAndTime/SpaceTime"
         },
         {
           "index": 2,
           "text": "Tensors API map — Physlib/Relativity/Tensors/API-map.md",
-          "apiMap": "Physlib/Relativity/Tensors"
+          "atlas": "Physlib/Relativity/Tensors"
         },
         {
           "index": 3,
           "text": "Weyl Fermions API map — Physlib/Relativity/Fermions/Weyl/API-map.md",
-          "apiMap": "Physlib/Relativity/Fermions/Weyl"
+          "atlas": "Physlib/Relativity/Fermions/Weyl"
         },
         {
           "index": 4,
           "text": "Dirac Fermions API map — Physlib/Relativity/Fermions/Dirac/API-map.md",
-          "apiMap": "Physlib/Relativity/Fermions/Dirac"
+          "atlas": "Physlib/Relativity/Fermions/Dirac"
         },
         {
           "index": 5,
           "text": "A. Jaffe, *Lorentz Transformations, Rotations, and Boosts*, https://cdn.ku.edu.tr/cdn/files/amostafazadeh/phys517_518/phys517_2016f/Handouts/A_Jaffi_Lorentz_Group.pdf",
-          "apiMap": null
+          "atlas": null
         }
       ],
       "requirements": [
@@ -18154,17 +18154,17 @@
         {
           "index": 1,
           "text": "J. Tooby-Smith, *Formalization of physics index notation in Lean 4*, arXiv:2411.07667, https://arxiv.org/abs/2411.07667",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 2,
           "text": "Lorentz Group API map — Physlib/Relativity/LorentzGroup/API-map.md",
-          "apiMap": "Physlib/Relativity/LorentzGroup"
+          "atlas": "Physlib/Relativity/LorentzGroup"
         },
         {
           "index": 3,
           "text": "Weyl Fermions API map — Physlib/Relativity/Fermions/Weyl/API-map.md",
-          "apiMap": "Physlib/Relativity/Fermions/Weyl"
+          "atlas": "Physlib/Relativity/Fermions/Weyl"
         }
       ],
       "requirements": [
@@ -19031,12 +19031,12 @@
         {
           "index": 1,
           "text": "Space API map — Physlib/SpaceAndTime/Space/API-map.md",
-          "apiMap": "Physlib/SpaceAndTime/Space"
+          "atlas": "Physlib/SpaceAndTime/Space"
         },
         {
           "index": 2,
           "text": "Time API map — Physlib/SpaceAndTime/Time/API-map.md",
-          "apiMap": "Physlib/SpaceAndTime/Time"
+          "atlas": "Physlib/SpaceAndTime/Time"
         }
       ],
       "requirements": [
@@ -19435,12 +19435,12 @@
         {
           "index": 1,
           "text": "Space API map — Physlib/SpaceAndTime/Space/API-map.md",
-          "apiMap": "Physlib/SpaceAndTime/Space"
+          "atlas": "Physlib/SpaceAndTime/Space"
         },
         {
           "index": 2,
           "text": "Time API map — Physlib/SpaceAndTime/Time/API-map.md",
-          "apiMap": "Physlib/SpaceAndTime/Time"
+          "atlas": "Physlib/SpaceAndTime/Time"
         }
       ],
       "requirements": [
@@ -20045,7 +20045,7 @@
         {
           "index": 1,
           "text": "Lean Zulip, #PhysLean > Space vs EuclideanSpace, https://leanprover.zulipchat.com/#narrow/channel/479953-PhysLean/topic/Space.20vs.20EuclideanSpace/with/575938877",
-          "apiMap": null
+          "atlas": null
         }
       ],
       "requirements": [
@@ -20482,22 +20482,22 @@
         {
           "index": 1,
           "text": "Lorentz tensors API map — Physlib/Relativity/Tensors/API-map.md",
-          "apiMap": "Physlib/Relativity/Tensors"
+          "atlas": "Physlib/Relativity/Tensors"
         },
         {
           "index": 2,
           "text": "Space API map — Physlib/SpaceAndTime/Space/API-map.md",
-          "apiMap": "Physlib/SpaceAndTime/Space"
+          "atlas": "Physlib/SpaceAndTime/Space"
         },
         {
           "index": 3,
           "text": "Time API map — Physlib/SpaceAndTime/Time/API-map.md",
-          "apiMap": "Physlib/SpaceAndTime/Time"
+          "atlas": "Physlib/SpaceAndTime/Time"
         },
         {
           "index": 4,
           "text": "Lorentz group API map — Physlib/Relativity/LorentzGroup/API-map.md",
-          "apiMap": "Physlib/Relativity/LorentzGroup"
+          "atlas": "Physlib/Relativity/LorentzGroup"
         }
       ],
       "requirements": [
@@ -20979,7 +20979,7 @@
         {
           "index": 1,
           "text": "Lorentz tensors API map — Physlib/Relativity/Tensors/API-map.md",
-          "apiMap": "Physlib/Relativity/Tensors"
+          "atlas": "Physlib/Relativity/Tensors"
         }
       ],
       "requirements": [
@@ -21367,12 +21367,12 @@
         {
           "index": 1,
           "text": "Time API map — Physlib/SpaceAndTime/Time/API-map.md",
-          "apiMap": "Physlib/SpaceAndTime/Time"
+          "atlas": "Physlib/SpaceAndTime/Time"
         },
         {
           "index": 2,
           "text": "Space API map — Physlib/SpaceAndTime/Space/API-map.md",
-          "apiMap": "Physlib/SpaceAndTime/Space"
+          "atlas": "Physlib/SpaceAndTime/Space"
         }
       ],
       "requirements": [
@@ -21815,17 +21815,17 @@
         {
           "index": 1,
           "text": "L. D. Landau and E. M. Lifshitz, *Statistical Physics, Part 1*, §31.",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 2,
           "text": "Temperature API map — Physlib/Thermodynamics/Temperature/API-map.md",
-          "apiMap": "Physlib/Thermodynamics/Temperature"
+          "atlas": "Physlib/Thermodynamics/Temperature"
         },
         {
           "index": 3,
           "text": "D. Tong, *Lectures on Statistical Physics* (Cambridge), https://www.damtp.cam.ac.uk/user/tong/statphys/one.pdf and https://www.damtp.cam.ac.uk/user/tong/statphys/two.pdf",
-          "apiMap": null
+          "atlas": null
         }
       ],
       "requirements": [
@@ -22488,12 +22488,12 @@
         {
           "index": 1,
           "text": "N. F. Ramsey, Thermodynamics and statistical mechanics at negative absolute temperatures, *Physical Review* 103 (1956), 20-28.",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 2,
           "text": "L. D. Landau and E. M. Lifshitz, *Statistical Physics, Part 1*, §9 (temperature) and §31 (the Gibbs distribution).",
-          "apiMap": null
+          "atlas": null
         }
       ],
       "requirements": [
@@ -25450,42 +25450,42 @@
         {
           "index": 1,
           "text": "ISO/IEC 80000-1:2009, *Quantities and units, Part 1: General*, Clauses 3 to 6 (quantities, systems of quantities, dimensions, and systems of units).",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 2,
           "text": "JCGM 200:2012, *International vocabulary of metrology* (VIM, 3rd edition), Clause 1 (base quantity, derived quantity, quantity dimension, base unit, coherent system of units).",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 3,
           "text": "Lean Zulip, #Physlib > physical units, https://leanprover.zulipchat.com/#narrow/channel/479953-Physlib/topic/physical.20units",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 4,
           "text": "G. I. Barenblatt, *Scaling, Self-similarity, and Intermediate Asymptotics*, Cambridge University Press (1996), Chapter 1, Sections 1.1 and 1.2 (dimensions, systems of units, and the change of a quantity under a change of unit).",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 5,
           "text": "International Bureau of Weights and Measures (BIPM), *The International System of Units (SI Brochure)*, 9th edition (2019), Chapter 1 (quantities and units) and Chapter 2 (the defining constants and the seven base units).",
-          "apiMap": null
+          "atlas": null
         },
         {
           "index": 6,
           "text": "Time API map — Physlib/SpaceAndTime/Time/API-map.md",
-          "apiMap": "Physlib/SpaceAndTime/Time"
+          "atlas": "Physlib/SpaceAndTime/Time"
         },
         {
           "index": 7,
           "text": "Space API map — Physlib/SpaceAndTime/Space/API-map.md",
-          "apiMap": "Physlib/SpaceAndTime/Space"
+          "atlas": "Physlib/SpaceAndTime/Space"
         },
         {
           "index": 8,
           "text": "Temperature API map — Physlib/Thermodynamics/Temperature/API-map.md",
-          "apiMap": "Physlib/Thermodynamics/Temperature"
+          "atlas": "Physlib/Thermodynamics/Temperature"
         }
       ],
       "requirements": [
@@ -26032,2257 +26032,2257 @@
     {
       "path": "Physlib",
       "leanFiles": 647,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/ClassicalFieldTheory",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/ClassicalFieldTheory/GaugeTheory",
       "leanFiles": 1,
-      "hasApiMap": true
+      "hasAtlas": true
     },
     {
       "path": "Physlib/ClassicalFieldTheory/GaugeTheory/LocalGaugeData",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/ClassicalFieldTheory/Local",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/ClassicalMechanics",
       "leanFiles": 47,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/ClassicalMechanics/ConfigurationSpace",
       "leanFiles": 2,
-      "hasApiMap": true
+      "hasAtlas": true
     },
     {
       "path": "Physlib/ClassicalMechanics/DampedHarmonicOscillator",
       "leanFiles": 2,
-      "hasApiMap": true
+      "hasAtlas": true
     },
     {
       "path": "Physlib/ClassicalMechanics/FreeParticle",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/ClassicalMechanics/HamiltonianMechanics",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/ClassicalMechanics/HarmonicOscillator",
       "leanFiles": 6,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/ClassicalMechanics/HarmonicOscillator/Geometric",
       "leanFiles": 3,
-      "hasApiMap": true
+      "hasAtlas": true
     },
     {
       "path": "Physlib/ClassicalMechanics/Lagrangian",
       "leanFiles": 3,
-      "hasApiMap": true
+      "hasAtlas": true
     },
     {
       "path": "Physlib/ClassicalMechanics/Mass",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/ClassicalMechanics/OrbitalMechanics",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/ClassicalMechanics/Pendulum",
       "leanFiles": 14,
-      "hasApiMap": true
+      "hasAtlas": true
     },
     {
       "path": "Physlib/ClassicalMechanics/Pendulum/SimplePendulum",
       "leanFiles": 11,
-      "hasApiMap": true
+      "hasAtlas": true
     },
     {
       "path": "Physlib/ClassicalMechanics/Pendulum/SimplePendulum/Geometric",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/ClassicalMechanics/PointParticle",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/ClassicalMechanics/PointParticle/NewtonianSystem",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/ClassicalMechanics/RigidBody",
       "leanFiles": 6,
-      "hasApiMap": true
+      "hasAtlas": true
     },
     {
       "path": "Physlib/ClassicalMechanics/Scattering",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/ClassicalMechanics/Vibrations",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/ClassicalMechanics/WaveEquation",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/CondensedMatter",
       "leanFiles": 13,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/CondensedMatter/BandTheory",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/CondensedMatter/Crystal",
       "leanFiles": 5,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/CondensedMatter/LatticeModels",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/CondensedMatter/ManyBody",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/CondensedMatter/Response",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/CondensedMatter/Thermoelectric",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/CondensedMatter/TightBindingChain",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/CondensedMatter/Topology",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Cosmology",
       "leanFiles": 15,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Cosmology/FLRW",
       "leanFiles": 14,
-      "hasApiMap": true
+      "hasAtlas": true
     },
     {
       "path": "Physlib/Cosmology/FLRW/SpecificCases",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Electromagnetism",
       "leanFiles": 36,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Electromagnetism/Charge",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Electromagnetism/Current",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Electromagnetism/Distributional",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Electromagnetism/Dynamics",
       "leanFiles": 6,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Electromagnetism/Kinematics",
       "leanFiles": 8,
-      "hasApiMap": true
+      "hasAtlas": true
     },
     {
       "path": "Physlib/Electromagnetism/PointParticle",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Electromagnetism/TemperedDistributional",
       "leanFiles": 10,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Electromagnetism/TemperedDistributional/Dynamics",
       "leanFiles": 4,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Electromagnetism/ThreeDimension",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Electromagnetism/Vacuum",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/FluidDynamics",
       "leanFiles": 17,
-      "hasApiMap": true
+      "hasAtlas": true
     },
     {
       "path": "Physlib/FluidDynamics/CauchyFlow",
       "leanFiles": 6,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/FluidDynamics/Euler",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/FluidDynamics/FluidFlow",
       "leanFiles": 6,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/FluidDynamics/ThermodynamicCauchyFlow",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/LatticeQFT",
       "leanFiles": 1,
-      "hasApiMap": true
+      "hasAtlas": true
     },
     {
       "path": "Physlib/Mathematics",
       "leanFiles": 56,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Mathematics/Calculus",
       "leanFiles": 8,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Mathematics/Calculus/Wirtinger",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Mathematics/Distribution",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Mathematics/ForMathlib",
       "leanFiles": 19,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Mathematics/ForMathlib/DataStructures",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Mathematics/ForMathlib/DataStructures/Matrix",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Mathematics/ForMathlib/Fin",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Mathematics/ForMathlib/Integration",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Mathematics/ForMathlib/List",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Mathematics/ForMathlib/OneParameterSubgroups",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Mathematics/ForMathlib/Trigonometry",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Mathematics/Groups",
       "leanFiles": 8,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Mathematics/Groups/SO3",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Mathematics/Groups/SpecialUnitary",
       "leanFiles": 7,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Mathematics/Groups/SpecialUnitary/LieAlgebra",
       "leanFiles": 7,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Mathematics/Groups/SpecialUnitary/LieAlgebra/GellMann",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Mathematics/InnerProductSpace",
       "leanFiles": 5,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Mathematics/KroneckerDelta",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Mathematics/LeviCivita",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Mathematics/Modules",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Mathematics/SpecialFunctions",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Mathematics/VariationalCalculus",
       "leanFiles": 6,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Meta",
       "leanFiles": 17,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Meta/Informal",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Meta/Linters",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Meta/Notes",
       "leanFiles": 4,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Meta/Remark",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Meta/TODO",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Optics",
       "leanFiles": 4,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Optics/Polarization",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Particles",
       "leanFiles": 72,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Particles/BeyondTheStandardModel",
       "leanFiles": 21,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Particles/BeyondTheStandardModel/GeorgiGlashow",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Particles/BeyondTheStandardModel/PatiSalam",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Particles/BeyondTheStandardModel/RHN",
       "leanFiles": 15,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Particles/BeyondTheStandardModel/RHN/AnomalyCancellation",
       "leanFiles": 15,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Particles/BeyondTheStandardModel/RHN/AnomalyCancellation/NoGrav",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Particles/BeyondTheStandardModel/RHN/AnomalyCancellation/Ordinary",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Particles/BeyondTheStandardModel/RHN/AnomalyCancellation/PlusU1",
       "leanFiles": 8,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Particles/BeyondTheStandardModel/Spin10",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Particles/BeyondTheStandardModel/TwoHDM",
       "leanFiles": 3,
-      "hasApiMap": true
+      "hasAtlas": true
     },
     {
       "path": "Physlib/Particles/FlavorPhysics",
       "leanFiles": 7,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Particles/FlavorPhysics/CKMMatrix",
       "leanFiles": 7,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Particles/FlavorPhysics/CKMMatrix/StandardParameterization",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Particles/NeutrinoPhysics",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Particles/StandardModel",
       "leanFiles": 16,
-      "hasApiMap": true
+      "hasAtlas": true
     },
     {
       "path": "Physlib/Particles/StandardModel/AnomalyCancellation",
       "leanFiles": 6,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Particles/StandardModel/AnomalyCancellation/NoGrav",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Particles/StandardModel/AnomalyCancellation/NoGrav/One",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Particles/StandardModel/Fermions",
       "leanFiles": 5,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Particles/StandardModel/HiggsBoson",
       "leanFiles": 3,
-      "hasApiMap": true
+      "hasAtlas": true
     },
     {
       "path": "Physlib/Particles/SuperSymmetry",
       "leanFiles": 27,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Particles/SuperSymmetry/MSSMNu",
       "leanFiles": 9,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Particles/SuperSymmetry/MSSMNu/AnomalyCancellation",
       "leanFiles": 9,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Particles/SuperSymmetry/MSSMNu/AnomalyCancellation/OrthogY3B3",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Particles/SuperSymmetry/N1",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Particles/SuperSymmetry/SU5",
       "leanFiles": 16,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Particles/SuperSymmetry/SU5/ChargeSpectrum",
       "leanFiles": 14,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Particles/SuperSymmetry/SU5/ChargeSpectrum/MinimallyAllowsTerm",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/ProbabilisticTheory",
       "leanFiles": 21,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/ProbabilisticTheory/Channel",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/ProbabilisticTheory/Effect",
       "leanFiles": 5,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/ProbabilisticTheory/LocalNet",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/ProbabilisticTheory/OrderUnit",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/ProbabilisticTheory/State",
       "leanFiles": 8,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/ProbabilisticTheory/Weight",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/QFT",
       "leanFiles": 72,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/QFT/AnomalyCancellation",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/QFT/PerturbationTheory",
       "leanFiles": 54,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/QFT/PerturbationTheory/FeynmanDiagrams",
       "leanFiles": 1,
-      "hasApiMap": true
+      "hasAtlas": true
     },
     {
       "path": "Physlib/QFT/PerturbationTheory/FieldOpFreeAlgebra",
       "leanFiles": 6,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/QFT/PerturbationTheory/FieldSpecification",
       "leanFiles": 6,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/QFT/PerturbationTheory/FieldStatistics",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/QFT/PerturbationTheory/Koszul",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/QFT/PerturbationTheory/WickAlgebra",
       "leanFiles": 14,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/QFT/PerturbationTheory/WickAlgebra/NormalOrder",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/QFT/PerturbationTheory/WickContraction",
       "leanFiles": 21,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/QFT/PerturbationTheory/WickContraction/Sign",
       "leanFiles": 4,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/QFT/QED",
       "leanFiles": 16,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/QFT/QED/AnomalyCancellation",
       "leanFiles": 16,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/QFT/QED/AnomalyCancellation/Even",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/QFT/QED/AnomalyCancellation/LowDim",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/QFT/QED/AnomalyCancellation/Odd",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/QuantumMechanics",
       "leanFiles": 59,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/QuantumMechanics/Blackbody",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/QuantumMechanics/FreeParticle",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/QuantumMechanics/HarmonicOscillator",
       "leanFiles": 9,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/QuantumMechanics/HarmonicOscillator/OneDimension",
       "leanFiles": 5,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/QuantumMechanics/HilbertSpaces",
       "leanFiles": 15,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/QuantumMechanics/HilbertSpaces/FiniteTarget",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/QuantumMechanics/HilbertSpaces/OneDimension",
       "leanFiles": 5,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/QuantumMechanics/HilbertSpaces/SpaceD",
       "leanFiles": 8,
-      "hasApiMap": true
+      "hasAtlas": true
     },
     {
       "path": "Physlib/QuantumMechanics/HilbertSpaces/TensorProducts",
       "leanFiles": 1,
-      "hasApiMap": true
+      "hasAtlas": true
     },
     {
       "path": "Physlib/QuantumMechanics/Hydrogen",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/QuantumMechanics/InfiniteSquareWell",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/QuantumMechanics/Operators",
       "leanFiles": 22,
-      "hasApiMap": true
+      "hasAtlas": true
     },
     {
       "path": "Physlib/QuantumMechanics/Operators/AngularMomentum",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/QuantumMechanics/Operators/OneDimension",
       "leanFiles": 5,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/QuantumMechanics/Operators/SpectralTheory",
       "leanFiles": 4,
-      "hasApiMap": true
+      "hasAtlas": true
     },
     {
       "path": "Physlib/QuantumMechanics/Operators/StateObservables",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/QuantumMechanics/PoschlTeller",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/QuantumMechanics/QuantumSystem",
       "leanFiles": 1,
-      "hasApiMap": true
+      "hasAtlas": true
     },
     {
       "path": "Physlib/QuantumMechanics/RectangularBarrier",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Relativity",
       "leanFiles": 112,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Relativity/Bispinors",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Relativity/Causality",
       "leanFiles": 4,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Relativity/Fermions",
       "leanFiles": 12,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Relativity/Fermions/Dirac",
       "leanFiles": 3,
-      "hasApiMap": true
+      "hasAtlas": true
     },
     {
       "path": "Physlib/Relativity/Fermions/Weyl",
       "leanFiles": 9,
-      "hasApiMap": true
+      "hasAtlas": true
     },
     {
       "path": "Physlib/Relativity/LorentzAlgebra",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Relativity/LorentzGroup",
       "leanFiles": 11,
-      "hasApiMap": true
+      "hasAtlas": true
     },
     {
       "path": "Physlib/Relativity/LorentzGroup/Boosts",
       "leanFiles": 4,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Relativity/LorentzGroup/Orthochronous",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Relativity/LorentzGroup/Restricted",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Relativity/PauliMatrices",
       "leanFiles": 6,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Relativity/SL2C",
       "leanFiles": 4,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Relativity/Special",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Relativity/Special/TwinParadox",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Relativity/Tensors",
       "leanFiles": 66,
-      "hasApiMap": true
+      "hasAtlas": true
     },
     {
       "path": "Physlib/Relativity/Tensors/ComplexTensor",
       "leanFiles": 13,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Relativity/Tensors/ComplexTensor/Matrix",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Relativity/Tensors/ComplexTensor/Metrics",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Relativity/Tensors/ComplexTensor/Units",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Relativity/Tensors/ComplexTensor/Vector",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Relativity/Tensors/ComplexTensor/Vector/Pre",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Relativity/Tensors/ComponentIdx",
       "leanFiles": 6,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Relativity/Tensors/Conjugation",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Relativity/Tensors/Contraction",
       "leanFiles": 9,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Relativity/Tensors/LeviCivita",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Relativity/Tensors/RealTensor",
       "leanFiles": 21,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Relativity/Tensors/RealTensor/Contraction",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Relativity/Tensors/RealTensor/CoVector",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Relativity/Tensors/RealTensor/Matrix",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Relativity/Tensors/RealTensor/Metrics",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Relativity/Tensors/RealTensor/Representation",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Relativity/Tensors/RealTensor/Units",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Relativity/Tensors/RealTensor/Vector",
       "leanFiles": 7,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Relativity/Tensors/RealTensor/Vector/Pre",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Relativity/Tensors/RealTensor/Velocity",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Relativity/Tensors/TensorSpecies",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/SpaceAndTime",
       "leanFiles": 53,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/SpaceAndTime/GalileanGroup",
       "leanFiles": 1,
-      "hasApiMap": true
+      "hasAtlas": true
     },
     {
       "path": "Physlib/SpaceAndTime/Space",
       "leanFiles": 30,
-      "hasApiMap": true
+      "hasAtlas": true
     },
     {
       "path": "Physlib/SpaceAndTime/Space/Derivatives",
       "leanFiles": 9,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/SpaceAndTime/Space/EuclideanGroup",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/SpaceAndTime/Space/Integrals",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/SpaceAndTime/Space/Norm",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/SpaceAndTime/SpaceTime",
       "leanFiles": 10,
-      "hasApiMap": true
+      "hasAtlas": true
     },
     {
       "path": "Physlib/SpaceAndTime/SpaceTime/SpaceTimeAlgebra",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/SpaceAndTime/SpaceTime/SpaceTimeDerivAlgebra",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/SpaceAndTime/Time",
       "leanFiles": 7,
-      "hasApiMap": true
+      "hasAtlas": true
     },
     {
       "path": "Physlib/SpaceAndTime/TimeAndSpace",
       "leanFiles": 4,
-      "hasApiMap": true
+      "hasAtlas": true
     },
     {
       "path": "Physlib/SpaceAndTime/TimeAndSpace/EuclideanGroup",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/StatisticalMechanics",
       "leanFiles": 8,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/StatisticalMechanics/CanonicalEnsemble",
       "leanFiles": 4,
-      "hasApiMap": true
+      "hasAtlas": true
     },
     {
       "path": "Physlib/StatisticalMechanics/MicroCanonicalEnsemble",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/StringTheory",
       "leanFiles": 13,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/StringTheory/FTheory",
       "leanFiles": 12,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/StringTheory/FTheory/SU5",
       "leanFiles": 12,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/StringTheory/FTheory/SU5/Charges",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/StringTheory/FTheory/SU5/Fluxes",
       "leanFiles": 4,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/StringTheory/FTheory/SU5/Fluxes/NoExotics",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/StringTheory/FTheory/SU5/Quanta",
       "leanFiles": 4,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Thermodynamics",
       "leanFiles": 4,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Thermodynamics/IdealGas",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "Physlib/Thermodynamics/Temperature",
       "leanFiles": 2,
-      "hasApiMap": true
+      "hasAtlas": true
     },
     {
       "path": "Physlib/Units",
       "leanFiles": 25,
-      "hasApiMap": true
+      "hasAtlas": true
     },
     {
       "path": "Physlib/Units/WithDim",
       "leanFiles": 9,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha",
       "leanFiles": 724,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ClassicalFieldTheory",
       "leanFiles": 96,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ClassicalFieldTheory/GaugeTheory",
       "leanFiles": 77,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ClassicalFieldTheory/GaugeTheory/GaugeBoson",
       "leanFiles": 17,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ClassicalFieldTheory/GaugeTheory/GaugeBoson/LocalGauge",
       "leanFiles": 9,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ClassicalFieldTheory/GaugeTheory/GaugeBoson/LocalGaugeCov",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ClassicalFieldTheory/GaugeTheory/GaugeBoson/Realization",
       "leanFiles": 5,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ClassicalFieldTheory/GaugeTheory/GaugeFieldData",
       "leanFiles": 7,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ClassicalFieldTheory/GaugeTheory/LocalCovField",
       "leanFiles": 6,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ClassicalFieldTheory/GaugeTheory/LocalField",
       "leanFiles": 13,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ClassicalFieldTheory/GaugeTheory/LocalGaugeData",
       "leanFiles": 19,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ClassicalFieldTheory/GaugeTheory/LocalGaugeData/SU",
       "leanFiles": 10,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ClassicalFieldTheory/GaugeTheory/LocalGaugeData/SU/Invariants",
       "leanFiles": 5,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ClassicalFieldTheory/GaugeTheory/MatterField",
       "leanFiles": 15,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ClassicalFieldTheory/GaugeTheory/MatterField/JetComponent",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ClassicalFieldTheory/GaugeTheory/MatterField/MatrixRep",
       "leanFiles": 4,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ClassicalFieldTheory/Local",
       "leanFiles": 19,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ClassicalFieldTheory/Local/FirstVariation",
       "leanFiles": 6,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ClassicalMechanics",
       "leanFiles": 16,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ClassicalMechanics/CentralForce",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ClassicalMechanics/LiouvilleIntegrable",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ClassicalMechanics/MomentMap",
       "leanFiles": 4,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ClassicalMechanics/NortonDome",
       "leanFiles": 8,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/CondensedMatter",
       "leanFiles": 66,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/CondensedMatter/Bloch",
       "leanFiles": 7,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/CondensedMatter/Crystal",
       "leanFiles": 28,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/CondensedMatter/Crystal/Examples",
       "leanFiles": 6,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/CondensedMatter/Crystal/PointGroup",
       "leanFiles": 9,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/CondensedMatter/IsingModel",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/CondensedMatter/QuasiLocal",
       "leanFiles": 8,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/CondensedMatter/TightBindingChain",
       "leanFiles": 21,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/CondensedMatter/TightBindingChain/Cube",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/CondensedMatter/TightBindingChain/Current",
       "leanFiles": 5,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/CondensedMatter/TightBindingChain/MaxCurrentState",
       "leanFiles": 8,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/CondensedMatter/TightBindingChain/Open",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/CondensedMatter/TightBindingChain/VelocityBand",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Electromagnetism",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Electromagnetism/TemperedDistributional",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics",
       "leanFiles": 105,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/Analysis",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/Analysis/Normed",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/Convex",
       "leanFiles": 6,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/Convex/Choquet",
       "leanFiles": 4,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/ForMathlib",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/ForMathlib/DataStructures",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/ForMathlib/DataStructures/Matrix",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/Geometry",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/LadderSystem",
       "leanFiles": 5,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/LeviCivita",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/MeasureTheory",
       "leanFiles": 6,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/Modules",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/Order",
       "leanFiles": 10,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/Order/PositiveDual",
       "leanFiles": 7,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/Probability",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/Probability/Kernel",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/RepresentationTheory",
       "leanFiles": 11,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/RepresentationTheory/Sl2",
       "leanFiles": 11,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/SpecialFunctions",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/TauCeti",
       "leanFiles": 40,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/TauCeti/Analysis",
       "leanFiles": 25,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/TauCeti/Analysis/Bochner",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/TauCeti/Analysis/CStarAlgebra",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/TauCeti/Analysis/Fourier",
       "leanFiles": 5,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/TauCeti/Analysis/Fourier/Pontryagin",
       "leanFiles": 5,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/TauCeti/Analysis/InnerProductSpace",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/TauCeti/Analysis/Matrix",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/TauCeti/Analysis/Normed",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/TauCeti/Analysis/Normed/Operator",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/TauCeti/Analysis/PositiveDefinite",
       "leanFiles": 11,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/TauCeti/Analysis/PositiveDefinite/Function",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/TauCeti/Analysis/PositiveDefinite/Kernel",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/TauCeti/LinearAlgebra",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/TauCeti/LinearAlgebra/Dimension",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/TauCeti/LinearAlgebra/Matrix",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/TauCeti/MeasureTheory",
       "leanFiles": 4,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/TauCeti/MeasureTheory/Function",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/TauCeti/MeasureTheory/Function/StronglyMeasurable",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/TauCeti/MeasureTheory/Integral",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/TauCeti/MeasureTheory/Measure",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/TauCeti/Order",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/TauCeti/Order/Filter",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/TauCeti/RepresentationTheory",
       "leanFiles": 6,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/TauCeti/RepresentationTheory/Continuous",
       "leanFiles": 6,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/TauCeti/RepresentationTheory/Continuous/Integrated",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/TauCeti/RepresentationTheory/Continuous/Pontryagin",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/TauCeti/RepresentationTheory/Continuous/Unitary",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/TauCeti/Topology",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/TauCeti/Topology/Algebra",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/TauCeti/Topology/Algebra/ContinuousMonoidHom",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles",
       "leanFiles": 139,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/BeyondTheStandardModel",
       "leanFiles": 8,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/BeyondTheStandardModel/TwoHDM",
       "leanFiles": 8,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/QED",
       "leanFiles": 12,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel",
       "leanFiles": 119,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel/CovRealization",
       "leanFiles": 18,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel/CovRealization/FermionGaugeSector",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel/CovRealization/GaugeHiggsSector",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel/CovRealization/MassWeight",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel/CovRealization/MixedSector",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel/CovRealization/YukawaSector",
       "leanFiles": 7,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel/CovRealization/YukawaSector/Families",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel/Fermions",
       "leanFiles": 13,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel/Fermions/DownSinglet",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel/Fermions/JetAlgebra",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel/Fermions/LeptonDoublet",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel/Fermions/LeptonSinglet",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel/Fermions/QuarkDoublet",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel/Fermions/UpSinglet",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel/GaugeAlgebra",
       "leanFiles": 4,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel/GaugeGroup",
       "leanFiles": 11,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel/GaugeGroup/Invariants",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel/GaugeGroup/JetGaugeGroup",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel/GaugeGroup/MaurerCartan",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel/HiggsBoson",
       "leanFiles": 4,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel/HiggsBoson/JetAlgebra",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel/IsFermionSector",
       "leanFiles": 10,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel/IsFermionSector/Deriv",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel/IsFermionSector/MassWeight",
       "leanFiles": 6,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel/IsGaugeSector",
       "leanFiles": 7,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel/IsGaugeSector/Deriv",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel/IsGaugeSector/MassWeight",
       "leanFiles": 4,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel/JetAlgebra",
       "leanFiles": 16,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel/JetAlgebra/CovJetAlgebra",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel/JetAlgebra/SectorEquiv",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel/Matter",
       "leanFiles": 16,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel/Matter/Bosonic",
       "leanFiles": 8,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel/Matter/Fermionic",
       "leanFiles": 8,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel/Model",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel/Realization",
       "leanFiles": 15,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel/Realization/CovFieldAlgebra",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel/Realization/HiggsCov",
       "leanFiles": 8,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel/Realization/HiggsCov/DerivSubmodule",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel/Realization/HiggsCov/MassWeight",
       "leanFiles": 4,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel/Realization/MassWeight",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ProbabilisticTheory",
       "leanFiles": 233,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ProbabilisticTheory/Algebra",
       "leanFiles": 4,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ProbabilisticTheory/Channel",
       "leanFiles": 6,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ProbabilisticTheory/Classical",
       "leanFiles": 16,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ProbabilisticTheory/Composite",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ProbabilisticTheory/CStarAlgebra",
       "leanFiles": 16,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ProbabilisticTheory/CStarAlgebra/Stinespring",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ProbabilisticTheory/Dynamics",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ProbabilisticTheory/Effect",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ProbabilisticTheory/Examples",
       "leanFiles": 4,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ProbabilisticTheory/HilbertSpace",
       "leanFiles": 67,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ProbabilisticTheory/HilbertSpace/Dynamics",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ProbabilisticTheory/HilbertSpace/JointSpectral",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ProbabilisticTheory/HilbertSpace/State",
       "leanFiles": 4,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ProbabilisticTheory/HilbertSpace/TraceClass",
       "leanFiles": 10,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ProbabilisticTheory/HilbertSpace/Unbounded",
       "leanFiles": 48,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ProbabilisticTheory/HilbertSpace/Unbounded/AnalyticVector",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ProbabilisticTheory/HilbertSpace/Unbounded/Cayley",
       "leanFiles": 4,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ProbabilisticTheory/HilbertSpace/Unbounded/CayleySpectralData",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ProbabilisticTheory/HilbertSpace/Unbounded/EssentialSpectrum",
       "leanFiles": 5,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ProbabilisticTheory/HilbertSpace/Unbounded/Existence",
       "leanFiles": 9,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ProbabilisticTheory/HilbertSpace/Unbounded/Flow",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ProbabilisticTheory/HilbertSpace/Unbounded/SpectralIntegral",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ProbabilisticTheory/HilbertSpace/Unbounded/StarHomSpec",
       "leanFiles": 4,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ProbabilisticTheory/HilbertSpace/Unbounded/UnitaryInfra",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ProbabilisticTheory/JordanOrderUnit",
       "leanFiles": 41,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ProbabilisticTheory/JordanOrderUnit/CStarAlgebra",
       "leanFiles": 6,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ProbabilisticTheory/JordanOrderUnit/Examples",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ProbabilisticTheory/JordanOrderUnit/JB",
       "leanFiles": 11,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ProbabilisticTheory/JordanOrderUnit/JB/GeneratedByOne",
       "leanFiles": 8,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ProbabilisticTheory/JordanOrderUnit/JBW",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ProbabilisticTheory/JordanOrderUnit/Power",
       "leanFiles": 5,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ProbabilisticTheory/JordanOrderUnit/Quadratic",
       "leanFiles": 5,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ProbabilisticTheory/Measurement",
       "leanFiles": 12,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ProbabilisticTheory/OrderUnit",
       "leanFiles": 6,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ProbabilisticTheory/QuasiLocal",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ProbabilisticTheory/Representation",
       "leanFiles": 16,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ProbabilisticTheory/Representation/Covariance",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ProbabilisticTheory/StarAlgebra",
       "leanFiles": 13,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ProbabilisticTheory/State",
       "leanFiles": 12,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ProbabilisticTheory/Weight",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/ProbabilisticTheory/WStarAlgebra",
       "leanFiles": 8,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/QuantumMechanics",
       "leanFiles": 23,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/QuantumMechanics/AngularMomentum",
       "leanFiles": 9,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/QuantumMechanics/Blackbody",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/QuantumMechanics/Foundations",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/QuantumMechanics/Foundations/PBR",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/QuantumMechanics/HarmonicOscillator",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/QuantumMechanics/HilbertSpaces",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/QuantumMechanics/HilbertSpaces/FiniteTarget",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/QuantumMechanics/Hydrogen",
       "leanFiles": 4,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Relativity",
       "leanFiles": 31,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Relativity/Fermions",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Relativity/Fermions/Dirac",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Relativity/Fermions/Weyl",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Relativity/General",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Relativity/General/Schwarzschild",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Relativity/LorentzGroup",
       "leanFiles": 15,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Relativity/LorentzGroup/Boosts",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Relativity/LorentzGroup/Invariants",
       "leanFiles": 12,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Relativity/PauliMatrices",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Relativity/SL2C",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Relativity/Tensors",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Relativity/Tensors/ComplexTensor",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Relativity/Tensors/ComplexTensor/Vector",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Relativity/Tensors/ComplexTensor/Vector/Pre",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Relativity/Tensors/RealTensor",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/Relativity/Tensors/RealTensor/CoVector",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/SpaceAndTime",
       "leanFiles": 12,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/SpaceAndTime/Space",
       "leanFiles": 7,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/SpaceAndTime/Space/Surfaces",
       "leanFiles": 7,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/SpaceAndTime/SpaceTime",
       "leanFiles": 5,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "PhyslibAlpha/SpaceAndTime/SpaceTime/SpaceTimeAlgebra",
       "leanFiles": 4,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "QuantumInfo",
       "leanFiles": 81,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "QuantumInfo/Capacity",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "QuantumInfo/Channels",
       "leanFiles": 7,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "QuantumInfo/ClassicalInfo",
       "leanFiles": 6,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "QuantumInfo/ClassicalInfo/ForMathlib",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "QuantumInfo/ClassicalInfo/ForMathlib/Analysis",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "QuantumInfo/ClassicalInfo/ForMathlib/Analysis/SpecialFunctions",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "QuantumInfo/ClassicalInfo/ForMathlib/Analysis/SpecialFunctions/Log",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "QuantumInfo/Entropy",
       "leanFiles": 4,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "QuantumInfo/ForMathlib",
       "leanFiles": 48,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "QuantumInfo/ForMathlib/HayataGroup",
       "leanFiles": 10,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "QuantumInfo/ForMathlib/HayataGroup/TraceInequality",
       "leanFiles": 10,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "QuantumInfo/ForMathlib/HermitianMat",
       "leanFiles": 17,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "QuantumInfo/ForMathlib/MatrixNorm",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "QuantumInfo/ForMathlib/Tactic",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "QuantumInfo/ForMathlib/Tactic/Commutes",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "QuantumInfo/Measurements",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "QuantumInfo/Operators",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "QuantumInfo/ResourceTheory",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "QuantumInfo/States",
       "leanFiles": 9,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "QuantumInfo/States/Mixed",
       "leanFiles": 3,
-      "hasApiMap": false
+      "hasAtlas": false
     },
     {
       "path": "QuantumInfo/States/Pure",
       "leanFiles": 4,
-      "hasApiMap": false
+      "hasAtlas": false
     }
   ]
 }

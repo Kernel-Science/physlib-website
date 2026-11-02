@@ -1,12 +1,13 @@
 import type {
-  ApiMapContentSection,
-  ApiMapLeanReference,
-  ApiMapNode,
-  ApiMapReference,
+  Atlas,
+  AtlasContentSection,
+  AtlasLeanReference,
+  AtlasNode,
+  AtlasReference,
 } from "@/lib/yaml";
 
 /**
- * Turning an API-map.md (as data/APIMap.json carries it) into the sections of
+ * Turning an Atlas.md (as data/Atlas.json carries it) into the sections of
  * the article page, and back into markdown for the edit view.
  *
  * The page mirrors the file's own shape: the abstract is the lead, each `###`
@@ -30,6 +31,20 @@ export function sourceUrl(repo: string, branch: string, file: string, line?: num
   return `https://github.com/${repo}/blob/${branch}/${file}${line ? `#L${line}` : ""}`;
 }
 
+/** Keep cached article links valid when files move on the live branch. */
+export function atlasSnapshot(data: Atlas): Atlas {
+  return {
+    ...data,
+    guideFile: data.guideFile ?? "docs/API_MAP_GUIDE.md",
+    nodes: data.nodes.map((node) => ({ ...node, url: sourceUrl(data.repo, data.commit, node.file) })),
+  };
+}
+
+/** The writing guide that existed at the revision supplying the articles. */
+export function atlasGuideUrl(data: Pick<Atlas, "repo" | "commit" | "guideFile">): string {
+  return sourceUrl(data.repo, data.commit, data.guideFile ?? "docs/API_MAP_GUIDE.md");
+}
+
 export function historyUrl(repo: string, branch: string, file: string): string {
   return `https://github.com/${repo}/commits/${branch}/${file}`;
 }
@@ -44,15 +59,15 @@ export function editFileUrl(repo: string, branch: string, file: string): string 
   return `https://github.com/${repo}/edit/${branch}/${file}`;
 }
 
-/** The open issues filed about one API map, Physlib's equivalent of a talk
+/** The open issues filed about one Atlas article, Physlib's equivalent of a talk
  *  page. */
 export function talkUrl(repo: string, title: string): string {
   const q = `is:issue is:open label:API "${title}"`;
   return `https://github.com/${repo}/issues?q=${encodeURIComponent(q)}`;
 }
 
-/** The page of an API map on this site. */
-export const apiMapHref = (path: string) => `/api-tracker#${path}`;
+/** The page of an Atlas article on this site. */
+export const atlasHref = (path: string) => `/atlas#${path}`;
 
 /** `Physlib/SpaceAndTime/Time` → `Physlib.SpaceAndTime.Time`. */
 export const moduleOf = (path: string) => path.replace(/\//g, ".");
@@ -60,9 +75,9 @@ export const moduleOf = (path: string) => path.replace(/\//g, ".");
 // ─── Sections ───────────────────────────────────────────────────────────────
 
 /**
- * What a suggested edit does to API-map.md, in the terms a bot applying it
+ * What a suggested edit does to Atlas.md, in the terms a bot applying it
  * would need. Headings are given without their `## ` / `### ` markers.
- * See src/lib/api-map-issue.ts for how it is written into the issue.
+ * See src/lib/atlas-issue.ts for how it is written into the issue.
  */
 export type EditOperation =
   /** Replace the body of the abstract section `heading`. */
@@ -92,7 +107,7 @@ export type EditOperation =
 export type EditTarget = {
   /** Shown in the editor and the issue - "the abstract", a subsection title. */
   label: string;
-  /** Where in API-map.md the text lives, for the maintainer reading the issue. */
+  /** Where in Atlas.md the text lives, for the maintainer reading the issue. */
   location: string;
   /** The exact current markdown. */
   source: string;
@@ -135,14 +150,14 @@ const slug = (s: string) =>
 export function buildArticle(
   abstractHeading: string,
   abstract: string,
-  content: ApiMapContentSection[],
+  content: AtlasContentSection[],
 ): Article {
   const sections: ArticleSection[] = [];
   const intro: Article["intro"] = [];
   const used = new Set<string>();
   const uniqueId = (title: string) => {
-    let id = `apimap-${slug(title) || "section"}`;
-    for (let n = 2; used.has(id); n++) id = `apimap-${slug(title)}-${n}`;
+    let id = `atlas-${slug(title) || "section"}`;
+    for (let n = 2; used.has(id); n++) id = `atlas-${slug(title)}-${n}`;
     used.add(id);
     return id;
   };
@@ -205,7 +220,7 @@ export function buildArticle(
   };
 }
 
-function contentSectionSource(c: ApiMapContentSection): string {
+function contentSectionSource(c: AtlasContentSection): string {
   return [
     `## ${c.heading}`,
     ...(c.intro ? [c.intro] : []),
@@ -213,8 +228,8 @@ function contentSectionSource(c: ApiMapContentSection): string {
   ].join("\n\n");
 }
 
-/** The editable part of an API-map.md - abstract and content - as markdown. */
-export function articleSource(node: ApiMapNode): string {
+/** The editable part of an Atlas.md - abstract and content - as markdown. */
+export function articleSource(node: AtlasNode): string {
   return [
     `## ${node.abstractHeading}`,
     node.abstract,
@@ -222,7 +237,7 @@ export function articleSource(node: ApiMapNode): string {
   ].join("\n\n");
 }
 
-export function wholeArticleTarget(node: ApiMapNode): EditTarget {
+export function wholeArticleTarget(node: AtlasNode): EditTarget {
   return {
     label: "the abstract and content",
     location: "everything from the abstract down to `## Lean References`",
@@ -244,7 +259,7 @@ export const NEW_SECTION_TEMPLATE = [
 
 /** The subsections a new section can be placed after: those of the map's
  *  `## Content (Alpha)`, where new text goes since it is not yet reviewed. */
-export function newSectionPositions(node: ApiMapNode): string[] {
+export function newSectionPositions(node: AtlasNode): string[] {
   return node.content.find((c) => c.alpha)?.subsections.map((s) => s.title) ?? [];
 }
 
@@ -254,7 +269,7 @@ export function newSectionPositions(node: ApiMapNode): string[] {
  * `after` is null - and when the map has no such section, into a new one
  * after the existing content.
  */
-export function newSectionTarget(node: ApiMapNode, after: string | null): EditTarget {
+export function newSectionTarget(node: AtlasNode, after: string | null): EditTarget {
   const alpha = node.content.find((c) => c.alpha);
   let location: string;
   let operation: EditOperation;
@@ -286,15 +301,15 @@ export function newSectionTarget(node: ApiMapNode, after: string | null): EditTa
 export function parseArticleSource(text: string): {
   abstractHeading: string;
   abstract: string;
-  content: ApiMapContentSection[];
+  content: AtlasContentSection[];
 } {
   let abstractHeading = "Abstract";
   const abstract: string[] = [];
-  const content: ApiMapContentSection[] = [];
+  const content: AtlasContentSection[] = [];
   let mode: "abstract" | "content" = "abstract";
   let sub: { title: string; body: string[] } | null = null;
   let intro: string[] = [];
-  let current: ApiMapContentSection | null = null;
+  let current: AtlasContentSection | null = null;
   const flush = () => {
     if (current) {
       if (sub) current.subsections.push({ title: sub.title, body: sub.body.join("\n").trim() });
@@ -324,7 +339,7 @@ export function parseArticleSource(text: string): {
     }
     if (/^### /.test(line)) {
       if (!current) openContent("Content (Alpha)");
-      const c = current as unknown as ApiMapContentSection;
+      const c = current as unknown as AtlasContentSection;
       if (sub) c.subsections.push({ title: sub.title, body: sub.body.join("\n").trim() });
       sub = { title: line.slice(4).trim(), body: [] };
       continue;
@@ -346,7 +361,7 @@ export type CiteKind = "lean" | "lit";
 export type CitationOccurrences = Map<string, string[]>;
 
 export const citeKey = (kind: CiteKind, n: number) => `${kind}-${n}`;
-export const referenceId = (kind: CiteKind, n: number) => `apimap-ref-${kind}-${n}`;
+export const referenceId = (kind: CiteKind, n: number) => `atlas-ref-${kind}-${n}`;
 
 /**
  * Rewrites the map's citation syntax into markdown links the article's
@@ -398,11 +413,11 @@ export function parseCiteHref(
   return m ? { kind: m[1] as CiteKind, n: Number(m[2]), id: m[3] } : null;
 }
 
-export function findLeanReference(refs: ApiMapLeanReference[], n: number) {
+export function findLeanReference(refs: AtlasLeanReference[], n: number) {
   return refs.find((r) => r.index === n);
 }
 
-export function findReference(refs: ApiMapReference[], n: number) {
+export function findReference(refs: AtlasReference[], n: number) {
   return refs.find((r) => r.index === n);
 }
 
@@ -436,7 +451,7 @@ export type AlphaParts = {
   mixed: boolean;
 };
 
-export function alphaParts(node: ApiMapNode): AlphaParts {
+export function alphaParts(node: AtlasNode): AlphaParts {
   const alphaSections = node.content.filter((c) => c.alpha).length;
   const content: AlphaParts["content"] =
     node.content.length === 0
@@ -452,7 +467,7 @@ export function alphaParts(node: ApiMapNode): AlphaParts {
   return { abstract: node.alpha, content, any, mixed: any && !(node.alpha && content === "all") };
 }
 
-export function claimCounts(node: ApiMapNode) {
+export function claimCounts(node: AtlasNode) {
   return {
     done: node.requirements.filter((r) => r.done).length,
     total: node.requirements.length,
@@ -516,11 +531,11 @@ export function unifiedDiff(diff: DiffLine[]): string {
     .join("\n");
 }
 
-// ─── New API maps ───────────────────────────────────────────────────────────
+// ─── New Atlas articles ───────────────────────────────────────────────────────────
 
-/** The skeleton of a new API-map.md, in the shape docs/API_MAP_GUIDE.md asks
+/** The skeleton of a new Atlas.md, in the shape docs/ATLAS_GUIDE.md asks
  *  for. */
-export function newApiMapTemplate(title: string, abstract = ""): string {
+export function newAtlasTemplate(title: string, abstract = ""): string {
   return [
     `# ${title.trim() || "Title of the API"}`,
     "",
@@ -562,11 +577,11 @@ function numberedEntries(text: string): { index: number; text: string }[] {
 }
 
 /**
- * Reads a whole API-map.md as the reader writes it on the create page, for
+ * Reads a whole Atlas.md as the reader writes it on the create page, for
  * the preview: the same shape the generator produces, with declarations
  * left unresolved (they aren't in Physlib yet, or not at that path).
  */
-export function parseFullApiMap(text: string) {
+export function parseFullAtlas(text: string) {
   const lines = text.split("\n");
   const titleLine = lines.find((l) => /^# /.test(l));
   const at = (heading: string) => lines.findIndex((l) => l.trim() === `## ${heading}`);
@@ -599,8 +614,8 @@ export function parseFullApiMap(text: string) {
       };
     }),
     references: numberedEntries(slice(litAt)).map(({ index, text }) => {
-      const m = text.match(/((?:Physlib|PhyslibAlpha|QuantumInfo)\/[^\s,;)]*?)\/API-map\.md/);
-      return { index, text, apiMap: m ? m[1] : null };
+      const m = text.match(/((?:Physlib|PhyslibAlpha|QuantumInfo)\/[^\s,;)]*?)\/(?:Atlas|API-map)\.md/);
+      return { index, text, atlas: m ? m[1] : null };
     }),
   };
 }

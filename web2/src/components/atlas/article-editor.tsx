@@ -1,16 +1,16 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import type { ApiMapLeanReference, ApiMapReference } from "@/lib/yaml";
+import type { AtlasLeanReference, AtlasReference } from "@/lib/yaml";
 import {
   backlinkLabel,
   buildArticle,
   diffHunks,
   lineDiff,
   parseArticleSource,
-  parseFullApiMap,
+  parseFullAtlas,
   unifiedDiff,
-} from "@/lib/api-map-article";
+} from "@/lib/atlas-article";
 import { GitHubIcon, MAX_URL_LENGTH, githubButtonClasses, githubButtonStyle } from "@/components/suggest-dialog-shared";
 import {
   ArticleBody,
@@ -19,14 +19,14 @@ import {
   SectionHeading,
   Callout,
   useLinkedArticle,
-} from "@/components/api-tracker/article-view";
-import { ArticleContext, type ArticleContextValue } from "@/components/api-tracker/article-prose";
-import type { IssueDraft, NewReference } from "@/lib/api-map-issue";
+} from "@/components/atlas/article-view";
+import { ArticleContext, type ArticleContextValue } from "@/components/atlas/article-prose";
+import type { IssueDraft, NewReference } from "@/lib/atlas-issue";
 
 /**
  * The suggest-an-edit view: the section's markdown in a text box with a
  * small citation toolbar, Write / Preview / Changes views, and a reason for
- * the change. API maps live in the Physlib repository, so the edit is filed
+ * the change. Atlas articles live in the Physlib repository, so the edit is filed
  * as a GitHub issue for a maintainer - or, for those who prefer, handed to
  * GitHub's own editor to open a pull request.
  */
@@ -74,8 +74,8 @@ function CiteToolbar({
   insert,
   onNewReference,
 }: {
-  leanReferences: ApiMapLeanReference[];
-  references: ApiMapReference[];
+  leanReferences: AtlasLeanReference[];
+  references: AtlasReference[];
   insert: (snippet: string) => void;
   /** Absent where references are written into the text itself. */
   onNewReference?: () => void;
@@ -155,9 +155,9 @@ function NewReferenceForm({
   return (
     <div className="border-b border-border bg-surface-secondary/30 px-3 py-3">
       <p className="mb-2 text-xs text-muted">
-        New reference <code className="apimap-code">{`{${index}}`}</code>, cited where the cursor is.
-        Italicize titles with <code className="apimap-code">*…*</code>; for another API map,
-        write e.g. <code className="apimap-code">Time API map — Physlib/SpaceAndTime/Time/API-map.md</code>.
+        New reference <code className="atlas-code">{`{${index}}`}</code>, cited where the cursor is.
+        Italicize titles with <code className="atlas-code">*…*</code>; for another Atlas article,
+        write e.g. <code className="atlas-code">Time Atlas article — Physlib/SpaceAndTime/Time/Atlas.md</code>.
       </p>
       <div className="grid gap-2 sm:grid-cols-[2fr_1fr]">
         <input
@@ -208,7 +208,7 @@ function Preview({
   showReferences?: boolean;
 }) {
   const parsed = useMemo(() => {
-    if (shape === "file") return parseFullApiMap(text);
+    if (shape === "file") return parseFullAtlas(text);
     if (shape === "lead") return { title: "", abstractHeading: "Abstract", abstract: text, content: [] };
     return { title: "", ...parseArticleSource(text) };
   }, [text, shape]);
@@ -227,7 +227,7 @@ function Preview({
         <p className="mb-4 text-xs text-muted">
           Preview - nothing has been submitted yet.
         </p>
-        <div className="apimap-body">
+        <div className="atlas-body">
           {parsed.title && <h1 className="mb-4 text-3xl font-bold tracking-tight">{parsed.title}</h1>}
           <ArticleBody linked={linked} />
           {shape === "file" && ctx.leanReferences.length > 0 && (
@@ -254,15 +254,15 @@ function Changes({ before, after }: { before: string; after: string }) {
     return <p className="text-sm text-muted">No changes yet.</p>;
   }
   return (
-    <div className="apimap-diff" role="table" aria-label="Changes">
+    <div className="atlas-diff" role="table" aria-label="Changes">
       {hunks.map((d, i) =>
         d === null ? (
-          <div key={i} className="apimap-diff-gap">
+          <div key={i} className="atlas-diff-gap">
             ⋯
           </div>
         ) : (
-          <div key={i} className={`apimap-diff-line apimap-diff-${d.op === "+" ? "add" : d.op === "-" ? "del" : "ctx"}`}>
-            <span aria-hidden className="apimap-diff-op">
+          <div key={i} className={`atlas-diff-line atlas-diff-${d.op === "+" ? "add" : d.op === "-" ? "del" : "ctx"}`}>
+            <span aria-hidden className="atlas-diff-op">
               {d.op === " " ? "" : d.op === "+" ? "+" : "−"}
             </span>
             <span className="whitespace-pre-wrap break-words">{d.text || " "}</span>
@@ -315,7 +315,7 @@ export function ArticleEditor({
             ...context,
             references: [
               ...context.references,
-              ...newReferences.map((r) => ({ ...r, apiMap: r.text.match(/((?:Physlib|PhyslibAlpha|QuantumInfo)\/[^\s,;)]*?)\/API-map\.md/)?.[1] ?? null })),
+              ...newReferences.map((r) => ({ ...r, atlas: r.text.match(/((?:Physlib|PhyslibAlpha|QuantumInfo)\/[^\s,;)]*?)\/Atlas\.md/)?.[1] ?? null })),
             ],
           },
     [context, newReferences],
@@ -323,7 +323,7 @@ export function ArticleEditor({
 
   // On the create page the citations come from the text being written.
   const cites = useMemo(
-    () => (shape === "file" ? parseFullApiMap(text) : editContext),
+    () => (shape === "file" ? parseFullAtlas(text) : editContext),
     [shape, text, editContext],
   );
 
@@ -427,7 +427,7 @@ export function ArticleEditor({
                 <span className="rounded-full border border-success/30 bg-success/10 px-1.5 text-[10px] font-medium text-success">
                   new
                 </span>
-                <code className="apimap-code">{`{${r.index}}`}</code>
+                <code className="atlas-code">{`{${r.index}}`}</code>
                 <span className="min-w-0 flex-1 truncate text-muted" title={r.text}>
                   {r.text}
                 </span>
@@ -473,10 +473,10 @@ export function ArticleEditor({
           <div className="p-4">
             <Changes before={baseline ?? initial} after={text} />
             {newReferences.length > 0 && (
-              <div className="apimap-diff mt-3">
+              <div className="atlas-diff mt-3">
                 {newReferences.map((r) => (
-                  <div key={r.index} className="apimap-diff-line apimap-diff-add">
-                    <span aria-hidden className="apimap-diff-op">+</span>
+                  <div key={r.index} className="atlas-diff-line atlas-diff-add">
+                    <span aria-hidden className="atlas-diff-op">+</span>
                     <span className="whitespace-pre-wrap break-words">
                       {r.index}. {r.text}
                     </span>
@@ -502,7 +502,7 @@ export function ArticleEditor({
 
       <p className="mt-3 text-xs leading-relaxed text-muted">
         Submitting opens GitHub in a new tab with an issue on{" "}
-        <code className="apimap-code">{repo}</code> filled in; you press{" "}
+        <code className="atlas-code">{repo}</code> filled in; you press{" "}
         <em>Create</em>. You must be signed in to a GitHub account. If the
         suggestion is accepted, you&apos;ll be credited as a co-author.
       </p>

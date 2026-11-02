@@ -1,6 +1,6 @@
 /**
  * Tracks the References page's current view (and, within a view, an
- * optional selected group) in the URL hash - the same trick api-map-hash.ts
+ * optional selected group) in the URL hash - the same trick atlas-hash.ts
  * uses, and for the same reason: the sidebar and the page content mount in
  * separate parts of the component tree (see ConditionalSidebar) and have no
  * other shared state to coordinate through. The sidebar reads the view to

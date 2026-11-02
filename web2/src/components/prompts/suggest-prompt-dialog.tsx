@@ -13,7 +13,7 @@ import {
 } from "@/components/suggest-dialog-shared";
 
 // Prompts live as a hand-written array in this website's own repo, not in
-// generated data pulled from Physlib itself - so, unlike the API map's
+// generated data pulled from Physlib itself - so, unlike the Atlas article's
 // suggest flow, edits here point at the website repo, not site.github.
 const REPO = site.websiteRepo.replace(/^https:\/\/github\.com\//, "");
 const BRANCH = "main";
@@ -64,7 +64,7 @@ async function openIssue({
 }
 
 /** Shared shell: title bar, tab switcher, and the "change it yourself on
- *  GitHub" tab, which - same as the API map's suggest flow - just hands off
+ *  GitHub" tab, which - same as the Atlas article's suggest flow - just hands off
  *  to the real editor rather than trying to prefill a diff GitHub has no
  *  query param for. */
 function DialogShell({

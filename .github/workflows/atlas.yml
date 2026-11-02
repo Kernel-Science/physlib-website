@@ -1,8 +1,8 @@
-name: Generate API map
+name: Generate Atlas
 
 on:
   schedule:
-    # Weekly refresh — API-map.md files change far less often than commits.
+    # Weekly refresh — Atlas.md files change far less often than commits.
     - cron: "20 4 * * 1"
   workflow_dispatch: {}
 
@@ -11,7 +11,7 @@ permissions:
 
 # Two runs committing to the same branch would race on push.
 concurrency:
-  group: api-map
+  group: atlas
   cancel-in-progress: false
 
 jobs:
@@ -25,7 +25,7 @@ jobs:
           persist-credentials: true
           fetch-depth: 0
 
-      # The generator needs nothing beyond Node itself: it reads API-map.md
+      # The generator needs nothing beyond Node itself: it reads Atlas.md
       # with its own parser and the Lean files with scripts/lean-decls.js.
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -42,20 +42,20 @@ jobs:
 
       - name: Run generator
         working-directory: web2
-        run: node scripts/generate-api-map.js
+        run: node scripts/generate-atlas.js
 
-      - name: Commit & push updated API map
+      - name: Commit & push updated Atlas data
         id: commit
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add web2/data/APIMap.json
+          git add web2/data/Atlas.json
           if git diff --cached --quiet; then
-            echo "No API map changes to commit."
+            echo "No Atlas data changes to commit."
             echo "committed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          git commit -m "chore(api-map): auto-generated update"
+          git commit -m "chore(atlas): auto-generated update"
           git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
           git push origin "HEAD:${GITHUB_REF_NAME}"
           echo "committed=true" >> "$GITHUB_OUTPUT"
