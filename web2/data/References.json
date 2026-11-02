@@ -1,7 +1,7 @@
 {
   "repo": "leanprover-community/physlib",
   "branch": "master",
-  "generatedAt": "2026-10-26T10:17:35.489Z",
+  "generatedAt": "2026-11-02T12:38:51.299Z",
   "references": [
     {
       "key": "abramowitz_stegun_1964",
@@ -124,15 +124,21 @@
       "citations": [
         {
           "file": "Physlib/ClassicalMechanics/ConfigurationSpace/Basic.lean",
-          "line": 29,
+          "line": 30,
           "subfolder": "Physlib/ClassicalMechanics",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/ConfigurationSpace/Basic.lean#L29"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/ConfigurationSpace/Basic.lean#L30"
         },
         {
           "file": "Physlib/ClassicalMechanics/Lagrangian/Basic.lean",
-          "line": 35,
+          "line": 41,
           "subfolder": "Physlib/ClassicalMechanics",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Lagrangian/Basic.lean#L35"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Lagrangian/Basic.lean#L41"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/Lagrangian/CriticalPoint.lean",
+          "line": 41,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Lagrangian/CriticalPoint.lean#L41"
         },
         {
           "file": "Physlib/ClassicalMechanics/Pendulum/SimplePendulum/Basic.lean",
@@ -157,9 +163,15 @@
           "line": 81,
           "subfolder": "Physlib/ClassicalMechanics",
           "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Pendulum/SimplePendulum/Solution.lean#L81"
+        },
+        {
+          "file": "Physlib/Mathematics/VariationalCalculus/Interval.lean",
+          "line": 31,
+          "subfolder": "Physlib/Mathematics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Mathematics/VariationalCalculus/Interval.lean#L31"
         }
       ],
-      "count": 6
+      "count": 8
     },
     {
       "key": "arnold_ode",
@@ -730,52 +742,52 @@
           "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/BeyondTheStandardModel/Spin10/Basic.lean#L54"
         },
         {
-          "file": "Physlib/Particles/StandardModel/Basic.lean",
+          "file": "Physlib/Particles/StandardModel/GaugeGroup/Basic.lean",
           "line": 18,
           "subfolder": "Physlib/Particles",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/StandardModel/Basic.lean#L18"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/StandardModel/GaugeGroup/Basic.lean#L18"
         },
         {
-          "file": "Physlib/Particles/StandardModel/Basic.lean",
+          "file": "Physlib/Particles/StandardModel/GaugeGroup/Basic.lean",
           "line": 288,
           "subfolder": "Physlib/Particles",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/StandardModel/Basic.lean#L288"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/StandardModel/GaugeGroup/Basic.lean#L288"
         },
         {
-          "file": "Physlib/Particles/StandardModel/Basic.lean",
+          "file": "Physlib/Particles/StandardModel/GaugeGroup/Basic.lean",
           "line": 314,
           "subfolder": "Physlib/Particles",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/StandardModel/Basic.lean#L314"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/StandardModel/GaugeGroup/Basic.lean#L314"
         },
         {
-          "file": "Physlib/Particles/StandardModel/Basic.lean",
+          "file": "Physlib/Particles/StandardModel/GaugeGroup/Basic.lean",
           "line": 395,
           "subfolder": "Physlib/Particles",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/StandardModel/Basic.lean#L395"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/StandardModel/GaugeGroup/Basic.lean#L395"
         },
         {
-          "file": "Physlib/Particles/StandardModel/Basic.lean",
+          "file": "Physlib/Particles/StandardModel/GaugeGroup/Basic.lean",
           "line": 425,
           "subfolder": "Physlib/Particles",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/StandardModel/Basic.lean#L425"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/StandardModel/GaugeGroup/Basic.lean#L425"
         },
         {
-          "file": "Physlib/Particles/StandardModel/Basic.lean",
+          "file": "Physlib/Particles/StandardModel/GaugeGroup/Basic.lean",
           "line": 506,
           "subfolder": "Physlib/Particles",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/StandardModel/Basic.lean#L506"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/StandardModel/GaugeGroup/Basic.lean#L506"
         },
         {
-          "file": "Physlib/Particles/StandardModel/Basic.lean",
+          "file": "Physlib/Particles/StandardModel/GaugeGroup/Basic.lean",
           "line": 536,
           "subfolder": "Physlib/Particles",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/StandardModel/Basic.lean#L536"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/StandardModel/GaugeGroup/Basic.lean#L536"
         },
         {
-          "file": "Physlib/Particles/StandardModel/Basic.lean",
+          "file": "Physlib/Particles/StandardModel/GaugeGroup/Basic.lean",
           "line": 584,
           "subfolder": "Physlib/Particles",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/StandardModel/Basic.lean#L584"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/StandardModel/GaugeGroup/Basic.lean#L584"
         }
       ],
       "count": 19
@@ -960,9 +972,9 @@
       "citations": [
         {
           "file": "Physlib/Electromagnetism/Distributional/Basic.lean",
-          "line": 39,
+          "line": 40,
           "subfolder": "Physlib/Electromagnetism",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Electromagnetism/Distributional/Basic.lean#L39"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Electromagnetism/Distributional/Basic.lean#L40"
         }
       ],
       "count": 1
@@ -1167,6 +1179,12 @@
           "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Relativity/Fermions/Dirac/Basic.lean#L22"
         },
         {
+          "file": "Physlib/Relativity/Fermions/Weyl/Contraction.lean",
+          "line": 62,
+          "subfolder": "Physlib/Relativity",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Relativity/Fermions/Weyl/Contraction.lean#L62"
+        },
+        {
           "file": "Physlib/Relativity/Fermions/Weyl/DualRightHanded.lean",
           "line": 45,
           "subfolder": "Physlib/Relativity",
@@ -1191,7 +1209,7 @@
           "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Relativity/PauliMatrices/Relations.lean#L25"
         }
       ],
-      "count": 5
+      "count": 6
     },
     {
       "key": "github_leandojo_extractdata",
@@ -1272,9 +1290,9 @@
       "citations": [
         {
           "file": "Physlib/CondensedMatter/Crystal/Basic.lean",
-          "line": 53,
+          "line": 57,
           "subfolder": "Physlib/CondensedMatter",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/CondensedMatter/Crystal/Basic.lean#L53"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/CondensedMatter/Crystal/Basic.lean#L57"
         },
         {
           "file": "Physlib/CondensedMatter/Crystal/Bonds.lean",
@@ -1284,12 +1302,24 @@
         },
         {
           "file": "Physlib/CondensedMatter/Crystal/PeriodicGraph.lean",
-          "line": 47,
+          "line": 61,
           "subfolder": "Physlib/CondensedMatter",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/CondensedMatter/Crystal/PeriodicGraph.lean#L47"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/CondensedMatter/Crystal/PeriodicGraph.lean#L61"
+        },
+        {
+          "file": "Physlib/CondensedMatter/Crystal/Symmetry/BrillouinZone.lean",
+          "line": 51,
+          "subfolder": "Physlib/CondensedMatter",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/CondensedMatter/Crystal/Symmetry/BrillouinZone.lean#L51"
+        },
+        {
+          "file": "Physlib/CondensedMatter/Crystal/Symmetry/SpaceGroup.lean",
+          "line": 49,
+          "subfolder": "Physlib/CondensedMatter",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/CondensedMatter/Crystal/Symmetry/SpaceGroup.lean#L49"
         }
       ],
-      "count": 3
+      "count": 5
     },
     {
       "key": "goldstein_classicalmechanics",
@@ -1421,9 +1451,9 @@
       "citations": [
         {
           "file": "Physlib/ClassicalMechanics/Pendulum/SimplePendulum/SmallAngle.lean",
-          "line": 110,
+          "line": 114,
           "subfolder": "Physlib/ClassicalMechanics",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Pendulum/SimplePendulum/SmallAngle.lean#L110"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Pendulum/SimplePendulum/SmallAngle.lean#L114"
         }
       ],
       "count": 1
@@ -1757,16 +1787,64 @@
           "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/HarmonicOscillator/Basic.lean#L89"
         },
         {
-          "file": "Physlib/ClassicalMechanics/HarmonicOscillator/Solution.lean",
-          "line": 67,
+          "file": "Physlib/ClassicalMechanics/HarmonicOscillator/Solution/AmplitudePhase.lean",
+          "line": 53,
           "subfolder": "Physlib/ClassicalMechanics",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/HarmonicOscillator/Solution.lean#L67"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/HarmonicOscillator/Solution/AmplitudePhase.lean#L53"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/HarmonicOscillator/Solution/Basic.lean",
+          "line": 49,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/HarmonicOscillator/Solution/Basic.lean#L49"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/HarmonicOscillator/Solution/Consistency.lean",
+          "line": 49,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/HarmonicOscillator/Solution/Consistency.lean#L49"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/HarmonicOscillator/Solution/Energy.lean",
+          "line": 29,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/HarmonicOscillator/Solution/Energy.lean#L29"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/HarmonicOscillator/Solution/InitialData.lean",
+          "line": 43,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/HarmonicOscillator/Solution/InitialData.lean#L43"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/HarmonicOscillator/Solution/Periodicity.lean",
+          "line": 39,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/HarmonicOscillator/Solution/Periodicity.lean#L39"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/HarmonicOscillator/Solution/SpecialPoints.lean",
+          "line": 43,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/HarmonicOscillator/Solution/SpecialPoints.lean#L43"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/HarmonicOscillator/Solution/Uniqueness.lean",
+          "line": 27,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/HarmonicOscillator/Solution/Uniqueness.lean#L27"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/Lagrangian/CriticalPoint.lean",
+          "line": 43,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Lagrangian/CriticalPoint.lean#L43"
         },
         {
           "file": "Physlib/ClassicalMechanics/Lagrangian/FirstVariation.lean",
-          "line": 36,
+          "line": 39,
           "subfolder": "Physlib/ClassicalMechanics",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Lagrangian/FirstVariation.lean#L36"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Lagrangian/FirstVariation.lean#L39"
         },
         {
           "file": "Physlib/ClassicalMechanics/Lagrangian/TotalDerivativeEquivalence.lean",
@@ -1824,9 +1902,9 @@
         },
         {
           "file": "Physlib/ClassicalMechanics/Pendulum/SimplePendulum/SmallAngle.lean",
-          "line": 111,
+          "line": 115,
           "subfolder": "Physlib/ClassicalMechanics",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Pendulum/SimplePendulum/SmallAngle.lean#L111"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Pendulum/SimplePendulum/SmallAngle.lean#L115"
         },
         {
           "file": "Physlib/ClassicalMechanics/Pendulum/SimplePendulum/Solution.lean",
@@ -1887,9 +1965,15 @@
           "line": 72,
           "subfolder": "Physlib/Mathematics",
           "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Mathematics/SpecialFunctions/EllipticIntegral.lean#L72"
+        },
+        {
+          "file": "Physlib/Mathematics/VariationalCalculus/Interval.lean",
+          "line": 32,
+          "subfolder": "Physlib/Mathematics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Mathematics/VariationalCalculus/Interval.lean#L32"
         }
       ],
-      "count": 25
+      "count": 34
     },
     {
       "key": "landau_statphys1",
@@ -2570,9 +2654,9 @@
       "citations": [
         {
           "file": "Physlib/Electromagnetism/Distributional/Basic.lean",
-          "line": 40,
+          "line": 41,
           "subfolder": "Physlib/Electromagnetism",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Electromagnetism/Distributional/Basic.lean#L40"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Electromagnetism/Distributional/Basic.lean#L41"
         }
       ],
       "count": 1
@@ -2719,9 +2803,9 @@
       "citations": [
         {
           "file": "Physlib/ClassicalMechanics/ConfigurationSpace/Variation.lean",
-          "line": 30,
+          "line": 35,
           "subfolder": "Physlib/ClassicalMechanics",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/ConfigurationSpace/Variation.lean#L30"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/ConfigurationSpace/Variation.lean#L35"
         },
         {
           "file": "Physlib/ClassicalMechanics/HarmonicOscillator/Basic.lean",
@@ -2755,18 +2839,24 @@
         },
         {
           "file": "Physlib/ClassicalMechanics/Lagrangian/Basic.lean",
-          "line": 36,
+          "line": 42,
           "subfolder": "Physlib/ClassicalMechanics",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Lagrangian/Basic.lean#L36"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Lagrangian/Basic.lean#L42"
+        },
+        {
+          "file": "Physlib/ClassicalMechanics/Lagrangian/CriticalPoint.lean",
+          "line": 42,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Lagrangian/CriticalPoint.lean#L42"
         },
         {
           "file": "Physlib/ClassicalMechanics/Lagrangian/FirstVariation.lean",
-          "line": 35,
+          "line": 38,
           "subfolder": "Physlib/ClassicalMechanics",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Lagrangian/FirstVariation.lean#L35"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Lagrangian/FirstVariation.lean#L38"
         }
       ],
-      "count": 8
+      "count": 9
     },
     {
       "key": "tomamichel_relative_entropy_masterclass",
