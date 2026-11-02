@@ -49,8 +49,8 @@ npm run test:atlas
 ```
 
 The generator temporarily accepts `API-map.md` as well as `Atlas.md`, preferring
-`Atlas.md` when both exist in one directory. This allows the website and Physlib
-renames to merge independently. The checked-in data retains its original source
+`Atlas.md` when both exist in one directory. Both source layouts are supported
+while the migration is under review. The checked-in data retains its original source
 revision until the next refresh, with the renamed `atlas` and `hasAtlas` fields.
 Legacy source filenames in that snapshot are intentional.
 
@@ -65,8 +65,10 @@ so a cached page remains readable after the source filenames change. The generat
 records the guide filename present at that revision; older cached data uses its
 original `API_MAP_GUIDE.md`. GitHub edit links continue to follow the live branch.
 
-For rollout, merge the website compatibility change, merge Physlib, and immediately
-run `Generate Atlas` to refresh the live edit paths. Check article selection, guide
-links, and an edit target after the refresh. The migration tests exercise legacy,
+For rollout, merge Physlib first. Then run `node scripts/generate-atlas.js` from
+`web2/` on the website branch, and commit the refreshed `data/Atlas.json` into the
+website PR before merging it second. Check article selection, guide links, and an
+edit target against that refreshed data. Later refreshes use the `Generate Atlas`
+workflow. The migration tests exercise legacy,
 partially renamed, fully renamed, and duplicate-file Git trees, plus the refresh
 workflow's output path and mirror trigger name.
