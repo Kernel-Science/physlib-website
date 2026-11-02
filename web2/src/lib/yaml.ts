@@ -1,6 +1,7 @@
 import { readdir, readFile } from "node:fs/promises";
 import path from "node:path";
 import yaml from "js-yaml";
+import { atlasSnapshot } from "@/lib/atlas-article";
 
 const dataDir = path.join(process.cwd(), "data");
 
@@ -168,13 +169,15 @@ export type Atlas = {
   branch: string;
   /** The Physlib commit the maps were read at. */
   commit: string;
+  /** Guide filename at the snapshot revision; absent in older cached data. */
+  guideFile?: string;
   generatedAt: string;
   nodes: AtlasNode[];
   directories: AtlasDirectory[];
 };
 
 export async function getAtlas(): Promise<Atlas> {
-  return loadJson<Atlas>(path.join(dataDir, "Atlas.json"));
+  return atlasSnapshot(await loadJson<Atlas>(path.join(dataDir, "Atlas.json")));
 }
 
 // ─── References ─────────────────────────────────────────────────────────────

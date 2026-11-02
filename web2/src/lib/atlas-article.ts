@@ -1,4 +1,5 @@
 import type {
+  Atlas,
   AtlasContentSection,
   AtlasLeanReference,
   AtlasNode,
@@ -28,6 +29,20 @@ export function docsUrl(file: string, fullName?: string): string {
 
 export function sourceUrl(repo: string, branch: string, file: string, line?: number): string {
   return `https://github.com/${repo}/blob/${branch}/${file}${line ? `#L${line}` : ""}`;
+}
+
+/** Keep cached article links valid when files move on the live branch. */
+export function atlasSnapshot(data: Atlas): Atlas {
+  return {
+    ...data,
+    guideFile: data.guideFile ?? "docs/API_MAP_GUIDE.md",
+    nodes: data.nodes.map((node) => ({ ...node, url: sourceUrl(data.repo, data.commit, node.file) })),
+  };
+}
+
+/** The writing guide that existed at the revision supplying the articles. */
+export function atlasGuideUrl(data: Pick<Atlas, "repo" | "commit" | "guideFile">): string {
+  return sourceUrl(data.repo, data.commit, data.guideFile ?? "docs/API_MAP_GUIDE.md");
 }
 
 export function historyUrl(repo: string, branch: string, file: string): string {

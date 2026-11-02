@@ -7,7 +7,7 @@
     "prebuild": "node scripts/download-docs.js",
     "build": "next build",
     "start": "next start",
-    "test:atlas": "node --test scripts/generate-atlas.test.js scripts/atlas-editor.test.js"
+    "test:atlas": "node --test scripts/generate-atlas.test.js scripts/atlas-editor.test.js scripts/atlas-migration.test.js"
   },
   "dependencies": {
     "@heroui/react": "^3.0.3",

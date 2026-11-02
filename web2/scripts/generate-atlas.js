@@ -305,7 +305,7 @@ function resolveDeclaration(text, decls) {
 }
 
 /** Reads one `Atlas.md`. */
-function parseAtlas(raw, file, rev, branchName, existingFiles) {
+function parseAtlas(raw, file, rev, existingFiles) {
   const lines = raw.replace(/\r\n/g, "\n").split("\n");
   const { title, sections } = splitSections(lines);
   const dir = file.slice(0, file.lastIndexOf("/"));
@@ -360,7 +360,7 @@ function parseAtlas(raw, file, rev, branchName, existingFiles) {
     references,
     requirements,
     parents,
-    url: `https://github.com/${OWNER}/${REPO}/blob/${branchName}/${file}`,
+    url: `https://github.com/${OWNER}/${REPO}/blob/${rev}/${file}`,
   };
 }
 
@@ -405,18 +405,19 @@ function atlasFiles(allFiles) {
 function main() {
   ensureRepo();
   const branch = resolveBranchRef();
+  const commit = git(["rev-parse", branch.rev]).trim();
   console.log(`• reading ${FILE_NAME} files from ${OWNER}/${REPO}@${branch.name}`);
 
-  const allFiles = git(["ls-tree", "-r", branch.rev, "--name-only"]).split("\n").filter(Boolean);
+  const allFiles = git(["ls-tree", "-r", commit, "--name-only"]).split("\n").filter(Boolean);
   const existingFiles = new Set(allFiles);
   const files = atlasFiles(allFiles);
   if (!files.length) throw new Error(`no Atlas articles found at ${branch.rev}`);
 
   const nodes = [];
   for (const file of files) {
-    const raw = git(["show", `${branch.rev}:${file}`]);
+    const raw = git(["show", `${commit}:${file}`]);
     try {
-      nodes.push(parseAtlas(raw, file, branch.rev, branch.name, existingFiles));
+      nodes.push(parseAtlas(raw, file, commit, existingFiles));
     } catch (err) {
       console.warn(`  ⚠ skipping ${file}: ${err.message}`);
     }
@@ -429,7 +430,8 @@ function main() {
     branch: branch.name,
     // The commit the maps were read at - the base an edit suggested on the
     // site applies to (see src/lib/atlas-issue.ts).
-    commit: git(["rev-parse", branch.rev]).trim(),
+    commit,
+    guideFile: existingFiles.has("docs/ATLAS_GUIDE.md") ? "docs/ATLAS_GUIDE.md" : "docs/API_MAP_GUIDE.md",
     generatedAt: new Date().toISOString(),
     nodes,
     directories: leanDirectories(allFiles),

@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import type { Atlas } from "@/lib/yaml";
-import { atlasHref, newAtlasTemplate, parseFullAtlas } from "@/lib/atlas-article";
+import { atlasGuideUrl, atlasHref, newAtlasTemplate, parseFullAtlas } from "@/lib/atlas-article";
 import { MAX_URL_LENGTH } from "@/components/suggest-dialog-shared";
 import { ArticleContext, type ArticleContextValue } from "@/components/atlas/article-prose";
 import { Callout } from "@/components/atlas/article-view";
@@ -18,11 +18,9 @@ import { atlasIssue, type IssueDraft } from "@/lib/atlas-issue";
  * editor is offered for those who would rather open a pull request.
  */
 
-const GUIDE_URL =
-  "https://github.com/leanprover-community/physlib/blob/master/docs/ATLAS_GUIDE.md";
 const ROOTS = ["Physlib", "PhyslibAlpha", "QuantumInfo"];
 
-function WritingGuide({ examplePath }: { examplePath: string | null }) {
+function WritingGuide({ examplePath, guideUrl }: { examplePath: string | null; guideUrl: string }) {
   return (
     <section className="atlas-guide" aria-labelledby="atlas-guide-title">
       <h2 id="atlas-guide-title" className="atlas-guide-title">
@@ -69,7 +67,7 @@ function WritingGuide({ examplePath }: { examplePath: string | null }) {
         </li>
       </ol>
       <p className="mt-2">
-        <a href={GUIDE_URL} target="_blank" rel="noopener noreferrer" className="atlas-external">
+        <a href={guideUrl} target="_blank" rel="noopener noreferrer" className="atlas-external">
           Read the full guide
         </a>
         {examplePath && (
@@ -209,7 +207,7 @@ export function CreateAtlas({ atlas }: { atlas: Atlas }) {
           or for physics that Physlib doesn&apos;t cover yet.
         </p>
 
-        <WritingGuide examplePath={byPath.has("Physlib/SpaceAndTime/Time") ? "Physlib/SpaceAndTime/Time" : nodes[0]?.path ?? null} />
+        <WritingGuide guideUrl={atlasGuideUrl(atlas)} examplePath={byPath.has("Physlib/SpaceAndTime/Time") ? "Physlib/SpaceAndTime/Time" : nodes[0]?.path ?? null} />
 
         <h2 className="atlas-h2">
           <span>1. Where will it live?</span>

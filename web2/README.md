@@ -59,3 +59,14 @@ article fragments. The sidebar endpoint moves from `/api/api-map` to `/api/atlas
 with a redirect. New article templates and GitHub new-file links use `Atlas.md`.
 Edit suggestions retain the `api-map-edit` v1 wire format for existing consumers;
 their target file is taken from the selected article.
+
+Read-only article and writing-guide links point to the data snapshot's commit,
+so a cached page remains readable after the source filenames change. The generator
+records the guide filename present at that revision; older cached data uses its
+original `API_MAP_GUIDE.md`. GitHub edit links continue to follow the live branch.
+
+For rollout, merge the website compatibility change, merge Physlib, and immediately
+run `Generate Atlas` to refresh the live edit paths. Check article selection, guide
+links, and an edit target after the refresh. The migration tests exercise legacy,
+partially renamed, fully renamed, and duplicate-file Git trees, plus the refresh
+workflow's output path and mirror trigger name.
