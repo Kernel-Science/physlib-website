@@ -62,6 +62,7 @@ export const navSections: NavSection[] = [
     items: [
       { label: "Project ideas", href: "/project-ideas" },
       { label: "Ways to contribute", href: "/get-involved" },
+      { label: "Contribution tips", href: "/contribution-tips" },
       { label: "Guide to contributing via GitHub", href: "/gh-guide" },
     ],
   },

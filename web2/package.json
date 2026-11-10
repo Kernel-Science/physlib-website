@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "prebuild": "node scripts/download-docs.js",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "sync:tips": "node scripts/sync-contribution-tips.js",
+    "test:tips": "node --test scripts/sync-contribution-tips.test.js"
   },
   "dependencies": {
     "@heroui/react": "^3.0.3",
