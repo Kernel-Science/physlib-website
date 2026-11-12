@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { CodeBlock } from "@/components/code-block";
 import { PageHeader } from "@/components/page-header";
 import { ButtonLink } from "@/components/button-link";
+import { InstallChoice, InstallSteps, type InstallStep } from "@/components/install-steps";
 
 export const metadata: Metadata = {
   title: "Getting Started | Physlib",
@@ -29,6 +30,39 @@ export default function GettingStartedPage() {
         A guide for getting started with Physlib, aimed at people with no Lean
         experience or who are new to the project.
       </p>
+
+      {/* Installation */}
+      <header id="installing" className="mb-6 scroll-mt-24">
+        <h2
+          className="text-3xl font-medium text-foreground"
+          style={{ letterSpacing: "-0.04em" }}
+        >
+          Install Physlib
+        </h2>
+        <p className="mt-2 text-base text-muted leading-snug max-w-2xl" style={{ letterSpacing: "-0.01em" }}>
+          Physlib is written in Lean. The easiest way to use it is through VS Code
+          and the official Lean 4 extension. Tick each step off as you go.
+        </p>
+      </header>
+
+      <InstallSteps steps={installSteps} />
+
+      <details className="group mt-4 mb-14 rounded border border-border bg-background px-5 py-4 text-sm">
+        <summary className="cursor-pointer select-none font-medium text-foreground">
+          Something went wrong?
+        </summary>
+        <div className="mt-4 flex flex-col gap-3 text-foreground/85">
+          <p>
+            Sometimes things go wrong due to no fault of your own. Physlib or
+            one of its dependencies may have been updated to a new version of
+            Lean. In these cases, run the following in the top-level Physlib
+            directory:
+          </p>
+          <CodeBlock language="bash" code={`rm -rf .lake\nlake update\nlake exe get_cache\nlake build`} />
+          <p>Or as a single command:</p>
+          <CodeBlock language="bash" code={`rm -rf .lake; lake update; lake exe get_cache; lake build`} />
+        </div>
+      </details>
 
       {/* In-page navigation */}
       <div className="mb-12 grid gap-6 sm:grid-cols-3 border-b border-border pb-10">
@@ -125,70 +159,6 @@ export default function GettingStartedPage() {
         ))}
       </div>
 
-      {/* Installing */}
-      <PageHeader id="installing" title="Installing" />
-
-      <Card variant="default" className="mb-4">
-        <Card.Header>
-          <Card.Title>Lean Installation</Card.Title>
-        </Card.Header>
-        <Card.Content className="flex flex-col gap-3">
-          <p className="text-sm text-foreground/90">
-            Ready to get started with Lean? Click the button below to see the
-            official installation instructions.
-          </p>
-          <div>
-            <ButtonLink href="https://docs.lean-lang.org/lean4/doc/quickstart.html" size="sm">
-              Install Lean
-            </ButtonLink>
-          </div>
-        </Card.Content>
-      </Card>
-
-      <Card variant="default" className="mb-4">
-        <Card.Header>
-          <Card.Title>Physlib Installation Steps</Card.Title>
-        </Card.Header>
-        <Card.Content className="flex flex-col gap-3 text-sm text-foreground/90">
-          <ol className="list-decimal ml-5 space-y-2">
-            <li>
-              Clone the repository:{" "}
-              <a
-                href="https://github.com/leanprover-community/physlib"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-accent hover:underline underline-offset-2"
-              >
-                github.com/leanprover-community/physlib
-              </a>
-            </li>
-            <li>
-              Run the following commands in the top-level Physlib directory:
-            </li>
-          </ol>
-          <CodeBlock language="bash" code={`lake update\nlake exe cache get\nlake build`} />
-          <p className="text-muted text-xs">
-            Note: <code className="font-mono">lake build</code> may take around 20 minutes.
-          </p>
-        </Card.Content>
-      </Card>
-
-      <Card variant="default" className="mb-4">
-        <Card.Header>
-          <Card.Title>Troubleshooting</Card.Title>
-        </Card.Header>
-        <Card.Content className="flex flex-col gap-3 text-sm text-foreground/90">
-          <p>
-            Sometimes things go wrong due to no fault of your own — Physlib or
-            one of its dependencies may have been updated to a new version of
-            Lean. In these cases you can try:
-          </p>
-          <CodeBlock language="bash" code={`rm -rf .lake\nlake update\nlake exe cache get\nlake build`} />
-          <p>Or as a single command:</p>
-          <CodeBlock language="bash" code={`rm -rf .lake; lake update; lake exe cache get; lake build`} />
-        </Card.Content>
-      </Card>
-
       {/* Writing Results */}
       <PageHeader id="writing-results" title="Writing Results" />
 
@@ -246,7 +216,7 @@ export default function GettingStartedPage() {
               <p>
                 <strong>{step.title}:</strong> {step.description}
               </p>
-              {step.code && <CodeBlock language="lean" code={step.code} />}
+              {step.code && <CodeBlock language="lean" code={step.code} title="MyNewFile.lean" />}
             </div>
           ))}
         </Card.Content>
@@ -286,9 +256,9 @@ const tocSections = [
   {
     title: "Getting Started",
     links: [
+      { label: "Install Physlib", href: "#installing" },
       { label: "About Lean", href: "#about-lean" },
       { label: "Useful Resources", href: "#useful-resources" },
-      { label: "Installation Guide", href: "#installing" },
     ],
   },
   {
@@ -303,6 +273,168 @@ const tocSections = [
     links: [
       { label: "Linting", href: "#linting" },
     ],
+  },
+];
+
+const linkClass = "text-accent hover:underline underline-offset-2";
+
+const installSteps: InstallStep[] = [
+  {
+    id: "vscode",
+    title: "Install VS Code",
+    body: (
+      <>
+        <p>VS Code is a lightweight code editor, and the recommended way to work with Lean.</p>
+        <div>
+          <ButtonLink href="https://code.visualstudio.com/">Install VS Code</ButtonLink>
+        </div>
+      </>
+    ),
+  },
+  {
+    id: "extension",
+    title: "Install the Lean 4 extension",
+    body: (
+      <>
+        <p>
+          The official Lean 4 extension opens directly in VS Code. You can also get it from the{" "}
+          <a href="https://marketplace.visualstudio.com/items?itemName=leanprover.lean4" target="_blank" rel="noopener noreferrer" className={linkClass}>
+            VS Code Marketplace
+          </a>.
+        </p>
+        <div>
+          <ButtonLink href="vscode:extension/leanprover.lean4" external target="_self">
+            Get the extension
+          </ButtonLink>
+        </div>
+      </>
+    ),
+  },
+  {
+    id: "setup",
+    title: "Install Lean",
+    body: (
+      <>
+        <p>
+          Open the extension&apos;s setup guide and click its <span className="font-medium">Install Lean</span>{" "}
+          button. This installs elan, Lean&apos;s version manager, together with Git (and curl on
+          Linux). You can skip the guide&apos;s other steps, which are about creating new projects.
+        </p>
+        <div>
+          <ButtonLink href="vscode://leanprover.lean4/setup-guide" external target="_self">
+            Open setup guide
+          </ButtonLink>
+        </div>
+        <details className="text-sm">
+          <summary className="cursor-pointer select-none text-muted hover:text-foreground transition-colors">
+            If VS Code has not opened automatically
+          </summary>
+          <ol className="mt-3 ml-5 list-decimal space-y-1.5">
+            <li>Open VS Code.</li>
+            <li>
+              Create a new empty file with <span className="font-medium">File › New Text File</span>{" "}
+              (<kbd className="font-mono text-xs">Ctrl+N</kbd> / <kbd className="font-mono text-xs">Cmd+N</kbd>).
+            </li>
+            <li>Click the <span className="font-mono">∀</span> symbol at the top right of the window.</li>
+            <li>
+              Select <span className="font-medium">Documentation › Docs: Show Setup Guide…</span>
+            </li>
+          </ol>
+        </details>
+        <p className="text-muted text-xs">
+          You don&apos;t need to pick a Lean version. Physlib pins its own, and elan downloads it
+          the first time you build.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "physlib",
+    title: "Get a copy of Physlib",
+    body: (
+      <>
+        <InstallChoice
+          options={[
+            {
+              label: "I want to contribute",
+              content: (
+                <>
+                  <p>
+                    Contributions reach Physlib through a fork, your own copy of the repository on
+                    GitHub. Sign in to GitHub, fork Physlib, then clone your fork. Replace{" "}
+                    <code className="font-mono">YOUR-USERNAME</code> with your GitHub username.
+                  </p>
+                  <div>
+                    <ButtonLink href="https://github.com/leanprover-community/physlib/fork">
+                      Fork on GitHub
+                    </ButtonLink>
+                  </div>
+                  <CodeBlock
+                    language="bash"
+                    code={`git clone https://github.com/YOUR-USERNAME/physlib.git\ncd physlib\ngit remote add upstream https://github.com/leanprover-community/physlib.git\nlake exe get_cache\nlake build`}
+                  />
+                  <p className="text-muted text-xs">
+                    The <code className="font-mono">upstream</code> remote lets you pull in the latest
+                    changes from Physlib. See the{" "}
+                    <a href="/gh-guide" className={linkClass}>GitHub guide</a> for branches and pull
+                    requests.
+                  </p>
+                </>
+              ),
+            },
+            {
+              label: "I just want to explore",
+              content: (
+                <>
+                  <p>
+                    Clone{" "}
+                    <a href="https://github.com/leanprover-community/physlib" target="_blank" rel="noopener noreferrer" className={linkClass}>
+                      the repository
+                    </a>{" "}
+                    directly. You can fork later if you decide to contribute.
+                  </p>
+                  <CodeBlock
+                    language="bash"
+                    code={`git clone https://github.com/leanprover-community/physlib.git\ncd physlib\nlake exe get_cache\nlake build`}
+                  />
+                </>
+              ),
+            },
+          ]}
+        />
+        <p className="text-muted text-xs">
+          Run these in a terminal (VS Code has one under{" "}
+          <span className="font-medium">Terminal › New Terminal</span>). <code className="font-mono">get_cache</code>{" "}
+          downloads pre-built files, so the build takes minutes instead of much longer. If it
+          fails, <code className="font-mono">lake build</code> still works, just slowly.
+        </p>
+        <details className="text-sm">
+          <summary className="cursor-pointer select-none text-muted hover:text-foreground transition-colors">
+            &quot;git: command not found&quot;?
+          </summary>
+          <p className="mt-3">
+            Git is installed in Step 3, so first restart your terminal and check with{" "}
+            <code className="font-mono">git --version</code>. If it is still missing, install it
+            from{" "}
+            <a href="https://git-scm.com/downloads" target="_blank" rel="noopener noreferrer" className={linkClass}>
+              git-scm.com
+            </a>
+            .
+          </p>
+        </details>
+      </>
+    ),
+  },
+  {
+    id: "open",
+    title: "Open Physlib in VS Code",
+    body: (
+      <p>
+        Use <span className="font-medium">File › Open Folder…</span> and choose the{" "}
+        <code className="font-mono">physlib</code> folder. Open the whole folder, not a single file, so
+        Lean can find Physlib and Mathlib.
+      </p>
+    ),
   },
 ];
 

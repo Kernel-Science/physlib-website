@@ -75,6 +75,22 @@ body {
   font-weight: 500;
 }
 
+/* ─── Editor code blocks (CodeBlock) ────────────────────────── */
+/* VS Code Dark+ token colours, matching the Lean code card on Getting Started.
+   The editor body is always dark, so these do not change with the theme. */
+.code-editor .hljs-keyword,
+.code-editor .hljs-literal    { color: #569cd6; }
+.code-editor .hljs-built_in   { color: #9cdcfe; }
+.code-editor .hljs-type,
+.code-editor .hljs-title      { color: #4ec9b0; }
+.code-editor .hljs-string     { color: #ce9178; }
+.code-editor .hljs-number     { color: #b5cea8; }
+.code-editor .hljs-comment,
+.code-editor .hljs-doctag     { color: #6a9955; }
+.code-editor .hljs-meta       { color: #c586c0; }
+.code-editor .hljs-variable,
+.code-editor .hljs-params     { color: #9cdcfe; }
+
 /* ─── Shadows ───────────────────────────────────────────────── */
 .shadow-together {
   box-shadow: rgba(1, 1, 32, 0.10) 0px 4px 10px;
