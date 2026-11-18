@@ -31,6 +31,25 @@ export default function GettingStartedPage() {
         experience or who are new to the project.
       </p>
 
+      <PageHeader id="first-contribution" title="Make Your First Contribution" />
+      <p className="mb-4 text-sm leading-relaxed text-foreground/85">
+        If you know the physics and are new to Lean, start with an API map.
+        API maps are Markdown guides that explain a topic and link to the
+        relevant Lean declarations. You can choose a topic and draft locally
+        before signing in to GitHub.
+      </p>
+      <div className="mb-12 flex flex-wrap gap-3">
+        <ButtonLink href="https://github.com/leanprover-community/physlib/blob/master/docs/GettingStarted/FirstAPIMap.md">
+          Write your first API map
+        </ButtonLink>
+        <ButtonLink href="/gh-guide" variant="secondary">
+          Fork and open a pull request
+        </ButtonLink>
+        <ButtonLink href="/faq" variant="secondary">
+          Contributor FAQ
+        </ButtonLink>
+      </div>
+
       {/* Installation */}
       <header id="installing" className="mb-6 scroll-mt-24">
         <h2
@@ -256,6 +275,7 @@ const tocSections = [
   {
     title: "Getting Started",
     links: [
+      { label: "Make Your First Contribution", href: "#first-contribution" },
       { label: "Install Physlib", href: "#installing" },
       { label: "About Lean", href: "#about-lean" },
       { label: "Useful Resources", href: "#useful-resources" },
