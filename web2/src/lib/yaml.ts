@@ -55,6 +55,7 @@ export type TodoItem = {
   file: string;
   githubLink: string;
   line: number;
+  endLine?: number;
   isInformalDef: boolean;
   isInformalLemma: boolean;
   isSemiFormalResult: boolean;

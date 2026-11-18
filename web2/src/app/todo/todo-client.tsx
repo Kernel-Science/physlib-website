@@ -106,6 +106,13 @@ function CopyButton({ text }: { text: string }) {
 
 function TodoItemCard({ item }: { item: TodoItem }) {
   const type = itemTypeLabel(item);
+  const { line, endLine } = item;
+  let githubLabel = "See on GitHub";
+  if (!item.isGitHubIssue && Number.isSafeInteger(line) && line > 0) {
+    githubLabel = endLine !== undefined && Number.isSafeInteger(endLine) && endLine > line
+      ? `Lines ${line}–${endLine} on GitHub`
+      : `Line ${line} on GitHub`;
+  }
   return (
     <div
       id={item.tag}
@@ -139,7 +146,7 @@ function TodoItemCard({ item }: { item: TodoItem }) {
           rel="noopener noreferrer"
           className="px-2 py-0.5 rounded text-xs border border-border bg-surface hover:bg-surface-secondary transition-colors text-muted hover:text-foreground"
         >
-          See on GitHub ↗
+          {githubLabel} ↗
         </a>
         <a
           href={`#${item.tag}`}
