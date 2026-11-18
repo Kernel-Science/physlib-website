@@ -21,7 +21,7 @@ export default async function APITrackerPage() {
     : null;
 
   return (
-    <div className="mx-auto w-full max-w-5xl px-4 py-10 md:py-14">
+    <div className="mx-auto w-full max-w-5xl px-5 py-10 sm:px-8 md:py-14 lg:px-10 lg:pt-8">
       <div className="mb-8 flex flex-wrap items-center justify-between gap-3 border-b border-border pb-4">
         <p className="text-sm leading-relaxed text-muted">
           <span className="text-foreground">API maps</span> are short articles
@@ -43,14 +43,11 @@ export default async function APITrackerPage() {
 
       <ApiDetailView apiMap={apiMap} />
 
-      <section className="mt-14">
+      <section id="dependency-map" className="mt-14 scroll-mt-20">
         <h2 className="mb-1 text-sm font-semibold tracking-tight">Dependency map</h2>
         <p className="text-muted mb-4 text-sm leading-relaxed">
-          Every API map, each shown below an API map it cites. Click a
-          box to open it above. Green boxes have every claim formalized, yellow
-          are in progress, and red have none formalized yet; dashed boxes are
-          cited by another map but have no <code>API-map.md</code> of their
-          own yet.
+          See what the current API map cites, which maps cite it, or how all
+          the maps connect.
         </p>
         <ApiFlowchart nodes={apiMap.nodes} />
       </section>

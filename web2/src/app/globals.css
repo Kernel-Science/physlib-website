@@ -330,6 +330,9 @@ h2[id], h3[id], .api-tree a[id] {
 .apimap-body { font-size: 0.9375rem; line-height: 1.7; }
 .apimap-body::after { content: ""; display: block; clear: both; }
 .apimap-body p { margin: 0.5em 0 1em; color: color-mix(in oklch, var(--foreground) 88%, transparent); }
+@media (min-width: 64rem) {
+  .apimap-body .apimap-prose > p { text-align: justify; }
+}
 .apimap-lead p { font-size: 1.0625rem; color: var(--foreground); }
 .apimap-body em { font-style: italic; }
 .apimap-body strong, .apimap-body b { font-weight: 600; }

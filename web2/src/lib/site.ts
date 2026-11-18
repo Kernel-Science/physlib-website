@@ -48,7 +48,7 @@ export const navSections: NavSection[] = [
     ],
   },
   {
-    label: "Goal trackers",
+    label: "Goal Trackers",
     items: [
       { label: "API development", href: "/api-tracker" },
       { label: "PR triage", href: "/pr-tracker" },
@@ -58,7 +58,7 @@ export const navSections: NavSection[] = [
     ],
   },
   {
-    label: "Get involved",
+    label: "Get Involved",
     items: [
       { label: "Project ideas", href: "/project-ideas" },
       { label: "Ways to contribute", href: "/get-involved" },
@@ -84,7 +84,7 @@ export const navSections: NavSection[] = [
     items: [{ label: "Sponsor", href: "/sponsor" }],
   },
   {
-    label: "AI tools",
+    label: "AI Tools",
     items: [
       { label: "AI guidelines", href: "/ai-guidelines" },
       { label: "PhyslibAItools", href: "/physlib-ai-tools" },

@@ -16,7 +16,7 @@ const ways: { label: string; text: string; href: string; external?: boolean }[] 
   { label: "Edit the API maps", text: "Improve wiki-like articles", href: "/api-tracker" },
   { label: "Start an API map", text: "Map out an area that has none yet", href: "/api-tracker/new" },
   { label: "Contribute Lean code", text: "Pick up an open issue on GitHub", href: `${site.github}/issues`, external: true },
-  { label: "Tackle a TODO", text: "Formalize something on the TODO list", href: "/todo" },
+  { label: "Tackle a TODO", text: "Formalize an open TODO item", href: "/todo" },
   { label: "Join the discussion", text: "Talk to the community on Zulip", href: site.zulip, external: true },
 ];
 
@@ -41,10 +41,10 @@ function Arrow({ external }: { external?: boolean }) {
 
 export function ContributeLinks() {
   const cls =
-    "group flex items-center justify-between gap-4 rounded border border-border bg-background px-4 py-3 transition-colors hover:border-accent";
+    "group flex h-full items-center justify-between gap-4 rounded border border-border bg-background px-4 py-3 transition-colors hover:border-accent";
   return (
     <div>
-      <ul className="grid gap-2 sm:grid-cols-2">
+      <ul className="grid auto-rows-fr gap-2 sm:grid-cols-2">
         {ways.map((w) => {
           const inner = (
             <>

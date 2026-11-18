@@ -49,7 +49,7 @@ export default function RootLayout({
         <Providers>
           <Navbar />
           {/* pt-16 offsets the fixed navbar on inner pages; home page handles its own top spacing */}
-          <div className="flex w-full flex-1">
+          <div className="mx-auto flex w-full flex-1 lg:has-[>aside]:max-w-7xl">
             <ConditionalSidebar />
             <main className="min-w-0 flex-1 pt-14">{children}</main>
           </div>

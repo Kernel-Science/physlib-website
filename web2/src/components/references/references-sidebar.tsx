@@ -82,7 +82,7 @@ export function ReferencesSidebar() {
   return (
     <aside className="hidden w-52 shrink-0 lg:block pt-16">
       <nav
-        className="sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto px-3 py-8 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        className="sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto py-8 pr-3 pl-6 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
       >
         {selection.view === "subfolder" && (
           <>
