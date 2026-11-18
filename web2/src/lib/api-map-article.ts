@@ -355,7 +355,7 @@ export const referenceId = (kind: CiteKind, n: number) => `apimap-ref-${kind}-${
  * text they cite, as footnote marks are (the source puts a space or line
  * break before each; never a blank line). Each citation gets a unique
  * occurrence id, recorded in `occurrences` so the reference lists can link
- * back to it. Code spans are left alone.
+ * back to it. Code and math spans are left alone.
  */
 export function linkCitations(
   markdown: string,
@@ -371,7 +371,7 @@ export function linkCitations(
     return `[${n}](#cite-${kind}-${n}-${id})`;
   };
   return markdown
-    .split(/(`[^`\n]*`)/)
+    .split(/(`[^`\n]*`|(?<!\\)\$\$[\s\S]+?(?<!\\)\$\$|(?<![\\$])\$(?!\$)(?:\\.|[^\\$\n])+\$(?!\$))/)
     .map((part, i) =>
       i % 2 === 1
         ? part

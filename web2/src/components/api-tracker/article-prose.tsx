@@ -4,6 +4,9 @@ import { createContext, useContext, useRef, useState } from "react";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
+import "katex/dist/katex.min.css";
 import type { ApiMapDeclaration, ApiMapLeanReference, ApiMapNode, ApiMapReference } from "@/lib/yaml";
 import {
   apiMapHref,
@@ -378,9 +381,10 @@ function Citation({ href }: { href: string }) {
 /** Article prose: markdown already passed through `linkCitations`. */
 export function ArticleProse({ markdown }: { markdown: string }) {
   return (
-    <div className="apimap-prose">
+    <div className="apimap-prose [&_.katex-display]:overflow-x-auto">
       <ReactMarkdown
-        remarkPlugins={[remarkGfm]}
+        remarkPlugins={[remarkGfm, remarkMath]}
+        rehypePlugins={[rehypeKatex]}
         components={{
           a: ({ href, children }) => {
             if (href?.startsWith("#cite-")) return <Citation href={href} />;
