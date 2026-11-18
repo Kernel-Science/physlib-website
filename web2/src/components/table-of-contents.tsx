@@ -76,7 +76,7 @@ export function TableOfContents() {
 
   return (
     <aside className="hidden w-52 shrink-0 lg:block pt-16">
-      <nav className="sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto px-3 py-8">
+      <nav className="sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto py-8 pr-3 pl-6">
         <p className="mb-2 px-2 text-[10px] font-bold uppercase tracking-widest text-muted/60">
           On this page
         </p>

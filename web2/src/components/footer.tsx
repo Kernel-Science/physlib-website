@@ -45,7 +45,7 @@ export function Footer() {
           Physlib
         </p>
 
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-6">
+        <div className="grid gap-x-6 gap-y-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-[1.2fr_repeat(5,minmax(0,1fr))]">
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link

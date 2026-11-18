@@ -46,12 +46,12 @@ function NavDropdown({ section, pathname }: { section: NavSection; pathname: str
 
   return (
     <div
-      className="relative"
+      className="relative flex h-full items-center last:[&>div]:right-0 last:[&>div]:left-auto"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       <button
-        className={`flex items-center gap-1 px-3 py-1.5 text-sm transition-colors ${
+        className={`flex shrink-0 items-center gap-1 whitespace-nowrap px-1.5 py-1.5 text-xs transition-colors lg:px-2 lg:text-sm xl:px-3 ${
           isActive ? "text-foreground" : "text-muted hover:text-foreground"
         }`}
         style={{ letterSpacing: "-0.01em" }}
@@ -70,7 +70,7 @@ function NavDropdown({ section, pathname }: { section: NavSection; pathname: str
       </button>
 
       {open && (
-        <div className="absolute top-full left-0 mt-1.5 min-w-48 rounded-lg border border-border bg-background shadow-lg py-1.5 z-50">
+        <div className="absolute top-full left-0 z-50 mt-px min-w-48 border border-t-0 border-border bg-background shadow-lg">
           {section.items.map((item) => {
             const active = item.href === sectionActiveHref;
             return item.external ? (
@@ -112,58 +112,59 @@ function NavDropdown({ section, pathname }: { section: NavSection; pathname: str
 export function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const isHome = pathname === "/";
 
   return (
     <>
-      <header
-        className={`fixed top-0 inset-x-0 z-50 transition-all duration-200 bg-background border-b border-border ${
-          isHome ? "border-transparent" : "border-border"
-        }`}
-      >
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background">
         <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-5 sm:px-8">
 
           {/* Wordmark */}
           <Link
             href="/"
-            className="flex items-center transition-opacity hover:opacity-70"
+            className="group flex shrink-0 items-center"
           >
             <img
               src="/images/physlib-logo.png"
               alt={site.name}
               width={1600}
               height={459}
-              className="logo-mark h-7 w-auto"
+              className="logo-mark pointer-events-none h-7 w-auto transition-opacity group-hover:opacity-75 motion-reduce:transition-none md:h-6 lg:h-7"
             />
           </Link>
 
-          {/* Desktop nav — centered, section dropdowns */}
-          <nav className="hidden absolute left-1/2 -translate-x-1/2 items-center md:flex">
+          {/* Desktop nav — section dropdowns next to the right-hand actions */}
+          <nav className="ml-auto mr-3 hidden h-full shrink-0 items-center md:flex xl:mr-6">
             {navSections.map((section) => (
               <NavDropdown key={section.label} section={section} pathname={pathname} />
             ))}
           </nav>
 
           {/* Right */}
-          <div className="flex items-center gap-2">
+          <div className="flex shrink-0 items-center gap-2">
             <a
               href={site.search}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:inline-flex items-center gap-1.5 h-8 rounded px-3 text-xs font-medium transition-opacity hover:opacity-80"
+              aria-label="Search Physlib"
+              className="hidden h-8 items-center justify-center rounded px-3 text-xs font-medium transition-opacity hover:opacity-80 sm:inline-flex md:px-2 lg:px-3"
               style={{
                 background: "var(--accent)",
                 color: "var(--accent-foreground)",
                 letterSpacing: "-0.01em",
               }}
             >
-              Search
+              <span className="md:hidden lg:inline">Search</span>
+              <svg aria-hidden className="hidden size-4 md:block lg:hidden" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <circle cx="8.5" cy="8.5" r="4.5" />
+                <path d="m12 12 4 4" strokeLinecap="round" />
+              </svg>
             </a>
             <a
               href={site.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:inline-flex items-center gap-1.5 h-8 rounded px-3 text-xs font-medium transition-opacity hover:opacity-80"
+              aria-label="GitHub"
+              className="hidden h-8 items-center gap-1.5 rounded px-3 text-xs font-medium transition-opacity hover:opacity-80 sm:inline-flex md:px-2 lg:px-3"
               style={{
                 background: "var(--github-button-bg)",
                 color: "var(--github-button-fg)",
@@ -171,7 +172,7 @@ export function Navbar() {
               }}
             >
               <GitHubIcon />
-              GitHub
+              <span className="md:hidden lg:inline">GitHub</span>
             </a>
             <ThemeToggle />
             <button

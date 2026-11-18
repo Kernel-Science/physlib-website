@@ -43,8 +43,10 @@ export default async function MaintainersPage() {
             <Card.Header>
               <Card.Title>{m.name}</Card.Title>
             </Card.Header>
-            <Card.Content className="text-sm text-foreground/90 leading-relaxed whitespace-pre-line">
-              {m.summary.trim()}
+            <Card.Content className="text-sm text-foreground/90 leading-relaxed">
+              {m.summary.trim().split(/\n\s*\n/).map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
             </Card.Content>
           </Card>
         ))}
