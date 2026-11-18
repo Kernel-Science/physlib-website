@@ -39,7 +39,7 @@ export default function GettingStartedPage() {
         before signing in to GitHub.
       </p>
       <div className="mb-12 flex flex-wrap gap-3">
-        <ButtonLink href="https://github.com/leanprover-community/physlib/blob/master/CONTRIBUTING.md#write-your-first-api-map">
+        <ButtonLink href="https://github.com/leanprover-community/physlib/blob/master/docs/GettingStarted/FirstAPIMap.md">
           Write your first API map
         </ButtonLink>
         <ButtonLink href="/gh-guide" variant="secondary">
