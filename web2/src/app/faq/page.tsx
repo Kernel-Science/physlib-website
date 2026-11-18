@@ -1,0 +1,77 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { PageHeader } from "@/components/page-header";
+
+export const metadata: Metadata = {
+  title: "Contributor FAQ | Physlib",
+  description: "Common questions about making your first contribution to Physlib.",
+};
+
+const linkClass = "text-accent hover:underline underline-offset-2";
+const repository = "https://github.com/leanprover-community/physlib";
+
+export default function ContributorFaqPage() {
+  return (
+    <div className="mx-auto w-full max-w-4xl px-5 py-12 sm:px-8 md:py-16">
+      <p className="label-mono mb-5 text-muted">Documentation</p>
+      <h1 className="mb-8 text-4xl font-medium tracking-tight text-foreground md:text-5xl">
+        Contributor FAQ
+      </h1>
+      <div className="max-w-2xl space-y-8 text-sm leading-relaxed text-foreground/85">
+        <section aria-labelledby="first-task">
+          <PageHeader id="first-task" title="Can I contribute before learning Lean?" />
+          <p>
+            Yes. An API map explains the physics in Markdown and links to existing Lean
+            declarations. Look for a topic you know in the{" "}
+            <Link className={linkClass} href="/api-tracker">API tracker</Link>
+            {" "}and use the{" "}
+            <a className={linkClass} href={`${repository}/blob/master/docs/API_MAP_GUIDE.md`}>
+              API map guide
+            </a>
+            {" "}to get started.
+          </p>
+        </section>
+        <section aria-labelledby="github-account">
+          <PageHeader id="github-account" title="When do I need a GitHub account?" />
+          <p>
+            You can read the repository, clone it, and draft locally without signing in.
+            You need an account to create a fork and open a pull request. Follow the{" "}
+            <Link className={linkClass} href="/gh-guide">GitHub guide</Link>
+            {" "}when you are ready to submit.
+          </p>
+        </section>
+        <section aria-labelledby="push-permissions">
+          <PageHeader id="push-permissions" title="Why does GitHub reject my push?" />
+          <p>
+            Run <code>git remote -v</code> to see where Git sends your changes.
+            Push to the fork under your GitHub username and verify that Git is using
+            the account that owns the fork. See the{" "}
+            <a className={linkClass} href={`${repository}/blob/master/CONTRIBUTING.md`}>
+              contribution guide
+            </a>
+            {" "}for the local editing and submission workflow.
+          </p>
+        </section>
+        <section aria-labelledby="checks">
+          <PageHeader id="checks" title="What should I check before submitting?" />
+          <p>
+            For an API map, use the lint command in the API map guide and check
+            the rendered Markdown and declaration links. For Lean changes, see{" "}
+            <Link className={linkClass} href="/getting-started#linting">Linting</Link>
+            {" "}for the local commands used to check the code.
+          </p>
+        </section>
+        <section aria-labelledby="help">
+          <PageHeader id="help" title="Where can I ask for help?" />
+          <p>
+            Ask in the{" "}
+            <a className={linkClass} href="https://leanprover.zulipchat.com/#narrow/channel/479953-Physlib">
+              Physlib channel on Lean Zulip
+            </a>
+            . Include the topic or command you were working on and any relevant error output.
+          </p>
+        </section>
+      </div>
+    </div>
+  );
+}
