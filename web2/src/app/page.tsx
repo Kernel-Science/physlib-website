@@ -10,8 +10,8 @@ export default function HomePage() {
 
         {/* ═══ IDENTITY ════════════════════════════════════════════ */}
         <div className="flex flex-col justify-center border-b border-border py-14 sm:py-16 lg:border-r lg:border-b-0">
-          <div className="animate-fade-up w-full px-5 sm:px-8 lg:pr-12">
-            <div className="max-w-[27rem]">
+          <div className="animate-fade-up mx-auto w-full max-w-xl px-5 sm:px-8 lg:max-w-none lg:pr-12">
+            <div className="w-full">
 
               {/* Badge */}
               <div className="inline-flex items-center gap-2 rounded px-2 py-1 mb-8 border border-accent/30 bg-accent/10">
@@ -95,7 +95,7 @@ export default function HomePage() {
               <div className="mt-9 border-t border-border pt-7">
                 <p className="label-mono text-accent mb-2">See contributions to Physlib</p>
                 <p
-                  className="mb-4 w-full text-sm text-muted sm:text-justify"
+                  className="mb-4 max-w-[52ch] text-pretty text-sm text-muted"
                   style={{ letterSpacing: "-0.01em", lineHeight: 1.45 }}
                 >
                   Core work on Physlib by individuals can be published in signed,
@@ -118,7 +118,7 @@ export default function HomePage() {
 
         {/* ═══ GET INVOLVED ════════════════════════════════════════ */}
         <div className="flex flex-col justify-center py-14 sm:py-16">
-          <div className="animate-fade-up w-full px-5 delay-100 sm:px-8 lg:pl-12">
+          <div className="animate-fade-up mx-auto w-full max-w-xl px-5 delay-100 sm:px-8 lg:max-w-none lg:pl-12">
             <p className="label-mono text-muted mb-4">Get Involved</p>
             <h2
               className="text-2xl font-medium text-foreground mb-8 sm:text-3xl"
