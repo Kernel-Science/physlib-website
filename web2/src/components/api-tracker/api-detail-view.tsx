@@ -225,11 +225,12 @@ export function ApiDetailView({ apiMap }: { apiMap: ApiMap }) {
     () => ({
       repo,
       branch,
+      commit,
       leanReferences: node?.leanReferences ?? [],
       references: node?.references ?? [],
       byPath,
     }),
-    [repo, branch, node, byPath],
+    [repo, branch, commit, node, byPath],
   );
 
   if (!current) return null;
