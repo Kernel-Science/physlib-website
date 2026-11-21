@@ -4,7 +4,7 @@ import { DocumentationTrackerClient } from "./documentation-tracker-client";
 export const metadata: Metadata = {
   title: "Documentation Tracker | Physlib",
   description:
-    "Help improve Physlib documentation. Red nodes indicate files that need documentation; green nodes are already documented.",
+    "Find Physlib files that need documentation and explore the import graph.",
 };
 
 export default function DocumentationTrackerPage() {
@@ -13,17 +13,6 @@ export default function DocumentationTrackerPage() {
       <h1 className="text-4xl font-bold tracking-tight mb-2">
         Documentation Tracker
       </h1>
-      <p className="text-muted mb-4 leading-relaxed">
-        The graph below shows the documentation status of Physlib files.{" "}
-        <span className="text-danger font-medium">Red nodes</span> need
-        documentation;{" "}
-        <span className="text-success font-medium">green nodes</span> are
-        documented. Click nodes to navigate to their GitHub entry.
-      </p>
-      <p className="text-sm text-muted mb-8">
-        Graph controls: drag to pan, scroll / pinch to zoom.
-      </p>
-
       <DocumentationTrackerClient />
 
       <div className="mt-10 flex flex-col gap-6">
@@ -69,7 +58,7 @@ const docSteps = [
   {
     title: "Phase 2: Choose a File to Document",
     items: [
-      "Use the graph above to identify an undocumented file (a red node) where you think you could help.",
+      "Choose a file from the list above, or select a red node in the import graph.",
       "In your local copy of physlib, open the file <code class='font-mono text-xs'>./scripts/lint/exemptions/module_doc_no_lint.txt</code>.",
       "Remove the line corresponding to the file you want to document.",
       "Navigate to the file you want to document.",
