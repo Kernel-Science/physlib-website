@@ -118,6 +118,7 @@ function TodoItemCard({ item }: { item: TodoItem }) {
       id={item.tag}
       className="rounded-lg border border-border bg-surface px-4 py-3 flex flex-col gap-1.5 scroll-mt-20"
     >
+      {item.legacyTag && <span id={item.legacyTag} aria-hidden="true" className="absolute scroll-mt-20" />}
       <div className="flex flex-wrap items-center gap-2">
         <span
           className={`px-2 py-0.5 rounded-full text-xs font-medium border ${type.className}`}
