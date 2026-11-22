@@ -34,11 +34,11 @@ function FooterLinks({ items }: { items: NavItem[] }) {
 export function Footer() {
   return (
     <footer className="bg-surface-secondary border-t border-border">
-      <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 py-16">
+      <div className="mx-auto w-full max-w-7xl px-5 py-10 sm:px-8 sm:py-16">
 
-        <div className="grid gap-x-6 gap-y-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-[1.2fr_repeat(5,minmax(0,1fr))]">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-3 lg:grid-cols-[1.2fr_repeat(5,minmax(0,1fr))]">
           {/* Brand */}
-          <div className="lg:col-span-1">
+          <div className="col-span-2 sm:col-span-1">
             <Link
               href="/"
               className="inline-block text-[22px] leading-none font-semibold tracking-[-0.04em] text-foreground transition-opacity hover:opacity-75"
@@ -59,13 +59,13 @@ export function Footer() {
           {/* Link columns */}
           {navSections.map(({ label, items }) => (
             <div key={label}>
-              <p className="label-mono text-muted mb-4">{label}</p>
+              <p className="label-mono text-muted mb-2 sm:mb-4">{label}</p>
               <FooterLinks items={items} />
             </div>
           ))}
         </div>
 
-        <div className="mt-14 pt-6 border-t border-border flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between text-xs text-muted" style={{ letterSpacing: "-0.01em" }}>
+        <div className="mt-10 pt-6 border-t border-border flex flex-col gap-4 sm:mt-14 lg:flex-row lg:items-center lg:justify-between text-xs text-muted" style={{ letterSpacing: "-0.01em" }}>
           <p>
             Maintained by the{" "}
             <a
@@ -76,16 +76,18 @@ export function Footer() {
             >
               leanprover-community
             </a>
-            . Open-source, Apache 2.0.
+            . <span className="whitespace-nowrap">Open-source, Apache 2.0.</span>
           </p>
-          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-            <p>Physics in Lean 4</p>
+          <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-4">
+            <p className="whitespace-nowrap">Physics in Lean 4</p>
             <div className="hidden sm:block w-px h-3 bg-foreground/20" />
-            <div className="flex items-center gap-2">
-              <span>Website by</span>
-              <a href="https://kernel-science.com" target="_blank" rel="noopener noreferrer" className="opacity-70 hover:opacity-100 transition-opacity">
-                <img src="/images/kernel_science_logo.png" alt="Kernel Science" className="logo-mark h-4 w-auto" />
-              </a>
+            <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+              <span className="inline-flex items-center gap-2 whitespace-nowrap">
+                Website by
+                <a href="https://kernel-science.com" target="_blank" rel="noopener noreferrer" className="opacity-70 hover:opacity-100 transition-opacity">
+                  <img src="/images/kernel_science_logo.png" alt="Kernel Science" className="logo-mark h-4 w-auto" />
+                </a>
+              </span>
               <span>
                 and{" "}
                 <Link
