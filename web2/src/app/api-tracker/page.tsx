@@ -24,7 +24,7 @@ export default async function APITrackerPage() {
     : null;
 
   return (
-    <div className="mx-auto w-full max-w-5xl px-5 py-10 sm:px-8 md:py-14 lg:px-10 lg:pt-8">
+    <div className="page-frame-tracker px-5 sm:px-8 lg:px-10 lg:pt-8">
       <header aria-label="API Tracker overview" className="mb-6 border-b border-border pb-4">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <h2 className="text-base font-semibold text-foreground">API Tracker</h2>
