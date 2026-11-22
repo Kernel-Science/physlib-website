@@ -191,7 +191,7 @@ function FlowNode({
             target="_blank"
             rel="noopener noreferrer"
             title="View API-map.md on GitHub"
-            className="absolute right-1.5 top-1.5 rounded p-0.5 text-muted/60 hover:bg-surface hover:text-accent"
+            className="absolute right-1.5 top-1.5 rounded-(--radius) p-0.5 text-muted/60 hover:bg-surface hover:text-accent"
           >
             <TopRightArrowIcon className="size-3" />
           </a>
@@ -279,7 +279,7 @@ export function ApiFlowchart({ nodes }: { nodes: ApiMapNode[] }) {
             type="button"
             aria-pressed={view === value}
             onClick={() => setView(value)}
-            className="rounded-lg border border-border px-3 py-1.5 text-sm text-muted transition-colors hover:text-foreground aria-pressed:border-accent aria-pressed:text-accent"
+            className="rounded-(--radius) border border-border px-3 py-1.5 text-sm text-muted transition-colors hover:text-foreground aria-pressed:border-accent aria-pressed:text-accent"
           >
             {label}
           </button>
@@ -292,9 +292,9 @@ export function ApiFlowchart({ nodes }: { nodes: ApiMapNode[] }) {
             <p className="text-xs text-muted">Dashed boxes mark cited topics without an API map.</p>
             <div className="flex gap-1">
               <button type="button" onClick={() => stepGraph(-1)} aria-label="Scroll graph left"
-                className="size-8 rounded border border-border text-muted hover:text-accent">←</button>
+                className="size-8 rounded-(--radius) border border-border text-muted hover:text-accent">←</button>
               <button type="button" onClick={() => stepGraph(1)} aria-label="Scroll graph right"
-                className="size-8 rounded border border-border text-muted hover:text-accent">→</button>
+                className="size-8 rounded-(--radius) border border-border text-muted hover:text-accent">→</button>
             </div>
           </div>
           <div

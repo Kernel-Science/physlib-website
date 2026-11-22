@@ -42,8 +42,8 @@ import {
 
 // ─── Small pieces ───────────────────────────────────────────────────────────
 
-const pill =
-  "flex shrink-0 items-center gap-1.5 rounded-lg border border-border px-2.5 py-1 text-xs text-muted transition-colors hover:border-accent hover:text-accent";
+const toolbarAction =
+  "flex shrink-0 items-center gap-1.5 rounded-(--radius) border border-border px-2.5 py-1 text-xs text-muted transition-colors hover:border-accent hover:text-accent";
 
 export function PencilIcon({ className = "size-3" }: { className?: string }) {
   return (
@@ -67,19 +67,19 @@ export function ArticleToolbar({
 }) {
   return (
     <div className="flex flex-wrap items-center gap-1.5">
-      <button type="button" onClick={onEdit} className={pill}>
+      <button type="button" onClick={onEdit} className={toolbarAction}>
         <PencilIcon />
         Suggest an edit
       </button>
-      <a href={node.url} target="_blank" rel="noopener noreferrer" className={pill}>
+      <a href={node.url} target="_blank" rel="noopener noreferrer" className={toolbarAction}>
         View on GitHub
         <TopRightArrowIcon className="size-3" />
       </a>
-      <a href={historyUrl(repo, branch, node.file)} target="_blank" rel="noopener noreferrer" className={pill}>
+      <a href={historyUrl(repo, branch, node.file)} target="_blank" rel="noopener noreferrer" className={toolbarAction}>
         History
         <TopRightArrowIcon className="size-3" />
       </a>
-      <a href={talkUrl(repo, node.title)} target="_blank" rel="noopener noreferrer" className={pill}>
+      <a href={talkUrl(repo, node.title)} target="_blank" rel="noopener noreferrer" className={toolbarAction}>
         Discussion
         <TopRightArrowIcon className="size-3" />
       </a>
@@ -570,7 +570,7 @@ export function ArticleReadView({
             const positions = newSectionPositions(node);
             onEdit(newSectionTarget(node, positions[positions.length - 1] ?? null));
           }}
-          className="mt-6 flex w-full items-center justify-center gap-1.5 rounded-xl border border-dashed border-border px-4 py-3 text-sm text-muted transition-colors hover:border-accent hover:text-accent"
+          className="mt-6 flex w-full items-center justify-center gap-1.5 rounded-(--radius) border border-dashed border-border px-4 py-3 text-sm text-muted transition-colors hover:border-accent hover:text-accent"
         >
           <span aria-hidden>＋</span>
           Add a section
@@ -617,7 +617,7 @@ export function ArticleReadView({
           <button
             type="button"
             onClick={onAddReference}
-            className="mt-1 flex items-center gap-1.5 rounded-lg border border-dashed border-border px-2.5 py-1 text-xs text-muted transition-colors hover:border-accent hover:text-accent"
+            className="mt-1 flex items-center gap-1.5 rounded-(--radius) border border-dashed border-border px-2.5 py-1 text-xs text-muted transition-colors hover:border-accent hover:text-accent"
           >
             <span aria-hidden>＋</span>
             Add a reference
@@ -661,7 +661,7 @@ export function MissingApiMapView({
       )}
       <a
         href={`/api-tracker/new?path=${encodeURIComponent(path)}&title=${encodeURIComponent(title)}`}
-        className={`${pill} mt-4 inline-flex w-fit`}
+        className={`${toolbarAction} mt-4 inline-flex w-fit`}
       >
         <span aria-hidden>＋</span>
         Start this API map

@@ -351,6 +351,7 @@ h2[id], h3[id], .api-tree a[id] {
   text-decoration: underline;
   text-underline-offset: 2px;
 }
+.apimap-external { overflow-wrap: anywhere; }
 .apimap-external::after {
   content: "↗";
   font-size: 0.7em;
@@ -370,10 +371,12 @@ a.apimap-missing:hover { color: var(--accent); }
   color: var(--foreground);
   font-family: var(--font-geist-mono), ui-monospace, monospace;
   font-size: 0.85em;
+  overflow-wrap: anywhere;
 }
 .apimap-decl {
   font-family: var(--font-geist-mono), ui-monospace, monospace;
   font-size: 0.85em;
+  overflow-wrap: anywhere;
 }
 
 /* Summary card: beside the abstract from md up, above it on phones. */
@@ -423,7 +426,7 @@ a.apimap-missing:hover { color: var(--accent); }
   color: var(--warning);
   background: color-mix(in oklch, var(--warning) 14%, transparent);
   border: 1px solid color-mix(in oklch, var(--warning) 35%, transparent);
-  border-radius: 9999px;
+  border-radius: var(--radius);
 }
 
 .apimap-hint {
@@ -506,7 +509,7 @@ a.apimap-missing:hover { color: var(--accent); }
   padding: 0.75rem 0.9rem;
   cursor: pointer;
   border: 1px solid var(--border);
-  border-radius: 0.75rem;
+  border-radius: var(--radius);
   transition: border-color 120ms;
 }
 .apimap-choice:hover { border-color: color-mix(in oklch, var(--accent) 50%, transparent); }
