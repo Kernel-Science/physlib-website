@@ -12,19 +12,13 @@ export const metadata: Metadata = {
 
 export default function GhGuidePage() {
   return (
-    <div className="mx-auto w-full max-w-4xl px-5 sm:px-8 py-12 md:py-16">
+    <div className="page-frame-editorial">
 
       <p className="label-mono text-muted mb-5">Community</p>
-      <h1
-        className="text-4xl font-medium text-foreground mb-4 md:text-5xl"
-        style={{ letterSpacing: "-0.04em", lineHeight: 1.06 }}
-      >
+      <h1 className="page-title-editorial">
         Contributing via GitHub
       </h1>
-      <p
-        className="text-lg max-w-2xl mb-12 leading-snug"
-        style={{ letterSpacing: "-0.01em", lineHeight: 1.4, color: "color-mix(in srgb, var(--foreground) 80%, var(--accent))" }}
-      >
+      <p className="page-intro-editorial page-intro-tinted max-w-2xl mb-12">
         Fork Physlib, submit your changes, and respond to review on GitHub.
       </p>
 
