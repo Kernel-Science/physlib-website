@@ -16,7 +16,7 @@ export function MonthSidebar() {
       <nav className="sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto py-8 pr-3 pl-6">
         {years.map((year) => (
           <div key={year} className="mb-6 last:mb-0">
-            <p className="mb-2 px-2 text-[10px] font-bold uppercase tracking-widest text-muted/60">
+            <p className="site-nav-heading">
               {year}
             </p>
             <ul className="flex flex-col">
@@ -28,16 +28,9 @@ export function MonthSidebar() {
                     <li key={m.slug}>
                       <Link
                         href={`/monthly-updates/${m.slug}`}
-                        className={`flex items-center rounded-lg px-2 py-1.5 text-sm transition-colors ${
-                          isActive
-                            ? "text-accent font-medium"
-                            : "text-muted hover:text-foreground"
-                        }`}
-                        style={{ letterSpacing: "-0.01em" }}
+                        aria-current={isActive ? "page" : undefined}
+                        className="site-nav-link site-sidebar-link px-2"
                       >
-                        {isActive && (
-                          <span className="mr-2 size-1 rounded-full bg-accent flex-shrink-0" />
-                        )}
                         {m.monthName}
                       </Link>
                     </li>

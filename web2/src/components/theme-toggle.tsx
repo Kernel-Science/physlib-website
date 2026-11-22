@@ -15,6 +15,7 @@ export function ThemeToggle() {
   return (
     <Button
       isIconOnly
+      className="rounded-(--radius)"
       variant="ghost"
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       onPress={() => setTheme(isDark ? "light" : "dark")}

@@ -13,18 +13,12 @@ const textStyle = { letterSpacing: "-0.01em", color: "color-mix(in srgb, var(--f
 
 export default function AiGuidelinesPage() {
   return (
-    <div className="mx-auto w-full max-w-4xl px-5 sm:px-8 py-12 md:py-16">
+    <div className="page-frame-editorial">
       <p className="label-mono text-muted mb-5">AI Tools</p>
-      <h1
-        className="text-4xl font-medium text-foreground mb-4 md:text-5xl"
-        style={{ letterSpacing: "-0.04em", lineHeight: 1.06 }}
-      >
+      <h1 className="page-title-editorial">
         AI Guidelines
       </h1>
-      <p
-        className="text-lg max-w-2xl mb-12 leading-snug"
-        style={{ letterSpacing: "-0.01em", lineHeight: 1.4, color: "color-mix(in srgb, var(--foreground) 80%, var(--accent))" }}
-      >
+      <p className="page-intro-editorial page-intro-tinted max-w-2xl mb-12">
         Guidance on using AI tools responsibly when contributing to Physlib.
       </p>
 

@@ -10,19 +10,13 @@ export const metadata: Metadata = {
 
 export default function ValuesPage() {
   return (
-    <div className="mx-auto w-full max-w-4xl px-5 sm:px-8 py-12 md:py-16">
+    <div className="page-frame-editorial">
 
       <p className="label-mono text-muted mb-5">About</p>
-      <h1
-        className="text-4xl font-medium text-foreground mb-6 md:text-5xl"
-        style={{ letterSpacing: "-0.04em", lineHeight: 1.06 }}
-      >
+      <h1 className="page-title-editorial mb-6">
         Values
       </h1>
-      <p
-        className="max-w-3xl text-2xl font-medium text-foreground mb-12 md:text-3xl"
-        style={{ letterSpacing: "-0.04em", lineHeight: 1.15 }}
-      >
+      <p className="page-intro-statement mb-12">
         Built on principles.
       </p>
 

@@ -9,8 +9,9 @@ export default function HomePage() {
       <div className="mx-auto grid min-h-[calc(100svh-3.5rem)] max-w-7xl lg:grid-cols-[minmax(0,1.12fr)_minmax(0,1fr)]">
 
         {/* ═══ IDENTITY ════════════════════════════════════════════ */}
-        <div className="flex flex-col justify-center border-b border-border py-14 sm:py-16 lg:border-r lg:border-b-0">
-          <div className="animate-fade-up mx-auto w-full max-w-xl px-5 sm:px-8 lg:max-w-none lg:pr-12">
+        <div className="flex flex-col justify-center border-b border-border py-14 sm:py-16 lg:border-b-0">
+          <div className="relative animate-fade-up mx-auto w-full max-w-xl px-5 sm:px-8 lg:max-w-none lg:pr-12">
+            <span aria-hidden="true" className="pointer-events-none absolute inset-y-0 right-0 hidden w-px bg-border lg:block" />
             <div className="w-full">
 
               {/* Badge */}
@@ -44,15 +45,16 @@ export default function HomePage() {
               >
                 An open-source, community project to digitalize results from physics
                 into Lean&nbsp;4.
-                <br />
-                <span className="text-sm text-foreground/35 sm:text-base">(formerly PhysLean &amp; Lean-QuantumInfo)</span>
+                <span className="mt-1 block text-xs leading-relaxed text-foreground/65 sm:text-[0.8125rem]">
+                  (formerly PhysLean &amp; Lean-QuantumInfo)
+                </span>
               </p>
 
               {/* CTAs */}
               <div className="mt-8 grid grid-cols-1 gap-2.5 min-[360px]:grid-cols-2">
                 <Link
                   href="/getting-started"
-                  className="inline-flex h-11 items-center justify-center gap-2 rounded px-3 text-sm font-medium transition-opacity hover:opacity-80"
+                  className="inline-flex h-11 items-center justify-center gap-2 rounded-(--radius) px-3 text-sm font-medium transition-opacity hover:opacity-80"
                   style={{ background: "var(--accent)", color: "var(--accent-foreground)", letterSpacing: "-0.01em" }}
                 >
                   Get Started
@@ -60,7 +62,7 @@ export default function HomePage() {
                 </Link>
                 <Link
                   href="/about"
-                  className="inline-flex h-11 items-center justify-center gap-2 rounded border border-foreground/35 bg-background px-3 text-sm font-medium text-foreground transition-colors hover:bg-surface-secondary"
+                  className="inline-flex h-11 items-center justify-center gap-2 rounded-(--radius) border border-foreground/35 bg-background px-3 text-sm font-medium text-foreground transition-colors hover:bg-surface-secondary"
                   style={{ letterSpacing: "-0.01em" }}
                 >
                   Learn more
@@ -69,7 +71,7 @@ export default function HomePage() {
                   href={site.zulip}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex h-11 items-center justify-center gap-2 rounded px-3 text-sm font-medium text-white transition-opacity hover:opacity-80"
+                  className="inline-flex h-11 items-center justify-center gap-2 rounded-(--radius) px-3 text-sm font-medium text-white transition-opacity hover:opacity-80"
                   style={{ background: "linear-gradient(180deg, #50adff 0%, #7877fc 100%)", letterSpacing: "-0.01em" }}
                 >
                   <ZulipLogo />
@@ -79,7 +81,7 @@ export default function HomePage() {
                   href={site.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex h-11 items-center justify-center gap-2 rounded px-3 text-sm font-medium transition-opacity hover:opacity-80"
+                  className="inline-flex h-11 items-center justify-center gap-2 rounded-(--radius) px-3 text-sm font-medium transition-opacity hover:opacity-80"
                   style={{
                     background: "var(--github-button-bg)",
                     color: "var(--github-button-fg)",
@@ -106,7 +108,7 @@ export default function HomePage() {
                   href={site.contributions}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex h-11 items-center gap-2 rounded border border-accent/40 bg-accent/10 px-6 text-sm font-medium text-accent transition-colors hover:bg-accent/20"
+                  className="inline-flex h-11 items-center gap-2 rounded-(--radius) border border-accent/40 bg-accent/10 px-6 text-sm font-medium text-accent transition-colors hover:bg-accent/20"
                   style={{ letterSpacing: "-0.01em" }}
                 >
                   Contribution reports

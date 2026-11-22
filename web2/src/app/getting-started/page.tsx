@@ -13,20 +13,14 @@ export const metadata: Metadata = {
 
 export default function GettingStartedPage() {
   return (
-    <div className="mx-auto w-full max-w-4xl px-5 sm:px-8 py-12 md:py-16">
+    <div className="page-frame-editorial">
 
       {/* Page intro */}
       <p className="label-mono text-muted mb-5">Documentation</p>
-      <h1
-        className="text-4xl font-medium text-foreground mb-4 md:text-5xl"
-        style={{ letterSpacing: "-0.04em", lineHeight: 1.06 }}
-      >
+      <h1 className="page-title-editorial">
         Getting Started
       </h1>
-      <p
-        className="text-lg text-muted max-w-2xl mb-10 leading-snug"
-        style={{ letterSpacing: "-0.01em", lineHeight: 1.4 }}
-      >
+      <p className="page-intro-editorial max-w-2xl mb-10">
         A guide for getting started with Physlib, aimed at people with no Lean
         experience or who are new to the project.
       </p>

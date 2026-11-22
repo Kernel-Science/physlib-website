@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "@heroui/styles";
+@import "./page-layout.css";
 
 /* ─── Together AI design system ────────────────────────────── */
 

@@ -15,9 +15,9 @@ export default async function MaintainersPage() {
   const maintainers = await getMaintainers();
 
   return (
-    <div className="mx-auto w-full max-w-4xl px-4 py-10 md:py-14">
-      <h1 className="text-4xl font-bold tracking-tight mb-2">Maintainers</h1>
-      <p className="text-muted mb-8 leading-relaxed">
+    <div className="page-frame-tracker max-w-4xl">
+      <h1 className="page-title-tracker">Maintainers</h1>
+      <p className="page-intro-tracker mb-8">
         The following individuals are the maintainers of this project. They have
         the power to approve the merger of pull requests, and the responsibility
         to ensure that the project is well-maintained and that the codebase is

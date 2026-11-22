@@ -11,18 +11,12 @@ export const metadata: Metadata = {
 
 export default function SponsorPage() {
   return (
-    <div className="mx-auto w-full max-w-2xl px-5 sm:px-8 py-12 md:py-16">
+    <div className="page-frame-editorial max-w-2xl">
       <p className="label-mono text-muted mb-5">Support</p>
-      <h1
-        className="text-4xl font-medium text-foreground mb-4 md:text-5xl"
-        style={{ letterSpacing: "-0.04em", lineHeight: 1.06 }}
-      >
+      <h1 className="page-title-editorial">
         Sponsor Physlib
       </h1>
-      <p
-        className="text-lg text-muted mb-10 leading-snug"
-        style={{ letterSpacing: "-0.01em", lineHeight: 1.4 }}
-      >
+      <p className="page-intro-editorial mb-10">
         Financial support helps Physlib grow faster and reach more of the
         physics and Lean communities.
       </p>

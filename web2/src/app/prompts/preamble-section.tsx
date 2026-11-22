@@ -33,7 +33,7 @@ export function PreambleSection() {
         <button
           type="button"
           onClick={onCopy}
-          className="inline-flex items-center gap-1 rounded border border-border px-2 py-1 text-xs font-medium text-muted transition-colors hover:text-accent"
+          className="inline-flex items-center gap-1 rounded-(--radius) border border-border px-2 py-1 text-xs font-medium text-muted transition-colors hover:text-accent"
         >
           {copied ? (
             <>

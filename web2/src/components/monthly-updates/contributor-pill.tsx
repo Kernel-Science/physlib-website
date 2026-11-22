@@ -7,7 +7,7 @@ function formatNumber(n: number): string {
 export function ContributorPill({ c }: { c: MonthlyContributor }) {
   const label = c.login ?? c.name ?? "unknown";
   const inner = (
-    <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-surface-secondary/60 pl-1 pr-2.5 py-1 text-xs text-foreground/80 hover:bg-surface-secondary transition-colors">
+    <span className="inline-flex items-center gap-1.5 rounded-(--radius) border border-border bg-surface-secondary/60 pl-1 pr-2.5 py-1 text-xs text-foreground/80 hover:bg-surface-secondary transition-colors">
       {c.avatar_url ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
@@ -42,7 +42,7 @@ export function ContributorPill({ c }: { c: MonthlyContributor }) {
 export function ReviewerPill({ r }: { r: MonthlyReviewer }) {
   const label = r.name ?? r.login;
   const inner = (
-    <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-surface-secondary/60 pl-1 pr-2.5 py-1 text-xs text-foreground/80 hover:bg-surface-secondary transition-colors">
+    <span className="inline-flex items-center gap-1.5 rounded-(--radius) border border-border bg-surface-secondary/60 pl-1 pr-2.5 py-1 text-xs text-foreground/80 hover:bg-surface-secondary transition-colors">
       {r.avatar_url ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img

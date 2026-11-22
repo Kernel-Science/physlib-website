@@ -21,7 +21,7 @@ export function PdfViewer({ url, title }: { url: string; title: string }) {
         href={url}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center justify-center gap-1.5 rounded-xl border border-dashed border-border p-8 text-sm text-muted lg:hidden"
+        className="flex items-center justify-center gap-1.5 rounded-(--radius) border border-dashed border-border p-8 text-sm text-muted lg:hidden"
       >
         Open the PDF in a new tab to read it on mobile devices
         <TopRightArrowIcon />

@@ -12,9 +12,9 @@ const repository = "https://github.com/leanprover-community/physlib";
 
 export default function ContributorFaqPage() {
   return (
-    <div className="mx-auto w-full max-w-4xl px-5 py-12 sm:px-8 md:py-16">
+    <div className="page-frame-editorial">
       <p className="label-mono mb-5 text-muted">Documentation</p>
-      <h1 className="mb-8 text-4xl font-medium tracking-tight text-foreground md:text-5xl">
+      <h1 className="page-title-editorial mb-8">
         Contributor FAQ
       </h1>
       <div className="max-w-2xl space-y-8 text-sm leading-relaxed text-foreground/85">

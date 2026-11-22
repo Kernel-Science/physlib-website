@@ -51,7 +51,7 @@ export const navSections: NavSection[] = [
     label: "Goal Trackers",
     items: [
       { label: "API development", href: "/api-tracker" },
-      { label: "PR triage", href: "/pr-tracker" },
+      { label: "PR Triage", href: "/pr-tracker" },
       { label: "DOC Tracker", href: "/documentation-tracker" },
       { label: "TODO list", href: "/todo" },
       { label: "Monthly updates", href: "/monthly-updates" },

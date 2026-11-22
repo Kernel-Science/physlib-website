@@ -24,7 +24,7 @@ export function InstallChoice({ options }: { options: { label: string; content: 
             role="tab"
             aria-selected={selected === i}
             onClick={() => setSelected(i)}
-            className={`rounded-md px-3 py-1 text-xs font-medium transition-colors ${
+            className={`rounded-(--radius) px-3 py-1 text-xs font-medium transition-colors ${
               selected === i ? "bg-background text-foreground shadow-sm" : "text-muted hover:text-foreground"
             }`}
           >
@@ -119,7 +119,7 @@ export function InstallSteps({ steps }: { steps: InstallStep[] }) {
                   aria-checked={isDone}
                   aria-label={`Mark step ${i + 1}, ${step.title}, as ${isDone ? "not done" : "done"}`}
                   onClick={() => toggle(step.id)}
-                  className={`mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-md border-2 transition-colors ${
+                  className={`mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-(--radius) border-2 transition-colors ${
                     isDone
                       ? "border-success bg-success text-background"
                       : "border-foreground/25 hover:border-accent"

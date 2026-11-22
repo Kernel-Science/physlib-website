@@ -11,18 +11,12 @@ export default async function NewsPage() {
   const items = await getNews();
 
   return (
-    <div className="mx-auto w-full max-w-4xl px-5 sm:px-8 py-12 md:py-16">
+    <div className="page-frame-editorial">
       <p className="label-mono text-muted mb-5">Updates</p>
-      <h1
-        className="text-4xl font-medium text-foreground mb-4 md:text-5xl"
-        style={{ letterSpacing: "-0.04em", lineHeight: 1.06 }}
-      >
+      <h1 className="page-title-editorial">
         News
       </h1>
-      <p
-        className="text-lg text-muted mb-10 leading-snug"
-        style={{ letterSpacing: "-0.01em", lineHeight: 1.4 }}
-      >
+      <p className="page-intro-editorial mb-10">
         An attempt will be made to keep this feed up to date.
       </p>
 
