@@ -9,6 +9,6 @@
     <circle cx="27.1" cy="6.5" r="2"/>
     <circle cx="27.1" cy="25.5" r="2"/>
   </g>
-  <path d="M8.2 13.2l5.3 2.8-5.3 2.8z" fill="#fff"/>
+  <path d="M8.85 13.2l5.3 2.8-5.3 2.8z" fill="#fff"/>
   <path d="M-2.5-2.8l5.4 2.8-5.4 2.8z" fill="#fff" transform="translate(20.1 11.86) rotate(-37.5)"/>
 </svg>

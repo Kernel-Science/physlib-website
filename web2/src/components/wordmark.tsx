@@ -1,7 +1,7 @@
 import { site } from "@/lib/site";
 
 /** The Physlib text wordmark: used by the header and footer so they always match.
- *  The ħ bar lives only in the large hero logo; at this size it hurts legibility. */
+ *  The hbar and the diagram live only in the large hero logo; at this size they hurt legibility. */
 export function Wordmark() {
   return (
     <>
