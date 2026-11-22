@@ -7,7 +7,7 @@ export const site = {
   github: "https://github.com/leanprover-community/physlib",
   websiteRepo: "https://github.com/Kernel-Science/physlib-website",
   zulip: "https://leanprover.zulipchat.com/#narrow/channel/479953-physlib",
-  search: "https://physlibsearch.net",
+  search: "/search",
   // Signed Open Badges 3.0 reports for contributions to Physlib.
   contributions: "https://contributions.physlib.io",
   docs: "/docs/index.html",
@@ -50,7 +50,7 @@ export const navSections: NavSection[] = [
   {
     label: "Goal Trackers",
     items: [
-      { label: "API development", href: "/api-tracker" },
+      { label: "API Tracker", href: "/api-tracker" },
       { label: "PR Triage", href: "/pr-tracker" },
       { label: "DOC Tracker", href: "/documentation-tracker" },
       { label: "TODO list", href: "/todo" },
@@ -70,7 +70,7 @@ export const navSections: NavSection[] = [
     items: [
       { label: "Dependency graphs", href: "/dependencies" },
       { label: "References", href: "/references" },
-      { label: "Search Physlib", href: site.search, external: true },
+      { label: "Search Physlib", href: site.search },
       { label: "Documentation", href: site.docs },
       {
         label: "Verso docs",

@@ -21,7 +21,7 @@ const footerLinks = {
   ],
   Explore: [
     { label: "Dependency graphs", href: "/dependencies" },
-    { label: "Search Physlib", href: site.search, external: true },
+    { label: "Search Physlib", href: site.search },
     { label: "GitHub", href: site.github, external: true },
     { label: "Website Source", href: site.websiteRepo, external: true },
   ],

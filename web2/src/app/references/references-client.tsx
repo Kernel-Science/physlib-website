@@ -291,7 +291,7 @@ export function ReferencesClient({ references }: { references: Reference[]; repo
             <button
               key={key}
               onClick={() => setReferencesHash({ view: key })}
-              className={`px-3 py-1.5 text-sm rounded-lg border transition-colors ${
+              className={`px-3 py-1.5 text-sm rounded-(--radius) border transition-colors ${
                 view === key
                   ? "bg-accent text-white border-accent"
                   : "border-border bg-surface hover:bg-surface-secondary"
@@ -303,7 +303,7 @@ export function ReferencesClient({ references }: { references: Reference[]; repo
           {showAllToggle && (
             <button
               onClick={() => setAllGroups(!allOpen)}
-              className="px-3 py-1.5 text-sm rounded-lg border border-border bg-surface hover:bg-surface-secondary transition-colors text-muted hover:text-foreground"
+              className="px-3 py-1.5 text-sm rounded-(--radius) border border-border bg-surface hover:bg-surface-secondary transition-colors text-muted hover:text-foreground"
             >
               {allOpen ? "Collapse all" : "Expand all"}
             </button>
@@ -325,7 +325,9 @@ export function ReferencesClient({ references }: { references: Reference[]; repo
       {view === "cited" && (
         <div className="flex flex-col gap-2">
           {citedView.map((ref) => (
-            <ReferenceCard key={ref.key} reference={ref} />
+            <div key={ref.key} id={`reference-${ref.key}`} className="scroll-mt-24">
+              <ReferenceCard reference={ref} />
+            </div>
           ))}
         </div>
       )}

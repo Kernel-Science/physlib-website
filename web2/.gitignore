@@ -45,3 +45,6 @@ next-env.d.ts
 /.monthly-updates-build/
 /.cache/
 /build.log
+
+# Lean declaration search data generated from the docs artifact.
+/data/LeanSearchIndex.json

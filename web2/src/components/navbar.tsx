@@ -160,10 +160,8 @@ export function Navbar() {
 
           {/* Right */}
           <div className="flex shrink-0 items-center gap-2">
-            <a
+            <Link
               href={site.search}
-              target="_blank"
-              rel="noopener noreferrer"
               aria-label="Search Physlib"
               className="hidden h-8 items-center justify-center rounded-(--radius) px-3 text-xs font-medium transition-opacity hover:opacity-80 sm:inline-flex md:px-2 lg:px-3"
               style={{
@@ -177,7 +175,7 @@ export function Navbar() {
                 <circle cx="8.5" cy="8.5" r="4.5" />
                 <path d="m12 12 4 4" strokeLinecap="round" />
               </svg>
-            </a>
+            </Link>
             <a
               href={site.github}
               target="_blank"
@@ -239,16 +237,14 @@ export function Navbar() {
             })}
 
             <div className="mt-4 pt-8 border-t border-border flex flex-col gap-3">
-              <a
+              <Link
                 href={site.search}
-                target="_blank"
-                rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
                 className="inline-flex items-center gap-2 h-11 rounded-(--radius) px-4 text-sm font-medium w-full justify-center transition-opacity hover:opacity-80"
                 style={{ background: "var(--accent)", color: "var(--accent-foreground)" }}
               >
                 Search Physlib
-              </a>
+              </Link>
               <a
                 href={site.github}
                 target="_blank"
