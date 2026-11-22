@@ -57,7 +57,7 @@ export default function HomePage() {
                   className="inline-flex h-11 items-center justify-center gap-2 rounded-(--radius) border border-foreground/35 bg-background px-3 text-sm font-medium text-foreground transition-colors hover:bg-surface-secondary"
                   style={{ letterSpacing: "-0.01em" }}
                 >
-                  Learn more
+                  Learn More
                 </Link>
                 <a
                   href={site.zulip}
