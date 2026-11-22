@@ -12,15 +12,15 @@ const footerLinks = {
   ],
   Learn: [
     { label: "Getting Started", href: "/getting-started" },
-    { label: "Project Ideas", href: "/project-ideas" },
+    { label: "Project ideas", href: "/project-ideas" },
   ],
   Community: [
     { label: "Get Involved", href: "/get-involved" },
-    { label: "Todo list", href: "/todo" },
+    { label: "TODO list", href: "/todo" },
     { label: "Discussion", href: site.zulip, external: true },
   ],
   Explore: [
-    { label: "Dependency Graphs", href: "/dependencies" },
+    { label: "Dependency graphs", href: "/dependencies" },
     { label: "Search Physlib", href: site.search, external: true },
     { label: "GitHub", href: site.github, external: true },
     { label: "Website Source", href: site.websiteRepo, external: true },

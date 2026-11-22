@@ -22,12 +22,9 @@ function NavLink({
           e.preventDefault();
           onClick();
         }}
-        className={`flex items-start rounded-lg px-2 py-1.5 text-sm transition-colors ${
-          active ? "text-accent font-medium" : "text-muted hover:text-foreground"
-        }`}
-        style={{ letterSpacing: "-0.01em" }}
+        aria-current={active ? "location" : undefined}
+        className="site-nav-link site-sidebar-link px-2"
       >
-        {active && <span className="mr-2 mt-1.5 size-1 rounded-full bg-accent flex-shrink-0" />}
         <span className="font-mono">
           {/* Wrap only at "/" (via <wbr/>), not mid-word, for a path like
               "Physlib/ClassicalMechanics" - break-all would chop words
@@ -86,7 +83,7 @@ export function ReferencesSidebar() {
       >
         {selection.view === "subfolder" && (
           <>
-            <p className="mb-2 px-2 text-[10px] font-bold uppercase tracking-widest text-muted/60">
+            <p className="site-nav-heading">
               Subfolders
             </p>
             <ul className="flex flex-col">
@@ -104,7 +101,7 @@ export function ReferencesSidebar() {
 
         {selection.view === "author" && (
           <>
-            <p className="mb-2 px-2 text-[10px] font-bold uppercase tracking-widest text-muted/60">
+            <p className="site-nav-heading">
               Authors
             </p>
             <ul className="flex flex-col">

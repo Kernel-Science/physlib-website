@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useRef } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { site, navSections, type NavItem, type NavSection } from "@/lib/site";
 import { ThemeToggle } from "./theme-toggle";
 import { GitHubIcon } from "@/components/monthly-updates/icons";
@@ -31,6 +31,11 @@ function activeHref(items: NavItem[], pathname: string) {
 function NavDropdown({ section, pathname }: { section: NavSection; pathname: string }) {
   const [open, setOpen] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const trigger = useRef<HTMLButtonElement>(null);
+  const panelId = useId();
+  useEffect(() => () => {
+    if (timerRef.current) clearTimeout(timerRef.current);
+  }, []);
 
   const sectionActiveHref = activeHref(section.items, pathname);
   const isActive = sectionActiveHref !== undefined;
@@ -47,10 +52,31 @@ function NavDropdown({ section, pathname }: { section: NavSection; pathname: str
   return (
     <div
       className="relative flex h-full items-center last:[&>div]:right-0 last:[&>div]:left-auto"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      onPointerEnter={(event) => { if (event.pointerType === "mouse") handleMouseEnter(); }}
+      onPointerLeave={(event) => {
+        if (event.pointerType === "mouse" && !event.currentTarget.querySelector(":focus-visible")) handleMouseLeave();
+      }}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false);
+      }}
+      onKeyDown={(event) => {
+        if (event.key === "Escape" && open) {
+          event.preventDefault();
+          setOpen(false);
+          trigger.current?.focus();
+        }
+      }}
     >
       <button
+        type="button"
+        ref={trigger}
+        aria-expanded={open}
+        aria-controls={open ? panelId : undefined}
+        onClick={(event) => {
+          if (timerRef.current) clearTimeout(timerRef.current);
+          if (event.detail === 0 || !window.matchMedia("(hover: hover)").matches) setOpen(!open);
+          else setOpen(true);
+        }}
         className={`flex shrink-0 items-center gap-1 whitespace-nowrap px-1.5 py-1.5 text-xs transition-colors lg:px-2 lg:text-sm xl:px-3 ${
           isActive ? "text-foreground" : "text-muted hover:text-foreground"
         }`}
@@ -70,7 +96,7 @@ function NavDropdown({ section, pathname }: { section: NavSection; pathname: str
       </button>
 
       {open && (
-        <div className="absolute top-full left-0 z-50 mt-px min-w-48 border border-t-0 border-border bg-background shadow-lg">
+        <div id={panelId} className="absolute top-full left-0 z-50 mt-px min-w-48 border border-t-0 border-border bg-background shadow-lg" onClick={() => setOpen(false)}>
           {section.items.map((item) => {
             const active = item.href === sectionActiveHref;
             return item.external ? (
@@ -79,7 +105,7 @@ function NavDropdown({ section, pathname }: { section: NavSection; pathname: str
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-between px-3 py-2 text-sm text-muted hover:text-foreground hover:bg-surface-secondary/60 transition-colors"
+                className="site-nav-link flex items-center justify-between px-3 py-2 text-sm"
                 style={{ letterSpacing: "-0.01em" }}
               >
                 {item.label}
@@ -89,16 +115,9 @@ function NavDropdown({ section, pathname }: { section: NavSection; pathname: str
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex items-center px-3 py-2 text-sm transition-colors ${
-                  active
-                    ? "text-accent font-medium bg-accent/8"
-                    : "text-muted hover:text-foreground hover:bg-surface-secondary/60"
-                }`}
-                style={{ letterSpacing: "-0.01em" }}
+                aria-current={active ? (item.href === pathname ? "page" : "location") : undefined}
+                className="site-nav-link flex items-center px-3 py-2 text-sm"
               >
-                {active && (
-                  <span className="mr-2 size-1.5 rounded-full bg-accent flex-shrink-0" />
-                )}
                 {item.label}
               </Link>
             );
@@ -146,7 +165,7 @@ export function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Search Physlib"
-              className="hidden h-8 items-center justify-center rounded px-3 text-xs font-medium transition-opacity hover:opacity-80 sm:inline-flex md:px-2 lg:px-3"
+              className="hidden h-8 items-center justify-center rounded-(--radius) px-3 text-xs font-medium transition-opacity hover:opacity-80 sm:inline-flex md:px-2 lg:px-3"
               style={{
                 background: "var(--accent)",
                 color: "var(--accent-foreground)",
@@ -164,7 +183,7 @@ export function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className="hidden h-8 items-center gap-1.5 rounded px-3 text-xs font-medium transition-opacity hover:opacity-80 sm:inline-flex md:px-2 lg:px-3"
+              className="hidden h-8 items-center gap-1.5 rounded-(--radius) px-3 text-xs font-medium transition-opacity hover:opacity-80 sm:inline-flex md:px-2 lg:px-3"
               style={{
                 background: "var(--github-button-bg)",
                 color: "var(--github-button-fg)",
@@ -178,7 +197,7 @@ export function Navbar() {
             <button
               onClick={() => setOpen((v: boolean) => !v)}
               aria-label="Toggle menu"
-              className="inline-flex md:hidden items-center justify-center size-8 rounded border border-border text-muted hover:text-foreground transition-colors"
+              className="inline-flex md:hidden items-center justify-center size-8 rounded-(--radius) border border-border text-muted hover:text-foreground transition-colors"
             >
               {open ? <CloseIcon /> : <MenuIcon />}
             </button>
@@ -205,18 +224,10 @@ export function Navbar() {
                           <Link
                             href={item.href}
                             onClick={() => setOpen(false)}
-                            className={`flex items-center justify-between rounded-lg px-2 py-2 text-base transition-colors ${
-                              active
-                                ? "text-accent font-medium bg-accent/8"
-                                : "text-muted hover:text-foreground"
-                            }`}
+                            aria-current={active ? (item.href === pathname ? "page" : "location") : undefined}
+                            className="site-nav-link flex items-center justify-between rounded-(--radius) px-2 py-2 text-base"
                           >
-                            <span className="flex items-center">
-                              {active && (
-                                <span className="mr-3 size-1.5 rounded-full bg-accent flex-shrink-0" />
-                              )}
-                              {item.label}
-                            </span>
+                            {item.label}
                             {item.external && <span className="opacity-40 text-xs">↗</span>}
                           </Link>
                         </li>
@@ -233,7 +244,7 @@ export function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
-                className="inline-flex items-center gap-2 h-11 rounded px-4 text-sm font-medium w-full justify-center transition-opacity hover:opacity-80"
+                className="inline-flex items-center gap-2 h-11 rounded-(--radius) px-4 text-sm font-medium w-full justify-center transition-opacity hover:opacity-80"
                 style={{ background: "var(--accent)", color: "var(--accent-foreground)" }}
               >
                 Search Physlib
@@ -243,7 +254,7 @@ export function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
-                className="inline-flex items-center gap-2 h-11 rounded px-4 text-sm font-medium w-full justify-center transition-opacity hover:opacity-80"
+                className="inline-flex items-center gap-2 h-11 rounded-(--radius) px-4 text-sm font-medium w-full justify-center transition-opacity hover:opacity-80"
                 style={{ background: "var(--github-button-bg)", color: "var(--github-button-fg)" }}
               >
                 <GitHubIcon />

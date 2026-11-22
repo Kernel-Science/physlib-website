@@ -52,7 +52,7 @@ export const navSections: NavSection[] = [
     items: [
       { label: "API development", href: "/api-tracker" },
       { label: "PR triage", href: "/pr-tracker" },
-      { label: "Documentation", href: "/documentation-tracker" },
+      { label: "DOC Tracker", href: "/documentation-tracker" },
       { label: "TODO list", href: "/todo" },
       { label: "Monthly updates", href: "/monthly-updates" },
     ],
@@ -71,7 +71,7 @@ export const navSections: NavSection[] = [
       { label: "Dependency graphs", href: "/dependencies" },
       { label: "References", href: "/references" },
       { label: "Search Physlib", href: site.search, external: true },
-      { label: "Documentation", href: "https://physlib.io/docs/index.html" },
+      { label: "Documentation", href: site.docs },
       {
         label: "Verso docs",
         href: "https://jstoobysmith.github.io/PhyslibVerso/",
