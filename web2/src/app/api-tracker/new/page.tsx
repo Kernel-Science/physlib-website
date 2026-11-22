@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default async function CreateApiMapPage() {
   const apiMap = await getApiMap();
   return (
-    <div className="mx-auto w-full max-w-5xl px-4 py-10 md:py-14">
+    <div className="page-frame-tracker">
       <CreateApiMap apiMap={apiMap} />
     </div>
   );
