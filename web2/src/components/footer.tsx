@@ -84,7 +84,7 @@ export function Footer() {
             <div className="flex items-center gap-2">
               <span>Website by</span>
               <a href="https://kernel-science.com" target="_blank" rel="noopener noreferrer" className="opacity-70 hover:opacity-100 transition-opacity">
-                <img src="/images/kernel_science_logo.png" alt="Kernel Science" className="h-4 w-auto" />
+                <img src="/images/kernel_science_logo.png" alt="Kernel Science" className="logo-mark h-4 w-auto" />
               </a>
               <span>
                 and{" "}
