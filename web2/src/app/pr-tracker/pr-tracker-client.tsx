@@ -176,7 +176,7 @@ export function PRTrackerClient() {
             onClick={() => setFilter(key)}
             className={`px-3 py-1.5 text-sm rounded-(--radius) border transition-colors ${
               filter === key
-                ? "bg-accent text-white border-accent"
+                ? "bg-accent text-accent-foreground border-accent"
                 : "border-border bg-surface hover:bg-surface-secondary"
             }`}
           >

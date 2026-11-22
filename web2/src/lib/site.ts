@@ -8,9 +8,14 @@ export const site = {
   websiteRepo: "https://github.com/Kernel-Science/physlib-website",
   zulip: "https://leanprover.zulipchat.com/#narrow/channel/479953-physlib",
   search: "/search",
+  semanticSearch: "https://physlibsearch.net",
   // Signed Open Badges 3.0 reports for contributions to Physlib.
   contributions: "https://contributions.physlib.io",
   docs: "/docs/index.html",
+  verso: "https://jstoobysmith.github.io/PhyslibVerso/",
+  sponsor: "/sponsor",
+  team: "/team",
+  aiResources: "/ai-resources",
   // Same report the "/reviews" Zulip bot command sends - see
   // https://github.com/Alex-Zughaid/PhyslibBots (zulip-dm-bots/src/index.js)
   reportApi: "https://zulip-dm-relay.alexzughaid.workers.dev/report",
@@ -25,14 +30,36 @@ export type NavItem = {
 export type NavSection = {
   label: string;
   items: NavItem[];
+  plainHover?: boolean;
 };
 
 export const navSections: NavSection[] = [
   {
-    label: "Basics",
+    label: "Explore",
     items: [
-      { label: "Home", href: "/" },
+      { label: "API Maps", href: "/api-tracker" },
+      { label: "Verso Docs", href: site.verso, external: true },
+      { label: "Lean Reference", href: site.docs },
+      { label: "References", href: "/references" },
+      { label: "Dependency Graphs", href: "/dependencies" },
+    ],
+  },
+  {
+    label: "Learn",
+    items: [
       { label: "Getting Started", href: "/getting-started" },
+      { label: "Ways to Contribute", href: "/get-involved" },
+      { label: "GitHub Contribution Guide", href: "/gh-guide" },
+      { label: "AI Resources", href: site.aiResources },
+    ],
+  },
+  {
+    label: "Contribute",
+    items: [
+      { label: "Project Ideas", href: "/project-ideas" },
+      { label: "TODO List", href: "/todo" },
+      { label: "DOC Tracker", href: "/documentation-tracker" },
+      { label: "PR Triage", href: "/pr-tracker" },
       { label: "Discussion", href: site.zulip, external: true },
     ],
   },
@@ -40,55 +67,17 @@ export const navSections: NavSection[] = [
     label: "About",
     items: [
       { label: "Overview", href: "/about" },
-      { label: "Mission", href: "/about/mission" },
-      { label: "Values", href: "/about/values" },
-      { label: "Beneficiaries", href: "/about/beneficiaries" },
-      { label: "Impact", href: "/about/impact" },
-      { label: "Maintainers", href: "/maintainers" },
-    ],
-  },
-  {
-    label: "Goal Trackers",
-    items: [
-      { label: "API Tracker", href: "/api-tracker" },
-      { label: "PR Triage", href: "/pr-tracker" },
-      { label: "DOC Tracker", href: "/documentation-tracker" },
-      { label: "TODO list", href: "/todo" },
-      { label: "Monthly updates", href: "/monthly-updates" },
-    ],
-  },
-  {
-    label: "Get Involved",
-    items: [
-      { label: "Project ideas", href: "/project-ideas" },
-      { label: "Ways to contribute", href: "/get-involved" },
-      { label: "Guide to contributing via GitHub", href: "/gh-guide" },
-    ],
-  },
-  {
-    label: "Explore",
-    items: [
-      { label: "Dependency graphs", href: "/dependencies" },
-      { label: "References", href: "/references" },
-      { label: "Search Physlib", href: site.search },
-      { label: "Documentation", href: site.docs },
-      {
-        label: "Verso docs",
-        href: "https://jstoobysmith.github.io/PhyslibVerso/",
-        external: true,
-      },
+      { label: "Our Team", href: site.team },
+      { label: "Monthly Updates", href: "/monthly-updates" },
     ],
   },
   {
     label: "Support",
-    items: [{ label: "Sponsor", href: "/sponsor" }],
-  },
-  {
-    label: "AI Tools",
+    plainHover: true,
     items: [
-      { label: "AI guidelines", href: "/ai-guidelines" },
-      { label: "PhyslibAItools", href: "/physlib-ai-tools" },
-      { label: "Useful Prompts", href: "/prompts" },
+      { label: "Priorities", href: site.sponsor + "#priorities" },
+      { label: "Donate", href: site.sponsor + "#contribute" },
+      { label: "Sponsors", href: site.sponsor + "#sponsors" },
     ],
   },
 ];
@@ -99,5 +88,5 @@ export const primaryNav: NavItem[] = [
   { label: "Get Involved", href: "/get-involved" },
   { label: "Trackers", href: "/api-tracker" },
   { label: "Todo list", href: "/todo" },
-  { label: "Sponsor", href: "/sponsor" },
+  { label: "Sponsor", href: site.sponsor },
 ];

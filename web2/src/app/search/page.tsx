@@ -3,6 +3,7 @@ import Form from "next/form";
 import Link from "next/link";
 import { Suspense } from "react";
 import { searchPhyslib, type SearchKind } from "@/lib/physlib-site-search";
+import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Search | Physlib",
@@ -122,7 +123,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
           maxLength={200}
           defaultValue={query}
           placeholder="Search by keyword or Lean name"
-          className="min-w-0 flex-1 rounded-lg border border-border bg-surface px-3 py-2.5 text-base focus-visible:outline-2 focus-visible:outline-accent"
+          className="site-field flex-1"
         />
         {scope !== "all" && <input type="hidden" name="scope" value={scope} />}
         <button type="submit" className="rounded-(--radius) bg-accent px-4 py-2 text-sm font-medium text-[var(--accent-foreground)] hover:opacity-90 focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2">
@@ -130,7 +131,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
         </button>
       </Form>
       <p className="mt-3 text-sm text-muted">
-        <a href="https://physlibsearch.net" className="text-accent hover:underline">
+        <a href={site.semanticSearch} className="text-accent hover:underline">
           Semantic search on PhyslibSearch <span aria-hidden="true">↗</span>
         </a>
       </p>

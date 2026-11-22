@@ -123,6 +123,15 @@ export default function GetInvolvedPage() {
         ))}
       </div>
 
+      <section id="ai-resources" className="mt-10 scroll-mt-20 border-t border-border pt-8">
+        <h2 className="text-xl font-medium text-foreground">AI Resources</h2>
+        <div className="mt-4 flex flex-wrap gap-2">
+          <ButtonLink href={site.aiResources + "#ai-guidelines"} size="sm" variant="secondary">AI Guidelines</ButtonLink>
+          <ButtonLink href={site.aiResources + "#physlib-ai-tools"} size="sm" variant="secondary">Physlib AI Tools</ButtonLink>
+          <ButtonLink href={site.aiResources + "#useful-prompts"} size="sm" variant="secondary">Useful Prompts</ButtonLink>
+        </div>
+      </section>
+
       {/* CTA */}
       <div className="mt-16 border-t border-border pt-10 text-center">
         <p className="label-mono text-foreground/35 mb-4">Questions?</p>

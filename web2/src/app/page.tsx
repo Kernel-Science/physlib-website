@@ -2,6 +2,7 @@ import Link from "next/link";
 import { site } from "@/lib/site";
 import { ContributeLinks } from "@/components/contribute-links";
 import { GitHubIcon } from "@/components/monthly-updates/icons";
+import { PhyslibLogo } from "@/components/physlib-logo";
 
 export default function HomePage() {
   return (
@@ -21,13 +22,8 @@ export default function HomePage() {
 
               {/* Wordmark */}
               <h1>
-                <img
-                  src="/images/physlib-logo.png"
-                  alt="Physlib"
-                  width={1600}
-                  height={459}
-                  className="logo-mark h-auto w-full"
-                />
+                <span className="sr-only">{site.name}</span>
+                <PhyslibLogo />
               </h1>
 
               {/* Tagline */}
@@ -43,11 +39,7 @@ export default function HomePage() {
                 className="mt-5 text-base text-muted sm:text-lg"
                 style={{ letterSpacing: "-0.01em", lineHeight: 1.4 }}
               >
-                An open-source, community project to digitalize results from physics
-                into Lean&nbsp;4.
-                <span className="mt-1 block text-xs leading-relaxed text-foreground/65 sm:text-[0.8125rem]">
-                  (formerly PhysLean &amp; Lean-QuantumInfo)
-                </span>
+                An open-source, community project to formalize theoretical physics.
               </p>
 
               {/* CTAs */}
@@ -71,8 +63,8 @@ export default function HomePage() {
                   href={site.zulip}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex h-11 items-center justify-center gap-2 rounded-(--radius) px-3 text-sm font-medium text-white transition-opacity hover:opacity-80"
-                  style={{ background: "linear-gradient(180deg, #50adff 0%, #7877fc 100%)", letterSpacing: "-0.01em" }}
+                  className="inline-flex h-11 items-center justify-center gap-2 rounded-(--radius) border border-border bg-foreground/12 px-3 text-sm font-medium text-foreground transition-colors hover:bg-foreground/16"
+                  style={{ letterSpacing: "-0.01em" }}
                 >
                   <ZulipLogo />
                   Join Community
@@ -97,7 +89,7 @@ export default function HomePage() {
               <div className="mt-9 border-t border-border pt-7">
                 <p className="label-mono text-accent mb-2">See contributions to Physlib</p>
                 <p
-                  className="mb-4 max-w-[52ch] text-pretty text-sm text-muted"
+                  className="mb-4 text-pretty text-sm text-muted"
                   style={{ letterSpacing: "-0.01em", lineHeight: 1.45 }}
                 >
                   Core work on Physlib by individuals can be published in signed,

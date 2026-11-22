@@ -152,7 +152,7 @@ export function DependenciesClient() {
 
       <button
         onClick={handleRender}
-        className="w-full rounded-(--radius) bg-accent text-white py-3 font-medium hover:bg-accent/90 transition-colors"
+        className="w-full rounded-(--radius) bg-accent text-accent-foreground py-3 font-medium hover:bg-accent/90 transition-colors"
       >
         Render Graph
       </button>

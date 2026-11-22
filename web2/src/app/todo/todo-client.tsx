@@ -45,7 +45,7 @@ function itemTypeLabel(
     return {
       label: "Informal Definition",
       className:
-        "bg-blue-500/10 text-blue-600 border-blue-500/20 dark:text-blue-400",
+        "bg-(--accent-tint) text-accent border-accent/20 dark:text-blue-400",
       tagText: `[informal_def (${item.tag}): ${item.name}](https://physlib.io/todo#${item.tag})`,
     };
   if (item.isInformalLemma)
@@ -59,7 +59,7 @@ function itemTypeLabel(
     return {
       label: "Semiformal Result",
       className:
-        "bg-sky-500/10 text-sky-600 border-sky-500/20 dark:text-sky-400",
+        "bg-(--accent-tint) text-accent border-accent/20 dark:text-sky-400",
       tagText: `[semiformal_result (${item.tag}): ${item.name}](https://physlib.io/todo#${item.tag})`,
     };
   if (item.isSorryfulResult)
@@ -185,7 +185,7 @@ export function TodoClient({ data }: { data: TodoData }) {
             onClick={() => setActiveFilter(key)}
             className={`px-3 py-1.5 text-sm rounded-lg border transition-colors ${
               activeFilter === key
-                ? "bg-accent text-white border-accent"
+                ? "bg-accent text-accent-foreground border-accent"
                 : "border-border bg-surface hover:bg-surface-secondary"
             }`}
           >

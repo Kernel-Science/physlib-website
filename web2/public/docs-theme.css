@@ -11,7 +11,9 @@ html.theme-light,
 html.light {
   --bg-color: oklch(1 0 0);
   --text-color: oklch(0 0 0);
-  --link-color: oklch(0.55 0.19 235);
+  --link-color: var(--brand-blue);
+  --def-color: var(--brand-blue-tint);
+  --def-color-hsl-angle: 209;
   --sidebar-bg: oklch(0.97 0 0);
   --sidebar-text: oklch(0 0 0 / 0.6);
   --code-bg: oklch(0.97 0 0);
@@ -23,7 +25,8 @@ html.light {
   :root {
     --bg-color: oklch(0.085 0.04 270);
     --text-color: oklch(1 0 0);
-    --link-color: oklch(0.72 0.18 230);
+    --link-color: var(--brand-blue-on-dark);
+    --def-color: color-mix(in srgb, var(--brand-blue) 45%, var(--code-bg));
     --sidebar-bg: oklch(0.12 0.04 270);
     --sidebar-text: oklch(1 0 0 / 0.6);
     --code-bg: oklch(0.14 0.04 270);
@@ -37,7 +40,8 @@ html.theme-dark,
 html.dark {
   --bg-color: oklch(0.085 0.04 270);
   --text-color: oklch(1 0 0);
-  --link-color: oklch(0.72 0.18 230);
+  --link-color: var(--brand-blue-on-dark);
+  --def-color: color-mix(in srgb, var(--brand-blue) 45%, var(--code-bg));
   --sidebar-bg: oklch(0.12 0.04 270);
   --sidebar-text: oklch(1 0 0 / 0.6);
   --code-bg: oklch(0.14 0.04 270);

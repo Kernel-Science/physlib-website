@@ -37,7 +37,7 @@ type NodeEntry = {
   href: string;
 };
 
-const MATCH_STROKE = "#2563eb";
+const MATCH_STROKE = "var(--accent)";
 const SELECTED_STROKE = "#16a34a";
 const HIGHLIGHT_WIDTH = "3";
 const READ_SCALE = 1.4;
@@ -351,7 +351,7 @@ export function GraphvizView({ getDot, height = "70vh" }: Props) {
             if (e.key === "Enter" && selected) jumpToEntry(selected);
           }}
           placeholder="Search for a file…"
-          className="flex-1 min-w-0 rounded-lg border border-border bg-surface px-3 py-2 text-sm"
+          className="site-field flex-1"
         />
         {searched && (
           <span className="text-xs text-muted whitespace-nowrap">

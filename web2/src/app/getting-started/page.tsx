@@ -137,14 +137,14 @@ export default function GettingStartedPage() {
           <div className="bg-[#1e1e1e] p-4 md:p-5 text-[13px] font-mono text-[#d4d4d4] leading-relaxed">
             <pre className="whitespace-pre-wrap break-words">
               <code>
-                <span className="text-[#569cd6]">theorem</span> <span className="text-[#9cdcfe]">wicks_theorem</span> : (φs : <span className="text-[#4ec9b0]">List</span> 𝓕.FieldOp) → 𝓣(<span className="text-[#9cdcfe]">ofFieldOpList</span> φs) ={"\n"}
+                <span className="text-[color:var(--brand-blue-on-dark)]">theorem</span> <span className="text-[color:var(--brand-blue-tint)]">wicks_theorem</span> : (φs : <span className="text-[#4ec9b0]">List</span> 𝓕.FieldOp) → 𝓣(<span className="text-[color:var(--brand-blue-tint)]">ofFieldOpList</span> φs) ={"\n"}
                 {"  "}∑ (φsΛ : <span className="text-[#4ec9b0]">WickContraction</span> φs.length), φsΛ.wickTerm{"\n"}
-                | [] <span className="text-[#569cd6]">=&gt;</span> <span className="text-[#569cd6]">by</span>{"\n"}
-                {"  "}<span className="text-[#9cdcfe]">rw</span> [timeOrder_ofFieldOpList_nil]{"\n"}
-                {"  "}<span className="text-[#9cdcfe]">simp</span> <span className="text-[#569cd6]">only</span> [map_one, <span className="text-[#4ec9b0]">List</span>.length_nil, <span className="text-[#4ec9b0]">Algebra</span>.smul_mul_assoc]{"\n"}
-                {"  "}<span className="text-[#9cdcfe]">rw</span> [sum_WickContraction_nil]{"\n"}
-                {"  "}<span className="text-[#9cdcfe]">simp</span> <span className="text-[#569cd6]">only</span> [wickTerm_empty_nil]{"\n"}
-                | φ :: φs <span className="text-[#569cd6]">=&gt;</span> <span className="text-[#569cd6]">by</span>
+                | [] <span className="text-[color:var(--brand-blue-on-dark)]">=&gt;</span> <span className="text-[color:var(--brand-blue-on-dark)]">by</span>{"\n"}
+                {"  "}<span className="text-[color:var(--brand-blue-tint)]">rw</span> [timeOrder_ofFieldOpList_nil]{"\n"}
+                {"  "}<span className="text-[color:var(--brand-blue-tint)]">simp</span> <span className="text-[color:var(--brand-blue-on-dark)]">only</span> [map_one, <span className="text-[#4ec9b0]">List</span>.length_nil, <span className="text-[#4ec9b0]">Algebra</span>.smul_mul_assoc]{"\n"}
+                {"  "}<span className="text-[color:var(--brand-blue-tint)]">rw</span> [sum_WickContraction_nil]{"\n"}
+                {"  "}<span className="text-[color:var(--brand-blue-tint)]">simp</span> <span className="text-[color:var(--brand-blue-on-dark)]">only</span> [wickTerm_empty_nil]{"\n"}
+                | φ :: φs <span className="text-[color:var(--brand-blue-on-dark)]">=&gt;</span> <span className="text-[color:var(--brand-blue-on-dark)]">by</span>
               </code>
             </pre>
           </div>

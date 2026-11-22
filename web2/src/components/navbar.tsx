@@ -1,11 +1,15 @@
 "use client";
 
+import { Wordmark } from "@/components/wordmark";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import { site, navSections, type NavItem, type NavSection } from "@/lib/site";
 import { ThemeToggle } from "./theme-toggle";
 import { GitHubIcon } from "@/components/monthly-updates/icons";
+
+const headerLabelClass =
+  "flex shrink-0 items-center whitespace-nowrap px-1.5 py-1.5 text-xs tracking-[-0.01em] lg:px-2 lg:text-sm xl:px-3";
 
 /** Does this item's route cover the current path? */
 function covers(item: NavItem, pathname: string) {
@@ -38,7 +42,8 @@ function NavDropdown({ section, pathname }: { section: NavSection; pathname: str
   }, []);
 
   const sectionActiveHref = activeHref(section.items, pathname);
-  const isActive = sectionActiveHref !== undefined;
+  const isActive = sectionActiveHref !== undefined ||
+    section.items.some((item) => !item.external && item.href.split("#")[0] === pathname);
 
   function handleMouseEnter() {
     if (timerRef.current) clearTimeout(timerRef.current);
@@ -51,7 +56,7 @@ function NavDropdown({ section, pathname }: { section: NavSection; pathname: str
 
   return (
     <div
-      className="relative flex h-full items-center last:[&>div]:right-0 last:[&>div]:left-auto"
+      className="relative flex h-full items-center"
       onPointerEnter={(event) => { if (event.pointerType === "mouse") handleMouseEnter(); }}
       onPointerLeave={(event) => {
         if (event.pointerType === "mouse" && !event.currentTarget.querySelector(":focus-visible")) handleMouseLeave();
@@ -77,10 +82,9 @@ function NavDropdown({ section, pathname }: { section: NavSection; pathname: str
           if (event.detail === 0 || !window.matchMedia("(hover: hover)").matches) setOpen(!open);
           else setOpen(true);
         }}
-        className={`flex shrink-0 items-center gap-1 whitespace-nowrap px-1.5 py-1.5 text-xs transition-colors lg:px-2 lg:text-sm xl:px-3 ${
-          isActive ? "text-foreground" : "text-muted hover:text-foreground"
+        className={`${headerLabelClass} gap-1 transition-colors ${
+          isActive ? "text-foreground" : `text-muted ${section.plainHover ? "" : "hover:text-foreground"}`
         }`}
-        style={{ letterSpacing: "-0.01em" }}
       >
         {section.label}
         <svg
@@ -99,27 +103,19 @@ function NavDropdown({ section, pathname }: { section: NavSection; pathname: str
         <div id={panelId} className="absolute top-full left-0 z-50 mt-px min-w-48 border border-t-0 border-border bg-background shadow-lg" onClick={() => setOpen(false)}>
           {section.items.map((item) => {
             const active = item.href === sectionActiveHref;
-            return item.external ? (
-              <a
+            const ItemLink = item.external || item.href.includes("#") ? "a" : Link;
+            return (
+              <ItemLink
                 key={item.href}
                 href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="site-nav-link flex items-center justify-between px-3 py-2 text-sm"
-                style={{ letterSpacing: "-0.01em" }}
-              >
-                {item.label}
-                <ExternalIcon />
-              </a>
-            ) : (
-              <Link
-                key={item.href}
-                href={item.href}
+                target={item.external ? "_blank" : undefined}
+                rel={item.external ? "noopener noreferrer" : undefined}
                 aria-current={active ? (item.href === pathname ? "page" : "location") : undefined}
-                className="site-nav-link flex items-center px-3 py-2 text-sm"
+                className="site-nav-link flex items-center justify-between px-3 py-2 text-sm"
               >
                 {item.label}
-              </Link>
+                {item.external && <ExternalIcon />}
+              </ItemLink>
             );
           })}
         </div>
@@ -137,18 +133,11 @@ export function Navbar() {
       <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background">
         <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-5 sm:px-8">
 
-          {/* Wordmark */}
           <Link
             href="/"
-            className="group flex shrink-0 items-center"
+            className="shrink-0 text-[22px] leading-none font-semibold tracking-[-0.04em] text-foreground transition-opacity hover:opacity-75 motion-reduce:transition-none"
           >
-            <img
-              src="/images/physlib-logo.png"
-              alt={site.name}
-              width={1600}
-              height={459}
-              className="logo-mark pointer-events-none h-7 w-auto transition-opacity group-hover:opacity-75 motion-reduce:transition-none md:h-6 lg:h-7"
-            />
+            <Wordmark />
           </Link>
 
           {/* Desktop nav — section dropdowns next to the right-hand actions */}
@@ -211,15 +200,16 @@ export function Navbar() {
               const sectionActiveHref = activeHref(section.items, pathname);
               return (
                 <div key={section.label} className="mb-8 last:mb-0">
-                  <p className="mb-3 px-2 text-[10px] font-bold uppercase tracking-widest text-muted/60">
+                  <p className="mb-3 px-2 text-[10px] font-bold tracking-widest text-muted/60">
                     {section.label}
                   </p>
                   <ul className="flex flex-col gap-1">
                     {section.items.map((item) => {
                       const active = item.href === sectionActiveHref;
+                      const ItemLink = item.href.includes("#") ? "a" : Link;
                       return (
                         <li key={item.href}>
-                          <Link
+                          <ItemLink
                             href={item.href}
                             onClick={() => setOpen(false)}
                             aria-current={active ? (item.href === pathname ? "page" : "location") : undefined}
@@ -227,7 +217,7 @@ export function Navbar() {
                           >
                             {item.label}
                             {item.external && <span className="opacity-40 text-xs">↗</span>}
-                          </Link>
+                          </ItemLink>
                         </li>
                       );
                     })}
