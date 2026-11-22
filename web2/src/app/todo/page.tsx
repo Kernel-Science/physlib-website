@@ -5,7 +5,7 @@ import { TodoClient } from "./todo-client";
 export const metadata: Metadata = {
   title: "TODO List | Physlib",
   description:
-    "The TODO list for Physlib — automatically generated from the Lean files. Filterable by category and item type.",
+    "Search Physlib’s Lean TODOs and open GitHub issues labeled TODO by subject and item type.",
 };
 
 export default async function TodoPage() {
@@ -20,53 +20,15 @@ export default async function TodoPage() {
 
   return (
     <div className="mx-auto w-full max-w-5xl px-4 py-10 md:py-14">
-      <h1 className="text-4xl font-bold tracking-tight mb-2">TODO List</h1>
-      <p className="text-muted mb-1">
-        This TODO list is automatically created from the Lean files.
+      <h1 className="mb-2 text-4xl font-bold tracking-tight">TODO List</h1>
+      <p className="mb-1 leading-relaxed text-muted">
+        This list includes entries from Lean files and open Physlib issues labeled <code>TODO</code> on GitHub.
       </p>
       <p className="text-xs text-muted mb-6">
         {lastUpdated ? `Last updated: ${lastUpdated} UTC` : "Last updated: unknown"}
       </p>
 
-      <div className="flex flex-wrap gap-2 mb-8">
-        {legend.map((item) => (
-          <span
-            key={item.label}
-            className={`px-3 py-1 rounded-full text-xs font-medium border ${item.className}`}
-          >
-            {item.label}
-          </span>
-        ))}
-      </div>
-
       <TodoClient data={data} />
     </div>
   );
 }
-
-const legend = [
-  {
-    label: "Informal Definition",
-    className: "bg-blue-500/10 text-blue-600 border-blue-500/20 dark:text-blue-400",
-  },
-  {
-    label: "Informal Lemma",
-    className: "bg-orange-500/10 text-orange-600 border-orange-500/20 dark:text-orange-400",
-  },
-  {
-    label: "Semiformal Result",
-    className: "bg-sky-500/10 text-sky-600 border-sky-500/20 dark:text-sky-400",
-  },
-  {
-    label: "Sorryful Result",
-    className: "bg-purple-500/10 text-purple-700 border-purple-500/20 dark:text-purple-400",
-  },
-  {
-    label: "TODO Item",
-    className: "bg-teal-500/10 text-teal-700 border-teal-500/20 dark:text-teal-400",
-  },
-  {
-    label: "GitHub Issue",
-    className: "bg-green-500/10 text-green-700 border-green-500/20 dark:text-green-400",
-  },
-];
