@@ -9,7 +9,7 @@ import { todoSubfield } from "./todo-subfield";
 const itemTypes = {
   informalDef: {
     label: "Informal Definition",
-    className: "bg-blue-500/10 text-blue-600 border-blue-500/20 dark:text-blue-400",
+    className: "bg-(--accent-tint) text-accent border-accent/20",
     tagPrefix: "informal_def",
   },
   informalLemma: {
@@ -19,7 +19,7 @@ const itemTypes = {
   },
   semiformal: {
     label: "Semiformal Result",
-    className: "bg-sky-500/10 text-sky-600 border-sky-500/20 dark:text-sky-400",
+    className: "bg-(--accent-tint) text-accent border-accent/20",
     tagPrefix: "semiformal_result",
   },
   sorryful: {
@@ -192,7 +192,7 @@ export function TodoClient({ data }: { data: TodoData }) {
               value={query}
               onChange={(event) => setQuery(event.target.value)}
               placeholder="Search names, files, descriptions, or tags…"
-              className="min-w-0 rounded-lg border border-border bg-surface px-3 py-1.5 font-normal placeholder:text-muted focus-visible:outline-2 focus-visible:outline-accent"
+              className="site-field"
             />
           </label>
           <label className="flex flex-col gap-1 text-sm font-medium">
@@ -204,7 +204,7 @@ export function TodoClient({ data }: { data: TodoData }) {
                 setSubfield(name);
                 if (name) setOpenCategories((previous) => new Set(previous).add(name));
               }}
-              className="rounded-lg border border-border bg-surface px-3 py-1.5 font-normal focus-visible:outline-2 focus-visible:outline-accent"
+              className="site-field"
             >
               <option value="">All subfields</option>
               {subfields.map(({ name }) => <option key={name}>{name}</option>)}

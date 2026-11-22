@@ -19,9 +19,9 @@ export default async function TodoPage() {
     : null;
 
   return (
-    <div className="mx-auto w-full max-w-5xl px-4 py-10 md:py-14">
-      <h1 className="mb-2 text-4xl font-bold tracking-tight">TODO List</h1>
-      <p className="mb-1 leading-relaxed text-muted">
+    <div className="page-frame-tracker">
+      <h1 className="page-title-tracker">TODO List</h1>
+      <p className="page-intro-tracker mb-1">
         This list includes entries from Lean files and open Physlib issues labeled <code>TODO</code> on GitHub.
       </p>
       <p className="text-xs text-muted mb-6">
