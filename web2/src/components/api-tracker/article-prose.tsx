@@ -12,7 +12,7 @@ import {
   apiMapHref,
   backlinkLabel,
   claimCounts,
-  docsUrl,
+  declarationLinks,
   findLeanReference,
   findReference,
   parseCiteHref,
@@ -32,6 +32,7 @@ import { API_STATUS_DOT, apiStatusKind } from "@/lib/api-map-status";
 export type ArticleContextValue = {
   repo: string;
   branch: string;
+  commit: string;
   leanReferences: ApiMapLeanReference[];
   references: ApiMapReference[];
   byPath: Map<string, ApiMapNode>;
@@ -193,16 +194,16 @@ const KIND_LABEL: Record<string, string> = {
   instance: "instance",
 };
 
-/** A declaration named in a Lean reference: links to its doc-gen4 entry,
+/** A declaration named in a Lean reference: links to its docs or source,
  *  previewing its signature and docstring on hover. */
 export function DeclarationLink({ file, decl }: { file: string; decl: ApiMapDeclaration }) {
-  const { repo, branch } = useArticle();
+  const { docs, source } = declarationLinks(useArticle(), file, decl);
   const resolved = !!decl.fullName;
   return (
     <HoverCard
       width={420}
       trigger={
-        <a href={docsUrl(file, decl.fullName)} className="apimap-decl">
+        <a href={docs ?? source} className="apimap-decl">
           {decl.text}
         </a>
       }
@@ -229,10 +230,8 @@ export function DeclarationLink({ file, decl }: { file: string; decl: ApiMapDecl
         </span>
       )}
       <span className="mt-2 flex gap-3 text-[12px]">
-        <a href={docsUrl(file, decl.fullName)} className="apimap-link">
-          Documentation
-        </a>
-        <ExternalLink href={sourceUrl(repo, branch, file, decl.line)}>Source</ExternalLink>
+        {docs && <a href={docs} className="apimap-link">Documentation</a>}
+        <ExternalLink href={source}>Source</ExternalLink>
       </span>
     </HoverCard>
   );
@@ -296,7 +295,8 @@ export function ReferenceText({ reference }: { reference: ApiMapReference }) {
 // ─── Citations ──────────────────────────────────────────────────────────────
 
 function Citation({ href }: { href: string }) {
-  const { leanReferences, references } = useArticle();
+  const article = useArticle();
+  const { leanReferences, references } = article;
   const cite = parseCiteHref(href);
   if (!cite) return null;
 
@@ -353,14 +353,17 @@ function Citation({ href }: { href: string }) {
             <LeanFileLink reference={lean} />
           </span>
           <span className="mt-1.5 flex flex-col gap-1.5">
-            {lean.declarations.map((d, i) => (
-              <span key={i} className="block">
-                <a href={docsUrl(lean.file, d.fullName)} className="apimap-decl">
-                  {d.text}
-                </a>
-                {d.doc && <span className="block text-[12px] text-muted line-clamp-2">{d.doc}</span>}
-              </span>
-            ))}
+            {lean.declarations.map((d, i) => {
+              const { docs, source } = declarationLinks(article, lean.file, d);
+              return (
+                <span key={i} className="block">
+                  <a href={docs ?? source} className="apimap-decl">
+                    {d.text}
+                  </a>
+                  {d.doc && <span className="block text-[12px] text-muted line-clamp-2">{d.doc}</span>}
+                </span>
+              );
+            })}
           </span>
         </>
       ) : lit ? (
