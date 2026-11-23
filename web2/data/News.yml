@@ -10,7 +10,7 @@
 
 - date: 15/08/25
   content: | 
-    [PR689](https://github.com/lean-phys-community/PhysLean/pull/694)
+    [PR694](https://github.com/lean-phys-community/PhysLean/pull/694)
     Added properties of tanh needed for the reflectionless potential in quantum mechanics.
 
 - date: 14/08/25
@@ -62,7 +62,7 @@
 - date: 01/08/25
   content: | 
     [PR672](https://github.com/lean-phys-community/PhysLean/pull/672)
-    proves more properties related to the expotential map of the Lorentz group.
+    proves more properties related to the exponential map of the Lorentz group.
 
 - date: 31/07/25
   content: | 
@@ -93,7 +93,7 @@
 - date: 25/07/25
   content: | 
     [PR659](https://github.com/lean-phys-community/PhysLean/pull/659)
-    proves results related to the expotential map for the Lorentz group. 
+    proves results related to the exponential map for the Lorentz group.
 
 - date: 23/07/25
   content: | 
@@ -139,8 +139,8 @@
 - date: 13/07/25
   content: | 
     [PR644](https://github.com/lean-phys-community/PhysLean/pull/644)
-    starts API around distributions to PhysLean, allowing phycisists to work with 
-    e.g. diract delta functions in the same way as they would in a physics textbook.
+    starts API around distributions to PhysLean, allowing physicists to work with
+    e.g. Dirac delta functions in the same way as they would in a physics textbook.
 
 - date: 12/07/25
   content: | 
@@ -150,7 +150,7 @@
 - date: 11/07/25
   content: | 
     [PR641](https://github.com/lean-phys-community/PhysLean/pull/641)
-    improves documentation within around the 'Space' API.
+    improves documentation around the `Space` API.
 
 - date: 11/07/25
   content: | 
@@ -184,7 +184,7 @@
 - date: 01/07/25
   content: | 
     [PR629](https://github.com/lean-phys-community/PhysLean/pull/629)
-    moved PhysLean to the new stable version of lean 4.21.0.
+    moved PhysLean to the new stable version of Lean 4.21.0.
 
 - date: 30/06/25
   content: | 

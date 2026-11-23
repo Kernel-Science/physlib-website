@@ -1,9 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import type { ReferenceLibrary } from "@/lib/yaml";
-import { allAuthorLetters, allSubfolders } from "@/lib/references-groups";
-import { decodeReferencesHash, setReferencesHash, type ReferencesSelection } from "@/lib/references-hash";
+import { createPortal } from "react-dom";
+import { setReferencesHash, type ReferencesSelection } from "@/lib/references-hash";
 
 function NavLink({
   label,
@@ -46,77 +45,31 @@ function NavLink({
   );
 }
 
+// The site layout owns this column. The references view supplies its links from
+// the same filtered groups it renders, including when the reader searches.
+const sidebarId = "reference-navigation";
+
 export function ReferencesSidebar() {
-  const [library, setLibrary] = useState<ReferenceLibrary | null>(null);
-  const [selection, setSelection] = useState<ReferencesSelection>({ view: "cited" });
+  return <aside id={sidebarId} className="hidden w-52 shrink-0 lg:block pt-16" />;
+}
 
-  useEffect(() => {
-    let cancelled = false;
-    fetch("/api/references")
-      .then((res) => res.json())
-      .then((data: ReferenceLibrary) => {
-        if (!cancelled) setLibrary(data);
-      })
-      .catch(() => {});
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-
-  useEffect(() => {
-    const onHashChange = () => setSelection(decodeReferencesHash());
-    onHashChange();
-    window.addEventListener("hashchange", onHashChange);
-    return () => window.removeEventListener("hashchange", onHashChange);
-  }, []);
-
-  // The sidebar only has anything to navigate to when the page is grouped
-  // (By Subfolder / Alphabetical) - on Most Cited there are no sections, so
-  // showing either list would link to a group the content isn't rendering.
-  if (!library || library.references.length === 0) return null;
-  if (selection.view === "cited") return null;
-
-  return (
-    <aside className="hidden w-52 shrink-0 lg:block pt-16">
-      <nav
-        className="sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto py-8 pr-3 pl-6 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
-      >
-        {selection.view === "subfolder" && (
-          <>
-            <p className="site-nav-heading">
-              Subfolders
-            </p>
-            <ul className="flex flex-col">
-              {allSubfolders(library.references).map((subfolder) => (
-                <NavLink
-                  key={subfolder}
-                  label={subfolder}
-                  active={selection.subfolder === subfolder}
-                  onClick={() => setReferencesHash({ view: "subfolder", subfolder })}
-                />
-              ))}
-            </ul>
-          </>
-        )}
-
-        {selection.view === "author" && (
-          <>
-            <p className="site-nav-heading">
-              Authors
-            </p>
-            <ul className="flex flex-col">
-              {allAuthorLetters(library.references).map((letter) => (
-                <NavLink
-                  key={letter}
-                  label={letter}
-                  active={selection.letter === letter}
-                  onClick={() => setReferencesHash({ view: "author", letter })}
-                />
-              ))}
-            </ul>
-          </>
-        )}
-      </nav>
-    </aside>
+export function ReferenceGroupLinks({ selection, groups }: { selection: ReferencesSelection; groups: string[] }) {
+  const [host, setHost] = useState<HTMLElement | null>(null);
+  useEffect(() => { setHost(document.getElementById(sidebarId)); }, []);
+  if (!host || selection.view === "cited" || groups.length === 0) return null;
+  const byAuthor = selection.view === "author";
+  const active = selection.view === "author" ? selection.letter : selection.subfolder;
+  return createPortal(
+    <nav aria-label={byAuthor ? "Author groups" : "Subfolder groups"}
+      className="sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto py-8 pr-3 pl-6 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+      <p className="site-nav-heading">{byAuthor ? "Authors" : "Subfolders"}</p>
+      <ul className="flex flex-col">
+        {groups.map((label) => (
+          <NavLink key={label} label={label} active={active === label}
+            onClick={() => setReferencesHash(byAuthor ? { view: "author", letter: label } : { view: "subfolder", subfolder: label })} />
+        ))}
+      </ul>
+    </nav>,
+    host,
   );
 }

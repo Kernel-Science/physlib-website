@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/page-header";
+import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Contributor FAQ | Physlib",
+  title: "Contributor FAQ",
   description: "Common questions about making your first contribution to Physlib.",
 };
 
 const linkClass = "text-accent hover:underline underline-offset-2";
-const repository = "https://github.com/leanprover-community/physlib";
+const repository = site.github;
+const external = { target: "_blank", rel: "noopener noreferrer" };
 
 export default function ContributorFaqPage() {
   return (
@@ -25,7 +27,7 @@ export default function ContributorFaqPage() {
             declarations. Look for a topic you know in{" "}
             <Link className={linkClass} href="/api-tracker">API Maps</Link>
             {" "}and use the{" "}
-            <a className={linkClass} href={`${repository}/blob/master/docs/API_MAP_GUIDE.md`}>
+            <a className={linkClass} href={`${repository}/blob/master/docs/API_MAP_GUIDE.md`} {...external}>
               API map guide
             </a>
             {" "}to get started.
@@ -46,7 +48,7 @@ export default function ContributorFaqPage() {
             Run <code>git remote -v</code> to see where Git sends your changes.
             Push to the fork under your GitHub username and verify that Git is using
             the account that owns the fork. See the{" "}
-            <a className={linkClass} href={`${repository}/blob/master/CONTRIBUTING.md`}>
+            <a className={linkClass} href={`${repository}/blob/master/CONTRIBUTING.md`} {...external}>
               contribution guide
             </a>
             {" "}for the local editing and submission workflow.
@@ -65,7 +67,7 @@ export default function ContributorFaqPage() {
           <PageHeader id="help" title="Where can I ask for help?" />
           <p>
             Ask in the{" "}
-            <a className={linkClass} href="https://leanprover.zulipchat.com/#narrow/channel/479953-Physlib">
+            <a className={linkClass} href={site.zulip} {...external}>
               Physlib channel on Lean Zulip
             </a>
             . Include the topic or command you were working on and any relevant error output.

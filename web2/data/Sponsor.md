@@ -113,4 +113,4 @@ Physlib belongs to its community, not to any one person or institution, and the 
 
 Every sponsor will be acknowledged publicly, unless they prefer otherwise, and will receive a report on what their support has achieved. Sponsors can choose what their support funds, but what goes into Physlib is decided by community review alone.
 
-If you would like to support Physlib, or to talk through which of these fits what you want to achieve, please get in touch using the details at the top of this page. Physlib is not itself an organisation, so gifts can be received through academic institutions, and we are open to other arrangements, such as a philanthropic host.
+If you would like to support Physlib, or to talk through which of these fits what you want to achieve, please get in touch using the [details at the top of this page](#contribute). Physlib is not itself an organisation, so gifts can be received through academic institutions, and we are open to other arrangements, such as a philanthropic host.

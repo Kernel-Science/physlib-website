@@ -204,9 +204,12 @@ html:has(.navframe > .nav), body:has(.navframe > .nav) { overflow: hidden; }
     margin: 0 0 2rem;
   }
 
+  /* The bottom margin stops the sidebar's dividing line short of the footer,
+     as it stops short of the header at the top. */
   .docs-sidebar-column {
     grid-area: 1 / 2;
     min-width: 0;
+    margin-bottom: 1rem;
   }
 
   .docs-sidebar-column > .nav {

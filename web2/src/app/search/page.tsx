@@ -6,7 +6,7 @@ import { searchPhyslib, type SearchKind } from "@/lib/physlib-site-search";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Search | Physlib",
+  title: "Search",
   description: "Find Lean declarations, modules, TODOs, API maps, references, and pages in Physlib.",
 };
 
@@ -18,6 +18,8 @@ const kinds: Record<SearchKind, [string, string]> = {
   "api-map": ["API map", "API maps"],
   reference: ["Reference", "References"],
 };
+
+const exampleQueries = ["harmonic oscillator", "Wick's theorem", "Lorentz group", "getting started"];
 
 type Scope = "all" | SearchKind;
 type Params = { q?: string | string[]; scope?: string | string[] };
@@ -112,6 +114,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
 
   return (
     <div className="page-frame-tracker">
+      <p className="label-mono text-muted mb-5">Explore</p>
       <h1 className="page-title-tracker">Search Physlib</h1>
       <p className="page-intro-tracker mb-6">Find Lean declarations, modules, pages, TODOs, API maps, and references.</p>
       <Form key={query} action="/search" role="search" className="flex gap-2">
@@ -131,10 +134,26 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
         </button>
       </Form>
       <p className="mt-3 text-sm text-muted">
-        <a href={site.semanticSearch} className="text-accent hover:underline">
-          Semantic search on PhyslibSearch <span aria-hidden="true">↗</span>
+        This matches names and keywords. For natural-language queries, use{" "}
+        <a href={site.semanticSearch} target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">
+          semantic search on PhyslibSearch <span aria-hidden="true">↗</span>
         </a>
+        .
       </p>
+      {!query && (
+        <p className="mt-6 text-sm text-muted">
+          Try{" "}
+          {exampleQueries.map((example, index) => (
+            <span key={example}>
+              {index > 0 && ", "}
+              <Link href={resultsUrl(example, "all")} prefetch={false} className="text-accent hover:underline">
+                {example}
+              </Link>
+            </span>
+          ))}
+          .
+        </p>
+      )}
       {query && (
         <Suspense key={resultsUrl(query, scope)} fallback={<p role="status" className="mt-8 text-sm text-muted">Searching…</p>}>
           <Results query={query} scope={scope} />

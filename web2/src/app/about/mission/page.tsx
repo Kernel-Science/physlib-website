@@ -16,7 +16,7 @@ export default function MissionPage() {
       <h1 className="page-title-editorial mb-6">
         Mission
       </h1>
-      <p className="page-intro-statement mb-14">
+      <p className="page-intro-statement mb-12">
         Create a library of digitalized physics results in Lean&nbsp;4,
         useful to the broad physics community.
       </p>

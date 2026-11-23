@@ -19,7 +19,7 @@ export async function generateMetadata({
   const entry = entries.find((e) => e.slug === slug);
   if (!entry) return {};
   return {
-    title: `${entry.label} Update | Physlib`,
+    title: `${entry.label} Update`,
     description: `Monthly changelog of new definitions, theorems, and lemmas added to Physlib in ${entry.label}.`,
   };
 }

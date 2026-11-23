@@ -75,16 +75,19 @@ export default async function SponsorPage() {
           id={section.id === "what-we-could-do-with-your-support" ? "priorities" : undefined}
           className="mb-12 scroll-mt-20 border-t border-border pt-8"
         >
-          <p className="label-mono text-accent/50 mb-3">
-            {String(i + 1).padStart(2, "0")}
-          </p>
-          <h2
-            id={section.id}
-            className="text-2xl font-medium text-foreground mb-4 md:text-3xl"
-            style={{ letterSpacing: "-0.025em" }}
-          >
-            {section.heading}
-          </h2>
+          <div className="mb-4 flex items-baseline gap-4">
+            {/* Same number style as Ways to Contribute, scaled to this page's larger headings. */}
+            <span className="shrink-0 font-mono text-base font-medium text-accent md:text-lg" aria-hidden="true">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <h2
+              id={section.id}
+              className="text-2xl font-medium text-foreground md:text-3xl"
+              style={{ letterSpacing: "-0.04em" }}
+            >
+              {section.heading}
+            </h2>
+          </div>
           <div className="sponsor-pitch text-foreground/90">
             <Markdown>{section.body}</Markdown>
           </div>

@@ -46,7 +46,7 @@ const docSteps = [
   {
     title: "Phase 1: Get the Code",
     items: [
-      'Fork the <a href="https://github.com/leanprover-community/physlib" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline">physlib GitHub repository</a> (copy the master branch only).',
+      'Fork the <a href="https://github.com/leanprover-community/physlib" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline">Physlib GitHub repository</a> (copy the master branch only). The <a href="/gh-guide" class="text-accent hover:underline">GitHub Guide</a> has the commands.',
       "Clone your forked repository to your local machine. (Optional — you can also edit directly on GitHub.)",
     ],
   },
@@ -54,7 +54,7 @@ const docSteps = [
     title: "Phase 2: Choose a File to Document",
     items: [
       "Choose a file from the list above, or select a red node in the import graph.",
-      "In your local copy of physlib, open the file <code class='font-mono text-xs'>./scripts/lint/exemptions/module_doc_no_lint.txt</code>.",
+      "In your local copy of Physlib, open the file <code class='font-mono text-xs'>./scripts/lint/exemptions/module_doc_no_lint.txt</code>.",
       "Remove the line corresponding to the file you want to document.",
       "Navigate to the file you want to document.",
     ],
@@ -65,17 +65,17 @@ const docSteps = [
       "Add a title heading at the top of the file, starting with <code class='font-mono text-xs'># </code>.",
       "Add a <code class='font-mono text-xs'>## i. Overview</code> section explaining the physical content.",
       "Add a <code class='font-mono text-xs'>## ii. Key results</code> section listing key definitions, theorems, and lemmas.",
-      "Add a <code class='font-mono text-xs'>## iii. Table of contents</code> section (can be left blank).",
+      "Add a <code class='font-mono text-xs'>## iii. Table of contents</code> section listing the lettered sections of the file, as <code class='font-mono text-xs'>- A. …</code>.",
       "Add a <code class='font-mono text-xs'>## iv. References</code> section for relevant literature.",
-      "Organize the rest of the file with section and subsection headings.",
-      "Alternatively, if you have Lean installed, run <code class='font-mono text-xs'>lake exe module_doc_lint</code>.",
+      "Organize the rest of the file with lettered section and subsection headings: <code class='font-mono text-xs'>## A. …</code>, <code class='font-mono text-xs'>### A.1. …</code>. No heading may end in a full stop.",
+      "If you have Lean installed, check the layout with <code class='font-mono text-xs'>lake exe module_doc_lint</code>.",
     ],
   },
   {
     title: "Phase 4: Submit Your Changes",
     items: [
       "Commit your changes to your forked repository.",
-      "Create a pull request to the main physlib repository for review.",
+      "Create a pull request to the main Physlib repository for review, as described in the <a href=\"/gh-guide#make-a-pull-request\" class=\"text-accent hover:underline\">GitHub Guide</a>.",
     ],
   },
 ];

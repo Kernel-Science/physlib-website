@@ -4,6 +4,8 @@ const path = require('node:path');
 const publicPath = path.join(__dirname, '../public');
 const docsPath = path.join(publicPath, 'docs');
 const themeMarker = '\n/* --- PHYSLIB CUSTOM THEME --- */\n';
+const faviconLinks = '<link rel="icon" type="image/svg+xml" href="/icon.svg?v=mono" media="(prefers-color-scheme: light)"/>' +
+  '<link rel="icon" type="image/svg+xml" href="/physlib-icon-dark.svg?v=mono" media="(prefers-color-scheme: dark)"/>';
 
 function styleGeneratedDocs() {
   const stylePath = path.join(docsPath, 'style.css');
@@ -28,8 +30,9 @@ function styleGeneratedDocs() {
     const isIndex = file === 'index.html';
     const filePath = path.join(docsPath, file);
     const html = fs.readFileSync(filePath, 'utf8');
+    const withFavicon = html.replace(/<link rel="icon" href="[^"]*favicon\.svg"\s*\/?>/, faviconLinks);
     if (file === 'navbar.html') {
-      const updatedNav = html
+      const updatedNav = withFavicon
         .replace(/<details class="docs-general"><summary>General documentation<\/summary>([\s\S]*?)<\/details>/,
           '<h3>General documentation</h3>$1')
         .replace('<h3>General documentation</h3>', '<h3>General</h3>')
@@ -46,7 +49,7 @@ function styleGeneratedDocs() {
     }
     const toolsHeader = isIndex ? '<header class="docs-tools" data-docs-index>' : '<header class="docs-tools">';
     let indexSearch;
-    const updated = html.replace('<nav class="internal_nav"><p><a href="#top">return to top</a></p>', '<nav class="internal_nav">')
+    const updated = withFavicon.replace('<nav class="internal_nav"><p><a href="#top">return to top</a></p>', '<nav class="internal_nav">')
       .replace(/<header\b[^>]*>[\s\S]*?<\/header>/, (header) => {
       const tools = header
         .replace(/^<header\b[^>]*>/, toolsHeader)

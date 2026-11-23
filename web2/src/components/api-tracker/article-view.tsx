@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { Chevron } from "@/components/chevron";
 import type { ApiMapLeanReference, ApiMapNode, ApiMapReference } from "@/lib/yaml";
 import {
   alphaParts,
@@ -114,7 +115,7 @@ export function Breadcrumb({ path, repo, branch }: { path: string; repo: string;
 export function AlphaTag({ title }: { title?: string }) {
   return (
     <span
-      className="rounded-full border border-warning/30 bg-warning/10 px-2 py-0.5 text-[11px] font-medium leading-none text-warning"
+      className="site-tag site-tag-warning"
       title={title ?? "Not yet through Physlib's full review"}
     >
       Alpha
@@ -463,9 +464,7 @@ function OnThisPage({ items }: { items: TocItem[] }) {
         className="flex w-full items-center justify-between gap-6 text-[10px] font-bold uppercase tracking-widest text-muted/70"
       >
         On this page
-        <span aria-hidden className={`transition-transform ${open ? "" : "-rotate-90"}`}>
-          ▾
-        </span>
+        <Chevron open={open} />
       </button>
       {open && (
         <ul className="mt-2 flex flex-col">

@@ -51,6 +51,10 @@ export type Sponsor = {
   name: string;
   url: string;
   support: string;
+  /** Shown in place of the name when present; see data/Sponsors.yml. */
+  logo?: string;
+  logoWidth?: number;
+  logoHeight?: number;
 };
 
 export async function getSponsors(): Promise<Sponsor[]> {

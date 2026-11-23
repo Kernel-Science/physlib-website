@@ -1,12 +1,13 @@
 import { Card } from "@heroui/react";
 import type { Metadata } from "next";
+import Link from "next/link";
 import { CodeBlock } from "@/components/code-block";
 import { PageHeader } from "@/components/page-header";
 import { ButtonLink } from "@/components/button-link";
 import { InstallChoice, InstallSteps, type InstallStep } from "@/components/install-steps";
 
 export const metadata: Metadata = {
-  title: "Getting Started | Physlib",
+  title: "Getting Started",
   description:
     "Set up Lean and Physlib, write your first results, and check them with the project’s linters.",
 };
@@ -23,7 +24,7 @@ export default function GettingStartedPage() {
       <p className="page-intro-editorial max-w-2xl mb-10">
         Set up Lean and Physlib, then write and check your first Lean results. Start here if
         you’re new to Lean or to the project. If you’re still deciding how to help, see{" "}
-        <a href="/get-involved" className="text-accent hover:underline underline-offset-2">Ways to Contribute</a>.
+        <Link href="/get-involved" className="text-accent hover:underline underline-offset-2">Ways to Contribute</Link>.
       </p>
 
       <PageHeader id="first-contribution" title="Make Your First Contribution" />
@@ -192,7 +193,7 @@ export default function GettingStartedPage() {
         <li className="flex gap-3">
           <span className="text-accent flex-shrink-0">—</span>
           If you make substantial changes to a file, feel free to add
-          yourself to the author list, in alphabetic order by last name.
+          yourself to the author list, in alphabetical order by last name.
         </li>
       </ul>
 
@@ -221,7 +222,7 @@ export default function GettingStartedPage() {
 
       <Card variant="default" className="mb-4">
         <Card.Header>
-          <Card.Title>Try a Physlib Alpha module</Card.Title>
+          <Card.Title>Try a PhyslibAlpha Module</Card.Title>
         </Card.Header>
         <Card.Content className="flex flex-col gap-4 text-sm text-foreground/90">
           <p>
@@ -251,8 +252,10 @@ export default function GettingStartedPage() {
           />
           <p>
             Use <code>Physlib.lean</code> to register modules under <code>Physlib/</code>.
-            The <a className={linkClass} href="https://github.com/leanprover-community/physlib/blob/master/docs/ContributionHandbook/Documentation.md#module-documentation-structure">documentation guide</a>{" "}
-            explains the section headings for a contribution.
+            The <Link className={linkClass} href="/documentation-guide">Documentation Guide</Link>{" "}
+            explains the section headings for a contribution, and the{" "}
+            <a className={linkClass} href="https://github.com/leanprover-community/physlib/blob/master/docs/ContributionHandbook/Documentation.md#module-documentation-structure" target="_blank" rel="noopener noreferrer">contribution handbook</a>{" "}
+            gives the full rules.
           </p>
         </Card.Content>
       </Card>
@@ -266,7 +269,7 @@ export default function GettingStartedPage() {
         that your code is clean, consistent, and free from common mistakes.
       </p>
       <p className="text-sm text-muted mb-6 leading-relaxed" style={{ letterSpacing: "-0.01em" }}>
-        On making a pull-request to Physlib, GitHub workflows will lint your
+        On making a pull request to Physlib, GitHub workflows will lint your
         code automatically. You can also check locally:
       </p>
 
@@ -277,11 +280,17 @@ export default function GettingStartedPage() {
         <Card.Content className="flex flex-col gap-3 text-sm text-foreground/90">
           <CodeBlock language="bash" code={`lake exe lint_all\n./scripts/lint/required/lint-style.sh`} />
           <p className="text-muted text-xs">
-            Ensuring these commands produce no errors helps maintain the quality
-            of Physlib.
+            A pull request must pass both before it can be merged. Commit your changes
+            before running <code className="font-mono">lint-style.sh</code>, and expect to
+            run <code className="font-mono">lint_all</code> more than once. The{" "}
+            <a className={linkClass} href="https://github.com/leanprover-community/physlib/blob/master/scripts/README.md#linting-physlib" target="_blank" rel="noopener noreferrer">
+              scripts README
+            </a>{" "}
+            describes every linter.
           </p>
         </Card.Content>
       </Card>
+
 
     </div>
   );
@@ -412,7 +421,7 @@ const installSteps: InstallStep[] = [
                   <p className="text-muted text-xs">
                     The <code className="font-mono">upstream</code> remote lets you pull in the latest
                     changes from Physlib. See the{" "}
-                    <a href="/gh-guide" className={linkClass}>GitHub guide</a> for branches and pull
+                    <Link href="/gh-guide" className={linkClass}>GitHub Guide</Link> for branches and pull
                     requests.
                   </p>
                 </>
@@ -489,7 +498,7 @@ const resultTypes = [
   {
     title: "Definitions",
     description:
-      "Definitions are used to introduce new concepts or objects in a precise and formal way. In Physlib we give all definitions doc-strings.",
+      "Definitions are used to introduce new concepts or objects in a precise and formal way. In Physlib we give all definitions docstrings.",
     code: `/-- For a harmonic oscillator, the Schrodinger Operator corresponding to it
 is defined as the function from \`ℝ → ℂ\` to \`ℝ → ℂ\` taking
 
@@ -522,7 +531,7 @@ noncomputable def schrodingerOperator (ψ : ℝ → ℂ) : ℝ → ℂ :=
   {
     title: "Informal Definitions",
     description:
-      "Informal definitions are definitions written in English rather than in Lean. They are given a tag (you can get a tag using lake exe make_tag), and a list of dependencies. The definition itself is written in the doc-string. They cannot be used in further results.",
+      "Informal definitions are definitions written in English rather than in Lean. They are given a tag (you can get a tag using lake exe make_tag), and a list of dependencies. The definition itself is written in the docstring. They cannot be used in further results.",
     code: `/-- The hubble constant defined in terms of the scale factor
 as \`(dₜ a) / a\`.
 
@@ -534,10 +543,10 @@ informal_definition hubbleConstant where
   {
     title: "Informal Lemmas",
     description:
-      "Informal lemmas are lemmas written in English rather than in Lean. They are given a tag and a list of dependencies. The lemma and proof itself are written in the doc-string. They cannot be used in further results.",
+      "Informal lemmas are lemmas written in English rather than in Lean. They are given a tag and a list of dependencies. The lemma and its proof are written in the docstring. They cannot be used in further results.",
     code: `/-- The time evolution of the hubble parameter is equal to \`dₜ H = - H^2 (1 + q)\`. -/
 informal_lemma time_evolution_hubbleConstant where
-  deps := [hubbleConstant]
+  deps := [\`\`hubbleConstant]
   tag := "6Z3BS"`,
   },
   {
@@ -551,7 +560,7 @@ semiformal_result "6YB2U" force_is_linear (x : ℝ → ℝ) :
   {
     title: "TODO Items",
     description:
-      "Todo items are used to indicate things which are to be done. They consist of a tag and a string statement of what is to be done.",
+      "TODO items are used to indicate things which are to be done. They consist of a tag and a string statement of what is to be done.",
     code: `TODO "6VZHC" "Create a new folder for the damped harmonic oscillator, initially as a place-holder."`,
   },
 ];

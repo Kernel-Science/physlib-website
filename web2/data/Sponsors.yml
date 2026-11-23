@@ -2,3 +2,8 @@
 - name: Kernel Science
   url: https://kernel-science.com
   support: Supports the Physlib website.
+  # Optional. A file in public/, black on transparent so it can flip in dark
+  # mode, with its pixel size.
+  logo: /images/kernel_science_logo.png
+  logoWidth: 2852
+  logoHeight: 410

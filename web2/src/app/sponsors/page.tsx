@@ -22,7 +22,7 @@ export default async function SponsorsPage() {
       <h2
         id="current-sponsors"
         className="text-2xl font-medium text-foreground mb-4 md:text-3xl"
-        style={{ letterSpacing: "-0.025em" }}
+        style={{ letterSpacing: "-0.04em" }}
       >
         Current sponsors
       </h2>
@@ -36,10 +36,20 @@ export default async function SponsorsPage() {
               href={sponsor.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xl font-medium text-foreground hover:text-accent transition-colors"
+              className="inline-block text-xl font-medium text-foreground hover:text-accent transition-colors"
               style={{ letterSpacing: "-0.025em" }}
             >
-              {sponsor.name}
+              {sponsor.logo ? (
+                <img
+                  src={sponsor.logo}
+                  alt={sponsor.name}
+                  width={sponsor.logoWidth}
+                  height={sponsor.logoHeight}
+                  className="logo-mark h-7 w-auto"
+                />
+              ) : (
+                sponsor.name
+              )}
             </a>
             <p className="mt-2 text-sm text-muted leading-relaxed">{sponsor.support}</p>
           </li>

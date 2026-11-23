@@ -34,3 +34,5 @@ User-agent: *
 Crawl-delay: 10
 Disallow: /docs/
 Disallow: /api/
+
+Sitemap: https://physlib.io/sitemap.xml

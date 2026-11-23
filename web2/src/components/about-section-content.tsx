@@ -1,5 +1,9 @@
 import { audiences, impacts, values, visionPoints } from "@/lib/about-content";
 
+/** The section pages use these under an h1, the About overview under an h2:
+ *  `headingLevel` keeps the inner headings one level below either. */
+type ContentProps = { headingLevel?: 2 | 3 };
+
 export function MissionContent() {
   return (
     <div className="grid gap-x-16 gap-y-5 sm:grid-cols-2">
@@ -20,7 +24,8 @@ export function MissionContent() {
   );
 }
 
-export function ValuesContent() {
+export function ValuesContent({ headingLevel = 2 }: ContentProps) {
+  const Heading = headingLevel === 3 ? "h3" : "h2";
   return (
     <div className="divide-y divide-border border-t border-border">
       {values.map((v, i) => (
@@ -31,12 +36,12 @@ export function ValuesContent() {
           <span className="label-mono text-accent pt-1">
             {String(i + 1).padStart(2, "0")}
           </span>
-          <h2
+          <Heading
             className="text-lg font-medium text-foreground"
             style={{ letterSpacing: "-0.025em" }}
           >
             {v.title}
-          </h2>
+          </Heading>
           <p
             className="col-start-2 md:col-start-3 mt-3 md:mt-0 text-sm text-muted leading-relaxed"
             style={{ letterSpacing: "-0.01em" }}
@@ -49,7 +54,8 @@ export function ValuesContent() {
   );
 }
 
-export function BeneficiariesContent() {
+export function BeneficiariesContent({ headingLevel = 2 }: ContentProps) {
+  const Heading = headingLevel === 3 ? "h3" : "h2";
   return (
     <div className="grid gap-6 md:grid-cols-2">
       {audiences.map((a) => (
@@ -58,12 +64,12 @@ export function BeneficiariesContent() {
           className="rounded border border-border bg-background p-7 shadow-together"
         >
           <p className="label-mono text-muted mb-3">{a.tag}</p>
-          <h2
+          <Heading
             className="text-xl font-medium text-foreground mb-6"
             style={{ letterSpacing: "-0.025em" }}
           >
             {a.title}
-          </h2>
+          </Heading>
           <ul className="space-y-4">
             {a.items.map((item) => (
               <li

@@ -35,7 +35,7 @@ const PROMPTS: PromptDef[] = [
     category: "Understand",
     chipColor: "accent",
     summary:
-      "Get a natural-language walkthrough of what the code in a folder does, how its pieces fit together, and where to start readin.",
+      "Get a natural-language walkthrough of what the code in a folder does, how its pieces fit together, and where to start reading.",
     template: (folder) =>
       `Explain \`${folder}\` to me: what physical or mathematical topic it covers, how its main definitions and theorems relate to each other, and how it fits into the rest of Physlib. Point me to the key files/declarations to start reading.`,
   },

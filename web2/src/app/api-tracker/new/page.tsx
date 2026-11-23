@@ -3,7 +3,7 @@ import { getApiMap } from "@/lib/yaml";
 import { CreateApiMap } from "@/components/api-tracker/create-api-map";
 
 export const metadata: Metadata = {
-  title: "Create an API map | Physlib",
+  title: "Create an API map",
   description:
     "Start a new API map for Physlib, in an existing part of the library or in a new area of physics.",
 };

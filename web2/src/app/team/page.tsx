@@ -47,6 +47,7 @@ export default async function TeamPage() {
 
   return (
     <div className="page-frame-editorial">
+      <p className="label-mono text-muted mb-5">About</p>
       <h1 className="page-title-editorial">Physlib Team</h1>
       <PageHeader
         id="maintainers"
@@ -107,6 +108,7 @@ export default async function TeamPage() {
       <div className="flex flex-wrap gap-3">
         <ButtonLink href={`${site.github}/graphs/contributors`} variant="secondary">Contributors on GitHub</ButtonLink>
         <ButtonLink href={site.contributions} variant="tertiary">Contribution reports</ButtonLink>
+        <ButtonLink href="/monthly-updates" variant="tertiary">Monthly Updates</ButtonLink>
       </div>
 
       <PageHeader id="get-involved" title="Get Involved" className="mt-12" />
@@ -120,6 +122,7 @@ export default async function TeamPage() {
           Join the Zulip
         </ButtonLink>
       </div>
+
     </div>
   );
 }

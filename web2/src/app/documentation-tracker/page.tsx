@@ -3,7 +3,7 @@ import { DocumentationGuide } from "@/components/documentation-guide";
 import { DocumentationTrackerClient } from "./documentation-tracker-client";
 
 export const metadata: Metadata = {
-  title: "Documentation Tracker | Physlib",
+  title: "Documentation Tracker",
   description:
     "Find Physlib files that need documentation and explore the import graph.",
 };

@@ -13,9 +13,9 @@ export function ThemeToggle() {
   useEffect(() => {
     if (!resolvedTheme) return;
 
-    const icon = document.querySelector<HTMLLinkElement>('link[rel="icon"][type="image/svg+xml"]');
-    if (icon) {
-      icon.href = resolvedTheme === "dark" ? "/physlib-icon-dark.svg" : "/icon.svg";
+    for (const icon of document.querySelectorAll<HTMLLinkElement>('link[rel="icon"][type="image/svg+xml"]')) {
+      const isDarkIcon = new URL(icon.href).pathname === "/physlib-icon-dark.svg";
+      icon.media = isDarkIcon === (resolvedTheme === "dark") ? "all" : "not all";
     }
   }, [resolvedTheme]);
 

@@ -203,7 +203,7 @@ export function CreateApiMap({ apiMap }: { apiMap: ApiMap }) {
         <a href="/api-tracker" className="mb-2 inline-block text-xs text-muted hover:text-accent">
           ← API maps
         </a>
-        <h1 className="mb-2 text-4xl font-bold tracking-tight">Create an API map</h1>
+        <h1 className="page-title-tracker">Create an API map</h1>
         <p className="mb-6 leading-relaxed text-muted">
           Start the API map for an area of Physlib that doesn&apos;t have one,
           or for physics that Physlib doesn&apos;t cover yet.

@@ -8,7 +8,7 @@ import { ApiFlowchart } from "@/components/api-tracker/api-flowchart";
 const legend: ApiStatusKind[] = ["none", "unstarted", "partial", "complete"];
 
 export const metadata: Metadata = {
-  title: "API Maps | Physlib",
+  title: "API Maps",
   description:
     "Read Physlib's API maps: articles on each area of physics in Physlib, linked to the Lean declarations that formalize them.",
 };

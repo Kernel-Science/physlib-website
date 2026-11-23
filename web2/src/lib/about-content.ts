@@ -23,7 +23,7 @@ export const values = [
   },
   {
     title: "Open & Transparent",
-    body: "Physlib is openly accessible, freely available, and developed with full transparency for the benefit of both communities.",
+    body: "Physlib is openly accessible, freely available, and developed with full transparency for the benefit of both the physics and Lean communities.",
   },
   {
     title: "Accessible & Practical",

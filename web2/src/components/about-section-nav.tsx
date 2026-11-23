@@ -3,11 +3,11 @@ import { aboutSections, paper } from "@/lib/about-content";
 
 export function AboutRelatedLinks() {
   return (
-    <div className="mt-12 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-border pt-6 text-sm text-foreground/30">
-      <a href={paper.href} target="_blank" rel="noopener noreferrer" className="hover:text-foreground/60 hover:underline underline-offset-2">
+    <div className="mt-12 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-border pt-6 text-sm text-muted">
+      <a href={paper.href} target="_blank" rel="noopener noreferrer" className="hover:text-foreground hover:underline underline-offset-2">
         Read the paper {paper.label} <span aria-hidden="true">↗</span>
       </a>
-      <Link href="/team" className="hover:text-foreground/60 hover:underline underline-offset-2">
+      <Link href="/team" className="hover:text-foreground hover:underline underline-offset-2">
         Meet the Team <span aria-hidden="true">→</span>
       </Link>
     </div>

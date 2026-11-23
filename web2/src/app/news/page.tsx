@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Markdown } from "@/components/markdown";
 import { getNews } from "@/lib/yaml";
 
 export const metadata: Metadata = {
-  title: "News | Physlib",
-  description: "The latest news and updates from the Physlib project.",
+  title: "News",
+  description: "News from June to August 2025, when Physlib was called PhysLean.",
 };
 
 export default async function NewsPage() {
@@ -12,12 +13,17 @@ export default async function NewsPage() {
 
   return (
     <div className="page-frame-editorial">
-      <p className="label-mono text-muted mb-5">Updates</p>
+      <p className="label-mono text-muted mb-5">Archive</p>
       <h1 className="page-title-editorial">
         News
       </h1>
       <p className="page-intro-editorial mb-10">
-        An attempt will be made to keep this feed up to date.
+        This feed covers June to August 2025, when the project was called
+        PhysLean. For more recent changes, see the{" "}
+        <Link href="/monthly-updates" className="text-accent hover:underline underline-offset-2">
+          Monthly Updates
+        </Link>
+        .
       </p>
 
       <div className="rounded border border-border overflow-hidden">
