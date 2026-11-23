@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { API_STATUS_DOT, API_STATUS_LABEL, type ApiStatusKind } from "@/lib/api-map-status";
 import { getApiMap } from "@/lib/yaml";
 import { ApiDetailView } from "@/components/api-tracker/api-detail-view";
 import { ApiFlowchart } from "@/components/api-tracker/api-flowchart";
+
+const legend: ApiStatusKind[] = ["none", "unstarted", "partial", "complete"];
 
 export const metadata: Metadata = {
   title: "API Tracker | Physlib",
@@ -21,25 +24,33 @@ export default async function APITrackerPage() {
     : null;
 
   return (
-    <div className="mx-auto w-full max-w-5xl px-5 py-10 sm:px-8 md:py-14 lg:px-10 lg:pt-8">
-      <div className="mb-8 flex flex-wrap items-center justify-between gap-3 border-b border-border pb-4">
-        <p className="text-sm leading-relaxed text-muted">
-          <span className="text-foreground">API maps</span> are short articles
-          on each area of physics in Physlib, linked to the Lean that
-          formalizes it. Anyone can suggest an edit or start a new one.
-          <span className="block text-xs">
-            {apiMap.nodes.length} API maps ·{" "}
-            {lastUpdated ? `Last updated: ${lastUpdated} UTC` : "Last updated: unknown"}
-          </span>
+    <div className="page-frame-tracker px-5 sm:px-8 lg:px-10 lg:pt-8">
+      <header aria-label="API Tracker overview" className="mb-6 border-b border-border pb-4">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <h2 className="text-base font-semibold text-foreground">API Tracker</h2>
+          <Link href="/api-tracker/new" className="inline-flex shrink-0 items-center rounded-(--radius) border border-border px-3 py-1.5 text-sm text-foreground hover:border-accent hover:text-accent">
+            Create an API map
+          </Link>
+        </div>
+        <p className="mt-2 max-w-prose text-pretty text-sm leading-relaxed text-foreground/80">
+          API maps are short articles on each area of physics in Physlib, linked to
+          the Lean that formalizes it. Anyone can suggest an edit or start a new one.
         </p>
-        <Link
-          href="/api-tracker/new"
-          className="flex shrink-0 items-center gap-1.5 rounded-lg border border-border px-2.5 py-1.5 text-xs text-muted transition-colors hover:border-accent hover:text-accent"
-        >
-          <span aria-hidden>＋</span>
-          Create an API map
-        </Link>
-      </div>
+        <div className="mt-2 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 text-xs">
+          <p className="text-muted">
+            {apiMap.nodes.length} indexed maps
+            {lastUpdated && <> · Index generated <time dateTime={apiMap.generatedAt}>{lastUpdated} UTC</time></>}
+          </p>
+          <ul aria-label="Map status" className="flex flex-wrap items-center gap-x-4 gap-y-1 text-foreground/80">
+            {legend.map((status) => (
+              <li key={status} className="flex items-center gap-1.5">
+                <span aria-hidden="true" className={`size-2 rounded-full ${API_STATUS_DOT[status]}`} />
+                {API_STATUS_LABEL[status]}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </header>
 
       <ApiDetailView apiMap={apiMap} />
 
