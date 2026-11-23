@@ -1,11 +1,13 @@
 import { Card } from "@heroui/react";
 import type { Metadata } from "next";
+import Link from "next/link";
+import { ButtonLink } from "@/components/button-link";
 import { CodeBlock } from "@/components/code-block";
 import { PageHeader } from "@/components/page-header";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Contributing via GitHub | Physlib",
+  title: "GitHub Guide | Physlib",
   description:
     "Fork Physlib, submit your changes, and respond to review on GitHub.",
 };
@@ -14,71 +16,37 @@ export default function GhGuidePage() {
   return (
     <div className="page-frame-editorial">
 
-      <p className="label-mono text-muted mb-5">Community</p>
+      <p className="label-mono text-muted mb-5">Learn</p>
       <h1 className="page-title-editorial">
-        Contributing via GitHub
+        GitHub Guide
       </h1>
       <p className="page-intro-editorial page-intro-tinted max-w-2xl mb-12">
-        Fork Physlib, submit your changes, and respond to review on GitHub.
+        Use this guide to create a branch, open a pull request, and work through review on GitHub.
       </p>
 
-      {/* Step 1 —  Deciding on a Problem to Work On */}
       <section className="mb-12">
-        <PageHeader id="deciding-a-problem" title="1. Deciding on a Problem to Work On" />
+        <PageHeader id="deciding-a-problem" title="1. Choose a Task" />
+        <p className="mb-4 text-sm leading-relaxed text-foreground/80">
+          Start with{" "}
+          <Link href={site.tasks} className="text-accent hover:underline underline-offset-2">Find a Task</Link>
+          {" "}to see what is already open.
+        </p>
         <div className="grid gap-4 sm:grid-cols-2">
           <Card variant="default">
-            <Card.Header>
-              <Card.Title>Creating a GitHub issue</Card.Title>
-            </Card.Header>
-            <Card.Content className="text-sm text-foreground/90">
-              <p className="mb-4 leading-relaxed" style={{ color: "color-mix(in srgb, var(--foreground) 70%, var(--accent))" }}>
-                Before starting any work, you can open an issue on the Physlib repository to
-                describe the problem you are encountering or the feature you want to
-                add. This makes maintainers aware of the work you plan on doing and helps with
-                tracking the project.
-              </p>
-              <ul className="space-y-2 ml-4">
-                {issueChecklist.map((item) => (
-                  <li key={item} className="flex gap-3">
-                    <span className="text-accent flex-shrink-0">—</span>
-                    {item}
-                  </li>
-                ))}
+            <Card.Header><Card.Title>Creating a GitHub Issue</Card.Title></Card.Header>
+            <Card.Content className="space-y-3 text-sm leading-relaxed text-foreground/80">
+              <p>Open an issue to describe a problem or feature and let maintainers know what you plan to work on.</p>
+              <ul className="ml-5 list-disc space-y-1">
+                {issueChecklist.map((item) => <li key={item}>{item}</li>)}
               </ul>
-              <div className="mt-4">
-                <a
-                  href={`${site.github}/issues/new`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex h-9 items-center gap-2 rounded px-4 text-sm font-medium transition-opacity hover:opacity-80"
-                  style={{ background: "var(--accent)", color: "var(--accent-foreground)", letterSpacing: "-0.01em" }}
-                >
-                  Open an Issue ↗
-                </a>
-              </div>
+              <ButtonLink size="sm" href={`${site.github}/issues/new`}>Open an Issue ↗</ButtonLink>
             </Card.Content>
           </Card>
-
           <Card variant="default">
-            <Card.Header>
-              <Card.Title>Asking the community</Card.Title>
-            </Card.Header>
-            <Card.Content className="text-sm text-foreground/90">
-              <p className="mb-4 leading-relaxed" style={{ color: "color-mix(in srgb, var(--foreground) 70%, var(--accent))" }}>
-              The Physlib community is full of members who can point you in the right direction if you want to discuss an idea before opening an issue.
-              There is a Physlib channel on the Leanprover Zulip where you can post any questions you have.
-                </p>
-                <div className="mt-4">
-                <a
-                  href="https://leanprover.zulipchat.com/#narrow/channel/479953-Physlib"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex h-9 items-center gap-2 rounded px-4 text-sm font-medium transition-opacity hover:opacity-80"
-                  style={{ background: "var(--accent)", color: "var(--accent-foreground)", letterSpacing: "-0.01em" }}
-                >
-                  Visit the Physlib Zulip ↗
-                </a>
-              </div>
+            <Card.Header><Card.Title>Asking the Community</Card.Title></Card.Header>
+            <Card.Content className="space-y-3 text-sm leading-relaxed text-foreground/80">
+              <p>Ask in the Physlib Zulip channel if you want to discuss an idea or get help choosing a task before opening an issue.</p>
+              <ButtonLink size="sm" href={site.zulip}>Visit the Physlib Zulip ↗</ButtonLink>
             </Card.Content>
           </Card>
         </div>
@@ -86,7 +54,7 @@ export default function GhGuidePage() {
 
       {/* Step 2 — Work on it */}
       <section className="mb-12">
-        <PageHeader id="work-on-the-problem" title="2. Work on the Problem" />
+        <PageHeader id="work-on-the-problem" title="2. Create a Branch" />
         <p
           className="text-sm mb-4 leading-relaxed"
           style={{ letterSpacing: "-0.01em", color: "color-mix(in srgb, var(--foreground) 70%, var(--accent))" }}
@@ -105,7 +73,7 @@ git switch --no-track -c my-change upstream/master`} />
 
       {/* Step 3 — Pull Request */}
       <section className="mb-12">
-        <PageHeader id="make-a-pull-request" title="3. Make a Pull Request" />
+        <PageHeader id="make-a-pull-request" title="3. Open a Pull Request" />
         <p className="text-sm mb-4 leading-relaxed" style={{ letterSpacing: "-0.01em", color: "color-mix(in srgb, var(--foreground) 70%, var(--accent))" }}>
           Keep each pull request focused on one change. After editing and testing, run
           these commands from your checkout. Replace <code>path/to/file</code> with your
@@ -133,7 +101,7 @@ git push -u origin my-change`} />
           and click &quot;compare across forks&quot;. Set the base repository to{" "}
           <code>leanprover-community/physlib</code> and the base branch to <code>master</code>.
           Select your fork as the head repository and <code>my-change</code> as the compare
-          branch. In your own words, describe your change and how you checked it, then create the pull request.
+          branch. Follow the pull request template and describe your change and how you checked it in your own words.
         </p>
 
         <div className="mt-8">
@@ -237,7 +205,7 @@ git push -u origin my-change`} />
         <p className="text-sm mt-4 leading-relaxed" style={{ letterSpacing: "-0.01em", color: "color-mix(in srgb, var(--foreground) 70%, var(--accent))" }}>
           If you get stuck at any point, the{" "}
           <a
-            href="https://leanprover.zulipchat.com/"
+            href={site.zulip}
             target="_blank"
             rel="noopener noreferrer"
             className="text-accent hover:underline underline-offset-2"
@@ -267,6 +235,13 @@ git push -u origin my-change`} />
       {/* Additional Guidance */}
       <section className="mb-12">
         <PageHeader id="additional-guidance" title="Additional Guidance" />
+        <p className="mb-4 text-sm leading-relaxed text-foreground/80">
+          If you used AI to prepare a change, check the{" "}
+          <Link href={site.aiResources + "#ai-guidelines"} className="text-accent hover:underline underline-offset-2">
+            AI contribution guidelines
+          </Link>
+          {" "}before submitting it.
+        </p>
         <p className="text-sm leading-relaxed" style={{ letterSpacing: "-0.01em", color: "color-mix(in srgb, var(--foreground) 70%, var(--accent))" }}>
           Please use your real name in your GitHub account settings and commit author. Physlib uses
           GitHub account names in its automated documentation generation, so using your real name

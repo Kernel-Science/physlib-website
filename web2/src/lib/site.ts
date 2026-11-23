@@ -16,11 +16,18 @@ export const site = {
   sponsor: "/sponsor",
   sponsors: "/sponsors",
   team: "/team",
+  tasks: "/tasks",
+  documentationGuide: "/documentation-guide",
   aiResources: "/ai-resources",
   // Same report the "/reviews" Zulip bot command sends - see
   // https://github.com/Alex-Zughaid/PhyslibBots (zulip-dm-bots/src/index.js)
   reportApi: "https://zulip-dm-relay.alexzughaid.workers.dev/report",
 };
+
+export function todoTaskHref(tag: string) {
+  const encoded = encodeURIComponent(tag);
+  return `${site.tasks}?type=todo&q=${encoded}#${encoded}`;
+}
 
 export type NavItem = {
   label: string;
@@ -39,18 +46,18 @@ export const navSections: NavSection[] = [
     label: "Explore",
     items: [
       { label: "API Maps", href: "/api-tracker" },
-      { label: "Verso Docs", href: site.verso, external: true },
-      { label: "Lean Reference", href: site.docs },
-      { label: "References", href: "/references" },
       { label: "Dependency Graphs", href: "/dependencies" },
+      { label: "Documentation", href: site.docs },
+      { label: "References", href: "/references" },
+      { label: "VersoView", href: site.verso, external: true },
     ],
   },
   {
     label: "Learn",
     items: [
-      { label: "Getting Started", href: "/getting-started" },
       { label: "Ways to Contribute", href: "/get-involved" },
-      { label: "GitHub Contribution Guide", href: "/gh-guide" },
+      { label: "Getting Started", href: "/getting-started" },
+      { label: "GitHub Guide", href: "/gh-guide" },
       { label: "AI Resources", href: site.aiResources },
     ],
   },
@@ -58,9 +65,8 @@ export const navSections: NavSection[] = [
     label: "Contribute",
     items: [
       { label: "Project Ideas", href: "/project-ideas" },
-      { label: "TODO List", href: "/todo" },
-      { label: "DOC Tracker", href: "/documentation-tracker" },
-      { label: "PR Triage", href: "/pr-tracker" },
+      { label: "Find a Task", href: site.tasks },
+      { label: "PR Queue", href: "/pr-tracker" },
       { label: "Discussion", href: site.zulip, external: true },
     ],
   },
@@ -76,7 +82,7 @@ export const navSections: NavSection[] = [
     label: "Support",
     plainHover: true,
     items: [
-      { label: "Support us", href: site.sponsor },
+      { label: "Fund Physlib", href: site.sponsor },
       { label: "Sponsors", href: site.sponsors },
     ],
   },
@@ -87,6 +93,6 @@ export const primaryNav: NavItem[] = [
   { label: "Getting Started", href: "/getting-started" },
   { label: "Get Involved", href: "/get-involved" },
   { label: "Trackers", href: "/api-tracker" },
-  { label: "Todo list", href: "/todo" },
-  { label: "Support us", href: site.sponsor },
+  { label: "Find a Task", href: site.tasks },
+  { label: "Fund Physlib", href: site.sponsor },
 ];

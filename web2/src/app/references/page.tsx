@@ -18,8 +18,8 @@ export default async function ReferencesPage() {
       }).format(new Date(data.generatedAt))
     : null;
 
-  const cited = data.references.filter((r) => r.count > 0).length;
-  const totalCitations = data.references.reduce((sum, r) => sum + r.count, 0);
+  const citedReferences = data.references.filter((reference) => reference.citations.length > 0);
+  const totalCitations = citedReferences.reduce((sum, reference) => sum + reference.citations.length, 0);
 
   return (
     <div className="page-frame-tracker">
@@ -30,12 +30,12 @@ export default async function ReferencesPage() {
         </code> to store the references used within the project. This page shows details of how these references are used across all the Lean files.
       </p>
       <p className="text-xs text-muted mb-8">
-        {data.references.length} references &middot; {cited} cited &middot;{" "}
+        {citedReferences.length} cited references &middot;{" "}
         {totalCitations} citations across the repo
         {lastUpdated ? ` · Last updated: ${lastUpdated} UTC` : ""}
       </p>
 
-      <ReferencesClient references={data.references} repo={data.repo} branch={data.branch} />
+      <ReferencesClient references={citedReferences} repo={data.repo} branch={data.branch} />
     </div>
   );
 }

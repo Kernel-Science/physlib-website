@@ -52,7 +52,7 @@ async function buildDot(files: string[] | null): Promise<string> {
   );
 }
 
-export function DocumentationTrackerClient() {
+export function DocumentationTrackerClient({ showFiles = true }: { showFiles?: boolean }) {
   const [files, setFiles] = useState<string[] | null>();
   const [query, setQuery] = useState("");
 
@@ -72,63 +72,66 @@ export function DocumentationTrackerClient() {
 
   return (
     <>
-      <section aria-labelledby="files-needing-documentation" className="mb-8">
-        <h2 id="files-needing-documentation" className="text-xl font-semibold mb-2">
-          Files needing documentation
-        </h2>
-        <p className="text-sm text-muted mb-3">
-          Browse files on the{" "}
-          <a href={sourceUrl(exemptionsPath)} className="text-accent hover:underline">
-            module documentation exemption list
-          </a>.
-        </p>
-        {files === undefined && <p role="status" className="text-sm text-muted">Loading files…</p>}
-        {files === null && (
-          <p role="status" className="text-sm text-muted">
-            The exemption list could not be loaded. Documentation status is unavailable.
+      {showFiles && (
+        <section aria-labelledby="files-needing-documentation" className="mb-8">
+          <h2 id="files-needing-documentation" className="text-xl font-semibold mb-2">
+            Files needing documentation
+          </h2>
+          <p className="text-sm text-muted mb-3">
+            Browse files on the{" "}
+            <a href={sourceUrl(exemptionsPath)} className="text-accent hover:underline">
+              module documentation exemption list
+            </a>.
           </p>
-        )}
-        {files && matches && (
-          <>
-            <label htmlFor="documentation-file-search" className="block text-sm font-medium mb-1">
-              Search by filename or path
-            </label>
-            <input
-              id="documentation-file-search"
-              type="search"
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
-              className="site-field w-full"
-            />
-            <p role="status" className="my-2 text-sm text-muted">
-              {needle
-                ? `${matches.length} of ${files.length} files`
-                : `${files.length} ${files.length === 1 ? "file" : "files"}`}
+          {files === undefined && <p role="status" className="text-sm text-muted">Loading files…</p>}
+          {files === null && (
+            <p role="status" className="text-sm text-muted">
+              The exemption list could not be loaded. Documentation status is unavailable.
             </p>
-            {matches.length ? (
-              <ul className="max-h-64 overflow-y-auto divide-y divide-border rounded-lg border border-border">
-                {matches.map((path) => (
-                  <li key={path}>
-                    <a
-                      href={sourceUrl(path)}
-                      className="block break-all px-3 py-2 font-mono text-xs text-accent hover:bg-surface hover:underline"
-                    >
-                      {path}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="text-sm text-muted">
-                {files.length ? "No files match your search." : "The exemption list is empty."}
+          )}
+          {files && matches && (
+            <>
+              <label htmlFor="documentation-file-search" className="block text-sm font-medium mb-1">
+                Search by filename or path
+              </label>
+              <input
+                id="documentation-file-search"
+                type="search"
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                className="site-field w-full"
+              />
+              <p role="status" className="my-2 text-sm text-muted">
+                {needle
+                  ? `${matches.length} of ${files.length} files`
+                  : `${files.length} ${files.length === 1 ? "file" : "files"}`}
               </p>
-            )}
-          </>
-        )}
-      </section>
+              {matches.length ? (
+                <ul className="max-h-64 overflow-y-auto divide-y divide-border rounded-lg border border-border">
+                  {matches.map((path) => (
+                    <li key={path}>
+                      <a
+                        href={sourceUrl(path)}
+                        className="block break-all px-3 py-2 font-mono text-xs text-accent hover:bg-surface hover:underline"
+                      >
+                        {path}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="text-sm text-muted">
+                  {files.length ? "No files match your search." : "The exemption list is empty."}
+                </p>
+              )}
+            </>
+          )}
+        </section>
+      )}
       <section aria-labelledby="import-graph">
-        <h2 id="import-graph" className="text-xl font-semibold mb-2">Import graph</h2>
-        <p className="text-sm text-muted mb-3">
+        <h2 id="import-graph" className="text-xl font-semibold mb-2 scroll-mt-24">Import graph</h2>
+        <p className="mb-3 text-sm leading-relaxed text-foreground/70">
+          See which Lean files import each other.{" "}
           {files && (
             <>
               <span className="text-danger font-medium">Red nodes</span> are on the exemption list.{" "}
@@ -137,7 +140,7 @@ export function DocumentationTrackerClient() {
           )}
           Drag to pan or scroll to zoom. Select a file to view its source.
         </p>
-        {files !== undefined && <GraphvizView getDot={getDot} />}
+        {files !== undefined && <GraphvizView getDot={getDot} label="Lean module import graph" />}
       </section>
     </>
   );

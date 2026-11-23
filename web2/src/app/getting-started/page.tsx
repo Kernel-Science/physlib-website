@@ -8,7 +8,7 @@ import { InstallChoice, InstallSteps, type InstallStep } from "@/components/inst
 export const metadata: Metadata = {
   title: "Getting Started | Physlib",
   description:
-    "A guide for getting started with Physlib, aimed at people with no Lean experience or who are new to the project.",
+    "Set up Lean and Physlib, write your first results, and check them with the project’s linters.",
 };
 
 export default function GettingStartedPage() {
@@ -16,18 +16,19 @@ export default function GettingStartedPage() {
     <div className="page-frame-editorial">
 
       {/* Page intro */}
-      <p className="label-mono text-muted mb-5">Documentation</p>
+      <p className="label-mono text-muted mb-5">Learn</p>
       <h1 className="page-title-editorial">
         Getting Started
       </h1>
       <p className="page-intro-editorial max-w-2xl mb-10">
-        A guide for getting started with Physlib, aimed at people with no Lean
-        experience or who are new to the project.
+        Set up Lean and Physlib, then write and check your first Lean results. Start here if
+        you’re new to Lean or to the project. If you’re still deciding how to help, see{" "}
+        <a href="/get-involved" className="text-accent hover:underline underline-offset-2">Ways to Contribute</a>.
       </p>
 
       <PageHeader id="first-contribution" title="Make Your First Contribution" />
       <p className="mb-4 text-sm leading-relaxed text-foreground/85">
-        If you know the physics and are new to Lean, start with an API map.
+        If you know the physics and are new to Lean, you can start with an API map.
         API maps are Markdown guides that explain a topic and link to the
         relevant Lean declarations. You can choose a topic and draft locally
         before signing in to GitHub.
@@ -37,7 +38,7 @@ export default function GettingStartedPage() {
           Write your first API map
         </ButtonLink>
         <ButtonLink href="/gh-guide" variant="secondary">
-          Fork and open a pull request
+          GitHub Guide
         </ButtonLink>
         <ButtonLink href="/faq" variant="secondary">
           Contributor FAQ

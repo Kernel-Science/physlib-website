@@ -3,10 +3,11 @@
 import { useCallback, useMemo, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { site } from "@/lib/site";
 import type { TodoData, TodoItem } from "@/lib/yaml";
 import { todoSubfield } from "./todo-subfield";
 
-const itemTypes = {
+export const itemTypes = {
   informalDef: {
     label: "Informal Definition",
     className: "bg-(--accent-tint) text-accent border-accent/20",
@@ -38,11 +39,11 @@ const itemTypes = {
   },
 };
 
-type ItemType = keyof typeof itemTypes;
+export type ItemType = keyof typeof itemTypes;
 type FilterType = "all" | ItemType;
 const filterOptions: FilterType[] = ["all", ...(Object.keys(itemTypes) as ItemType[])];
 
-function getItemType(item: TodoItem): ItemType {
+export function getItemType(item: TodoItem): ItemType {
   if (item.isGitHubIssue) return "githubIssue";
   if (item.isInformalDef) return "informalDef";
   if (item.isInformalLemma) return "informalLemma";
@@ -51,10 +52,10 @@ function getItemType(item: TodoItem): ItemType {
   return "todo";
 }
 
-function copyTagText(item: TodoItem, type: ItemType): string {
+function copyTagText(item: TodoItem, type: ItemType, tagHref: string): string {
   if (type === "githubIssue") return `[GitHub Issue: ${item.name}](${item.githubLink})`;
   const name = type === "todo" ? `file ${item.name}` : item.name;
-  return `[${itemTypes[type].tagPrefix} (${item.tag}): ${name}](https://physlib.io/todo#${item.tag})`;
+  return `[${itemTypes[type].tagPrefix} (${item.tag}): ${name}](${new URL(tagHref, site.url + "/todo")})`;
 }
 
 function CopyButton({ text }: { text: string }) {
@@ -77,7 +78,17 @@ function CopyButton({ text }: { text: string }) {
   );
 }
 
-function TodoItemCard({ item }: { item: TodoItem }) {
+export function TodoItemCard({
+  item,
+  tagHref = `#${item.tag}`,
+  linkedIssue,
+  compactLabels = false,
+}: {
+  item: TodoItem;
+  tagHref?: string;
+  linkedIssue?: { href: string; label: string; assignees?: string[] };
+  compactLabels?: boolean;
+}) {
   const type = getItemType(item);
   const { line, endLine } = item;
   let githubLabel = "See on GitHub";
@@ -95,11 +106,13 @@ function TodoItemCard({ item }: { item: TodoItem }) {
         <span id={item.legacyTag} aria-hidden="true" className="absolute top-0 scroll-mt-20" />
       )}
       <div className="flex flex-wrap items-center gap-2">
-        <span
-          className={`px-2 py-0.5 rounded-(--radius) text-xs font-medium border ${itemTypes[type].className}`}
-        >
-          {itemTypes[type].label}
-        </span>
+        {(!compactLabels || type !== "todo") && (
+          <span
+            className={`px-2 py-0.5 rounded-(--radius) text-xs font-medium border ${itemTypes[type].className}`}
+          >
+            {compactLabels && type === "sorryful" ? "Unfinished proof" : itemTypes[type].label}
+          </span>
+        )}
         <span className="text-sm font-medium">{item.name}</span>
       </div>
       {item.content && (
@@ -120,17 +133,33 @@ function TodoItemCard({ item }: { item: TodoItem }) {
           href={item.githubLink}
           target="_blank"
           rel="noopener noreferrer"
+          aria-label={linkedIssue ? `Lean source: ${githubLabel}` : undefined}
           className="px-2 py-0.5 rounded-(--radius) text-xs border border-border bg-surface hover:bg-surface-secondary transition-colors text-muted hover:text-foreground"
         >
           {githubLabel} ↗
         </a>
+        {linkedIssue && (
+          <a
+            href={linkedIssue.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-(--radius) border border-border bg-surface px-2 py-0.5 text-xs text-muted transition-colors hover:bg-surface-secondary hover:text-foreground"
+          >
+            {linkedIssue.label} ↗
+          </a>
+        )}
         <a
-          href={`#${item.tag}`}
+          href={tagHref}
           className="px-2 py-0.5 rounded-(--radius) text-xs border border-border bg-surface hover:bg-surface-secondary transition-colors text-muted hover:text-foreground"
         >
           Tag: {item.tag}
         </a>
-        <CopyButton text={copyTagText(item, type)} />
+        <CopyButton text={copyTagText(item, type, tagHref)} />
+        {linkedIssue?.assignees && (
+          <span className="px-1 py-0.5 text-xs text-foreground/70">
+            {linkedIssue.assignees.length ? "Assigned to " + linkedIssue.assignees.join(", ") : "Unassigned"}
+          </span>
+        )}
       </div>
     </div>
   );

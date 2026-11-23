@@ -48,3 +48,6 @@ next-env.d.ts
 
 # Lean declaration search data generated from the docs artifact.
 /data/LeanSearchIndex.json
+
+# Generated Lean documentation is installed by scripts/download-docs.js.
+/public/docs/

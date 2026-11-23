@@ -8,7 +8,7 @@ import { ApiFlowchart } from "@/components/api-tracker/api-flowchart";
 const legend: ApiStatusKind[] = ["none", "unstarted", "partial", "complete"];
 
 export const metadata: Metadata = {
-  title: "API Tracker | Physlib",
+  title: "API Maps | Physlib",
   description:
     "Read Physlib's API maps: articles on each area of physics in Physlib, linked to the Lean declarations that formalize them.",
 };
@@ -25,9 +25,9 @@ export default async function APITrackerPage() {
 
   return (
     <div className="page-frame-tracker px-5 sm:px-8 lg:px-10 lg:pt-8">
-      <header aria-label="API Tracker overview" className="mb-6 border-b border-border pb-4">
+      <header aria-label="API Maps overview" className="mb-6 border-b border-border pb-4">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <h2 className="text-base font-semibold text-foreground">API Tracker</h2>
+          <h2 className="text-base font-semibold text-foreground">API Maps</h2>
           <Link href="/api-tracker/new" className="inline-flex shrink-0 items-center rounded-(--radius) border border-border px-3 py-1.5 text-sm text-foreground hover:border-accent hover:text-accent">
             Create an API map
           </Link>

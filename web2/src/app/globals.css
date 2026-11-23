@@ -196,6 +196,12 @@ body {
   .prose-physlib img { @apply rounded my-4 max-w-full h-auto; }
 }
 
+@media (min-width: 48rem) {
+  .sponsor-page .prose-physlib :is(p, li) {
+    text-align: justify;
+  }
+}
+
 /* Sponsor pitch (data/Sponsor.md): each `###` is a giving level, so it reads
    as a small accent label rather than a full prose heading. */
 .sponsor-pitch .prose-physlib h3 {

@@ -4,7 +4,7 @@ import { GithubSummary } from "./github-summary";
 import { getPublicPulls, getReviewReport } from "./tracker-data";
 
 export const metadata: Metadata = {
-  title: "PR Triage | Physlib",
+  title: "Pull Request Queue | Physlib",
   description:
     "Triage open pull requests for Physlib, categorized by what action is needed.",
 };
@@ -20,7 +20,7 @@ export default async function PRTrackerPage() {
   return (
     <div className="page-frame-tracker">
       <h1 className="page-title-tracker">
-        Pull Request Triage
+        Pull Request Queue
       </h1>
       <p className="page-intro-tracker mb-8">
         PRs are categorised by what action is needed.{" "}

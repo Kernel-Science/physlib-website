@@ -92,7 +92,7 @@ export function DependenciesClient() {
         const sorted = Array.from(found).sort();
         setNodes(sorted);
 
-        const defaultSrc = ["Physlib.ClassicalMechanics.HamiltonsEquations"];
+        const defaultSrc: string[] = [];
         const defaultTgt = ["Physlib"];
         setSources(parseUrlParam(srcParam, defaultSrc));
         setTargets(parseUrlParam(tgtParam, defaultTgt));

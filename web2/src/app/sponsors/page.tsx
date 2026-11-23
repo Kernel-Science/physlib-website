@@ -4,7 +4,7 @@ import { site } from "@/lib/site";
 import { getSponsors } from "@/lib/yaml";
 
 export const metadata: Metadata = {
-  title: "Sponsors | Physlib",
+  title: "Sponsors",
   description: "The organisations and people who currently support Physlib.",
 };
 
@@ -52,7 +52,7 @@ export default async function SponsorsPage() {
           would make possible.
         </p>
         <ButtonLink href={site.sponsor} size="sm">
-          Support us
+          Fund Physlib
         </ButtonLink>
       </div>
     </div>

@@ -6,7 +6,7 @@ import { site } from "@/lib/site";
 import { getSponsorPitch } from "@/lib/yaml";
 
 export const metadata: Metadata = {
-  title: "Support us | Physlib",
+  title: "Fund Physlib",
   description:
     "Support Physlib financially to help grow the definitive library of formalized physics in Lean 4.",
 };
@@ -15,7 +15,7 @@ export default async function SponsorPage() {
   const pitch = await getSponsorPitch();
 
   return (
-    <div className="page-frame-editorial max-w-3xl">
+    <div className="sponsor-page page-frame-editorial max-w-3xl">
       <p className="label-mono text-muted mb-5">Support</p>
       <h1 className="page-title-editorial">{pitch.title}</h1>
       <div className="page-intro-editorial mb-10">
@@ -70,7 +70,11 @@ export default async function SponsorPage() {
 
       {/* One block per `##` section of data/Sponsor.md. */}
       {pitch.sections.map((section, i) => (
-        <section key={section.id} className="mb-12 border-t border-border pt-8">
+        <section
+          key={section.id}
+          id={section.id === "what-we-could-do-with-your-support" ? "priorities" : undefined}
+          className="mb-12 scroll-mt-20 border-t border-border pt-8"
+        >
           <p className="label-mono text-accent/50 mb-3">
             {String(i + 1).padStart(2, "0")}
           </p>
@@ -87,7 +91,7 @@ export default async function SponsorPage() {
         </section>
       ))}
 
-      <p className="border-t border-border pt-8 text-sm text-foreground/90">
+      <p id="sponsors" className="scroll-mt-20 border-t border-border pt-8 text-sm text-foreground/90">
         See who already supports Physlib on the{" "}
         <a href={site.sponsors} className="text-accent hover:underline underline-offset-2">
           sponsors page

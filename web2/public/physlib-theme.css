@@ -1,0 +1,31 @@
+/* Sharp geometry (4px base radius) */
+:root {
+  --radius: 0.25rem;
+}
+
+/* Light mode — pure white canvas, blue accent */
+:root,
+[data-theme="light"] {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0 0 0);
+  --accent: var(--brand-blue);
+  --accent-tint: var(--brand-blue-tint);
+  --accent-foreground: oklch(1 0 0);
+  --border: oklch(0 0 0 / 0.08);
+  --muted: oklch(0 0 0 / 0.45);
+  --surface: oklch(1 0 0);
+  --surface-secondary: oklch(0.97 0 0);
+}
+
+/* Dark mode — midnight blue */
+[data-theme="dark"] {
+  --background: oklch(0.085 0.04 270);
+  --foreground: oklch(1 0 0);
+  --accent: var(--brand-blue-on-dark);
+  --accent-tint: color-mix(in srgb, var(--accent) 14%, var(--surface));
+  --accent-foreground: oklch(0.085 0.04 270);
+  --border: oklch(1 0 0 / 0.12);
+  --muted: oklch(1 0 0 / 0.55);
+  --surface: oklch(0.085 0.04 270);
+  --surface-secondary: oklch(0.12 0.04 270);
+}

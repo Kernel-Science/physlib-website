@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { aboutSections, paper } from "@/lib/about-content";
+import {
+  BeneficiariesContent,
+  ImpactContent,
+  MissionContent,
+  ValuesContent,
+} from "@/components/about-section-content";
+import { AboutRelatedLinks } from "@/components/about-section-nav";
+import { aboutSections } from "@/lib/about-content";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -8,6 +14,15 @@ export const metadata: Metadata = {
   description:
     "The mission, values, beneficiaries, and intended impact of Physlib — a library of digitalized physics results in Lean 4.",
 };
+
+const panels = {
+  "/about/mission": MissionContent,
+  "/about/values": ValuesContent,
+  "/about/beneficiaries": BeneficiariesContent,
+  "/about/impact": ImpactContent,
+};
+
+const overviewSections = aboutSections.filter((section) => section.href !== "/team");
 
 export default function AboutPage() {
   return (
@@ -22,13 +37,12 @@ export default function AboutPage() {
         {site.description}
       </p>
 
-      {/* Section index */}
-      <div className="grid gap-4 sm:grid-cols-2">
-        {aboutSections.map((s, i) => (
-          <Link
+      <div id="about-overview" className="grid scroll-mt-20 gap-4 sm:grid-cols-2">
+        {overviewSections.map((s, i) => (
+          <a
             key={s.href}
-            href={s.href}
-            className="group flex flex-col rounded border border-border bg-background p-6 shadow-together transition-colors hover:bg-foreground/5"
+            href={`#${s.href.slice("/about/".length)}`}
+            className="flex flex-col rounded border border-border bg-background p-6 shadow-together transition-colors hover:bg-foreground/5"
           >
             <span className="label-mono text-accent/50 mb-4">
               {String(i + 1).padStart(2, "0")}
@@ -45,25 +59,32 @@ export default function AboutPage() {
             >
               {s.tagline}
             </span>
-            <span className="mt-5 text-xs text-muted transition-colors group-hover:text-foreground">
-              Read more →
-            </span>
-          </Link>
+          </a>
         ))}
       </div>
 
-      {/* Paper */}
-      <div className="mt-16 border-t border-border pt-8 text-sm text-foreground/30">
-        Read the paper:{" "}
-        <a
-          href={paper.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-foreground/60 transition-colors underline underline-offset-2"
-        >
-          {paper.label}
-        </a>
-      </div>
+      {overviewSections.map((section) => {
+        const id = section.href.slice("/about/".length);
+        const Content = panels[section.href];
+
+        return (
+          <section
+            key={section.href}
+            id={id}
+            aria-labelledby={`${id}-title`}
+            tabIndex={-1}
+            className="mt-12 scroll-mt-20 border-t border-border pt-8"
+          >
+            <h2 id={`${id}-title`} className="mb-3 text-3xl font-medium tracking-tight">
+              {section.label}
+            </h2>
+            <p className="mb-8 text-lg text-muted">{section.tagline}</p>
+            <Content />
+          </section>
+        );
+      })}
+
+      <AboutRelatedLinks />
     </div>
   );
 }

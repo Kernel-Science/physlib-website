@@ -1,4 +1,4 @@
-# Sponsor Physlib
+# Fund Physlib
 
 Physlib is the standard library for physics in Lean, a language in which a computer checks every mathematical statement for correctness and consistency. Today it holds over 7,900 theorems and lemmas, covering physics from Maxwell's equations to the Standard Model Lagrangian. Its long-term goal is to be the trusted corpus of knowledge for physics: readable, reviewed by people, and containing the best results possible in a connected and reusable way. Physlib is open source, community run and built entirely by volunteers. Your support would change how fast it can grow, and [each level of support](#what-we-could-do-with-your-support), from US$10,000 upwards, would make something specific happen.
 
