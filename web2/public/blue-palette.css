@@ -1,0 +1,6 @@
+/* WiPhy's blue, shared by the site and the generated Lean reference. */
+:root {
+  --brand-blue: #0a72d6;
+  --brand-blue-tint: #e6f1fd;
+  --brand-blue-on-dark: color-mix(in srgb, var(--brand-blue) 35%, var(--brand-blue-tint));
+}

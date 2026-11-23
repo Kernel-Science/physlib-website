@@ -68,20 +68,14 @@ const steps: Step[] = [
 
 export default function GetInvolvedPage() {
   return (
-    <div className="mx-auto w-full max-w-4xl px-5 sm:px-8 py-12 md:py-16">
+    <div className="page-frame-editorial">
 
       {/* Page intro */}
       <p className="label-mono text-muted mb-5">Community</p>
-      <h1
-        className="text-4xl font-medium text-foreground mb-4 md:text-5xl"
-        style={{ letterSpacing: "-0.04em", lineHeight: 1.06 }}
-      >
+      <h1 className="page-title-editorial">
         Get Involved
       </h1>
-      <p
-        className="text-lg text-muted max-w-2xl mb-6 leading-snug"
-        style={{ letterSpacing: "-0.01em", lineHeight: 1.4 }}
-      >
+      <p className="page-intro-editorial max-w-2xl mb-6">
         Physlib is a community project and we welcome contributions from
         everyone. There are many ways to contribute — from helping with issues,
         to formalizing results, to creating informal results. Feel free to
@@ -128,6 +122,15 @@ export default function GetInvolvedPage() {
           </div>
         ))}
       </div>
+
+      <section id="ai-resources" className="mt-10 scroll-mt-20 border-t border-border pt-8">
+        <h2 className="text-xl font-medium text-foreground">AI Resources</h2>
+        <div className="mt-4 flex flex-wrap gap-2">
+          <ButtonLink href={site.aiResources + "#ai-guidelines"} size="sm" variant="secondary">AI Guidelines</ButtonLink>
+          <ButtonLink href={site.aiResources + "#physlib-ai-tools"} size="sm" variant="secondary">Physlib AI Tools</ButtonLink>
+          <ButtonLink href={site.aiResources + "#useful-prompts"} size="sm" variant="secondary">Useful Prompts</ButtonLink>
+        </div>
+      </section>
 
       {/* CTA */}
       <div className="mt-16 border-t border-border pt-10 text-center">

@@ -37,7 +37,7 @@ type NodeEntry = {
   href: string;
 };
 
-const MATCH_STROKE = "#2563eb";
+const MATCH_STROKE = "var(--accent)";
 const SELECTED_STROKE = "#16a34a";
 const HIGHLIGHT_WIDTH = "3";
 const READ_SCALE = 1.4;
@@ -351,7 +351,7 @@ export function GraphvizView({ getDot, height = "70vh" }: Props) {
             if (e.key === "Enter" && selected) jumpToEntry(selected);
           }}
           placeholder="Search for a file…"
-          className="flex-1 min-w-0 rounded-lg border border-border bg-surface px-3 py-2 text-sm"
+          className="site-field flex-1"
         />
         {searched && (
           <span className="text-xs text-muted whitespace-nowrap">
@@ -364,14 +364,14 @@ export function GraphvizView({ getDot, height = "70vh" }: Props) {
           <div className="flex gap-1">
             <button
               onClick={() => goToMatch(-1)}
-              className="rounded-lg border border-border px-2 py-1 text-sm hover:bg-surface"
+              className="rounded-(--radius) border border-border px-2 py-1 text-sm hover:bg-surface"
               aria-label="Previous match"
             >
               ↑
             </button>
             <button
               onClick={() => goToMatch(1)}
-              className="rounded-lg border border-border px-2 py-1 text-sm hover:bg-surface"
+              className="rounded-(--radius) border border-border px-2 py-1 text-sm hover:bg-surface"
               aria-label="Next match"
             >
               ↓
@@ -423,21 +423,21 @@ export function GraphvizView({ getDot, height = "70vh" }: Props) {
           <div className="absolute bottom-3 right-3 flex flex-col gap-1">
             <button
               onClick={() => zoomBy(ZOOM_STEP)}
-              className="h-8 w-8 rounded-lg border border-border bg-white/90 text-lg leading-none shadow-sm hover:bg-surface"
+              className="h-8 w-8 rounded-(--radius) border border-border bg-white/90 text-lg leading-none shadow-sm hover:bg-surface"
               aria-label="Zoom in"
             >
               +
             </button>
             <button
               onClick={() => zoomBy(1 / ZOOM_STEP)}
-              className="h-8 w-8 rounded-lg border border-border bg-white/90 text-lg leading-none shadow-sm hover:bg-surface"
+              className="h-8 w-8 rounded-(--radius) border border-border bg-white/90 text-lg leading-none shadow-sm hover:bg-surface"
               aria-label="Zoom out"
             >
               −
             </button>
             <button
               onClick={resetView}
-              className="h-8 w-8 rounded-lg border border-border bg-white/90 text-xs shadow-sm hover:bg-surface"
+              className="h-8 w-8 rounded-(--radius) border border-border bg-white/90 text-xs shadow-sm hover:bg-surface"
               aria-label="Reset view"
               title="Reset view"
             >

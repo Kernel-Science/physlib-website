@@ -221,7 +221,7 @@ export function CitationButton({ data }: { data: MonthlyUpdate }) {
         aria-haspopup="dialog"
         aria-expanded={open}
         aria-controls={panelId}
-        className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-sm font-medium text-foreground/80 transition-colors hover:border-accent/40 hover:text-accent"
+        className="inline-flex items-center gap-1.5 rounded-(--radius) border border-border px-3 py-1.5 text-sm font-medium text-foreground/80 transition-colors hover:border-accent/40 hover:text-accent"
       >
         <QuoteIcon />
         Cite this month
@@ -240,7 +240,7 @@ export function CitationButton({ data }: { data: MonthlyUpdate }) {
               type="button"
               onClick={close}
               aria-label="Close"
-              className="rounded p-1 text-muted hover:bg-surface-secondary/60 hover:text-foreground"
+              className="rounded-(--radius) p-1 text-muted hover:bg-surface-secondary/60 hover:text-foreground"
             >
               <svg
                 aria-hidden
@@ -267,7 +267,7 @@ export function CitationButton({ data }: { data: MonthlyUpdate }) {
               <button
                 type="button"
                 onClick={onCopy}
-                className="inline-flex items-center gap-1 rounded px-1.5 py-0.5 text-xs font-medium text-muted transition-colors hover:text-accent"
+                className="inline-flex items-center gap-1 rounded-(--radius) px-1.5 py-0.5 text-xs font-medium text-muted transition-colors hover:text-accent"
               >
                 {copied ? (
                   <>

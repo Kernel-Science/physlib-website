@@ -28,7 +28,7 @@ export function ButtonLink({
     size,
     fullWidth,
     isIconOnly,
-    className,
+    className: [className, "rounded-(--radius)"],
   });
 
   if (external || /^https?:/.test(href)) {

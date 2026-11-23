@@ -22,9 +22,9 @@ export default async function ReferencesPage() {
   const totalCitations = data.references.reduce((sum, r) => sum + r.count, 0);
 
   return (
-    <div className="mx-auto w-full max-w-5xl px-4 py-10 md:py-14">
-      <h1 className="text-4xl font-bold tracking-tight mb-2">References</h1>
-      <p className="text-muted mb-1 leading-relaxed">
+    <div className="page-frame-tracker">
+      <h1 className="page-title-tracker">References</h1>
+      <p className="page-intro-tracker mb-1">
         Physlib uses the <code className="font-mono text-xs bg-surface-secondary px-1.5 py-0.5 rounded">
           docs/references.bib
         </code> to store the references used within the project. This page shows details of how these references are used across all the Lean files.

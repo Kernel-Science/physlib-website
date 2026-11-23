@@ -11,20 +11,14 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="mx-auto w-full max-w-4xl px-5 sm:px-8 py-12 md:py-16">
+    <div className="page-frame-editorial">
 
       {/* Page intro */}
       <p className="label-mono text-muted mb-5">About</p>
-      <h1
-        className="text-4xl font-medium text-foreground mb-4 md:text-5xl"
-        style={{ letterSpacing: "-0.04em", lineHeight: 1.06 }}
-      >
+      <h1 className="page-title-editorial">
         About Physlib
       </h1>
-      <p
-        className="text-lg text-muted max-w-2xl mb-14 leading-snug"
-        style={{ letterSpacing: "-0.01em", lineHeight: 1.4 }}
-      >
+      <p className="page-intro-editorial max-w-2xl mb-14">
         {site.description}
       </p>
 

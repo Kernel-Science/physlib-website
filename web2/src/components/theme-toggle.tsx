@@ -10,11 +10,21 @@ export function ThemeToggle() {
 
   useEffect(() => setMounted(true), []);
 
+  useEffect(() => {
+    if (!resolvedTheme) return;
+
+    const icon = document.querySelector<HTMLLinkElement>('link[rel="icon"][type="image/svg+xml"]');
+    if (icon) {
+      icon.href = resolvedTheme === "dark" ? "/physlib-icon-dark.svg" : "/icon.svg";
+    }
+  }, [resolvedTheme]);
+
   const isDark = mounted && resolvedTheme === "dark";
 
   return (
     <Button
       isIconOnly
+      className="rounded-(--radius)"
       variant="ghost"
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       onPress={() => setTheme(isDark ? "light" : "dark")}

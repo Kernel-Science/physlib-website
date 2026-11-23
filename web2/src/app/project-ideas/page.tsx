@@ -172,9 +172,9 @@ const projects: Project[] = [
 
 export default function ProjectIdeasPage() {
   return (
-    <div className="mx-auto w-full max-w-4xl px-4 py-10 md:py-14">
-      <h1 className="text-4xl font-bold tracking-tight mb-2">Project Ideas</h1>
-      <p className="text-muted mb-6 leading-relaxed">
+    <div className="page-frame-tracker max-w-4xl">
+      <h1 className="page-title-tracker">Project Ideas</h1>
+      <p className="page-intro-tracker mb-6">
         Below are a list of project ideas. No matter who you are, you may
         attempt any of these. They are roughly ordered in complexity from
         easiest to hardest. If you would like to claim one of these projects or
