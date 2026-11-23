@@ -1,39 +1,7 @@
-import { site } from "@/lib/site";
+import type { ReviewReport } from "./tracker-data";
 
-type ReviewerEntry = [string, number];
-type PRLink = { number: number; title: string; url: string };
-type UnreviewedPR = PRLink & { labels: string[]; linesChanged: number };
-type RecentPR = PRLink & { author: string };
-
-type Report = {
-  busyThreshold: number;
-  busy: ReviewerEntry[];
-  moderate: ReviewerEntry[];
-  quiet: ReviewerEntry[];
-  unreviewedPRs: UnreviewedPR[];
-  mergedRecently: RecentPR[];
-  openedRecently: RecentPR[];
-  mergedLast7d: RecentPR[];
-  openedLast7d: RecentPR[];
-  mergedLast30d: RecentPR[];
-  openedLast30d: RecentPR[];
-};
-
-async function getReport(): Promise<Report | null> {
-  try {
-    const res = await fetch(site.reportApi, { cache: "no-store" });
-    if (!res.ok) return null;
-    return (await res.json()) as Report;
-  } catch {
-    return null;
-  }
-}
-
-export async function GithubSummary() {
-  const report = await getReport();
-  if (!report) return null;
-
-  const groups: { label: string; dot: string; entries: ReviewerEntry[] }[] = [
+export function GithubSummary({ report }: { report: ReviewReport }) {
+  const groups: { label: string; dot: string; entries: [string, number][] }[] = [
     { label: `Busy (≥${report.busyThreshold})`, dot: "bg-danger", entries: report.busy },
     { label: "Moderate", dot: "bg-warning", entries: report.moderate },
     { label: "Quiet", dot: "bg-accent", entries: report.quiet },
