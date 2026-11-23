@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PRTrackerClient } from "./pr-tracker-client";
 import { GithubSummary } from "./github-summary";
+import { getPublicPulls, getReviewReport } from "./tracker-data";
 
 export const metadata: Metadata = {
   title: "PR Triage | Physlib",
@@ -8,7 +9,14 @@ export const metadata: Metadata = {
     "Triage open pull requests for Physlib, categorized by what action is needed.",
 };
 
-export default function PRTrackerPage() {
+export default async function PRTrackerPage() {
+  const report = await getReviewReport();
+  const pulls = report ? { prs: report.openPRs, complete: true } : await getPublicPulls();
+  const queues = report && {
+    unreviewed: report.unreviewedPRs.map((pr) => pr.number),
+    awaiting: report.awaitingAuthorPRs.map((pr) => pr.number),
+  };
+
   return (
     <div className="mx-auto w-full max-w-5xl px-4 py-10 md:py-14">
       <h1 className="text-4xl font-bold tracking-tight mb-2">
@@ -25,8 +33,14 @@ export default function PRTrackerPage() {
           View all on GitHub ↗
         </a>
       </p>
-      <PRTrackerClient />
-      <GithubSummary />
+      {pulls ? (
+        <PRTrackerClient key={report ? "report" : "github"} {...pulls} queues={queues ?? undefined} />
+      ) : (
+        <p className="py-12 text-center text-danger">
+          The open pull request list is unavailable. View all on GitHub or try again later.
+        </p>
+      )}
+      {report && <GithubSummary report={report} />}
     </div>
   );
 }
