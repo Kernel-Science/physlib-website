@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "predev": "node scripts/build-lean-search-index.mjs",
+    "predev": "node scripts/build-lean-search-index.mjs && node scripts/build-dependency-overview.mjs",
     "dev": "next dev --turbopack",
-    "prebuild": "node scripts/download-docs.js && node scripts/build-lean-search-index.mjs",
+    "prebuild": "node scripts/download-docs.js && node scripts/build-lean-search-index.mjs && node scripts/build-dependency-overview.mjs",
     "build": "next build",
     "start": "next start"
   },

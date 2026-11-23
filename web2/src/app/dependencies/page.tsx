@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { DependenciesClient } from "./dependencies-client";
 
 export const metadata: Metadata = {
-  title: "Dependencies | Physlib",
+  title: "Dependency Graphs",
   description:
     "Explore the dependency graph of Physlib modules. Filter by sources and targets to visualize specific paths.",
 };
@@ -10,49 +10,15 @@ export const metadata: Metadata = {
 export default function DependenciesPage() {
   return (
     <div className="page-frame-tracker">
-      <h1 className="page-title-tracker">
-        Dependency Graphs
-      </h1>
+      <p className="label-mono text-muted mb-5">Explore</p>
+      <h1 className="page-title-tracker">Dependency Graphs</h1>
       <p className="page-intro-tracker mb-8">
-        Visualize the dependency graph of Physlib modules. Select sources and
-        targets below, or use URL parameters{" "}
-        <code className="font-mono text-xs bg-surface-secondary px-1 py-0.5 rounded">
-          ?sources=A,B&amp;targets=C
-        </code>{" "}
-        to link to a specific view. Graph controls: drag to pan, scroll to zoom,
-        click nodes to open on GitHub.
+        Follow the arrows from prerequisites to the modules that import them.
+        Select a module to expand its subject, or use the Customizer to trace a path between modules.
       </p>
 
-      <div className="mb-6 flex flex-wrap gap-2">
-        <span className="text-sm text-muted mr-1">Premade views:</span>
-        {premadeLinks.map((link) => (
-          <a
-            key={link.href}
-            href={link.href}
-            className="text-sm text-accent hover:underline underline-offset-2"
-          >
-            {link.label}
-          </a>
-        ))}
-      </div>
-
       <DependenciesClient />
+
     </div>
   );
 }
-
-const premadeLinks = [
-  { label: "Everything", href: "/dependencies?sources=&targets=Physlib" },
-  {
-    label: "Proof of Wick's theorem",
-    href: "/dependencies?sources=Physlib.SpaceAndTime.SpaceTime.Basic,Physlib.Mathematics.List.InsertIdx,Physlib.Mathematics.Fin,Physlib.QFT.PerturbationTheory.CreateAnnihilate&targets=Physlib.QFT.PerturbationTheory.WickAlgebra.WicksTheorem",
-  },
-  {
-    label: "Everything dependent on space-time",
-    href: "/dependencies?sources=Physlib.SpaceAndTime.Space.Basic",
-  },
-  {
-    label: "1d QM harmonic oscillator",
-    href: "/dependencies?sources=&targets=Physlib.QuantumMechanics.OneDimension.HarmonicOscillator.TISE",
-  },
-];
