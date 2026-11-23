@@ -14,6 +14,7 @@ export const site = {
   docs: "/docs/index.html",
   verso: "https://jstoobysmith.github.io/PhyslibVerso/",
   sponsor: "/sponsor",
+  sponsors: "/sponsors",
   team: "/team",
   aiResources: "/ai-resources",
   // Same report the "/reviews" Zulip bot command sends - see
@@ -75,9 +76,8 @@ export const navSections: NavSection[] = [
     label: "Support",
     plainHover: true,
     items: [
-      { label: "Priorities", href: site.sponsor + "#priorities" },
-      { label: "Donate", href: site.sponsor + "#contribute" },
-      { label: "Sponsors", href: site.sponsor + "#sponsors" },
+      { label: "Support us", href: site.sponsor },
+      { label: "Sponsors", href: site.sponsors },
     ],
   },
 ];
@@ -88,5 +88,5 @@ export const primaryNav: NavItem[] = [
   { label: "Get Involved", href: "/get-involved" },
   { label: "Trackers", href: "/api-tracker" },
   { label: "Todo list", href: "/todo" },
-  { label: "Sponsor", href: site.sponsor },
+  { label: "Support us", href: site.sponsor },
 ];

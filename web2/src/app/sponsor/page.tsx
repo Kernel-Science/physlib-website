@@ -1,41 +1,28 @@
 import { Card } from "@heroui/react";
 import type { Metadata } from "next";
 import { ButtonLink } from "@/components/button-link";
+import { Markdown } from "@/components/markdown";
 import { site } from "@/lib/site";
+import { getSponsorPitch } from "@/lib/yaml";
 
 export const metadata: Metadata = {
-  title: "Sponsor | Physlib",
+  title: "Support us | Physlib",
   description:
     "Support Physlib financially to help grow the definitive library of formalized physics in Lean 4.",
 };
 
-export default function SponsorPage() {
+export default async function SponsorPage() {
+  const pitch = await getSponsorPitch();
+
   return (
-    <div className="page-frame-editorial max-w-2xl">
+    <div className="page-frame-editorial max-w-3xl">
       <p className="label-mono text-muted mb-5">Support</p>
-      <h1 className="page-title-editorial">
-        Sponsor Physlib
-      </h1>
-      <p className="page-intro-editorial mb-10">
-        Financial support helps Physlib grow faster and reach more of the
-        physics and Lean communities.
-      </p>
+      <h1 className="page-title-editorial">{pitch.title}</h1>
+      <div className="page-intro-editorial mb-10">
+        <Markdown>{pitch.intro}</Markdown>
+      </div>
 
-      <Card id="priorities" variant="secondary" className="mb-6 scroll-mt-20">
-        <Card.Header>
-          <Card.Title>Priorities</Card.Title>
-        </Card.Header>
-        <Card.Content>
-          <ul className="list-disc ml-5 space-y-2 text-sm text-foreground/90">
-            <li>Let anyone write and check Lean against Physlib in their browser without installing it.</li>
-            <li>Fund supervised summer projects and studentships that bring new contributors into Physlib.</li>
-            <li>Bring contributors together to learn Lean and work on Physlib at an in-person event.</li>
-            <li>Fund dedicated time to formalize new areas of physics, review contributions, and improve the library’s infrastructure.</li>
-          </ul>
-        </Card.Content>
-      </Card>
-
-      <Card id="contribute" variant="default" className="mb-6 scroll-mt-20">
+      <Card id="contribute" variant="default" className="mb-12 scroll-mt-20">
         <Card.Header>
           <Card.Title>Donate</Card.Title>
         </Card.Header>
@@ -81,25 +68,32 @@ export default function SponsorPage() {
         </Card.Content>
       </Card>
 
-      <Card id="sponsors" variant="default" className="scroll-mt-20">
-        <Card.Header>
-          <Card.Title>Sponsors</Card.Title>
-        </Card.Header>
-        <Card.Content className="text-sm text-foreground/90">
-          <p>
-            Thank you to{" "}
-            <a
-              href="https://kernel-science.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-accent hover:underline underline-offset-2"
-            >
-              Kernel Science
-            </a>
-            {" "}for supporting the Physlib website.
+      {/* One block per `##` section of data/Sponsor.md. */}
+      {pitch.sections.map((section, i) => (
+        <section key={section.id} className="mb-12 border-t border-border pt-8">
+          <p className="label-mono text-accent/50 mb-3">
+            {String(i + 1).padStart(2, "0")}
           </p>
-        </Card.Content>
-      </Card>
+          <h2
+            id={section.id}
+            className="text-2xl font-medium text-foreground mb-4 md:text-3xl"
+            style={{ letterSpacing: "-0.025em" }}
+          >
+            {section.heading}
+          </h2>
+          <div className="sponsor-pitch text-foreground/90">
+            <Markdown>{section.body}</Markdown>
+          </div>
+        </section>
+      ))}
+
+      <p className="border-t border-border pt-8 text-sm text-foreground/90">
+        See who already supports Physlib on the{" "}
+        <a href={site.sponsors} className="text-accent hover:underline underline-offset-2">
+          sponsors page
+        </a>
+        .
+      </p>
     </div>
   );
 }
