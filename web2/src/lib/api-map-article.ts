@@ -1,5 +1,7 @@
 import type {
+  ApiMap,
   ApiMapContentSection,
+  ApiMapDeclaration,
   ApiMapLeanReference,
   ApiMapNode,
   ApiMapReference,
@@ -21,13 +23,26 @@ import type {
 /** The doc-gen4 page for a Lean file, anchored on a declaration when its
  *  fully-qualified name is known. The docs are served by this site under
  *  /docs (see scripts/download-docs.js). */
-export function docsUrl(file: string, fullName?: string): string {
+function docsUrl(file: string, fullName?: string): string {
   const page = `/docs/${file.replace(/\.lean$/, "")}.html`;
   return fullName ? `${page}#${fullName}` : page;
 }
 
 export function sourceUrl(repo: string, branch: string, file: string, line?: number): string {
   return `https://github.com/${repo}/blob/${branch}/${file}${line ? `#L${line}` : ""}`;
+}
+
+/** Only Physlib and QuantumInfo publish doc-gen4 pages. Alpha links target
+ *  the same revision from which the generator read the declaration's line. */
+export function declarationLinks(
+  { repo, branch, commit }: Pick<ApiMap, "repo" | "branch" | "commit">,
+  file: string,
+  decl: ApiMapDeclaration,
+) {
+  if (file.startsWith("PhyslibAlpha/")) {
+    return { source: sourceUrl(repo, commit || branch, file, decl.line), docs: null };
+  }
+  return { source: sourceUrl(repo, branch, file, decl.line), docs: docsUrl(file, decl.fullName) };
 }
 
 export function historyUrl(repo: string, branch: string, file: string): string {
