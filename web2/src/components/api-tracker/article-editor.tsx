@@ -118,7 +118,7 @@ function CiteToolbar({
       <button
         type="button"
         onClick={() => insert(" [TODO]")}
-        className="rounded-md border border-border bg-surface px-2 py-1 text-xs text-foreground transition-colors hover:border-accent hover:text-accent"
+        className="rounded-(--radius) border border-border bg-surface px-2 py-1 text-xs text-foreground transition-colors hover:border-accent hover:text-accent"
         title="Mark the claim before the cursor as not yet formalized"
       >
         [TODO]
@@ -185,7 +185,7 @@ function NewReferenceForm({
         <button
           type="button"
           onClick={add}
-          className="rounded-md border border-border bg-surface px-2.5 py-1 text-xs text-foreground transition-colors hover:border-accent hover:text-accent"
+          className="rounded-(--radius) border border-border bg-surface px-2.5 py-1 text-xs text-foreground transition-colors hover:border-accent hover:text-accent"
         >
           Add and cite
         </button>
@@ -392,7 +392,7 @@ export function ArticleEditor({
                 role="tab"
                 aria-selected={view === t.key}
                 onClick={() => setView(t.key)}
-                className={`rounded-md px-3 py-1 text-xs font-medium transition-colors ${
+                className={`rounded-(--radius) px-3 py-1 text-xs font-medium transition-colors ${
                   view === t.key ? "bg-surface text-foreground shadow-sm" : "text-muted hover:text-foreground"
                 }`}
               >
@@ -520,7 +520,7 @@ export function ArticleEditor({
           <button
             type="button"
             onClick={onCancel}
-            className="rounded-lg px-3 py-1.5 text-sm text-muted transition-colors hover:text-foreground"
+            className="rounded-(--radius) px-3 py-1.5 text-sm text-muted transition-colors hover:text-foreground"
           >
             Cancel
           </button>

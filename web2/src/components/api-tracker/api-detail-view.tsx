@@ -14,7 +14,7 @@ import {
   type EditTarget,
 } from "@/lib/api-map-article";
 import { buildFolderTree, flattenFolderTree } from "@/lib/api-map-folders";
-import { selectApiMapEntry } from "@/lib/api-map-hash";
+import { scrollToApiMapArticle, selectApiMapEntry } from "@/lib/api-map-hash";
 import { ArticleContext, type ArticleContextValue, scrollToArticleId } from "@/components/api-tracker/article-prose";
 import {
   ArticleReadView,
@@ -138,12 +138,21 @@ export function ApiDetailView({ apiMap }: { apiMap: ApiMap }) {
 
   const [activePath, setActivePath] = useState("");
   useEffect(() => {
-    const onHashChange = () =>
-      setActivePath(decodeURIComponent(window.location.hash.replace(/^#/, "")));
-    onHashChange();
+    const readPath = () => decodeURIComponent(window.location.hash.slice(1));
+    const initialPath = readPath();
+    setActivePath(initialPath);
+
+    // A fresh link to an article should land there. Let the browser restore
+    // its saved reading position when reloading or traversing history.
+    const navigation = performance.getEntriesByType("navigation")[0] as PerformanceNavigationTiming | undefined;
+    if (byPath.has(initialPath) && navigation?.type === "navigate" && window.scrollY === 0) {
+      scrollToApiMapArticle();
+    }
+
+    const onHashChange = () => setActivePath(readPath());
     window.addEventListener("hashchange", onHashChange);
     return () => window.removeEventListener("hashchange", onHashChange);
-  }, []);
+  }, [byPath]);
 
   const found = entries.findIndex((e) => e.path === activePath);
   // A map other maps cite but nobody has written yet (a dashed box in the
@@ -236,11 +245,11 @@ export function ApiDetailView({ apiMap }: { apiMap: ApiMap }) {
   if (!current) return null;
 
   const navButton =
-    "flex size-7 items-center justify-center rounded-lg border border-border text-muted transition-colors enabled:hover:border-accent enabled:hover:text-accent disabled:opacity-30";
+    "flex size-7 items-center justify-center rounded-(--radius) border border-border text-muted transition-colors enabled:hover:border-accent enabled:hover:text-accent disabled:opacity-30";
 
   return (
     <ArticleContext.Provider value={context}>
-      <div className="apimap">
+      <div id="api-map-article" className="apimap scroll-mt-20">
         <header className="mb-6">
           <div className="mb-3 flex items-center justify-between gap-4">
             <Breadcrumb path={current.path} repo={repo} branch={branch} />
