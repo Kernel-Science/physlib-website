@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { ConditionalSidebar } from "@/components/conditional-sidebar";
 import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
+import { MonthArchiveProvider } from "@/components/monthly-updates/month-sidebar";
+import { getArchiveBounds } from "@/lib/monthly-updates-months";
 import { Providers } from "@/components/providers";
 import { site } from "@/lib/site";
 import "./globals.css";
@@ -34,7 +36,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -50,7 +52,9 @@ export default function RootLayout({
           <Navbar />
           {/* pt-16 offsets the fixed navbar on inner pages; home page handles its own top spacing */}
           <div className="mx-auto flex w-full flex-1 lg:has-[>aside]:max-w-7xl">
-            <ConditionalSidebar />
+            <MonthArchiveProvider bounds={await getArchiveBounds()}>
+              <ConditionalSidebar />
+            </MonthArchiveProvider>
             <main className="min-w-0 flex-1 pt-14">{children}</main>
           </div>
           <Footer />
