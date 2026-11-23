@@ -2,6 +2,7 @@ const https = require('https');
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
+const { styleGeneratedDocs } = require('./style-generated-docs');
 
 const REPO = process.env.GITHUB_REPOSITORY || 
              (process.env.VERCEL_GIT_REPO_OWNER && process.env.VERCEL_GIT_REPO_SLUG ? 
@@ -133,40 +134,8 @@ async function run() {
     console.log('Data files moved successfully.');
   }
 
-  console.log('Applying custom CSS theme...');
-  const paletteCssPath = path.join(__dirname, '../public/blue-palette.css');
-  const themeCssPath = path.join(__dirname, '../public/docs-theme.css');
-  const targetCssPath = path.join(publicDocsPath, 'style.css');
-
-  if (fs.existsSync(paletteCssPath) && fs.existsSync(themeCssPath) && fs.existsSync(targetCssPath)) {
-    const paletteCss = fs.readFileSync(paletteCssPath, 'utf8');
-    const themeCss = fs.readFileSync(themeCssPath, 'utf8');
-    fs.appendFileSync(targetCssPath, '\n/* --- PHYSLIB CUSTOM THEME --- */\n' + paletteCss + '\n' + themeCss);
-    console.log('Custom CSS applied successfully.');
-  } else {
-    console.warn('Could not find blue-palette.css, docs-theme.css, or style.css to apply overrides.');
-  }
-
-  console.log('Fixing documentation header links...');
-  function fixLinksInDirectory(dir) {
-    const files = fs.readdirSync(dir);
-    for (const file of files) {
-      const fullPath = path.join(dir, file);
-      if (fs.statSync(fullPath).isDirectory()) {
-        fixLinksInDirectory(fullPath);
-      } else if (fullPath.endsWith('.html')) {
-        let content = fs.readFileSync(fullPath, 'utf8');
-        // Replace the broken Physlib documentation header link with a link to the homepage
-        content = content.replace(/<a([^>]*?)href="[^"]*?"([^>]*?)>(\s*Physlib\s+documentation\s*)<\/a>/gi, '<a$1href="/"$2>$3</a>');
-        fs.writeFileSync(fullPath, content);
-      }
-    }
-  }
-  
-  if (fs.existsSync(publicDocsPath)) {
-    fixLinksInDirectory(publicDocsPath);
-    console.log('Documentation links fixed successfully.');
-  }
+  console.log('Applying Physlib styles to the generated documentation...');
+  styleGeneratedDocs();
 
   console.log('Documentation download and setup complete!');
 }

@@ -127,18 +127,26 @@ function NavDropdown({ section, pathname }: { section: NavSection; pathname: str
 export function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const brand = (
+    <Link
+      href="/"
+      className="shrink-0 text-[22px] leading-none font-semibold tracking-[-0.04em] text-foreground transition-opacity hover:opacity-75 motion-reduce:transition-none"
+    >
+      <Wordmark />
+    </Link>
+  );
 
   return (
     <>
       <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background">
         <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-5 sm:px-8">
 
-          <Link
-            href="/"
-            className="shrink-0 text-[22px] leading-none font-semibold tracking-[-0.04em] text-foreground transition-opacity hover:opacity-75 motion-reduce:transition-none"
-          >
-            <Wordmark />
-          </Link>
+          {pathname === "/docs-header" ? (
+            <div className="flex shrink-0 items-center gap-3">
+              {brand}
+              <a href={site.docs} target="_parent" className="docs-header-page-name">Documentation</a>
+            </div>
+          ) : brand}
 
           {/* Desktop nav — section dropdowns next to the right-hand actions */}
           <nav className="ml-auto mr-3 hidden h-full shrink-0 items-center md:flex xl:mr-6">

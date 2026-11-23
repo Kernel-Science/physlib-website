@@ -81,11 +81,11 @@ export function Footer() {
           <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-4">
             <p className="whitespace-nowrap">Physics in Lean 4</p>
             <div className="hidden sm:block w-px h-3 bg-foreground/20" />
-            <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-              <span className="inline-flex items-center gap-2 whitespace-nowrap">
-                Website by
+            <div className="flex flex-wrap items-center gap-x-1.5 gap-y-1">
+              <span className="inline-flex items-center gap-1.5 whitespace-nowrap">
+                Website supported by
                 <a href="https://kernel-science.com" target="_blank" rel="noopener noreferrer" className="opacity-70 hover:opacity-100 transition-opacity">
-                  <img src="/images/kernel_science_logo.png" alt="Kernel Science" className="logo-mark h-4 w-auto" />
+                  <img src="/images/kernel_science_logo.png" alt="Kernel Science" className="logo-mark relative -top-[0.5px] h-3.5 w-auto" />
                 </a>
               </span>
               <span>
