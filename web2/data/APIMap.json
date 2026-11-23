@@ -1,8 +1,8 @@
 {
   "repo": "leanprover-community/physlib",
   "branch": "master",
-  "commit": "be0a9eef7dac78da524bfbde91c812340b194610",
-  "generatedAt": "2026-11-16T12:51:41.371Z",
+  "commit": "56430c65b76f73c7c25fc03eed46be1d888520bb",
+  "generatedAt": "2026-11-22T00:12:29.725Z",
   "nodes": [
     {
       "path": "Physlib/ClassicalFieldTheory/GaugeTheory",
@@ -1162,6 +1162,238 @@
       "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalFieldTheory/GreenOperator/API-map.md"
     },
     {
+      "path": "Physlib/ClassicalFieldTheory/KleinGordon",
+      "file": "Physlib/ClassicalFieldTheory/KleinGordon/API-map.md",
+      "title": "Retarded propagation for the Klein–Gordon equation",
+      "alpha": true,
+      "abstract": "In three spatial dimensions the retarded response of a massless scalar field depends only\non source values on the past light cone of the observation point. A massive scalar field\nalso responds to source values inside that cone. Kirchhoff's spherical mean gives the\nlight-cone term in both cases, while a Bessel function determines the massive tail.",
+      "abstractHeading": "Abstract (Alpha)",
+      "content": [
+        {
+          "heading": "Content (Alpha)",
+          "alpha": true,
+          "intro": "",
+          "subsections": [
+            {
+              "title": "The retarded field",
+              "body": "Let $f(t,x)$ be a smooth, compactly supported complex source on Minkowski spacetime with\nthree spatial dimensions and $c=1$. The retarded solution of\n$(\\partial_t^2-\\Delta+m^2)\\phi=f$ is obtained by propagating the source at each earlier\ntime $s$ for a duration $t-s$ and integrating over $s\\le t$. [1] Its support lies in\nthe causal future of the support of $f$. [2] The corresponding retarded and advanced\ninverses are described in the Green operators API map. {1}"
+            },
+            {
+              "title": "The massless field on the light cone",
+              "body": "Write $M_r g(x)$ for the average of $g(x+r n)$ over unit directions $n$, with the solid\nangle measure divided by $4\\pi$. [3] For $m=0$, the contribution from a source slice at\ntime $s$ is $(t-s)M_{t-s}f(s,\\cdot)(x)$. [4][5] Hence only source values at distance\n$t-s$ from $x$ enter that slice's contribution. Once the expanding sphere has passed the\nsupport of a slice, its contribution vanishes, as the strong Huygens principle predicts. [4]"
+            },
+            {
+              "title": "The massive tail inside the cone",
+              "body": "For $m>0$, each source slice contributes the same Kirchhoff term and an integral of\nspherical means over smaller radii. The formula gives the retarded field at $(t,x)$\nfor every smooth, compactly supported source. [6] In kernel notation, write $\\tau=t-s$\nfor the elapsed time, $r=|x-y|$ for the distance to the source point $y$, and\n$\\sigma=\\sqrt{\\tau^2-r^2}$ for the proper time inside the cone. The cone term is\n$\\delta(\\tau-r)/(4\\pi r)$. The interior term has density $-m J_1(m\\sigma)/(4\\pi\\sigma)$\nfor $0\\le r<\\tau$, where $J_1$ is the Bessel function of the first kind of order one.\n[6][7] {2}"
+            }
+          ]
+        }
+      ],
+      "leanReferences": [
+        {
+          "index": 1,
+          "file": "PhyslibAlpha/ClassicalFieldTheory/KleinGordon/RetardedSolution.lean",
+          "declarations": [
+            {
+              "text": "solution_equation_at",
+              "fullName": "KleinGordon.solution_equation_at",
+              "kind": "lemma",
+              "line": 669,
+              "doc": "The retarded field solves the sourced equation at every spacetime point.",
+              "signature": "lemma solution_equation_at {μ : ℝ} (hμ : 0 ≤ μ) (t : ℝ) (x : E) :\n    deriv (deriv (fun s => solution F f μ s x)) t -\n      (Δ (fun y => solution F f μ t y)) x + μ • solution F f μ t x = f (t, x)"
+            },
+            {
+              "text": "solution_eq_integral",
+              "fullName": "KleinGordon.solution_eq_integral",
+              "kind": "lemma",
+              "line": 567,
+              "doc": null,
+              "signature": "lemma solution_eq_integral {μ : ℝ} (hμ : 0 ≤ μ) (t : ℝ) (x : E) :\n    solution F f μ t x = ∫ s in Set.Iic t, sineEvolution F (t - s) μ (slice F f s) x"
+            }
+          ],
+          "exists": true
+        },
+        {
+          "index": 2,
+          "file": "PhyslibAlpha/ClassicalFieldTheory/KleinGordon/FinitePropagation.lean",
+          "declarations": [
+            {
+              "text": "tsupport_solution_subset",
+              "fullName": "KleinGordon.tsupport_solution_subset",
+              "kind": "lemma",
+              "line": 698,
+              "doc": "The topological support of the retarded field lies in the source's causal future.",
+              "signature": "lemma tsupport_solution_subset {μ : ℝ} (hμ : 0 ≤ μ) :\n    tsupport (fun p : ℝ × E => solution F f μ p.1 p.2) ⊆ causalFuture (tsupport f)"
+            }
+          ],
+          "exists": true
+        },
+        {
+          "index": 3,
+          "file": "PhyslibAlpha/ClassicalFieldTheory/WaveEquation/Kirchhoff/Setting.lean",
+          "declarations": [
+            {
+              "text": "sphericalIntegral",
+              "fullName": "WaveEquation.Kirchhoff.sphericalIntegral",
+              "kind": "def",
+              "line": 65,
+              "doc": "The integral of `f` over the sphere of radius `r` about `x` with respect to the surface measure. The total mass of the unit sphere is `4π`, so the average is `1 / (4π)` times this integral. For `r < 0` the sphere is the one of radius `|r|`.",
+              "signature": "noncomputable def sphericalIntegral (r : ℝ) (f : Space 3 → ℂ) (x : Space 3) : ℂ"
+            },
+            {
+              "text": "sphericalMean",
+              "fullName": "WaveEquation.Kirchhoff.sphericalMean",
+              "kind": "def",
+              "line": 70,
+              "doc": "The normalized spherical mean `M_r f(x) = (1/(4π)) ∫_{S²} f(x + r n) dσ(n)`. It reads only the sphere of radius `|r|` about `x`.",
+              "signature": "noncomputable def sphericalMean (r : ℝ) (f : Space 3 → ℂ) (x : Space 3) : ℂ"
+            }
+          ],
+          "exists": true
+        },
+        {
+          "index": 4,
+          "file": "PhyslibAlpha/ClassicalFieldTheory/WaveEquation/Kirchhoff/Propagator.lean",
+          "declarations": [
+            {
+              "text": "wavePropagator_eq_time_sphericalMean",
+              "fullName": "WaveEquation.Kirchhoff.wavePropagator_eq_time_sphericalMean",
+              "kind": "lemma",
+              "line": 226,
+              "doc": "The wave propagator is `t M_{ct}` with the normalized sphere mean.",
+              "signature": "lemma wavePropagator_eq_time_sphericalMean (c t : ℝ) (f : Space 3 → ℂ) (x : Space 3) :\n    wavePropagator c t f x = (t : ℂ) * sphericalMean (c * t) f x"
+            },
+            {
+              "text": "wavePropagator_eq_zero_of_near",
+              "fullName": "WaveEquation.Kirchhoff.wavePropagator_eq_zero_of_near",
+              "kind": "lemma",
+              "line": 183,
+              "doc": "**Strong Huygens principle** for both signs of time.",
+              "signature": "lemma wavePropagator_eq_zero_of_near {c t ρ : ℝ} (hc : 0 < c) {f : Space 3 → ℂ}\n    {x₀ : Space 3} (hf : ∀ y, ρ < ‖y - x₀‖ → f y = 0) {x : Space 3}\n    (hx : ‖x - x₀‖ + ρ < c * |t|) : wavePropagator c t f x = 0"
+            }
+          ],
+          "exists": true
+        },
+        {
+          "index": 5,
+          "file": "PhyslibAlpha/ClassicalFieldTheory/KleinGordon/ClosedForm/MasslessSpace.lean",
+          "declarations": [
+            {
+              "text": "solution_zero_mass_three",
+              "fullName": "KleinGordon.solution_zero_mass_three",
+              "kind": "lemma",
+              "line": 131,
+              "doc": "**Kirchhoff's formula for the retarded solution.** The massless retarded solution in three space dimensions is the Duhamel integral of the spherical means of the source over the earlier times. This is the retarded Green function `δ(t - r) / (4π r)`.",
+              "signature": "lemma solution_zero_mass_three (ψ : TestFunction (⊤ : Opens (ℝ × Space 3)) ℂ ⊤) (t : ℝ)\n    (x : Space 3) :\n    solution ℂ ψ 0 t x = ∫ s in Set.Iic t, wavePropagator 1 (t - s) (slice ℂ ψ s) x"
+            }
+          ],
+          "exists": true
+        },
+        {
+          "index": 6,
+          "file": "PhyslibAlpha/ClassicalFieldTheory/KleinGordon/ClosedForm/MassiveSpace.lean",
+          "declarations": [
+            {
+              "text": "solution_mass_three_besselJ1",
+              "fullName": "KleinGordon.solution_mass_three_besselJ1",
+              "kind": "lemma",
+              "line": 87,
+              "doc": "**The Kirchhoff–Bessel formula with `J₁`.** For `m ≠ 0` the retarded solution of a test source in three space dimensions is the Duhamel integral of `wavePropagator 1 τ g x - m ∫₀^τ u J₁ (m √(τ² - u²)) / √(τ² - u²) wavePropagator 1 u g x du`. The first term is the Green function `δ(t - r) / (4π r)`. The second is `- m J₁ (m √(t² - r²)) / (4π √(t² - r²)) Θ (t - r)`.",
+              "signature": "lemma solution_mass_three_besselJ1 {m : ℝ} (hm : m ≠ 0)\n    (ψ : TestFunction (⊤ : Opens (ℝ × Space 3)) ℂ ⊤) (t : ℝ) (x : Space 3) :\n    solution ℂ ψ (m ^ 2) t x = ∫ s in Set.Iic t, (wavePropagator 1 (t - s) (slice ℂ ψ s) x -\n      (m : ℂ)…"
+            }
+          ],
+          "exists": true
+        },
+        {
+          "index": 7,
+          "file": "PhyslibAlpha/Mathematics/SpecialFunctions/SincPropagator/Bessel.lean",
+          "declarations": [
+            {
+              "text": "besselJ1",
+              "fullName": "Real.besselJ1",
+              "kind": "def",
+              "line": 415,
+              "doc": "The Bessel function `J₁` by its power series.",
+              "signature": "def besselJ1 (z : ℝ) : ℝ"
+            }
+          ],
+          "exists": true
+        }
+      ],
+      "references": [
+        {
+          "index": 1,
+          "text": "Green operators and the causal propagator API map — Physlib/ClassicalFieldTheory/GreenOperator/API-map.md",
+          "apiMap": "Physlib/ClassicalFieldTheory/GreenOperator"
+        },
+        {
+          "index": 2,
+          "text": "P. Forgács and Á. Lukács, [Charge screening in the Abelian Higgs model](https://link.springer.com/article/10.1140/epjc/s10052-021-09022-x#Equ66). European Physical Journal C 81, 243 (2021), Appendix B, Eq. (66).",
+          "apiMap": null
+        }
+      ],
+      "requirements": [
+        {
+          "done": true,
+          "citations": [
+            1
+          ],
+          "alpha": true
+        },
+        {
+          "done": true,
+          "citations": [
+            2
+          ],
+          "alpha": true
+        },
+        {
+          "done": true,
+          "citations": [
+            3
+          ],
+          "alpha": true
+        },
+        {
+          "done": true,
+          "citations": [
+            4,
+            5
+          ],
+          "alpha": true
+        },
+        {
+          "done": true,
+          "citations": [
+            4
+          ],
+          "alpha": true
+        },
+        {
+          "done": true,
+          "citations": [
+            6
+          ],
+          "alpha": true
+        },
+        {
+          "done": true,
+          "citations": [
+            6,
+            7
+          ],
+          "alpha": true
+        }
+      ],
+      "parents": [
+        {
+          "name": "Green operators and the causal propagator",
+          "path": "Physlib/ClassicalFieldTheory/GreenOperator"
+        }
+      ],
+      "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalFieldTheory/KleinGordon/API-map.md"
+    },
+    {
       "path": "Physlib/ClassicalMechanics/ConfigurationSpace",
       "file": "Physlib/ClassicalMechanics/ConfigurationSpace/API-map.md",
       "title": "Configuration Space",
@@ -1200,7 +1432,7 @@
               "text": "Time.contMDiff_iff_contDiff_vadd",
               "fullName": "Time.contMDiff_iff_contDiff_vadd",
               "kind": "lemma",
-              "line": 81,
+              "line": 80,
               "doc": "A curve `γ : Time → F` into a normed space is `C^n` iff the coordinate curve `τ ↦ γ (τ +ᵥ t₀)` is `C^n`.",
               "signature": "lemma contMDiff_iff_contDiff_vadd (γ : Time → F) (t₀ : Time) (n : ℕ∞ω) :\n    ContMDiff 𝓘(ℝ, ℝ) 𝓘(ℝ, F) n γ ↔ ContDiff ℝ n (fun τ : ℝ ↦ γ (τ +ᵥ t₀))"
             },
@@ -1208,7 +1440,7 @@
               "text": "Time.tangentMap_eq_deriv_vadd",
               "fullName": "Time.tangentMap_eq_deriv_vadd",
               "kind": "lemma",
-              "line": 139,
+              "line": 138,
               "doc": "The tangent map of a curve into a normed space sends `⟨s +ᵥ t₀, 1⟩` to the point and the ordinary derivative of the coordinate curve.",
               "signature": "lemma tangentMap_eq_deriv_vadd (γ : Time → F) (t₀ : Time) (s : ℝ) :\n    tangentMap 𝓘(ℝ, ℝ) 𝓘(ℝ, F) γ ⟨s +ᵥ t₀, (1 : ℝ)⟩ =\n      ⟨γ (s +ᵥ t₀), deriv (fun τ : ℝ ↦ γ (τ +ᵥ t₀)) s⟩"
             }
@@ -1762,7 +1994,7 @@
             },
             {
               "title": "Symmetries and conserved quantities",
-              "body": "For a time-independent differentiable observable along a differentiable Hamiltonian trajectory,\na vanishing Poisson bracket with the Hamiltonian implies zero time derivative. [6] A smooth\nautonomous Hamiltonian Poisson-commutes with itself and has zero time derivative along its\nHamiltonian trajectories. [5][6] These quantities are constant on connected time intervals,\ngiving energy conservation in the autonomous case. [TODO]\n\nOn a finite-dimensional real symplectic vector space, an affine infinitesimally symplectic Lie\nalgebra action has a moment map whose components generate the action's vector fields through\ntheir symplectic gradients. [7] If an autonomous Hamiltonian is invariant under a generator, the\ncorresponding moment-map component is constant along its Hamiltonian trajectories. [8]"
+              "body": "For a time-independent differentiable observable along a differentiable Hamiltonian trajectory,\na vanishing Poisson bracket with the Hamiltonian implies zero time derivative. [6] A smooth\nautonomous Hamiltonian Poisson-commutes with itself and has zero time derivative along its\nHamiltonian trajectories. [5][6] These quantities are constant on connected time intervals,\ngiving energy conservation in the autonomous case. [20]\n\nOn a finite-dimensional real symplectic vector space, an affine infinitesimally symplectic Lie\nalgebra action has a moment map whose components generate the action's vector fields through\ntheir symplectic gradients. [7] If an autonomous Hamiltonian is invariant under a generator, the\ncorresponding moment-map component is constant along its Hamiltonian trajectories. [8]"
             },
             {
               "title": "Integrability",
@@ -1799,7 +2031,7 @@
               "text": "poissonBracket",
               "fullName": "ClassicalMechanics.poissonBracket",
               "kind": "def",
-              "line": 87,
+              "line": 88,
               "doc": "The Poisson bracket of two phase-space functions `f g : X → X → ℝ`, each read as `f p q` for a momentum `p` and a position `q`, at a point `(p, q)` of phase space.",
               "signature": "noncomputable def poissonBracket (f g : X → X → ℝ) (p q : X) : ℝ"
             }
@@ -1852,7 +2084,7 @@
               "text": "poissonBracket_antisymm",
               "fullName": "ClassicalMechanics.poissonBracket_antisymm",
               "kind": "lemma",
-              "line": 106,
+              "line": 107,
               "doc": "The Poisson bracket is antisymmetric.",
               "signature": "lemma poissonBracket_antisymm (f g : X → X → ℝ) (p q : X) :\n    poissonBracket f g p q = -poissonBracket g f p q"
             },
@@ -1860,7 +2092,7 @@
               "text": "poissonBracket_self",
               "fullName": "ClassicalMechanics.poissonBracket_self",
               "kind": "lemma",
-              "line": 113,
+              "line": 114,
               "doc": "The Poisson bracket of a phase-space function with itself vanishes.",
               "signature": "lemma poissonBracket_self (f : X → X → ℝ) (p q : X) : poissonBracket f f p q = 0"
             },
@@ -1868,7 +2100,7 @@
               "text": "poissonBracket_add_left",
               "fullName": "ClassicalMechanics.poissonBracket_add_left",
               "kind": "lemma",
-              "line": 128,
+              "line": 129,
               "doc": "The Poisson bracket is additive in its first argument, for functions differentiable in both phase-space directions.",
               "signature": "lemma poissonBracket_add_left (f₁ f₂ g : X → X → ℝ) (p q : X)\n    (hf₁p : DifferentiableAt ℝ (fun p' => f₁ p' q) p)\n    (hf₂p : DifferentiableAt ℝ (fun p' => f₂ p' q) p)\n    (hf₁q : DifferentiableAt ℝ (fun q' => f₁ p q') q)\n    (hf₂q : Dif…"
             },
@@ -1876,7 +2108,7 @@
               "text": "poissonBracket_add_right",
               "fullName": "ClassicalMechanics.poissonBracket_add_right",
               "kind": "lemma",
-              "line": 150,
+              "line": 151,
               "doc": "The Poisson bracket is additive in its second argument.",
               "signature": "lemma poissonBracket_add_right (f g₁ g₂ : X → X → ℝ) (p q : X)\n    (hg₁p : DifferentiableAt ℝ (fun p' => g₁ p' q) p)\n    (hg₂p : DifferentiableAt ℝ (fun p' => g₂ p' q) p)\n    (hg₁q : DifferentiableAt ℝ (fun q' => g₁ p q') q)\n    (hg₂q : Di…"
             },
@@ -1884,7 +2116,7 @@
               "text": "poissonBracket_const_mul_left",
               "fullName": "ClassicalMechanics.poissonBracket_const_mul_left",
               "kind": "lemma",
-              "line": 141,
+              "line": 142,
               "doc": "The Poisson bracket is homogeneous of degree one in its first argument, for a function differentiable in both phase-space directions.",
               "signature": "lemma poissonBracket_const_mul_left (c : ℝ) (f g : X → X → ℝ) (p q : X)\n    (hfp : DifferentiableAt ℝ (fun p' => f p' q) p)\n    (hfq : DifferentiableAt ℝ (fun q' => f p q') q) :\n    poissonBracket (fun p' q' => c * f p' q') g p q = c * poi…"
             },
@@ -1892,7 +2124,7 @@
               "text": "poissonBracket_const_mul_right",
               "fullName": "ClassicalMechanics.poissonBracket_const_mul_right",
               "kind": "lemma",
-              "line": 162,
+              "line": 163,
               "doc": "The Poisson bracket is homogeneous of degree one in its second argument.",
               "signature": "lemma poissonBracket_const_mul_right (c : ℝ) (f g : X → X → ℝ) (p q : X)\n    (hgp : DifferentiableAt ℝ (fun p' => g p' q) p)\n    (hgq : DifferentiableAt ℝ (fun q' => g p q') q) :\n    poissonBracket f (fun p' q' => c * g p' q') p q = c * po…"
             },
@@ -1900,7 +2132,7 @@
               "text": "poissonBracket_mul_left",
               "fullName": "ClassicalMechanics.poissonBracket_mul_left",
               "kind": "lemma",
-              "line": 177,
+              "line": 178,
               "doc": "The Poisson bracket satisfies the Leibniz rule in its first argument.",
               "signature": "lemma poissonBracket_mul_left (f₁ f₂ g : X → X → ℝ) (p q : X)\n    (hf₁p : DifferentiableAt ℝ (fun p' => f₁ p' q) p)\n    (hf₂p : DifferentiableAt ℝ (fun p' => f₂ p' q) p)\n    (hf₁q : DifferentiableAt ℝ (fun q' => f₁ p q') q)\n    (hf₂q : Dif…"
             },
@@ -1908,7 +2140,7 @@
               "text": "poissonBracket_mul_right",
               "fullName": "ClassicalMechanics.poissonBracket_mul_right",
               "kind": "lemma",
-              "line": 191,
+              "line": 192,
               "doc": "The Poisson bracket satisfies the Leibniz rule in its second argument.",
               "signature": "lemma poissonBracket_mul_right (f g₁ g₂ : X → X → ℝ) (p q : X)\n    (hg₁p : DifferentiableAt ℝ (fun p' => g₁ p' q) p)\n    (hg₂p : DifferentiableAt ℝ (fun p' => g₂ p' q) p)\n    (hg₁q : DifferentiableAt ℝ (fun q' => g₁ p q') q)\n    (hg₂q : Di…"
             }
@@ -1923,7 +2155,7 @@
               "text": "deriv_comp_eq_poissonBracket",
               "fullName": "ClassicalMechanics.deriv_comp_eq_poissonBracket",
               "kind": "theorem",
-              "line": 240,
+              "line": 241,
               "doc": "Along a solution of Hamilton's equations for a Hamiltonian `H`, the time derivative of a phase-space observable `f` is its Poisson bracket with `H t`.",
               "signature": "theorem deriv_comp_eq_poissonBracket (H : Time → X → X → ℝ) (p q : Time → X) (f : X → X → ℝ)\n    (t : Time) (heq : hamiltonEqOp H p q = 0)\n    (hp : DifferentiableAt ℝ p t) (hq : DifferentiableAt ℝ q t)\n    (hf : DifferentiableAt ℝ (Functi…"
             }
@@ -2000,7 +2232,7 @@
               "text": "LiouvilleIntegrableOn",
               "fullName": "ClassicalMechanics.LiouvilleIntegrableOn",
               "kind": "structure",
-              "line": 88,
+              "line": 94,
               "doc": "A Liouville integrable system for a Hamiltonian `H` on an open dense domain `U` of the `2d`-dimensional phase space `EuclideanSpace ℝ (Fin d) × EuclideanSpace ℝ (Fin d)`, whose points are read as `(p, q)`: `d` smooth conserved quantities, one per degree of freedom, that are pairwise in involution and functionally independent at every point of `U`.",
               "signature": "structure LiouvilleIntegrableOn {d : ℕ}\n    (U : Set (EuclideanSpace ℝ (Fin d) × EuclideanSpace ℝ (Fin d)))\n    (H : EuclideanSpace ℝ (Fin d) → EuclideanSpace ℝ (Fin d) → ℝ) where\n  isOpen : IsOpen U\n  dense : Dense U\n  f : Fin d → Euclide…"
             }
@@ -2015,7 +2247,7 @@
               "text": "LiouvilleIntegrableOn.deriv_comp_eq_zero",
               "fullName": "ClassicalMechanics.LiouvilleIntegrableOn.deriv_comp_eq_zero",
               "kind": "lemma",
-              "line": 117,
+              "line": 150,
               "doc": "Each conserved quantity of a Liouville integrable system has zero time derivative along a solution of Hamilton's equations for `H` which lies in the domain `U` at time `t`.",
               "signature": "lemma LiouvilleIntegrableOn.deriv_comp_eq_zero {d : ℕ}\n    {U : Set (EuclideanSpace ℝ (Fin d) × EuclideanSpace ℝ (Fin d))}\n    {H : EuclideanSpace ℝ (Fin d) → EuclideanSpace ℝ (Fin d) → ℝ}\n    (LI : LiouvilleIntegrableOn U H)\n    (p q : Ti…"
             }
@@ -2030,7 +2262,7 @@
               "text": "LiouvilleIntegrableOn.oneDegreeOfFreedom",
               "fullName": "ClassicalMechanics.LiouvilleIntegrableOn.oneDegreeOfFreedom",
               "kind": "def",
-              "line": 143,
+              "line": 176,
               "doc": "A Hamiltonian system with one degree of freedom is Liouville integrable, with the Hamiltonian as its single conserved quantity, on any open dense domain on which the Hamiltonian is smooth and has non-vanishing phase-space gradient.",
               "signature": "def LiouvilleIntegrableOn.oneDegreeOfFreedom\n    {U : Set (EuclideanSpace ℝ (Fin 1) × EuclideanSpace ℝ (Fin 1))}\n    {H : EuclideanSpace ℝ (Fin 1) → EuclideanSpace ℝ (Fin 1) → ℝ}\n    (hU : IsOpen U) (hdense : Dense U) (hH : ContDiffOn ℝ ∞ …"
             }
@@ -2146,7 +2378,7 @@
               "text": "angularMomentum",
               "fullName": "ClassicalMechanics.CentralForce.angularMomentum",
               "kind": "def",
-              "line": 77,
+              "line": 76,
               "doc": "The angular momentum `L = q × p` of a particle at position `q` with momentum `p`.",
               "signature": "noncomputable def angularMomentum (p q : EuclideanSpace ℝ (Fin 3)) : EuclideanSpace ℝ (Fin 3)"
             },
@@ -2154,7 +2386,7 @@
               "text": "angularMomentumSq",
               "fullName": "ClassicalMechanics.CentralForce.angularMomentumSq",
               "kind": "def",
-              "line": 103,
+              "line": 102,
               "doc": "The squared magnitude `L² = ‖q × p‖²` of the angular momentum, as a function on phase space.",
               "signature": "noncomputable def angularMomentumSq (p q : EuclideanSpace ℝ (Fin 3)) : ℝ"
             },
@@ -2162,7 +2394,7 @@
               "text": "angularMomentumZ",
               "fullName": "ClassicalMechanics.CentralForce.angularMomentumZ",
               "kind": "def",
-              "line": 107,
+              "line": 106,
               "doc": "The component `L_z` of the angular momentum along the z-axis, as a function on phase space.",
               "signature": "noncomputable def angularMomentumZ (p q : EuclideanSpace ℝ (Fin 3)) : ℝ"
             },
@@ -2170,7 +2402,7 @@
               "text": "poissonBracket_angularMomentumSq_angularMomentumZ",
               "fullName": "ClassicalMechanics.CentralForce.poissonBracket_angularMomentumSq_angularMomentumZ",
               "kind": "lemma",
-              "line": 205,
+              "line": 204,
               "doc": "The squared magnitude of the angular momentum and its z-component are in involution.",
               "signature": "lemma poissonBracket_angularMomentumSq_angularMomentumZ (p q : EuclideanSpace ℝ (Fin 3)) :\n    poissonBracket angularMomentumSq angularMomentumZ p q = 0"
             },
@@ -2178,7 +2410,7 @@
               "text": "poissonBracket_angularMomentumSq_hamiltonian",
               "fullName": "ClassicalMechanics.CentralForce.poissonBracket_angularMomentumSq_hamiltonian",
               "kind": "lemma",
-              "line": 261,
+              "line": 260,
               "doc": "Away from the centre of force, the squared magnitude of the angular momentum Poisson-commutes with the Hamiltonian of a central-force system, so is conserved by the motion.",
               "signature": "lemma poissonBracket_angularMomentumSq_hamiltonian (p : EuclideanSpace ℝ (Fin 3))\n    {q : EuclideanSpace ℝ (Fin 3)} (hq : q ≠ 0) :\n    poissonBracket angularMomentumSq S.hamiltonian p q = 0"
             },
@@ -2186,7 +2418,7 @@
               "text": "poissonBracket_angularMomentumZ_hamiltonian",
               "fullName": "ClassicalMechanics.CentralForce.poissonBracket_angularMomentumZ_hamiltonian",
               "kind": "lemma",
-              "line": 269,
+              "line": 268,
               "doc": "Away from the centre of force, the z-component of the angular momentum Poisson-commutes with the Hamiltonian of a central-force system, so is conserved by the motion.",
               "signature": "lemma poissonBracket_angularMomentumZ_hamiltonian (p : EuclideanSpace ℝ (Fin 3))\n    {q : EuclideanSpace ℝ (Fin 3)} (hq : q ≠ 0) :\n    poissonBracket angularMomentumZ S.hamiltonian p q = 0"
             }
@@ -2305,6 +2537,21 @@
               "line": 151,
               "doc": "The Hamiltonian system of a central force, defined away from the centre of force.",
               "signature": "noncomputable def toHamiltonianSystem :\n    HamiltonianSystem 𝓘(ℝ, EuclideanSpace ℝ (Fin 3)) ⟨EuclideanSpace ℝ (Fin 3)⟩"
+            }
+          ],
+          "exists": true
+        },
+        {
+          "index": 20,
+          "file": "Physlib/ClassicalMechanics/HamiltonianMechanics/PoissonBracket.lean",
+          "declarations": [
+            {
+              "text": "observable_eq_of_poissonBracket_eq_zero",
+              "fullName": "ClassicalMechanics.observable_eq_of_poissonBracket_eq_zero",
+              "kind": "lemma",
+              "line": 273,
+              "doc": "A time-independent observable takes the same value at any two times in an interval where the trajectory satisfies Hamilton's equations and the observable Poisson-commutes with the possibly time-dependent Hamiltonian along the trajectory.",
+              "signature": "lemma observable_eq_of_poissonBracket_eq_zero (H : ℝ → X → X → ℝ) {p q : ℝ → X}\n    {s : Set ℝ} (hs : Convex ℝ s)\n    (hp : ∀ t ∈ s, HasDerivAt p (-gradient (fun q' => H t (p t) q') (q t)) t)\n    (hq : ∀ t ∈ s, HasDerivAt q (gradient (fun …"
             }
           ],
           "exists": true
@@ -2478,8 +2725,10 @@
           "alpha": true
         },
         {
-          "done": false,
-          "citations": [],
+          "done": true,
+          "citations": [
+            20
+          ],
           "alpha": true
         },
         {
@@ -3127,7 +3376,7 @@
               "text": "LagrangianSystem.chartLagrangian",
               "fullName": "ClassicalMechanics.LagrangianSystem.chartLagrangian",
               "kind": "def",
-              "line": 63,
+              "line": 61,
               "doc": "The Lagrangian in the chart `φ = extChartAt I x`, with time coordinate based at `t₀`: `L (t, q, q̇) = S (t +ᵥ t₀, d(φ.symm) (q, q̇))`, with generalised coordinates `q` and velocities `q̇`. It is meaningful only for `q` in the target of `φ`.",
               "signature": "noncomputable def chartLagrangian (S : LagrangianSystem I M) (x : M) (t₀ : Time) :\n    ℝ × E × E → ℝ"
             },
@@ -3135,7 +3384,7 @@
               "text": "LagrangianSystem.contDiffAt_chartLagrangian",
               "fullName": "ClassicalMechanics.LagrangianSystem.contDiffAt_chartLagrangian",
               "kind": "lemma",
-              "line": 69,
+              "line": 67,
               "doc": "The chart Lagrangian is smooth over the target of the chart.",
               "signature": "lemma contDiffAt_chartLagrangian [I.Boundaryless] (S : LagrangianSystem I M)\n    (x : M) (t₀ : Time) {p : ℝ × E × E} (hp : p.2.1 ∈ (extChartAt I x).target) :\n    ContDiffAt ℝ ∞ (S.chartLagrangian x t₀) p"
             }
@@ -4303,7 +4552,7 @@
               "text": "RigidBody",
               "fullName": "RigidBody",
               "kind": "structure",
-              "line": 44,
+              "line": 43,
               "doc": "A Rigid body defined by its mass distribution.",
               "signature": "structure RigidBody (d : ℕ) where\n  ρ : C^⊤⟮𝓘(ℝ, Space d), Space d; 𝓘(ℝ, ℝ), ℝ⟯ →ₗ[ℝ] ℝ"
             }
@@ -4318,7 +4567,7 @@
               "text": "RigidBody.mass",
               "fullName": "RigidBody.mass",
               "kind": "def",
-              "line": 51,
+              "line": 50,
               "doc": "The total mass of the rigid body.",
               "signature": "noncomputable def mass {d : ℕ} (R : RigidBody d) : ℝ"
             }
@@ -4333,7 +4582,7 @@
               "text": "RigidBody.centerOfMass",
               "fullName": "RigidBody.centerOfMass",
               "kind": "def",
-              "line": 59,
+              "line": 58,
               "doc": "The center of mass of the rigid body.",
               "signature": "noncomputable def centerOfMass {d : ℕ} (R : RigidBody d) : Space d"
             }
@@ -4348,7 +4597,7 @@
               "text": "RigidBody.inertiaTensor",
               "fullName": "RigidBody.inertiaTensor",
               "kind": "def",
-              "line": 63,
+              "line": 62,
               "doc": "The inertia tensor of the rigid body.",
               "signature": "noncomputable def inertiaTensor {d : ℕ} (R : RigidBody d) :\n    Matrix (Fin d) (Fin d) ℝ"
             }
@@ -4363,7 +4612,7 @@
               "text": "RigidBody.inertiaTensor_symmetric",
               "fullName": "RigidBody.inertiaTensor_symmetric",
               "kind": "lemma",
-              "line": 68,
+              "line": 67,
               "doc": null,
               "signature": "lemma inertiaTensor_symmetric {d : ℕ} (R : RigidBody d) (i j : Fin d) :\n    R.inertiaTensor i j = R.inertiaTensor j i"
             }
@@ -4378,7 +4627,7 @@
               "text": "RigidBody.inertiaTensorAbout",
               "fullName": "RigidBody.inertiaTensorAbout",
               "kind": "def",
-              "line": 91,
+              "line": 90,
               "doc": "The inertia tensor of the rigid body about the point `p`, that is with the moments taken about `p` rather than about the origin of the reference frame. Taking `p` to be the origin recovers `RigidBody.inertiaTensor`, see `RigidBody.inertiaTensorAbout_zero`.",
               "signature": "noncomputable def inertiaTensorAbout {d : ℕ} (R : RigidBody d) (p : Space d) :\n    Matrix (Fin d) (Fin d) ℝ"
             },
@@ -4386,7 +4635,7 @@
               "text": "RigidBody.inertiaTensorAbout_eq_centerOfMass_add_pointMass",
               "fullName": "RigidBody.inertiaTensorAbout_eq_centerOfMass_add_pointMass",
               "kind": "theorem",
-              "line": 148,
+              "line": 147,
               "doc": "**The parallel-axis theorem**: the inertia tensor about a point `p` is the inertia tensor about the centre of mass `c` plus the inertia tensor about `p` of a point particle carrying the total mass of the body and sitting at `c`, that is `M (|c − p|² 1 − (c − p) ⊗ (c − p))`.",
               "signature": "theorem inertiaTensorAbout_eq_centerOfMass_add_pointMass {d : ℕ} (R : RigidBody d) (h : R.mass ≠ 0)\n    (p : Space d) :\n    R.inertiaTensorAbout p = R.inertiaTensorAbout R.centerOfMass\n      + R.mass • (⟪R.centerOfMass - p, R.centerOfMass …"
             }
@@ -6136,7 +6385,7 @@
               "text": "ofVectorPotential",
               "fullName": "Electromagnetism.TempDistElectromagneticPotential.ofVectorPotential",
               "kind": "def",
-              "line": 118,
+              "line": 119,
               "doc": "The creation of an electromagnetic potential from a vector potential.",
               "signature": "noncomputable def ofVectorPotential {d} (c : SpeedOfLight) :\n    ((Time × Space d) →d[ℝ] EuclideanSpace ℝ (Fin d)) →ₗ[ℝ]\n    TempDistElectromagneticPotential d where"
             }
@@ -8245,7 +8494,7 @@
       "file": "Physlib/Particles/StandardModel/HiggsBoson/API-map.md",
       "title": "Higgs Field",
       "alpha": true,
-      "abstract": "A Higgs field is a smooth section of the Higgs bundle over spacetime, on which the global Standard\nModel gauge group acts; for now the bundle is the trivial one, whose fibre is the two-dimensional\ncomplex vector space of pointwise Higgs values. The pointwise values carry an orthonormal basis,\nreal scalar coordinates, and a gauge representation whose orbits are classified by the norm, while\nfields carry constant fields, smooth components, a pointwise inner product and norm squared, the\nStandard Model Higgs potential with its minimization theory, and invariant effective potentials on\npointwise values; the two Higgs doublet model builds on this area.",
+      "abstract": "Physlib models Higgs fields as real analytic sections of the Higgs bundle over spacetime. The\nbundle is currently trivial, with fibre the two-dimensional complex vector space of pointwise Higgs\nvalues. The pointwise values carry an orthonormal basis,\nreal scalar coordinates, and a gauge representation whose orbits are classified by the norm, while\nfields carry constant fields, smooth components, a pointwise inner product and norm squared, the\nStandard Model Higgs potential with its minimization theory, and invariant effective potentials on\npointwise values; the two Higgs doublet model builds on this area.",
       "abstractHeading": "Abstract (Alpha)",
       "content": [
         {
@@ -8259,15 +8508,15 @@
             },
             {
               "title": "The Higgs bundle and Higgs fields",
-              "body": "The Higgs bundle over spacetime {3} is a smooth vector bundle, currently the trivial bundle with\nfibre the pointwise Higgs values. [8] It is the bundle associated to the gauge group, rather than\nthe trivial one. [TODO]\n\nHiggs fields are smooth sections of the Higgs bundle; each has an underlying map to pointwise\nHiggs values, and every Higgs vector gives a constant field. [9] The components of a Higgs field\nare smooth, real and imaginary parts alike. [10] The pointwise inner product of two Higgs fields\nhas an explicit expansion, is conjugate symmetric and additive, and is smooth. [11] The pointwise\nnorm squared of a Higgs field is the real part of its inner product with itself, is nonnegative,\nand is smooth. [12]\n\nGauge transformations act on Higgs fields pointwise; two Higgs fields lie in the same orbit\nexactly when their pointwise norms squared agree, and every smooth nonnegative function on\nspacetime is the norm squared of some Higgs field. [13][TODO] Since the gauge group preserves\ninner products and norms of Higgs vectors, the pointwise inner product and norm squared of Higgs\nfields are gauge invariant. [5]"
+              "body": "The Higgs bundle over spacetime {3} is a smooth vector bundle, currently the trivial bundle with\nfibre the pointwise Higgs values. [8] It is the bundle associated to the gauge group, rather than\nthe trivial one. [TODO]\n\nA Higgs field has a Higgs vector as its value at each spacetime point, and every Higgs vector\ndefines a constant field. [9] The real and imaginary parts of its components are real analytic. [10]\nThe pointwise inner product of two Higgs fields has an explicit expansion, is conjugate\nsymmetric and additive, and is smooth. [11] The squared norm is the real part of the inner product\nof the field with itself; it is nonnegative and smooth. [12] Which scalar functions on spacetime\noccur as these squared norms? [TODO]\n\nThe weak isospin factor SU(2) acts on the two complex components of a Higgs doublet, with the\ncolour and hypercharge factors set to the identity. [4] In the trivial bundle, on a region where\nthe doublet is nowhere zero, a local weak rotation sends it to the neutral representative whose\nsecond component is its norm. For a $C^n$ doublet the chosen rotation has $C^n$ matrix entries on\nthe region. [13] This is the scalar part of unitary gauge: the doublet's direction is fixed while\nits magnitude can vary across spacetime.\n\nOn a region where the first of two $C^n$ doublets is nowhere zero, their pointwise squared norms\nagree exactly when a weak rotation with $C^n$ matrix entries carries the first to the second\nthere. For Higgs fields this gives real analytic matrix entries on that region. [14] A pointwise\naction of the full local Standard Model gauge group on Higgs sections requires transformations\ncompatible with the analyticity of the fields. [TODO]"
             },
             {
               "title": "The Higgs potential",
-              "body": "The Standard Model Higgs potential {4} has a mass parameter and a quartic coupling, and evaluates\nsmoothly on a Higgs field; negating both parameters negates the potential, and the potential\nvanishes on the zero field; at each spacetime point it is gauge invariant. [14] Completing the\nsquare writes it as a quadratic in the norm squared, whose discriminant is nonnegative and\nvanishes exactly in a characterized case. [15]\n\nA bounded-below potential has nonnegative quartic coupling, and a positive quartic coupling makes\nit bounded below. [16] The values it attains, its bounds when the discriminant vanishes, and its\nminimum for positive and maximum for negative quartic coupling are all determined\nexplicitly. [16]"
+              "body": "The Standard Model Higgs potential {4} has a mass parameter and a quartic coupling, and evaluates\nsmoothly on a Higgs field; negating both parameters negates the potential, and the potential\nvanishes on the zero field; at each spacetime point it is gauge invariant. [15] Completing the\nsquare writes it as a quadratic in the norm squared, whose discriminant is nonnegative and\nvanishes exactly in a characterized case. [16]\n\nA bounded-below potential has nonnegative quartic coupling, and a positive quartic coupling makes\nit bounded below. [17] The values it attains, its bounds when the discriminant vanishes, and its\nminimum for positive and maximum for negative quartic coupling are all determined\nexplicitly. [17]"
             },
             {
               "title": "Effective potentials",
-              "body": "An effective potential is a function on pointwise Higgs values; when it is gauge invariant it is\nconstant on gauge orbits and so factors through the norm. [17] An effective potential of bounded\nmass dimension is polynomial, splits into homogeneous terms of each mass dimension whose odd terms\nvanish when it is invariant, and is then a sum of powers of the norm. [18] Effective potentials\ndetermine potentials on Higgs fields, so that field-level statements follow from pointwise\ninvariant ones. [TODO] Higgs fields have covariant derivatives and kinetic terms, built from a\ngauge connection over spacetime. [TODO]"
+              "body": "An effective potential is a function on pointwise Higgs values; when it is gauge invariant it is\nconstant on gauge orbits and so factors through the norm. [18] An effective potential of bounded\nmass dimension is polynomial, splits into homogeneous terms of each mass dimension whose odd terms\nvanish when it is invariant, and is then a sum of powers of the norm. [19] Effective potentials\ndetermine potentials on Higgs fields, so that field-level statements follow from pointwise\ninvariant ones. [TODO] Higgs fields have covariant derivatives and kinetic terms, built from a\ngauge connection over spacetime. [TODO]"
             }
           ]
         }
@@ -8281,7 +8530,7 @@
               "text": "HiggsVec",
               "fullName": "StandardModel.HiggsVec",
               "kind": "abbrev",
-              "line": 101,
+              "line": 109,
               "doc": "The vector space `HiggsVec` is defined to be the complex Euclidean space of dimension 2. For a given spacetime point a Higgs field gives a value in `HiggsVec`.",
               "signature": "abbrev HiggsVec"
             }
@@ -8296,7 +8545,7 @@
               "text": "orthonormBasis",
               "fullName": "StandardModel.HiggsVec.orthonormBasis",
               "kind": "def",
-              "line": 114,
+              "line": 122,
               "doc": "An orthonormal basis of `HiggsVec`.",
               "signature": "def orthonormBasis : OrthonormalBasis (Fin 2) ℂ HiggsVec"
             },
@@ -8304,7 +8553,7 @@
               "text": "ofReal",
               "fullName": "StandardModel.HiggsVec.ofReal",
               "kind": "def",
-              "line": 131,
+              "line": 139,
               "doc": "Generating a Higgs vector `(0, √a)` from a real number `a`, such that the norm-squared of that Higgs vector is `a`.",
               "signature": "def ofReal (a : ℝ) : HiggsVec"
             },
@@ -8312,7 +8561,7 @@
               "text": "ofReal_normSq",
               "fullName": "StandardModel.HiggsVec.ofReal_normSq",
               "kind": "lemma",
-              "line": 135,
+              "line": 143,
               "doc": null,
               "signature": "lemma ofReal_normSq {a : ℝ} (ha : 0 ≤ a) : ‖ofReal a‖ ^ 2 = a"
             }
@@ -8327,7 +8576,7 @@
               "text": "toRealScalars",
               "fullName": "StandardModel.HiggsVec.toRealScalars",
               "kind": "def",
-              "line": 481,
+              "line": 596,
               "doc": "The underlying real values of the Higgs vector.",
               "signature": "def toRealScalars : HiggsVec →ₗ[ℝ] (Fin 4 → ℝ) where"
             },
@@ -8335,7 +8584,7 @@
               "text": "toRealScalars_smul_real",
               "fullName": "StandardModel.HiggsVec.toRealScalars_smul_real",
               "kind": "lemma",
-              "line": 494,
+              "line": 609,
               "doc": null,
               "signature": "lemma toRealScalars_smul_real (a : ℝ) (φ : HiggsVec) :\n    toRealScalars (a • φ) = a • toRealScalars φ"
             },
@@ -8343,7 +8592,7 @@
               "text": "ofReal_toRealScalars",
               "fullName": "StandardModel.HiggsVec.ofReal_toRealScalars",
               "kind": "lemma",
-              "line": 497,
+              "line": 612,
               "doc": null,
               "signature": "lemma ofReal_toRealScalars (a : ℝ) :\n    toRealScalars (ofReal a) = !₄[0, 0, Real.sqrt a, 0]"
             },
@@ -8351,7 +8600,7 @@
               "text": "ofReal_toRealScalars_norm",
               "fullName": "StandardModel.HiggsVec.ofReal_toRealScalars_norm",
               "kind": "lemma",
-              "line": 502,
+              "line": 617,
               "doc": null,
               "signature": "lemma ofReal_toRealScalars_norm (φ : HiggsVec) :\n    toRealScalars (ofReal (‖φ‖ ^ 2)) = !₄[0, 0, ‖φ‖, 0]"
             }
@@ -8366,7 +8615,7 @@
               "text": "repGaugeGroupI",
               "fullName": "StandardModel.HiggsVec.repGaugeGroupI",
               "kind": "def",
-              "line": 156,
+              "line": 164,
               "doc": "The representation of the gauge group `GaugeGroupI` on `HiggsVec`: the `SU(2)` factor acts by matrix multiplication, and the `U(1)` factor by scalar multiplication with its third power. Hypercharges are normalised as `6Y`, so the power `3` corresponds to the textbook hypercharge `Y = 1/2`.",
               "signature": "def repGaugeGroupI : Representation ℂ GaugeGroupI HiggsVec where"
             },
@@ -8374,7 +8623,7 @@
               "text": "repGaugeGroupI_apply",
               "fullName": "StandardModel.HiggsVec.repGaugeGroupI_apply",
               "kind": "lemma",
-              "line": 172,
+              "line": 180,
               "doc": null,
               "signature": "lemma repGaugeGroupI_apply (g : StandardModel.GaugeGroupI) (φ : HiggsVec) :\n    repGaugeGroupI g φ = (WithLp.toLp 2 <| g.toU1 ^ 3 • (g.toSU2.1 *ᵥ φ.ofLp))"
             },
@@ -8382,7 +8631,7 @@
               "text": "repGaugeGroupI_apply_eq_U1_mul_SU2",
               "fullName": "StandardModel.HiggsVec.repGaugeGroupI_apply_eq_U1_mul_SU2",
               "kind": "lemma",
-              "line": 175,
+              "line": 183,
               "doc": null,
               "signature": "lemma repGaugeGroupI_apply_eq_U1_mul_SU2 (g : StandardModel.GaugeGroupI) (φ : HiggsVec) :\n    repGaugeGroupI g φ = (WithLp.toLp 2 <| g.toSU2.1 *ᵥ (g.toU1 ^ 3 • φ.ofLp))"
             },
@@ -8390,7 +8639,7 @@
               "text": "repGaugeGroupI_apply_eq_U1_smul_SU2",
               "fullName": "StandardModel.HiggsVec.repGaugeGroupI_apply_eq_U1_smul_SU2",
               "kind": "lemma",
-              "line": 179,
+              "line": 187,
               "doc": null,
               "signature": "lemma repGaugeGroupI_apply_eq_U1_smul_SU2 (g : StandardModel.GaugeGroupI) (φ : HiggsVec) :\n    repGaugeGroupI g φ = (WithLp.toLp 2 <| (g.toU1 ^ 3 • g.toSU2.1) *ᵥ φ.ofLp)"
             },
@@ -8398,7 +8647,7 @@
               "text": "repGaugeGroupI_mul_apply",
               "fullName": "StandardModel.HiggsVec.repGaugeGroupI_mul_apply",
               "kind": "lemma",
-              "line": 213,
+              "line": 221,
               "doc": null,
               "signature": "lemma repGaugeGroupI_mul_apply (g₁ g₂ : StandardModel.GaugeGroupI) (φ : HiggsVec) :\n    repGaugeGroupI (g₁ * g₂) φ = repGaugeGroupI g₁ (repGaugeGroupI g₂ φ)"
             },
@@ -8406,7 +8655,7 @@
               "text": "repGaugeGroupI_inv_apply_eq_iff",
               "fullName": "StandardModel.HiggsVec.repGaugeGroupI_inv_apply_eq_iff",
               "kind": "lemma",
-              "line": 217,
+              "line": 225,
               "doc": null,
               "signature": "lemma repGaugeGroupI_inv_apply_eq_iff (g : StandardModel.GaugeGroupI) (φ ψ : HiggsVec) :\n    repGaugeGroupI g⁻¹ φ = ψ ↔ φ = repGaugeGroupI g ψ"
             }
@@ -8421,7 +8670,7 @@
               "text": "repGaugeGroupI_inner",
               "fullName": "StandardModel.HiggsVec.repGaugeGroupI_inner",
               "kind": "lemma",
-              "line": 194,
+              "line": 202,
               "doc": null,
               "signature": "lemma repGaugeGroupI_inner (g : StandardModel.GaugeGroupI) (φ ψ : HiggsVec) :\n    ⟪repGaugeGroupI g φ, repGaugeGroupI g ψ⟫_ℂ = ⟪φ, ψ⟫_ℂ"
             },
@@ -8429,7 +8678,7 @@
               "text": "repGaugeGroupI_norm",
               "fullName": "StandardModel.HiggsVec.repGaugeGroupI_norm",
               "kind": "lemma",
-              "line": 203,
+              "line": 211,
               "doc": null,
               "signature": "lemma repGaugeGroupI_norm (g : StandardModel.GaugeGroupI) (φ : HiggsVec) :\n    ‖repGaugeGroupI g φ‖ = ‖φ‖"
             }
@@ -8444,7 +8693,7 @@
               "text": "toRealGroupElem",
               "fullName": "StandardModel.HiggsVec.toRealGroupElem",
               "kind": "def",
-              "line": 244,
+              "line": 252,
               "doc": "Given a Higgs vector, a rotation matrix which puts the first component of the vector to zero, and the second component to a non-negative real.",
               "signature": "def toRealGroupElem (φ : HiggsVec) : GaugeGroupI"
             },
@@ -8452,7 +8701,7 @@
               "text": "toRealGroupElem_apply_self",
               "fullName": "StandardModel.HiggsVec.toRealGroupElem_apply_self",
               "kind": "lemma",
-              "line": 275,
+              "line": 278,
               "doc": null,
               "signature": "lemma toRealGroupElem_apply_self (φ : HiggsVec) :\n    repGaugeGroupI (toRealGroupElem φ) φ = ofReal (‖φ‖ ^ 2)"
             },
@@ -8460,7 +8709,7 @@
               "text": "exists_repGaugeGroupI_eq_iff_norm_eq",
               "fullName": "StandardModel.HiggsVec.exists_repGaugeGroupI_eq_iff_norm_eq",
               "kind": "lemma",
-              "line": 308,
+              "line": 380,
               "doc": "Two Higgs vectors are in the same gauge orbit (i.e. related by `repGaugeGroupI`) if and only if they have the same norm.",
               "signature": "lemma exists_repGaugeGroupI_eq_iff_norm_eq (φ : HiggsVec) (ψ : HiggsVec) :\n    (∃ g : GaugeGroupI, repGaugeGroupI g φ = ψ) ↔ ‖ψ‖ = ‖φ‖"
             },
@@ -8468,7 +8717,7 @@
               "text": "electromagnetismU1_repGaugeGroupI_apply",
               "fullName": "StandardModel.HiggsVec.electromagnetismU1_repGaugeGroupI_apply",
               "kind": "lemma",
-              "line": 432,
+              "line": 547,
               "doc": "The electromagnetic `U(1)` acts on a Higgs vector as `diag(u⁶, 1)`: the upper component has electric charge `+1` and the lower component is neutral.",
               "signature": "lemma electromagnetismU1_repGaugeGroupI_apply (g : unitary ℂ) (φ : HiggsVec) :\n    repGaugeGroupI (StandardModel.GaugeGroupI.electromagnetismU1 g) φ =\n    (WithLp.toLp 2 <| !![g.1 ^ 6, 0; 0, 1] *ᵥ φ.ofLp)"
             },
@@ -8476,7 +8725,7 @@
               "text": "electromagnetismU1_repGaugeGroupI_ofReal",
               "fullName": "StandardModel.HiggsVec.electromagnetismU1_repGaugeGroupI_ofReal",
               "kind": "lemma",
-              "line": 446,
+              "line": 561,
               "doc": "The electromagnetic `U(1)` leaves the Higgs vector `ofReal a = (0, √a)` invariant: the Higgs vacuum is electrically neutral, so electromagnetism is unbroken.",
               "signature": "lemma electromagnetismU1_repGaugeGroupI_ofReal (g : unitary ℂ) (a : ℝ) :\n    repGaugeGroupI (StandardModel.GaugeGroupI.electromagnetismU1 g) (ofReal a) = ofReal a"
             },
@@ -8484,7 +8733,7 @@
               "text": "exists_electromagnetismU1_fst_eq_norm",
               "fullName": "StandardModel.HiggsVec.exists_electromagnetismU1_fst_eq_norm",
               "kind": "lemma",
-              "line": 456,
+              "line": 571,
               "doc": "There is an element of the electromagnetic `U(1)` making the first (charged) component of a Higgs vector real and non-negative. It fixes second components, and so the Higgs vacuum `ofReal a`. This is used to gauge-fix two-Higgs-doublet configurations to `Φ1 = (0, ‖Φ1‖)`.",
               "signature": "lemma exists_electromagnetismU1_fst_eq_norm (φ : HiggsVec) :\n    ∃ g : unitary ℂ,\n      (repGaugeGroupI (StandardModel.GaugeGroupI.electromagnetismU1 g) φ).ofLp 0 = ‖φ.ofLp 0‖"
             }
@@ -8499,7 +8748,7 @@
               "text": "mem_stabilizer_ofReal_iff",
               "fullName": "StandardModel.HiggsVec.mem_stabilizer_ofReal_iff",
               "kind": "lemma",
-              "line": 333,
+              "line": 448,
               "doc": "A gauge transformation fixes the non-zero Higgs vector `ofReal a = (0, √a)` if and only if its `SU(2)` part is `diag(u³, ū³)`, where `u` is its `U(1)` part.",
               "signature": "lemma mem_stabilizer_ofReal_iff {a : ℝ} (ha : 0 < a) (g : GaugeGroupI) :\n    g ∈ repGaugeGroupI.stabilizer (ofReal a) ↔\n    GaugeGroupI.toSU2 g = GaugeGroupI.diagSU2 (GaugeGroupI.toU1 g ^ 3)"
             },
@@ -8507,7 +8756,7 @@
               "text": "stabilizer_ofReal",
               "fullName": "StandardModel.HiggsVec.stabilizer_ofReal",
               "kind": "theorem",
-              "line": 366,
+              "line": 481,
               "doc": "The Higgs vacuum breaks electroweak symmetry down to color and electromagnetism: the stability group of the non-zero Higgs vector `ofReal a = (0, √a)` is the subgroup `SU(3) × U(1)_EM` of `GaugeGroupI`, with elements `(h, diag(u³, ū³), u)`.",
               "signature": "theorem stabilizer_ofReal {a : ℝ} (ha : 0 < a) :\n    repGaugeGroupI.stabilizer (ofReal a) = UnbrokenGaugeGroupI.incl.range"
             },
@@ -8515,7 +8764,7 @@
               "text": "exists_stabilizer_eq_conj_unbrokenGaugeGroupI",
               "fullName": "StandardModel.HiggsVec.exists_stabilizer_eq_conj_unbrokenGaugeGroupI",
               "kind": "lemma",
-              "line": 377,
+              "line": 492,
               "doc": "The stability group of any non-zero Higgs vector is conjugate to `SU(3) × U(1)_EM`.",
               "signature": "lemma exists_stabilizer_eq_conj_unbrokenGaugeGroupI (φ : HiggsVec) (hφ : φ ≠ 0) :\n    ∃ g : GaugeGroupI, repGaugeGroupI.stabilizer φ =\n      UnbrokenGaugeGroupI.incl.range.map (MulAut.conj g)"
             },
@@ -8523,7 +8772,7 @@
               "text": "mem_iInf_stabilizer_iff",
               "fullName": "StandardModel.HiggsVec.mem_iInf_stabilizer_iff",
               "kind": "lemma",
-              "line": 390,
+              "line": 505,
               "doc": "The gauge transformations fixing every Higgs vector are those of the form `(h, α⁻³ I₂, α)` with `h ∈ SU(3)` arbitrary and `α` a sixth root of unity, i.e. the subgroup `SU(3) × ℤ₆` of `GaugeGroupI`. Here `ℤ₆` sits inside `SU(2) × U(1)`: it is the image there of the central `ℤ₆` used for `GaugeGroupℤ₆`, whose elements also carry the `SU(3)` part `α² I₃`, so this subgroup contains the central `ℤ₆`.",
               "signature": "lemma mem_iInf_stabilizer_iff (g : GaugeGroupI) :\n    g ∈ ⨅ φ, repGaugeGroupI.stabilizer φ ↔\n    ∃ α : rootsOfUnity 6 ℂ, GaugeGroupI.toSU2 g = gaugeGroupℤ₆SU2OfRoot α ∧\n      GaugeGroupI.toU1 g = gaugeGroupℤ₆UnitaryOfRoot α"
             }
@@ -8538,7 +8787,7 @@
               "text": "HiggsBundle",
               "fullName": "StandardModel.HiggsBundle",
               "kind": "abbrev",
-              "line": 528,
+              "line": 643,
               "doc": "The `HiggsBundle` is defined as the trivial vector bundle with base `SpaceTime` and fiber `HiggsVec`. Thus as a manifold it corresponds to `ℝ⁴ × ℂ²`.",
               "signature": "abbrev HiggsBundle"
             }
@@ -8553,15 +8802,15 @@
               "text": "HiggsField",
               "fullName": "StandardModel.HiggsField",
               "kind": "abbrev",
-              "line": 556,
-              "doc": "The type `HiggsField` is defined such that elements are smooth sections of the trivial vector bundle `HiggsBundle`. Such elements are Higgs fields. Since `HiggsField` is trivial as a vector bundle, a Higgs field is equivalent to a smooth map from `SpaceTime` to `HiggsVec`.",
+              "line": 669,
+              "doc": "Real analytic sections of the trivial Higgs bundle, equivalently real analytic maps from `SpaceTime` to `HiggsVec`. The regularity `⊤` here means `ω`, not ordinary `C^∞`.",
               "signature": "abbrev HiggsField : Type"
             },
             {
               "text": "const",
               "fullName": "StandardModel.HiggsField.const",
               "kind": "def",
-              "line": 578,
+              "line": 691,
               "doc": "Given a vector in `HiggsVec` the constant Higgs field with value equal to that section.",
               "signature": "def const : HiggsVec →ₗ[ℝ] HiggsField where"
             },
@@ -8569,7 +8818,7 @@
               "text": "const_apply",
               "fullName": "StandardModel.HiggsField.const_apply",
               "kind": "lemma",
-              "line": 595,
+              "line": 708,
               "doc": "For all spacetime points, the constant Higgs field defined by a Higgs vector, returns that Higgs Vector.",
               "signature": "lemma const_apply (φ : HiggsVec) (x : SpaceTime) : const φ x = φ"
             },
@@ -8577,7 +8826,7 @@
               "text": "toHiggsVec",
               "fullName": "StandardModel.HiggsField.toHiggsVec",
               "kind": "def",
-              "line": 604,
+              "line": 717,
               "doc": "Given a `HiggsField`, the corresponding map from `SpaceTime` to `HiggsVec`.",
               "signature": "def toHiggsVec (φ : HiggsField) : SpaceTime → HiggsVec"
             },
@@ -8585,7 +8834,7 @@
               "text": "toHiggsVec_smooth",
               "fullName": "StandardModel.HiggsField.toHiggsVec_smooth",
               "kind": "lemma",
-              "line": 606,
+              "line": 719,
               "doc": null,
               "signature": "lemma toHiggsVec_smooth (φ : HiggsField) :\n    ContMDiff 𝓘(ℝ, SpaceTime) 𝓘(ℝ, HiggsVec) ⊤ φ.toHiggsVec"
             },
@@ -8593,7 +8842,7 @@
               "text": "const_toHiggsVec_apply",
               "fullName": "StandardModel.HiggsField.const_toHiggsVec_apply",
               "kind": "lemma",
-              "line": 610,
+              "line": 723,
               "doc": null,
               "signature": "lemma const_toHiggsVec_apply (φ : HiggsField) (x : SpaceTime) :\n    const (φ.toHiggsVec x) x = φ x"
             }
@@ -8608,7 +8857,7 @@
               "text": "contDiff",
               "fullName": "StandardModel.HiggsField.contDiff",
               "kind": "lemma",
-              "line": 622,
+              "line": 735,
               "doc": null,
               "signature": "lemma contDiff (φ : HiggsField) :\n    ContDiff ℝ ⊤ φ"
             },
@@ -8616,7 +8865,7 @@
               "text": "toVec_smooth",
               "fullName": "StandardModel.HiggsField.toVec_smooth",
               "kind": "lemma",
-              "line": 626,
+              "line": 739,
               "doc": null,
               "signature": "lemma toVec_smooth (φ : HiggsField) :\n    ContMDiff 𝓘(ℝ, SpaceTime) 𝓘(ℝ, EuclideanSpace ℂ (Fin 2)) ⊤ φ"
             },
@@ -8624,7 +8873,7 @@
               "text": "apply_smooth",
               "fullName": "StandardModel.HiggsField.apply_smooth",
               "kind": "lemma",
-              "line": 630,
+              "line": 743,
               "doc": null,
               "signature": "lemma apply_smooth (φ : HiggsField) :\n    ∀ i, ContMDiff 𝓘(ℝ, SpaceTime) 𝓘(ℝ, ℂ) ⊤ (fun (x : SpaceTime) => (φ x i))"
             },
@@ -8632,7 +8881,7 @@
               "text": "apply_re_smooth",
               "fullName": "StandardModel.HiggsField.apply_re_smooth",
               "kind": "lemma",
-              "line": 634,
+              "line": 747,
               "doc": null,
               "signature": "lemma apply_re_smooth (φ : HiggsField) (i : Fin 2) :\n    ContMDiff 𝓘(ℝ, SpaceTime) 𝓘(ℝ, ℝ) ⊤ (reCLM ∘ (fun (x : SpaceTime) => (φ x i)))"
             },
@@ -8640,7 +8889,7 @@
               "text": "apply_im_smooth",
               "fullName": "StandardModel.HiggsField.apply_im_smooth",
               "kind": "lemma",
-              "line": 638,
+              "line": 751,
               "doc": null,
               "signature": "lemma apply_im_smooth (φ : HiggsField) (i : Fin 2) :\n    ContMDiff 𝓘(ℝ, SpaceTime) 𝓘(ℝ, ℝ) ⊤ (imCLM ∘ (fun (x : SpaceTime) => (φ x i)))"
             }
@@ -8655,7 +8904,7 @@
               "text": "inner_apply",
               "fullName": "StandardModel.HiggsField.inner_apply",
               "kind": "lemma",
-              "line": 661,
+              "line": 774,
               "doc": null,
               "signature": "lemma inner_apply (φ1 φ2 : HiggsField) (x : SpaceTime) :\n    ⟪φ1, φ2⟫_(SpaceTime → ℂ) x = ⟪φ1 x, φ2 x⟫_ℂ"
             },
@@ -8663,7 +8912,7 @@
               "text": "inner_eq_expand",
               "fullName": "StandardModel.HiggsField.inner_eq_expand",
               "kind": "lemma",
-              "line": 664,
+              "line": 777,
               "doc": null,
               "signature": "lemma inner_eq_expand (φ1 φ2 : HiggsField) :\n    ⟪φ1, φ2⟫_(SpaceTime → ℂ) = fun x => equivRealProdCLM.symm (((φ1 x 0).re * (φ2 x 0).re\n    + (φ1 x 1).re * (φ2 x 1).re+ (φ1 x 0).im * (φ2 x 0).im + (φ1 x 1).im * (φ2 x 1).im),\n    ((φ1 x 0).r…"
             },
@@ -8671,7 +8920,7 @@
               "text": "inner_expand_conj",
               "fullName": "StandardModel.HiggsField.inner_expand_conj",
               "kind": "lemma",
-              "line": 674,
+              "line": 787,
               "doc": "Expands the inner product on Higgs fields in terms of complex components of the Higgs fields.",
               "signature": "lemma inner_expand_conj (φ1 φ2 : HiggsField) (x : SpaceTime) :\n    ⟪φ1, φ2⟫_(SpaceTime → ℂ) x = conj (φ1 x 0) * φ2 x 0 + conj (φ1 x 1) * φ2 x 1"
             },
@@ -8679,7 +8928,7 @@
               "text": "inner_symm",
               "fullName": "StandardModel.HiggsField.inner_symm",
               "kind": "lemma",
-              "line": 684,
+              "line": 797,
               "doc": null,
               "signature": "lemma inner_symm (φ1 φ2 : HiggsField) :\n    conj ⟪φ2, φ1⟫_(SpaceTime → ℂ) = ⟪φ1, φ2⟫_(SpaceTime → ℂ)"
             },
@@ -8687,7 +8936,7 @@
               "text": "inner_add_left",
               "fullName": "StandardModel.HiggsField.inner_add_left",
               "kind": "lemma",
-              "line": 694,
+              "line": 807,
               "doc": null,
               "signature": "lemma inner_add_left (φ1 φ2 φ3 : HiggsField) :\n    ⟪φ1 + φ2, φ3⟫_(SpaceTime → ℂ) = ⟪φ1, φ3⟫_(SpaceTime → ℂ) + ⟪φ2, φ3⟫_(SpaceTime → ℂ)"
             },
@@ -8695,7 +8944,7 @@
               "text": "inner_add_right",
               "fullName": "StandardModel.HiggsField.inner_add_right",
               "kind": "lemma",
-              "line": 698,
+              "line": 811,
               "doc": null,
               "signature": "lemma inner_add_right (φ1 φ2 φ3 : HiggsField) :\n    ⟪φ1, φ2 + φ3⟫_(SpaceTime → ℂ) = ⟪φ1, φ2⟫_(SpaceTime → ℂ) + ⟪φ1, φ3⟫_(SpaceTime → ℂ)"
             },
@@ -8703,7 +8952,7 @@
               "text": "inner_zero_left",
               "fullName": "StandardModel.HiggsField.inner_zero_left",
               "kind": "lemma",
-              "line": 703,
+              "line": 816,
               "doc": null,
               "signature": "lemma inner_zero_left (φ : HiggsField) :\n    ⟪0, φ⟫_(SpaceTime → ℂ) = 0"
             },
@@ -8711,7 +8960,7 @@
               "text": "inner_zero_right",
               "fullName": "StandardModel.HiggsField.inner_zero_right",
               "kind": "lemma",
-              "line": 708,
+              "line": 821,
               "doc": null,
               "signature": "lemma inner_zero_right (φ : HiggsField) :\n    ⟪φ, 0⟫_(SpaceTime → ℂ) = 0"
             },
@@ -8719,7 +8968,7 @@
               "text": "inner_neg_left",
               "fullName": "StandardModel.HiggsField.inner_neg_left",
               "kind": "lemma",
-              "line": 712,
+              "line": 825,
               "doc": null,
               "signature": "lemma inner_neg_left (φ1 φ2 : HiggsField) :\n    ⟪-φ1, φ2⟫_(SpaceTime → ℂ) = -⟪φ1, φ2⟫_(SpaceTime → ℂ)"
             },
@@ -8727,7 +8976,7 @@
               "text": "inner_neg_right",
               "fullName": "StandardModel.HiggsField.inner_neg_right",
               "kind": "lemma",
-              "line": 716,
+              "line": 829,
               "doc": null,
               "signature": "lemma inner_neg_right (φ1 φ2 : HiggsField) :\n    ⟪φ1, -φ2⟫_(SpaceTime → ℂ) = -⟪φ1, φ2⟫_(SpaceTime → ℂ)"
             },
@@ -8735,7 +8984,7 @@
               "text": "inner_smooth",
               "fullName": "StandardModel.HiggsField.inner_smooth",
               "kind": "lemma",
-              "line": 726,
+              "line": 839,
               "doc": null,
               "signature": "lemma inner_smooth (φ1 φ2 : HiggsField) : ContMDiff 𝓘(ℝ, SpaceTime) 𝓘(ℝ, ℂ) ⊤\n    ⟪φ1, φ2⟫_(SpaceTime → ℂ)"
             }
@@ -8750,7 +8999,7 @@
               "text": "normSq",
               "fullName": "StandardModel.HiggsField.normSq",
               "kind": "def",
-              "line": 745,
+              "line": 858,
               "doc": "Given an element `φ` of `HiggsField`, `normSq φ` is defined as the the function `SpaceTime → ℝ` obtained by taking the square norm of the pointwise Higgs vector. In other words, `normSq φ x = ‖φ x‖ ^ 2`.",
               "signature": "def normSq (φ : HiggsField) : SpaceTime → ℝ"
             },
@@ -8758,7 +9007,7 @@
               "text": "inner_self_eq_normSq",
               "fullName": "StandardModel.HiggsField.inner_self_eq_normSq",
               "kind": "lemma",
-              "line": 756,
+              "line": 869,
               "doc": null,
               "signature": "lemma inner_self_eq_normSq (φ : HiggsField) (x : SpaceTime) :\n    ⟪φ, φ⟫_(SpaceTime → ℂ) x = ‖φ‖_H^2 x"
             },
@@ -8766,7 +9015,7 @@
               "text": "normSq_eq_inner_self_re",
               "fullName": "StandardModel.HiggsField.normSq_eq_inner_self_re",
               "kind": "lemma",
-              "line": 760,
+              "line": 873,
               "doc": null,
               "signature": "lemma normSq_eq_inner_self_re (φ : HiggsField) (x : SpaceTime) :\n    φ.normSq x = (⟪φ, φ⟫_(SpaceTime → ℂ) x).re"
             },
@@ -8774,7 +9023,7 @@
               "text": "normSq_expand",
               "fullName": "StandardModel.HiggsField.normSq_expand",
               "kind": "lemma",
-              "line": 765,
+              "line": 878,
               "doc": "The expansion of the norm squared of into components.",
               "signature": "lemma normSq_expand (φ : HiggsField) :\n    φ.normSq = fun x => (conj (φ x 0) * (φ x 0) + conj (φ x 1) * (φ x 1)).re"
             },
@@ -8782,7 +9031,7 @@
               "text": "normSq_nonneg",
               "fullName": "StandardModel.HiggsField.normSq_nonneg",
               "kind": "lemma",
-              "line": 776,
+              "line": 889,
               "doc": null,
               "signature": "lemma normSq_nonneg (φ : HiggsField) (x : SpaceTime) : 0 ≤ ‖φ‖_H^2 x"
             },
@@ -8790,7 +9039,7 @@
               "text": "normSq_zero",
               "fullName": "StandardModel.HiggsField.normSq_zero",
               "kind": "lemma",
-              "line": 785,
+              "line": 898,
               "doc": null,
               "signature": "lemma normSq_zero : ‖0‖_H^2 = 0"
             },
@@ -8798,7 +9047,7 @@
               "text": "normSq_smooth",
               "fullName": "StandardModel.HiggsField.normSq_smooth",
               "kind": "lemma",
-              "line": 796,
+              "line": 909,
               "doc": "The norm squared of the Higgs field is a smooth function on space-time.",
               "signature": "lemma normSq_smooth (φ : HiggsField) : ContMDiff 𝓘(ℝ, SpaceTime) 𝓘(ℝ, ℝ) ⊤ φ.normSq"
             },
@@ -8806,7 +9055,7 @@
               "text": "const_normSq",
               "fullName": "StandardModel.HiggsField.const_normSq",
               "kind": "lemma",
-              "line": 807,
+              "line": 920,
               "doc": null,
               "signature": "lemma const_normSq (φ : HiggsVec) (x : SpaceTime) :\n    ‖const φ‖_H^2 x = ‖φ‖ ^ 2"
             }
@@ -8818,34 +9067,65 @@
           "file": "Physlib/Particles/StandardModel/HiggsBoson/Basic.lean",
           "declarations": [
             {
-              "text": "gaugeAction",
-              "fullName": "StandardModel.HiggsField.gaugeAction",
-              "kind": "informal_definition",
-              "line": 819,
-              "doc": "The action of `gaugeTransformI` on `HiggsField` acting pointwise through `HiggsVec.repGaugeGroupI`.",
-              "signature": "informal_definition gaugeAction where\n  deps := [``gaugeTransformI]\n  tag := \"6V2NP\""
+              "text": "toRealGroupElem_toSU2_of_ne_zero",
+              "fullName": "StandardModel.HiggsVec.toRealGroupElem_toSU2_of_ne_zero",
+              "kind": "lemma",
+              "line": 301,
+              "doc": "The matrix of the weak rotation to the neutral representative of a nonzero Higgs vector.",
+              "signature": "lemma toRealGroupElem_toSU2_of_ne_zero (v : HiggsVec) (hv : v ≠ 0) :\n    (toRealGroupElem v).toSU2.val =\n      !![v 1 / ‖v‖, -v 0 / ‖v‖; conj (v 0) / ‖v‖, conj (v 1) / ‖v‖]"
             },
             {
-              "text": "guage_orbit",
-              "fullName": "StandardModel.HiggsField.guage_orbit",
-              "kind": "informal_lemma",
-              "line": 826,
-              "doc": "There exists a `g` in `gaugeTransformI` such that `gaugeAction g φ = φ'` iff `φ(x)^† φ(x) = φ'(x)^† φ'(x)`.",
-              "signature": "informal_lemma guage_orbit where\n  deps := [``gaugeAction]\n  tag := \"6V2NX\""
+              "text": "toRealGroupElem_eq_toSU2",
+              "fullName": "StandardModel.HiggsVec.toRealGroupElem_eq_toSU2",
+              "kind": "lemma",
+              "line": 307,
+              "doc": "The rotation to the neutral representative has trivial colour and hypercharge factors.",
+              "signature": "lemma toRealGroupElem_eq_toSU2 (v : HiggsVec) :\n    toRealGroupElem v = (1, (toRealGroupElem v).toSU2, 1)"
             },
             {
-              "text": "gauge_orbit_surject",
-              "fullName": "StandardModel.HiggsField.gauge_orbit_surject",
-              "kind": "informal_lemma",
-              "line": 833,
-              "doc": "For every smooth map `f` from `SpaceTime` to `ℝ` such that `f` is positive semidefinite, there exists a Higgs field `φ` such that `f = φ^† φ`.",
-              "signature": "informal_lemma gauge_orbit_surject where\n  deps := [``HiggsField, ``SpaceTime]\n  tag := \"6V2OC\""
+              "text": "toRealGroupElem_toSU2_apply_self",
+              "fullName": "StandardModel.HiggsVec.toRealGroupElem_toSU2_apply_self",
+              "kind": "lemma",
+              "line": 316,
+              "doc": "The weak factor of `toRealGroupElem` alone rotates the Higgs doublet to the neutral representative `(0, ‖v‖)`, as used in unitary gauge.",
+              "signature": "lemma toRealGroupElem_toSU2_apply_self (v : HiggsVec) :\n    repGaugeGroupI (1, (toRealGroupElem v).toSU2, 1) v = ofReal (‖v‖ ^ 2)"
+            },
+            {
+              "text": "contDiffOn_toRealGroupElem_toSU2",
+              "fullName": "StandardModel.HiggsVec.contDiffOn_toRealGroupElem_toSU2",
+              "kind": "lemma",
+              "line": 322,
+              "doc": "The matrix entries of the explicit weak rotation to the neutral representative are `C^n` away from the zero vector, including for `n = ∞` (smooth) and `n = ω` (analytic).",
+              "signature": "lemma contDiffOn_toRealGroupElem_toSU2 {n : ℕ∞ω} :\n    ContDiffOn ℝ n (fun (v : HiggsVec) (i j : Fin 2) => (toRealGroupElem v).toSU2.val i j)\n      {v | v ≠ 0}"
             }
           ],
           "exists": true
         },
         {
           "index": 14,
+          "file": "Physlib/Particles/StandardModel/HiggsBoson/Basic.lean",
+          "declarations": [
+            {
+              "text": "exists_contDiffOn_su2_rep_eq_iff_norm_sq_eq",
+              "fullName": "StandardModel.HiggsVec.exists_contDiffOn_su2_rep_eq_iff_norm_sq_eq",
+              "kind": "lemma",
+              "line": 409,
+              "doc": "On a set where the first of two `C^n` doublets is nonzero, their pointwise squared norms agree exactly when a weak `SU(2)` transformation with `C^n` entries relates them there.",
+              "signature": "lemma exists_contDiffOn_su2_rep_eq_iff_norm_sq_eq {E : Type*}\n    [NormedAddCommGroup E] [NormedSpace ℝ E]\n    {n : ℕ∞ω} {s : Set E} {φ ψ : E → HiggsVec} (hφ : ContDiffOn ℝ n φ s) (hψ : ContDiffOn ℝ n ψ s)\n    (hnφ : ∀ x ∈ s, φ x ≠ 0) :\n  …"
+            },
+            {
+              "text": "exists_analytic_su2_rep_eq_iff_normSq_eq",
+              "fullName": "StandardModel.HiggsField.exists_analytic_su2_rep_eq_iff_normSq_eq",
+              "kind": "lemma",
+              "line": 937,
+              "doc": "The `HiggsField` specialization of `HiggsVec.exists_contDiffOn_su2_rep_eq_iff_norm_sq_eq`. The action and real analyticity of the matrix entries hold on the given region.",
+              "signature": "lemma exists_analytic_su2_rep_eq_iff_normSq_eq (φ ψ : HiggsField) (s : Set SpaceTime)\n    (hφ : ∀ x ∈ s, φ x ≠ 0) :\n    (∃ g : SpaceTime → specialUnitaryGroup (Fin 2) ℂ,\n      ContDiffOn ℝ ω (fun x (i j : Fin 2) => (g x).val i j) s ∧\n     …"
+            }
+          ],
+          "exists": true
+        },
+        {
+          "index": 15,
           "file": "Physlib/Particles/StandardModel/HiggsBoson/Potential.lean",
           "declarations": [
             {
@@ -8924,7 +9204,7 @@
           "exists": true
         },
         {
-          "index": 15,
+          "index": 16,
           "file": "Physlib/Particles/StandardModel/HiggsBoson/Potential.lean",
           "declarations": [
             {
@@ -8987,7 +9267,7 @@
           "exists": true
         },
         {
-          "index": 16,
+          "index": 17,
           "file": "Physlib/Particles/StandardModel/HiggsBoson/Potential.lean",
           "declarations": [
             {
@@ -9066,7 +9346,7 @@
           "exists": true
         },
         {
-          "index": 17,
+          "index": 18,
           "file": "Physlib/Particles/StandardModel/HiggsBoson/EffectivePotential.lean",
           "declarations": [
             {
@@ -9113,7 +9393,7 @@
           "exists": true
         },
         {
-          "index": 18,
+          "index": 19,
           "file": "Physlib/Particles/StandardModel/HiggsBoson/EffectivePotential.lean",
           "declarations": [
             {
@@ -9290,15 +9570,20 @@
         },
         {
           "done": false,
+          "citations": [],
+          "alpha": true
+        },
+        {
+          "done": true,
           "citations": [
-            13
+            4
           ],
           "alpha": true
         },
         {
           "done": true,
           "citations": [
-            5
+            13
           ],
           "alpha": true
         },
@@ -9310,16 +9595,14 @@
           "alpha": true
         },
         {
-          "done": true,
-          "citations": [
-            15
-          ],
+          "done": false,
+          "citations": [],
           "alpha": true
         },
         {
           "done": true,
           "citations": [
-            16
+            15
           ],
           "alpha": true
         },
@@ -9340,7 +9623,21 @@
         {
           "done": true,
           "citations": [
+            17
+          ],
+          "alpha": true
+        },
+        {
+          "done": true,
+          "citations": [
             18
+          ],
+          "alpha": true
+        },
+        {
+          "done": true,
+          "citations": [
+            19
           ],
           "alpha": true
         },
@@ -9638,6 +9935,241 @@
       "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QFT/TopologicalFieldTheory/API-map.md"
     },
     {
+      "path": "Physlib/QuantumMechanics/Blackbody",
+      "file": "Physlib/QuantumMechanics/Blackbody/API-map.md",
+      "title": "Blackbody radiation",
+      "alpha": true,
+      "abstract": "An ideal black body in thermal equilibrium emits radiation with a spectrum determined by its\ntemperature. Planck's law gives the spectral radiance per unit frequency or per unit wavelength,\nwith a Jacobian relating the two densities. The oscillator model explains the difference between\nPlanck's law and the classical Rayleigh–Jeans law through their different mean energies per mode.",
+      "abstractHeading": "Abstract (Alpha)",
+      "content": [
+        {
+          "heading": "Content (Alpha)",
+          "alpha": true,
+          "intro": "",
+          "subsections": [
+            {
+              "title": "Frequency and wavelength spectra",
+              "body": "A black body is specified by its temperature. For positive frequency $\\nu$ and temperature $T$,\nits spectral radiance per unit frequency is given by Planck's law,\n$B_\\nu(T)=2h\\nu^3/[c^2(\\exp(h\\nu/(k_B T))-1)]$. This radiance is positive in that domain and\nvanishes at zero frequency and at absolute zero. [1]\n\nThe wavelength density at $\\lambda>0$ measures radiance over an interval in wavelength. At\npositive temperature, the change of variable $\\nu=c/\\lambda$ gives\n$B_\\lambda(T)=(c/\\lambda^2) B_\\nu(T)|_{\\nu=c/\\lambda}$, where $c/\\lambda^2$ is the magnitude of the\nJacobian. [2]"
+            },
+            {
+              "title": "Energy per mode and the classical comparison",
+              "body": "A mode of frequency $\\nu>0$ is modeled by an oscillator with level spacing $\\varepsilon=h\\nu$.\nIn the canonical ensemble {1}, its levels have energies $n\\varepsilon$ for nonnegative integers\n$n$. At positive temperature, the mean energy is\n$\\varepsilon/(\\exp(\\beta\\varepsilon)-1)$, with $\\beta=1/(k_B T)$. The corresponding classical model\nintegrates over positive energies with Lebesgue measure and has mean energy $k_B T$. [3]\n\nMultiplying each mean energy by the same factor $2\\nu^2/c^2$ gives Planck's spectral radiance and\nthe Rayleigh–Jeans spectral radiance, respectively. The quantized mean energy is strictly below\nthe classical one, so Planck's radiance is strictly below Rayleigh–Jeans at every positive\nfrequency and positive temperature. [4][5]"
+            }
+          ]
+        }
+      ],
+      "leanReferences": [
+        {
+          "index": 1,
+          "file": "Physlib/QuantumMechanics/Blackbody/PlancksLaw.lean",
+          "declarations": [
+            {
+              "text": "BlackBody",
+              "fullName": "BlackBody",
+              "kind": "structure",
+              "line": 78,
+              "doc": "An idealized black body in thermal equilibrium at temperature `T`.",
+              "signature": "structure BlackBody where\n  T : Temperature"
+            },
+            {
+              "text": "BlackBody.spectralRadiance",
+              "fullName": "BlackBody.spectralRadiance",
+              "kind": "def",
+              "line": 100,
+              "doc": "The spectral radiance per unit frequency of blackbody radiation at frequency `ν` for a black body `B`, speed of light `c` and Boltzmann constant `kB`:",
+              "signature": "noncomputable def spectralRadiance (B : BlackBody) (c : SpeedOfLight) (kB : BoltzmannConstant)\n    (ν : Frequency) : ℝ"
+            },
+            {
+              "text": "BlackBody.spectralRadiance_pos",
+              "fullName": "BlackBody.spectralRadiance_pos",
+              "kind": "lemma",
+              "line": 109,
+              "doc": "The spectral radiance of blackbody radiation is positive for positive frequency and positive temperature.",
+              "signature": "lemma spectralRadiance_pos (B : BlackBody) (c : SpeedOfLight) (kB : BoltzmannConstant)\n    (ν : Frequency) (hν : 0 < ν.val) (hT : 0 < (B.T : ℝ)) : 0 < B.spectralRadiance c kB ν"
+            },
+            {
+              "text": "BlackBody.spectralRadiance_zeroFreq",
+              "fullName": "BlackBody.spectralRadiance_zeroFreq",
+              "kind": "lemma",
+              "line": 134,
+              "doc": "The spectral radiance vanishes at zero frequency.",
+              "signature": "lemma spectralRadiance_zeroFreq (B : BlackBody) (c : SpeedOfLight) (kB : BoltzmannConstant) :\n    B.spectralRadiance c kB 0 = 0"
+            },
+            {
+              "text": "BlackBody.spectralRadiance_absZero",
+              "fullName": "BlackBody.spectralRadiance_absZero",
+              "kind": "lemma",
+              "line": 126,
+              "doc": "The spectral radiance vanishes at absolute zero temperature.",
+              "signature": "lemma spectralRadiance_absZero (c : SpeedOfLight) (kB : BoltzmannConstant) (ν : Frequency) :\n    spectralRadiance ⟨0⟩ c kB ν = 0"
+            }
+          ],
+          "exists": true
+        },
+        {
+          "index": 2,
+          "file": "Physlib/QuantumMechanics/Blackbody/PlancksLaw.lean",
+          "declarations": [
+            {
+              "text": "BlackBody.spectralRadianceWave",
+              "fullName": "BlackBody.spectralRadianceWave",
+              "kind": "def",
+              "line": 154,
+              "doc": "Spectral radiance per unit wavelength of blackbody radiation at wavelength `λ` for a black body `B`, speed of light `c` and Boltzmann constant `kB`:",
+              "signature": "noncomputable def spectralRadianceWave (B : BlackBody) (c : SpeedOfLight) (kB : BoltzmannConstant)\n    (lam : Wavelength) : ℝ"
+            },
+            {
+              "text": "BlackBody.spectralRadianceWave_eq_spectralRadiance",
+              "fullName": "BlackBody.spectralRadianceWave_eq_spectralRadiance",
+              "kind": "lemma",
+              "line": 215,
+              "doc": "Correspondence between the wavelength and frequency forms of Planck's law: `B(λ, T) = (c / λ²) B(ν = c / λ, T)`, where the frequency `c / λ` is given by `Frequency.ofWavelength`.",
+              "signature": "lemma spectralRadianceWave_eq_spectralRadiance (B : BlackBody) (c : SpeedOfLight)\n    (kB : BoltzmannConstant) (lam : Wavelength) (hlam : 0 < lam.val) (hT : 0 < (B.T : ℝ)) :\n    B.spectralRadianceWave c kB lam\n      = ((c : ℝ) / (lam.val :…"
+            }
+          ],
+          "exists": true
+        },
+        {
+          "index": 3,
+          "file": "PhyslibAlpha/QuantumMechanics/Blackbody/RayleighJeans.lean",
+          "declarations": [
+            {
+              "text": "BlackBody.quantizedOscillator",
+              "fullName": "BlackBody.quantizedOscillator",
+              "kind": "def",
+              "line": 64,
+              "doc": "The quantized oscillator with level spacing `ε`: the microstates `n : ℕ` have energy `n ε` and are counted with unit weight.",
+              "signature": "noncomputable def quantizedOscillator (ε : ℝ) : CanonicalEnsemble ℕ where"
+            },
+            {
+              "text": "BlackBody.quantizedOscillator_meanEnergy",
+              "fullName": "BlackBody.quantizedOscillator_meanEnergy",
+              "kind": "lemma",
+              "line": 94,
+              "doc": "The mean energy of the quantized oscillator is Planck's `ε / (e^{β ε} - 1)`.",
+              "signature": "lemma quantizedOscillator_meanEnergy (kB : BoltzmannConstant) {ε : ℝ} (hε : 0 < ε) {T : Temperature}\n    (hT : 0 < (T : ℝ)) :\n    (quantizedOscillator ε).meanEnergy kB T = ε / (exp (T.β kB * ε) - 1)"
+            },
+            {
+              "text": "BlackBody.classicalOscillator",
+              "fullName": "BlackBody.classicalOscillator",
+              "kind": "def",
+              "line": 125,
+              "doc": "The classical oscillator: energies `E > 0` with Lebesgue measure.",
+              "signature": "noncomputable def classicalOscillator : CanonicalEnsemble ℝ where"
+            },
+            {
+              "text": "BlackBody.classicalOscillator_meanEnergy",
+              "fullName": "BlackBody.classicalOscillator_meanEnergy",
+              "kind": "lemma",
+              "line": 132,
+              "doc": "Equipartition: the mean energy of the classical oscillator is `kB T`.",
+              "signature": "lemma classicalOscillator_meanEnergy (kB : BoltzmannConstant) {T : Temperature}\n    (hT : 0 < (T : ℝ)) : classicalOscillator.meanEnergy kB T = (kB : ℝ) * T"
+            }
+          ],
+          "exists": true
+        },
+        {
+          "index": 4,
+          "file": "PhyslibAlpha/QuantumMechanics/Blackbody/RayleighJeans.lean",
+          "declarations": [
+            {
+              "text": "BlackBody.rayleighJeans",
+              "fullName": "BlackBody.rayleighJeans",
+              "kind": "def",
+              "line": 193,
+              "doc": "The Rayleigh–Jeans spectral radiance `2 ν² kB T / c²` of a black body `B`.",
+              "signature": "noncomputable def rayleighJeans (B : BlackBody) (c : SpeedOfLight) (kB : BoltzmannConstant)\n    (ν : Frequency) : ℝ"
+            },
+            {
+              "text": "BlackBody.rayleighJeans_eq_meanEnergy",
+              "fullName": "BlackBody.rayleighJeans_eq_meanEnergy",
+              "kind": "lemma",
+              "line": 198,
+              "doc": "The Rayleigh–Jeans law is `2 ν² / c²` times the mean energy of the classical oscillator.",
+              "signature": "lemma rayleighJeans_eq_meanEnergy (B : BlackBody) (c : SpeedOfLight) (kB : BoltzmannConstant)\n    (ν : Frequency) (hT : 0 < (B.T : ℝ)) :\n    B.rayleighJeans c kB ν\n      = 2 * (ν.val : ℝ) ^ 2 / (c : ℝ) ^ 2 * classicalOscillator.meanEnergy …"
+            },
+            {
+              "text": "BlackBody.spectralRadiance_eq_meanEnergy",
+              "fullName": "BlackBody.spectralRadiance_eq_meanEnergy",
+              "kind": "lemma",
+              "line": 179,
+              "doc": "Planck's law is `2 ν² / c²` times the mean energy of the oscillator of spacing `h ν`.",
+              "signature": "lemma spectralRadiance_eq_meanEnergy (B : BlackBody) (c : SpeedOfLight) (kB : BoltzmannConstant)\n    {ν : Frequency} (hν : 0 < ν.val) (hT : 0 < (B.T : ℝ)) :\n    B.spectralRadiance c kB ν =\n      2 * (ν.val : ℝ) ^ 2 / (c : ℝ) ^ 2\n        * …"
+            }
+          ],
+          "exists": true
+        },
+        {
+          "index": 5,
+          "file": "PhyslibAlpha/QuantumMechanics/Blackbody/RayleighJeans.lean",
+          "declarations": [
+            {
+              "text": "BlackBody.quantizedOscillator_meanEnergy_lt",
+              "fullName": "BlackBody.quantizedOscillator_meanEnergy_lt",
+              "kind": "lemma",
+              "line": 156,
+              "doc": "The quantized mean energy lies strictly below the classical one, `kB T`.",
+              "signature": "lemma quantizedOscillator_meanEnergy_lt (kB : BoltzmannConstant) {ε : ℝ} (hε : 0 < ε)\n    {T : Temperature} (hT : 0 < (T : ℝ)) :\n    (quantizedOscillator ε).meanEnergy kB T < classicalOscillator.meanEnergy kB T"
+            },
+            {
+              "text": "BlackBody.spectralRadiance_lt_rayleighJeans",
+              "fullName": "BlackBody.spectralRadiance_lt_rayleighJeans",
+              "kind": "lemma",
+              "line": 207,
+              "doc": "Planck's law lies strictly below the Rayleigh–Jeans law at every positive frequency and every positive temperature.",
+              "signature": "lemma spectralRadiance_lt_rayleighJeans (B : BlackBody) (c : SpeedOfLight)\n    (kB : BoltzmannConstant) {ν : Frequency} (hν : 0 < ν.val) (hT : 0 < (B.T : ℝ)) :\n    B.spectralRadiance c kB ν < B.rayleighJeans c kB ν"
+            }
+          ],
+          "exists": true
+        }
+      ],
+      "references": [
+        {
+          "index": 1,
+          "text": "Canonical ensemble API map — Physlib/StatisticalMechanics/CanonicalEnsemble/API-map.md",
+          "apiMap": "Physlib/StatisticalMechanics/CanonicalEnsemble"
+        }
+      ],
+      "requirements": [
+        {
+          "done": true,
+          "citations": [
+            1
+          ],
+          "alpha": true
+        },
+        {
+          "done": true,
+          "citations": [
+            2
+          ],
+          "alpha": true
+        },
+        {
+          "done": true,
+          "citations": [
+            3
+          ],
+          "alpha": true
+        },
+        {
+          "done": true,
+          "citations": [
+            4,
+            5
+          ],
+          "alpha": true
+        }
+      ],
+      "parents": [
+        {
+          "name": "Canonical ensemble",
+          "path": "Physlib/StatisticalMechanics/CanonicalEnsemble"
+        }
+      ],
+      "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QuantumMechanics/Blackbody/API-map.md"
+    },
+    {
       "path": "Physlib/QuantumMechanics/HilbertSpaces/SpaceD",
       "file": "Physlib/QuantumMechanics/HilbertSpaces/SpaceD/API-map.md",
       "title": "Hilbert spaces on Space",
@@ -9768,7 +10300,7 @@
               "text": "DirichletSubmoduleOn",
               "fullName": "QuantumMechanics.SpaceDHilbertSpaceOn.DirichletSubmoduleOn",
               "kind": "abbrev",
-              "line": 62,
+              "line": 61,
               "doc": "The submodule of the Hilbert space on `Ω` consisting of the equivalence classes of Schwartz maps which vanish on `frontier Ω`.",
               "signature": "abbrev DirichletSubmoduleOn : Submodule ℂ (SpaceDHilbertSpaceOn Ω μ)"
             }
@@ -10774,7 +11306,7 @@
               "text": "momentumCLM",
               "fullName": "QuantumMechanics.momentumCLM",
               "kind": "def",
-              "line": 64,
+              "line": 70,
               "doc": "Component `i` of the momentum operator is the continuous linear map from `𝓢(Space d, ℂ)` to itself which maps `ψ` to `-iℏ ∂ᵢψ`.",
               "signature": "def momentumCLM : 𝓢(Space d, ℂ) →L[ℂ] 𝓢(Space d, ℂ)"
             },
@@ -10786,7 +11318,7 @@
               "text": "momentumCLM_apply",
               "fullName": "QuantumMechanics.momentumCLM_apply",
               "kind": "lemma",
-              "line": 77,
+              "line": 83,
               "doc": null,
               "signature": "lemma momentumCLM_apply (ψ : 𝓢(Space d, ℂ)) (x : Space d) : 𝐩 i ψ x = -I * ℏ * ∂[i] ψ x"
             },
@@ -10794,7 +11326,7 @@
               "text": "momentumOperator",
               "fullName": "QuantumMechanics.momentumOperator",
               "kind": "def",
-              "line": 92,
+              "line": 98,
               "doc": "The momentum operator as a LinearPMap with domain the Schwartz submodule.",
               "signature": "def momentumOperator : SpaceDHilbertSpace d →ₗ.[ℂ] SpaceDHilbertSpace d where"
             },
@@ -10806,7 +11338,7 @@
               "text": "momentumOperator_apply",
               "fullName": "QuantumMechanics.momentumOperator_apply",
               "kind": "lemma",
-              "line": 99,
+              "line": 105,
               "doc": null,
               "signature": "lemma momentumOperator_apply (ψ : SchwartzSubmodule d) :\n    𝓟 i ψ = schwartzEquiv volume (𝐩 i ((schwartzEquiv volume).symm ψ))"
             },
@@ -10814,7 +11346,7 @@
               "text": "momentumOperator_hasDenseDomain",
               "fullName": "QuantumMechanics.momentumOperator_hasDenseDomain",
               "kind": "lemma",
-              "line": 109,
+              "line": 115,
               "doc": null,
               "signature": "lemma momentumOperator_hasDenseDomain : (𝓟 i).HasDenseDomain"
             },
@@ -10822,7 +11354,7 @@
               "text": "momentumOperator_isSymmetric",
               "fullName": "QuantumMechanics.momentumOperator_isSymmetric",
               "kind": "lemma",
-              "line": 111,
+              "line": 117,
               "doc": null,
               "signature": "lemma momentumOperator_isSymmetric : (𝓟 i).IsSymmetric"
             },
@@ -10830,7 +11362,7 @@
               "text": "momentumOperator_isUnbounded",
               "fullName": "QuantumMechanics.momentumOperator_isUnbounded",
               "kind": "lemma",
-              "line": 149,
+              "line": 155,
               "doc": null,
               "signature": "lemma momentumOperator_isUnbounded : (𝓟 i).IsUnbounded"
             },
@@ -10838,7 +11370,7 @@
               "text": "momentumSqOperator",
               "fullName": "QuantumMechanics.momentumSqOperator",
               "kind": "def",
-              "line": 155,
+              "line": 161,
               "doc": "The square of the momentum operator.",
               "signature": "def momentumSqOperator : SpaceDHilbertSpace d →ₗ.[ℂ] SpaceDHilbertSpace d"
             },
@@ -10846,7 +11378,7 @@
               "text": "momentumSqOperator_domain_eq",
               "fullName": "QuantumMechanics.momentumSqOperator_domain_eq",
               "kind": "lemma",
-              "line": 161,
+              "line": 167,
               "doc": null,
               "signature": "lemma momentumSqOperator_domain_eq : momentumSqOperator.domain = SchwartzSubmodule d"
             }
@@ -12428,7 +12960,7 @@
               "text": "realNumericalRange",
               "fullName": "LinearPMap.IsSymmetric.realNumericalRange",
               "kind": "def",
-              "line": 61,
+              "line": 62,
               "doc": "The projection of the numerical range onto the real axis.",
               "signature": "def realNumericalRange (T : H →ₗ.[ℂ] H) : Set ℝ"
             },
@@ -12436,7 +12968,7 @@
               "text": "im_eq_zero_of_mem_numericalRange",
               "fullName": "LinearPMap.IsSymmetric.im_eq_zero_of_mem_numericalRange",
               "kind": "lemma",
-              "line": 77,
+              "line": 78,
               "doc": "The numerical range of a symmetric operator is contained in the real axis.",
               "signature": "lemma im_eq_zero_of_mem_numericalRange {z : ℂ} (hz : z ∈ Θ T) : z.im = 0"
             },
@@ -12444,7 +12976,7 @@
               "text": "numericalRange_subset",
               "fullName": "LinearPMap.IsSymmetric.numericalRange_subset",
               "kind": "lemma",
-              "line": 83,
+              "line": 84,
               "doc": "The numerical range of a symmetric operator is contained in the real axis.",
               "signature": "lemma numericalRange_subset : Θ T ⊆ range ofReal"
             },
@@ -12452,7 +12984,7 @@
               "text": "numericalRange_eq",
               "fullName": "LinearPMap.IsSymmetric.numericalRange_eq",
               "kind": "lemma",
-              "line": 87,
+              "line": 88,
               "doc": "The numerical range of a symmetric operator is equal to its projection onto the real axis.",
               "signature": "lemma numericalRange_eq : Θ T = ofReal '' Θᵣₑ T"
             },
@@ -12460,7 +12992,7 @@
               "text": "closure_numericalRange_subset",
               "fullName": "LinearPMap.IsSymmetric.closure_numericalRange_subset",
               "kind": "lemma",
-              "line": 92,
+              "line": 93,
               "doc": null,
               "signature": "lemma closure_numericalRange_subset : _root_.closure (Θ T) ⊆ range ofReal"
             }
@@ -12475,7 +13007,7 @@
               "text": "mem_regularityDomain_of_im_ne_zero",
               "fullName": "LinearPMap.IsSymmetric.mem_regularityDomain_of_im_ne_zero",
               "kind": "lemma",
-              "line": 102,
+              "line": 103,
               "doc": "The regularity domain of a symmetric operator contains all complex numbers with non-zero imaginary part.",
               "signature": "lemma mem_regularityDomain_of_im_ne_zero {z : ℂ} (hz : z.im ≠ 0) : z ∈ T.regularityDomain"
             },
@@ -12483,7 +13015,7 @@
               "text": "compl_ofReal_subset_regularityDomain",
               "fullName": "LinearPMap.IsSymmetric.compl_ofReal_subset_regularityDomain",
               "kind": "lemma",
-              "line": 110,
+              "line": 111,
               "doc": "The regularity domain of a symmetric operator contains all complex numbers with non-zero imaginary part.",
               "signature": "lemma compl_ofReal_subset_regularityDomain : (range ofReal)ᶜ ⊆ T.regularityDomain"
             },
@@ -12491,7 +13023,7 @@
               "text": "Iio_subset_regularityDomain",
               "fullName": "LinearPMap.IsSymmetric.Iio_subset_regularityDomain",
               "kind": "lemma",
-              "line": 114,
+              "line": 115,
               "doc": "If `m` is a lower bound on the numerical range then the regularity domain contains `(-∞,m)`.",
               "signature": "lemma Iio_subset_regularityDomain {m : ℝ} (h : m ∈ lowerBounds (Θᵣₑ T)) :\n    ofReal '' Iio m ⊆ T.regularityDomain"
             },
@@ -12499,7 +13031,7 @@
               "text": "Ioi_subset_regularityDomain",
               "fullName": "LinearPMap.IsSymmetric.Ioi_subset_regularityDomain",
               "kind": "lemma",
-              "line": 134,
+              "line": 135,
               "doc": "If `m` is an upper bound on the numerical range then the regularity domain contains `(m,∞)`.",
               "signature": "lemma Ioi_subset_regularityDomain {m : ℝ} (h : m ∈ upperBounds (Θᵣₑ T)) :\n    ofReal '' Ioi m ⊆ T.regularityDomain"
             },
@@ -12507,7 +13039,7 @@
               "text": "regularityDomain_isConnected_iff",
               "fullName": "LinearPMap.IsSymmetric.regularityDomain_isConnected_iff",
               "kind": "lemma",
-              "line": 143,
+              "line": 144,
               "doc": "The regularity domain of a symmetric operator is connected iff it contains a real number.",
               "signature": "lemma regularityDomain_isConnected_iff :\n    IsConnected T.regularityDomain ↔ (ofReal ⁻¹' T.regularityDomain).Nonempty"
             },
@@ -12515,7 +13047,7 @@
               "text": "regularityDomain_isConnected_of_bddBelow",
               "fullName": "LinearPMap.IsSymmetric.regularityDomain_isConnected_of_bddBelow",
               "kind": "lemma",
-              "line": 191,
+              "line": 192,
               "doc": "The regularity domain of a lower semibounded symmetric operator is connected.",
               "signature": "lemma regularityDomain_isConnected_of_bddBelow (h : BddBelow (Θᵣₑ T)) :\n    IsConnected T.regularityDomain"
             },
@@ -12523,7 +13055,7 @@
               "text": "regularityDomain_isConnected_of_bddAbove",
               "fullName": "LinearPMap.IsSymmetric.regularityDomain_isConnected_of_bddAbove",
               "kind": "lemma",
-              "line": 198,
+              "line": 199,
               "doc": "The regularity domain of an upper semibounded symmetric operator is connected.",
               "signature": "lemma regularityDomain_isConnected_of_bddAbove (h : BddAbove (Θᵣₑ T)) :\n    IsConnected T.regularityDomain"
             }
@@ -12538,7 +13070,7 @@
               "text": "isEssentiallySelfAdjoint_of_defectNumber_eq_zero",
               "fullName": "LinearPMap.IsSymmetric.isEssentiallySelfAdjoint_of_defectNumber_eq_zero",
               "kind": "lemma",
-              "line": 230,
+              "line": 231,
               "doc": "The basic criterion for essential self-adjointness: a symmetric, densely-defined operator whose defect numbers at `I` and `-I` both vanish is essentially self-adjoint.",
               "signature": "lemma isEssentiallySelfAdjoint_of_defectNumber_eq_zero\n    (hdense : T.HasDenseDomain) (hpos : T.defectNumber I = 0) (hneg : T.defectNumber (-I) = 0) :\n    T.IsEssentiallySelfAdjoint"
             }
@@ -12553,7 +13085,7 @@
               "text": "pointSpectrum_real",
               "fullName": "LinearPMap.IsSymmetric.pointSpectrum_real",
               "kind": "lemma",
-              "line": 209,
+              "line": 210,
               "doc": "Eigenvalues of a symmetric unbounded operator are real.",
               "signature": "lemma pointSpectrum_real : σᵖ T ⊆ range ofReal"
             }
@@ -17402,7 +17934,7 @@
               "text": "basis",
               "fullName": "TensorSpecies.Tensor.basis",
               "kind": "def",
-              "line": 313,
+              "line": 318,
               "doc": "The basis of tensors.",
               "signature": "def basis {n : ℕ} (c : Fin n → C) : Basis (ComponentIdx (S := S) c) k (S.Tensor c) where"
             },
@@ -17410,7 +17942,7 @@
               "text": "basis_repr_pure",
               "fullName": "TensorSpecies.Tensor.basis_repr_pure",
               "kind": "lemma",
-              "line": 324,
+              "line": 329,
               "doc": null,
               "signature": "lemma basis_repr_pure {n : ℕ} (c : Fin n → C)\n    (p : Pure S c) :\n    (basis c).repr p.toTensor = p.component"
             },
@@ -17418,7 +17950,7 @@
               "text": "toScalar",
               "fullName": "TensorSpecies.Tensor.toScalar",
               "kind": "def",
-              "line": 660,
+              "line": 665,
               "doc": "The linear map between tensors with zero indices and the underlying scalars `k`.",
               "signature": "noncomputable def toScalar {c : Fin 0 → C} : S.Tensor c →ₗ[k] k"
             }
@@ -17533,7 +18065,7 @@
               "text": "actionP",
               "fullName": "TensorSpecies.Tensor.Pure.actionP",
               "kind": "instance",
-              "line": 389,
+              "line": 394,
               "doc": null,
               "signature": "noncomputable instance actionP : MulAction G (Pure S c) where"
             },
@@ -17544,7 +18076,7 @@
               "text": "Pure.permP",
               "fullName": "TensorSpecies.Tensor.Pure.permP",
               "kind": "def",
-              "line": 491,
+              "line": 496,
               "doc": "Given a permutation `σ : Fin m → Fin n` of indices satisfying `IsReindexing` through `h`, and a pure tensor `p`, `permP σ h p` is the pure tensor permuted according to `σ`.",
               "signature": "def Pure.permP {n m : ℕ} {c : Fin n → C} {c1 : Fin m → C}\n    (σ : Fin m → Fin n) (h : IsReindexing c c1 σ) (p : Pure S c) : Pure S c1"
             },
@@ -17552,7 +18084,7 @@
               "text": "permT",
               "fullName": "TensorSpecies.Tensor.permT",
               "kind": "def",
-              "line": 513,
+              "line": 518,
               "doc": "The reindexing of a tensor based on a map `σ : Fin m → Fin n` of indices satisfying `IsReindexing`.",
               "signature": "noncomputable def permT {n m : ℕ} {c : Fin n → C} {c1 : Fin m → C}\n    (σ : Fin m → Fin n) (h : IsReindexing c c1 σ) : S.Tensor c →ₗ[k] S.Tensor c1"
             },
@@ -17560,7 +18092,7 @@
               "text": "permT_equivariant",
               "fullName": "TensorSpecies.Tensor.permT_equivariant",
               "kind": "lemma",
-              "line": 553,
+              "line": 558,
               "doc": null,
               "signature": "lemma permT_equivariant {n m : ℕ} {c : Fin n → C} {c1 : Fin m → C}\n    {σ : Fin m → Fin n} (h : IsReindexing c c1 σ) (g : G) (t : S.Tensor c) :\n    permT σ h (g • t) = g • permT σ h t"
             },
@@ -17568,7 +18100,7 @@
               "text": "permT_permT",
               "fullName": "TensorSpecies.Tensor.permT_permT",
               "kind": "lemma",
-              "line": 586,
+              "line": 591,
               "doc": null,
               "signature": "lemma permT_permT {n m1 m2 : ℕ} {c : Fin n → C} {c1 : Fin m1 → C} {c2 : Fin m2 → C}\n    {σ : Fin m1 → Fin n} {σ2 : Fin m2 → Fin m1} (h : IsReindexing c c1 σ)\n    (h2 : IsReindexing c1 c2 σ2) (t : S.Tensor c) :\n    permT σ2 h2 (permT σ h t)…"
             },
@@ -17576,7 +18108,7 @@
               "text": "permT_injective",
               "fullName": "TensorSpecies.Tensor.permT_injective",
               "kind": "lemma",
-              "line": 649,
+              "line": 654,
               "doc": "`permT` is injective.",
               "signature": "lemma permT_injective {n m : ℕ} {c : Fin n → C} {c1 : Fin m → C}\n    {σ : Fin m → Fin n} (h : IsReindexing c c1 σ) :\n    Function.Injective (permT (S := S) σ h)"
             }
@@ -17830,7 +18362,7 @@
               "kind": "def",
               "line": 394,
               "doc": "The multi-linear map formed by contracting a pair of indices of pure tensors.",
-              "signature": "noncomputable def contrPMultilinear {n : ℕ} {c : Fin (n + 1 + 1) → C}\n    (i j : Fin (n + 1 + 1)) (hij : i ≠ j ∧ S.τ (c i) = c j) :\n    MultilinearMap k (fun i => V (c i))\n      (S.Tensor (c ∘ succSuccAbove i j))where"
+              "signature": "noncomputable def contrPMultilinear {n : ℕ} {c : Fin (n + 1 + 1) → C}\n    (i j : Fin (n + 1 + 1)) (hij : i ≠ j ∧ S.τ (c i) = c j) :\n    MultilinearMap (RingHom.id k) (fun i => V (c i))\n      (S.Tensor (c ∘ succSuccAbove i j))where"
             }
           ],
           "exists": true
@@ -18275,7 +18807,7 @@
               "kind": "def",
               "line": 105,
               "doc": "The multi-linear map formed by evaluation of an index of pure tensors.",
-              "signature": "noncomputable def evalPMultilinear {n : ℕ} {c : Fin (n + 1)→ C}\n    (i : Fin (n + 1)) (φ : basisIdx (c i)) :\n    MultilinearMap k (fun i => V (c i))\n      (S.Tensor (c ∘ i.succAbove)) where"
+              "signature": "noncomputable def evalPMultilinear {n : ℕ} {c : Fin (n + 1)→ C}\n    (i : Fin (n + 1)) (φ : basisIdx (c i)) :\n    MultilinearMap (RingHom.id k) (fun i => V (c i))\n      (S.Tensor (c ∘ i.succAbove)) where"
             },
             {
               "text": "evalT",
@@ -21301,7 +21833,7 @@
             },
             {
               "title": "Inertial frames",
-              "body": "A frame is inertial when its origin moves with constant velocity and its axes are the same at\nevery time, both measured against the affine structure that space itself supplies. [5] This is a\nrestriction on the observer rather than on whatever is being observed. An inertial frame's origin\nhas a definite constant velocity. [6] Over any elapsed time the origin is displaced by that\nelapsed time multiplied by this velocity. This velocity is uniquely determined by the displacement\nlaw, and the origin has an affine trajectory through its position at the frame's time origin. [15]\nAn inertial frame conserves its coordinate\nmetric, and typeclass inference knows this. [7]\n\nThe relative motion of two inertial frames is the boost, rotation and translation carrying one to\nthe other, and it induces a transformation law on measured components. [TODO] A frame whose\naxes are constant and whose origin moves with constant velocity relative to an inertial frame is\nitself inertial. [TODO]"
+              "body": "A frame is inertial when its origin moves with constant velocity and its axes are the same at\nevery time, both measured against the affine structure that space itself supplies. [5] This is a\nrestriction on the observer rather than on whatever is being observed. An inertial frame's origin\nhas a definite constant velocity. [6] Over any elapsed time the origin is displaced by that\nelapsed time multiplied by this velocity. This velocity is uniquely determined by the displacement\nlaw, and the origin has an affine trajectory through its position at the frame's time origin. [15]\nAn inertial frame conserves its coordinate\nmetric, and typeclass inference knows this. [7]\n\nThe relative motion of two inertial frames is the boost, rotation and translation carrying one to\nthe other, and it induces a transformation law on measured components. [TODO] A frame whose\naxes are constant and whose origin moves with constant velocity relative to an inertial frame is\nitself inertial. Its velocity is the sum of the original frame velocity and the relative velocity,\nboth expressed in ambient space. [15]"
             },
             {
               "title": "Measured vector quantities",
@@ -21436,7 +21968,7 @@
               "text": "IsInertial.isMetricConserved",
               "fullName": "ClassicalMechanics.ReferenceFrame.IsInertial.isMetricConserved",
               "kind": "lemma",
-              "line": 145,
+              "line": 166,
               "doc": "An inertial frame conserves its coordinate metric.",
               "signature": "lemma IsInertial.isMetricConserved (h : frame.IsInertial) : frame.IsMetricConserved"
             },
@@ -21455,7 +21987,7 @@
               "text": "ReferenceFrame.Vector",
               "fullName": "ClassicalMechanics.ReferenceFrame.Vector",
               "kind": "structure",
-              "line": 164,
+              "line": 185,
               "doc": "The `d` real components used to express a vector quantity relative to `frame`.",
               "signature": "structure Vector (frame : ReferenceFrame d) where\n  components : Fin d → ℝ"
             },
@@ -21466,7 +21998,7 @@
               "text": "componentEquiv",
               "fullName": "ClassicalMechanics.ReferenceFrame.Vector.componentEquiv",
               "kind": "def",
-              "line": 171,
+              "line": 192,
               "doc": "Equivalence between frame vectors and coordinate components",
               "signature": "def componentEquiv : frame.Vector ≃ (Fin d → ℝ)"
             },
@@ -21474,7 +22006,7 @@
               "text": "componentLinearEquiv",
               "fullName": "ClassicalMechanics.ReferenceFrame.Vector.componentLinearEquiv",
               "kind": "def",
-              "line": 184,
+              "line": 205,
               "doc": "Linear equivalence between frame vectors and coordinate components.",
               "signature": "def componentLinearEquiv : frame.Vector ≃ₗ[ℝ] (Fin d → ℝ)"
             }
@@ -21504,7 +22036,7 @@
               "text": "dispEquiv",
               "fullName": "ClassicalMechanics.ReferenceFrame.Vector.dispEquiv",
               "kind": "def",
-              "line": 189,
+              "line": 210,
               "doc": "Equivalence between frame vectors and geometric displacements in space, defined by the frame's basis at time coordinate `t`.",
               "signature": "def dispEquiv (t : ℝ) : frame.Vector ≃ₗ[ℝ] EuclideanSpace ℝ (Fin d)"
             },
@@ -21512,7 +22044,7 @@
               "text": "contDispEquiv",
               "fullName": "ClassicalMechanics.ReferenceFrame.Vector.contDispEquiv",
               "kind": "def",
-              "line": 206,
+              "line": 227,
               "doc": "Continuous equivalence between frame vectors and geometric displacements in space, defined by the frame's basis at time coordinate `t`.",
               "signature": "def contDispEquiv (t : ℝ) : frame.Vector ≃L[ℝ] EuclideanSpace ℝ (Fin d)"
             }
@@ -21527,7 +22059,7 @@
               "text": "componentContLinearEquiv",
               "fullName": "ClassicalMechanics.ReferenceFrame.Vector.componentContLinearEquiv",
               "kind": "def",
-              "line": 196,
+              "line": 217,
               "doc": "Continuous linear equivalence between frame vectors and coordinate components.",
               "signature": "def componentContLinearEquiv (frame : ReferenceFrame d) : frame.Vector ≃L[ℝ] (Fin d → ℝ)"
             },
@@ -21565,7 +22097,7 @@
               "text": "norm_euclidean_if_orthonormal",
               "fullName": "ClassicalMechanics.ReferenceFrame.Vector.norm_euclidean_if_orthonormal",
               "kind": "lemma",
-              "line": 228,
+              "line": 249,
               "doc": "In an orthonormal frame, the norm is the square root of squared components.",
               "signature": "lemma norm_euclidean_if_orthonormal [h : Fact frame.Orthonormal] :\n    ∀ v : frame.Vector, ‖v‖^2 = ∑ i, (v.components i)^2"
             },
@@ -21573,7 +22105,7 @@
               "text": "inner_euclidean_if_orthonormal",
               "fullName": "ClassicalMechanics.ReferenceFrame.Vector.inner_euclidean_if_orthonormal",
               "kind": "lemma",
-              "line": 238,
+              "line": 259,
               "doc": "In an orthonormal frame, the inner product is the sum of component products.",
               "signature": "lemma inner_euclidean_if_orthonormal [h : Fact frame.Orthonormal] :\n    ∀ v w : frame.Vector, inner ℝ v w = ∑ i, v.components i * w.components i"
             }
@@ -21625,6 +22157,22 @@
               "line": 140,
               "doc": "An inertial frame's origin has an affine trajectory through its position at the time origin.",
               "signature": "lemma IsInertial.origin_eq (h : frame.IsInertial) (t : Time) :\n    frame.origin t = (t -ᵥ frame.timeOrigin) • h.velocity +ᵥ frame.origin frame.timeOrigin"
+            },
+            {
+              "text": "IsInertial.origin_vsub_eq_of_relative_motion",
+              "fullName": "ClassicalMechanics.ReferenceFrame.IsInertial.origin_vsub_eq_of_relative_motion",
+              "kind": "lemma",
+              "line": 146,
+              "doc": "If another origin moves uniformly relative to an inertial frame, its displacement is given by the sum of the frame velocity and the relative velocity in ambient space.",
+              "signature": "lemma IsInertial.origin_vsub_eq_of_relative_motion (h : frame.IsInertial)\n    {other : ReferenceFrame d} {u : EuclideanSpace ℝ (Fin d)}\n    (hrel : ∀ t₁ t₂, (other.origin t₂ -ᵥ frame.origin t₂) -\n      (other.origin t₁ -ᵥ frame.origin t₁) …"
+            },
+            {
+              "text": "IsInertial.of_relative_motion",
+              "fullName": "ClassicalMechanics.ReferenceFrame.IsInertial.of_relative_motion",
+              "kind": "lemma",
+              "line": 156,
+              "doc": "A frame with fixed axes moving uniformly relative to an inertial frame is inertial, with velocity given by addition of the ambient velocities.",
+              "signature": "lemma IsInertial.of_relative_motion (h : frame.IsInertial)\n    {other : ReferenceFrame d} {u : EuclideanSpace ℝ (Fin d)}\n    (hrel : ∀ t₁ t₂, (other.origin t₂ -ᵥ frame.origin t₂) -\n      (other.origin t₁ -ᵥ frame.origin t₁) = (t₂ -ᵥ t₁) • …"
             }
           ],
           "exists": true
@@ -21717,8 +22265,10 @@
           "alpha": true
         },
         {
-          "done": false,
-          "citations": [],
+          "done": true,
+          "citations": [
+            15
+          ],
           "alpha": true
         },
         {
@@ -21919,7 +22469,7 @@
               "text": "basis : OrthonormalBasis (Fin d) ℝ (Space d)",
               "fullName": "Space.basis",
               "kind": "def",
-              "line": 332,
+              "line": 337,
               "doc": "The standard basis of Space based on `Fin d`.",
               "signature": "noncomputable def basis {d} : OrthonormalBasis (Fin d) ℝ (Space d) where"
             }
@@ -21975,7 +22525,7 @@
               "text": "distTranslate",
               "fullName": "Space.distTranslate",
               "kind": "def",
-              "line": 94,
+              "line": 103,
               "doc": "The continuous linear map translating distributions.",
               "signature": "noncomputable def distTranslate {d : ℕ} (a : EuclideanSpace ℝ (Fin d)) :\n    ((Space d) →d[ℝ] X) →ₗ[ℝ] ((Space d) →d[ℝ] X) where"
             }
@@ -22034,7 +22584,7 @@
               "text": "oneEquiv : Space 1 ≃ₗᵢ[ℝ] ℝ",
               "fullName": "Space.oneEquiv",
               "kind": "def",
-              "line": 591,
+              "line": 596,
               "doc": "The linear isometric equivalence between `Space 1` and `ℝ`.",
               "signature": "noncomputable def oneEquiv : Space 1 ≃ₗᵢ[ℝ] ℝ where"
             }
@@ -22102,7 +22652,7 @@
               "text": "Space.deriv",
               "fullName": "Space.deriv",
               "kind": "def",
-              "line": 70,
+              "line": 69,
               "doc": "Given a function `f : Space d → M` the derivative of `f` in direction `μ`.",
               "signature": "noncomputable def deriv {M d} [AddCommGroup M] [Module ℝ M] [TopologicalSpace M]\n    (μ : Fin d) (f : Space d → M) : Space d → M"
             },
@@ -22189,7 +22739,7 @@
               "text": "distDeriv",
               "fullName": "Space.distDeriv",
               "kind": "def",
-              "line": 454,
+              "line": 453,
               "doc": "Given a distribution (function) `f : Space d →d[ℝ] M` the derivative of `f` in direction `μ`.",
               "signature": "noncomputable def distDeriv {M d} [NormedAddCommGroup M] [NormedSpace ℝ M]\n    (μ : Fin d) : ((Space d) →d[ℝ] M) →ₗ[ℝ] (Space d) →d[ℝ] M where"
             }
@@ -22655,7 +23205,7 @@
               "text": "timeSlice",
               "fullName": "SpaceTime.timeSlice",
               "kind": "def",
-              "line": 34,
+              "line": 35,
               "doc": "The timeslice of a function `SpaceTime d → M` forming a function `Time → Space d → M`.",
               "signature": "def timeSlice {d : ℕ} {M : Type} (c : SpeedOfLight := 1) :\n    (SpaceTime d → M) ≃ (Time → Space d → M) where"
             },
@@ -22663,7 +23213,7 @@
               "text": "timeSliceLinearEquiv",
               "fullName": "SpaceTime.timeSliceLinearEquiv",
               "kind": "def",
-              "line": 86,
+              "line": 87,
               "doc": "The timeslice of a function `SpaceTime d → M` forming a function `Time → Space d → M`, as a linear equivalence.",
               "signature": "def timeSliceLinearEquiv {d : ℕ} {M : Type} [AddCommGroup M] [Module ℝ M]\n    (c : SpeedOfLight := 1) :\n    (SpaceTime d → M) ≃ₗ[ℝ] (Time → Space d → M) where"
             },
@@ -22671,9 +23221,9 @@
               "text": "distTimeSlice",
               "fullName": "SpaceTime.distTimeSlice",
               "kind": "def",
-              "line": 119,
+              "line": 121,
               "doc": "The time slice of a distribution on `SpaceTime d` to form a distribution on `Time × Space d`.",
-              "signature": "noncomputable def distTimeSlice {M d} [NormedAddCommGroup M] [NormedSpace ℝ M]\n    (c : SpeedOfLight := 1) :\n    ((SpaceTime d) →d[ℝ] M) ≃L[ℝ] ((Time × Space d) →d[ℝ] M) where"
+              "signature": "noncomputable def distTimeSlice{F} [NormedAddCommGroup F] [NormedSpace ℝ F]\n    (c : SpeedOfLight := 1) :\n    Distribution (⟨Set.univ (α := SpaceTime d), isOpen_univ⟩) F ⊤ →L[ℝ]\n    Distribution (⟨Set.univ (α := Time × Space d), isOpen_uni…"
             }
           ],
           "exists": true
@@ -23320,7 +23870,7 @@
               "text": "time",
               "fullName": "TimeAndSpace.time",
               "kind": "def",
-              "line": 83,
+              "line": 86,
               "doc": "The time-coordinate projection from `TimeAndSpace d`.",
               "signature": "noncomputable def time {d : ℕ} : TimeAndSpace d →L[ℝ] Time"
             },
@@ -23328,7 +23878,7 @@
               "text": "space",
               "fullName": "TimeAndSpace.space",
               "kind": "def",
-              "line": 87,
+              "line": 90,
               "doc": "The spatial-coordinate projection from `TimeAndSpace d`.",
               "signature": "noncomputable def space {d : ℕ} : TimeAndSpace d →L[ℝ] Space d"
             },
@@ -23336,7 +23886,7 @@
               "text": "time_apply",
               "fullName": "TimeAndSpace.time_apply",
               "kind": "lemma",
-              "line": 91,
+              "line": 94,
               "doc": null,
               "signature": "lemma time_apply (tx : TimeAndSpace d) :\n    time tx = tx.1"
             },
@@ -23344,7 +23894,7 @@
               "text": "space_apply",
               "fullName": "TimeAndSpace.space_apply",
               "kind": "lemma",
-              "line": 95,
+              "line": 98,
               "doc": null,
               "signature": "lemma space_apply (tx : TimeAndSpace d) :\n    space tx = tx.2"
             },
@@ -23352,7 +23902,7 @@
               "text": "dist_time_le",
               "fullName": "TimeAndSpace.dist_time_le",
               "kind": "lemma",
-              "line": 99,
+              "line": 102,
               "doc": "The time projection is nonexpanding for the product metric.",
               "signature": "lemma dist_time_le (tx ty : TimeAndSpace d) :\n    dist (time tx) (time ty) ≤ dist tx ty"
             },
@@ -23360,7 +23910,7 @@
               "text": "dist_space_le",
               "fullName": "TimeAndSpace.dist_space_le",
               "kind": "lemma",
-              "line": 105,
+              "line": 108,
               "doc": "The spatial projection is nonexpanding for the product metric.",
               "signature": "lemma dist_space_le (tx ty : TimeAndSpace d) :\n    dist (space tx) (space ty) ≤ dist tx ty"
             }
@@ -23509,7 +24059,7 @@
               "text": "fderiv_time_commute_fderiv_space",
               "fullName": "Space.fderiv_time_commute_fderiv_space",
               "kind": "lemma",
-              "line": 149,
+              "line": 203,
               "doc": "Derivatives along space coordinates and time commute.",
               "signature": "lemma fderiv_time_commute_fderiv_space {M} [NormedAddCommGroup M] [NormedSpace ℝ M]\n    (f : Time → Space d → M) (t dt : Time) (x dx : Space d)\n    (hf : ContDiff ℝ 2 ↿f) :\n    fderiv ℝ (fun t' => fderiv ℝ (fun x' => f t' x') x dx) t dt\n  …"
             },
@@ -23517,7 +24067,7 @@
               "text": "time_deriv_comm_space_deriv",
               "fullName": "Space.time_deriv_comm_space_deriv",
               "kind": "lemma",
-              "line": 173,
+              "line": 227,
               "doc": null,
               "signature": "lemma time_deriv_comm_space_deriv {d i} {M} [NormedAddCommGroup M] [NormedSpace ℝ M]\n    {f : Time → Space d → M} (hf : ContDiff ℝ 2 ↿f) (t : Time) (x : Space d) :\n    Time.deriv (fun t' => Space.deriv i (f t') x) t\n    = Space.deriv i (fu…"
             },
@@ -23525,7 +24075,7 @@
               "text": "time_deriv_curl_commute",
               "fullName": "Space.time_deriv_curl_commute",
               "kind": "lemma",
-              "line": 245,
+              "line": 299,
               "doc": "Curl and time derivative commute.",
               "signature": "lemma time_deriv_curl_commute (fₜ : Time → Space → EuclideanSpace ℝ (Fin 3))\n    (t : Time) (x : Space) (hf : ContDiff ℝ 2 ↿fₜ) :\n    ∂ₜ (fun t => (∇ ⨯ fₜ t) x) t = (∇ ⨯ fun x => (∂ₜ (fun t => fₜ t x) t)) x"
             }
@@ -23540,7 +24090,7 @@
               "text": "space_fun_of_time_deriv_eq_zero",
               "fullName": "Space.space_fun_of_time_deriv_eq_zero",
               "kind": "lemma",
-              "line": 273,
+              "line": 327,
               "doc": null,
               "signature": "lemma space_fun_of_time_deriv_eq_zero {d} {M} [NormedAddCommGroup M] [NormedSpace ℝ M]\n    {f : Time → Space d → M} (hf : Differentiable ℝ ↿f)\n    (h : ∀ t x, ∂ₜ (f · x) t = 0) :\n    ∃ (g : Space d → M), ∀ t x, f t x = g x"
             },
@@ -23548,7 +24098,7 @@
               "text": "time_fun_of_space_deriv_eq_zero",
               "fullName": "Space.time_fun_of_space_deriv_eq_zero",
               "kind": "lemma",
-              "line": 291,
+              "line": 345,
               "doc": null,
               "signature": "lemma time_fun_of_space_deriv_eq_zero {d} {M} [NormedAddCommGroup M] [NormedSpace ℝ M]\n    {f : Time → Space d → M} (hf : Differentiable ℝ ↿f)\n    (h : ∀ t x i, Space.deriv i (f t) x = 0) :\n    ∃ (g : Time → M), ∀ t x, f t x = g t"
             },
@@ -23556,7 +24106,7 @@
               "text": "const_of_time_deriv_space_deriv_eq_zero",
               "fullName": "Space.const_of_time_deriv_space_deriv_eq_zero",
               "kind": "lemma",
-              "line": 307,
+              "line": 361,
               "doc": null,
               "signature": "lemma const_of_time_deriv_space_deriv_eq_zero {d} {M} [NormedAddCommGroup M] [NormedSpace ℝ M]\n    {f : Time → Space d → M} (hf : Differentiable ℝ ↿f)\n    (h₁ : ∀ t x, ∂ₜ (f · x) t = 0)\n    (h₂ : ∀ t x i, Space.deriv i (f t) x = 0) :\n    ∃…"
             }
@@ -23631,6 +24181,346 @@
         }
       ],
       "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/SpaceAndTime/TimeAndSpace/API-map.md"
+    },
+    {
+      "path": "Physlib/SpaceAndTime/WaveVectorSpace",
+      "file": "Physlib/SpaceAndTime/WaveVectorSpace/API-map.md",
+      "title": "Wavevector space",
+      "alpha": true,
+      "abstract": "A wavevector describes the spatial variation of a wave’s phase.\nWavevectors form a real vector space, equipped with a norm and an inner product,\nin which functions of wavevector can be differentiated.\nPhysically, wavevector space is reciprocal to position space:\na wavevector pairs with a spatial displacement to give a phase difference.\nThis pairing connects wavevectors to plane waves and to the Fourier transform,\nwhich expresses a spatial field in terms of its wavevector components.",
+      "abstractHeading": "Abstract (Alpha)",
+      "content": [
+        {
+          "heading": "Content (Alpha)",
+          "alpha": true,
+          "intro": "",
+          "subsections": [
+            {
+              "title": "Wavevectors and their basic structure",
+              "body": "A wavevector is identified by its $d$ real coordinates. [1]\nWavevector space has a distinguished zero and is a vector space over the reals:\nwavevectors may be added, subtracted and multiplied by real numbers. [2]\nIt has both a norm and inner product structure with which it is isometric\nto standard $d$-dimensional Euclidean space. [3]\nIt has an orthonormal set of basis vectors, and for each basis vector\nthere is a corresponding coordinate function given by orthogonal projection. [4]\nWavevectors carry units of inverse-length and are rescaled\nunder a change of inverse-length unit. [TODO]"
+            },
+            {
+              "title": "Derivatives",
+              "body": "Functions from wavevector space into a normed space can be differentiated along\nthe coordinate directions; the partial derivatives satisfy the usual linearity properties,\nproduct rule and power rule. [5]\nThe gradient, divergence, laplacian and curl are defined for functions of wavevector. [TODO]"
+            },
+            {
+              "title": "Duality with Space",
+              "body": "There is a natural pairing of wavevector space with spatial displacements in Space {1}:\nfor a given wavevector $k$ and point in space $x$ the pairing $k\\cdot x = \\sum_i k_ix^i$\ngives the phase difference relative to some fixed reference point. [6]\nFixing a wavevector $k$ gives its dual functional $x \\mapsto k\\cdot x$ on space and similarly\nfixing a displacement $x$ gives its dual functional $k \\mapsto k\\cdot x$ on wavevector space. [7]\nChanging the reference point changes the phase at all points in space by the same amount. [TODO]"
+            },
+            {
+              "title": "Fourier transforms",
+              "body": "The Fourier transform takes a suitably nice function of space to a function of wavevector,\nresolving its spatial dependence into plane-wave components; the inverse Fourier transform\nreconstructs the spatial function from those components. [8]\nThe transform and its inverse have a consistent choice of normalization\nand preserve inner products up to the corresponding normalization factor. [TODO]\nThe Fourier transform maps derivatives with respect to space to multiplication by wavevector\nand *vice versa*, under suitable regularity and decay assumptions. [TODO]"
+            }
+          ]
+        }
+      ],
+      "leanReferences": [
+        {
+          "index": 1,
+          "file": "Physlib/SpaceAndTime/WaveVectorSpace/Basic.lean",
+          "declarations": [
+            {
+              "text": "WaveVectorSpace",
+              "fullName": "WaveVectorSpace",
+              "kind": "structure",
+              "line": 67,
+              "doc": "The type `WaveVectorSpace d` is the real vector space which corresponds to `d`-dimensional (angular) wave vectors in `Space d` with a given (but arbitrary) choice of inverse length unit.",
+              "signature": "structure WaveVectorSpace (d : ℕ := 3) where\n  val : Fin d → ℝ"
+            }
+          ],
+          "exists": true
+        },
+        {
+          "index": 2,
+          "file": "Physlib/SpaceAndTime/WaveVectorSpace/Basic.lean",
+          "declarations": [
+            {
+              "text": "instZero",
+              "fullName": "WaveVectorSpace.instZero",
+              "kind": "instance",
+              "line": 111,
+              "doc": null,
+              "signature": "instance instZero : Zero (WaveVectorSpace d) where"
+            },
+            {
+              "text": "instModuleReal",
+              "fullName": "WaveVectorSpace.instModuleReal",
+              "kind": "instance",
+              "line": 164,
+              "doc": null,
+              "signature": "instance instModuleReal : Module ℝ (WaveVectorSpace d) where"
+            }
+          ],
+          "exists": true
+        },
+        {
+          "index": 3,
+          "file": "Physlib/SpaceAndTime/WaveVectorSpace/Basic.lean",
+          "declarations": [
+            {
+              "text": "instNormedAddCommGroup",
+              "fullName": "WaveVectorSpace.instNormedAddCommGroup",
+              "kind": "instance",
+              "line": 195,
+              "doc": null,
+              "signature": "noncomputable instance instNormedAddCommGroup : NormedAddCommGroup (WaveVectorSpace d)"
+            },
+            {
+              "text": "instInnerProductSpaceReal",
+              "fullName": "WaveVectorSpace.instInnerProductSpaceReal",
+              "kind": "instance",
+              "line": 201,
+              "doc": null,
+              "signature": "noncomputable instance instInnerProductSpaceReal : InnerProductSpace ℝ (WaveVectorSpace d)"
+            },
+            {
+              "text": "equivEuclideanSpace",
+              "fullName": "WaveVectorSpace.equivEuclideanSpace",
+              "kind": "def",
+              "line": 225,
+              "doc": "The linear isometric equivalence between `WaveVectorSpace d` and `ℝᵈ`.",
+              "signature": "def equivEuclideanSpace : WaveVectorSpace d ≃ₗᵢ[ℝ] EuclideanSpace ℝ (Fin d) where"
+            }
+          ],
+          "exists": true
+        },
+        {
+          "index": 4,
+          "file": "Physlib/SpaceAndTime/WaveVectorSpace/Basic.lean",
+          "declarations": [
+            {
+              "text": "basis",
+              "fullName": "WaveVectorSpace.basis",
+              "kind": "def",
+              "line": 255,
+              "doc": "The standard basis of `WaveVectorSpace d`.",
+              "signature": "def basis : OrthonormalBasis (Fin d) ℝ (WaveVectorSpace d) where"
+            },
+            {
+              "text": "coord",
+              "fullName": "WaveVectorSpace.coord",
+              "kind": "def",
+              "line": 290,
+              "doc": "The standard coordinate functions of `WaveVectorSpace` based on `Fin d`.",
+              "signature": "def coord : ℝ"
+            },
+            {
+              "text": "coordCLM",
+              "fullName": "WaveVectorSpace.coordCLM",
+              "kind": "def",
+              "line": 296,
+              "doc": "The standard coordinate functions of `WaveVectorSpace` based on `Fin d`, as a continuous linear map.",
+              "signature": "def coordCLM : WaveVectorSpace d →L[ℝ] ℝ where"
+            }
+          ],
+          "exists": true
+        },
+        {
+          "index": 5,
+          "file": "Physlib/SpaceAndTime/WaveVectorSpace/Derivatives/Basic.lean",
+          "declarations": [
+            {
+              "text": "deriv",
+              "fullName": "WaveVectorSpace.deriv",
+              "kind": "def",
+              "line": 50,
+              "doc": "Given a function `f : WaveVectorSpace d → M`, `∂[i] f` is its derivative in the direction of the `i`ᵗʰ basis vector.",
+              "signature": "noncomputable def deriv {M : Type*} [AddCommGroup M] [Module ℝ M] [TopologicalSpace M]\n    (i : Fin d) (f : WaveVectorSpace d → M) (k : WaveVectorSpace d) : M"
+            },
+            {
+              "text": "deriv_add",
+              "fullName": "WaveVectorSpace.deriv_add",
+              "kind": "lemma",
+              "line": 86,
+              "doc": null,
+              "signature": "lemma deriv_add : ∂[i] (f₁ + f₂) k = ∂[i] f₁ k + ∂[i] f₂ k"
+            },
+            {
+              "text": "deriv_const_smul",
+              "fullName": "WaveVectorSpace.deriv_const_smul",
+              "kind": "lemma",
+              "line": 115,
+              "doc": null,
+              "signature": "lemma deriv_const_smul\n    {R : Type*} [Semiring R] [Module R M] [SMulCommClass ℝ R M] [ContinuousConstSMul R M] (c : R)\n    (i : Fin d) {f : WaveVectorSpace d → M} {k : WaveVectorSpace d} (hf : DifferentiableAt ℝ f k) :\n    ∂[i] (c • f) k…"
+            },
+            {
+              "text": "deriv_smul",
+              "fullName": "WaveVectorSpace.deriv_smul",
+              "kind": "lemma",
+              "line": 108,
+              "doc": "The product rule for functions on `WaveVectorSpace`.",
+              "signature": "lemma deriv_smul {𝕜 : Type*} [NontriviallyNormedField 𝕜] [NormedAlgebra ℝ 𝕜] [NormedSpace 𝕜 M]\n    (i : Fin d) {c : WaveVectorSpace d → 𝕜} {f : WaveVectorSpace d → M} {k : WaveVectorSpace d}\n    (hc : DifferentiableAt ℝ c k) (hf : Dif…"
+            },
+            {
+              "text": "deriv_pow",
+              "fullName": "WaveVectorSpace.deriv_pow",
+              "kind": "lemma",
+              "line": 129,
+              "doc": "The power rule for functions on `WaveVectorSpace`.",
+              "signature": "lemma deriv_pow {𝔸 : Type*} [NormedCommRing 𝔸] [NormedAlgebra ℝ 𝔸] (i : Fin d)\n    {f : WaveVectorSpace d → 𝔸} {k : WaveVectorSpace d} (n : ℕ) (hf : DifferentiableAt ℝ f k) :\n    ∂[i] (f ^ n) k = (n • f k ^ (n - 1)) • ∂[i] f k"
+            }
+          ],
+          "exists": true
+        },
+        {
+          "index": 6,
+          "file": "Physlib/SpaceAndTime/WaveVectorSpace/DualPairing.lean",
+          "declarations": [
+            {
+              "text": "pairingCLM",
+              "fullName": "WaveVectorSpace.pairingCLM",
+              "kind": "def",
+              "line": 100,
+              "doc": "The bilinear form `WaveVectorSpace d × Space d → ℝ` given by `k ↦ x ↦ k ⬝ᵥ x`.",
+              "signature": "def pairingCLM : WaveVectorSpace d →L[ℝ] Space d →L[ℝ] ℝ where"
+            }
+          ],
+          "exists": true
+        },
+        {
+          "index": 7,
+          "file": "Physlib/SpaceAndTime/WaveVectorSpace/DualPairing.lean",
+          "declarations": [
+            {
+              "text": "WaveVectorSpace.dual",
+              "fullName": "WaveVectorSpace.dual",
+              "kind": "def",
+              "line": 77,
+              "doc": "The functional on `Space d` dual to `k`, defined by `x ↦ k ⬝ᵥ x`.",
+              "signature": "def dual (k : WaveVectorSpace d) : StrongDual ℝ (Space d) where"
+            },
+            {
+              "text": "Space.dual",
+              "fullName": "Space.dual",
+              "kind": "def",
+              "line": 54,
+              "doc": "The functional on `WaveVectorSpace d` dual to `x`, defined by `k ↦ k ⬝ᵥ x`.",
+              "signature": "def dual (x : Space d) : StrongDual ℝ (WaveVectorSpace d) where"
+            }
+          ],
+          "exists": true
+        },
+        {
+          "index": 8,
+          "file": "Physlib/SpaceAndTime/WaveVectorSpace/Fourier.lean",
+          "declarations": [
+            {
+              "text": "fourierIntegral",
+              "fullName": "WaveVectorSpace.fourierIntegral",
+              "kind": "def",
+              "line": 107,
+              "doc": "The Fourier integral over `Space`,",
+              "signature": "noncomputable def fourierIntegral (f : Space d → E) (k : WaveVectorSpace d) : E"
+            },
+            {
+              "text": "fourierIntegralInv",
+              "fullName": "WaveVectorSpace.fourierIntegralInv",
+              "kind": "def",
+              "line": 130,
+              "doc": "The inverse Fourier integral over `WaveVectorSpace`,",
+              "signature": "noncomputable def fourierIntegralInv (g : WaveVectorSpace d → E) (x : Space d) : E"
+            }
+          ],
+          "exists": true
+        }
+      ],
+      "references": [
+        {
+          "index": 1,
+          "text": "Space API map — Physlib/SpaceAndTime/Space/API-map.md",
+          "apiMap": "Physlib/SpaceAndTime/Space"
+        }
+      ],
+      "requirements": [
+        {
+          "done": true,
+          "citations": [
+            1
+          ],
+          "alpha": true
+        },
+        {
+          "done": true,
+          "citations": [
+            2
+          ],
+          "alpha": true
+        },
+        {
+          "done": true,
+          "citations": [
+            3
+          ],
+          "alpha": true
+        },
+        {
+          "done": true,
+          "citations": [
+            4
+          ],
+          "alpha": true
+        },
+        {
+          "done": false,
+          "citations": [],
+          "alpha": true
+        },
+        {
+          "done": true,
+          "citations": [
+            5
+          ],
+          "alpha": true
+        },
+        {
+          "done": false,
+          "citations": [],
+          "alpha": true
+        },
+        {
+          "done": true,
+          "citations": [
+            6
+          ],
+          "alpha": true
+        },
+        {
+          "done": true,
+          "citations": [
+            7
+          ],
+          "alpha": true
+        },
+        {
+          "done": false,
+          "citations": [],
+          "alpha": true
+        },
+        {
+          "done": true,
+          "citations": [
+            8
+          ],
+          "alpha": true
+        },
+        {
+          "done": false,
+          "citations": [],
+          "alpha": true
+        },
+        {
+          "done": false,
+          "citations": [],
+          "alpha": true
+        }
+      ],
+      "parents": [
+        {
+          "name": "Space",
+          "path": "Physlib/SpaceAndTime/Space"
+        }
+      ],
+      "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/SpaceAndTime/WaveVectorSpace/API-map.md"
     },
     {
       "path": "Physlib/StatisticalMechanics/CanonicalEnsemble",
@@ -27299,7 +28189,7 @@
               "text": "ParametricDimensionExamples.Info",
               "fullName": "ParametricDimensionExamples.Info",
               "kind": "inductive",
-              "line": 83,
+              "line": 80,
               "doc": "A basis of information-theoretic base dimensions.",
               "signature": "inductive Info\n  | bit\n  | symbol"
             },
@@ -27307,7 +28197,7 @@
               "text": "ParametricDimensionExamples.bitDim",
               "fullName": "ParametricDimensionExamples.bitDim",
               "kind": "def",
-              "line": 92,
+              "line": 89,
               "doc": "The `bit` base dimension.",
               "signature": "def bitDim : Dimension Info"
             },
@@ -27315,7 +28205,7 @@
               "text": "ParametricDimensionExamples.symbolDim",
               "fullName": "ParametricDimensionExamples.symbolDim",
               "kind": "def",
-              "line": 95,
+              "line": 92,
               "doc": "The `symbol` base dimension.",
               "signature": "def symbolDim : Dimension Info"
             }
@@ -28349,7 +29239,7 @@
   "directories": [
     {
       "path": "Physlib",
-      "leanFiles": 682,
+      "leanFiles": 696,
       "hasApiMap": false
     },
     {
@@ -28374,7 +29264,7 @@
     },
     {
       "path": "Physlib/ClassicalMechanics",
-      "leanFiles": 58,
+      "leanFiles": 59,
       "hasApiMap": false
     },
     {
@@ -28449,12 +29339,12 @@
     },
     {
       "path": "Physlib/ClassicalMechanics/PointParticle",
-      "leanFiles": 2,
+      "leanFiles": 3,
       "hasApiMap": false
     },
     {
       "path": "Physlib/ClassicalMechanics/PointParticle/NewtonianSystem",
-      "leanFiles": 1,
+      "leanFiles": 2,
       "hasApiMap": false
     },
     {
@@ -28634,7 +29524,7 @@
     },
     {
       "path": "Physlib/Mathematics",
-      "leanFiles": 61,
+      "leanFiles": 64,
       "hasApiMap": false
     },
     {
@@ -28654,7 +29544,7 @@
     },
     {
       "path": "Physlib/Mathematics/ForMathlib",
-      "leanFiles": 21,
+      "leanFiles": 24,
       "hasApiMap": false
     },
     {
@@ -28944,17 +29834,17 @@
     },
     {
       "path": "Physlib/ProbabilisticTheory",
-      "leanFiles": 30,
+      "leanFiles": 35,
       "hasApiMap": false
     },
     {
       "path": "Physlib/ProbabilisticTheory/Channel",
-      "leanFiles": 4,
+      "leanFiles": 5,
       "hasApiMap": false
     },
     {
       "path": "Physlib/ProbabilisticTheory/CStarAlgebra",
-      "leanFiles": 1,
+      "leanFiles": 4,
       "hasApiMap": false
     },
     {
@@ -28974,32 +29864,37 @@
     },
     {
       "path": "Physlib/ProbabilisticTheory/OrderUnit",
-      "leanFiles": 3,
-      "hasApiMap": false
-    },
-    {
-      "path": "Physlib/ProbabilisticTheory/StarAlgebra",
-      "leanFiles": 2,
+      "leanFiles": 4,
       "hasApiMap": false
     },
     {
       "path": "Physlib/ProbabilisticTheory/State",
-      "leanFiles": 8,
+      "leanFiles": 9,
       "hasApiMap": false
     },
     {
       "path": "Physlib/ProbabilisticTheory/Weight",
-      "leanFiles": 2,
+      "leanFiles": 3,
       "hasApiMap": false
     },
     {
       "path": "Physlib/QFT",
-      "leanFiles": 72,
+      "leanFiles": 76,
       "hasApiMap": false
     },
     {
       "path": "Physlib/QFT/AnomalyCancellation",
       "leanFiles": 2,
+      "hasApiMap": false
+    },
+    {
+      "path": "Physlib/QFT/Euclidean",
+      "leanFiles": 4,
+      "hasApiMap": false
+    },
+    {
+      "path": "Physlib/QFT/Euclidean/GlimmJaffe",
+      "leanFiles": 4,
       "hasApiMap": false
     },
     {
@@ -29085,7 +29980,7 @@
     {
       "path": "Physlib/QuantumMechanics/Blackbody",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasApiMap": true
     },
     {
       "path": "Physlib/QuantumMechanics/FreeParticle",
@@ -29364,7 +30259,7 @@
     },
     {
       "path": "Physlib/SpaceAndTime",
-      "leanFiles": 57,
+      "leanFiles": 58,
       "hasApiMap": false
     },
     {
@@ -29419,7 +30314,7 @@
     },
     {
       "path": "Physlib/SpaceAndTime/TimeAndSpace",
-      "leanFiles": 4,
+      "leanFiles": 5,
       "hasApiMap": true
     },
     {
@@ -29428,9 +30323,14 @@
       "hasApiMap": false
     },
     {
+      "path": "Physlib/SpaceAndTime/TimeAndSpace/TestFunctions",
+      "leanFiles": 1,
+      "hasApiMap": false
+    },
+    {
       "path": "Physlib/SpaceAndTime/WaveVectorSpace",
       "leanFiles": 4,
-      "hasApiMap": false
+      "hasApiMap": true
     },
     {
       "path": "Physlib/SpaceAndTime/WaveVectorSpace/Derivatives",
@@ -29514,7 +30414,7 @@
     },
     {
       "path": "PhyslibAlpha",
-      "leanFiles": 847,
+      "leanFiles": 878,
       "hasApiMap": false
     },
     {
@@ -29649,12 +30549,12 @@
     },
     {
       "path": "PhyslibAlpha/ClassicalMechanics",
-      "leanFiles": 18,
+      "leanFiles": 45,
       "hasApiMap": false
     },
     {
       "path": "PhyslibAlpha/ClassicalMechanics/CentralForce",
-      "leanFiles": 2,
+      "leanFiles": 4,
       "hasApiMap": false
     },
     {
@@ -29674,17 +30574,32 @@
     },
     {
       "path": "PhyslibAlpha/ClassicalMechanics/OrbitalMechanics",
-      "leanFiles": 2,
+      "leanFiles": 27,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann",
+      "leanFiles": 24,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Dynamics",
+      "leanFiles": 13,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Optimality",
+      "leanFiles": 11,
       "hasApiMap": false
     },
     {
       "path": "PhyslibAlpha/CondensedMatter",
-      "leanFiles": 68,
+      "leanFiles": 69,
       "hasApiMap": false
     },
     {
       "path": "PhyslibAlpha/CondensedMatter/Bloch",
-      "leanFiles": 7,
+      "leanFiles": 8,
       "hasApiMap": false
     },
     {
@@ -30049,12 +30964,17 @@
     },
     {
       "path": "PhyslibAlpha/Particles",
-      "leanFiles": 139,
+      "leanFiles": 140,
       "hasApiMap": false
     },
     {
       "path": "PhyslibAlpha/Particles/BeyondTheStandardModel",
-      "leanFiles": 8,
+      "leanFiles": 9,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/Particles/BeyondTheStandardModel/GeorgiGlashow",
+      "leanFiles": 1,
       "hasApiMap": false
     },
     {
@@ -30484,12 +31404,12 @@
     },
     {
       "path": "PhyslibAlpha/QuantumMechanics",
-      "leanFiles": 40,
+      "leanFiles": 42,
       "hasApiMap": false
     },
     {
       "path": "PhyslibAlpha/QuantumMechanics/AngularMomentum",
-      "leanFiles": 18,
+      "leanFiles": 20,
       "hasApiMap": false
     },
     {

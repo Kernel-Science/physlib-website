@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getMonthEntries } from "@/lib/monthly-updates-months";
+import { monthRange } from "@/lib/monthly-updates-range";
+import { getArchiveBounds, getMonthEntries } from "@/lib/monthly-updates-months";
 import { MonthDetail } from "@/components/monthly-updates/month-detail";
 import { MonthPending } from "@/components/monthly-updates/month-pending";
 
 export async function generateStaticParams() {
-  const entries = await getMonthEntries();
-  return entries.map((e) => ({ slug: e.slug }));
+  return monthRange(await getArchiveBounds()).map(({ slug }) => ({ slug }));
 }
 
 export async function generateMetadata({

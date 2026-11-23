@@ -32,7 +32,7 @@ const projects: Project[] = [
     links: [
       {
         label: "Planck's Law",
-        href: "https://en.wikipedia.org/wiki/Planck%27s_law#The_law",
+        href: "https://en.wikipedia.org/wiki/Planck%27s_law#Definition",
       },
       {
         label: "Wien's Displacement Law",
@@ -56,7 +56,7 @@ const projects: Project[] = [
     links: [
       {
         label: "Reference",
-        href: "https://mmathphys.physics.ox.ac.uk/sites/default/files/mmathphys/documents/media/nonequilibrium_statistical_physics_2018.pdf",
+        href: "https://mmathphys.physics.ox.ac.uk/sites/g/files/vzsiac2991/files/mmathphys/documents/media/nonequilibrium_statistical_physics_2018.pdf#page=2",
       },
     ],
   },
@@ -86,7 +86,7 @@ const projects: Project[] = [
     links: [
       {
         label: "Notes",
-        href: "https://souravchatterjee.su.domains/qft-lectures-combined.pdf#page23",
+        href: "https://souravchatterjee.su.domains/qft-lectures-combined.pdf#page=27",
       },
     ],
   },
@@ -96,7 +96,7 @@ const projects: Project[] = [
     links: [
       {
         label: "physlib file",
-        href: "https://github.com/leanprover-community/physlib/blob/master/PhysLean/Cosmology/FLRW/Basic.lean",
+        href: "https://github.com/leanprover-community/physlib/blob/master/Physlib/Cosmology/FLRW/Basic.lean",
       },
       {
         label: "Zulip discussion",
@@ -120,7 +120,7 @@ const projects: Project[] = [
     links: [
       {
         label: "Reference",
-        href: "https://mmathphys.physics.ox.ac.uk/sites/default/files/mmathphys/documents/media/kt_2019.pdf",
+        href: "https://mmathphys.physics.ox.ac.uk/sites/g/files/vzsiac2991/files/mmathphys/documents/media/kt_2019.pdf#page=2",
       },
     ],
   },

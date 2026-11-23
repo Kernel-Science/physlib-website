@@ -1,19 +1,7 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
-import { site } from "@/lib/site";
-
-type Label = { name: string; color: string };
-
-type PR = {
-  number: number;
-  title: string;
-  html_url: string;
-  draft: boolean;
-  created_at: string;
-  user: { login: string } | null;
-  labels: Label[];
-};
+import { useState, useCallback } from "react";
+import type { PullRequest } from "./tracker-data";
 
 // "review" ("Needs Action") = has an assigned reviewer, not awaiting author,
 // not draft - i.e. a reviewer needs to actually act on it. "no-reviewer" is
@@ -32,7 +20,7 @@ function daysSince(dateStr: string) {
 }
 
 function categorize(
-  pr: PR,
+  pr: PullRequest,
   unreviewedNumbers: Set<number>,
   awaitingNumbers: Set<number>,
 ): Category {
@@ -49,23 +37,6 @@ function contrastColor(hex: string) {
   return (0.299 * r + 0.587 * g + 0.114 * b) / 255 > 0.5 ? "#000" : "#fff";
 }
 
-type ReportData = {
-  openPRs: PR[];
-  unreviewedPRs: { number: number }[];
-  awaitingAuthorPRs: { number: number }[];
-};
-
-async function fetchReport(): Promise<ReportData> {
-  // Reuses the same computation the Zulip "/reviews" bot command uses,
-  // rather than a separate direct GitHub call - one shared, authenticated,
-  // cached data source instead of two independent fetches. Also pulls the
-  // unreviewed/awaiting-author PR numbers so categorize() below matches the
-  // bot's definitions exactly, instead of re-deriving a simplified version
-  // from labels alone.
-  const res = await fetch(site.reportApi);
-  return (await res.json()) as ReportData;
-}
-
 const filterLabels: { key: Category | "all"; label: string; dot: string }[] = [
   { key: "review", label: "Needs Action", dot: "bg-danger" },
   { key: "awaiting", label: "Awaiting Author", dot: "bg-warning" },
@@ -73,27 +44,20 @@ const filterLabels: { key: Category | "all"; label: string; dot: string }[] = [
   { key: "all", label: "All", dot: "bg-foreground" },
 ];
 
-export function PRTrackerClient() {
-  const [prs, setPrs] = useState<PR[]>([]);
-  const [unreviewedNumbers, setUnreviewedNumbers] = useState<Set<number>>(new Set());
-  const [awaitingNumbers, setAwaitingNumbers] = useState<Set<number>>(new Set());
-  const [status, setStatus] = useState<"loading" | "error" | "ok">("loading");
-  const [filter, setFilter] = useState<Category | "all">("review");
+type Props = {
+  prs: PullRequest[];
+  queues?: { unreviewed: number[]; awaiting: number[] };
+  complete: boolean;
+};
+
+export function PRTrackerClient({ prs, queues, complete }: Props) {
+  const unreviewedNumbers = new Set(queues?.unreviewed);
+  const awaitingNumbers = new Set(queues?.awaiting);
+  const [filter, setFilter] = useState<Category | "all">(queues ? "review" : "all");
   const [sort, setSort] = useState<{ key: SortKey; dir: SortDir }>({
     key: "age",
     dir: "asc",
   });
-
-  useEffect(() => {
-    fetchReport()
-      .then((data) => {
-        setPrs(data.openPRs);
-        setUnreviewedNumbers(new Set(data.unreviewedPRs.map((pr) => pr.number)));
-        setAwaitingNumbers(new Set(data.awaitingAuthorPRs.map((pr) => pr.number)));
-        setStatus("ok");
-      })
-      .catch(() => setStatus("error"));
-  }, []);
 
   const counts = {
     review: prs.filter((p) => categorize(p, unreviewedNumbers, awaitingNumbers) === "review").length,
@@ -132,31 +96,23 @@ export function PRTrackerClient() {
       );
     });
 
-  if (status === "loading") {
-    return (
-      <div className="flex items-center justify-center py-20 text-muted">
-        Loading pull requests…
-      </div>
-    );
-  }
-
-  if (status === "error") {
-    return (
-      <div className="flex items-center justify-center py-20 text-danger">
-        Failed to load pull requests. Please try refreshing the page.
-      </div>
-    );
-  }
-
   return (
     <div>
+      {!queues && (
+        <p className="mb-4 text-sm text-muted" role="status">
+          {complete ? "Showing open pull requests from GitHub." : "Showing a partial list of open pull requests from GitHub."}{" "}
+          Review assignments and reviewer workload are unavailable.
+        </p>
+      )}
       {/* Summary cards */}
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 mb-6">
+      <div className={`grid grid-cols-2 gap-3 mb-6 ${queues ? "sm:grid-cols-4" : ""}`}>
         {[
-          { label: "Needs Action", count: counts.review, color: "border-l-danger" },
-          { label: "Awaiting Author", count: counts.awaiting, color: "border-l-warning" },
-          { label: "Draft", count: counts.draft, color: "border-l-accent" },
-          { label: "Total Open", count: counts.total, color: "border-l-foreground/40" },
+          ...(queues ? [
+            { label: "Needs Action", count: counts.review, color: "border-l-danger" },
+            { label: "Awaiting Author", count: counts.awaiting, color: "border-l-warning" },
+          ] : []),
+          { label: complete ? "Draft" : "Drafts shown", count: counts.draft, color: "border-l-accent" },
+          { label: complete ? "Total Open" : "Open PRs shown", count: counts.total, color: "border-l-foreground/40" },
         ].map(({ label, count, color }) => (
           <div
             key={label}
@@ -170,7 +126,7 @@ export function PRTrackerClient() {
 
       {/* Filter bar */}
       <div className="flex flex-wrap gap-2 mb-4">
-        {filterLabels.map(({ key, label }) => (
+        {filterLabels.filter(({ key }) => queues || key === "all" || key === "draft").map(({ key, label }) => (
           <button
             key={key}
             onClick={() => setFilter(key)}
@@ -248,14 +204,16 @@ export function PRTrackerClient() {
                     </div>
                   </td>
                   <td className="px-4 py-3">
-                    <a
-                      href={`https://github.com/${pr.user?.login}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-accent hover:underline underline-offset-2"
-                    >
-                      {pr.user?.login ?? "unknown"}
-                    </a>
+                    {pr.user ? (
+                      <a
+                        href={`https://github.com/${encodeURIComponent(pr.user.login)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-accent hover:underline underline-offset-2"
+                      >
+                        {pr.user.login}
+                      </a>
+                    ) : "unknown"}
                   </td>
                   <td
                     className={`px-4 py-3 font-mono text-xs ${

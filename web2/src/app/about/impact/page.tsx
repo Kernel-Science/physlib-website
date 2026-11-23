@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { AboutSectionNav } from "@/components/about-section-nav";
-import { impacts, paper } from "@/lib/about-content";
+import { ImpactContent } from "@/components/about-section-content";
+import { AboutOverviewLink, AboutRelatedLinks, AboutSectionNav } from "@/components/about-section-nav";
 
 export const metadata: Metadata = {
   title: "Impact",
@@ -12,7 +12,7 @@ export default function ImpactPage() {
   return (
     <div className="page-frame-editorial">
 
-      <p className="label-mono text-muted mb-5">About</p>
+      <AboutOverviewLink />
       <h1 className="page-title-editorial mb-6">
         Impact
       </h1>
@@ -20,39 +20,8 @@ export default function ImpactPage() {
         Why formalize physics?
       </p>
 
-      <div className="grid gap-4 sm:grid-cols-2">
-        {impacts.map((item, i) => (
-          <div
-            key={i}
-            className="flex gap-5 rounded p-6 bg-background border border-border shadow-together"
-          >
-            <span
-              className="text-2xl font-medium text-accent/40 font-mono flex-shrink-0 leading-none tabular-nums"
-              style={{ letterSpacing: "-0.04em" }}
-            >
-              {String(i + 1).padStart(2, "0")}
-            </span>
-            <p
-              className="text-sm text-muted leading-relaxed"
-              style={{ letterSpacing: "-0.01em" }}
-            >
-              {item}
-            </p>
-          </div>
-        ))}
-      </div>
-
-      <p className="mt-10 text-sm text-foreground/30">
-        Read the paper:{" "}
-        <a
-          href={paper.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-foreground/60 transition-colors underline underline-offset-2"
-        >
-          {paper.label}
-        </a>
-      </p>
+      <ImpactContent />
+      <AboutRelatedLinks />
 
       <AboutSectionNav current="/about/impact" />
     </div>

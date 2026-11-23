@@ -1,5 +1,27 @@
 import Link from "next/link";
-import { aboutSections } from "@/lib/about-content";
+import { aboutSections, paper } from "@/lib/about-content";
+
+export function AboutRelatedLinks() {
+  return (
+    <div className="mt-12 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-border pt-6 text-sm text-foreground/30">
+      <a href={paper.href} target="_blank" rel="noopener noreferrer" className="hover:text-foreground/60 hover:underline underline-offset-2">
+        Read the paper {paper.label} <span aria-hidden="true">↗</span>
+      </a>
+      <Link href="/team" className="hover:text-foreground/60 hover:underline underline-offset-2">
+        Meet the Team <span aria-hidden="true">→</span>
+      </Link>
+    </div>
+  );
+}
+
+export function AboutOverviewLink() {
+  return (
+    <Link href="/about" className="mb-5 inline-flex items-center gap-2 text-sm font-medium text-accent hover:underline underline-offset-2">
+      <span aria-hidden="true">←</span>
+      About Overview
+    </Link>
+  );
+}
 
 /** Links to the other pages in the About section, shown at the foot of each one. */
 export function AboutSectionNav({ current }: { current: string }) {

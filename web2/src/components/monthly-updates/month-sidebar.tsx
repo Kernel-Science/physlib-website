@@ -1,13 +1,25 @@
 "use client";
 
+import { createContext, useContext, type ReactNode } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { monthRange } from "@/lib/monthly-updates-range";
+import { monthRange, type ArchiveBounds } from "@/lib/monthly-updates-range";
 
-const months = monthRange();
-const years = Array.from(new Set(months.map((m) => m.year)));
+const ArchiveContext = createContext<ArchiveBounds | null>(null);
+
+export function MonthArchiveProvider({
+  bounds,
+  children,
+}: {
+  bounds: ArchiveBounds | null;
+  children: ReactNode;
+}) {
+  return <ArchiveContext.Provider value={bounds}>{children}</ArchiveContext.Provider>;
+}
 
 export function MonthSidebar() {
+  const months = monthRange(useContext(ArchiveContext));
+  const years = Array.from(new Set(months.map((m) => m.year)));
   const pathname = usePathname();
   const activeSlug = pathname.split("/").pop();
 

@@ -68,7 +68,7 @@ export const paper = {
   href: "https://inspirehep.net/literature/2787050",
 };
 
-/** Pages in the About section — drives the index cards and the section nav. */
+/** Pages in the About section — drives the overview and section navigation. */
 export const aboutSections = [
   {
     href: "/about/mission",
@@ -95,4 +95,4 @@ export const aboutSections = [
     label: "Team",
     tagline: "The maintainers and contributors who build Physlib.",
   },
-];
+] as const;

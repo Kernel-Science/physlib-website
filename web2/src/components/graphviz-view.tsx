@@ -47,9 +47,10 @@ const ZOOM_EXTENT: [number, number] = [0.02, 12];
 type Props = {
   getDot: () => Promise<string>;
   height?: string;
+  label?: string;
 };
 
-export function GraphvizView({ getDot, height = "70vh" }: Props) {
+export function GraphvizView({ getDot, height = "70vh", label }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const graphvizRef = useRef<any>(null);
@@ -246,6 +247,7 @@ export function GraphvizView({ getDot, height = "70vh" }: Props) {
           const svg: SVGSVGElement | null =
             containerRef.current.querySelector("svg");
           if (!svg) return;
+          if (label) svg.setAttribute("aria-label", label);
 
           // Graphviz emits width/height in "pt", which browsers convert to
           // px at a fixed 4/3 ratio — a second scale factor layered on top
@@ -335,7 +337,7 @@ export function GraphvizView({ getDot, height = "70vh" }: Props) {
     return () => {
       cancelled = true;
     };
-  }, [getDot]);
+  }, [getDot, label]);
 
   return (
     <div className="flex flex-col gap-2">

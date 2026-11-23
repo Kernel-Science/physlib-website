@@ -1,6 +1,6 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
-import { navSections, site } from "./site";
+import { navSections, site, todoTaskHref } from "./site";
 import { getApiMap, getReferences, getTodo } from "./yaml";
 
 export type SearchKind = "page" | "module" | "declaration" | "api-map" | "todo" | "reference";
@@ -42,17 +42,17 @@ const pages: Record<string, [string, string]> = {
   "/about/impact": ["Impact", "Why formalize physics in Lean?"],
   [site.team]: ["Team", "Meet the maintainers and contributors who build Physlib."],
   "/getting-started": ["Getting Started", "Install Lean, set up Physlib, and make your first contribution."],
-  "/gh-guide": ["GitHub contribution guide", "Fork the repository, create a branch, and open a pull request."],
-  "/get-involved": ["Ways to contribute", "Find TODOs, open issues, and opportunities to work on Physlib."],
+  "/gh-guide": ["GitHub Guide", "Fork the repository, create a branch, and open a pull request."],
+  "/get-involved": ["Ways to Contribute", "Find TODOs, open issues, and opportunities to work on Physlib."],
   "/faq": ["Contributor FAQ", "Frequently asked questions about making a first contribution."],
   "/project-ideas": ["Project ideas", "Suggested physics formalization projects and reading material."],
   "/dependencies": ["Dependency graphs", "Explore imports and dependencies between Lean modules."],
   "/docs/index.html": ["Lean documentation", "Browse the generated Lean module and declaration documentation."],
-  "/documentation-tracker": ["Documentation Tracker", "Find Lean files that need documentation."],
-  "/api-tracker": ["API Tracker", "Read API maps and follow links to the Lean declarations they describe."],
+  "/api-tracker": ["API Maps", "Browse the API tracker and follow links from maps to the Lean declarations they describe."],
   "/api-tracker/new": ["Create an API map", "Start a new map of formalized physics results."],
-  "/pr-tracker": ["Pull Request Triage", "Open pull requests and the reviews or actions they need."],
-  "/todo": ["TODO List", "Open tasks, informal definitions and lemmas, semiformal and sorryful results, and GitHub issues."],
+  "/pr-tracker": ["Pull Request Queue", "Open pull requests and the reviews or actions they need."],
+  [site.documentationGuide]: ["Documentation Guide", "How to document a Lean module and explore the import graph."],
+  [site.tasks]: ["Find a Task", "Search open GitHub issues, Lean TODOs, and documentation tasks."],
   "/references": ["References", "Search publications and citations used in Physlib."],
   "/monthly-updates": ["Monthly updates", "Monthly reports on changes and contributions to Physlib."],
   "/news": ["News", "Project news and announcements."],
@@ -115,7 +115,7 @@ async function buildIndex(): Promise<Entry[]> {
       : item.isInformalLemma ? "Informal lemma" : item.isSemiFormalResult ? "Semiformal result"
       : item.isSorryfulResult ? "Sorryful result" : "TODO";
     const title = item.name === item.file && item.content ? clip(item.content.trim().replace(/\s+/g, " "), 95) : item.name;
-    rows.push(entry("todo", title, "/todo#" + encodeURIComponent(item.tag),
+    rows.push(entry("todo", title, item.isGitHubIssue ? item.githubLink : todoTaskHref(item.tag),
       `${kind} · ${item.file} — ${item.content}`, `${item.name} ${item.category} ${item.tag}`));
   }
   for (const ref of references.references) {

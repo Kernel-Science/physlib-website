@@ -10,7 +10,7 @@ export function PdfViewer({ url, title }: { url: string; title: string }) {
           own tab instead, where the real full-screen viewer scrolls fine. */}
       <div className="hidden overflow-hidden rounded-xl border border-border bg-surface-secondary/30 lg:block">
         <iframe
-          src={url}
+          src={`${url}#view=FitH&navpanes=0`}
           title={title}
           scrolling="yes"
           className="h-[80vh] min-h-[600px] w-full"

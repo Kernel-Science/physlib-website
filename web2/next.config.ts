@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
         destination: '/docs/index.html',
         permanent: true,
       },
+      {
+        source: '/GettingStarted',
+        destination: '/getting-started',
+        permanent: true,
+      },
     ]
   },
 };

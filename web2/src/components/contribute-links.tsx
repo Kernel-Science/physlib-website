@@ -7,17 +7,10 @@ import { site } from "@/lib/site";
  * /get-involved.
  */
 const ways: { label: string; text: string; href: string; external?: boolean }[] = [
-  {
-    label: "Review",
-    text: "Review open pull requests",
-    href: "https://github.com/leanprover-community/physlib/issues/views/MDI0OlJlcG9zaXRvcnlTZWFyY2hTaG9ydGN1dDIyNDk0",
-    external: true,
-  },
-  { label: "Edit the API maps", text: "Improve wiki-like articles", href: "/api-tracker" },
-  { label: "Start an API map", text: "Map out an area that has none yet", href: "/api-tracker/new" },
-  { label: "Contribute Lean code", text: "Pick up an open issue on GitHub", href: `${site.github}/issues`, external: true },
-  { label: "Tackle a TODO", text: "Formalize an open TODO item", href: "/todo" },
-  { label: "Join the discussion", text: "Talk to the community on Zulip", href: site.zulip, external: true },
+  { label: "Review a PR", text: "Give feedback on submitted changes", href: "/pr-tracker" },
+  { label: "Write an API Map", text: "Explain a physics topic and link it to Lean", href: "/api-tracker" },
+  { label: "Find a Task", text: "Browse issues, TODOs, and documentation tasks", href: site.tasks },
+  { label: "Join the Discussion", text: "Talk to the community on Zulip", href: site.zulip, external: true },
 ];
 
 function Arrow({ external }: { external?: boolean }) {

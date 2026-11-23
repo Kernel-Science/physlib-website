@@ -97,7 +97,7 @@ function newFileUrl(repo: string, branch: string, path: string, text: string): s
 }
 
 export function CreateApiMap({ apiMap }: { apiMap: ApiMap }) {
-  const { repo, branch, nodes, directories } = apiMap;
+  const { repo, branch, commit, nodes, directories } = apiMap;
   const byPath = useMemo(() => new Map(nodes.map((n) => [n.path, n])), [nodes]);
   const dirPaths = useMemo(() => new Set(directories.map((d) => d.path)), [directories]);
   const mapped = useMemo(
@@ -154,8 +154,8 @@ export function CreateApiMap({ apiMap }: { apiMap: ApiMap }) {
   }, [directories, filter]);
 
   const context: ArticleContextValue = useMemo(
-    () => ({ repo, branch, leanReferences: [], references: [], byPath }),
-    [repo, branch, byPath],
+    () => ({ repo, branch, commit, leanReferences: [], references: [], byPath }),
+    [repo, branch, commit, byPath],
   );
 
   const issue: IssueDraft = apiMapIssue({
@@ -167,7 +167,7 @@ export function CreateApiMap({ apiMap }: { apiMap: ApiMap }) {
       `**Area:** ${where === "existing" ? "an existing folder of Physlib" : "a new area, not yet in Physlib"}`,
     ],
     file: `${path}/API-map.md`,
-    commit: apiMap.commit,
+    commit,
     operation: { op: "create-file" },
     base: null,
   });

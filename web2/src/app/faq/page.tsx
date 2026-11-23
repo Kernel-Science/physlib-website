@@ -13,7 +13,7 @@ const repository = "https://github.com/leanprover-community/physlib";
 export default function ContributorFaqPage() {
   return (
     <div className="page-frame-editorial">
-      <p className="label-mono mb-5 text-muted">Documentation</p>
+      <p className="label-mono mb-5 text-muted">Learn</p>
       <h1 className="page-title-editorial mb-8">
         Contributor FAQ
       </h1>
@@ -22,8 +22,8 @@ export default function ContributorFaqPage() {
           <PageHeader id="first-task" title="Can I contribute before learning Lean?" />
           <p>
             Yes. An API map explains the physics in Markdown and links to existing Lean
-            declarations. Look for a topic you know in the{" "}
-            <Link className={linkClass} href="/api-tracker">API tracker</Link>
+            declarations. Look for a topic you know in{" "}
+            <Link className={linkClass} href="/api-tracker">API Maps</Link>
             {" "}and use the{" "}
             <a className={linkClass} href={`${repository}/blob/master/docs/API_MAP_GUIDE.md`}>
               API map guide

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function AiGuidelinesPage() {
   return (
     <div className="page-frame-editorial">
-      <p className="label-mono text-muted mb-5">AI Tools</p>
+      <p className="label-mono text-muted mb-5">Learn</p>
       <h1 className="page-title-editorial">
         AI Guidelines
       </h1>

@@ -409,10 +409,12 @@ a.apimap-missing:hover { color: var(--accent); }
   color: var(--foreground);
   font-family: var(--font-geist-mono), ui-monospace, monospace;
   font-size: 0.85em;
+  overflow-wrap: anywhere;
 }
 .apimap-decl {
   font-family: var(--font-geist-mono), ui-monospace, monospace;
   font-size: 0.85em;
+  overflow-wrap: anywhere;
 }
 
 /* Summary card: beside the abstract from md up, above it on phones. */

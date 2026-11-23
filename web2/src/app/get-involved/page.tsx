@@ -3,12 +3,13 @@ import { ButtonLink } from "@/components/button-link";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Get Involved | Physlib",
+  title: "Ways to Contribute | Physlib",
   description:
     "Many ways to contribute to Physlib — from promoting the project to formalizing physics results in Lean.",
 };
 
 type Step = {
+  id?: string;
   title: string;
   body: string;
   href?: string;
@@ -23,7 +24,7 @@ const steps: Step[] = [
   {
     title: "The TODO List",
     body: "The TODO list contains basic Lean or admin related tasks. Most of these are relatively small tasks like renaming lemmas.",
-    href: "/todo",
+    href: site.tasks + "?type=todo",
     linkLabel: "See TODOs",
   },
   {
@@ -35,18 +36,28 @@ const steps: Step[] = [
   {
     title: "Help with Issues",
     body: "You can contribute by helping with open issues. These range from suggested formalizations, to infrastructure changes needed, to Lean meta programming tasks.",
-    href: `${site.github}/issues`,
-    linkLabel: "See Issues",
+    href: site.tasks,
+    linkLabel: "Browse GitHub Issues",
   },
   {
-    title: "Contributing via GitHub",
-    body: "A step-by-step guide to contributing to Physlib via GitHub.",
+    title: "GitHub Guide",
+    body: "When you’ve chosen what to work on, follow the GitHub Guide to create a branch, submit a pull request, and respond to review.",
     href: "/gh-guide",
     linkLabel: "Read the Guide",
   },
   {
+    id: "ai-resources",
+    title: "AI Resources",
+    body: "Find Physlib’s AI contribution guidelines, tools, and reusable prompts.",
+    href: site.aiResources,
+    linkLabel: "Explore AI Resources",
+  },
+  {
+    id: "steps-to-help-with-documentation",
     title: "Golfing & Documentation",
     body: "Golfing is the process of making the code more concise and readable, whilst documentation is the process of adding comments and explanations to the code.",
+    href: site.documentationGuide,
+    linkLabel: "How to document a file",
   },
   {
     title: "Creating Informal Results",
@@ -71,15 +82,13 @@ export default function GetInvolvedPage() {
     <div className="page-frame-editorial">
 
       {/* Page intro */}
-      <p className="label-mono text-muted mb-5">Community</p>
+      <p className="label-mono text-muted mb-5">Learn</p>
       <h1 className="page-title-editorial">
-        Get Involved
+        Ways to Contribute
       </h1>
       <p className="page-intro-editorial max-w-2xl mb-6">
-        Physlib is a community project and we welcome contributions from
-        everyone. There are many ways to contribute — from helping with issues,
-        to formalizing results, to creating informal results. Feel free to
-        contribute in any way you see fit and think you will have the most fun from!
+        Choose a way to help that fits your background. You can write Lean code, explain
+        existing results, record physics in plain English, or help the community.
       </p>
 
       <div className="rounded border border-accent/30 bg-accent/10 px-5 py-3 text-sm mb-10" style={{ letterSpacing: "-0.01em" }}>
@@ -88,7 +97,7 @@ export default function GetInvolvedPage() {
           href="/getting-started"
           className="text-accent hover:underline underline-offset-2 font-medium"
         >
-          getting started
+          Getting Started
         </a>{" "}
         page.
       </div>
@@ -96,7 +105,7 @@ export default function GetInvolvedPage() {
       {/* Steps */}
       <div className="divide-y divide-border">
         {steps.map((step, i) => (
-          <div key={step.title} className="grid grid-cols-[2.5rem_1fr] gap-x-8 py-8 items-start">
+          <div key={step.title} id={step.id} className="grid scroll-mt-24 grid-cols-[2.5rem_1fr] gap-x-8 py-8 items-start">
             <span className="label-mono text-accent pt-0.5">
               {String(i + 1).padStart(2, "0")}
             </span>
@@ -122,15 +131,6 @@ export default function GetInvolvedPage() {
           </div>
         ))}
       </div>
-
-      <section id="ai-resources" className="mt-10 scroll-mt-20 border-t border-border pt-8">
-        <h2 className="text-xl font-medium text-foreground">AI Resources</h2>
-        <div className="mt-4 flex flex-wrap gap-2">
-          <ButtonLink href={site.aiResources + "#ai-guidelines"} size="sm" variant="secondary">AI Guidelines</ButtonLink>
-          <ButtonLink href={site.aiResources + "#physlib-ai-tools"} size="sm" variant="secondary">Physlib AI Tools</ButtonLink>
-          <ButtonLink href={site.aiResources + "#useful-prompts"} size="sm" variant="secondary">Useful Prompts</ButtonLink>
-        </div>
-      </section>
 
       {/* CTA */}
       <div className="mt-16 border-t border-border pt-10 text-center">

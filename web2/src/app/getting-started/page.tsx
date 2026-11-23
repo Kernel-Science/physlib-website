@@ -8,7 +8,7 @@ import { InstallChoice, InstallSteps, type InstallStep } from "@/components/inst
 export const metadata: Metadata = {
   title: "Getting Started | Physlib",
   description:
-    "A guide for getting started with Physlib, aimed at people with no Lean experience or who are new to the project.",
+    "Set up Lean and Physlib, write your first results, and check them with the project’s linters.",
 };
 
 export default function GettingStartedPage() {
@@ -16,18 +16,19 @@ export default function GettingStartedPage() {
     <div className="page-frame-editorial">
 
       {/* Page intro */}
-      <p className="label-mono text-muted mb-5">Documentation</p>
+      <p className="label-mono text-muted mb-5">Learn</p>
       <h1 className="page-title-editorial">
         Getting Started
       </h1>
       <p className="page-intro-editorial max-w-2xl mb-10">
-        A guide for getting started with Physlib, aimed at people with no Lean
-        experience or who are new to the project.
+        Set up Lean and Physlib, then write and check your first Lean results. Start here if
+        you’re new to Lean or to the project. If you’re still deciding how to help, see{" "}
+        <a href="/get-involved" className="text-accent hover:underline underline-offset-2">Ways to Contribute</a>.
       </p>
 
       <PageHeader id="first-contribution" title="Make Your First Contribution" />
       <p className="mb-4 text-sm leading-relaxed text-foreground/85">
-        If you know the physics and are new to Lean, start with an API map.
+        If you know the physics and are new to Lean, you can start with an API map.
         API maps are Markdown guides that explain a topic and link to the
         relevant Lean declarations. You can choose a topic and draft locally
         before signing in to GitHub.
@@ -37,7 +38,7 @@ export default function GettingStartedPage() {
           Write your first API map
         </ButtonLink>
         <ButtonLink href="/gh-guide" variant="secondary">
-          Fork and open a pull request
+          GitHub Guide
         </ButtonLink>
         <ButtonLink href="/faq" variant="secondary">
           Contributor FAQ
@@ -214,24 +215,45 @@ export default function GettingStartedPage() {
       <PageHeader id="making-a-new-file" title="Making a New File" />
 
       <p className="text-sm text-muted mb-6 leading-relaxed" style={{ letterSpacing: "-0.01em" }}>
-        New files should be made when there is a natural separation of results
-        in an existing file, or when a new result is being added that does not
-        fit in any existing file.
+        Keep related results together. When a contribution needs its own module,
+        put it beside files on the same physics topic.
       </p>
 
       <Card variant="default" className="mb-4">
         <Card.Header>
-          <Card.Title>New File Checklist</Card.Title>
+          <Card.Title>Try a Physlib Alpha module</Card.Title>
         </Card.Header>
         <Card.Content className="flex flex-col gap-4 text-sm text-foreground/90">
-          {fileSteps.map((step, i) => (
-            <div key={i} className="flex flex-col gap-2">
-              <p>
-                <strong>{step.title}:</strong> {step.description}
-              </p>
-              {step.code && <CodeBlock language="lean" code={step.code} title="MyNewFile.lean" />}
-            </div>
-          ))}
+          <p>
+            Create <code className="break-all">PhyslibAlpha/Particles/StandardModel/GaugeGroup/PhaseProduct.lean</code>{" "}
+            in your local copy of Physlib. Paste the example below and replace
+            “Your Name” in the header. The lemma shows that composing two gauge
+            transformations multiplies their U(1) phases.
+          </p>
+          <CodeBlock language="lean" title="PhaseProduct.lean" code={alphaFileExample} />
+          <p>
+            Register the module in <code>PhyslibAlpha.lean</code> by adding this
+            line in alphabetical order among the existing imports. Each dot in
+            the module name corresponds to a folder separator in the file path.
+          </p>
+          <CodeBlock
+            language="lean"
+            title="PhyslibAlpha.lean"
+            code="public import PhyslibAlpha.Particles.StandardModel.GaugeGroup.PhaseProduct"
+          />
+          <p>
+            From the root of your Physlib checkout, build the new module.
+            Lake checks the imports and the proof.
+          </p>
+          <CodeBlock
+            language="bash"
+            code="lake build PhyslibAlpha.Particles.StandardModel.GaugeGroup.PhaseProduct"
+          />
+          <p>
+            Use <code>Physlib.lean</code> to register modules under <code>Physlib/</code>.
+            The <a className={linkClass} href="https://github.com/leanprover-community/physlib/blob/master/docs/ContributionHandbook/Documentation.md#module-documentation-structure">documentation guide</a>{" "}
+            explains the section headings for a contribution.
+          </p>
         </Card.Content>
       </Card>
 
@@ -534,41 +556,49 @@ semiformal_result "6YB2U" force_is_linear (x : ℝ → ℝ) :
   },
 ];
 
-const fileSteps = [
-  {
-    title: "Create a new file",
-    description: "Place the file in the relevant directory.",
-  },
-  {
-    title: "File naming convention",
-    description:
-      "Use a descriptive name with only alphabetic characters. Each new word should start with a capital letter, e.g. MyNewFile.lean.",
-  },
-  {
-    title: "Add a copyright statement",
-    description: "At the very top of the file, include:",
-    code: `/-
-Copyright (c) 2025 your-name. All rights reserved.
+const alphaFileExample = `/-
+Copyright (c) 2026 Your Name. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
-Authors: your-name
--/`,
-  },
-  {
-    title: "Include necessary imports",
-    description: "Add any required imports next, for example:",
-    code: `import Mathlib.Analysis.SpecialFunctions.Integrals
-import Mathlib.Analysis.SpecialFunctions.PolarCoord
-import PhysLean.Meta.TODO.Basic
-import PhysLean.Meta.Informal.SemiFormal
-import PhysLean.Meta.Informal.Basic`,
-  },
-  {
-    title: "Add a file description",
-    description: "Provide a brief description of the file's content.",
-  },
-  {
-    title: "Update the main import file",
-    description:
-      "Add your new file to ./PhysLean.lean (or the main entry file) in alphabetical order as an import.",
-  },
-];
+Authors: Your Name
+-/
+module
+
+public import Physlib.Particles.StandardModel.GaugeGroup.Basic
+
+/-!
+# The U(1) phase of a product
+
+Project a Standard Model gauge transformation onto its U(1) factor.
+
+## i. Overview
+
+An element of the unquotiented gauge group has three components,
+in SU(3), SU(2) and U(1). The projection to U(1) is a homomorphism.
+
+## ii. Key results
+
+- \`toU1_mul\` gives the phase of a product of gauge transformations.
+
+## iii. Table of contents
+
+- A. Composition
+
+## iv. References
+
+* None.
+-/
+
+public section
+
+namespace StandardModel.GaugeGroupI
+
+/-!
+## A. Composition
+-/
+
+/-- Composing two transformations multiplies their U(1) phases. -/
+lemma toU1_mul (g h : StandardModel.GaugeGroupI) :
+    toU1 (g * h) = toU1 g * toU1 h :=
+  toU1.map_mul g h
+
+end StandardModel.GaugeGroupI`;
