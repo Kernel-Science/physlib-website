@@ -58,11 +58,10 @@ export default async function SponsorsPage() {
 
       <div className="border-t border-border pt-8">
         <p className="mb-4 text-sm text-foreground/90">
-          Would you like to see your name here? Find out what your support
-          would make possible.
+          Explore the research and infrastructure projects the community would like to take on.
         </p>
         <ButtonLink href={site.sponsor} size="sm">
-          Fund Physlib
+          Project Priorities
         </ButtonLink>
       </div>
     </div>

@@ -82,7 +82,7 @@ export const navSections: NavSection[] = [
     label: "Support",
     plainHover: true,
     items: [
-      { label: "Fund Physlib", href: site.sponsor },
+      { label: "Project Priorities", href: site.sponsor },
       { label: "Sponsors", href: site.sponsors },
     ],
   },

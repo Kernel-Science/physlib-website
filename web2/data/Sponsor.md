@@ -1,6 +1,6 @@
-# Fund Physlib
+# Project Priorities
 
-Physlib is the standard library for physics in Lean, a language in which a computer checks every mathematical statement for correctness and consistency. Today it holds over 7,900 theorems and lemmas, covering physics from Maxwell's equations to the Standard Model Lagrangian. Its long-term goal is to be the trusted corpus of knowledge for physics: readable, reviewed by people, and containing the best results possible in a connected and reusable way. Physlib is open source, community run and built entirely by volunteers. Your support would change how fast it can grow, and [each level of support](#what-we-could-do-with-your-support), from US$10,000 upwards, would make something specific happen.
+Physlib is the standard library for physics in Lean, a language in which a computer checks every mathematical statement for correctness and consistency. Today it holds over 7,900 theorems and lemmas, covering physics from Maxwell's equations to the Standard Model Lagrangian. Its long-term goal is to be the trusted corpus of knowledge for physics: readable, reviewed by people, and containing the best results possible in a connected and reusable way. Physlib is open source and its contributors guide its development. The priorities below describe where contributors can put their time and [what larger research projects could cost](#priorities).
 
 ## Why a standard library matters
 
@@ -40,41 +40,41 @@ A corpus like this also leads to discovery: covering an area comprehensively rev
 
 ## What holds Physlib back
 
-All of the work on Physlib is currently done voluntarily, in people's free time or alongside academic jobs with other responsibilities. Nobody is funded to work on Physlib as their main job. What holds the project back is people's time for the four core activities that make it succeed.
+Contributors work on Physlib in their own time or alongside other research and teaching responsibilities. Four areas in particular would benefit from more of their time.
 
 - **Foundations.** Working out the best way to bring an area of physics into Physlib, and covering it comprehensively. The aim is a base of results that other people can build on, more than any single headline result. Thermodynamics and statistical mechanics, among many other areas, do not yet have foundations that are reusable and easy to build on.
 - **Onboarding.** Helping new contributors learn the library's conventions and start making good contributions. A library like this only grows as fast as the community around it, yet getting each newcomer up to speed depends on maintainers who cannot give them as much time as they should, which slows progress in every other area.
 - **Maintenance.** Keeping the library correct and current: reviewing contributions, keeping pace with Mathlib, and building automated checks and tests. Review gets done, but our capacity for it is limited, and the rest is often not done as well as it could be, because contributors come for the physics.
 - **Infrastructure.** Everything people use to find, explore and learn from the library: dedicated search engines, the website, and its maps of the library. With more time we would link formal results to the published literature and build better systems for people to explore and read the project.
 
-## What we could do with your support
+## Projects and estimated costs
 
-Each level below is something specific that a gift of that size would make happen. Everything funded becomes part of Physlib, is open source, and is kept up afterwards by Physlib's maintainers and community. Where a level funds a person, we would recruit from the Physlib and wider Lean communities, which already include many people with the right skills. *All costs are estimates and exclude any institutional overheads.*
+These estimates describe the staff time, equipment and travel that six projects would require. A research group preparing a grant proposal could use them as a starting point and confirm costs and overheads with its own institution. All figures are in US dollars and exclude institutional overheads.
 
-| With about | We would |
-|---|---|
-| US$10,000 | Let anyone try Physlib in their browser |
-| US$20,000–30,000 | Fund two or three summer students |
-| US$90,000 | Run a Physlib hackathon |
-| US$100,000–450,000 | Fund a dedicated post |
-| US$200,000 | Fund a PhD studentship |
-| US$1.9M–2.8M | Form a Physlib Initiative |
+| Project | Estimated cost |
+|---|---:|
+| A browser-based Physlib editor | $10,000 |
+| Two or three summer students | $20,000–30,000 |
+| A Physlib hackathon | $90,000 |
+| A dedicated research or engineering post | $100,000–450,000 |
+| A PhD studentship | $200,000 |
+| A three-year Physlib Initiative | $1.9M–2.8M |
 
-### An online Physlib: about US$10,000
+### A browser-based Physlib editor
 
-With this, we would host an online version of Physlib, modelled on Lean's own live editor at [live.lean-lang.org](https://live.lean-lang.org), where anyone can write and check Lean against Physlib in their browser, without installing anything. This would lower the barrier to entry for newcomers. The cost covers buying servers able to handle the traffic we expect, and the one-off cost of paying someone to set them up.
+An editor modelled on [Lean’s live editor](https://live.lean-lang.org) would let newcomers write and check Lean against Physlib in their browser without installing it. The $10,000 estimate covers servers for the expected traffic and the one-time work of setting them up.
 
-### Summer students: about US$20,000–30,000
+### Summer students
 
-With this, two or three students in physics, mathematics or computer science would spend a summer working on Physlib's physics or its infrastructure, each on a well-defined project supervised by an expert. By the end, each project would be completed and part of the library.
+Two or three students in physics, mathematics or computer science could each spend a summer on a project supervised by someone who knows the relevant physics or infrastructure. Each project would aim to produce a contribution the community could review and use.
 
-### A Physlib hackathon: about US$90,000
+### A Physlib hackathon
 
-With this, we would run a two-day, in-person event for 50 undergraduates, PhD students and early-career postdocs, working in ten teams, with travel and accommodation covered. Travel and accommodation make up most of the cost. The first day teaches Lean. On the second, each team builds something concrete and leaves with a plan for future contributions. By the end, 50 people would know how to contribute to Physlib, at a stage in their careers where this could shape what they work on and how.
+The estimate covers a two-day, in-person event for 50 undergraduates, PhD students and early-career postdocs working in ten teams. Travel and accommodation account for most of the cost. Participants would learn Lean on the first day, then work on a concrete problem with their team and leave with a plan for future contributions.
 
-### A dedicated post: about US$100,000–450,000
+### A dedicated research or engineering post
 
-With this, we would fund one person to work on Physlib, as a postdoc or in another role where that suits the person better.
+A postdoctoral researcher or research software engineer could focus on one of the core activities. The estimate depends on the length of the appointment.
 
 | | Cost |
 |---|---|
@@ -88,29 +88,25 @@ The post can be directed at any of the core activities:
 - **Maintenance and infrastructure:** taking an active part in reviewing contributions, which lifts that burden from the maintainers, and improving the maps that guide people through the library. Afterwards, contributions would be reviewed faster, and the library would be easier to find your way around.
 - **Onboarding:** giving newcomers the time and guidance that maintainers currently cannot. Afterwards, Physlib would have good documentation to guide newcomers into the project, and possibly an interactive game for learning it.
 
-### A PhD studentship: about US$200,000
+### A PhD studentship
 
-With this, we would fund a PhD student for three and a half years, building the foundations of an area of physics where Physlib's are missing. By the end, Physlib would have the foundations of one more area of physics in place, and the field would have a new researcher trained in both physics and Lean.
+A three-and-a-half-year PhD project could train a researcher in both physics and Lean while developing reusable foundations in an area that Physlib does not yet cover.
 
-### A Physlib Initiative: about US$1.9M–2.8M over three years
+### A three-year Physlib Initiative
 
-With this, we would form a Physlib Initiative: a dedicated team, equivalent to six full-time people, working on Physlib together for three years, which would also run a Physlib hackathon. The cost is that of six dedicated posts for three years, at the rates above, plus the hackathon. Some may work part-time alongside their university roles. The team would bring together people from different backgrounds who complement one another:
+The largest proposal combines six full-time equivalent posts for three years with a Physlib hackathon. The estimate uses the appointment costs above. Some team members could work part-time alongside university roles. The team would divide the work across four roles.
 
 - a team leader, responsible for the overall vision;
 - two Lean software engineers, working on infrastructure and maintenance;
 - two physics experts, building foundations and reviewing contributions;
 - one person dedicated to onboarding.
 
-By the end of the three years, Physlib would have:
+The team would work toward three goals over those three years.
 
 - twice as many contributors (over 120 today) and twice as much reviewed code (about 150,000 lines today);
 - review that scales: as many automated checks as possible, and systems that show reviewers the information they need to perform a fast but effective review;
 - the foundations in place to reach more areas of physics directly relevant to physicists' research, so that physicists can build their own work on Physlib: for example, particle collisions at the LHC, the physics of semiconductors, gravitational waves as detected by LIGO, and the Yang-Mills theory that the recent AI-generated result concerns.
 
-## Who you would be supporting
+## Community and review
 
-Physlib belongs to its community, not to any one person or institution, and the community decides its direction. It has over 120 contributors from universities, research institutes and industry, and a team of 7 maintainers who review contributions. It sits within the Lean community's own organisation, alongside Mathlib.
-
-Every sponsor will be acknowledged publicly, unless they prefer otherwise, and will receive a report on what their support has achieved. Sponsors can choose what their support funds, but what goes into Physlib is decided by community review alone.
-
-If you would like to support Physlib, or to talk through which of these fits what you want to achieve, please get in touch using the [details at the top of this page](#contribute). Physlib is not itself an organisation, so gifts can be received through academic institutions, and we are open to other arrangements, such as a philanthropic host.
+More than 120 contributors from universities, research institutes and industry have helped build Physlib. Its seven maintainers coordinate review within the Lean community, alongside Mathlib. The Physlib community sets the library’s direction and reviews contributions, including work developed through a research collaboration.

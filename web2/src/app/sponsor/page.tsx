@@ -1,14 +1,18 @@
 import { Card } from "@heroui/react";
 import type { Metadata } from "next";
-import { ButtonLink } from "@/components/button-link";
 import { Markdown } from "@/components/markdown";
 import { site } from "@/lib/site";
 import { getSponsorPitch } from "@/lib/yaml";
 
 export const metadata: Metadata = {
-  title: "Fund Physlib",
+  title: "Project Priorities",
   description:
-    "Support Physlib financially to help grow the definitive library of formalized physics in Lean 4.",
+    "Where contributors can help Physlib and what larger research and infrastructure projects could cost.",
+};
+
+const previousHeadingIds: Record<string, string> = {
+  "projects-and-estimated-costs": "what-we-could-do-with-your-support",
+  "community-and-review": "who-you-would-be-supporting",
 };
 
 export default async function SponsorPage() {
@@ -24,47 +28,30 @@ export default async function SponsorPage() {
 
       <Card id="contribute" variant="default" className="mb-12 scroll-mt-20">
         <Card.Header>
-          <Card.Title>Donate</Card.Title>
+          <Card.Title>Ways to help</Card.Title>
         </Card.Header>
         <Card.Content className="flex flex-col gap-4 text-sm text-foreground/90">
           <p>
-            We appreciate both financial and in-kind support. If you&apos;d
-            like to help, please reach out to{" "}
-            <a
-              href="https://josephtoobysmith.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-accent hover:underline underline-offset-2"
-            >
-              Joseph Tooby-Smith
-            </a>
-            :
+            You can{" "}
+            <a href="/pr-tracker" className="text-accent hover:underline underline-offset-2">review a pull request</a>,
+            help a newcomer learn Lean, or{" "}
+            <a href={site.tasks} className="text-accent hover:underline underline-offset-2">find a task</a>{" "}
+            in an area of physics you know. If you use an AI agent, start with the{" "}
+            <a href={site.aiResources + "#ai-guidelines"} className="text-accent hover:underline underline-offset-2">
+              Physlib AI guidelines
+            </a>.
           </p>
-          <ul className="space-y-1">
-            <li>
-              <span className="text-muted">Email:</span>{" "}
-              <span className="font-mono text-xs">js4814 [at] bath [dot] ac [dot] uk</span>
-            </li>
-            <li>
-              <span className="text-muted">Preferred:</span> via the{" "}
-              <a
-                href={site.zulip}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-accent hover:underline underline-offset-2"
-              >
-                Lean Zulip
-              </a>
-            </li>
-          </ul>
-          <div className="flex gap-3 mt-2">
-            <ButtonLink href={site.zulip} size="sm">
-              Message on Zulip
-            </ButtonLink>
-            <ButtonLink href="mailto:js4814@bath.ac.uk" size="sm" variant="tertiary">
-              Send Email
-            </ButtonLink>
-          </div>
+          <p>
+            If you come across a grant call that fits one of these projects,
+            share the link in the{" "}
+            <a href={site.zulip} className="text-accent hover:underline underline-offset-2">
+              Physlib channel on Lean Zulip
+            </a>{" "}
+            or{" "}
+            <a href="mailto:js4814@bath.ac.uk" className="text-accent hover:underline underline-offset-2">
+              email Joseph Tooby-Smith
+            </a>. Include the deadline if there is one.
+          </p>
         </Card.Content>
       </Card>
 
@@ -72,10 +59,13 @@ export default async function SponsorPage() {
       {pitch.sections.map((section, i) => (
         <section
           key={section.id}
-          id={section.id === "what-we-could-do-with-your-support" ? "priorities" : undefined}
+          id={previousHeadingIds[section.id]}
           className="mb-12 scroll-mt-20 border-t border-border pt-8"
         >
-          <div className="mb-4 flex items-baseline gap-4">
+          <div
+            id={section.id === "projects-and-estimated-costs" ? "priorities" : undefined}
+            className="mb-4 flex scroll-mt-20 items-baseline gap-4"
+          >
             {/* Same number style as Ways to Contribute, scaled to this page's larger headings. */}
             <span className="shrink-0 font-mono text-base font-medium text-accent md:text-lg" aria-hidden="true">
               {String(i + 1).padStart(2, "0")}
