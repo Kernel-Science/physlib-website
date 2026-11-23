@@ -14,6 +14,7 @@ export const site = {
   docs: "/docs/index.html",
   verso: "https://jstoobysmith.github.io/PhyslibVerso/",
   sponsor: "/sponsor",
+  sponsors: "/sponsors",
   team: "/team",
   tasks: "/tasks",
   documentationGuide: "/documentation-guide",
@@ -81,9 +82,8 @@ export const navSections: NavSection[] = [
     label: "Support",
     plainHover: true,
     items: [
-      { label: "Priorities", href: site.sponsor + "#priorities" },
-      { label: "Donate", href: site.sponsor + "#contribute" },
-      { label: "Sponsors", href: site.sponsor + "#sponsors" },
+      { label: "Fund Physlib", href: site.sponsor },
+      { label: "Sponsors", href: site.sponsors },
     ],
   },
 ];
@@ -94,5 +94,5 @@ export const primaryNav: NavItem[] = [
   { label: "Get Involved", href: "/get-involved" },
   { label: "Trackers", href: "/api-tracker" },
   { label: "Find a Task", href: site.tasks },
-  { label: "Sponsor", href: site.sponsor },
+  { label: "Fund Physlib", href: site.sponsor },
 ];

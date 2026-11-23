@@ -1,7 +1,7 @@
 {
   "repo": "leanprover-community/physlib",
   "branch": "master",
-  "generatedAt": "2026-11-16T12:55:50.374Z",
+  "generatedAt": "2026-11-23T14:57:12.914Z",
   "references": [
     {
       "key": "abramowitz_stegun_1964",
@@ -181,9 +181,15 @@
           "line": 31,
           "subfolder": "Physlib/Mathematics",
           "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Mathematics/VariationalCalculus/Interval.lean#L31"
+        },
+        {
+          "file": "PhyslibAlpha/ClassicalMechanics/CentralForce/LiouvilleIntegrable.lean",
+          "line": 47,
+          "subfolder": "PhyslibAlpha/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/ClassicalMechanics/CentralForce/LiouvilleIntegrable.lean#L47"
         }
       ],
-      "count": 10
+      "count": 11
     },
     {
       "key": "arnold_ode",
@@ -557,9 +563,9 @@
         },
         {
           "file": "Physlib/QuantumMechanics/PoschlTeller/Scattering.lean",
-          "line": 47,
+          "line": 64,
           "subfolder": "Physlib/QuantumMechanics",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QuantumMechanics/PoschlTeller/Scattering.lean#L47"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QuantumMechanics/PoschlTeller/Scattering.lean#L64"
         }
       ],
       "count": 3
@@ -800,9 +806,15 @@
           "line": 619,
           "subfolder": "Physlib/Particles",
           "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/StandardModel/GaugeGroup/Basic.lean#L619"
+        },
+        {
+          "file": "PhyslibAlpha/Particles/BeyondTheStandardModel/GeorgiGlashow/StandardModelHom.lean",
+          "line": 40,
+          "subfolder": "PhyslibAlpha/Particles",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/Particles/BeyondTheStandardModel/GeorgiGlashow/StandardModelHom.lean#L40"
         }
       ],
-      "count": 19
+      "count": 20
     },
     {
       "key": "barenblatt_1996_scaling",
@@ -925,9 +937,15 @@
           "line": 43,
           "subfolder": "Physlib/Units",
           "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Units/Constants.lean#L43"
+        },
+        {
+          "file": "PhyslibAlpha/SpaceAndTime/Time/CaesiumClock.lean",
+          "line": 43,
+          "subfolder": "PhyslibAlpha/SpaceAndTime",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/SpaceAndTime/Time/CaesiumClock.lean#L43"
         }
       ],
-      "count": 5
+      "count": 6
     },
     {
       "key": "bloch_1929",
@@ -1265,6 +1283,22 @@
       "count": 7
     },
     {
+      "key": "Forgacs:2020sms",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "P\\'eter Forg\\'acs",
+        "\\'Arp\\'ad Luk\\'acs"
+      ],
+      "authorSortKey": "forg\\'acs",
+      "title": "Charge screening in the Abelian Higgs model",
+      "year": "2021",
+      "venue": "Eur. Phys. J. C 81 no. 3 pp. 243 (2021)",
+      "url": "https://arxiv.org/abs/2011.01634",
+      "citations": [],
+      "count": 0
+    },
+    {
       "key": "github_leandojo_extractdata",
       "inBib": true,
       "type": "misc",
@@ -1329,6 +1363,53 @@
       "count": 3
     },
     {
+      "key": "glimm1987quantum",
+      "inBib": true,
+      "type": "book",
+      "authors": [
+        "James Glimm",
+        "Arthur Jaffe"
+      ],
+      "authorSortKey": "glimm",
+      "title": "Quantum Physics: A Functional Integral Point of View",
+      "year": "1987",
+      "venue": "Springer, (1987)",
+      "url": "https://doi.org/10.1007/978-1-4612-4728-9",
+      "citations": [
+        {
+          "file": "Physlib/QFT/Euclidean/GlimmJaffe/Axioms.lean",
+          "line": 21,
+          "subfolder": "Physlib/QFT",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QFT/Euclidean/GlimmJaffe/Axioms.lean#L21"
+        },
+        {
+          "file": "Physlib/QFT/Euclidean/GlimmJaffe/Axioms.lean",
+          "line": 53,
+          "subfolder": "Physlib/QFT",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QFT/Euclidean/GlimmJaffe/Axioms.lean#L53"
+        },
+        {
+          "file": "Physlib/QFT/Euclidean/GlimmJaffe/Basic.lean",
+          "line": 49,
+          "subfolder": "Physlib/QFT",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QFT/Euclidean/GlimmJaffe/Basic.lean#L49"
+        },
+        {
+          "file": "Physlib/QFT/Euclidean/GlimmJaffe/FieldConfiguration.lean",
+          "line": 43,
+          "subfolder": "Physlib/QFT",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QFT/Euclidean/GlimmJaffe/FieldConfiguration.lean#L43"
+        },
+        {
+          "file": "Physlib/SpaceAndTime/TimeAndSpace/TestFunctions/Schwartz.lean",
+          "line": 46,
+          "subfolder": "Physlib/SpaceAndTime",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/SpaceAndTime/TimeAndSpace/TestFunctions/Schwartz.lean#L46"
+        }
+      ],
+      "count": 5
+    },
+    {
       "key": "goehmann_solid_state_2021",
       "inBib": true,
       "type": "misc",
@@ -1390,13 +1471,25 @@
           "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/DampedHarmonicOscillator/Solution.lean#L56"
         },
         {
+          "file": "Physlib/ClassicalMechanics/PointParticle/NewtonianSystem/CenterOfMass.lean",
+          "line": 35,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/PointParticle/NewtonianSystem/CenterOfMass.lean#L35"
+        },
+        {
+          "file": "PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/BinaryStar.lean",
+          "line": 40,
+          "subfolder": "PhyslibAlpha/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/BinaryStar.lean#L40"
+        },
+        {
           "file": "PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/NewtonianGravity.lean",
           "line": 42,
           "subfolder": "PhyslibAlpha/ClassicalMechanics",
           "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/NewtonianGravity.lean#L42"
         }
       ],
-      "count": 3
+      "count": 5
     },
     {
       "key": "hall2013quantum",
@@ -1482,6 +1575,214 @@
         }
       ],
       "count": 1
+    },
+    {
+      "key": "hohmann_jpl_orbital_mechanics",
+      "inBib": true,
+      "type": "misc",
+      "authors": [
+        "Jet Propulsion Laboratory"
+      ],
+      "authorSortKey": "jet propulsion laboratory",
+      "title": "Fundamentals of Orbital Mechanics",
+      "year": null,
+      "venue": "",
+      "url": null,
+      "citations": [
+        {
+          "file": "PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Dynamics/Circular.lean",
+          "line": 32,
+          "subfolder": "PhyslibAlpha/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Dynamics/Circular.lean#L32"
+        },
+        {
+          "file": "PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Dynamics/Differentiation.lean",
+          "line": 30,
+          "subfolder": "PhyslibAlpha/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Dynamics/Differentiation.lean#L30"
+        },
+        {
+          "file": "PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Dynamics/Dynamics.lean",
+          "line": 30,
+          "subfolder": "PhyslibAlpha/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Dynamics/Dynamics.lean#L30"
+        },
+        {
+          "file": "PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Dynamics/Endpoints.lean",
+          "line": 30,
+          "subfolder": "PhyslibAlpha/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Dynamics/Endpoints.lean#L30"
+        },
+        {
+          "file": "PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Dynamics/Geometry.lean",
+          "line": 31,
+          "subfolder": "PhyslibAlpha/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Dynamics/Geometry.lean#L31"
+        },
+        {
+          "file": "PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Dynamics/Impulses.lean",
+          "line": 32,
+          "subfolder": "PhyslibAlpha/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Dynamics/Impulses.lean#L32"
+        },
+        {
+          "file": "PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Dynamics/Invariants.lean",
+          "line": 30,
+          "subfolder": "PhyslibAlpha/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Dynamics/Invariants.lean#L30"
+        },
+        {
+          "file": "PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Dynamics/KeplerClock.lean",
+          "line": 30,
+          "subfolder": "PhyslibAlpha/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Dynamics/KeplerClock.lean#L30"
+        },
+        {
+          "file": "PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Dynamics/Lagrangian.lean",
+          "line": 37,
+          "subfolder": "PhyslibAlpha/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Dynamics/Lagrangian.lean#L37"
+        },
+        {
+          "file": "PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Dynamics/Parameters.lean",
+          "line": 40,
+          "subfolder": "PhyslibAlpha/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Dynamics/Parameters.lean#L40"
+        },
+        {
+          "file": "PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Dynamics/Plane.lean",
+          "line": 40,
+          "subfolder": "PhyslibAlpha/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Dynamics/Plane.lean#L40"
+        },
+        {
+          "file": "PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Dynamics/PublicStatement.lean",
+          "line": 31,
+          "subfolder": "PhyslibAlpha/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Dynamics/PublicStatement.lean#L31"
+        },
+        {
+          "file": "PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Dynamics/Transfer.lean",
+          "line": 31,
+          "subfolder": "PhyslibAlpha/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Dynamics/Transfer.lean#L31"
+        }
+      ],
+      "count": 13
+    },
+    {
+      "key": "hohmann_nasa_rocket",
+      "inBib": true,
+      "type": "misc",
+      "authors": [
+        "NASA Glenn Research Center"
+      ],
+      "authorSortKey": "nasa glenn research center",
+      "title": "Ideal Rocket Equation",
+      "year": null,
+      "venue": "",
+      "url": null,
+      "citations": [
+        {
+          "file": "PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Optimality/Fuel.lean",
+          "line": 31,
+          "subfolder": "PhyslibAlpha/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Optimality/Fuel.lean#L31"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "hohmann_prussing_1992",
+      "inBib": true,
+      "type": "article",
+      "authors": [
+        "John E. Prussing"
+      ],
+      "authorSortKey": "prussing",
+      "title": "Simple proof of the global optimality of the Hohmann transfer",
+      "year": "1992",
+      "venue": "Journal of Guidance, Control, and Dynamics 15 no. 4 pp. 1037--1038 (1992)",
+      "url": "https://doi.org/10.2514/3.20941",
+      "citations": [
+        {
+          "file": "PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Optimality/EndpointBounds.lean",
+          "line": 30,
+          "subfolder": "PhyslibAlpha/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Optimality/EndpointBounds.lean#L30"
+        },
+        {
+          "file": "PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Optimality/EndpointOptimality.lean",
+          "line": 31,
+          "subfolder": "PhyslibAlpha/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Optimality/EndpointOptimality.lean#L31"
+        },
+        {
+          "file": "PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Optimality/H1Bridge.lean",
+          "line": 32,
+          "subfolder": "PhyslibAlpha/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Optimality/H1Bridge.lean#L32"
+        },
+        {
+          "file": "PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Optimality/KeplerConservation.lean",
+          "line": 31,
+          "subfolder": "PhyslibAlpha/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Optimality/KeplerConservation.lean#L31"
+        },
+        {
+          "file": "PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Optimality/PhysicalUnits.lean",
+          "line": 30,
+          "subfolder": "PhyslibAlpha/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Optimality/PhysicalUnits.lean#L30"
+        },
+        {
+          "file": "PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Optimality/PlanarState.lean",
+          "line": 30,
+          "subfolder": "PhyslibAlpha/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Optimality/PlanarState.lean#L30"
+        },
+        {
+          "file": "PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Optimality/PublicStatement.lean",
+          "line": 31,
+          "subfolder": "PhyslibAlpha/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Optimality/PublicStatement.lean#L31"
+        },
+        {
+          "file": "PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Optimality/Shape.lean",
+          "line": 39,
+          "subfolder": "PhyslibAlpha/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Optimality/Shape.lean#L39"
+        }
+      ],
+      "count": 8
+    },
+    {
+      "key": "hohmann_weber_bielliptic",
+      "inBib": true,
+      "type": "misc",
+      "authors": [
+        "Bryan Weber"
+      ],
+      "authorSortKey": "weber",
+      "title": "Bi-elliptic Hohmann Transfer",
+      "year": null,
+      "venue": "",
+      "url": null,
+      "citations": [
+        {
+          "file": "PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Optimality/Bielliptic.lean",
+          "line": 32,
+          "subfolder": "PhyslibAlpha/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Optimality/Bielliptic.lean#L32"
+        },
+        {
+          "file": "PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Optimality/BiellipticWitness.lean",
+          "line": 30,
+          "subfolder": "PhyslibAlpha/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/Hohmann/Optimality/BiellipticWitness.lean#L30"
+        }
+      ],
+      "count": 2
     },
     {
       "key": "huygens_1673",
@@ -1906,6 +2207,12 @@
           "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Lagrangian/TotalDerivativeEquivalence.lean#L53"
         },
         {
+          "file": "Physlib/ClassicalMechanics/OrbitalMechanics/VisViva.lean",
+          "line": 48,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/OrbitalMechanics/VisViva.lean#L48"
+        },
+        {
           "file": "Physlib/ClassicalMechanics/Pendulum/SimplePendulum/Basic.lean",
           "line": 105,
           "subfolder": "Physlib/ClassicalMechanics",
@@ -1973,9 +2280,9 @@
         },
         {
           "file": "Physlib/ClassicalMechanics/RigidBody/Basic.lean",
-          "line": 31,
+          "line": 30,
           "subfolder": "Physlib/ClassicalMechanics",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/RigidBody/Basic.lean#L31"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/RigidBody/Basic.lean#L30"
         },
         {
           "file": "Physlib/ClassicalMechanics/RigidBody/KineticEnergy.lean",
@@ -2020,7 +2327,7 @@
           "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Mathematics/VariationalCalculus/Interval.lean#L32"
         }
       ],
-      "count": 34
+      "count": 35
     },
     {
       "key": "landau_statphys1",
@@ -2199,9 +2506,9 @@
       "citations": [
         {
           "file": "Physlib/SpaceAndTime/WaveVectorSpace/Fourier.lean",
-          "line": 66,
+          "line": 76,
           "subfolder": "Physlib/SpaceAndTime",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/SpaceAndTime/WaveVectorSpace/Fourier.lean#L66"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/SpaceAndTime/WaveVectorSpace/Fourier.lean#L76"
         }
       ],
       "count": 1
@@ -2436,6 +2743,44 @@
       "count": 0
     },
     {
+      "key": "osforgff",
+      "inBib": true,
+      "type": "misc",
+      "authors": [
+        "Sergey A. Cherkis",
+        "Michael R. Douglas",
+        "Sarah Hoback",
+        "Anna Mei",
+        "Ron Nissim"
+      ],
+      "authorSortKey": "cherkis",
+      "title": "OSforGFF: A Lean formalization of the Gaussian free field",
+      "year": "2026",
+      "venue": "2026",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/QFT/Euclidean/GlimmJaffe/Axioms.lean",
+          "line": 54,
+          "subfolder": "Physlib/QFT",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QFT/Euclidean/GlimmJaffe/Axioms.lean#L54"
+        },
+        {
+          "file": "Physlib/QFT/Euclidean/GlimmJaffe/StandardBump.lean",
+          "line": 32,
+          "subfolder": "Physlib/QFT",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/QFT/Euclidean/GlimmJaffe/StandardBump.lean#L32"
+        },
+        {
+          "file": "Physlib/SpaceAndTime/TimeAndSpace/TestFunctions/Schwartz.lean",
+          "line": 47,
+          "subfolder": "Physlib/SpaceAndTime",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/SpaceAndTime/TimeAndSpace/TestFunctions/Schwartz.lean#L47"
+        }
+      ],
+      "count": 3
+    },
+    {
       "key": "pancharatnam1956",
       "inBib": true,
       "type": "article",
@@ -2478,9 +2823,31 @@
       "citations": [
         {
           "file": "Physlib/Particles/StandardModel/HiggsBoson/Basic.lean",
-          "line": 70,
+          "line": 77,
           "subfolder": "Physlib/Particles",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/StandardModel/HiggsBoson/Basic.lean#L70"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/Particles/StandardModel/HiggsBoson/Basic.lean#L77"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "key": "perryman_exoplanet_handbook",
+      "inBib": true,
+      "type": "book",
+      "authors": [
+        "Michael Perryman"
+      ],
+      "authorSortKey": "perryman",
+      "title": "The Exoplanet Handbook",
+      "year": "2018",
+      "venue": "Cambridge University Press, (2018)",
+      "url": null,
+      "citations": [
+        {
+          "file": "Physlib/ClassicalMechanics/OrbitalMechanics/VisViva.lean",
+          "line": 49,
+          "subfolder": "Physlib/ClassicalMechanics",
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/OrbitalMechanics/VisViva.lean#L49"
         }
       ],
       "count": 1
@@ -2856,9 +3223,9 @@
         },
         {
           "file": "Physlib/ClassicalMechanics/HamiltonianMechanics/PoissonBracket.lean",
-          "line": 66,
+          "line": 67,
           "subfolder": "Physlib/ClassicalMechanics",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/HamiltonianMechanics/PoissonBracket.lean#L66"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/HamiltonianMechanics/PoissonBracket.lean#L67"
         }
       ],
       "count": 2
@@ -2920,9 +3287,9 @@
         },
         {
           "file": "Physlib/ClassicalMechanics/Lagrangian/Chart.lean",
-          "line": 42,
+          "line": 40,
           "subfolder": "Physlib/ClassicalMechanics",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Lagrangian/Chart.lean#L42"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Lagrangian/Chart.lean#L40"
         },
         {
           "file": "Physlib/ClassicalMechanics/Lagrangian/CriticalPoint.lean",
@@ -3102,9 +3469,9 @@
         },
         {
           "file": "PhyslibAlpha/CondensedMatter/TightBindingChain/VelocityBand/Width.lean",
-          "line": 38,
+          "line": 40,
           "subfolder": "PhyslibAlpha/CondensedMatter",
-          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/CondensedMatter/TightBindingChain/VelocityBand/Width.lean#L38"
+          "url": "https://github.com/leanprover-community/physlib/blob/master/PhyslibAlpha/CondensedMatter/TightBindingChain/VelocityBand/Width.lean#L40"
         }
       ],
       "count": 21

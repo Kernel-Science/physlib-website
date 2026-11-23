@@ -14,6 +14,49 @@ async function loadJson<T>(file: string): Promise<T> {
   return JSON.parse(raw) as T;
 }
 
+export type SponsorPitch = {
+  title: string;
+  intro: string;
+  sections: { id: string; heading: string; body: string }[];
+};
+
+/**
+ * The sponsor pitch is hand-written Markdown in `data/Sponsor.md`: a `#` title,
+ * an intro paragraph, then one `##` heading per section. It is split here so
+ * the page can lay each section out itself and give its heading an `id`.
+ */
+export async function getSponsorPitch(): Promise<SponsorPitch> {
+  const raw = await readFile(path.join(dataDir, "Sponsor.md"), "utf8");
+  const [head, ...rest] = raw.split(/^## /m);
+  const titleMatch = head.match(/^# (.+)$/m);
+  return {
+    title: titleMatch ? titleMatch[1].trim() : "Sponsor Physlib",
+    intro: head.replace(/^# .+$/m, "").trim(),
+    sections: rest.map((chunk) => {
+      const newline = chunk.indexOf("\n");
+      const heading = (newline === -1 ? chunk : chunk.slice(0, newline)).trim();
+      return {
+        id: heading
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/^-|-$/g, ""),
+        heading,
+        body: newline === -1 ? "" : chunk.slice(newline + 1).trim(),
+      };
+    }),
+  };
+}
+
+export type Sponsor = {
+  name: string;
+  url: string;
+  support: string;
+};
+
+export async function getSponsors(): Promise<Sponsor[]> {
+  return loadYaml<Sponsor[]>("Sponsors.yml");
+}
+
 export type Maintainer = {
   name: string;
   summary: string;

@@ -1,8 +1,8 @@
 {
   "repo": "leanprover-community/physlib",
   "branch": "master",
-  "commit": "56430c65b76f73c7c25fc03eed46be1d888520bb",
-  "generatedAt": "2026-11-22T00:12:29.725Z",
+  "commit": "9bf2570c3ae5615d40a74904e39313311aa89302",
+  "generatedAt": "2026-11-23T14:49:23.043Z",
   "nodes": [
     {
       "path": "Physlib/ClassicalFieldTheory/GaugeTheory",
@@ -13435,7 +13435,7 @@
               "text": "UnitaryRelation",
               "fullName": "QuantumMechanics.QuantumSystem.UnitaryRelation",
               "kind": "def",
-              "line": 103,
+              "line": 99,
               "doc": "The relation on quantum systems where `Q₁` is related to `Q₂` if there exists a linear isometry equivalence `e : Q₁.HS ≃ₗᵢ[ℂ] Q₂.HS` between the respective Hilbert spaces satisfying `e ∘ Q₁.ℋ ∘ e.symm = Q₂.ℋ`.",
               "signature": "def UnitaryRelation (Q₁ Q₂ : QuantumSystem) : Prop"
             },
@@ -13443,7 +13443,7 @@
               "text": "unitaryRelation_equiv",
               "fullName": "QuantumMechanics.QuantumSystem.unitaryRelation_equiv",
               "kind": "lemma",
-              "line": 127,
+              "line": 123,
               "doc": "The relation `UnitaryRelation` is an equivalence relation.",
               "signature": "lemma unitaryRelation_equiv : Equivalence UnitaryRelation where"
             }
@@ -23205,7 +23205,7 @@
               "text": "timeSlice",
               "fullName": "SpaceTime.timeSlice",
               "kind": "def",
-              "line": 35,
+              "line": 36,
               "doc": "The timeslice of a function `SpaceTime d → M` forming a function `Time → Space d → M`.",
               "signature": "def timeSlice {d : ℕ} {M : Type} (c : SpeedOfLight := 1) :\n    (SpaceTime d → M) ≃ (Time → Space d → M) where"
             },
@@ -23213,7 +23213,7 @@
               "text": "timeSliceLinearEquiv",
               "fullName": "SpaceTime.timeSliceLinearEquiv",
               "kind": "def",
-              "line": 87,
+              "line": 88,
               "doc": "The timeslice of a function `SpaceTime d → M` forming a function `Time → Space d → M`, as a linear equivalence.",
               "signature": "def timeSliceLinearEquiv {d : ℕ} {M : Type} [AddCommGroup M] [Module ℝ M]\n    (c : SpeedOfLight := 1) :\n    (SpaceTime d → M) ≃ₗ[ℝ] (Time → Space d → M) where"
             },
@@ -23221,9 +23221,9 @@
               "text": "distTimeSlice",
               "fullName": "SpaceTime.distTimeSlice",
               "kind": "def",
-              "line": 121,
+              "line": 122,
               "doc": "The time slice of a distribution on `SpaceTime d` to form a distribution on `Time × Space d`.",
-              "signature": "noncomputable def distTimeSlice{F} [NormedAddCommGroup F] [NormedSpace ℝ F]\n    (c : SpeedOfLight := 1) :\n    Distribution (⟨Set.univ (α := SpaceTime d), isOpen_univ⟩) F ⊤ →L[ℝ]\n    Distribution (⟨Set.univ (α := Time × Space d), isOpen_uni…"
+              "signature": "noncomputable def distTimeSlice{F} [NormedAddCommGroup F] [NormedSpace ℝ F]\n    (c : SpeedOfLight := 1) :\n    Distribution (⟨Set.univ (α := SpaceTime d), isOpen_univ⟩) F ⊤ ≃L[ℝ]\n    Distribution (⟨Set.univ (α := Time × Space d), isOpen_uni…"
             }
           ],
           "exists": true
@@ -30414,37 +30414,32 @@
     },
     {
       "path": "PhyslibAlpha",
-      "leanFiles": 878,
+      "leanFiles": 849,
       "hasApiMap": false
     },
     {
       "path": "PhyslibAlpha/ClassicalFieldTheory",
-      "leanFiles": 148,
+      "leanFiles": 149,
       "hasApiMap": false
     },
     {
       "path": "PhyslibAlpha/ClassicalFieldTheory/GaugeTheory",
-      "leanFiles": 81,
+      "leanFiles": 82,
       "hasApiMap": false
     },
     {
       "path": "PhyslibAlpha/ClassicalFieldTheory/GaugeTheory/GaugeBoson",
-      "leanFiles": 17,
+      "leanFiles": 14,
       "hasApiMap": false
     },
     {
-      "path": "PhyslibAlpha/ClassicalFieldTheory/GaugeTheory/GaugeBoson/LocalGauge",
-      "leanFiles": 9,
-      "hasApiMap": false
-    },
-    {
-      "path": "PhyslibAlpha/ClassicalFieldTheory/GaugeTheory/GaugeBoson/LocalGaugeCov",
-      "leanFiles": 2,
-      "hasApiMap": false
-    },
-    {
-      "path": "PhyslibAlpha/ClassicalFieldTheory/GaugeTheory/GaugeBoson/Realization",
+      "path": "PhyslibAlpha/ClassicalFieldTheory/GaugeTheory/GaugeBoson/AdjointFamily",
       "leanFiles": 5,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/ClassicalFieldTheory/GaugeTheory/GaugeBoson/LocalGaugeFieldAlgebra",
+      "leanFiles": 8,
       "hasApiMap": false
     },
     {
@@ -30454,47 +30449,52 @@
     },
     {
       "path": "PhyslibAlpha/ClassicalFieldTheory/GaugeTheory/GlobalGaugeGroup",
+      "leanFiles": 29,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/ClassicalFieldTheory/GaugeTheory/GlobalGaugeGroup/LieAlgebra",
       "leanFiles": 4,
       "hasApiMap": false
     },
     {
-      "path": "PhyslibAlpha/ClassicalFieldTheory/GaugeTheory/LocalCovField",
+      "path": "PhyslibAlpha/ClassicalFieldTheory/GaugeTheory/GlobalGaugeGroup/SU",
+      "leanFiles": 11,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/ClassicalFieldTheory/GaugeTheory/GlobalGaugeGroup/SU/Invariants",
       "leanFiles": 6,
       "hasApiMap": false
     },
     {
-      "path": "PhyslibAlpha/ClassicalFieldTheory/GaugeTheory/LocalField",
-      "leanFiles": 13,
+      "path": "PhyslibAlpha/ClassicalFieldTheory/GaugeTheory/GlobalGaugeGroup/U1",
+      "leanFiles": 1,
       "hasApiMap": false
     },
     {
-      "path": "PhyslibAlpha/ClassicalFieldTheory/GaugeTheory/LocalGaugeData",
+      "path": "PhyslibAlpha/ClassicalFieldTheory/GaugeTheory/LocalFieldAlgebra",
       "leanFiles": 19,
       "hasApiMap": false
     },
     {
-      "path": "PhyslibAlpha/ClassicalFieldTheory/GaugeTheory/LocalGaugeData/SU",
-      "leanFiles": 10,
-      "hasApiMap": false
-    },
-    {
-      "path": "PhyslibAlpha/ClassicalFieldTheory/GaugeTheory/LocalGaugeData/SU/Invariants",
+      "path": "PhyslibAlpha/ClassicalFieldTheory/GaugeTheory/LocalFieldAlgebra/LocalCovFieldAlgebra",
       "leanFiles": 5,
       "hasApiMap": false
     },
     {
-      "path": "PhyslibAlpha/ClassicalFieldTheory/GaugeTheory/MatterField",
-      "leanFiles": 15,
-      "hasApiMap": false
-    },
-    {
-      "path": "PhyslibAlpha/ClassicalFieldTheory/GaugeTheory/MatterField/JetComponent",
-      "leanFiles": 3,
-      "hasApiMap": false
-    },
-    {
-      "path": "PhyslibAlpha/ClassicalFieldTheory/GaugeTheory/MatterField/MatrixRep",
+      "path": "PhyslibAlpha/ClassicalFieldTheory/GaugeTheory/LocalFieldAlgebra/Realization",
       "leanFiles": 4,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/ClassicalFieldTheory/GaugeTheory/MatterField",
+      "leanFiles": 13,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/ClassicalFieldTheory/GaugeTheory/MatterField/FieldDerivSpace",
+      "leanFiles": 3,
       "hasApiMap": false
     },
     {
@@ -30669,7 +30669,7 @@
     },
     {
       "path": "PhyslibAlpha/Mathematics",
-      "leanFiles": 142,
+      "leanFiles": 156,
       "hasApiMap": false
     },
     {
@@ -30704,31 +30704,51 @@
     },
     {
       "path": "PhyslibAlpha/Mathematics/ForMathlib",
-      "leanFiles": 4,
+      "leanFiles": 9,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/Mathematics/ForMathlib/Algebra",
+      "leanFiles": 2,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/Mathematics/ForMathlib/Algebra/Polynomial",
+      "leanFiles": 2,
       "hasApiMap": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/ForMathlib/Analysis",
-      "leanFiles": 2,
+      "leanFiles": 3,
       "hasApiMap": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/ForMathlib/Analysis/Normed",
-      "leanFiles": 2,
+      "leanFiles": 3,
       "hasApiMap": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/ForMathlib/Analysis/Normed/Algebra",
-      "leanFiles": 2,
+      "leanFiles": 3,
       "hasApiMap": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/ForMathlib/DataStructures",
-      "leanFiles": 1,
+      "leanFiles": 2,
       "hasApiMap": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/ForMathlib/DataStructures/Matrix",
+      "leanFiles": 2,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/Mathematics/ForMathlib/RingTheory",
+      "leanFiles": 1,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/Mathematics/ForMathlib/RingTheory/TensorProduct",
       "leanFiles": 1,
       "hasApiMap": false
     },
@@ -30789,12 +30809,17 @@
     },
     {
       "path": "PhyslibAlpha/Mathematics/RepresentationTheory",
-      "leanFiles": 11,
+      "leanFiles": 20,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/Mathematics/RepresentationTheory/Reynolds",
+      "leanFiles": 3,
       "hasApiMap": false
     },
     {
       "path": "PhyslibAlpha/Mathematics/RepresentationTheory/Sl2",
-      "leanFiles": 11,
+      "leanFiles": 15,
       "hasApiMap": false
     },
     {
@@ -30964,7 +30989,7 @@
     },
     {
       "path": "PhyslibAlpha/Particles",
-      "leanFiles": 140,
+      "leanFiles": 93,
       "hasApiMap": false
     },
     {
@@ -30989,207 +31014,142 @@
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel",
-      "leanFiles": 119,
-      "hasApiMap": false
-    },
-    {
-      "path": "PhyslibAlpha/Particles/StandardModel/CovRealization",
-      "leanFiles": 18,
-      "hasApiMap": false
-    },
-    {
-      "path": "PhyslibAlpha/Particles/StandardModel/CovRealization/FermionGaugeSector",
-      "leanFiles": 2,
-      "hasApiMap": false
-    },
-    {
-      "path": "PhyslibAlpha/Particles/StandardModel/CovRealization/GaugeHiggsSector",
-      "leanFiles": 2,
-      "hasApiMap": false
-    },
-    {
-      "path": "PhyslibAlpha/Particles/StandardModel/CovRealization/MassWeight",
-      "leanFiles": 2,
-      "hasApiMap": false
-    },
-    {
-      "path": "PhyslibAlpha/Particles/StandardModel/CovRealization/MixedSector",
-      "leanFiles": 1,
-      "hasApiMap": false
-    },
-    {
-      "path": "PhyslibAlpha/Particles/StandardModel/CovRealization/YukawaSector",
-      "leanFiles": 7,
-      "hasApiMap": false
-    },
-    {
-      "path": "PhyslibAlpha/Particles/StandardModel/CovRealization/YukawaSector/Families",
-      "leanFiles": 3,
+      "leanFiles": 72,
       "hasApiMap": false
     },
     {
       "path": "PhyslibAlpha/Particles/StandardModel/Fermions",
-      "leanFiles": 13,
-      "hasApiMap": false
-    },
-    {
-      "path": "PhyslibAlpha/Particles/StandardModel/Fermions/DownSinglet",
-      "leanFiles": 2,
-      "hasApiMap": false
-    },
-    {
-      "path": "PhyslibAlpha/Particles/StandardModel/Fermions/JetAlgebra",
-      "leanFiles": 2,
-      "hasApiMap": false
-    },
-    {
-      "path": "PhyslibAlpha/Particles/StandardModel/Fermions/LeptonDoublet",
-      "leanFiles": 2,
-      "hasApiMap": false
-    },
-    {
-      "path": "PhyslibAlpha/Particles/StandardModel/Fermions/LeptonSinglet",
-      "leanFiles": 2,
-      "hasApiMap": false
-    },
-    {
-      "path": "PhyslibAlpha/Particles/StandardModel/Fermions/QuarkDoublet",
-      "leanFiles": 2,
-      "hasApiMap": false
-    },
-    {
-      "path": "PhyslibAlpha/Particles/StandardModel/Fermions/UpSinglet",
-      "leanFiles": 2,
-      "hasApiMap": false
-    },
-    {
-      "path": "PhyslibAlpha/Particles/StandardModel/GaugeAlgebra",
-      "leanFiles": 4,
-      "hasApiMap": false
-    },
-    {
-      "path": "PhyslibAlpha/Particles/StandardModel/GaugeGroup",
-      "leanFiles": 11,
-      "hasApiMap": false
-    },
-    {
-      "path": "PhyslibAlpha/Particles/StandardModel/GaugeGroup/Invariants",
-      "leanFiles": 3,
-      "hasApiMap": false
-    },
-    {
-      "path": "PhyslibAlpha/Particles/StandardModel/GaugeGroup/JetGaugeGroup",
-      "leanFiles": 2,
-      "hasApiMap": false
-    },
-    {
-      "path": "PhyslibAlpha/Particles/StandardModel/GaugeGroup/MaurerCartan",
-      "leanFiles": 1,
-      "hasApiMap": false
-    },
-    {
-      "path": "PhyslibAlpha/Particles/StandardModel/HiggsBoson",
-      "leanFiles": 4,
-      "hasApiMap": false
-    },
-    {
-      "path": "PhyslibAlpha/Particles/StandardModel/HiggsBoson/JetAlgebra",
-      "leanFiles": 2,
-      "hasApiMap": false
-    },
-    {
-      "path": "PhyslibAlpha/Particles/StandardModel/IsFermionSector",
-      "leanFiles": 10,
-      "hasApiMap": false
-    },
-    {
-      "path": "PhyslibAlpha/Particles/StandardModel/IsFermionSector/Deriv",
-      "leanFiles": 2,
-      "hasApiMap": false
-    },
-    {
-      "path": "PhyslibAlpha/Particles/StandardModel/IsFermionSector/MassWeight",
-      "leanFiles": 6,
-      "hasApiMap": false
-    },
-    {
-      "path": "PhyslibAlpha/Particles/StandardModel/IsGaugeSector",
-      "leanFiles": 7,
-      "hasApiMap": false
-    },
-    {
-      "path": "PhyslibAlpha/Particles/StandardModel/IsGaugeSector/Deriv",
-      "leanFiles": 2,
-      "hasApiMap": false
-    },
-    {
-      "path": "PhyslibAlpha/Particles/StandardModel/IsGaugeSector/MassWeight",
-      "leanFiles": 4,
-      "hasApiMap": false
-    },
-    {
-      "path": "PhyslibAlpha/Particles/StandardModel/JetAlgebra",
-      "leanFiles": 16,
-      "hasApiMap": false
-    },
-    {
-      "path": "PhyslibAlpha/Particles/StandardModel/JetAlgebra/CovJetAlgebra",
-      "leanFiles": 3,
-      "hasApiMap": false
-    },
-    {
-      "path": "PhyslibAlpha/Particles/StandardModel/JetAlgebra/SectorEquiv",
-      "leanFiles": 2,
-      "hasApiMap": false
-    },
-    {
-      "path": "PhyslibAlpha/Particles/StandardModel/Matter",
-      "leanFiles": 16,
-      "hasApiMap": false
-    },
-    {
-      "path": "PhyslibAlpha/Particles/StandardModel/Matter/Bosonic",
-      "leanFiles": 8,
-      "hasApiMap": false
-    },
-    {
-      "path": "PhyslibAlpha/Particles/StandardModel/Matter/Fermionic",
-      "leanFiles": 8,
-      "hasApiMap": false
-    },
-    {
-      "path": "PhyslibAlpha/Particles/StandardModel/Model",
-      "leanFiles": 2,
-      "hasApiMap": false
-    },
-    {
-      "path": "PhyslibAlpha/Particles/StandardModel/Realization",
       "leanFiles": 15,
       "hasApiMap": false
     },
     {
-      "path": "PhyslibAlpha/Particles/StandardModel/Realization/CovFieldAlgebra",
-      "leanFiles": 1,
-      "hasApiMap": false
-    },
-    {
-      "path": "PhyslibAlpha/Particles/StandardModel/Realization/HiggsCov",
-      "leanFiles": 8,
-      "hasApiMap": false
-    },
-    {
-      "path": "PhyslibAlpha/Particles/StandardModel/Realization/HiggsCov/DerivSubmodule",
+      "path": "PhyslibAlpha/Particles/StandardModel/Fermions/DownSinglet",
       "leanFiles": 3,
       "hasApiMap": false
     },
     {
-      "path": "PhyslibAlpha/Particles/StandardModel/Realization/HiggsCov/MassWeight",
+      "path": "PhyslibAlpha/Particles/StandardModel/Fermions/LeptonDoublet",
+      "leanFiles": 3,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/Particles/StandardModel/Fermions/LeptonSinglet",
+      "leanFiles": 3,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/Particles/StandardModel/Fermions/QuarkDoublet",
+      "leanFiles": 3,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/Particles/StandardModel/Fermions/UpSinglet",
+      "leanFiles": 3,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/Particles/StandardModel/GaugeAlgebra",
+      "leanFiles": 3,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/Particles/StandardModel/GaugeGroup",
+      "leanFiles": 8,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/Particles/StandardModel/GaugeGroup/Invariants",
+      "leanFiles": 2,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/Particles/StandardModel/HiggsBoson",
+      "leanFiles": 2,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/Particles/StandardModel/LocalFieldAlgebra",
+      "leanFiles": 43,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/Particles/StandardModel/LocalFieldAlgebra/FermionGaugeSector",
+      "leanFiles": 2,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/Particles/StandardModel/LocalFieldAlgebra/FermionSector",
+      "leanFiles": 10,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/Particles/StandardModel/LocalFieldAlgebra/FermionSector/Deriv",
+      "leanFiles": 2,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/Particles/StandardModel/LocalFieldAlgebra/FermionSector/MassWeight",
+      "leanFiles": 6,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/Particles/StandardModel/LocalFieldAlgebra/GaugeHiggsSector",
+      "leanFiles": 2,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/Particles/StandardModel/LocalFieldAlgebra/GaugeSector",
+      "leanFiles": 5,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/Particles/StandardModel/LocalFieldAlgebra/GaugeSector/Deriv",
+      "leanFiles": 1,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/Particles/StandardModel/LocalFieldAlgebra/GaugeSector/MassWeight",
+      "leanFiles": 3,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/Particles/StandardModel/LocalFieldAlgebra/LocalCovFieldAlgebra",
+      "leanFiles": 6,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/Particles/StandardModel/LocalFieldAlgebra/LocalCovFieldAlgebra/MassWeight",
+      "leanFiles": 2,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/Particles/StandardModel/LocalFieldAlgebra/MixedSector",
+      "leanFiles": 1,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/Particles/StandardModel/LocalFieldAlgebra/ScalarSector",
+      "leanFiles": 8,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/Particles/StandardModel/LocalFieldAlgebra/ScalarSector/DerivSubmodule",
+      "leanFiles": 3,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/Particles/StandardModel/LocalFieldAlgebra/ScalarSector/MassWeight",
       "leanFiles": 4,
       "hasApiMap": false
     },
     {
-      "path": "PhyslibAlpha/Particles/StandardModel/Realization/MassWeight",
-      "leanFiles": 2,
+      "path": "PhyslibAlpha/Particles/StandardModel/LocalFieldAlgebra/YukawaSector",
+      "leanFiles": 7,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/Particles/StandardModel/LocalFieldAlgebra/YukawaSector/Families",
+      "leanFiles": 3,
       "hasApiMap": false
     },
     {
@@ -31404,12 +31364,12 @@
     },
     {
       "path": "PhyslibAlpha/QuantumMechanics",
-      "leanFiles": 42,
+      "leanFiles": 44,
       "hasApiMap": false
     },
     {
       "path": "PhyslibAlpha/QuantumMechanics/AngularMomentum",
-      "leanFiles": 20,
+      "leanFiles": 21,
       "hasApiMap": false
     },
     {
@@ -31444,7 +31404,7 @@
     },
     {
       "path": "PhyslibAlpha/QuantumMechanics/Hydrogen",
-      "leanFiles": 10,
+      "leanFiles": 11,
       "hasApiMap": false
     },
     {
@@ -31458,13 +31418,23 @@
       "hasApiMap": false
     },
     {
+      "path": "PhyslibAlpha/Relativity/Bispinors",
+      "leanFiles": 4,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/Relativity/Bispinors/Pauli",
+      "leanFiles": 1,
+      "hasApiMap": false
+    },
+    {
       "path": "PhyslibAlpha/Relativity/Causality",
       "leanFiles": 1,
       "hasApiMap": false
     },
     {
       "path": "PhyslibAlpha/Relativity/Fermions",
-      "leanFiles": 3,
+      "leanFiles": 5,
       "hasApiMap": false
     },
     {
@@ -31474,7 +31444,7 @@
     },
     {
       "path": "PhyslibAlpha/Relativity/Fermions/Weyl",
-      "leanFiles": 2,
+      "leanFiles": 4,
       "hasApiMap": false
     },
     {
@@ -31489,7 +31459,7 @@
     },
     {
       "path": "PhyslibAlpha/Relativity/LorentzGroup",
-      "leanFiles": 15,
+      "leanFiles": 5,
       "hasApiMap": false
     },
     {
@@ -31499,12 +31469,12 @@
     },
     {
       "path": "PhyslibAlpha/Relativity/LorentzGroup/Invariants",
-      "leanFiles": 12,
+      "leanFiles": 2,
       "hasApiMap": false
     },
     {
       "path": "PhyslibAlpha/Relativity/PauliMatrices",
-      "leanFiles": 3,
+      "leanFiles": 2,
       "hasApiMap": false
     },
     {
@@ -31519,17 +31489,27 @@
     },
     {
       "path": "PhyslibAlpha/Relativity/Tensors",
-      "leanFiles": 3,
+      "leanFiles": 9,
       "hasApiMap": false
     },
     {
       "path": "PhyslibAlpha/Relativity/Tensors/ComplexTensor",
+      "leanFiles": 7,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/Relativity/Tensors/ComplexTensor/Metrics",
+      "leanFiles": 2,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/Relativity/Tensors/ComplexTensor/Units",
       "leanFiles": 1,
       "hasApiMap": false
     },
     {
       "path": "PhyslibAlpha/Relativity/Tensors/ComplexTensor/Vector",
-      "leanFiles": 1,
+      "leanFiles": 4,
       "hasApiMap": false
     },
     {
@@ -31544,7 +31524,7 @@
     },
     {
       "path": "PhyslibAlpha/SpaceAndTime",
-      "leanFiles": 13,
+      "leanFiles": 14,
       "hasApiMap": false
     },
     {
@@ -31565,6 +31545,11 @@
     {
       "path": "PhyslibAlpha/SpaceAndTime/SpaceTime/SpaceTimeAlgebra",
       "leanFiles": 4,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/SpaceAndTime/Time",
+      "leanFiles": 1,
       "hasApiMap": false
     },
     {
