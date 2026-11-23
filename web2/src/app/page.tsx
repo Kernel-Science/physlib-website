@@ -103,7 +103,7 @@ export default function HomePage() {
                   className="inline-flex h-11 items-center gap-2 rounded-(--radius) border border-accent/40 bg-accent/10 px-6 text-sm font-medium text-accent transition-colors hover:bg-accent/20"
                   style={{ letterSpacing: "-0.01em" }}
                 >
-                  Contribution reports
+                  Contribution Reports
                 </a>
               </div>
             </div>
