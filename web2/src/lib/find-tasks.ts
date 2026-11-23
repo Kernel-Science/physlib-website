@@ -31,7 +31,7 @@ type GitHubIssue = {
   assignees: { login: string }[];
 };
 
-function textPreview(text: string, limit: number): string {
+export function textPreview(text: string, limit: number): string {
   const plainText = text
     .replace(/<!--[\s\S]*?-->/g, "")
     .replace(/^[ \t]{0,3}#{1,6}[ \t]+/gm, "")
