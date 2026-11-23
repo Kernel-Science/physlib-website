@@ -196,6 +196,13 @@ body {
   .prose-physlib img { @apply rounded my-4 max-w-full h-auto; }
 }
 
+/* Sponsor pitch (data/Sponsor.md): each `###` is a giving level, so it reads
+   as a small accent label rather than a full prose heading. */
+.sponsor-pitch .prose-physlib h3 {
+  @apply text-lg font-medium text-accent mt-8 mb-1;
+  letter-spacing: -0.01em;
+}
+
 /* ─── TOC anchor offset (clears fixed navbar) ───────────────── */
 h2[id], h3[id], .api-tree a[id] {
   scroll-margin-top: 5rem;
