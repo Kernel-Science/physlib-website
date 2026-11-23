@@ -64,6 +64,7 @@ export type TodoItem = {
   category: string;
   name: string;
   tag: string;
+  legacyTag?: string;
   content: string;
 };
 
@@ -74,7 +75,29 @@ export type TodoData = {
 };
 
 export async function getTodo(): Promise<TodoData> {
-  return loadYaml<TodoData>("TODO.yml");
+  return parseTodoYaml(await readFile(path.join(dataDir, "TODO.yml"), "utf8"));
+}
+
+export function parseTodoYaml(raw: string): TodoData {
+  const data = yaml.load(raw) as TodoData;
+  // Lean emits unquoted UInt64 hashes. Read tag text before YAML can round it to a JS number.
+  // Keep the ordinary YAML types for line numbers, flags and category counts.
+  const text = yaml.load(raw, { schema: yaml.FAILSAFE_SCHEMA }) as { TODOItem: { tag: string }[] };
+  const exactTags = new Set(text.TODOItem.map((item) => item.tag));
+  const aliases = new Map<string, TodoItem | null>();
+  for (const [index, item] of data.TODOItem.entries()) {
+    const tag = text.TODOItem[index].tag;
+    const oldTag = String(item.tag);
+    item.tag = tag;
+    if (!exactTags.has(oldTag)) {
+      // Old links can resolve only when the rounded tag identified a single card.
+      aliases.set(oldTag, aliases.has(oldTag) ? null : item);
+    }
+  }
+  for (const [alias, item] of aliases) {
+    if (item) item.legacyTag = alias;
+  }
+  return data;
 }
 
 // ─── API map ────────────────────────────────────────────────────────────
