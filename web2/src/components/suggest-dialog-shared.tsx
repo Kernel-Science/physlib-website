@@ -13,7 +13,7 @@ import { GitHubIcon } from "@/components/monthly-updates/icons";
  *  beaten the fade the moment the pointer landed on the button to click it -
  *  the one moment the grey cue most needs to hold. */
 export function githubButtonClasses(ready: boolean): string {
-  const base = "flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium transition-opacity";
+  const base = "flex items-center gap-1.5 rounded-(--radius) px-3 py-1.5 text-sm font-medium transition-opacity";
   return ready ? `${base} hover:opacity-80` : `${base} opacity-40`;
 }
 
@@ -66,7 +66,7 @@ export function TabSwitcher({
           key={t}
           type="button"
           onClick={() => setTab(t)}
-          className={`rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
+          className={`rounded-(--radius) px-3 py-1.5 text-xs font-medium transition-colors ${
             tab === t
               ? "bg-surface text-foreground shadow-sm"
               : "text-muted hover:text-foreground"

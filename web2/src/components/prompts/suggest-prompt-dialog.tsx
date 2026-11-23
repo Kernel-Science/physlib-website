@@ -98,7 +98,7 @@ function DialogShell({
           type="button"
           onClick={closeDialog}
           aria-label="Close"
-          className="-mr-1.5 shrink-0 rounded-lg p-1.5 text-muted transition-colors hover:bg-surface-secondary hover:text-foreground"
+          className="-mr-1.5 shrink-0 rounded-(--radius) p-1.5 text-muted transition-colors hover:bg-surface-secondary hover:text-foreground"
         >
           <CloseIcon />
         </button>
@@ -120,7 +120,7 @@ function DialogShell({
               <button
                 type="button"
                 onClick={closeDialog}
-                className="rounded-lg px-3 py-1.5 text-sm text-muted transition-colors hover:text-foreground"
+                className="rounded-(--radius) px-3 py-1.5 text-sm text-muted transition-colors hover:text-foreground"
               >
                 Cancel
               </button>
@@ -210,7 +210,7 @@ export function SuggestPromptEditDialog({
       <button
         type="button"
         onClick={openDialog}
-        className="inline-flex items-center gap-1.5 rounded border border-border px-2 py-1 text-xs font-medium text-muted transition-colors hover:border-accent hover:text-accent"
+        className="inline-flex items-center gap-1.5 rounded-(--radius) border border-border px-2 py-1 text-xs font-medium text-muted transition-colors hover:border-accent hover:text-accent"
       >
         <span aria-hidden>✎</span>
         Suggest edit
@@ -281,7 +281,7 @@ export function SuggestPromptEditDialog({
           <button
             type="button"
             onClick={closeDialog}
-            className="rounded-lg px-3 py-1.5 text-sm text-muted transition-colors hover:text-foreground"
+            className="rounded-(--radius) px-3 py-1.5 text-sm text-muted transition-colors hover:text-foreground"
           >
             Cancel
           </button>
@@ -361,7 +361,7 @@ export function SuggestNewPromptDialog() {
       <button
         type="button"
         onClick={openDialog}
-        className="flex shrink-0 items-center gap-1.5 rounded-lg border border-border px-2.5 py-1 text-xs text-muted transition-colors hover:border-accent hover:text-accent"
+        className="flex shrink-0 items-center gap-1.5 rounded-(--radius) border border-border px-2.5 py-1 text-xs text-muted transition-colors hover:border-accent hover:text-accent"
       >
         <span aria-hidden>✎</span>
         Suggest a new prompt
@@ -457,7 +457,7 @@ export function SuggestNewPromptDialog() {
           <button
             type="button"
             onClick={closeDialog}
-            className="rounded-lg px-3 py-1.5 text-sm text-muted transition-colors hover:text-foreground"
+            className="rounded-(--radius) px-3 py-1.5 text-sm text-muted transition-colors hover:text-foreground"
           >
             Cancel
           </button>

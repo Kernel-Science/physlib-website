@@ -36,7 +36,7 @@ export function GithubSummary({ report }: { report: ReviewReport }) {
                     href={`https://github.com/${login}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-2 py-0.5 rounded-full text-xs bg-surface-secondary border border-border hover:bg-foreground/5"
+                    className="px-2 py-0.5 rounded-(--radius) text-xs bg-surface-secondary border border-border hover:bg-foreground/5"
                   >
                     {login}
                     {count > 0 && <span className="text-muted"> ({count})</span>}

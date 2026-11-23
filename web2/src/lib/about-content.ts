@@ -91,8 +91,8 @@ export const aboutSections = [
     tagline: "Why formalize physics?",
   },
   {
-    href: "/maintainers",
-    label: "Maintainers",
-    tagline: "The people responsible for reviewing and merging pull requests.",
+    href: "/team",
+    label: "Team",
+    tagline: "The maintainers and contributors who build Physlib.",
   },
 ];

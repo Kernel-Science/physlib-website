@@ -134,15 +134,17 @@ async function run() {
   }
 
   console.log('Applying custom CSS theme...');
+  const paletteCssPath = path.join(__dirname, '../public/blue-palette.css');
   const themeCssPath = path.join(__dirname, '../public/docs-theme.css');
   const targetCssPath = path.join(publicDocsPath, 'style.css');
 
-  if (fs.existsSync(themeCssPath) && fs.existsSync(targetCssPath)) {
+  if (fs.existsSync(paletteCssPath) && fs.existsSync(themeCssPath) && fs.existsSync(targetCssPath)) {
+    const paletteCss = fs.readFileSync(paletteCssPath, 'utf8');
     const themeCss = fs.readFileSync(themeCssPath, 'utf8');
-    fs.appendFileSync(targetCssPath, '\n/* --- PHYSLIB CUSTOM THEME --- */\n' + themeCss);
+    fs.appendFileSync(targetCssPath, '\n/* --- PHYSLIB CUSTOM THEME --- */\n' + paletteCss + '\n' + themeCss);
     console.log('Custom CSS applied successfully.');
   } else {
-    console.warn('Could not find docs-theme.css or style.css to apply overrides.');
+    console.warn('Could not find blue-palette.css, docs-theme.css, or style.css to apply overrides.');
   }
 
   console.log('Fixing documentation header links...');

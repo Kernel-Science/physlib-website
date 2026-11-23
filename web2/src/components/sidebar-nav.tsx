@@ -30,7 +30,7 @@ export function SidebarNav() {
                           href={item.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center justify-between rounded-lg px-2 py-1.5 text-sm text-muted hover:text-foreground transition-colors"
+                          className="site-nav-link site-sidebar-link items-center justify-between px-2"
                         >
                           {item.label}
                           <ExternalIcon />
@@ -38,15 +38,9 @@ export function SidebarNav() {
                       ) : (
                         <Link
                           href={item.href}
-                          className={`flex items-center rounded-lg px-2 py-1.5 text-sm transition-colors ${
-                            isActive
-                              ? "text-accent font-medium bg-accent/8"
-                              : "text-muted hover:text-foreground hover:bg-surface-secondary/60"
-                          }`}
+                          aria-current={isActive ? "page" : undefined}
+                          className="site-nav-link site-sidebar-link px-2"
                         >
-                          {isActive && (
-                            <span className="mr-2 size-1 rounded-full bg-accent flex-shrink-0" />
-                          )}
                           {item.label}
                         </Link>
                       )}
