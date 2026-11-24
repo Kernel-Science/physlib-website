@@ -31,6 +31,12 @@ Try asking “Which issues are open for the website, and how do I preview a chan
 
 Scripts can use the same search at `GET /api/tasks`. For example, `/api/tasks?repository=website` lists open website issues, and `/api/tasks?repository=library&q=qubit&limit=5` finds library work mentioning qubits. Check `sources` for data availability and use `nextOffset` to request the next page.
 
+## Feedback delivery
+
+The feedback form sends a plain-text email to Joseph Tooby-Smith at the address listed on the Project Priorities page. In the hosting project's server environment, set `FEEDBACK_SMTP_URL` to the relay's `smtps://` URL (usually port 465) or `smtp://` URL with STARTTLS (usually port 587). Include URL-encoded credentials if the relay requires authentication. Set `FEEDBACK_FROM` to a sender the relay authorizes, then redeploy. Optionally set `FEEDBACK_TO` to route submissions to a different team inbox. If delivery fails, the visitor can open a draft addressed to Joseph in their own mail app and send it there.
+
+To test locally, point the same variables at a loopback SMTP capture service using test addresses. The form confirms submission when the relay accepts the email.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

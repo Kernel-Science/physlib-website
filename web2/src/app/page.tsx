@@ -7,10 +7,10 @@ import { PhyslibLogo } from "@/components/physlib-logo";
 export default function HomePage() {
   return (
     <section className="hero-gradient w-full">
-      <div className="mx-auto grid min-h-[calc(100svh-3.5rem)] max-w-7xl lg:grid-cols-[minmax(0,1.12fr)_minmax(0,1fr)]">
+      <div className="mx-auto grid max-w-7xl gap-y-6 py-[clamp(1.5rem,4.5svh,2.5rem)] lg:grid-cols-[minmax(0,1.12fr)_minmax(0,1fr)] lg:py-[clamp(2rem,7svh,4rem)]">
 
         {/* ═══ IDENTITY ════════════════════════════════════════════ */}
-        <div className="flex flex-col justify-center border-b border-border py-14 sm:py-16 lg:border-b-0">
+        <div className="flex flex-col justify-center border-b border-border pb-6 lg:border-b-0 lg:pb-0">
           <div className="relative animate-fade-up mx-auto w-full max-w-xl px-5 sm:px-8 lg:max-w-none lg:pr-12">
             <span aria-hidden="true" className="pointer-events-none absolute inset-y-0 right-0 hidden w-px bg-border lg:block" />
             <div className="w-full">
@@ -111,7 +111,7 @@ export default function HomePage() {
         </div>
 
         {/* ═══ GET INVOLVED ════════════════════════════════════════ */}
-        <div className="flex flex-col justify-center py-14 sm:py-16">
+        <div className="flex flex-col justify-center">
           <div className="animate-fade-up mx-auto w-full max-w-xl px-5 delay-100 sm:px-8 lg:max-w-none lg:pl-12">
             <p className="label-mono text-muted mb-4">Get Involved</p>
             <h2
