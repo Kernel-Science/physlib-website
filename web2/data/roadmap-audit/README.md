@@ -19,11 +19,10 @@ ORDER BY d.path, d.line;
 
 The roadmap uses two glyphs for Physlib and PhyslibAlpha declarations. Lemmas, theorems and axioms use a filled dot. Definitions, constants and other object declarations use an eight-spoke asterisk. A file region opens its published module article. Marks share the file destination. Anonymous Lean examples remain in the audit table. Hollow circles come from explicit TODOs in Physlib Wiki articles.
 
-To rebuild from the pinned project inventories, run these commands in `web2`. The source audit resumes completed files. The verification step reads public Git trees through an authenticated GitHub CLI or a `GITHUB_TOKEN` with public repository read access.
+To rebuild from the pinned project inventories, run these commands in `web2`. The source audit resumes completed files and verifies their Git blobs at the end of a full run. After a scoped `--repo` run, use `python3 scripts/roadmap_verify_blobs.py --db /path/to/candidate.sqlite` to verify the completed projects. Verification reads public Git trees through an authenticated GitHub CLI or a `GITHUB_TOKEN` with public repository read access.
 
 ```sh
 python3 scripts/roadmap_audit.py
-python3 scripts/roadmap_verify_blobs.py
 python3 scripts/roadmap_placement.py
 node scripts/build-roadmap-native-folders.mjs
 python3 scripts/build-roadmap-native-declarations.py
@@ -38,3 +37,9 @@ The overview draws individual declarations for Physlib and PhyslibAlpha. Externa
 The area for a repository is its indexed declaration count times its linked GitHub contributor count raised to the power 1.1. Each repository divides that area among its topics in proportion to its declaration counts. Physlib and PhyslibAlpha share one repository. The blue Physlib total includes bundled QuantumInfo. Each native file in the pinned Git tree is indexed, including import-only files. Marks count explicit formal declaration commands in the source. Published Verso pages provide links. Explicit TODOs in Wiki articles occupy part of the native repository’s area without adding to its declaration count. Source visibility controls leave the geometry fixed.
 
 The weekly workflow refreshes native file and folder credits when the pinned Physlib revision changes. To reproduce them locally, use an authenticated GitHub CLI and run `python3 scripts/build-roadmap-native-contributors.py --repo /path/to/full/physlib/clone`. Refresh the separate repository-wide contributor snapshot with `node scripts/build-roadmap-contributors.mjs`. GitHub attributes commits to linked accounts. The snapshot excludes reported bots and records when the contributor lists were fetched.
+
+### Maintaining the external audit
+
+On the first Monday of each month and on manual dispatch, **Generate API map** lists changed external repositories in its Actions job summary. Each comparison starts at the revision in a published file inventory. Projects with multiple pins have a comparison for each older pin. Unavailable repositories and inventory discrepancies are listed separately. Run `node scripts/check-external-roadmap-heads.mjs` with an authenticated GitHub CLI to see the same report locally.
+
+**Maintainer TODO.** Review each comparison for changes to the registered Lean paths. When updating a project, preserve its subject scopes in `scripts/roadmap-project-registry.json` and run `node scripts/build-verso-roadmap.mjs` in a separate checkout to generate candidate inventories. Use a fresh working SQLite database. For an initial check of one repository, `python3 scripts/roadmap_audit.py --repo OWNER/REPO --db /path/to/candidate.sqlite` limits source ingestion to that project. Before replacing the published snapshot, complete the full rebuild above and review the verified file and declaration counts by project. Keep the existing portable database and published inventories until the candidate passes. Refresh the separate repository contributor counts when reviewing external updates so the area weights carry a current observation date.

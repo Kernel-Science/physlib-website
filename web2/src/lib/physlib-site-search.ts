@@ -67,7 +67,7 @@ const pages: Record<string, [string, string]> = {
 };
 
 function sitePages(hasDocs: boolean): Entry[] {
-  const aliases = new Map<string, string[]>([["/wiki", ["API maps"]]]);
+  const aliases = new Map<string, string[]>([["/wiki", ["API maps", "API tracker"]]]);
   for (const section of navSections) {
     for (const item of section.items) {
       const url = new URL(item.href, site.url);

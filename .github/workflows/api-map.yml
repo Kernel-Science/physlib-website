@@ -16,6 +16,30 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  external-heads:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Check on the first Monday of the month or a manual run
+        id: due
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          if [[ "$EVENT_NAME" == workflow_dispatch || $(date -u +%-d) -le 7 ]]; then
+            echo 'check=true' >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/checkout@v4
+        if: steps.due.outputs.check == 'true'
+        with:
+          persist-credentials: false
+      - name: Report changes since the audited external revisions
+        if: steps.due.outputs.check == 'true'
+        working-directory: web2
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node scripts/check-external-roadmap-heads.mjs >> "$GITHUB_STEP_SUMMARY"
+
   generate:
     runs-on: ubuntu-latest
     # A changed native revision requires tracing history and blame for every Lean file.
