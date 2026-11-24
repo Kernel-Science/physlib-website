@@ -14,6 +14,10 @@
     @apply max-w-5xl;
   }
 
+  body:has(.feedback-thank-you) footer {
+    display: none;
+  }
+
   .page-title-editorial {
     @apply mb-4 text-4xl font-medium text-foreground md:text-5xl;
     letter-spacing: -0.04em;

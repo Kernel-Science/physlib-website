@@ -33,7 +33,7 @@ Scripts can use the same search at `GET /api/tasks`. For example, `/api/tasks?re
 
 ## Feedback delivery
 
-Both tabs on `/feedback` submit directly to the published Google Form. Its native HTML response appears inside the website, while the original draft stays in the tab. Maintainers can see submissions in the form's **Responses** tab. If the Google Form changes, check its embedded responder form against the action, entry IDs and option values in `src/app/feedback/feedback-form.tsx`.
+Both tabs on `/feedback` submit to the published Google Form through `/api/feedback`. Visitors see the Physlib thank-you page after the server verifies Google’s confirmation. If delivery cannot be confirmed, the visitor can retry with their draft intact. The form owner and authorized collaborators can read submissions in Google Forms under **Responses**. When changing the Google Form, check the action, entry IDs, option values and confirmation text in `src/app/api/feedback/route.ts`.
 
 ## Learn More
 
