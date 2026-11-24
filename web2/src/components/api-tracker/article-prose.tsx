@@ -33,6 +33,7 @@ export type ArticleContextValue = {
   repo: string;
   branch: string;
   commit: string;
+  referencePaths: Record<string, string>;
   leanReferences: ApiMapLeanReference[];
   references: ApiMapReference[];
   byPath: Map<string, ApiMapNode>;
@@ -236,10 +237,9 @@ export function DeclarationLink({ file, decl }: { file: string; decl: ApiMapDecl
   );
 }
 
-/** A Lean file in a reference: its source on GitHub, marked when the file
- *  the map names doesn't exist. */
+/** Prefer the published module, with a source fallback while the Docs build catches up. */
 export function LeanFileLink({ reference }: { reference: ApiMapLeanReference }) {
-  const { repo, branch } = useArticle();
+  const { repo, branch, commit, referencePaths } = useArticle();
   if (!reference.exists) {
     return (
       <span className="apimap-missing font-mono text-[0.85em]" title="This file does not exist in Physlib">
@@ -247,12 +247,13 @@ export function LeanFileLink({ reference }: { reference: ApiMapLeanReference }) 
       </span>
     );
   }
+  const docs = referencePaths[reference.file.replace(/\.lean$/, "")];
   return (
     <a
-      href={sourceUrl(repo, branch, reference.file)}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="apimap-external apimap-file"
+      href={docs ?? sourceUrl(repo, commit || branch, reference.file)}
+      target={docs ? undefined : "_blank"}
+      rel={docs ? undefined : "noopener noreferrer"}
+      className={docs ? "apimap-link apimap-file" : "apimap-external apimap-file"}
     >
       {reference.file}
     </a>

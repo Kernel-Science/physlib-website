@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getApiMap } from "@/lib/yaml";
+import { getWikiModuleReferences } from "@/lib/wiki-module-references";
 import { CreateApiMap } from "@/components/api-tracker/create-api-map";
 
 export const metadata: Metadata = {
@@ -10,10 +11,10 @@ export const metadata: Metadata = {
 };
 
 export default async function CreateApiMapPage() {
-  const apiMap = await getApiMap();
+  const [apiMap, referencePaths] = await Promise.all([getApiMap(), getWikiModuleReferences()]);
   return (
     <div className="page-frame-tracker">
-      <CreateApiMap apiMap={apiMap} />
+      <CreateApiMap apiMap={apiMap} referencePaths={referencePaths} />
     </div>
   );
 }

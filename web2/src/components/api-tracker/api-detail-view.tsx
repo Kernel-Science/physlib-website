@@ -115,7 +115,7 @@ function NewSectionPosition({
   );
 }
 
-export function ApiDetailView({ apiMap, activePath }: { apiMap: ApiMap; activePath: string }) {
+export function ApiDetailView({ apiMap, activePath, referencePaths }: { apiMap: ApiMap; activePath: string; referencePaths: Record<string, string> }) {
   const { nodes, repo, branch, commit, generatedAt } = apiMap;
 
   // Menu order: Physlib's folders, as in the sidebar.
@@ -217,11 +217,12 @@ export function ApiDetailView({ apiMap, activePath }: { apiMap: ApiMap; activePa
       repo,
       branch,
       commit,
+      referencePaths,
       leanReferences: node?.leanReferences ?? [],
       references: node?.references ?? [],
       byPath,
     }),
-    [repo, branch, commit, node, byPath],
+    [repo, branch, commit, referencePaths, node, byPath],
   );
 
   if (!current) return null;

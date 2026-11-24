@@ -11,11 +11,10 @@ function readFragment() {
   catch { return ""; }
 }
 
-export function ApiMapReader({ articlePaths, versoModules, referencePaths, home, children }: {
+export function ApiMapReader({ articlePaths, referencePaths, home, children }: {
   home: "wiki" | "roadmap";
   children: ReactNode;
   articlePaths: string[];
-  versoModules: Record<string, string>;
   referencePaths: Record<string, string>;
 }) {
   const [fragment, setFragment] = useState("");
@@ -25,6 +24,7 @@ export function ApiMapReader({ articlePaths, versoModules, referencePaths, home,
   const [loadFailed, setLoadFailed] = useState(false);
   const [retry, setRetry] = useState(0);
   const isApi = apiPaths.has(fragment) || fragment === "dependency-map";
+  const fileBookmark = parseWikiFile(fragment);
 
   useEffect(() => {
     if (!isApi || apiMap) return;
@@ -47,11 +47,9 @@ export function ApiMapReader({ articlePaths, versoModules, referencePaths, home,
       const file = parseWikiFile(next);
       if (file) {
         const docs = Object.hasOwn(referencePaths, file.path) ? referencePaths[file.path] : undefined;
-        const verso = Object.hasOwn(versoModules, file.path) ? versoModules[file.path] : undefined;
-        const href = docs ?? verso;
-        if (href) {
-          const url = new URL(href, window.location.origin);
-          if (file.anchor) url.hash = docs ? file.anchor.replaceAll("___", ".") : file.anchor;
+        if (docs) {
+          const url = new URL(docs, window.location.origin);
+          if (file.anchor) url.hash = file.anchor.replaceAll("___", ".");
           window.location.replace(url.href);
           return;
         }
@@ -79,7 +77,7 @@ export function ApiMapReader({ articlePaths, versoModules, referencePaths, home,
       window.removeEventListener("hashchange", update);
       document.removeEventListener("click", followLink);
     };
-  }, [apiPaths, versoModules, referencePaths]);
+  }, [apiPaths, referencePaths]);
 
   useLayoutEffect(() => {
     if (!isApi || !shouldScroll.current) return;
@@ -92,7 +90,11 @@ export function ApiMapReader({ articlePaths, versoModules, referencePaths, home,
 
   return (
     <>
-      <div hidden={isApi}>{children}</div>
+      <div hidden={isApi || Boolean(fileBookmark)}>{children}</div>
+      {fileBookmark && <p role="status" className="mx-auto max-w-3xl py-8">
+        The current Documentation index has no page for <code className="break-all">{fileBookmark.path.replaceAll("/", ".")}</code>.{" "}
+        <a className="text-accent hover:underline" href="/docs/index.html">Browse Documentation →</a>
+      </p>}
       {isApi && (
         <section id="api-map-reader" aria-label="Selected article" className="mx-auto min-w-0 max-w-5xl">
           {home === "roadmap" && <a href="/roadmap" className="mb-3 inline-block text-sm text-accent hover:underline"
@@ -115,7 +117,7 @@ export function ApiMapReader({ articlePaths, versoModules, referencePaths, home,
           </a>}
           {apiMap ? (
             <>
-              <ApiDetailView apiMap={apiMap} activePath={fragment} />
+              <ApiDetailView apiMap={apiMap} activePath={fragment} referencePaths={referencePaths} />
               <section id="dependency-map" className="mt-14 scroll-mt-20">
                 <h3 className="mb-1 text-sm font-semibold tracking-tight">Dependency map</h3>
                 <p className="mb-4 text-sm leading-relaxed text-muted">See which articles this one cites, which articles cite it, and how the topics connect.</p>

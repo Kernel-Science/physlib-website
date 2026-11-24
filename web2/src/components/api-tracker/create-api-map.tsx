@@ -94,7 +94,7 @@ function newFileUrl(repo: string, branch: string, path: string, text: string): s
   return full.length <= MAX_URL_LENGTH ? full : base;
 }
 
-export function CreateApiMap({ apiMap }: { apiMap: ApiMap }) {
+export function CreateApiMap({ apiMap, referencePaths }: { apiMap: ApiMap; referencePaths: Record<string, string> }) {
   const { repo, branch, commit, nodes, directories } = apiMap;
   const byPath = useMemo(() => new Map(nodes.map((n) => [n.path, n])), [nodes]);
   const dirPaths = useMemo(() => new Set(directories.map((d) => d.path)), [directories]);
@@ -152,8 +152,8 @@ export function CreateApiMap({ apiMap }: { apiMap: ApiMap }) {
   }, [directories, filter]);
 
   const context: ArticleContextValue = useMemo(
-    () => ({ repo, branch, commit, leanReferences: [], references: [], byPath }),
-    [repo, branch, commit, byPath],
+    () => ({ repo, branch, commit, referencePaths, leanReferences: [], references: [], byPath }),
+    [repo, branch, commit, referencePaths, byPath],
   );
 
   const issue: IssueDraft = apiMapIssue({

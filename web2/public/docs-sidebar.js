@@ -24,7 +24,8 @@ if (tree) {
     const from = page.document.referrer ? new URL(page.document.referrer) : null;
     const fromDocs = from?.origin === page.location.origin && from.pathname.startsWith("/docs/");
     const landingPage = ["/docs/", "/docs/index.html"].includes(page.location.pathname);
-    if (!landingPage && fromDocs && sessionStorage.getItem(storageKey) === "physlib") {
+    const alphaPage = /^\/docs\/PhyslibAlpha(?:\/|\.html$)/.test(page.location.pathname);
+    if (!landingPage && !alphaPage && fromDocs && sessionStorage.getItem(storageKey) === "physlib") {
       selected = "physlib";
     } else {
       sessionStorage.removeItem(storageKey);

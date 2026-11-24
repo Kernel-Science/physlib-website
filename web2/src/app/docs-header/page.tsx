@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import { DocsModuleView } from "@/components/docs-module-view";
 
 export default function DocsHeader() {
   useEffect(() => {
@@ -120,7 +119,7 @@ export default function DocsHeader() {
   }, []);
 
   return (
-    <><DocsModuleView /><style data-docs-header-frame>{`
+    <style data-docs-header-frame>{`
       html:has([data-docs-header-frame]), body:has([data-docs-header-frame]) {
         background: transparent;
       }
@@ -177,6 +176,6 @@ export default function DocsHeader() {
         .docs-brand { align-items: flex-start; flex-direction: column; gap: 0; }
         .docs-scope-toggle button { padding-block: .1rem; }
       }
-    `}</style></>
+    `}</style>
   );
 }

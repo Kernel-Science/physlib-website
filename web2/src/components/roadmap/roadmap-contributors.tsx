@@ -51,17 +51,9 @@ function scopedPaths(entry: Entry, index: NativeIndex): string[] {
   for (const link of node.moduleLinks ?? []) {
     // Native module links identify the actual library, including QuantumInfo.
     const pinned = /^https:\/\/github\.com\/leanprover-community\/physlib\/blob\/[0-9a-f]{40}\/(.+\.lean)$/.exec(link.href);
-    const verso = /^https:\/\/jstoobysmith\.github\.io\/PhyslibVerso\/((?:Physlib|PhyslibAlpha)(?:\/[^?#]+?)?)\/?$/.exec(link.href);
-    const published = pinned?.[1] ?? (verso && verso[1] + ".lean");
-    if (published && Object.hasOwn(index.paths, published)) {
-      keys.add(published);
-    } else if (verso && node.wikiPaths?.length && !node.path.includes("~verso-")) {
-      // The roadmap builder places verified source renames at their current path.
-      const current = verso[1].split("/")[0] + "/" + path + ".lean";
-      if (Object.hasOwn(index.paths, current)) keys.add(current);
-    }
+    if (pinned && Object.hasOwn(index.paths, pinned[1])) keys.add(pinned[1]);
   }
-  if (!node.moduleLinks?.length && !node.path.includes("~verso-")) {
+  if (!node.moduleLinks?.length) {
     for (const source of entry.sources) {
       if (source !== "Physlib" && source !== "PhyslibAlpha") continue;
       const module = path === source || path.startsWith("QuantumInfo/") ? path : source + "/" + path;

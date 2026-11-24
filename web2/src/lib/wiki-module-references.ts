@@ -27,8 +27,8 @@ export async function getWikiModuleReferences(): Promise<Record<string, string>>
     const after = currentFile.replace(/\.lean$/, "");
     const destination = result[after] ?? result[before];
     if (destination) {
-      result[before] = destination;
-      result[after] = destination;
+      result[before] ??= destination;
+      result[after] ??= destination;
     }
   }
   return result;

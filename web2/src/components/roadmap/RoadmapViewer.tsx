@@ -3,7 +3,6 @@
 import { memo, useCallback, useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
 import type { KeyboardEvent as ReactKeyboardEvent } from "react";
 import { createPortal } from "react-dom";
-import { docsFileFragment, parseWikiFile } from "@/lib/api-map-hash";
 import { arc, arcSubject, CONTRIBUTOR_EXPONENT, frame, labelWidth, refreshLabelMetrics, SUBJECT_FONT, LABELS, layout, polar, pretty, SOURCES, WHOLE } from "./layout";
 import type { ContributorCounts, Destination, Entry, MapData, Source, Tile } from "./layout";
 import { RoadmapInspector } from "./roadmap-inspector";
@@ -66,12 +65,13 @@ function fromHash(index: Index): Selection | undefined {
     const split = value.lastIndexOf("~");
     if (split < 0) return;
     const modulePath = value.slice(0,split);
-    const tile = index.tiles.find(t => t.entry.kind === "file" &&
-      (t.entry.node.path === modulePath || t.entry.node.wikiPaths?.includes(modulePath)));
+    const tile = index.tiles.find(t => t.entry.kind === "file" && t.entry.node.path === modulePath) ??
+      index.tiles.find(t => t.entry.kind === "file" && t.entry.node.wikiPaths?.includes(modulePath));
     if (tile) return {tile};
   } else if (type === "dir" || type === "f") {
     const matches = index.tiles.filter(t => t.entry.node.path === value);
-    const tile = matches.find(t => type === "dir" ? t.entry.kind === "folder" : t.entry.kind !== "folder") ?? matches[0];
+    const tile = matches.find(t => type === "dir" ? t.entry.kind === "folder" : t.entry.kind !== "folder") ??
+      (type === "f" ? index.tiles.find(t => t.entry.kind === "file" && t.entry.node.wikiPaths?.includes(value)) : undefined) ?? matches[0];
     if (tile) return { tile };
     // Previous catalog bookmarks identified a project by subject and repository.
     const [subject,repo] = value.split(".ExternalProjects.");
@@ -87,24 +87,8 @@ function readerHref(href: string) {
   return href.replace(/^\/(?:api-tracker(?:\/articles)?|roadmap)#/, "/wiki#");
 }
 
-function versoModule(href: string) {
-  const published = /^https:\/\/jstoobysmith\.github\.io\/PhyslibVerso\/((?:PhyslibAlpha|Physlib)(?:\/[^?#]+?)?)\/?$/;
-  return published.exec(href)?.[1];
-}
-
-function fileDestinationPath(href: string) {
-  const fragment = docsFileFragment(href);
-  return fragment ? parseWikiFile(fragment)?.path : versoModule(href);
-}
-
-function isDocument(href: string) {
-  return href.startsWith("/wiki#") || Boolean(fileDestinationPath(href));
-}
-
 function nativeModule(link: Destination) {
   if (link.source !== "Physlib" && link.source !== "PhyslibAlpha") return;
-  const wiki = versoModule(link.href);
-  if (wiki) return wiki;
   const pinned = /^https:\/\/github\.com\/leanprover-community\/physlib\/blob\/[0-9a-f]{40}\/((?:PhyslibAlpha|Physlib|QuantumInfo)(?:\/[^?#]+)?)\.lean$/;
   return pinned.exec(link.href)?.[1];
 }
@@ -114,8 +98,8 @@ function fileDestinations(entry: Entry, references: References): Destination[] {
   const {node} = entry;
   for (const link of node.moduleLinks ?? []) {
     const module = nativeModule(link);
-    const docs = module && references.modules[module];
-    links.push(docs ? {...link,href:docs} : {...link,href:readerHref(link.href)});
+    if (module) links.push({...link,href:references.modules[module] ?? link.href});
+    else if (link.source === "External" && link.href.startsWith("https://github.com/")) links.push(link);
   }
   if (!links.length && entry.kind === "file" && !entry.external) {
     for (const source of entry.sources) {
@@ -130,7 +114,7 @@ function fileDestinations(entry: Entry, references: References): Destination[] {
       }
     }
   }
-  return [...new Map(links.map(link => [link.href,link])).values()];
+  return [...new Map(links.map(link => [link.source + "|" + link.href,link])).values()];
 }
 
 function regionActions(entry: Entry, references: References, visible = allSources) {
@@ -163,10 +147,8 @@ function regionActions(entry: Entry, references: References, visible = allSource
     if (!visible.has(source)) continue;
     const own = links.filter(link => link.source === source);
     const docs = own.find(link => link.href.startsWith("/docs/"));
-    const verso = own.find(link => versoModule(link.href));
-    const github = own.find(link => source === "PhyslibAlpha" && nativeModule(link) && link.href.startsWith("https://github.com/"));
+    const github = own.find(link => nativeModule(link) && link.href.startsWith("https://github.com/"));
     if (docs) actions.push({href:docs.href,label:"Open in Documentation →",source});
-    else if (verso) actions.push({href:verso.href,label:"Read in Verso ↗",source});
     else if (github) actions.push({href:github.href,label:"View Lean source on GitHub ↗",source});
     else if (source === "External") {
       for (const link of own) actions.push({href:link.href,label:(link.label ?? "View source") + " ↗",source});
@@ -221,8 +203,7 @@ const Sectors = memo(function Sectors({ index, tileIndices, visible, references 
     const a = polar(lower ? labelEnd : band.start, mid);
     const b = polar(lower ? band.start : labelEnd, mid);
     const fileLinks = entry.kind === "file" ? fileDestinations(entry,references) : [];
-    const documented = new Set(fileLinks.filter(link => isDocument(link.href)).map(link => link.source));
-    const versoSources = new Set(entry.node.moduleLinks?.filter(link => versoModule(link.href)).map(link => link.source));
+    const documented = new Set(fileLinks.filter(link => link.href.startsWith("/docs/")).map(link => link.source));
     const visibleNative = (["Physlib", "PhyslibAlpha"] as const).find(source => visible.has(source) && entry.sources.includes(source));
     const visibleArticle = entry.node.apiMapLinks?.find(link => visible.has(link.source));
     const bandSource = (!major && visibleArticle?.source) || visibleNative || "External";
@@ -243,7 +224,7 @@ const Sectors = memo(function Sectors({ index, tileIndices, visible, references 
       <path d={arc(sector)} stroke="var(--rm-canvas)" strokeWidth={.55} data-map-folder={map ? entry.node.path : undefined}
         fill={entry.kind === "folder" && (major || !(map && articleShown)) ? softSurfaces[bandSource] : fill}/>
       {t.fields.map(field => <path key={field.source} d={arc(field.sector)} fill={fileSurface(field.source === "UnformalizedClaims" ? entry.todoLibraries[0] ?? "Physlib" : field.source,documented.has(field.source))}
-        stroke="var(--rm-canvas)" strokeWidth={.55} data-source-field={field.source} data-verso={versoSources.has(field.source) || undefined} opacity={visible.has(field.source) && shown ? 1 : 0} pointerEvents={visible.has(field.source) && shown ? "auto" : "none"}/>)}
+        stroke="var(--rm-canvas)" strokeWidth={.55} data-source-field={field.source} opacity={visible.has(field.source) && shown ? 1 : 0} pointerEvents={visible.has(field.source) && shown ? "auto" : "none"}/>)}
       {Object.entries(t.glyphs).map(([source, path]) =>
         <path key={source} d={path} pointerEvents="none" opacity={visible.has(source as Source) && shown ? 1 : 0} fillRule="evenodd" fill={colors[source === "UnformalizedClaims" ? entry.todoLibraries[0] ?? "Physlib" : source as Source]}/>)}
       {showLabel && <>
@@ -541,7 +522,7 @@ function InteractiveMap({ data, contributors, references }: {data?: MapData; con
           onPointerEnter={event => {if (event.pointerType !== "touch") inspectPointer(tile.entry);}}
           onFocus={event => {if (event.currentTarget.matches(":focus-visible")) inspectFocus(tile.entry);}}
           onClick={event => pin({tile},event.detail === 0)}>
-          <strong>{externalProject(tile.entry) ?? pretty(tile.entry.node.name)}</strong><small>{tile.entry.node.wikiPaths?.[0] ?? tile.entry.node.path}</small>
+          <strong>{externalProject(tile.entry) ?? pretty(tile.entry.node.name)}</strong><small>{tile.entry.node.path}</small>
         </button>) : <span>No matching results</span>}</div>}
       </div>
     </div>
@@ -635,6 +616,6 @@ export default function RoadmapViewer({referencePaths,folderPaths = EMPTY_PATHS}
     }).catch(() => {if (!controller.signal.aborted) setError(true);});
     return () => controller.abort();
   },[]);
-  if (error) return <p role="alert">The roadmap could not be loaded. <a href="https://jstoobysmith.github.io/PhyslibVerso/roadmap/">Open the VersoView Roadmap</a></p>;
+  if (error) return <p role="alert">The Roadmap could not be loaded. <a href="/wiki">Browse the Physlib Wiki →</a></p>;
   return <InteractiveMap data={data} contributors={contributors} references={references}/>;
 }

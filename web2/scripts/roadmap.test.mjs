@@ -24,16 +24,16 @@ test("every native file and its current source declarations appear exactly once 
   for (const node of nodes) {
     const expected = [];
     for (const link of node.moduleLinks ?? []) {
-      if (!link.href.startsWith(base)) continue;
+      assert.ok(link.href.startsWith(base), "Unexpected native module link: " + link.href);
       const path = decodeURIComponent(link.href.slice(base.length));
       assert.ok(!included.has(path), "Duplicate native module: " + path);
       included.add(path);
       const source = path.split(/[/.]/)[0] === "PhyslibAlpha" ? "PhyslibAlpha" : "Physlib";
       assert.equal(link.source, source, path);
-      for (const [name, kind, line] of native.files[path]) expected.push([source, name, kind, line]);
+      for (const [name, kind, line] of native.files[path]) expected.push([source, name, kind, line, link.href + "#L" + line]);
     }
     const actual = (node.decls ?? []).filter(d => d.source === "Physlib" || d.source === "PhyslibAlpha")
-      .map(d => [d.source, d.name, d.sourceKind, d.line]);
+      .map(d => [d.source, d.name, d.sourceKind, d.line, d.href]);
     assert.deepEqual(actual.sort(), expected.sort(), node.path);
   }
   assert.deepEqual([...included].sort(), Object.keys(native.files).sort());
@@ -46,8 +46,11 @@ test("every directory shown in the roadmap exists in the source repository", asy
   for (const node of nodes) {
     if (node.children?.length || node.externalIndex) assert.ok(folders.has(node.path), node.path);
   }
-  for (const node of nodes.filter(n => n.path.includes("~verso-"))) {
-    assert.ok(!node.children?.length && node.moduleLinks?.length, node.path);
+  // A module node must represent a module in today's source inventory.
+  const current = new Set(native.files.map(path => path.slice(0, -5)
+    .replace(/^(?:PhyslibAlpha|Physlib)\//, "").replaceAll("/", ".")));
+  for (const node of nodes.filter(n => n.moduleLinks?.length)) {
+    assert.ok(current.has(node.path), node.path);
   }
 });
 
@@ -76,12 +79,15 @@ test("unformalized markers correspond to the open claims in each individual API 
   assert.equal(counts.size, 0, "A marker links outside the indexed API maps");
 });
 
-test("the published Units declaration deep link resolves to its wiki module and exact anchor", () => {
-  const node = nodes.find(n => n.path === "Units.ISQBridge");
-  const link = node.moduleLinks.find(link => link.source === "Physlib");
-  const declaration = node.decls.find(decl => decl.name === "Dimension.toISQHom_injective");
-  assert.equal(link.href, "https://jstoobysmith.github.io/PhyslibVerso/Physlib/Units/ISQBridge/");
-  const href = new URL(declaration.href);
-  assert.equal(href.origin + href.pathname, link.href);
-  assert.ok(href.hash.length > 1);
+test("verified former module names resolve to the current Roadmap file", async () => {
+  const native = await readData("../data/RoadmapNativeFolders.json");
+  function modulePath(path) {
+    return path.slice(0, -5).replace(/^(?:PhyslibAlpha|Physlib)\//, "").replaceAll("/", ".");
+  }
+  const byPath = new Map(nodes.map(node => [node.path, node]));
+  for (const [former, current] of Object.entries(native.formerFiles)) {
+    const node = byPath.get(modulePath(current));
+    const alias = modulePath(former);
+    assert.ok(node && (node.path === alias || node.wikiPaths?.includes(alias)), former);
+  }
 });

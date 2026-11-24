@@ -12,7 +12,6 @@ export const site = {
   // Signed Open Badges 3.0 reports for contributions to Physlib.
   contributions: "https://contributions.physlib.io",
   docs: "/docs/index.html",
-  verso: "https://jstoobysmith.github.io/PhyslibVerso/",
   sponsor: "/sponsor",
   sponsors: "/sponsors",
   team: "/team",

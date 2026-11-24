@@ -1,30 +1,10 @@
 import Link from "next/link";
-import { readFile } from "node:fs/promises";
-import path from "node:path";
 import { WikiSearch } from "./wiki-search";
 import { API_STATUS_DOT, API_STATUS_LABEL, type ApiStatusKind } from "@/lib/api-map-status";
 import { ApiMapReader } from "@/components/api-tracker/api-map-reader";
 import RoadmapViewer from "@/components/roadmap/RoadmapViewer";
-import type { MapData, TreeNode } from "@/components/roadmap/layout";
 import { getApiMap, type ApiMapDirectory } from "@/lib/yaml";
 import { getWikiModuleReferences } from "@/lib/wiki-module-references";
-
-async function getVersoModules(): Promise<Record<string, string>> {
-  const file = path.join(process.cwd(), "public/roadmap-view/roadmap-data.json");
-  const { tree }: MapData = JSON.parse(await readFile(file, "utf8"));
-  const modules: Record<string, string> = {};
-  const base = "https://jstoobysmith.github.io/PhyslibVerso/";
-  function visit(node: TreeNode) {
-    for (const { href } of node.moduleLinks ?? []) {
-      if (!href.startsWith(base)) continue;
-      const module = href.slice(base.length).replace(/\/$/, "");
-      modules[module] = href;
-    }
-    node.children?.forEach(visit);
-  }
-  visit(tree);
-  return modules;
-}
 
 const startingPoints = [
   "Physlib/ClassicalMechanics/DampedHarmonicOscillator",
@@ -47,14 +27,14 @@ function roadmapFolderPaths(directories: ApiMapDirectory[]): Record<string, stri
 }
 
 export async function WikiPage({ home }: { home: "wiki" | "roadmap" }) {
-  const [apiMap, versoModules, referencePaths] = await Promise.all([getApiMap(), getVersoModules(), getWikiModuleReferences()]);
+  const [apiMap, referencePaths] = await Promise.all([getApiMap(), getWikiModuleReferences()]);
   const articlePaths = apiMap.nodes.flatMap(node => [node.path, ...node.parents.map(parent => parent.path)]);
   const examples = startingPoints.flatMap(folder =>
     apiMap.nodes.filter(article => article.path === folder)
   );
   return (
     <div className="px-4 pt-5 pb-12 sm:px-8 sm:pt-7">
-      <ApiMapReader articlePaths={articlePaths} versoModules={versoModules} referencePaths={referencePaths} home={home}>
+      <ApiMapReader articlePaths={articlePaths} referencePaths={referencePaths} home={home}>
         {home === "roadmap" ? (
           <>
             <header id="roadmap" tabIndex={-1} className="mb-4 scroll-mt-20">
