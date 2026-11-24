@@ -1,56 +1,16 @@
 "use client";
 
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useState, type ReactNode } from "react";
+import { Chevron } from "@/components/chevron";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { site } from "@/lib/site";
 import type { TodoData, TodoItem } from "@/lib/yaml";
+import { getItemType, itemTypes, type ItemType } from "@/lib/task-search";
 import { todoSubfield } from "./todo-subfield";
 
-export const itemTypes = {
-  informalDef: {
-    label: "Informal Definition",
-    className: "bg-(--accent-tint) text-accent border-accent/20",
-    tagPrefix: "informal_def",
-  },
-  informalLemma: {
-    label: "Informal Lemma",
-    className: "bg-orange-500/10 text-orange-600 border-orange-500/20 dark:text-orange-400",
-    tagPrefix: "informal_lemma",
-  },
-  semiformal: {
-    label: "Semiformal Result",
-    className: "bg-(--accent-tint) text-accent border-accent/20",
-    tagPrefix: "semiformal_result",
-  },
-  sorryful: {
-    label: "Sorryful Result",
-    className: "bg-purple-500/10 text-purple-700 border-purple-500/20 dark:text-purple-400",
-    tagPrefix: "sorryful result",
-  },
-  todo: {
-    label: "TODO Item",
-    className: "bg-teal-500/10 text-teal-700 border-teal-500/20 dark:text-teal-400",
-    tagPrefix: "TODO",
-  },
-  githubIssue: {
-    label: "GitHub Issue",
-    className: "bg-green-500/10 text-green-700 border-green-500/20 dark:text-green-400",
-  },
-};
-
-export type ItemType = keyof typeof itemTypes;
 type FilterType = "all" | ItemType;
 const filterOptions: FilterType[] = ["all", ...(Object.keys(itemTypes) as ItemType[])];
-
-export function getItemType(item: TodoItem): ItemType {
-  if (item.isGitHubIssue) return "githubIssue";
-  if (item.isInformalDef) return "informalDef";
-  if (item.isInformalLemma) return "informalLemma";
-  if (item.isSemiFormalResult) return "semiformal";
-  if (item.isSorryfulResult) return "sorryful";
-  return "todo";
-}
 
 function copyTagText(item: TodoItem, type: ItemType, tagHref: string): string {
   if (type === "githubIssue") return `[GitHub Issue: ${item.name}](${item.githubLink})`;
@@ -83,11 +43,13 @@ export function TodoItemCard({
   tagHref = `#${item.tag}`,
   linkedIssue,
   compactLabels = false,
+  children,
 }: {
   item: TodoItem;
   tagHref?: string;
   linkedIssue?: { href: string; label: string; assignees?: string[] };
   compactLabels?: boolean;
+  children?: ReactNode;
 }) {
   const type = getItemType(item);
   const { line, endLine } = item;
@@ -161,6 +123,7 @@ export function TodoItemCard({
           </span>
         )}
       </div>
+      {children}
     </div>
   );
 }
@@ -277,13 +240,11 @@ export function TodoClient({ data }: { data: TodoData }) {
                   className="flex w-full items-center gap-2 text-left focus-visible:outline-2 focus-visible:outline-accent"
                 >
                   {name}
-                  <span className="text-xs font-normal text-muted border border-border rounded-full px-2 py-0.5">
+                  <span className="site-tag site-tag-neutral font-normal tabular-nums">
                     {items.length}
                   </span>
                   {!searching && (
-                    <span aria-hidden="true" className="ml-auto text-muted text-sm">
-                      {isOpen ? "▲" : "▼"}
-                    </span>
+                    <Chevron open={isOpen} className="ml-auto text-muted" />
                   )}
                 </button>
               </h2>

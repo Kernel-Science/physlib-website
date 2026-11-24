@@ -19,7 +19,7 @@
   --accent-tint: var(--brand-blue-tint);
   --accent-foreground: oklch(1 0 0);
   --border: oklch(0 0 0 / 0.08);
-  --muted: oklch(0 0 0 / 0.45);
+  --muted: oklch(0 0 0 / 0.6);
   --surface: oklch(1 0 0);
   --surface-secondary: oklch(0.97 0 0);
   /* Intentional dark zones (Mission, Audiences, Footer) */
@@ -63,6 +63,35 @@ body {
   font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
+/* In @layer base (not unlayered): unlayered rules beat every Tailwind utility
+   and component class whatever their specificity, which would undo e.g.
+   whitespace-nowrap on a <p> and component-level focus rings. */
+@layer base {
+  /* Headings break into even lines; paragraphs avoid a lone last word. */
+  :where(h1, h2, h3) { text-wrap: balance; }
+  :where(main p, main li) { text-wrap: pretty; }
+  :where(table, time) { font-variant-numeric: tabular-nums; }
+
+  /* One keyboard focus ring for anything without its own; the component
+     and utility layers still win. [tabindex="-1"] is skipped because those
+     are sections focused by script. */
+  :is(a, button, summary, [tabindex]:not([tabindex="-1"])):focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Loading spinners keep turning, since they show that something is still
+     loading. */
+  *:not(.animate-spin), *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* Navigation labels keep the same inset as selection changes. */
 @layer components {
   .site-nav-link {
@@ -101,9 +130,54 @@ body {
     outline: 2px solid var(--accent);
     outline-offset: 2px;
   }
+  /* The small label above a sidebar's links ("On this page"). Kept lighter
+     than --muted on purpose, so it stays quieter than the links below it. */
   .site-nav-heading {
-    @apply mb-2 px-2 text-[10px] font-bold uppercase tracking-widest text-muted/60;
+    margin-bottom: 0.5rem;
+    padding-inline: 0.5rem;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: color-mix(in srgb, var(--foreground) 30%, transparent);
   }
+}
+
+/* ─── Tags ──────────────────────────────────────────────────── */
+/* One shape and five light tones for every label, chip and status marker on
+   the site (see src/lib/label-tone.ts). */
+@layer components {
+  .site-tag {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.125rem 0.5rem;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    color: var(--foreground);
+    background: var(--surface-secondary);
+    transition: border-color 120ms, color 120ms;
+  }
+  .site-tag-accent {
+    color: var(--accent);
+    border-color: color-mix(in srgb, var(--accent) 25%, transparent);
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+  }
+  .site-tag-warning {
+    border-color: color-mix(in oklch, var(--warning) 35%, transparent);
+    background: color-mix(in oklch, var(--warning) 12%, transparent);
+  }
+  .site-tag-success {
+    border-color: color-mix(in oklch, var(--success) 35%, transparent);
+    background: color-mix(in oklch, var(--success) 12%, transparent);
+  }
+  .site-tag-danger {
+    border-color: color-mix(in oklch, var(--danger) 35%, transparent);
+    background: color-mix(in oklch, var(--danger) 10%, transparent);
+  }
+  button.site-tag { cursor: pointer; }
+  button.site-tag:hover { border-color: var(--accent); }
 }
 
 /* ─── Typography utilities ──────────────────────────────────── */

@@ -5,6 +5,7 @@ export type FindTaskKind = "issue" | "todo" | "documentation" | "api-map";
 
 export type FindTask = {
   id: string;
+  repository: string;
   title: string;
   detail: string;
   href: string;
@@ -14,12 +15,19 @@ export type FindTask = {
   todoItem?: TodoItem;
   labels?: string[];
   assignees?: string[];
+  nextStep?: {
+    action: "volunteer_on_github";
+    discussionUrl: string;
+    guideUrl: string;
+    agentBrief: string;
+  };
   subfield?: string;
   /** Set when the issue body says an LLM filed it and no person has checked it. */
   unreviewed?: boolean;
 };
 
-const repository = new URL(site.github).pathname.slice(1);
+const libraryRepository = new URL(site.github).pathname.slice(1);
+const websiteRepository = new URL(site.websiteRepo).pathname.slice(1);
 const documentationExemptions = "scripts/lint/exemptions/module_doc_no_lint.txt";
 const revalidate = 15 * 60;
 
@@ -31,7 +39,7 @@ type GitHubIssue = {
   assignees: { login: string }[];
 };
 
-function textPreview(text: string, limit: number): string {
+export function textPreview(text: string, limit: number): string {
   const plainText = text
     .replace(/<!--[\s\S]*?-->/g, "")
     .replace(/^[ \t]{0,3}#{1,6}[ \t]+/gm, "")
@@ -73,7 +81,7 @@ function isGitHubIssue(value: unknown): value is GitHubIssue {
     Array.isArray(issue.assignees) && issue.assignees.every((assignee) => typeof assignee?.login === "string");
 }
 
-async function getOpenIssues(): Promise<{ issues: GitHubIssue[]; complete: boolean }> {
+async function getOpenIssues(repository: string): Promise<{ issues: GitHubIssue[]; complete: boolean }> {
   const issues = new Map<number, GitHubIssue>();
   for (let page = 1; page <= 10; page++) {
     try {
@@ -108,7 +116,7 @@ async function getOpenIssues(): Promise<{ issues: GitHubIssue[]; complete: boole
 async function getDocumentationFiles(): Promise<string[] | null> {
   try {
     const response = await fetch(
-      `https://raw.githubusercontent.com/${repository}/master/${documentationExemptions}`,
+      `https://raw.githubusercontent.com/${libraryRepository}/master/${documentationExemptions}`,
       { next: { revalidate }, signal: AbortSignal.timeout(5_000) },
     );
     if (!response.ok) return null;
@@ -130,6 +138,7 @@ function todoKeywords(item: TodoItem): string {
 function leanTask(item: TodoItem): FindTask {
   return {
     id: `lean-${item.tag}`,
+    repository: libraryRepository,
     title: textPreview(item.content, 160) || item.name,
     detail: item.file,
     href: item.githubLink,
@@ -164,6 +173,7 @@ function apiMapSubfield(body: string | null): string | undefined {
 function documentationTask(path: string): FindTask {
   return {
     id: `docs-${path}`,
+    repository: libraryRepository,
     title: path.replace(/\.lean$/, "").split("/").slice(-2).join(" / "),
     detail: path,
     href: `${site.github}/blob/master/${path.split("/").map(encodeURIComponent).join("/")}`,
@@ -182,46 +192,73 @@ function issueKinds(title: string, labels: string[], isTodo: boolean): FindTaskK
   return kinds;
 }
 
-function issueTask(issue: GitHubIssue, linkedTodo?: TodoItem): FindTask {
+function issueTask(repository: string, issue: GitHubIssue, linkedTodo?: TodoItem): FindTask {
   const labels = issue.labels.map(({ name }) => name);
   const subfield = apiMapSubfield(issue.body);
   const { text, unreviewed } = issueBody(issue.body);
+  const href = `https://github.com/${repository}/issues/${issue.number}`;
+  const guideUrl = repository === libraryRepository
+    ? `${site.url}/getting-started#first-contribution`
+    : `${site.websiteRepo}/tree/main/web2`;
   return {
-    id: `issue-${issue.number}`,
+    id: repository === libraryRepository ? `issue-${issue.number}` : `website-issue-${issue.number}`,
+    repository,
     title: issue.title,
     detail: linkedTodo?.file || textPreview(text, 220) || labels.join(", "),
-    href: `${site.github}/issues/${issue.number}`,
+    href,
     kinds: issueKinds(issue.title, labels, Boolean(linkedTodo)),
     source: `GitHub #${issue.number}`,
     keywords: [labels.join(" "), linkedTodo && todoKeywords(linkedTodo)].filter(Boolean).join(" "),
     todoItem: linkedTodo,
     labels,
     assignees: issue.assignees.map(({ login }) => login),
+    nextStep: issue.assignees.length === 0 ? {
+      action: "volunteer_on_github",
+      discussionUrl: href,
+      guideUrl,
+      agentBrief: [
+        `${repository}#${issue.number} — ${issue.title}`,
+        href,
+        "Check the current assignees and recent comments. If this work is available, help me draft a comment describing the part I would like to take on.",
+        `Contribution guide: ${guideUrl}`,
+      ].join("\n\n"),
+    } : undefined,
     subfield,
     unreviewed: unreviewed || undefined,
   };
 }
 
-function issuePriority(task: FindTask): number {
+export function issuePriority(task: FindTask): number {
+  if (!task.kinds.includes("issue")) return 4;
   if (task.assignees?.length !== 0) return 3;
   if (task.labels?.some((label) => /^good first issue$/i.test(label))) return 0;
   if (task.labels?.some((label) => /^help[- ]wanted$/i.test(label))) return 1;
   return 2;
 }
 
-export async function getFindTasks(): Promise<{
+export async function getWebsiteIssues(): Promise<{ tasks: FindTask[]; complete: boolean }> {
+  const { issues, complete } = await getOpenIssues(websiteRepository);
+  return {
+    tasks: issues.map((issue) => issueTask(websiteRepository, issue))
+      .sort((a, b) => issuePriority(a) - issuePriority(b)),
+    complete,
+  };
+}
+
+export async function getFindTasks({ includeSavedIssues = true } = {}): Promise<{
   tasks: FindTask[];
   issuesAvailable: boolean;
   documentationAvailable: boolean;
+  leanTodosAvailable: boolean;
 }> {
   const [todo, { issues, complete }, documentationFiles] = await Promise.all([
-    getTodo(),
-    getOpenIssues(),
+    getTodo().catch(() => null),
+    getOpenIssues(libraryRepository),
     getDocumentationFiles(),
   ]);
 
   const leanTodos = new Map<string, TodoItem>();
-  for (const item of todo.TODOItem) {
+  for (const item of todo?.TODOItem ?? []) {
     if (!item.isGitHubIssue) leanTodos.set(item.tag, item);
   }
 
@@ -231,18 +268,19 @@ export async function getFindTasks(): Promise<{
     const linkedTag = issue.body?.match(/<!--\s*physlib-todo-tag:\s*(\d+)\s*-->/)?.[1];
     const linkedTodo = linkedTag ? leanTodos.get(linkedTag) : undefined;
     if (linkedTodo) linkedTags.add(linkedTodo.tag);
-    const task = issueTask(issue, linkedTodo);
+    const task = issueTask(libraryRepository, issue, linkedTodo);
     issueTasks.set(task.id, task);
   }
 
-  if (!complete) {
-    for (const item of todo.TODOItem) {
+  if (includeSavedIssues && !complete) {
+    for (const item of todo?.TODOItem ?? []) {
       const number = item.githubLink.startsWith(`${site.github}/issues/`)
         ? item.githubLink.match(/\/issues\/(\d+)$/)?.[1]
         : undefined;
       if (!item.isGitHubIssue || !number || issueTasks.has(`issue-${number}`)) continue;
       issueTasks.set(`issue-${number}`, {
         id: `issue-${number}`,
+        repository: libraryRepository,
         title: item.name,
         detail: textPreview(item.content, 220),
         href: item.githubLink,
@@ -258,5 +296,10 @@ export async function getFindTasks(): Promise<{
     ...(documentationFiles ?? []).map(documentationTask),
   ];
 
-  return { tasks, issuesAvailable: complete, documentationAvailable: documentationFiles !== null };
+  return {
+    tasks,
+    issuesAvailable: complete,
+    documentationAvailable: documentationFiles !== null,
+    leanTodosAvailable: todo !== null,
+  };
 }
