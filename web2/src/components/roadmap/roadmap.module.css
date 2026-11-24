@@ -2,7 +2,7 @@
   --rm-physlib: #245e9e;
   --rm-alpha: #a64d11;
   --rm-external: #717982;
-  --rm-todo: #000;
+  --rm-todo: #353535;
   --rule: color-mix(in srgb, var(--foreground) 17%, var(--surface));
   border: 1px solid var(--rule);
   border-radius: 12px;
@@ -14,7 +14,7 @@
   --rm-physlib: #80b9fa;
   --rm-alpha: #f6ab6a;
   --rm-external: #b1b8c2;
-  --rm-todo: #ccc;
+  --rm-todo: #b5b5b5;
 }
 .controls, .caption, .filters { display: flex; align-items: center; }
 .controls {

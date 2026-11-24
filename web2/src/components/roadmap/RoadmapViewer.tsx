@@ -24,7 +24,7 @@ type FolderPaths = Record<string, string | string[]>;
 type References = { modules: Paths; folders: FolderPaths };
 const allSources = new Set<Source>(SOURCES);
 const colors: Record<Source, string> = {
-  Physlib: "var(--rm-physlib)", PhyslibAlpha: "var(--rm-alpha)", External: "var(--rm-external)", UnformalizedClaims: "var(--rm-physlib)",
+  Physlib: "var(--rm-physlib)", PhyslibAlpha: "var(--rm-alpha)", External: "var(--rm-external)", UnformalizedClaims: "var(--rm-todo)",
 };
 
 const surfaces: Record<Source, string> = {
@@ -263,7 +263,7 @@ const Sectors = memo(function Sectors({ index, tileIndices, visible, references,
       })}
       {Object.entries(t.glyphs).map(([source, path]) =>
         <path key={source} d={path} pointerEvents="none" opacity={visible.has(source as Source) && shown ? 1 : 0} fillRule="evenodd" data-claim-glyph={source === "UnformalizedClaims" || undefined}
-          fill={source === "UnformalizedClaims" ? "#000" : colors[source as Source]}/>)}
+          fill={colors[source as Source]}/>)}
       {showLabel && <>
         <defs><path id={`roadmap-label-${i}`} d={`M${a.x} ${a.y} A${mid} ${mid} 0 ${sector.end-sector.start > Math.PI ? 1 : 0} ${lower ? 0 : 1} ${b.x} ${b.y}`}/></defs>
         <text fontSize={labelSize} dy=".32em" fill="var(--foreground)" fontWeight={weight} pointerEvents="none" data-arc-width={width} data-subject={major ? fullName : undefined}>
