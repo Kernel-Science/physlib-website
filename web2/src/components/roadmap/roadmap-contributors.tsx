@@ -35,7 +35,7 @@ function repositoryPeople(repositories: string[], snapshot: ContributorCounts): 
   return [...users.values()].sort((a, b) => a.login.localeCompare(b.login, "en"));
 }
 
-function scopedPaths(entry: Entry, index: NativeIndex): string[] {
+function scopedPaths(entry: Entry, index: NativeIndex, library?: "Physlib" | "PhyslibAlpha"): string[] {
   const { node } = entry;
   if (entry.kind === "todos") {
     const folder = node.apiMapHref?.split("#")[1];
@@ -49,12 +49,14 @@ function scopedPaths(entry: Entry, index: NativeIndex): string[] {
   }
   const keys = new Set<string>();
   for (const link of node.moduleLinks ?? []) {
+    if (library && link.source !== library) continue;
     // Native module links identify the actual library, including QuantumInfo.
     const pinned = /^https:\/\/github\.com\/leanprover-community\/physlib\/blob\/[0-9a-f]{40}\/(.+\.lean)$/.exec(link.href);
     if (pinned && Object.hasOwn(index.paths, pinned[1])) keys.add(pinned[1]);
   }
   if (!node.moduleLinks?.length) {
     for (const source of entry.sources) {
+      if (library && source !== library) continue;
       if (source !== "Physlib" && source !== "PhyslibAlpha") continue;
       const module = path === source || path.startsWith("QuantumInfo/") ? path : source + "/" + path;
       const file = module + ".lean";
@@ -102,7 +104,11 @@ function PeopleList({ people, scope }: { people?: Person[]; scope?: string }) {
   </div>;
 }
 
-export function RoadmapContributors({ entry, contributors }: { entry?: Entry; contributors?: ContributorCounts }) {
+export function RoadmapContributors({ entry, contributors, source }: {
+  entry?: Entry;
+  contributors?: ContributorCounts;
+  source?: "Physlib" | "PhyslibAlpha";
+}) {
   const native = !!entry && entry.kind !== "project" && (entry.kind !== "file" || !entry.external);
   const [index, setIndex] = useState<NativeIndex>();
   const [failed, setFailed] = useState(false);
@@ -123,9 +129,9 @@ export function RoadmapContributors({ entry, contributors }: { entry?: Entry; co
   const repoPeople = useMemo(() => contributors && repositoryPeople(repositories, contributors), [repositories, contributors]);
   const nativePeople = useMemo(() => {
     if (!index || !entry || !native) return;
-    const keys = scopedPaths(entry, index);
+    const keys = scopedPaths(entry, index, source);
     return keys.length ? filePeople(keys, index) : undefined;
-  }, [entry, native, index]);
+  }, [entry, native, index, source]);
   if (!entry) return null;
   return <div key={entry.kind + ":" + entry.node.path}>
     {native && (nativePeople ? <PeopleList people={nativePeople}
