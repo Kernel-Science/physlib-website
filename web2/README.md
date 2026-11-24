@@ -31,6 +31,10 @@ Try asking “Which issues are open for the website, and how do I preview a chan
 
 Scripts can use the same search at `GET /api/tasks`. For example, `/api/tasks?repository=website` lists open website issues, and `/api/tasks?repository=library&q=qubit&limit=5` finds library work mentioning qubits. Check `sources` for data availability and use `nextOffset` to request the next page.
 
+## Feedback delivery
+
+Both tabs on `/feedback` submit to the published Google Form through `/api/feedback`. Visitors see the Physlib thank-you page after the server verifies Google’s confirmation. If delivery cannot be confirmed, the visitor can retry with their draft intact. The form owner and authorized collaborators can read submissions in Google Forms under **Responses**. When changing the Google Form, check the action, entry IDs, option values and confirmation text in `src/app/api/feedback/route.ts`.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

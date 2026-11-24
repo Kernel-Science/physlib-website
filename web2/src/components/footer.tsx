@@ -8,6 +8,7 @@ const physlibLinks: NavItem[] = [
   { label: "GitHub", href: site.github, external: true },
   { label: "PhyslibSearch", href: site.semanticSearch, external: true },
   { label: "Website Source", href: site.websiteRepo, external: true },
+  { label: "Feedback", href: site.feedback },
 ];
 
 function FooterLinks({ items }: { items: NavItem[] }) {
@@ -49,7 +50,7 @@ export function Footer() {
             <p className={`mt-3 ${footerBody}`}>
               The definitive library for formalized physics in Lean 4.
             </p>
-            <div className="mt-5">
+            <div className="mt-2.5">
               <FooterLinks items={physlibLinks} />
             </div>
           </div>

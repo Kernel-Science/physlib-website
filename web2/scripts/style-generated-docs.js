@@ -4,8 +4,8 @@ const path = require('node:path');
 const publicPath = path.join(__dirname, '../public');
 const docsPath = path.join(publicPath, 'docs');
 const themeMarker = '\n/* --- PHYSLIB CUSTOM THEME --- */\n';
-const faviconLinks = '<link rel="icon" type="image/svg+xml" href="/icon.svg?v=mono" media="(prefers-color-scheme: light)"/>' +
-  '<link rel="icon" type="image/svg+xml" href="/physlib-icon-dark.svg?v=mono" media="(prefers-color-scheme: dark)"/>';
+const faviconLinks = '<link rel="icon" type="image/svg+xml" href="/icon.svg?v=rnd1" media="(prefers-color-scheme: light)"/>' +
+  '<link rel="icon" type="image/svg+xml" href="/physlib-icon-dark.svg?v=rnd1" media="(prefers-color-scheme: dark)"/>';
 
 function publishedVersoPages() {
   const { tree } = JSON.parse(fs.readFileSync(path.join(publicPath, 'roadmap-view/roadmap-data.json'), 'utf8'));
@@ -54,6 +54,8 @@ function styleGeneratedDocs() {
       // Re-derive this attribute after styling, including if a published
       // counterpart disappeared or this was previously an empty module.
       .replace(/<main\b[^>]*>/, tag => tag.replace(/\sdata-verso-href="[^"]*"/g, ''))
+      .replaceAll("/icon.svg?v=mono", "/icon.svg?v=rnd1")
+      .replaceAll("/physlib-icon-dark.svg?v=mono", "/physlib-icon-dark.svg?v=rnd1")
       .replace(/<link rel="icon" href="[^"]*favicon\.svg"\s*\/?>/, faviconLinks);
     if (file === 'navbar.html') {
       const updatedNav = withFavicon

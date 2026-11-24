@@ -1,10 +1,17 @@
 @layer components {
+  .page-frame-editorial,
+  .page-frame-tracker {
+    @apply me-auto w-full px-5 py-12 sm:px-8 md:py-16;
+    /* Anchor narrow articles and wide tools to the same content edge. */
+    margin-inline-start: max(0px, calc((100% - var(--container-5xl)) / 2));
+  }
+
   .page-frame-editorial {
-    @apply mx-auto w-full max-w-4xl px-5 py-12 sm:px-8 md:py-16;
+    @apply max-w-4xl;
   }
 
   .page-frame-tracker {
-    @apply mx-auto w-full max-w-5xl px-5 py-12 sm:px-8 md:py-16;
+    @apply max-w-5xl;
   }
 
   .page-title-editorial {

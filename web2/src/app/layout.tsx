@@ -28,8 +28,8 @@ export const metadata: Metadata = {
   description: site.description,
   icons: {
     icon: [
-      { url: "/icon.svg?v=mono", type: "image/svg+xml", sizes: "any", media: "(prefers-color-scheme: light)" },
-      { url: "/physlib-icon-dark.svg?v=mono", type: "image/svg+xml", sizes: "any", media: "(prefers-color-scheme: dark)" },
+      { url: "/icon.svg?v=rnd1", type: "image/svg+xml", sizes: "any", media: "(prefers-color-scheme: light)" },
+      { url: "/physlib-icon-dark.svg?v=rnd1", type: "image/svg+xml", sizes: "any", media: "(prefers-color-scheme: dark)" },
     ],
   },
   openGraph: {
