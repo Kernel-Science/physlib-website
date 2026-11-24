@@ -4,8 +4,8 @@ const path = require('node:path');
 const publicPath = path.join(__dirname, '../public');
 const docsPath = path.join(publicPath, 'docs');
 const themeMarker = '\n/* --- PHYSLIB CUSTOM THEME --- */\n';
-const faviconLinks = '<link rel="icon" type="image/svg+xml" href="/icon.svg?v=mono" media="(prefers-color-scheme: light)"/>' +
-  '<link rel="icon" type="image/svg+xml" href="/physlib-icon-dark.svg?v=mono" media="(prefers-color-scheme: dark)"/>';
+const faviconLinks = '<link rel="icon" type="image/svg+xml" href="/icon.svg?v=rnd1" media="(prefers-color-scheme: light)"/>' +
+  '<link rel="icon" type="image/svg+xml" href="/physlib-icon-dark.svg?v=rnd1" media="(prefers-color-scheme: dark)"/>';
 
 function styleGeneratedDocs() {
   const stylePath = path.join(docsPath, 'style.css');
@@ -30,7 +30,10 @@ function styleGeneratedDocs() {
     const isIndex = file === 'index.html';
     const filePath = path.join(docsPath, file);
     const html = fs.readFileSync(filePath, 'utf8');
-    const withFavicon = html.replace(/<link rel="icon" href="[^"]*favicon\.svg"\s*\/?>/, faviconLinks);
+    const withFavicon = html
+      .replaceAll("/icon.svg?v=mono", "/icon.svg?v=rnd1")
+      .replaceAll("/physlib-icon-dark.svg?v=mono", "/physlib-icon-dark.svg?v=rnd1")
+      .replace(/<link rel="icon" href="[^"]*favicon\.svg"\s*\/?>/, faviconLinks);
     if (file === 'navbar.html') {
       const updatedNav = withFavicon
         .replace(/<details class="docs-general"><summary>General documentation<\/summary>([\s\S]*?)<\/details>/,

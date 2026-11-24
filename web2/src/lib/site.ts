@@ -17,6 +17,7 @@ export const site = {
   sponsors: "/sponsors",
   team: "/team",
   tasks: "/tasks",
+  feedback: "/feedback",
   documentationGuide: "/documentation-guide",
   aiResources: "/ai-resources",
   // Same report the "/reviews" Zulip bot command sends - see

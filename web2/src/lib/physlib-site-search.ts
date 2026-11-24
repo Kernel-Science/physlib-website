@@ -44,6 +44,7 @@ const pages: Record<string, [string, string]> = {
   "/getting-started": ["Getting Started", "Install Lean, set up Physlib, and make your first contribution."],
   "/gh-guide": ["GitHub Guide", "Fork the repository, create a branch, and open a pull request."],
   "/get-involved": ["Ways to Contribute", "Find TODOs, open issues, and opportunities to work on Physlib."],
+  "/feedback": ["Feedback", "Share an experience using Physlib or suggest an improvement to the library."],
   "/faq": ["Contributor FAQ", "Frequently asked questions about making a first contribution."],
   "/project-ideas": ["Project ideas", "Suggested physics formalization projects and reading material."],
   "/dependencies": ["Dependency graphs", "Explore imports and dependencies between Lean modules."],
