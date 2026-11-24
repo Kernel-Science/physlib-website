@@ -17,8 +17,8 @@ export function RoadmapInspector({ entry, counts }: {
   ));
   const included = sources.filter(source => counts[source] > 0);
   const total = counts.Physlib + counts.PhyslibAlpha + counts.External;
-  const filePath = entry?.kind === "file" ? entry.node.path : undefined;
-  const folders = filePath?.split(".").slice(0, -1).map(pretty).join(" › ");
+  const showPath = entry?.kind === "file" || (entry?.kind === "project" && !group?.inline);
+  const folders = showPath ? entry.node.path.split(".").slice(0, -1).map(pretty).join(" › ") : "";
   const breadcrumb = folders && title ? folders + " › " + title : undefined;
   return <section className={styles.inspectorStats} aria-label={title ?? "Map totals"} data-overall={entry ? undefined : true}>
     {title && (breadcrumb ? <h2 className={sidebar.fileBreadcrumb} aria-label={breadcrumb} title={breadcrumb}>

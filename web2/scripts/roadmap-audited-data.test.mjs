@@ -8,6 +8,8 @@ const base = "/roadmap-view/declarations/";
 const json = async href => JSON.parse(await readFile(new URL(href.slice(1), publicRoot), "utf8"));
 const index = await json(base + "index.json");
 const roadmap = await json("/roadmap-view/roadmap-data.json");
+const review = JSON.parse(await readFile(new URL("../data/roadmap-audit/project-review.json", import.meta.url), "utf8"));
+const registry = JSON.parse(await readFile(new URL("./roadmap-project-registry.json", import.meta.url), "utf8"));
 const nativeCatalog = JSON.parse(await readFile(new URL("../data/RoadmapNativeFolders.json", import.meta.url), "utf8"));
 
 function* walk(node) {
@@ -33,6 +35,8 @@ test("the published tree and index agree on each source's one named home and eve
   assert.deepEqual(Object.fromEntries(attached.map(node => [node.path, node.externalIndex])), index.topics);
   const repos = new Set(index.repositories);
   assert.equal(repos.size, index.repositories.length);
+  assert.deepEqual([...repos].sort(), Object.keys(review).sort());
+  assert.deepEqual([...new Set(registry.map(row => row.repository))].sort(), [...repos].sort());
   const homes = new Map();
   const repoTotals = new Map();
   const groupFiles = new Set();
@@ -50,6 +54,7 @@ test("the published tree and index agree on each source's one named home and eve
         repoTotals.set(repository, (repoTotals.get(repository) ?? 0) + count);
       }
       if (group.primary) {
+        assert.equal(review[group.project].folder, topic, group.project);
         assert.ok(!group.inline && !homes.has(group.project), group.project);
         assert.deepEqual(group.byProject, { [group.project]: group.count });
         assert.match(group.allFilesHref, projectsPattern);

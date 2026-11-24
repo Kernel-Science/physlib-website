@@ -97,7 +97,6 @@
 .inspectorStats p { margin: .45rem 0 .8rem; }
 .inspectorStats[data-overall] p { margin: 0 0 .55rem; }
 .contextualEntry + .details { margin-top: .75rem; padding-top: .75rem; border-top: 1px solid var(--border); }
-.contextAncestry { margin-bottom: .25rem; overflow-wrap: anywhere; color: var(--muted); font-size: .75rem; line-height: 1.4; }
 .contextAction { display: block; width: fit-content; margin-top: .5rem; color: var(--accent); font-size: .81rem; font-weight: 550; cursor: pointer; }
 .contextAction:hover, .contextAction:focus-visible { text-decoration: underline; text-underline-offset: .15em; }
 .inspectorStats strong { color: var(--foreground); font-weight: 600; }
@@ -181,11 +180,13 @@
 .viewer {
   --band-physlib: #458cc2; --tile-physlib: #91c1e4; --soft-physlib: #d1e4f2;
   --band-alpha: #d18a39; --tile-alpha: #f5bd65; --soft-alpha: #f6e3c8;
+  --file-alpha: #eed5b0;
   --soft-external: #cdd3db;
 }
 :global([data-theme="dark"]) .viewer {
   --band-physlib: #246ba2; --tile-physlib: #215487; --soft-physlib: #182f49;
   --band-alpha: #805425; --tile-alpha: #69491f; --soft-alpha: #3c2b1b;
+  --file-alpha: #4a351e;
   --soft-external: #383f48;
 }
 .fileProvenance { display: block; color: var(--muted); font-size: .72rem; }

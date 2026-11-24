@@ -13,6 +13,7 @@ from collections import defaultdict
 from dataclasses import dataclass
 from functools import lru_cache
 from pathlib import Path
+from urllib.parse import unquote, urlsplit
 
 WEB = Path(__file__).resolve().parents[1]
 DB = WEB / "data/roadmap-audit/declarations.sqlite"
@@ -352,35 +353,28 @@ class Place:
 
 
 def catalog_topics():
-    data = json.loads((WEB / "data/APIMap.json").read_text())
-    topics = set()
-    for row in data["directories"] + data["nodes"]:
-        parts = row["path"].split("/")
-        if parts[0] in {"Physlib", "PhyslibAlpha"}:
-            parts = parts[1:]
-        if parts:
-            topics.add(".".join(parts))
-    return topics
+    data = json.loads((WEB / "data/RoadmapNativeFolders.json").read_text())
+    return {row["path"] for row in data["folders"]} | {
+        path.replace("/", ".") for path in data["quantumInfoFolders"]
+    }
 
 
 def native_source_index():
-    document = json.loads((WEB / "public/roadmap-view/roadmap-data.json").read_text())
+    data = json.loads((WEB / "data/RoadmapNativeDeclarations.json").read_text())
     modules = defaultdict(set)
     declarations = defaultdict(set)
-    stack = [document["tree"]]
-    while stack:
-        node = stack.pop()
-        stack.extend(node.get("children", []))
-        path = node["path"]
-        if not path or not any(link.get("source") in {"Physlib","PhyslibAlpha"} for link in node.get("moduleLinks", [])):
+    for file, rows in data["files"].items():
+        path = file.removesuffix(".lean").removeprefix("Physlib/").removeprefix("PhyslibAlpha/").replace("/", ".")
+        # This subtree records one project's internal namespaces. Its local
+        # names (e.g. Algebra, Normed.Operator) cannot identify unrelated work.
+        if path == "Mathematics.TauCeti" or path.startswith("Mathematics.TauCeti."):
             continue
-        subject = path.split(".", 1)[0]
         parts = path.split(".")
         for length in range(2,min(len(parts),4)+1):
-            modules[subject,tuple(parts[-length:])].add(path)
-        for d in node.get("decls", []):
-            if d["source"] in {"Physlib","PhyslibAlpha"} and "." in d["name"]:
-                declarations[d["name"]].add(path)
+            modules[parts[0],tuple(parts[-length:])].add(path)
+        for name, _, _ in rows:
+            if "." in name:
+                declarations[name].add(path)
     return ({key:next(iter(paths)) for key,paths in modules.items() if len(paths)==1},
             {key:next(iter(paths)) for key,paths in declarations.items() if len(paths)==1})
 
@@ -395,7 +389,7 @@ def build_rules(native):
     # use unambiguous native names: e.g. two distinct AngularMomentum folders.
     candidates = defaultdict(set)
     for path in native:
-        if "." not in path:
+        if "." not in path or path.startswith("Mathematics.TauCeti."):
             continue
         subject, _, _ = path.partition(".")
         phrase = tokens(path.rsplit(".", 1)[-1])
@@ -541,85 +535,119 @@ class Classifier:
         return module
 
 
-# A repository has one entry point, even when its declarations belong to
-# several topics. These decisions capture a project's scientific purpose
-# where generated calculations, generic helpers or a shared example would
-# otherwise overwhelm a simple plurality of declarations.
-REVIEWED_HOMES = {
-    "adambornemann-glitch/Spectra": ("Mathematics.FunctionalAnalysis", "The library develops unbounded operators, their spectra and functional calculus for quantum mechanics."),
-    "Alektronnik/M4TH": ("LatticeQFT.WilsonAction", "The two included SU(3) packages construct the group and use it in the Wilson lattice action."),
-    "ATOMSLab/LeanChemicalTheories": ("Thermodynamics.Adsorption", "Its Langmuir and BET adsorption models give the chemical theory a concrete home alongside its ideal-gas and dimensional-analysis modules."),
-    "ATOMSLab/LeanLJ": ("CondensedMatter.ManyBody", "The Lennard–Jones potential and particle interaction calculation are the package's physical example."),
-    "doxtor6/MerLean-examples": ("QuantumInfo.QuantumErrorCorrection", "The QEC1 source formalizes fault-tolerant gauging, logical faults and code distances."),
-    "Fedor-Popov/Lean_VOA": ("QFT.VertexOperatorAlgebras", "The project develops the vertex operator algebra theory used by its classification, Deligne-series, modularity and moonshine subprojects."),
-    "fpvandoorn/BonnAnalysis": ("Mathematics.Distribution", "The catalogue selects distribution and Fourier analysis from this course, including test functions and convergence of distributions."),
-    "gecrooks/PhysicsAI": ("StatisticalMechanics.FluctuationTheorems", "The fluctuation-theorem moment-body development is the larger of its two indexed physics workstreams."),
-    "GoldenPhysicsProject/GPPVerify2": ("QFT.CelestialAmplitudes", "Celestial holography is the largest of the selected physics subtrees."),
-    "Hayata-Yamasaki-Group/lean-quantum": ("QuantumInfo.Operators", "Its source connects quantum states and information quantities through operator and matrix trace inequalities."),
-    "hxrts/stat-mech": ("StatisticalMechanics", "The project joins Hamiltonian, mean-field and continuum theories under statistical mechanics; Navier–Stokes is one part of the continuum branch."),
-    "lecopivo/SciLean": ("ClassicalMechanics", "The indexed physics examples include ballistic motion, pendula, N-body dynamics and the harmonic oscillator."),
-    "LionSR/QICLean": ("QuantumInfo.Channels", "The project's largest scientific development is its channel theory, including Kraus maps, dilation and channel structure."),
-    "LionSR/TNLean": ("CondensedMatter.TensorNetworks", "Matrix product states, projected entangled-pair states and canonical forms all belong to this tensor-network library."),
-    "mcdoll/DispersiveEquations": ("Mathematics.Distribution", "Its Bessel-potential and Sobolev developments supply distribution-theoretic foundations for dispersive PDE."),
-    "mcdoll/DynamicalSystems": ("ClassicalMechanics.HamiltonianMechanics", "The selected mechanics files study Hamiltonian dynamics, stability and flows."),
-    "mrdouglasny/bochner": ("Mathematics.Probability", "The Bochner–Minlos and probability-measure construction is the project's purpose."),
-    "mrdouglasny/gaussian-field": ("QFT.Euclidean.GaussianFreeField", "The project builds Gaussian fields and covariances for Euclidean field theory."),
-    "mrdouglasny/GFF": ("QFT.Euclidean.GaussianFreeField", "Its source builds the Gaussian free field and the bridge to the Euclidean axioms."),
-    "mrdouglasny/lgt": ("LatticeQFT", "Connections, lattice observables, Wilson action and mass-gap arguments form a single lattice gauge theory development."),
-    "mrdouglasny/pphi2": ("QFT.Euclidean.GlimmJaffe", "Its polynomial field and Osterwalder–Schrader axioms develop the constructive two-dimensional model."),
-    "mrdouglasny/seiberg-witten": ("QFT.SupersymmetricGaugeTheory", "The source organizes SU(2) matter, beta functions and monodromy around Seiberg–Witten theory."),
-    "N-Y-L/axiom-physics": ("QuantumMechanics.QuantumDynamics", "The consolidated adiabatic-theorem and quantum-backflow projects share quantum dynamics."),
-    "oliver-butterley/SpectralThm": ("Mathematics.FunctionalAnalysis", "The target is the spectral theorem for bounded normal operators on Hilbert space."),
-    "openai/math": ("CondensedMatter.Topology.QuantumHall", "In the selected physics corpus, the Laughlin-state developments are the largest single topic and span several packages."),
-    "openai/NavierStokesAndEuler": ("FluidDynamics.NavierStokes", "The repository contains both fluid equations; its largest proof development concerns Navier–Stokes breakdown."),
-    "QECLean/QECLean": ("QuantumInfo.QuantumErrorCorrection", "The stabilizer, CSS, surface, toric and other code families share quantum error correction."),
-    "QuAIR/Lean-QIT": ("QuantumInfo", "Its coding, hypothesis testing, one-shot, asymptotic and higher-order channel interfaces cover quantum information theory as a whole."),
-    "QudeLeap/Lean-QuantumAlg": ("QuantumInfo.QuantumAlgorithms", "Its quantum algorithm implementations depend on the library's circuit, primitive and resource-analysis layers."),
-    "QudeLeap/Lean-QuantumAlg-Bench": ("QuantumInfo.QuantumAlgorithms", "The benchmark's circuit, Fourier and estimation tasks are companion material for the quantum algorithms library."),
-    "RemyDegenne/kolmogorov_extension4": ("Mathematics.Probability", "The project proves Kolmogorov's extension theorem for consistent probability distributions."),
-    "ShirleyLIYuxin/Lean4PHYS": ("Units", "The SI and physical-units foundation is the largest of its selected teaching examples."),
-    "urikol/QuantumOptimization": ("QuantumInfo.QuantumAlgorithms", "The algorithms and optimization objectives are the organizing purpose, with Ising models as an application."),
-    "velvetmonkey/hamiltonian-lean": ("ClassicalMechanics.HamiltonianMechanics", "Its principal result is a Hamiltonian-mechanics formalization."),
-    "xiyin137/OSreconstruction": ("QFT.Euclidean.Reconstruction", "The public reconstruction theorems connect the Euclidean and Wightman formulations of quantum field theory."),
-    "yang-mills-group/OpenAI-YM-20261028": ("QFT.YangMills", "The top-level jointExistence statement and its supporting corpus concern Yang–Mills theory."),
-    "yezhuoyang/LogicQ": ("QuantumInfo.QuantumProgramming.Compilers", "The repository builds a verified QEC compilation stack across several quantum languages; its ChainQ modules supply error-correcting codes."),
-}
+REVIEW = WEB / "data/roadmap-audit/project-review.json"
+REGISTRY = WEB / "scripts/roadmap-project-registry.json"
 
 
-def choose_project_home(repository, counts, fallback):
-    """Choose a populated exact topic; counts are declaration placements, not files."""
-    if not counts:
-        return fallback, "No declarations in this snapshot; the source files are grouped under "+fallback+"."
-    reviewed = REVIEWED_HOMES.get(repository)
-    if reviewed and counts.get(reviewed[0]):
-        topic, basis = reviewed
-    else:
-        # Reusable Mathlib and tooling folders may contain infrastructure for a
-        # far smaller main theorem. Only choose those when no domain topic exists.
-        scientific = [t for t in counts if not t.startswith("Meta.") and ".ForMathlib" not in t]
-        topic = min(scientific or counts, key=lambda t:(-counts[t],t))
-        basis = "Largest populated scientific topic in the indexed source."
-    return topic, f"{basis} {counts[topic]:,} of {sum(counts.values()):,} declarations are placed directly here."
+def inside(topic, folder):
+    return topic == folder or topic.startswith(folder + ".")
+
+
+class ReviewedFolders:
+    """Resolve source-level classifications against the approved project and real file tree."""
+
+    def __init__(self, review, registry, folders):
+        self.review = review
+        self.folders = folders
+        self.subjects = defaultdict(set)
+        self.revisions = set()
+        self.sources = {}
+        self.primary_subject = {}
+        for row in registry:
+            repo = row["repository"]
+            self.subjects[repo].add(row["subject"])
+            self.revisions.add((repo, row["revision"]))
+        if set(review) != set(self.subjects):
+            raise ValueError("Review and source registry disagree: " +
+                             str(sorted(set(review).symmetric_difference(self.subjects))))
+        for repo, entry in review.items():
+            if entry["folder"] not in folders:
+                raise ValueError(f"{repo}: no native folder {entry['folder']}")
+            url = urlsplit(entry["source"])
+            root = "/" + repo + "/blob/"
+            if url.hostname != "github.com" or not url.path.startswith(root):
+                raise ValueError(f"{repo}: invalid reviewed source {url.geturl()}")
+            revision, _, path = url.path[len(root):].partition("/")
+            if (repo, revision) not in self.revisions or not path.endswith(".lean"):
+                raise ValueError(f"{repo}: reviewed source is outside its audited revisions")
+            self.sources[repo] = (revision, unquote(path))
+
+    @classmethod
+    def load(cls):
+        return cls(json.loads(REVIEW.read_text()), json.loads(REGISTRY.read_text()), catalog_topics())
+
+    @lru_cache(maxsize=8192)
+    def nearest(self, topic):
+        while topic and topic not in self.folders:
+            topic = topic.rpartition(".")[0]
+        return topic
+
+    def module_context(self, repo, revision, path, subject, classified, basis):
+        home = self.review[repo]["folder"]
+        if (revision, path) == self.sources[repo]:
+            return home, True
+        # Independently registered source scopes have their own subject.
+        # A source tree explicitly naming a full Physlib subject (e.g. NASA's
+        # ForPhysLib/ClassicalMechanics) is likewise stronger than a repo default.
+        candidate = self.nearest(classified)
+        if candidate and inside(candidate, "Mathematics.TauCeti") and not inside(home, "Mathematics.TauCeti"):
+            candidate = ""
+        if basis == "source-subject-path" and candidate:
+            return candidate, False
+        home_subject = home.partition(".")[0]
+        if (len(self.subjects[repo]) > 1 and subject not in {home_subject, self.primary_subject.get(repo)}
+                and subject in self.folders):
+            return subject, False
+        # A specifically classified sibling module still belongs in its own
+        # native branch (e.g. Entropy/ in a quantum channels library).
+        # A broad ancestor such as Operators remains at its reviewed home.
+        if basis in {"file-name", "directory-name", "native-module-path"} and candidate and (
+                candidate.partition(".")[0] == home_subject and not inside(home, candidate)):
+            return candidate, False
+        return home, False
+
+    def destination(self, context, topic):
+        anchor, representative = context
+        if representative:
+            return anchor
+        candidate = self.nearest(topic)
+        if candidate and inside(candidate, anchor):
+            if inside(candidate, "Mathematics.TauCeti") and not inside(anchor, "Mathematics.TauCeti"):
+                return anchor
+            return candidate
+        return anchor
 
 
 def write_project_homes(conn):
-    counts = defaultdict(dict)
-    for repo, topic, n in conn.execute("""
-        SELECT p.repository, COALESCE(dp.topic,mp.topic), count(*)
-        FROM declarations d JOIN files f ON f.id=d.file_id JOIN projects p ON p.id=f.project_id
+    reviewed = ReviewedFolders.load()
+    repos = {repo for repo, in conn.execute("SELECT DISTINCT repository FROM projects")}
+    if repos - reviewed.review.keys():
+        raise RuntimeError("Unreviewed source projects: " + str(sorted(repos - reviewed.review.keys())))
+    for table in ("module_placements", "declaration_placements"):
+        if "public_topic" not in {row[1] for row in conn.execute(f"PRAGMA table_info({table})")}:
+            conn.execute(f"ALTER TABLE {table} ADD COLUMN public_topic TEXT")
+    modules = list(conn.execute("""
+        SELECT f.id,p.repository,p.revision,f.path,f.subject,mp.topic,mp.basis
+        FROM files f JOIN projects p ON p.id=f.project_id
         JOIN module_placements mp ON mp.module_id=f.id
-        LEFT JOIN declaration_placements dp ON dp.declaration_id=d.id GROUP BY 1,2
-    """):
-        counts[repo][topic] = n
-    fallbacks = {}
-    for repo, subject, _ in conn.execute("""
-        SELECT p.repository,f.subject,count(*) FROM projects p JOIN files f ON p.id=f.project_id
-        GROUP BY 1,2 ORDER BY 1,3 DESC,2
-    """):
-        fallbacks.setdefault(repo,subject)
-    rows = [(repo,*choose_project_home(repo,counts[repo],subject)) for repo,subject in fallbacks.items()]
+    """))
+    for _, repo, rev, path, subject, _, _ in modules:
+        if reviewed.sources[repo] == (rev, path):
+            reviewed.primary_subject[repo] = subject
+    contexts = {}
+    placements = []
+    for ident, repo, rev, path, subject, topic, basis in modules:
+        context = reviewed.module_context(repo, rev, path, subject, topic, basis)
+        contexts[ident] = context
+        placements.append((reviewed.destination(context, topic), ident))
+    conn.executemany("UPDATE module_placements SET public_topic=? WHERE module_id=?", placements)
+    overrides = [(reviewed.destination(contexts[module], topic), ident) for ident, module, topic
+                 in conn.execute("""SELECT d.id,d.file_id,dp.topic FROM declaration_placements dp
+                                     JOIN declarations d ON d.id=dp.declaration_id""")]
+    conn.executemany("UPDATE declaration_placements SET public_topic=? WHERE declaration_id=?", overrides)
     conn.execute("DELETE FROM project_homes")
-    conn.executemany("INSERT INTO project_homes(repository,topic,basis) VALUES (?,?,?)",rows)
+    conn.executemany("INSERT INTO project_homes(repository,topic,basis) VALUES (?,?,?)",
+                     [(repo, reviewed.review[repo]["folder"], reviewed.review[repo]["scope"]) for repo in sorted(repos)])
 
 
 SCHEMA = """
@@ -671,8 +699,8 @@ def materialize(database):
             raise RuntimeError("Source audit changed during placement; rerun against the completed audit")
         conn.execute("DELETE FROM declaration_placements")
         conn.execute("DELETE FROM module_placements")
-        conn.executemany("INSERT INTO module_placements VALUES (?,?,?,?,?)",module_rows)
-        conn.executemany("INSERT INTO declaration_placements VALUES (?,?,?,?,?)",overrides)
+        conn.executemany("INSERT INTO module_placements(module_id,topic,basis,evidence,material) VALUES (?,?,?,?,?)",module_rows)
+        conn.executemany("INSERT INTO declaration_placements(declaration_id,topic,basis,evidence,material) VALUES (?,?,?,?,?)",overrides)
         write_project_homes(conn)
         conn.commit()
         return len(modules), count, len(overrides)
@@ -683,7 +711,7 @@ def materialize(database):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--db", type=Path, default=DB)
-    parser.add_argument("--project-homes-only", action="store_true", help="Choose project homes from the existing audited placements")
+    parser.add_argument("--project-homes-only", action="store_true", help="Apply reviewed public folders to the existing audited placements")
     args = parser.parse_args()
     if not args.db.is_file():
         parser.error(f"Missing source audit {args.db}")

@@ -160,8 +160,9 @@ function regionActions(entry: Entry, references: References, visible = allSource
 const softSurfaces: Record<Source,string> = {
   Physlib: "var(--soft-physlib)", PhyslibAlpha: "var(--soft-alpha)", External: "var(--soft-external)", UnformalizedClaims: "var(--soft-physlib)",
 };
-function fileSurface(source: Source, hasDocs: boolean) {
-  return hasDocs ? surfaces[source] : softSurfaces[source];
+function fileSurface(source: Source, documented: Set<Source>) {
+  if (source === "PhyslibAlpha") return "var(--file-alpha)";
+  return documented.has(source) ? surfaces[source] : softSurfaces[source];
 }
 
 function SubjectGaps({ index, visible }: {index: Index; visible: Set<Source>}) {
@@ -207,7 +208,7 @@ const Sectors = memo(function Sectors({ index, tileIndices, visible, references 
     const visibleNative = (["Physlib", "PhyslibAlpha"] as const).find(source => visible.has(source) && entry.sources.includes(source));
     const visibleArticle = entry.node.apiMapLinks?.find(link => visible.has(link.source));
     const bandSource = (!major && visibleArticle?.source) || visibleNative || "External";
-    const fill = entry.kind === "project" ? fileSurface("External",false) : folder ?
+    const fill = entry.kind === "project" ? softSurfaces.External : folder ?
       (bandSource === "Physlib" ? "var(--band-physlib)" : bandSource === "PhyslibAlpha" ? "var(--band-alpha)" : "var(--band-external)") : "var(--rm-canvas)";
     const shown = entry.sources.some(source => source !== "UnformalizedClaims" && visible.has(source))
       || (visible.has("UnformalizedClaims") && entry.todoLibraries.some(source => visible.has(source)));
@@ -223,7 +224,7 @@ const Sectors = memo(function Sectors({ index, tileIndices, visible, references 
       <title>{targetTitle}</title>
       <path d={arc(sector)} stroke="var(--rm-canvas)" strokeWidth={.55} data-map-folder={map ? entry.node.path : undefined}
         fill={entry.kind === "folder" && (major || !(map && articleShown)) ? softSurfaces[bandSource] : fill}/>
-      {t.fields.map(field => <path key={field.source} d={arc(field.sector)} fill={fileSurface(field.source === "UnformalizedClaims" ? entry.todoLibraries[0] ?? "Physlib" : field.source,documented.has(field.source))}
+      {t.fields.map(field => <path key={field.source} d={arc(field.sector)} fill={fileSurface(field.source === "UnformalizedClaims" ? entry.todoLibraries[0] ?? "Physlib" : field.source, documented)}
         stroke="var(--rm-canvas)" strokeWidth={.55} data-source-field={field.source} opacity={visible.has(field.source) && shown ? 1 : 0} pointerEvents={visible.has(field.source) && shown ? "auto" : "none"}/>)}
       {Object.entries(t.glyphs).map(([source, path]) =>
         <path key={source} d={path} pointerEvents="none" opacity={visible.has(source as Source) && shown ? 1 : 0} fillRule="evenodd" fill={colors[source === "UnformalizedClaims" ? entry.todoLibraries[0] ?? "Physlib" : source as Source]}/>)}
@@ -325,8 +326,6 @@ function InteractiveMap({ data, contributors, references }: {data?: MapData; con
   const showingPin = Boolean(selectedEntry && inspected === selectedEntry);
   const inspectedCounts = inspected && counts.byEntry.get(inspected);
   const actions = inspected ? regionActions(inspected,references,visible) : [];
-  const ancestry = inspected?.kind === "project" && !inspected.node.externalGroup?.inline
-    ? inspected.node.path.split(".").slice(0,-1).slice(-2).map(pretty).join(" › ") : "";
   useEffect(() => {
     setInspectorHost(viewer.current?.querySelector<HTMLElement>("#roadmap-inspector") ?? null);
     setContextHost(viewer.current?.querySelector<HTMLElement>("#roadmap-context") ?? null);
@@ -494,7 +493,6 @@ function InteractiveMap({ data, contributors, references }: {data?: MapData; con
             }
           }}>
           {showingPin && <button className={styles.closeDetails} onClick={unpin} aria-label="Unpin roadmap item">Unpin</button>}
-          {ancestry && <p className={styles.contextAncestry}>{ancestry}</p>}
           <RoadmapInspector entry={inspected} counts={inspectedCounts}/>
           <RoadmapContributors entry={inspected} contributors={contributors}/>
           {actions.map(action => <a key={action.href} className={styles.contextAction} href={action.href} data-context-action

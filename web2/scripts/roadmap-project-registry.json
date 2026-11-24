@@ -85,7 +85,11 @@
     "subject": "QuantumInfo",
     "area": "Quantum simulation",
     "section": "main",
-    "role": "Unclassified repository"
+    "role": "Unclassified repository",
+    "include": [
+      "Quantum4Lean/",
+      "Quantum4Lean.lean"
+    ]
   },
   {
     "repository": "alexjgreig/QHL-Lean",
@@ -216,7 +220,11 @@
     "subject": "QuantumInfo",
     "area": "Categorical quantum mechanics",
     "section": "main",
-    "role": "Library"
+    "role": "Library",
+    "include": [
+      "FQFP/",
+      "FQFP.lean"
+    ]
   },
   {
     "repository": "Carson-9/QuantSem",
@@ -232,7 +240,11 @@
     "subject": "QuantumInfo",
     "area": "Quantum algorithms",
     "section": "main",
-    "role": "Research platform"
+    "role": "Research platform",
+    "include": [
+      "QuantumBlockEncoding/",
+      "QuantumBlockEncoding.lean"
+    ]
   },
   {
     "repository": "Deicyde/aqft-lean",
@@ -308,7 +320,16 @@
     "include": [
       "VOA/",
       "VOA.lean",
-      "MoonshineCFSG/MoonshineCFSG/"
+      "MoonshineCFSG/MoonshineCFSG/MonsterGriess/Golay.lean",
+      "MoonshineCFSG/MoonshineCFSG/MonsterGriess/GriessTrilinear.lean",
+      "MoonshineCFSG/MoonshineCFSG/MonsterGriess/LatticeFamilies.lean",
+      "MoonshineCFSG/MoonshineCFSG/MonsterGriess/Short.lean",
+      "MoonshineCFSG/MoonshineCFSG/MonsterGriess/SpinExtraspecial.lean",
+      "MoonshineCFSG/MoonshineCFSG/MonsterGriess/SpinGroupQ.lean",
+      "MoonshineCFSG/MoonshineCFSG/MonsterGriess/TrialityLabels.lean",
+      "MoonshineCFSG/MoonshineCFSG/MonsterGriess/VisibleAction.lean",
+      "MoonshineCFSG/MoonshineCFSG/MoonshineLRCFSGBridge.lean",
+      "MoonshineCFSG/MoonshineCFSG/MoonshineLRLiftXi.lean"
     ]
   },
   {
@@ -350,75 +371,6 @@
     ]
   },
   {
-    "repository": "GoldenPhysicsProject/GPPVerify2",
-    "revision": "d6cbaa2642ca0004501b5f44f8d6ff5233a51dcf",
-    "subject": "Cosmology",
-    "area": "Cosmology",
-    "section": "related",
-    "role": "Celestial amplitudes and mathematical-physics workbench",
-    "include": [
-      "GppVerify/Cosmology/"
-    ]
-  },
-  {
-    "repository": "GoldenPhysicsProject/GPPVerify2",
-    "revision": "d6cbaa2642ca0004501b5f44f8d6ff5233a51dcf",
-    "subject": "Particles",
-    "area": "Standard Model",
-    "section": "related",
-    "role": "Celestial amplitudes and mathematical-physics workbench",
-    "include": [
-      "GppVerify/StandardModel/"
-    ]
-  },
-  {
-    "repository": "GoldenPhysicsProject/GPPVerify2",
-    "revision": "d6cbaa2642ca0004501b5f44f8d6ff5233a51dcf",
-    "subject": "QFT",
-    "area": "Celestial amplitudes, quantum gravity and gauge theory",
-    "section": "related",
-    "role": "Celestial amplitudes and mathematical-physics workbench",
-    "include": [
-      "GppVerify/CelestialHolography/",
-      "GppVerify/QuantumFieldTheory/",
-      "GppVerify/YangMills/",
-      "GppVerify/QuantumGravity/"
-    ]
-  },
-  {
-    "repository": "GoldenPhysicsProject/GPPVerify2",
-    "revision": "d6cbaa2642ca0004501b5f44f8d6ff5233a51dcf",
-    "subject": "QuantumInfo",
-    "area": "Quantum information",
-    "section": "related",
-    "role": "Celestial amplitudes and mathematical-physics workbench",
-    "include": [
-      "GppVerify/QuantumInformation/"
-    ]
-  },
-  {
-    "repository": "GoldenPhysicsProject/GPPVerify2",
-    "revision": "d6cbaa2642ca0004501b5f44f8d6ff5233a51dcf",
-    "subject": "Relativity",
-    "area": "General relativity",
-    "section": "related",
-    "role": "Celestial amplitudes and mathematical-physics workbench",
-    "include": [
-      "GppVerify/GeneralRelativity/"
-    ]
-  },
-  {
-    "repository": "GoldenPhysicsProject/GPPVerify2",
-    "revision": "d6cbaa2642ca0004501b5f44f8d6ff5233a51dcf",
-    "subject": "StringTheory",
-    "area": "String theory",
-    "section": "related",
-    "role": "Celestial amplitudes and mathematical-physics workbench",
-    "include": [
-      "GppVerify/StringTheory/"
-    ]
-  },
-  {
     "repository": "guest2180/lean4-quantum",
     "revision": "fe605cf9a0772e91229d35e1f16e686799a5f3a3",
     "subject": "QuantumInfo",
@@ -456,7 +408,11 @@
     "subject": "StatisticalMechanics",
     "area": "Statistical physics",
     "section": "main",
-    "role": "Research library"
+    "role": "Research library",
+    "include": [
+      "StatMech/Hamiltonian/",
+      "StatMech/MeanField/"
+    ]
   },
   {
     "repository": "Hydrodynamical/Vlasov_Meanfield_Formalization",
@@ -464,7 +420,10 @@
     "subject": "StatisticalMechanics",
     "area": "Kinetic / plasma physics",
     "section": "main",
-    "role": "Research formalization"
+    "role": "Research formalization",
+    "include": [
+      "Vlasov/"
+    ]
   },
   {
     "repository": "ian-turner/QLean",
@@ -488,7 +447,11 @@
     "subject": "QuantumInfo",
     "area": "Quantum education",
     "section": "related",
-    "role": "Educational game"
+    "role": "Educational game",
+    "include": [
+      "BB84Protocol.lean",
+      "QuantumGame/"
+    ]
   },
   {
     "repository": "Jacob24876/LandauDamping-Public",
@@ -512,7 +475,10 @@
     "subject": "QuantumInfo",
     "area": "Categorical quantum mechanics",
     "section": "main",
-    "role": "Research library"
+    "role": "Research library",
+    "include": [
+      "CQM/"
+    ]
   },
   {
     "repository": "jshemail12345-debug/SubregularAffineCells-Lean",
@@ -547,14 +513,6 @@
     "role": "Paper companion / research proof"
   },
   {
-    "repository": "jzilly/QuantumRelational",
-    "revision": "dbcb0b60cb8108c57b145fa4adebba609830a732",
-    "subject": "QuantumMechanics",
-    "area": "Quantum foundations",
-    "section": "main",
-    "role": "Paper companion"
-  },
-  {
     "repository": "karlesmarin/airy-bouncer-lean",
     "revision": "e7a678e6111eb21201d94ab32bfe606e72372118",
     "subject": "QuantumMechanics",
@@ -587,71 +545,12 @@
     "role": "Research library"
   },
   {
-    "repository": "konard/physical-unified-theory",
-    "revision": "6420f39e74d57031ab66ab507655c7a6b1c12d48",
-    "subject": "Mathematics",
-    "area": "Mathematical foundations",
-    "section": "main",
-    "role": "Discovery lead",
-    "include": [
-      "lean/PhysicalUnifiedTheory/Foundations/"
-    ]
-  },
-  {
-    "repository": "konard/physical-unified-theory",
-    "revision": "6420f39e74d57031ab66ab507655c7a6b1c12d48",
-    "subject": "QuantumMechanics",
-    "area": "Quantum mechanics",
-    "section": "main",
-    "role": "Discovery lead",
-    "include": [
-      "lean/PhysicalUnifiedTheory/QuantumMechanics/"
-    ]
-  },
-  {
-    "repository": "konard/physical-unified-theory",
-    "revision": "6420f39e74d57031ab66ab507655c7a6b1c12d48",
-    "subject": "Relativity",
-    "area": "General relativity",
-    "section": "main",
-    "role": "Discovery lead",
-    "include": [
-      "lean/PhysicalUnifiedTheory/GeneralRelativity/"
-    ]
-  },
-  {
     "repository": "lanyonai/ElectrostaticVlasov",
     "revision": "f43676e2eb1c39917747ef373b8402aa60867016",
     "subject": "Electromagnetism",
     "area": "Verified scientific computing",
     "section": "main",
     "role": "Verified solver"
-  },
-  {
-    "repository": "lean-dojo/QuantumLean-Bench",
-    "revision": "dac8c9da3ccdbb0319b8e9dc76b94c11f7dcf39b",
-    "subject": "QuantumInfo",
-    "area": "Quantum computing and cryptography benchmarks",
-    "section": "related",
-    "role": "Benchmark / corpus",
-    "include": [
-      "benchmarking/formal/Computing.lean",
-      "benchmarking/formal/Cryptography.lean",
-      "benchmarking/formal/InfoTheory.lean",
-      "benchmarking/formal/QML.lean"
-    ]
-  },
-  {
-    "repository": "lean-dojo/QuantumLean-Bench",
-    "revision": "dac8c9da3ccdbb0319b8e9dc76b94c11f7dcf39b",
-    "subject": "QuantumMechanics",
-    "area": "Quantum physics and chemistry benchmarks",
-    "section": "related",
-    "role": "Benchmark / corpus",
-    "include": [
-      "benchmarking/formal/Physics.lean",
-      "benchmarking/formal/Chemistry.lean"
-    ]
   },
   {
     "repository": "lecopivo/NumLean",
@@ -711,7 +610,13 @@
     "subject": "QuantumInfo",
     "area": "Quantum error correction",
     "section": "main",
-    "role": "Unclassified repository"
+    "role": "Unclassified repository",
+    "include": [
+      "SS/",
+      "SS.lean",
+      "Examples/",
+      "Examples.lean"
+    ]
   },
   {
     "repository": "LionSR/MIPStarRE",
@@ -946,15 +851,52 @@
     "subject": "Units",
     "area": "Ontology / metrology",
     "section": "main",
-    "role": "Ontology formalization"
+    "role": "Ontology formalization",
+    "include": [
+      "PropertyKindCalculus/",
+      "PropertyKindCalculus.lean",
+      "dimension/",
+      "iso80000/",
+      "uncertainty/",
+      "ForPhysLib/Metrology/",
+      "ForPhysLib/Metrology.lean"
+    ]
   },
   {
-    "repository": "novaspivack/ugp-physics-lean",
-    "revision": "93a430b7b608e96beeb6ad95f6ab4075c2fe15b0",
-    "subject": "Particles",
-    "area": "Proposed HEP model",
+    "repository": "nasa-jpl/PropertyKindCalculus",
+    "revision": "71cf44842371a3025b0e1e02d86fb07e1d22b5b0",
+    "subject": "ClassicalMechanics",
+    "area": "Classical mechanics quantities",
     "section": "main",
-    "role": "UGP-specific particle/interaction programme"
+    "role": "Ontology formalization",
+    "include": [
+      "ForPhysLib/ClassicalMechanics/",
+      "ForPhysLib/ClassicalMechanics.lean"
+    ]
+  },
+  {
+    "repository": "nasa-jpl/PropertyKindCalculus",
+    "revision": "71cf44842371a3025b0e1e02d86fb07e1d22b5b0",
+    "subject": "Electromagnetism",
+    "area": "Electromagnetic quantities",
+    "section": "main",
+    "role": "Ontology formalization",
+    "include": [
+      "ForPhysLib/Electromagnetism/",
+      "ForPhysLib/Electromagnetism.lean"
+    ]
+  },
+  {
+    "repository": "nasa-jpl/PropertyKindCalculus",
+    "revision": "71cf44842371a3025b0e1e02d86fb07e1d22b5b0",
+    "subject": "QuantumMechanics",
+    "area": "Quantum mechanical quantities",
+    "section": "main",
+    "role": "Ontology formalization",
+    "include": [
+      "ForPhysLib/QuantumMechanics/",
+      "ForPhysLib/QuantumMechanics.lean"
+    ]
   },
   {
     "repository": "oliver-butterley/SpectralThm",
@@ -1094,7 +1036,11 @@
     "subject": "QuantumInfo",
     "area": "Quantum error correction",
     "section": "main",
-    "role": "Research library"
+    "role": "Research library",
+    "include": [
+      "QEC/",
+      "QEC.lean"
+    ]
   },
   {
     "repository": "QuAIR/Lean-QIT",
@@ -1193,57 +1139,16 @@
     "role": "Focused examples"
   },
   {
-    "repository": "ShirleyLIYuxin/Lean4PHYS",
-    "revision": "cae90192085dda428a47af46766f7c738d9624f2",
-    "subject": "ClassicalMechanics",
-    "area": "Mechanics and acoustics",
-    "section": "related",
-    "role": "Benchmark / corpus",
-    "include": [
-      "PhysLib_v2/PhysLib/Mechanics/",
-      "PhysLib_v2/PhysLib/WavesAcoustics/"
-    ]
-  },
-  {
-    "repository": "ShirleyLIYuxin/Lean4PHYS",
-    "revision": "cae90192085dda428a47af46766f7c738d9624f2",
-    "subject": "Electromagnetism",
-    "area": "Electromagnetism",
-    "section": "related",
-    "role": "Benchmark / corpus",
-    "include": [
-      "PhysLib_v2/PhysLib/Electromagnetism/"
-    ]
-  },
-  {
-    "repository": "ShirleyLIYuxin/Lean4PHYS",
-    "revision": "cae90192085dda428a47af46766f7c738d9624f2",
-    "subject": "Thermodynamics",
-    "area": "Temperature and volume",
-    "section": "related",
-    "role": "Benchmark / corpus",
-    "include": [
-      "PhysLib_v2/PhysLib/Thermodynamics/"
-    ]
-  },
-  {
-    "repository": "ShirleyLIYuxin/Lean4PHYS",
-    "revision": "cae90192085dda428a47af46766f7c738d9624f2",
-    "subject": "Units",
-    "area": "SI and unit systems",
-    "section": "related",
-    "role": "Benchmark / corpus",
-    "include": [
-      "PhysLib_v2/PhysLib/Foundations/"
-    ]
-  },
-  {
     "repository": "Shreyas4991/Algolean",
     "revision": "52ef81c9f74f3798535594b57a9175aa20f3110b",
     "subject": "QuantumInfo",
     "area": "Quantum algorithms",
     "section": "main",
-    "role": "Unclassified repository"
+    "role": "Unclassified repository",
+    "include": [
+      "Algolean/Algorithms/Quantum/",
+      "Algolean/Models/Quantum/"
+    ]
   },
   {
     "repository": "sjsnowden/ftqclib",
@@ -1336,10 +1241,13 @@
   {
     "repository": "Vilin97/Autoformalization",
     "revision": "67dc1cea2c192d4dd5a19d9106e8621df0dde9fb",
-    "subject": "Electromagnetism",
+    "subject": "StatisticalMechanics",
     "area": "Plasma physics",
     "section": "main",
-    "role": "Research formalization"
+    "role": "Research formalization",
+    "include": [
+      "landau/Aristotle/Landau/main/"
+    ]
   },
   {
     "repository": "xiyin137/OSreconstruction",
@@ -1408,29 +1316,5 @@
     "area": "Quantum error correction",
     "section": "main",
     "role": "Focused verifier"
-  },
-  {
-    "repository": "YuanXian-Theory/TCSR-QFT-Lean4",
-    "revision": "db0d51fe8f3d56e3c7ace9fb95a6305db3e886ae",
-    "subject": "QFT",
-    "area": "Proposed HEP model",
-    "section": "main",
-    "role": "TCSR proposed-QFT scaffold"
-  },
-  {
-    "repository": "zblore/csd-lean4",
-    "revision": "8f691b0c064011d22d3d3b6a5e7c5af84d9ca553",
-    "subject": "QuantumMechanics",
-    "area": "Quantum foundations",
-    "section": "main",
-    "role": "Focused research proof"
-  },
-  {
-    "repository": "zblore/csd-qit-bridge",
-    "revision": "f927be85854cd240d0dca3a2b3316ae64a2669f4",
-    "subject": "QuantumInfo",
-    "area": "Quantum information bridge",
-    "section": "related",
-    "role": "Integration / bridge"
   }
 ]

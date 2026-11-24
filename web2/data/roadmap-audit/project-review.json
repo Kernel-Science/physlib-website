@@ -1,0 +1,752 @@
+{
+  "ATOMSLab/LeanChemicalTheories": {
+    "folder": "Thermodynamics",
+    "scope": "The chemical theory collection includes adsorption, thermodynamics and molecular mechanics. The single-site Langmuir result derives the coverage relation from equality of adsorption and desorption rates with nonzero site and rate assumptions.",
+    "readme": "https://github.com/ATOMSLab/LeanChemicalTheories/blob/00841fedb86c0af282f515eda7e83a525a42e048/README.md",
+    "source": "https://github.com/ATOMSLab/LeanChemicalTheories/blob/00841fedb86c0af282f515eda7e83a525a42e048/src/adsorption/langmuir_kinetics.lean#L55"
+  },
+  "ATOMSLab/LeanLJ": {
+    "folder": "CondensedMatter.ManyBody",
+    "scope": "A molecular simulation project with analytic results on the Lennard–Jones pair potential. The cited theorem gives differentiability on the positive, untruncated portion of the cutoff interval. The README describes verification of full simulations as an aim.",
+    "readme": "https://github.com/ATOMSLab/LeanLJ/blob/7ef4fe84a4f29a502663a55daa2358e893df83b3/README.md",
+    "source": "https://github.com/ATOMSLab/LeanLJ/blob/7ef4fe84a4f29a502663a55daa2358e893df83b3/LeanLJ/Lennard_Jones_proof.lean#L100"
+  },
+  "Alektronnik/M4TH": {
+    "folder": "LatticeQFT",
+    "scope": "The registered SU3Concrete and SU3Wilson packages support this placement. The Wilson module sums a finite-lattice plaquette action and proves its nonnegativity for nonnegative coupling. Keep the existing SU(3) scope within this multi-topic repository.",
+    "readme": "https://github.com/Alektronnik/M4TH/blob/591b26c45c4469a1192494bf092d5bf4028658e0/README.md",
+    "source": "https://github.com/Alektronnik/M4TH/blob/591b26c45c4469a1192494bf092d5bf4028658e0/SU3Wilson/SU3Wilson/Wilson.lean#L122"
+  },
+  "Alektronnik/Quantum4Lean": {
+    "folder": "QuantumInfo",
+    "scope": "The core library proves Clifford gate identities by exact decision procedures. The same module also defines numerical circuit-equivalence checks returning Bool. The public description should distinguish those checks from proved identities. Exclude the separate playground.",
+    "readme": "https://github.com/Alektronnik/Quantum4Lean/blob/0a4ec3a76464fd36dea0150e571daa356350d0bf/README.md",
+    "source": "https://github.com/Alektronnik/Quantum4Lean/blob/0a4ec3a76464fd36dea0150e571daa356350d0bf/Quantum4Lean/Quantum4LeanTheorems.lean#L40"
+  },
+  "Axiomatic-AI/lean-qkd": {
+    "folder": "QuantumInfo.Entropy",
+    "scope": "A focused formalization of the Lo–Chau entropy bound used in quantum key distribution. For a trace-one positive matrix and a high-overlap vector, the theorem bounds von Neumann entropy under the stated dimension and error hypotheses.",
+    "readme": "https://github.com/Axiomatic-AI/lean-qkd/blob/7eabf73b9c9b71c7a94af8ad1059f124de9ed197/README.md",
+    "source": "https://github.com/Axiomatic-AI/lean-qkd/blob/7eabf73b9c9b71c7a94af8ad1059f124de9ed197/QKD.lean#L764"
+  },
+  "BalandinIlia/quantum_computer_3_qubits": {
+    "folder": "QuantumInfo",
+    "scope": "A fixed three-qubit programming model with operators, programs and an inductive Hoare rule system. Describe the inference rules and examples at register size three. The inspected classicalHoare predicate incorporates rule derivability.",
+    "readme": "https://github.com/BalandinIlia/quantum_computer_3_qubits/blob/c3e18b3e7b675a3a755e65df04a3a15ea12726a0/README.md",
+    "source": "https://github.com/BalandinIlia/quantum_computer_3_qubits/blob/c3e18b3e7b675a3a755e65df04a3a15ea12726a0/QuantumComputer3Qubits/Formalization/QWhile.lean#L262"
+  },
+  "Bobart0/gleason-theorem-lean": {
+    "folder": "QuantumMechanics.Foundations",
+    "scope": "For a complex finite-dimensional space of dimension at least three, the public Gleason theorem represents a projection measure uniquely by a density operator. The separate Busch module handles effect measures.",
+    "readme": "https://github.com/Bobart0/gleason-theorem-lean/blob/ac68d25d93d76fb0bc997d8277ca2d8ea9b34150/README.md",
+    "source": "https://github.com/Bobart0/gleason-theorem-lean/blob/ac68d25d93d76fb0bc997d8277ca2d8ea9b34150/Gleason/Main.lean#L42"
+  },
+  "Bobart0/quantum-foundations-lean": {
+    "folder": "QuantumMechanics.Foundations",
+    "scope": "The Wigner module implements the finite-dimensional transition-preserving map result with a unitary or antiunitary representative up to phase on each unit ray. This is a substantive quantum-foundations library.",
+    "readme": "https://github.com/Bobart0/quantum-foundations-lean/blob/95c53fb5d0345a6456ade570f3c3a4dcfe1cf319/README.md",
+    "source": "https://github.com/Bobart0/quantum-foundations-lean/blob/95c53fb5d0345a6456ade570f3c3a4dcfe1cf319/QuantumFoundations/Wigner/Main.lean#L317"
+  },
+  "BrandonMYates/comblab": {
+    "folder": "CondensedMatter.BandTheory",
+    "scope": "The entry proves a component-counting phase rule for a prescribed real-analytic band discriminant under admissibility and away from the contact locus. The README identifies the operator-spectrum reduction as an input, so describe this as a band-discriminant model.",
+    "readme": "https://github.com/BrandonMYates/comblab/blob/1c3cbcc21b45fa7f3942b8179b9b229464e2ff17/README.md",
+    "source": "https://github.com/BrandonMYates/comblab/blob/1c3cbcc21b45fa7f3942b8179b9b229464e2ff17/CombLab/PhaseRule.lean#L353"
+  },
+  "BrandonMYates/grlab": {
+    "folder": "Relativity.General",
+    "scope": "Chart-level computations of solutions in general relativity. The Schwarzschild result proves Ricci flatness on the exterior chart, with domain and coordinate restrictions explicit. Other modules treat further solutions.",
+    "readme": "https://github.com/BrandonMYates/grlab/blob/88aa2e75dc1bb7fb06e33c51c2447acb456edd4a/README.md",
+    "source": "https://github.com/BrandonMYates/grlab/blob/88aa2e75dc1bb7fb06e33c51c2447acb456edd4a/GRLab/Schwarzschild.lean#L59"
+  },
+  "BrandonMYates/telelab": {
+    "folder": "Cosmology.FLRW",
+    "scope": "The repository centers on open and closed FLRW backgrounds in teleparallel cosmology. For an explicit tetrad and flat spin connection the closed branch derives the torsion scalar in terms of scale factor, Hubble rate and curvature.",
+    "readme": "https://github.com/BrandonMYates/telelab/blob/8c85446c82567bb5c36aab0527e567744d10cc69/README.md",
+    "source": "https://github.com/BrandonMYates/telelab/blob/8c85446c82567bb5c36aab0527e567744d10cc69/TeleLab/ClosedBranch.lean#L530"
+  },
+  "BryceT233/Foresight-Quantum-Formalization-Projects": {
+    "folder": "QuantumInfo",
+    "scope": "The library proves product-formula simulation bounds for skew-adjoint operators under explicit order conditions and also develops categorical teleportation. Keep the FQFP library directories. The tools, scripts and test directories are separate from those results.",
+    "readme": "https://github.com/BryceT233/Foresight-Quantum-Formalization-Projects/blob/5f056cc0c38010a8765aa1f0df6661f73a94682d/README.md",
+    "source": "https://github.com/BryceT233/Foresight-Quantum-Formalization-Projects/blob/5f056cc0c38010a8765aa1f0df6661f73a94682d/FQFP/Analysis/Normed/Algebra/ProductFormula/ErrorBounds.lean#L785"
+  },
+  "Carson-9/QuantSem": {
+    "folder": "QuantumInfo",
+    "scope": "Defines typed finite quantum circuits with gates, register isomorphisms, and sequential and tensor composition. The source gives rewrite rules and circuit equivalence results for this formal language.",
+    "readme": "https://github.com/Carson-9/QuantSem/blob/bfe692349734eb6c1e0f6760a825ba3c0d5e1471/README.md",
+    "source": "https://github.com/Carson-9/QuantSem/blob/bfe692349734eb6c1e0f6760a825ba3c0d5e1471/QuantSem/QuantumLib/Circuits/Basic.lean#L26"
+  },
+  "DakeBU/QuantumComputinglib-QuantumComputingBench": {
+    "folder": "QuantumInfo",
+    "scope": "QuantumBlockEncoding constructs an explicit operator block encoding with a unitarity proof and a block-projection certificate. Keep the mathematical library. The repository also contains benchmark, test, blueprint and experiment code.",
+    "readme": "https://github.com/DakeBU/QuantumComputinglib-QuantumComputingBench/blob/53415aeb2d4b55f671a42a03c4934b27c10ea7af/README.md",
+    "source": "https://github.com/DakeBU/QuantumComputinglib-QuantumComputingBench/blob/53415aeb2d4b55f671a42a03c4934b27c10ea7af/QuantumBlockEncoding/MainCase.lean#L942"
+  },
+  "Deicyde/aqft-lean": {
+    "folder": "QFT",
+    "scope": "The Haag–Kastler net foundation defines spacelike commutativity and proves its equivalence to a vanishing-commutator condition for an isotone net. The README documents covariance, representations, and the spectrum condition as future work.",
+    "readme": "https://github.com/Deicyde/aqft-lean/blob/94dc7b2ba40cb197085daca2fd1a9a8433186326/README.md",
+    "source": "https://github.com/Deicyde/aqft-lean/blob/94dc7b2ba40cb197085daca2fd1a9a8433186326/AQFT/Net/Causality.lean#L62"
+  },
+  "Dengnifer/MIPStarRE-QPBT": {
+    "folder": "QuantumInfo",
+    "scope": "Formalizes the Pauli basis test subproblem of MIP*=RE. The paper-facing soundness theorem takes an admissible field size and a high-success strategy. The scope is four test results; the complete complexity-class theorem is outside this project.",
+    "readme": "https://github.com/Dengnifer/MIPStarRE-QPBT/blob/179a37893d2a037cce0587ea932f5da819c7d78c/README.md",
+    "source": "https://github.com/Dengnifer/MIPStarRE-QPBT/blob/179a37893d2a037cce0587ea932f5da819c7d78c/QPBT/Palomar/PauliSoundness.lean#L28"
+  },
+  "Fedor-Popov/Lean_VOA": {
+    "folder": "QFT",
+    "scope": "The vertex operator algebra core includes translation covariance and the graded vertex-algebra construction. The separate moonshine compilation contributes nine distinct variants and its CFSG bridge. The audited scope counts the shared modules once.",
+    "readme": "https://github.com/Fedor-Popov/Lean_VOA/blob/faedf8eb9e3fe275d3ac09e645aac694e496e965/README.md",
+    "source": "https://github.com/Fedor-Popov/Lean_VOA/blob/faedf8eb9e3fe275d3ac09e645aac694e496e965/VOA/Core/GenuineVertexAlgebra.lean#L34"
+  },
+  "Hayata-Yamasaki-Group/lean-quantum": {
+    "folder": "QuantumInfo.Operators",
+    "scope": "The finite-dimensional quantum-information library includes trace inequalities, states and channels. The cited theorem proves max-relative-entropy monotonicity for a CPTP map on positive operators under a support condition.",
+    "readme": "https://github.com/Hayata-Yamasaki-Group/lean-quantum/blob/bf1c4f6aaec84948f1a1c76c0728432813404a0f/README.md",
+    "source": "https://github.com/Hayata-Yamasaki-Group/lean-quantum/blob/bf1c4f6aaec84948f1a1c76c0728432813404a0f/Quantum/QuantumEntropy/SandwichedRenyiNonNeg.lean#L2788"
+  },
+  "HongruZhao/MinimaxQuantumStateTomography": {
+    "folder": "QuantumInfo.Measurements",
+    "scope": "Theorem 3 provides a risk bound for an estimator from a specified periodic Clifford POVM design under a sufficient block-size condition. The README separately identifies the minimax and lower-bound results and their scopes.",
+    "readme": "https://github.com/HongruZhao/MinimaxQuantumStateTomography/blob/4afb21159ec6c8773a42d94872cd2b587d97b7d8/README.md",
+    "source": "https://github.com/HongruZhao/MinimaxQuantumStateTomography/blob/4afb21159ec6c8773a42d94872cd2b587d97b7d8/TomographyOracleCore/PaperMatch/ExactTheoremThree.lean#L37"
+  },
+  "Hydrodynamical/Vlasov_Meanfield_Formalization": {
+    "folder": "StatisticalMechanics",
+    "scope": "Contains a smooth-interaction mean-field limit via couplings and Dobrushin stability for the Vlasov equation. The result takes regularity and Lipschitz assumptions on the force. Keep the Vlasov library; the formalize/certification tree includes a standalone copy and analysis tooling.",
+    "readme": "https://github.com/Hydrodynamical/Vlasov_Meanfield_Formalization/blob/16d4353f73474cc06be21643f7a9c163eb77a138/README.md",
+    "source": "https://github.com/Hydrodynamical/Vlasov_Meanfield_Formalization/blob/16d4353f73474cc06be21643f7a9c163eb77a138/Vlasov/Vlasov/OT/WellPosedness.lean#L6385"
+  },
+  "Jacob24876/LandauDamping-Public": {
+    "folder": "StatisticalMechanics",
+    "scope": "An active Vlasov–Poisson development. The field-damping assembly treats a finite time horizon, explicit Gevrey and moment inputs, and a residual-control hypothesis. The source identifies remaining steps for an all-time scattering result.",
+    "readme": "https://github.com/Jacob24876/LandauDamping-Public/blob/6fc79bc704afe76a1782c4b9bbc52215343449f8/README.md",
+    "source": "https://github.com/Jacob24876/LandauDamping-Public/blob/6fc79bc704afe76a1782c4b9bbc52215343449f8/LandauDamping/Book/PublicAssembly/FieldDamping.lean#L161"
+  },
+  "JamesSquires0/Abramsky_Coecke_Lean": {
+    "folder": "QuantumInfo",
+    "scope": "The CQM directory proves compact-closed snake identities and defines names, conames and transpose. The README reserves Autoformalizations_ORACLE for reference and says its specifications have not been validated. Keep only the hand-written CQM directory; its unit_dual lemma still has a proof hole.",
+    "readme": "https://github.com/JamesSquires0/Abramsky_Coecke_Lean/blob/c562f12f0128e706065852b1a6da10f93ab28342/README.md",
+    "source": "https://github.com/JamesSquires0/Abramsky_Coecke_Lean/blob/c562f12f0128e706065852b1a6da10f93ab28342/CQM/Definitions.lean#L23"
+  },
+  "Jue-Xu/Lean4LPD": {
+    "folder": "QuantumMechanics",
+    "scope": "The module bounds Pauli-norm error of low-weight-truncated Trotter dynamics by accumulated discarded high-weight components for self-adjoint Pauli generators. This is a mathematical result about an approximate quantum evolution algorithm.",
+    "readme": "https://github.com/Jue-Xu/Lean4LPD/blob/0fd02b56d8437a5ce5042ba98748d80cfac1a4a0/README.md",
+    "source": "https://github.com/Jue-Xu/Lean4LPD/blob/0fd02b56d8437a5ce5042ba98748d80cfac1a4a0/Lean4LPD/Pauli/TruncationError.lean#L235"
+  },
+  "KejunLiuGitHub/causality-open-quantum-systems-lean": {
+    "folder": "QuantumMechanics",
+    "scope": "Open-system response analysis includes a conditional time-domain growth result from a pole of a candidate continuation, local agreement with a one-sided Fourier–Laplace transform, and continuity of the signal. The repository ties this and a separate spectral-curve development to specified papers.",
+    "readme": "https://github.com/KejunLiuGitHub/causality-open-quantum-systems-lean/blob/30d2143cf2548792955c0d97b16aee30559ffbf4/README.md",
+    "source": "https://github.com/KejunLiuGitHub/causality-open-quantum-systems-lean/blob/30d2143cf2548792955c0d97b16aee30559ffbf4/papers/nonmarkov-kk-hardy/Hpaper/CPHardyTimeDomainGrowth.lean#L125"
+  },
+  "LionSR/MIPStarRE": {
+    "folder": "QuantumInfo",
+    "scope": "The active track is the classical low individual degree test in entangled-prover complexity. It develops local-to-global variance bounds under explicit field and good-strategy hypotheses. Describe it as a component of the MIP*=RE program.",
+    "readme": "https://github.com/LionSR/MIPStarRE/blob/95ccdf5a7591d6eb98b4c9c425f1e2d8408d8610/README.md",
+    "source": "https://github.com/LionSR/MIPStarRE/blob/95ccdf5a7591d6eb98b4c9c425f1e2d8408d8610/MIPStarRE/LDT/GlobalVariance/Theorems/MainTheorems.lean#L273"
+  },
+  "LionSR/QICLean": {
+    "folder": "QuantumInfo.Channels",
+    "scope": "Finite-dimensional quantum channels are central. The Choi module proves positivity and reconstruction properties and exhibits transposition as a linear map that fails complete positivity in dimension at least two.",
+    "readme": "https://github.com/LionSR/QICLean/blob/aa64691428b8778b95a55ce039998a90a789c7d5/README.md",
+    "source": "https://github.com/LionSR/QICLean/blob/aa64691428b8778b95a55ce039998a90a789c7d5/QICLean/Channel/ChoiJamiolkowski.lean#L336"
+  },
+  "LionSR/TNLean": {
+    "folder": "CondensedMatter.ManyBody",
+    "scope": "The library treats matrix product states and tensor networks. Its injective-MPS theorem obtains gauge and phase equivalence under proportionality of matrix product vectors at each positive chain length.",
+    "readme": "https://github.com/LionSR/TNLean/blob/fafa75e42af48847a029f222014ddf7d4ef360fe/README.md",
+    "source": "https://github.com/LionSR/TNLean/blob/fafa75e42af48847a029f222014ddf7d4ef360fe/TNLean/MPS/FundamentalTheorem/InjectivePhase.lean#L105"
+  },
+  "LionSR/lean-qec-sslp": {
+    "folder": "QuantumInfo",
+    "scope": "Explicit examples supply supports, probabilities and checks for candidate nonadditive quantum codes. The sampled four-qubit, two-dimensional example carries a native_decide certificate for its ExampleData.OK predicate. Retain the library and example certificates; omit the separate archive.",
+    "readme": "https://github.com/LionSR/lean-qec-sslp/blob/c2b2eb9fc926c6aba3933e189ad108933bea6a90/README.md",
+    "source": "https://github.com/LionSR/lean-qec-sslp/blob/c2b2eb9fc926c6aba3933e189ad108933bea6a90/Examples/D2/Ex422.lean#L68"
+  },
+  "Mansehej/quantum-14-3-5": {
+    "folder": "QuantumInfo",
+    "scope": "The final theorem rules out a length-14 binary stabilizer code encoding three qubits with distance at least five. The proof uses a finite symplectic model and profile certificates, including the degenerate case.",
+    "readme": "https://github.com/Mansehej/quantum-14-3-5/blob/3730e5934a1d1bad6f76615c1476e4d08261eefa/README.md",
+    "source": "https://github.com/Mansehej/quantum-14-3-5/blob/3730e5934a1d1bad6f76615c1476e4d08261eefa/formal/Quantum1435/Final.lean#L35"
+  },
+  "Maokami/vqc_in_lean": {
+    "folder": "QuantumInfo",
+    "scope": "An educational Lean port of a verified quantum-computing framework. The SQIR source defines Bell and superdense-coding circuits and program equivalence; at least one proof in that file is unfinished. Describe the project as a partial port.",
+    "readme": "https://github.com/Maokami/vqc_in_lean/blob/00b7e012c2c867535f2f4561e5d931a336b5fc5d/README.md",
+    "source": "https://github.com/Maokami/vqc_in_lean/blob/00b7e012c2c867535f2f4561e5d931a336b5fc5d/VqcInLean/SQIR.lean#L126"
+  },
+  "Millennights/quantum-computing-in-Lean4": {
+    "folder": "QuantumInfo",
+    "scope": "The Deutsch–Jozsa development proves an output-amplitude statement for balanced oracles, including an explicit parity example. The README distinguishes single-run output guarantees from the runtime analysis of an algorithm.",
+    "readme": "https://github.com/Millennights/quantum-computing-in-Lean4/blob/5f28b2fe8e0b6fa28668f7efcd85c0889d2ba2d8/README.md",
+    "source": "https://github.com/Millennights/quantum-computing-in-Lean4/blob/5f28b2fe8e0b6fa28668f7efcd85c0889d2ba2d8/Qcircuits/DeutschJozsa.lean#L321"
+  },
+  "N-Y-L/axiom-physics": {
+    "folder": "QuantumMechanics",
+    "scope": "The adiabatic package states and assembles a finite-dimensional theorem from a gapped Hamiltonian and a uniform adiabatic estimate. Backflow and equipartition are separate packages with distinct subject placements.",
+    "readme": "https://github.com/N-Y-L/axiom-physics/blob/22eeda63954db6def9435bb2539d71458b80d513/README.md",
+    "source": "https://github.com/N-Y-L/axiom-physics/blob/22eeda63954db6def9435bb2539d71458b80d513/quantum-adiabatic/Adiabatic/MainTheorem.lean#L76"
+  },
+  "Paul-Lez/QLean": {
+    "folder": "QuantumInfo",
+    "scope": "The Bell-program example proves correlated measurement results by weakest-precondition reasoning for a two-qubit program. This supports the project description as quantum-program semantics and verification.",
+    "readme": "https://github.com/Paul-Lez/QLean/blob/7b8e3e7e779746848db576f9a35250f120de4e37/README.md",
+    "source": "https://github.com/Paul-Lez/QLean/blob/7b8e3e7e779746848db576f9a35250f120de4e37/QLean/Examples/Algorithms/Bell.lean#L127"
+  },
+  "QECLean/QECLean": {
+    "folder": "QuantumInfo",
+    "scope": "The stabilizer code library constructs a toric code for lattice size at least two and relates its stabilizer subgroup to the homological construction. Keep the QEC library itself; presentation widgets, launcher scripts and playground modules are separate.",
+    "readme": "https://github.com/QECLean/QECLean/blob/ffb62c24e6d3bba8a095fb3aa4821654744d131e/README.md",
+    "source": "https://github.com/QECLean/QECLean/blob/ffb62c24e6d3bba8a095fb3aa4821654744d131e/QEC/Stabilizer/Codes/Toric/StabilizerCode.lean#L1583"
+  },
+  "QuAIR/Lean-QIT": {
+    "folder": "QuantumInfo",
+    "scope": "The higher-order map development gives a pre- and post-processing realization for a deterministic finite-dimensional superchannel. The repository also contains distinct state, channel, coding and information-theory modules.",
+    "readme": "https://github.com/QuAIR/Lean-QIT/blob/8a931d4bda61ba503cfc0728704cfef5dedf2cff/README.md",
+    "source": "https://github.com/QuAIR/Lean-QIT/blob/8a931d4bda61ba503cfc0728704cfef5dedf2cff/QIT/HigherOrder/Superchannel/Realization.lean#L123"
+  },
+  "QuCompLean/QCLib": {
+    "folder": "QuantumInfo",
+    "scope": "Defines unitary single-qubit Pauli gates and proves their actions on basis and superposition states. The project spans gates and circuits; its README lists unfinished work separately.",
+    "readme": "https://github.com/QuCompLean/QCLib/blob/20dae29f5f4600907783fcb3d9dfaf98d05064d3/README.md",
+    "source": "https://github.com/QuCompLean/QCLib/blob/20dae29f5f4600907783fcb3d9dfaf98d05064d3/QCLib/Circuit/Gate/Qubit.lean"
+  },
+  "QudeLeap/Lean-QuantumAlg": {
+    "folder": "QuantumInfo",
+    "scope": "The amplitude-estimation construction links explicit circuits, branch probabilities and a success-probability bound. The registered library also covers other quantum algorithms and their resources.",
+    "readme": "https://github.com/QudeLeap/Lean-QuantumAlg/blob/971dc8be8a153a116b6d7cd748f984d545861b00/README.md",
+    "source": "https://github.com/QudeLeap/Lean-QuantumAlg/blob/971dc8be8a153a116b6d7cd748f984d545861b00/QuantumAlg/Algorithms/AmplitudeEstimation/Construction.lean"
+  },
+  "QudeLeap/Lean-QuantumAlg-Bench": {
+    "folder": "QuantumInfo",
+    "scope": "A companion problem and benchmark library with TeX statements, quantum circuit foundations and Lean goals. The inspected hidden-subgroup fidelity goal ends in sorry. Count it as a stated benchmark goal, not a verified fidelity bound.",
+    "readme": "https://github.com/QudeLeap/Lean-QuantumAlg-Bench/blob/b540e86938ea82a546cfa55bed766adc894c2400/README.md",
+    "source": "https://github.com/QudeLeap/Lean-QuantumAlg-Bench/blob/b540e86938ea82a546cfa55bed766adc894c2400/QAlgBench/HSPRepresentation/FidelityBoundHiddenSubgroupCosetStates/Statement.lean"
+  },
+  "RemyDegenne/kolmogorov_extension4": {
+    "folder": "Mathematics.Probability",
+    "scope": "Constructs a projective-limit measure for consistent finite-dimensional distributions. Probability is the appropriate mathematics folder. The README says the theorem was upstreamed to Mathlib, so this pin represents its development history.",
+    "readme": "https://github.com/RemyDegenne/kolmogorov_extension4/blob/159dbd754decb32fd4b0f87420b03d5d965bc647/README.md",
+    "source": "https://github.com/RemyDegenne/kolmogorov_extension4/blob/159dbd754decb32fd4b0f87420b03d5d965bc647/KolmogorovExtension4/KolmogorovExtension.lean"
+  },
+  "Ruizsolveall/Project_qec_lean": {
+    "folder": "QuantumInfo",
+    "scope": "Defines binary chain complexes and CSS codes and relates their boundary and cycle spaces. The relevant subject is quantum error correction, which has no separate native folder.",
+    "readme": "https://github.com/Ruizsolveall/Project_qec_lean/blob/b5a25e0349d03d8737e4d9e26b484e0a22015671/README.md",
+    "source": "https://github.com/Ruizsolveall/Project_qec_lean/blob/b5a25e0349d03d8737e4d9e26b484e0a22015671/ProjectLeanQec/Basic.lean"
+  },
+  "SarahMMMLi/QuditCliffordLean": {
+    "folder": "QuantumInfo.Operators",
+    "scope": "Proves soundness and completeness of a rewrite calculus for adjacent Clifford circuits in odd prime qudit dimensions, using concrete gate-closure and normal-form lemmas. This is specifically unitary gate algebra.",
+    "readme": "https://github.com/SarahMMMLi/QuditCliffordLean/blob/2e6ed3d4ef6cbea5f95ed5826d0f774700975058/README.md",
+    "source": "https://github.com/SarahMMMLi/QuditCliffordLean/blob/2e6ed3d4ef6cbea5f95ed5826d0f774700975058/QuditClifford/AdjacentCompleteness.lean"
+  },
+  "SciSolv/weingarten-lean": {
+    "folder": "Mathematics.Probability",
+    "scope": "Develops Haar expectations of random matrix entries, including trace moments and unitary invariance. Probability is the nearest existing subject for group integration; an abstract Haar-expectation interface supplies the stated hypotheses.",
+    "readme": "https://github.com/SciSolv/weingarten-lean/blob/934b54f36c1a0c8610d9194a3468115e46f71c13/README.md",
+    "source": "https://github.com/SciSolv/weingarten-lean/blob/934b54f36c1a0c8610d9194a3468115e46f71c13/Weingarten/Haar/MatrixEntryIntegrals.lean"
+  },
+  "SheenaAsuka/Lean4EM": {
+    "folder": "Electromagnetism",
+    "scope": "Connects vector calculus on complex phasor fields to Maxwell and Helmholtz wave equations. The electromagnetic wave project includes both physical fields and their analytic identities.",
+    "readme": "https://github.com/SheenaAsuka/Lean4EM/blob/ea1eae85a532908b0585b1697b163cabf729b8c1/README.md",
+    "source": "https://github.com/SheenaAsuka/Lean4EM/blob/ea1eae85a532908b0585b1697b163cabf729b8c1/MaxwellHelmholtz/AnalyticBridge.lean"
+  },
+  "Shreyas4991/Algolean": {
+    "folder": "QuantumInfo",
+    "scope": "The two quantum subtrees implement a coherent oracle model and Deutsch–Jozsa complexity; the remainder chiefly concerns classical models, algorithms and tests. The scoped audit contains 181 declarations across nine files.",
+    "readme": "https://github.com/Shreyas4991/Algolean/blob/52ef81c9f74f3798535594b57a9175aa20f3110b/README.md",
+    "source": "https://github.com/Shreyas4991/Algolean/blob/52ef81c9f74f3798535594b57a9175aa20f3110b/Algolean/Algorithms/Quantum/DeutschJozsa.lean"
+  },
+  "Stavan-Jain/CircuitEq": {
+    "folder": "QuantumInfo.Operators",
+    "scope": "Defines matrix denotation and decision procedures for exact and global-phase equivalence of Clifford+T circuits. Unitary operators are the nearest existing subject.",
+    "readme": "https://github.com/Stavan-Jain/CircuitEq/blob/d7ddcf86dc2ca2185861c9a8c832a749a03af689/README.md",
+    "source": "https://github.com/Stavan-Jain/CircuitEq/blob/d7ddcf86dc2ca2185861c9a8c832a749a03af689/CircuitEq/Decide.lean"
+  },
+  "TGStarGuardian/Quantum-Amplitude-Estimation---Lean": {
+    "folder": "QuantumInfo",
+    "scope": "The project implements quantum amplitude estimation and states a success-probability result for the Brassard–Høyer–Mosca–Tapp algorithm. Its scope is algorithms rather than general amplitude mathematics.",
+    "readme": "https://github.com/TGStarGuardian/Quantum-Amplitude-Estimation---Lean/blob/7aa56990c5b3853dba59e335b585c936bba5d674/README.md",
+    "source": "https://github.com/TGStarGuardian/Quantum-Amplitude-Estimation---Lean/blob/7aa56990c5b3853dba59e335b585c936bba5d674/QAELean/QuantumAmplitudeEstimation.lean"
+  },
+  "TataSatyaPratheek/mathematical-physics-lean": {
+    "folder": "Relativity.General",
+    "scope": "A dimension-parametric general relativity teaching framework. EinsteinN derives a vacuum-plus-cosmological-term reduction and explicitly postulates the dimension-threshold facts. The README identifies those premises; the threshold is not independently derived here.",
+    "readme": "https://github.com/TataSatyaPratheek/mathematical-physics-lean/blob/f897b7f42c6ce9681692c9e7f9160e91bfd9028a/README.md",
+    "source": "https://github.com/TataSatyaPratheek/mathematical-physics-lean/blob/f897b7f42c6ce9681692c9e7f9160e91bfd9028a/MathPhysics/Relativity/EinsteinN.lean"
+  },
+  "VerifiedQC/Lean-QEC": {
+    "folder": "QuantumInfo",
+    "scope": "Constructs toric-code incidence matrices, with a code-parameter theorem and an explicit exceptional L=1 case. Stabilizer and error-correction material belongs under quantum information.",
+    "readme": "https://github.com/VerifiedQC/Lean-QEC/blob/8d115519b471b71a21fbdddf5341d8203b841cc9/README.md",
+    "source": "https://github.com/VerifiedQC/Lean-QEC/blob/8d115519b471b71a21fbdddf5341d8203b841cc9/LeanQEC/Stabilizer/Examples/Surface/Toric.lean"
+  },
+  "VerifiedQC/ShorECDLP": {
+    "folder": "QuantumInfo",
+    "scope": "The project provides a quantum circuit challenge for Shor elliptic-curve discrete logarithm. Its contract defines checkable candidate certificates and resource bounds; the catalog entry need only identify this as quantum algorithms.",
+    "readme": "https://github.com/VerifiedQC/ShorECDLP/blob/51cabe2575fdef2713e14dbaa1ba93cb4a51cc41/README.md",
+    "source": "https://github.com/VerifiedQC/ShorECDLP/blob/51cabe2575fdef2713e14dbaa1ba93cb4a51cc41/ShorECDLP/Challenge/Contract.lean"
+  },
+  "Vilin97/Autoformalization": {
+    "folder": "StatisticalMechanics",
+    "scope": "Restrict to the Vlasov–Maxwell–Landau kinetic theory package. Its Coulomb theorem concerns steady states on the three-torus under specified regularity and field equations; the separate optional Maxwell-molecules module has admitted statements. The broader archive includes unrelated sphere topology and sheaf cohomology.",
+    "readme": "https://github.com/Vilin97/Autoformalization/blob/67dc1cea2c192d4dd5a19d9106e8621df0dde9fb/landau/README.md",
+    "source": "https://github.com/Vilin97/Autoformalization/blob/67dc1cea2c192d4dd5a19d9106e8621df0dde9fb/landau/Aristotle/Landau/main/CoulombConcreteTheorem42.lean"
+  },
+  "YaelDillies/gibbs-measure": {
+    "folder": "StatisticalMechanics",
+    "scope": "Formalizes Gibbs specifications through consistent probability kernels, following Georgii's Gibbs Measures and Phase Transitions. These infinite-volume specifications fit the general statistical mechanics subject.",
+    "readme": "https://github.com/YaelDillies/gibbs-measure/blob/fffe01e3a5d783fbe95b629cd34b97d50939b42b/README.md",
+    "source": "https://github.com/YaelDillies/gibbs-measure/blob/fffe01e3a5d783fbe95b629cd34b97d50939b42b/GibbsMeasure/Specification.lean"
+  },
+  "adambornemann-glitch/Spectra": {
+    "folder": "QuantumMechanics.Operators.SpectralTheory",
+    "scope": "The organizing problem is spectral theory for unbounded operators in mathematical quantum mechanics. ResolventForm relates self-adjoint generators, spectral measures and Stone's formula; the existing QuantumMechanics.Operators.SpectralTheory folder is more precise than Mathematics.",
+    "readme": "https://github.com/adambornemann-glitch/Spectra/blob/8dbaaf6728d1342ae16acf79fd7eef7c59b37e63/README.md",
+    "source": "https://github.com/adambornemann-glitch/Spectra/blob/8dbaaf6728d1342ae16acf79fd7eef7c59b37e63/Spectra/SpectralTheory/ResolventForm.lean"
+  },
+  "adomasbaliuka/formal-qkd": {
+    "folder": "QuantumInfo",
+    "scope": "RuscaEqn defines finite-key length expressions from measurement records for quantum key distribution. The README describes ongoing research and explicitly declines practical security guarantees.",
+    "readme": "https://github.com/adomasbaliuka/formal-qkd/blob/b0b88dbdc129303fed01d6fbc35df9bb53b91c51/README.md",
+    "source": "https://github.com/adomasbaliuka/formal-qkd/blob/b0b88dbdc129303fed01d6fbc35df9bb53b91c51/FormalQKD/RuscaEqn.lean"
+  },
+  "alexjgreig/QHL-Lean": {
+    "folder": "QuantumInfo",
+    "scope": "Code for quantum Hoare logic defines measurements, state normalization and computational-basis measurement. Partial measurement is marked unfinished. This is quantum programming whose closest existing general home is QuantumInfo.",
+    "readme": "https://github.com/alexjgreig/QHL-Lean/blob/0e4375878eabb279accceecbb782af4625158020/README.md",
+    "source": "https://github.com/alexjgreig/QHL-Lean/blob/0e4375878eabb279accceecbb782af4625158020/Quave/measurement.lean"
+  },
+  "allofphysicsgraph/thermodynamics.lean": {
+    "folder": "Thermodynamics",
+    "scope": "The Lean development formalizes thermodynamic cycles and derives Carnot efficiency comparisons under the stated cycle and second-law axioms. This directly fits thermodynamics.",
+    "readme": "https://github.com/allofphysicsgraph/thermodynamics.lean/blob/4af0748a97e6cb89aef0c87425872d1a901e8c55/README.md",
+    "source": "https://github.com/allofphysicsgraph/thermodynamics.lean/blob/4af0748a97e6cb89aef0c87425872d1a901e8c55/src/second_law.lean"
+  },
+  "bjoernkjoshanssen/quantumcerny": {
+    "folder": "QuantumInfo.Channels",
+    "scope": "Models quantum automata as completely positive trace-preserving maps in Kraus form and constructs synchronizing words. Channels is a more specific home than the general quantum-information folder.",
+    "readme": "https://github.com/bjoernkjoshanssen/quantumcerny/blob/6690d5a19c3927be2625e0ec9d1f86ee2801cfb0/README.md",
+    "source": "https://github.com/bjoernkjoshanssen/quantumcerny/blob/6690d5a19c3927be2625e0ec9d1f86ee2801cfb0/RequestProject/Basic.lean"
+  },
+  "dnngky/qhlean": {
+    "folder": "QuantumInfo",
+    "scope": "Defines projective and POVM measurements for a quantum Hoare logic development. Its indexed files span states, quantum types, transformations and program semantics, so QuantumInfo is the appropriate common home.",
+    "readme": "https://github.com/dnngky/qhlean/blob/a1c0fec4f842d5aaffd2e3b1760152e7f0b5ca08/README.md",
+    "source": "https://github.com/dnngky/qhlean/blob/a1c0fec4f842d5aaffd2e3b1760152e7f0b5ca08/QHLean/Quantum/Measurement.lean"
+  },
+  "doxtor6/MerLean-examples": {
+    "folder": "QuantumInfo",
+    "scope": "Formalizes definitions and results from a specific paper on fault-tolerant quantum computation. The gauging module distinguishes procedure phases and proves properties of measurement operators. The README explains where source-paper assumptions are encoded.",
+    "readme": "https://github.com/doxtor6/MerLean-examples/blob/b7f72365ae80eb4d372f583c762fdfec92dd5b5e/README.md",
+    "source": "https://github.com/doxtor6/MerLean-examples/blob/b7f72365ae80eb4d372f583c762fdfec92dd5b5e/QEC1/Definitions/Def_10_FaultTolerantGaugingProcedure.lean"
+  },
+  "duckki/quantum-computing-lean": {
+    "folder": "QuantumInfo",
+    "scope": "Defines basic qubits, gates, projectors and measurement probabilities. The representative proof gives probabilities and post-measurement states for projective observations; the whole library covers several quantum-information topics.",
+    "readme": "https://github.com/duckki/quantum-computing-lean/blob/127ace2fa4a00bfb1f2e40fa7ede1a1de7d86ca2/README.md",
+    "source": "https://github.com/duckki/quantum-computing-lean/blob/127ace2fa4a00bfb1f2e40fa7ede1a1de7d86ca2/QuantumComputing/Measurement/Projective.lean"
+  },
+  "ecyrbe/lean-units": {
+    "folder": "Units",
+    "scope": "Defines dimensions and units and develops a conversion algebra for both multiplicative and affine scales. Units is its actual physical subject.",
+    "readme": "https://github.com/ecyrbe/lean-units/blob/5322fc77dd4e3ec8d31af2c757a47abbeb94d500/README.md",
+    "source": "https://github.com/ecyrbe/lean-units/blob/5322fc77dd4e3ec8d31af2c757a47abbeb94d500/LeanUnits/Framework/Conversions/Basic.lean"
+  },
+  "elazarg/rank-r": {
+    "folder": "QuantumInfo.Channels",
+    "scope": "Studies completely positive maps, their Choi operators, rank bounds and reductions. Its block-positivity criteria use explicit finite-dimensional matrix hypotheses; Channels is a suitable native home.",
+    "readme": "https://github.com/elazarg/rank-r/blob/8f6c90dec7059dce6c648f8526072708d1332e3c/README.md",
+    "source": "https://github.com/elazarg/rank-r/blob/8f6c90dec7059dce6c648f8526072708d1332e3c/RankR/Applications/Reduction/Main.lean"
+  },
+  "ericeallen/lambda-s": {
+    "folder": "Units",
+    "scope": "Formalizes a type system for units of measure; Conversion proves conditions for coherent unit-conversion factors. This provides dimension-aware physical-unit infrastructure.",
+    "readme": "https://github.com/ericeallen/lambda-s/blob/330e124c1ebb493e369fe98415a77ad7762ad479/README.md",
+    "source": "https://github.com/ericeallen/lambda-s/blob/330e124c1ebb493e369fe98415a77ad7762ad479/LambdaS/Conversion.lean"
+  },
+  "fpvandoorn/BonnAnalysis": {
+    "folder": "Mathematics.Distribution",
+    "scope": "The selected analysis modules include compactly supported smooth test functions and locally integrable functions used to define distributions. The distribution folder correctly identifies this part of the course.",
+    "readme": "https://github.com/fpvandoorn/BonnAnalysis/blob/af8a23e0fae8fb206a7f3e48dc6728397106e246/README.md",
+    "source": "https://github.com/fpvandoorn/BonnAnalysis/blob/af8a23e0fae8fb206a7f3e48dc6728397106e246/BonnAnalysis/Distributions/Basic.lean"
+  },
+  "fraware/QSpecBench": {
+    "folder": "QuantumInfo",
+    "scope": "Benchmark suite with implemented circuits and a pure-state teleportation correctness theorem. The module explicitly distinguishes its proven instrument contract from a general mixed-state channel claim.",
+    "readme": "https://github.com/fraware/QSpecBench/blob/65eac075573d713a5db47200f8808c650e44fbb1/README.md",
+    "source": "https://github.com/fraware/QSpecBench/blob/65eac075573d713a5db47200f8808c650e44fbb1/lean/QSpecBench/Research/DynamicTeleportation.lean"
+  },
+  "gecrooks/PhysicsAI": {
+    "folder": "StatisticalMechanics",
+    "scope": "The dominant registered workstream studies the finite-dimensional moment cone for entropy production obeying the detailed fluctuation theorem; another covers two-qubit gates. Statistical mechanics is a suitable single home.",
+    "readme": "https://github.com/gecrooks/PhysicsAI/blob/0e03deca084de46e11047a8bb9aafa3e22261a70/README.md",
+    "source": "https://github.com/gecrooks/PhysicsAI/blob/0e03deca084de46e11047a8bb9aafa3e22261a70/dft-moment-body/proofs/DftMomentBody/MomentCone.lean"
+  },
+  "guest2180/lean4-quantum": {
+    "folder": "QuantumInfo",
+    "scope": "The README identifies this as a Lean 4 port of an earlier Lean 3 quantum-computing project. The file defines state projectors, gates and measurement operators. Treat it as a port when tracking independent results.",
+    "readme": "https://github.com/guest2180/lean4-quantum/blob/fe605cf9a0772e91229d35e1f16e686799a5f3a3/README.md",
+    "source": "https://github.com/guest2180/lean4-quantum/blob/fe605cf9a0772e91229d35e1f16e686799a5f3a3/Myyt/quantum.lean"
+  },
+  "haruna-imai/formalized-quantum-computing": {
+    "folder": "QuantumInfo",
+    "scope": "The introductory library defines state vectors and matrix gates, and proves the action of CNOT on computational basis states and creation of a Bell state.",
+    "readme": "https://github.com/haruna-imai/formalized-quantum-computing/blob/536bc16e8d2939c5f43dde6d0161487e6fd05218/README.md",
+    "source": "https://github.com/haruna-imai/formalized-quantum-computing/blob/536bc16e8d2939c5f43dde6d0161487e6fd05218/FormalizedQuantumComputing/Gate/Basic.lean"
+  },
+  "hxrts/stat-mech": {
+    "folder": "StatisticalMechanics",
+    "scope": "Retain the Hamiltonian and mean-field physics modules, including entropy, energy functions and simplex dynamics. The separate Clay endpoint explicitly requires an all-data regularity family; conditional Navier–Stokes scaffolding and independent consensus software should not contribute to the statistical mechanics total.",
+    "readme": "https://github.com/hxrts/stat-mech/blob/ab32b969285e24f8b054f7f008e1f8e798abd375/README.md",
+    "source": "https://github.com/hxrts/stat-mech/blob/ab32b969285e24f8b054f7f008e1f8e798abd375/StatMech/MeanField/Existence.lean"
+  },
+  "ian-turner/QLean": {
+    "folder": "QuantumInfo",
+    "scope": "Defines typed circuits, their matrix semantics and a suite of standard and controlled quantum gates. The project spans gate algebra, circuit derivations and an OpenQASM path.",
+    "readme": "https://github.com/ian-turner/QLean/blob/e6b2386486e5702258b843e6b83039392361c891/README.md",
+    "source": "https://github.com/ian-turner/QLean/blob/e6b2386486e5702258b843e6b83039392361c891/QLean/Gate/Standard.lean"
+  },
+  "inQWIRE/LeanQuantum": {
+    "folder": "QuantumInfo",
+    "scope": "Provides matrix semantics for Pauli operators, gate equality and multiplication tactics. It is a quantum circuit verification library, within QuantumInfo.",
+    "readme": "https://github.com/inQWIRE/LeanQuantum/blob/44fc4eb1f4ba512e659deacd3468fda0a764d162/README.md",
+    "source": "https://github.com/inQWIRE/LeanQuantum/blob/44fc4eb1f4ba512e659deacd3468fda0a764d162/Quantumlib/Data/Gate/Pauli/Defs.lean"
+  },
+  "iulian-birlica/lean4game-quantum": {
+    "folder": "QuantumInfo",
+    "scope": "The pinned tree has no README. Game.lean describes the 15-level teaching game, and BB84Protocol.lean implements an idealized single-qubit protocol and proves its mean disturbance under intercept–resend. Keep BB84Protocol.lean and QuantumGame/ for substantive protocol and state calculations. Game/Levels/ is a tutorial and should not inflate the research inventory.",
+    "readme": "https://github.com/iulian-birlica/lean4game-quantum/blob/1db6c53b3b30a1d8b2538de3c160c022a8bf7a70/Game.lean",
+    "source": "https://github.com/iulian-birlica/lean4game-quantum/blob/1db6c53b3b30a1d8b2538de3c160c022a8bf7a70/BB84Protocol.lean"
+  },
+  "jam-khan/QHilbert": {
+    "folder": "QuantumInfo.Operators",
+    "scope": "The README describes finite-dimensional quantum computing. tr1 and tr2 implement partial traces of bipartite operators, alongside density operators, projections and tensor products. Quantum information operators are a more specific primary home than generic quantum foundations. QHilbert/Proofs/ includes individual example obligations.",
+    "readme": "https://github.com/jam-khan/QHilbert/blob/eb35687bda5c04248f50d15c62744b6220742bf5/README.md",
+    "source": "https://github.com/jam-khan/QHilbert/blob/eb35687bda5c04248f50d15c62744b6220742bf5/QHilbert/PartialTrace.lean"
+  },
+  "jshemail12345-debug/SubregularAffineCells-Lean": {
+    "folder": "Mathematics.RepresentationTheory",
+    "scope": "The pinned paper companion addresses subregular affine cells and a type-D level −1 vertex algebra. Its theorem_1_1 assembles a classification from supplied ambient-block membership, parametrization, factoring and simple-quotient data, together with proved arithmetic. This is representation theory with a vertex-algebra connection; no spacetime QFT construction is exhibited.",
+    "readme": "https://github.com/jshemail12345-debug/SubregularAffineCells-Lean/blob/b7fc801aedd38761d8af8a15f555304a958353d4/README.md",
+    "source": "https://github.com/jshemail12345-debug/SubregularAffineCells-Lean/blob/b7fc801aedd38761d8af8a15f555304a958353d4/SubregularAffineCells.lean"
+  },
+  "jsmorph/vq833a": {
+    "folder": "QuantumInfo",
+    "scope": "The source proves logical gate-resource statements about a specified quantum algorithm, including expected_ccz_count. The README distinguishes recovery assumptions and a logical-qubit upper bound. These are formal circuit-model results, not a hardware experiment.",
+    "readme": "https://github.com/jsmorph/vq833a/blob/244c839ff34fdd380543aeebeed3b9bbb924c425/README.md",
+    "source": "https://github.com/jsmorph/vq833a/blob/244c839ff34fdd380543aeebeed3b9bbb924c425/VQBridge/Palomar833/Resources.lean"
+  },
+  "jstoobysmith/Thomson-N-8-Warrant": {
+    "folder": "Electromagnetism.PointParticle",
+    "scope": "The problem minimizes the Coulomb energy of eight like point charges on a sphere. Solution.lean exports the optimal antiprism energy and uniqueness up to an orthogonal isometry and relabeling. The explicit electrostatics content gives a closer native home than a generic classical point-particle folder. Challenge.lean restates problems with placeholders; the solution is separate.",
+    "readme": "https://github.com/jstoobysmith/Thomson-N-8-Warrant/blob/2c35d62e07d72686931da4bc3e062d668e858eda/README.md",
+    "source": "https://github.com/jstoobysmith/Thomson-N-8-Warrant/blob/2c35d62e07d72686931da4bc3e062d668e858eda/Solution.lean"
+  },
+  "karlesmarin/airy-bouncer-lean": {
+    "folder": "QuantumMechanics",
+    "scope": "This is an explicit one-dimensional gravitational quantum bouncer: Airy ODE solutions, a wall boundary condition, arbitrarily large rescaled roots and a recessive solution. It is an exact solvable potential, physically different from the harmonic oscillator and the infinite square well.",
+    "readme": "https://github.com/karlesmarin/airy-bouncer-lean/blob/e7a678e6111eb21201d94ab32bfe606e72372118/README.md",
+    "source": "https://github.com/karlesmarin/airy-bouncer-lean/blob/e7a678e6111eb21201d94ab32bfe606e72372118/AiryReal.lean"
+  },
+  "kencyke/quantum-system": {
+    "folder": "QuantumMechanics.Foundations",
+    "scope": "The project develops operator-algebraic reconstruction and local observables. The source constructs local inclusions, their commutation for orthogonal regions and a quasi-local C*-algebra. The pinned README distinguishes the broader reconstruction program from the available modules. QuantumSystem/Physics/LocalNet/ is an explicit physical subcollection.",
+    "readme": "https://github.com/kencyke/quantum-system/blob/5d67fe8030eaf1bdaf081e2acfcbe3fbaecfda7c/README.md",
+    "source": "https://github.com/kencyke/quantum-system/blob/5d67fe8030eaf1bdaf081e2acfcbe3fbaecfda7c/QuantumSystem/Physics/LocalNet/QuasiLocalAlgebra.lean"
+  },
+  "kenya-sk/lean-quantum-circuit": {
+    "folder": "QuantumInfo",
+    "scope": "The repository compiles typed qubit rotations to Clifford+T approximations with a local tolerance and error-budget correctness statements. The quantum circuit, approximation and matrix decompositions are direct quantum-information content. The exact native destination is QuantumInfo; its tree has no circuit-synthesis folder.",
+    "readme": "https://github.com/kenya-sk/lean-quantum-circuit/blob/35d9acd95f466397afca1e810630570901df253b/README.md",
+    "source": "https://github.com/kenya-sk/lean-quantum-circuit/blob/35d9acd95f466397afca1e810630570901df253b/QuantumCircuit/Circuit/CompileCliffordT.lean"
+  },
+  "lanyonai/ElectrostaticVlasov": {
+    "folder": "Electromagnetism",
+    "scope": "Six dimensional variants concern collisionless electrostatic Vlasov transport in a prescribed potential. The 1x1v source defines fluxes and proves algebraic properties of the finite-volume discretization, including hyperbolicity, consistency and conservation. Keep the stated fixed-field scope; a convergence theorem for a self-consistent Vlasov–Maxwell solver is a different claim.",
+    "readme": "https://github.com/lanyonai/ElectrostaticVlasov/blob/f43676e2eb1c39917747ef373b8402aa60867016/README.md",
+    "source": "https://github.com/lanyonai/ElectrostaticVlasov/blob/f43676e2eb1c39917747ef373b8402aa60867016/proofs/es_vlasov_1x1v.lean"
+  },
+  "lecopivo/NumLean": {
+    "folder": "Mathematics",
+    "scope": "This is supporting numerical linear algebra and verified data structures. The tensor representation and its indexing/vector conversion results are reusable across scientific disciplines. Retain the NumLean/ library if including numerical tooling; Benchmarks/ and Tests/ are not separate physics results.",
+    "readme": "https://github.com/lecopivo/NumLean/blob/2d54625a2aea925d634b33aa99d0dc3b47f1c9ac/README.md",
+    "source": "https://github.com/lecopivo/NumLean/blob/2d54625a2aea925d634b33aa99d0dc3b47f1c9ac/NumLean/Data/Tensor/Basic.lean"
+  },
+  "lecopivo/SciLean": {
+    "folder": "ClassicalMechanics",
+    "scope": "The indexed subset is examples/, including ballistic motion, pendula, N-body dynamics and harmonic oscillation. The selected example defines a Hamiltonian and an RK4 simulation, with sorry_proof placeholders in the approximation steps. Keep the physics examples identified as numerical examples rather than presenting all of SciLean as a verified mechanics library.",
+    "readme": "https://github.com/lecopivo/SciLean/blob/95f8119a2884e9c41f82136523bd5568ea7075c5/README.md",
+    "source": "https://github.com/lecopivo/SciLean/blob/95f8119a2884e9c41f82136523bd5568ea7075c5/examples/HarmonicOscillator.lean"
+  },
+  "mcdoll/DispersiveEquations": {
+    "folder": "Mathematics.Distribution",
+    "scope": "The concrete source builds Bessel-potential spaces of tempered distributions with Sobolev norm and Fourier results. The README describes linear Schrödinger well-posedness, the explicit kernel and future nonlinear estimates as objectives; its propagator chapter is expository. The verified analytical groundwork fits this home.",
+    "readme": "https://github.com/mcdoll/DispersiveEquations/blob/df0acc190a82501c89632d106669bce093421b45/README.md",
+    "source": "https://github.com/mcdoll/DispersiveEquations/blob/df0acc190a82501c89632d106669bce093421b45/DispersiveEquations/Mathlib/Analysis/FunctionalSpaces/BesselPotentialSpace.lean"
+  },
+  "mcdoll/DynamicalSystems": {
+    "folder": "Mathematics.Analysis",
+    "scope": "LaSalle, Lyapunov stability and compact limit sets are the general development; Hamiltonian systems and RLC circuits are applications. Use analysis as the project home. DynamicalSystems/Stability/Hamiltonian.lean separately proves a fundamental solution and stability of the harmonic oscillator; it belongs in ClassicalMechanics.HamiltonianMechanics.",
+    "readme": "https://github.com/mcdoll/DynamicalSystems/blob/b40b48ffbdf510e279a954ac8bf50ae4f926c71e/README.md",
+    "source": "https://github.com/mcdoll/DynamicalSystems/blob/b40b48ffbdf510e279a954ac8bf50ae4f926c71e/DynamicalSystems/Stability/LaSalle.lean"
+  },
+  "mettinger/Relativity": {
+    "folder": "Relativity.Special",
+    "scope": "The README and source use the first-order SpecRel observer/photon axioms of special relativity. slowerThanLight.lean treats inertial observers; minkowskiMetricInvariant is by sorry at this pin. The work is specifically special relativity, and the invariant should not be advertised as proved.",
+    "readme": "https://github.com/mettinger/Relativity/blob/6f6faceb89662ea767bc578ce85bbe3f44068b90/README.md",
+    "source": "https://github.com/mettinger/Relativity/blob/6f6faceb89662ea767bc578ce85bbe3f44068b90/minkowskiInvariant.lean"
+  },
+  "miosync-masa/ck-hopf-formalization": {
+    "folder": "QFT.PerturbationTheory.FeynmanDiagrams",
+    "scope": "This treats the Connes–Kreimer algebra of Feynman graphs in perturbative renormalization. The source exports a coproduct theorem for its specified stable resolved φ⁴ carrier and Birkhoff factorization for a chosen Rota–Baxter subtraction scheme and character. The existing Feynman-diagram folder captures this more precisely than QFT.",
+    "readme": "https://github.com/miosync-masa/ck-hopf-formalization/blob/f10fcd9dc19c2428b35988b8662447378d265970/README.md",
+    "source": "https://github.com/miosync-masa/ck-hopf-formalization/blob/f10fcd9dc19c2428b35988b8662447378d265970/GaugeGeometry/QFT/HopfAlgebra/PaperMainTheorems.lean"
+  },
+  "mrdouglasny/GFF": {
+    "folder": "QFT.Euclidean",
+    "scope": "A small connecting project instantiates a Gaussian free field using the gaussian-field and QFTFramework dependencies. GFF/GFFConstruction.lean builds the field data. The cylinder and Euclidean OS structures in OSVerification.lean literally fill OS0–OS4 fields with sorry; this pin is an unfinished bridge, distinct from the OSforGFF proof project.",
+    "readme": "https://github.com/mrdouglasny/GFF/blob/f3629bb8698938e65e82b4c5dd64c5a9510ce448/README.md",
+    "source": "https://github.com/mrdouglasny/GFF/blob/f3629bb8698938e65e82b4c5dd64c5a9510ce448/GFF/OSVerification.lean"
+  },
+  "mrdouglasny/OSforGFF": {
+    "folder": "QFT.Euclidean",
+    "scope": "The mass-positive Euclidean Gaussian free field is the subject. The master module states the dimension-generic OS theorem using a propagator instance and a version choosing the proper-time propagator for d ≥ 2. This has a direct Euclidean QFT home.",
+    "readme": "https://github.com/mrdouglasny/OSforGFF/blob/fef84a82937dfd2bb7f672108a72da329d3ef0fd/README.md",
+    "source": "https://github.com/mrdouglasny/OSforGFF/blob/fef84a82937dfd2bb7f672108a72da329d3ef0fd/OSforGFF/OS/Master.lean"
+  },
+  "mrdouglasny/QFTFramework": {
+    "folder": "QFT.Euclidean",
+    "scope": "OSTheory packages analyticity, regularity, Euclidean invariance, reflection positivity, and clustering/ergodicity as fields on specified QFT data. This is a reusable axiomatic interface; concrete theories must supply those fields.",
+    "readme": "https://github.com/mrdouglasny/QFTFramework/blob/95090320a5154e46d010357a97b75fa6b6a0d7ff/README.md",
+    "source": "https://github.com/mrdouglasny/QFTFramework/blob/95090320a5154e46d010357a97b75fa6b6a0d7ff/QFTFramework/Axioms/OsterwalderSchrader.lean"
+  },
+  "mrdouglasny/bochner": {
+    "folder": "Mathematics.Probability",
+    "scope": "Under Hilbert nuclearity, separability, normalization, continuity and positive definiteness, minlos_theorem produces a unique probability measure on the weak dual with the prescribed characteristic functional. This is probability theory used by field construction.",
+    "readme": "https://github.com/mrdouglasny/bochner/blob/58405ecd328cf8383a1c0b53d37605fe61a0b3f6/README.md",
+    "source": "https://github.com/mrdouglasny/bochner/blob/58405ecd328cf8383a1c0b53d37605fe61a0b3f6/Minlos/Main.lean"
+  },
+  "mrdouglasny/gaussian-field": {
+    "folder": "Mathematics.Probability",
+    "scope": "The README calls this application-agnostic. It constructs a Gaussian measure from a nuclear space and a continuous linear map into a separable real Hilbert space and proves its characteristic functional. GaussianField/ is useful independently of QFT; Cylinder/ and the heat-kernel examples provide concrete field-theory applications.",
+    "readme": "https://github.com/mrdouglasny/gaussian-field/blob/1283a2721377a36e80672799fcc1f69a494c8ea0/README.md",
+    "source": "https://github.com/mrdouglasny/gaussian-field/blob/1283a2721377a36e80672799fcc1f69a494c8ea0/GaussianField/Construction.lean"
+  },
+  "mrdouglasny/gaussian-hilbert": {
+    "folder": "Mathematics.Probability",
+    "scope": "The core concerns multivariate Hermite polynomials and orthogonal projections in Gaussian L². The finite-dimensional Wiener-chaos results apply independently of free fields. The pinned README identifies the OU hypercontractive estimate as a remaining axiom. Physics analogies do not make this an implementation of Euclidean QFT.",
+    "readme": "https://github.com/mrdouglasny/gaussian-hilbert/blob/4d055b0bf3722c73bd6c327eeabd8a8a72ab4c7e/README.md",
+    "source": "https://github.com/mrdouglasny/gaussian-hilbert/blob/4d055b0bf3722c73bd6c327eeabd8a8a72ab4c7e/GaussianHilbert/WienerChaos.lean"
+  },
+  "mrdouglasny/gibbs-variational": {
+    "folder": "StatisticalMechanics",
+    "scope": "The entropy–free-energy inequality is proved for probability measures under integrability assumptions. The stronger Donsker–Varadhan supremum equality is by sorry; the README also flags its treatment of infinite relative entropy as a statement issue. Useful statistical mechanics work with a clear boundary.",
+    "readme": "https://github.com/mrdouglasny/gibbs-variational/blob/75e08d8aaca83bb090fc43855898991fbfc9abf3/README.md",
+    "source": "https://github.com/mrdouglasny/gibbs-variational/blob/75e08d8aaca83bb090fc43855898991fbfc9abf3/GibbsVariational/Variational.lean"
+  },
+  "mrdouglasny/hille-yosida": {
+    "folder": "Mathematics.Analysis",
+    "scope": "The source defines and studies strongly continuous contraction semigroups of bounded linear operators on normed spaces. The README distinguishes the resolvent result and the prospective converse generation theorem. Functional analysis is the primary mathematical home.",
+    "readme": "https://github.com/mrdouglasny/hille-yosida/blob/680e9499ee866763e737c8d888c1248684ced667/README.md",
+    "source": "https://github.com/mrdouglasny/hille-yosida/blob/680e9499ee866763e737c8d888c1248684ced667/HilleYosida/StronglyContinuousSemigroup.lean"
+  },
+  "mrdouglasny/lee-yang": {
+    "folder": "StatisticalMechanics",
+    "scope": "The Ising module treats zero-free partition polynomials and diagonal unit-circle root conditions, with examples including two coupled spins. Zero loci of ferromagnetic partition functions give a direct statistical mechanics application.",
+    "readme": "https://github.com/mrdouglasny/lee-yang/blob/d48ee59243afb5e30a3de3ccc90eae2d51806537/README.md",
+    "source": "https://github.com/mrdouglasny/lee-yang/blob/d48ee59243afb5e30a3de3ccc90eae2d51806537/LeeYang/Measure/IsingLeeYang.lean"
+  },
+  "mrdouglasny/lgt": {
+    "folder": "LatticeQFT",
+    "scope": "The source proves bounds in a lattice model under an explicit small inverse-coupling parameter threshold and d ≥ 2, with separate hypotheses for observable correlation estimates. This is strong-coupling lattice Yang–Mills; it supplies no continuum four-dimensional Yang–Mills mass-gap result.",
+    "readme": "https://github.com/mrdouglasny/lgt/blob/b8793ccf6a51e00e9e2b1685ba191b8626e37137/README.md",
+    "source": "https://github.com/mrdouglasny/lgt/blob/b8793ccf6a51e00e9e2b1685ba191b8626e37137/LGT/MassGap/MassGap3D.lean"
+  },
+  "mrdouglasny/markov-semigroups": {
+    "folder": "Mathematics.Probability",
+    "scope": "Markov semigroups, Dirichlet forms and functional inequalities provide the general core; the Gross-equivalence statements carry analytic hypotheses. MarkovSemigroups/Dobrushin/ and MarkovSemigroups/DobrushinZegarlinski/ are identifiable statistical-mechanics components (Gibbs specifications and correlations). Probability theory is the best single home for the whole library.",
+    "readme": "https://github.com/mrdouglasny/markov-semigroups/blob/0b5dd80ad918f7e8ab23bb2fac5eb9c7d373a795/README.md",
+    "source": "https://github.com/mrdouglasny/markov-semigroups/blob/0b5dd80ad918f7e8ab23bb2fac5eb9c7d373a795/MarkovSemigroups/Abstract/Hypercontractivity.lean"
+  },
+  "mrdouglasny/pphi2": {
+    "folder": "QFT.Euclidean.GlimmJaffe",
+    "scope": "Constructive P(φ)₂ follows the Glimm–Jaffe/Nelson lattice route. The asymmetric-torus source distinguishes the OS0–OS2 claims; the README records separate cylinder results, quartic restrictions and remaining external bounds/axioms. A global claim of an assumption-free construction would overstate the pin.",
+    "readme": "https://github.com/mrdouglasny/pphi2/blob/03fc44ccab3f7dc2f086b47f03cbd2241b6f7fcd/README.md",
+    "source": "https://github.com/mrdouglasny/pphi2/blob/03fc44ccab3f7dc2f086b47f03cbd2241b6f7fcd/Pphi2/AsymTorus/AsymTorusOS.lean"
+  },
+  "mrdouglasny/reflection-positivity": {
+    "folder": "StatisticalMechanics",
+    "scope": "Reflection-positive systems and transfer operators yield correlation and susceptibility bounds. The README also identifies graph-connection-matrix results as a distinct mathematical branch. ReflectionPositivity/TransferConstruction.lean and ReflectionPositivity/LatticeInstance.lean are directly relevant; ReflectionPositivity/Chessboard/Chessboard.lean is a documented stub at this pin.",
+    "readme": "https://github.com/mrdouglasny/reflection-positivity/blob/1cf718319c8f3b6ff3724a1a5781110aa9fc0630/README.md",
+    "source": "https://github.com/mrdouglasny/reflection-positivity/blob/1cf718319c8f3b6ff3724a1a5781110aa9fc0630/ReflectionPositivity/TransferConstruction.lean"
+  },
+  "mrdouglasny/seiberg-witten": {
+    "folder": "QFT",
+    "scope": "The pinned library formalizes consequences of named Seiberg–Witten physical postulates, including the geometry of N=2 gauge theory, the SU(2) period frame, and its monodromy. Its README explicitly makes the needed physical assumptions visible and reports a remaining higher-rank period-rigidity axiom. This is not a construction of the underlying interacting four-dimensional theory.",
+    "readme": "https://github.com/mrdouglasny/seiberg-witten/blob/57293619a0d508fb8d46a40aadcf8954b53bdd3e/README.md",
+    "source": "https://github.com/mrdouglasny/seiberg-witten/blob/57293619a0d508fb8d46a40aadcf8954b53bdd3e/SeibergWitten/Physics/Hypotheses.lean"
+  },
+  "mrdouglasny/spectral-positivity": {
+    "folder": "Mathematics.Analysis",
+    "scope": "For compact positivity-improving operators with explicit hypotheses, the operator module proves a simple top eigenvalue and a spectral gap; the matrix half covers nonnegative and Metzler matrices. These are reusable functional analysis results used in several physics projects.",
+    "readme": "https://github.com/mrdouglasny/spectral-positivity/blob/9af3c3a7d9146c92a0ecae5ad269848bd4c25fca/README.md",
+    "source": "https://github.com/mrdouglasny/spectral-positivity/blob/9af3c3a7d9146c92a0ecae5ad269848bd4c25fca/SpectralPositivity/Operator/JentzschProof.lean"
+  },
+  "nasa-jpl/PropertyKindCalculus": {
+    "folder": "Units",
+    "scope": "The central Quantity type tracks the kind of physical property being measured. The metrology scope covers dimensions, SI quantities and measurement uncertainty. Applications in classical mechanics, electromagnetism and quantum mechanics retain their own subject placements.",
+    "readme": "https://github.com/nasa-jpl/PropertyKindCalculus/blob/71cf44842371a3025b0e1e02d86fb07e1d22b5b0/README.md",
+    "source": "https://github.com/nasa-jpl/PropertyKindCalculus/blob/71cf44842371a3025b0e1e02d86fb07e1d22b5b0/PropertyKindCalculus/Quantity.lean"
+  },
+  "oliver-butterley/SpectralThm": {
+    "folder": "Mathematics.InnerProductSpace",
+    "scope": "The spectral resolution of bounded normal operators on Hilbert space is the subject of the central module, including the projection-valued measure.",
+    "readme": "https://github.com/oliver-butterley/SpectralThm/blob/031dc934a4ec618f8d02e175c948d69c30c1ad4f/README.md",
+    "source": "https://github.com/oliver-butterley/SpectralThm/blob/031dc934a4ec618f8d02e175c948d69c30c1ad4f/SpectralThm/SpectralTheorem.lean"
+  },
+  "openai/NavierStokesAndEuler": {
+    "folder": "FluidDynamics",
+    "scope": "Lean certificates for the project’s stated forced Navier–Stokes and unforced Euler breakdown problems. The R3 theorem quantifies over positive viscosity and links to the specified breakdown statement.",
+    "readme": "https://github.com/openai/NavierStokesAndEuler/blob/f9e8bc5b38b6e212696e8a30e3e91517af887bbd/README.md",
+    "source": "https://github.com/openai/NavierStokesAndEuler/blob/f9e8bc5b38b6e212696e8a30e3e91517af887bbd/NavierStokes/R3/Theorem.lean"
+  },
+  "openai/math": {
+    "folder": "CondensedMatter.Topology",
+    "scope": "The registered physics scopes span multiple manuscripts. The reviewed Laughlin-state theorem gives this collection a named home in condensed-matter topology. Other selected sources include statistical mechanics, general relativity and field theory.",
+    "readme": "https://github.com/openai/math/blob/4eaee87548250b2682affda7d05d947c05554bae/README.md",
+    "source": "https://github.com/openai/math/blob/4eaee87548250b2682affda7d05d947c05554bae/lean/OAI/Analysis/Laughlin/Main.lean"
+  },
+  "or4nge19/MCMC": {
+    "folder": "Mathematics.Probability.Kernel",
+    "scope": "The main objects are finite Markov kernels, reversible chains and Monte Carlo algorithms. Gibbs sampling is one application.",
+    "readme": "https://github.com/or4nge19/MCMC/blob/b874137741fbdf23eaac83540b9f79a912a2bc0d/README.md",
+    "source": "https://github.com/or4nge19/MCMC/blob/b874137741fbdf23eaac83540b9f79a912a2bc0d/MCMC/Finite/Gibbs.lean"
+  },
+  "or4nge19/SpinGlass": {
+    "folder": "StatisticalMechanics",
+    "scope": "Mean-field disordered spin systems, Gaussian Hamiltonians, overlaps and the Parisi programme are statistical mechanics; the SK formalization does not require a spatial lattice.",
+    "readme": "https://github.com/or4nge19/SpinGlass/blob/dc1d3820af6e443c09bd1177ec3e409cf0640d5c/README.md",
+    "source": "https://github.com/or4nge19/SpinGlass/blob/dc1d3820af6e443c09bd1177ec3e409cf0640d5c/SpinGlass/SKModel.lean"
+  },
+  "or4nge19/ThermodynamicsLean": {
+    "folder": "Thermodynamics",
+    "scope": "Partial formalization of the Lieb–Yngvason framework for the second law, with explicit composition and state-space axioms.",
+    "readme": "https://github.com/or4nge19/ThermodynamicsLean/blob/47f768e7c0f0b897f5d7b29999b6f41bd4eb2e05/README.md",
+    "source": "https://github.com/or4nge19/ThermodynamicsLean/blob/47f768e7c0f0b897f5d7b29999b6f41bd4eb2e05/LY/Axioms.lean"
+  },
+  "peabrainiac/lean-catdg": {
+    "folder": "Mathematics.Geometry",
+    "scope": "Defines diffeological spaces, plots and the D-topology as part of categorical differential geometry.",
+    "readme": "https://github.com/peabrainiac/lean-catdg/blob/1ee4a2614b033dd1b4aded95759eb31eb9b0fbf4/README.md",
+    "source": "https://github.com/peabrainiac/lean-catdg/blob/1ee4a2614b033dd1b4aded95759eb31eb9b0fbf4/CatDG/Diffeology/Basic.lean"
+  },
+  "physicslib/physicslib4": {
+    "folder": "QFT",
+    "scope": "The algebraic QFT library develops Haag–Kastler nets, operator-algebraic states and the GNS construction.",
+    "readme": "https://github.com/physicslib/physicslib4/blob/2337279e729998740898c4be8f6c7d24f3e641e1/README.md",
+    "source": "https://github.com/physicslib/physicslib4/blob/2337279e729998740898c4be8f6c7d24f3e641e1/Physicslib4/GNS/Basic.lean"
+  },
+  "rodolfor-s/lean-quinfo-lectures": {
+    "folder": "QuantumInfo",
+    "scope": "Quantum information course and Lean lecture exercises, including quantum states, measurements and a project on generalized probabilistic theories.",
+    "readme": "https://github.com/rodolfor-s/lean-quinfo-lectures/blob/8f67251807e273d285191bc84269b987c6faea14/README.md",
+    "source": "https://github.com/rodolfor-s/lean-quinfo-lectures/blob/8f67251807e273d285191bc84269b987c6faea14/QIC891/Lecture3.lean"
+  },
+  "scottnarmstrong/DeGiorgi": {
+    "folder": "Mathematics.Analysis",
+    "scope": "Weak solutions to uniformly elliptic equations, De Giorgi iteration and a Harnack inequality are analysis of PDEs.",
+    "readme": "https://github.com/scottnarmstrong/DeGiorgi/blob/4c1b3077d3782b24065184df4ba59501b2e56fc7/README.md",
+    "source": "https://github.com/scottnarmstrong/DeGiorgi/blob/4c1b3077d3782b24065184df4ba59501b2e56fc7/DeGiorgi/Harnack.lean"
+  },
+  "shayaansiddique06/kscert": {
+    "folder": "QuantumMechanics.Foundations",
+    "scope": "A certificate checker for finite Kochen–Specker vector configurations belongs under quantum foundations. Its arithmetic replay has a narrower scope than checking every aspect of a minimum-size proof.",
+    "readme": "https://github.com/shayaansiddique06/kscert/blob/dc7f772ca0b15fa9bdf7a2109fa9cc1d7d0990dc/README.md",
+    "source": "https://github.com/shayaansiddique06/kscert/blob/dc7f772ca0b15fa9bdf7a2109fa9cc1d7d0990dc/lean/KsCert/Cert.lean"
+  },
+  "sjsnowden/ftqclib": {
+    "folder": "QuantumInfo",
+    "scope": "Stabilizer and Clifford formalism, codes and fault-tolerant quantum computation. The source treats Pauli generators over finite symplectic spaces.",
+    "readme": "https://github.com/sjsnowden/ftqclib/blob/85b104b5e54071197ebe03e54e0ed97f3959ff6f/README.md",
+    "source": "https://github.com/sjsnowden/ftqclib/blob/85b104b5e54071197ebe03e54e0ed97f3959ff6f/FTQCLib/Pauli/Basic.lean"
+  },
+  "tannerduve/zxLean": {
+    "folder": "QuantumInfo",
+    "scope": "An in-progress formalization of the ZX calculus with matrix denotations for multi-qubit diagrams.",
+    "readme": "https://github.com/tannerduve/zxLean/blob/ee1b2a407955aefc6f850f1c3dfeb2c6cd91bcd2/README.md",
+    "source": "https://github.com/tannerduve/zxLean/blob/ee1b2a407955aefc6f850f1c3dfeb2c6cd91bcd2/ZxCalculus/MultiQubit/DenotationalSemantics.lean"
+  },
+  "troyjlee/quantum-query-complexity": {
+    "folder": "QuantumInfo",
+    "scope": "Quantum query complexity, including a composition of the cost and flow bounds for element distinctness.",
+    "readme": "https://github.com/troyjlee/quantum-query-complexity/blob/df7f2e8199bd845a35a4200e0c74d964ec6b02b8/README.md",
+    "source": "https://github.com/troyjlee/quantum-query-complexity/blob/df7f2e8199bd845a35a4200e0c74d964ec6b02b8/QuantumQueryComplexity/ED/Main.lean"
+  },
+  "uda-lab/leray-hopf": {
+    "folder": "FluidDynamics",
+    "scope": "Galerkin methods for Leray–Hopf weak Navier–Stokes solutions. The R3 development constructs finite-dimensional schemes from a Schwartz basis.",
+    "readme": "https://github.com/uda-lab/leray-hopf/blob/e704400f2fb2f26b2ee7f4372c3e1ecbbc82f3dc/README.md",
+    "source": "https://github.com/uda-lab/leray-hopf/blob/e704400f2fb2f26b2ee7f4372c3e1ecbbc82f3dc/LerayHopf/R3/GalerkinODEExistence.lean"
+  },
+  "urikol/QuantumOptimization": {
+    "folder": "QuantumInfo",
+    "scope": "Quantum optimization algorithms and the normalized QAOA state for alternating mixer and cost layers.",
+    "readme": "https://github.com/urikol/QuantumOptimization/blob/2f92a179f796b36a89ccdf858a83f96a0e7ac7d0/README.md",
+    "source": "https://github.com/urikol/QuantumOptimization/blob/2f92a179f796b36a89ccdf858a83f96a0e7ac7d0/QuantumOptimization/QAOA/StandardQAOA.lean"
+  },
+  "velvetmonkey/hamiltonian-lean": {
+    "folder": "ClassicalMechanics.HamiltonianMechanics",
+    "scope": "Hamiltonian flow and energy conservation for one degree of freedom. The source states the smoothness and dynamics assumptions.",
+    "readme": "https://github.com/velvetmonkey/hamiltonian-lean/blob/d712b9023918688d6da541eadf269a064cce6b41/README.md",
+    "source": "https://github.com/velvetmonkey/hamiltonian-lean/blob/d712b9023918688d6da541eadf269a064cce6b41/HamiltonianLean/Conservation.lean"
+  },
+  "xiyin137/OSreconstruction": {
+    "folder": "QFT.Euclidean",
+    "scope": "Osterwalder–Schrader and Wightman reconstruction theorems formulated with explicit Euclidean and Minkowski hypotheses.",
+    "readme": "https://github.com/xiyin137/OSreconstruction/blob/cf0904e34a7c146a9f312f601e3707dca4a87697/README.md",
+    "source": "https://github.com/xiyin137/OSreconstruction/blob/cf0904e34a7c146a9f312f601e3707dca4a87697/os-reconstruction/OSReconstruction/Wightman/Reconstruction/Main.lean"
+  },
+  "yang-mills-group/OpenAI-YM-20261028": {
+    "folder": "QFT",
+    "scope": "The source establishes its specified Wilson-family joint-existence statement. The challenge expressly sets a positive mass gap outside its scope.",
+    "readme": "https://github.com/yang-mills-group/OpenAI-YM-20261028/blob/3456e5e75cf8d4cd558955a5c7638fba2d68f464/README.md",
+    "source": "https://github.com/yang-mills-group/OpenAI-YM-20261028/blob/3456e5e75cf8d4cd558955a5c7638fba2d68f464/Solution.lean"
+  },
+  "yezhuoyang/ApproximateToffoli": {
+    "folder": "QuantumInfo",
+    "scope": "Matrix and circuit lower bounds for approximate Toffoli gates and exact nearest-neighbour synthesis.",
+    "readme": "https://github.com/yezhuoyang/ApproximateToffoli/blob/eb1616f4078e34bd4ad1291ee261757ef15d537e/README.md",
+    "source": "https://github.com/yezhuoyang/ApproximateToffoli/blob/eb1616f4078e34bd4ad1291ee261757ef15d537e/ApproxToffoli/HP/Main.lean"
+  },
+  "yezhuoyang/GottesmanKnillLean": {
+    "folder": "QuantumInfo",
+    "scope": "Clifford-circuit tableau semantics and a bound on stabilizer simulation cost for the Gottesman–Knill theorem.",
+    "readme": "https://github.com/yezhuoyang/GottesmanKnillLean/blob/9a1c3bc9daae3b1630eb5c565c74a236725cd9fa/README.md",
+    "source": "https://github.com/yezhuoyang/GottesmanKnillLean/blob/9a1c3bc9daae3b1630eb5c565c74a236725cd9fa/GottesmanKnill/MainTheorem.lean"
+  },
+  "yezhuoyang/LeanQEC": {
+    "folder": "QuantumInfo",
+    "scope": "Quantum error-correction codes, stabilizers and a fault-tolerance statement under the model’s error threshold.",
+    "readme": "https://github.com/yezhuoyang/LeanQEC/blob/142259eacfbe59ad8472004c639b2c943a85e34f/README.md",
+    "source": "https://github.com/yezhuoyang/LeanQEC/blob/142259eacfbe59ad8472004c639b2c943a85e34f/QStab/Theorem.lean"
+  },
+  "yezhuoyang/LogicQ": {
+    "folder": "QuantumInfo",
+    "scope": "Verification of measurement and lowering passes in a QEC compilation stack, including a typed Pauli-product measurement language.",
+    "readme": "https://github.com/yezhuoyang/LogicQ/blob/80231d462129507882f268e7b1719a99a88baffa/README.md",
+    "source": "https://github.com/yezhuoyang/LogicQ/blob/80231d462129507882f268e7b1719a99a88baffa/PPM/Syntax.lean"
+  },
+  "yezhuoyang/SCurveQEC-Lean": {
+    "folder": "QuantumInfo",
+    "scope": "Weight-conditional error rates under an explicit noise and decoder model. The advertised asymptotic target is presented as a goal.",
+    "readme": "https://github.com/yezhuoyang/SCurveQEC-Lean/blob/d16911b16af88fb9b177b86a37cace00de2ea5db/README.md",
+    "source": "https://github.com/yezhuoyang/SCurveQEC-Lean/blob/d16911b16af88fb9b177b86a37cace00de2ea5db/SCurveQEC/Decoder.lean"
+  }
+}

@@ -1,5 +1,5 @@
 import unittest
-from roadmap_placement import Classifier, choose_project_home
+from roadmap_placement import Classifier, ReviewedFolders
 
 
 class RoadmapPlacementTests(unittest.TestCase):
@@ -62,21 +62,35 @@ class RoadmapPlacementTests(unittest.TestCase):
 
 
 class ProjectHomeTests(unittest.TestCase):
-    def test_scientific_project_and_its_largest_generated_subtree(self):
-        counts = {"QFT.VertexOperatorAlgebras":9, "QFT.VertexOperatorAlgebras.Classification":99}
-        topic, basis = choose_project_home("Fedor-Popov/Lean_VOA",counts,"QFT")
-        self.assertEqual(topic,"QFT.VertexOperatorAlgebras")
-        self.assertIn("9 of 108",basis)
+    def setUp(self):
+        self.rev = "1" * 40
+        review = {"sample/repo": {
+            "folder": "QuantumMechanics.Operators", "source": f"https://github.com/sample/repo/blob/{self.rev}/Spectral.lean"
+        }}
+        registry = [{"repository":"sample/repo","revision":self.rev,"subject":subject}
+                    for subject in ["Mathematics","QFT","QuantumMechanics"]]
+        folders = {"QuantumMechanics", "QuantumMechanics.Operators", "QuantumMechanics.Operators.SpectralTheory", "QuantumMechanics.HilbertSpaces",
+                   "Mathematics", "Mathematics.TauCeti.Algebra", "QFT", "QFT.Euclidean", "ClassicalMechanics"}
+        self.reviewed = ReviewedFolders(review, registry, folders)
+        self.reviewed.primary_subject["sample/repo"] = "Mathematics"
 
-    def test_selection_must_be_populated_and_unique(self):
-        counts = {"Meta.Tooling":20,"QFT.GaugeTheory":2,"QFT.YangMills":2}
-        topic, _ = choose_project_home("sample/repo",counts,"QFT")
-        self.assertEqual(topic,"QFT.GaugeTheory")
-        topic, _ = choose_project_home("Fedor-Popov/Lean_VOA",{"QFT":3},"QFT")
-        self.assertEqual(topic,"QFT")
-        topic, basis = choose_project_home("sample/empty",{},"QFT")
-        self.assertEqual(topic,"QFT")
-        self.assertIn("No declarations",basis)
+    def placed(self, path, subject, topic, basis="directory-name"):
+        context = self.reviewed.module_context("sample/repo", self.rev, path, subject, topic, basis)
+        return self.reviewed.destination(context, topic)
+
+    def test_cited_module_and_primary_scope_follow_review(self):
+        self.assertEqual(self.placed("Spectral.lean","Mathematics","Mathematics"),"QuantumMechanics.Operators")
+        self.assertEqual(self.placed("Basic.lean","Mathematics","Mathematics.TauCeti.Algebra"),"QuantumMechanics.Operators")
+        self.assertEqual(self.placed("Operator.lean","QuantumMechanics","QuantumMechanics.Operators.SpectralTheory"),
+                         "QuantumMechanics.Operators.SpectralTheory")
+        self.assertEqual(self.placed("HilbertSpaces/Basic.lean","QuantumMechanics","QuantumMechanics.HilbertSpaces"),
+                         "QuantumMechanics.HilbertSpaces")
+
+    def test_explicit_second_scope_and_native_subject_paths_survive(self):
+        self.assertEqual(self.placed("Haag.lean","QFT","QFT.Euclidean"),"QFT.Euclidean")
+        self.assertEqual(self.placed("ForPhysLib/ClassicalMechanics/Basic.lean","Mathematics",
+                                    "ClassicalMechanics","source-subject-path"),"ClassicalMechanics")
+        self.assertEqual(self.reviewed.destination(("Mathematics",False),"Mathematics.TauCeti.Algebra"),"Mathematics")
 
 
 if __name__ == "__main__":

@@ -1,14 +1,17 @@
 """Publish the subject placements and exact source lines from the roadmap audit."""
 import argparse
 from collections import Counter, defaultdict
-from functools import cache
 import gzip
 import hashlib
 import json
 from pathlib import Path
 import random
+import re
 import sqlite3
+import tempfile
 from urllib.parse import quote
+
+from roadmap_placement import ReviewedFolders, REGISTRY
 
 WEB = Path(__file__).resolve().parents[1]
 DEFAULT_DB = WEB / "data/roadmap-audit/declarations.sqlite"
@@ -28,7 +31,7 @@ def publish(path, value, compressed=False):
 
 
 def bucket(kind):
-    # Match the two display families on the Verso roadmap. The exact source
+    # Match the two display families on the Roadmap. The exact source
     # keyword is separately retained for the detail panel and the audit.
     return "thm" if kind in STATEMENT_KINDS else "def"
 
@@ -59,23 +62,68 @@ class Group:
             rows[slot] = item
 
 
-def export(db, complete):
-    catalog = json.loads(NATIVE_FOLDERS.read_text())
-    folders = {entry["path"] for entry in catalog["folders"]}
-    folders.update(path.replace("/", ".") for path in catalog["quantumInfoFolders"])
+def validate_inventory(con, reviewed):
+    registry = json.loads(REGISTRY.read_text())
+    disk_revisions = set(con.execute("SELECT repository,revision FROM projects"))
+    if {tuple(r) for r in disk_revisions} != reviewed.revisions:
+        raise RuntimeError("Source database and registry revisions differ")
+    paths = set()
+    for row in registry:
+        repo, revision = row["repository"], row["revision"]
+        selectors = sorted(row.get("include", []))
+        signature = json.dumps([2,repo,revision,selectors], ensure_ascii=False, separators=(",", ":"))
+        key = hashlib.sha256(signature.encode()).hexdigest()
+        name = "--".join([*repo.split("/"), row["subject"], key[:16]]) + ".json"
+        manifest = json.loads((OUT.parent / "projects" / name).read_text())
+        if (manifest["repository"], manifest["revision"], manifest["key"]) != (repo, revision, key):
+            raise RuntimeError(f"{repo}: wrong public source inventory for {row['subject']}")
+        for path in manifest["files"]:
+            if selectors and not any(path == sel or (sel.endswith("/") and path.startswith(sel)) for sel in selectors):
+                raise RuntimeError(f"{repo}: file outside registered scope: {path}")
+            paths.add((repo, revision, path))
+    actual = {tuple(r) for r in con.execute("SELECT repository,revision,path FROM roadmap_external_modules")}
+    if actual != paths:
+        sample = sorted(actual ^ paths)[:4]
+        raise RuntimeError(f"Source database and registered file inventories differ: {sample}")
+    missing_receipts = list(con.execute("""
+        SELECT p.repository,p.revision FROM projects p LEFT JOIN files f ON f.project_id=p.id
+        LEFT JOIN source_receipts r ON r.project_id=p.id GROUP BY p.id
+        HAVING r.verified_files IS NULL OR r.verified_files<>count(f.id)
+    """))
+    if missing_receipts:
+        raise RuntimeError("Incomplete pinned Git-blob verification: " + str([tuple(r) for r in missing_receipts]))
 
-    @cache
-    def native_folder(topic):
-        # Preserve the audit's scientific classification in SQLite, but publish
-        # each result at its deepest actual directory in the pinned Lean tree.
-        while topic and topic not in folders:
-            topic = topic.rpartition(".")[0]
-        return topic
 
+def previous_outputs(directory):
+    """Follow the old index to the exact generated files it owned before switching indexes."""
+    previous = directory / "index.json"
+    if not previous.exists():
+        return set()
+    names = set()
+    for topic in json.loads(previous.read_text())["topics"].values():
+        for group in topic["groups"]:
+            for key in ("href", "allFilesHref"):
+                link = group.get(key, "")
+                match = re.fullmatch(re.escape(PREFIX) + r"([pr][0-9a-f]{20}\.json)", link)
+                if not match or match[1] in names:
+                    continue
+                name = match[1]
+                names.add(name)
+                manifest = directory / name
+                if not manifest.exists():
+                    continue
+                for file in json.loads(manifest.read_text())["files"]:
+                    batch = re.fullmatch(re.escape(PREFIX) + r"(d[0-9]+\.json\.gz)#[0-9]+-(?:[0-9]+|all)", file["declsHref"])
+                    if batch:
+                        names.add(batch[1])
+    return names
+
+
+def build_export(db, complete, staging):
+    reviewed = ReviewedFolders.load()
     con = sqlite3.connect(f"file:{db.resolve()}?mode=ro", uri=True, timeout=60)
     con.row_factory = sqlite3.Row
     con.execute("PRAGMA temp_store=MEMORY")
-    OUT.mkdir(parents=True, exist_ok=True)
     query = """
         SELECT p.repository, count(*) AS total,
                sum(f.status='audited' AND mp.module_id IS NOT NULL) AS ready
@@ -87,23 +135,23 @@ def export(db, complete):
     if not repos or (complete and len(repos) != len(coverage)):
         raise RuntimeError(f"Audited and placed {len(repos)} of {len(coverage)} repositories")
     if complete:
-        verified = con.execute("SELECT sum(verified_files) FROM source_receipts").fetchone()[0]
-        if verified != sum(r["total"] for r in coverage):
-            raise RuntimeError("Some source files are missing pinned Git-blob verification")
+        if repos != set(reviewed.review):
+            raise RuntimeError("Complete export requires every reviewed project and only reviewed projects")
+        validate_inventory(con, reviewed)
     modrows = con.execute("""
-        SELECT m.module_id,m.repository,m.revision,m.path,mp.topic FROM roadmap_external_modules m
+        SELECT m.module_id,m.repository,m.revision,m.path,mp.public_topic AS topic FROM roadmap_external_modules m
         JOIN module_placements mp ON m.module_id=mp.module_id ORDER BY m.module_id
     """).fetchall()
     groups = {}
-    homes = {repo: native_folder(topic) for repo, topic in con.execute("SELECT repository, topic FROM project_homes")}
-    if not repos <= homes.keys():
-        raise RuntimeError("Each audited repository must have one primary roadmap home")
+    homes = dict(con.execute("SELECT repository, topic FROM project_homes"))
+    if any(homes.get(repo) != reviewed.review[repo]["folder"] for repo in repos) or (complete and set(homes) != repos):
+        raise RuntimeError("Apply reviewed project homes before exporting")
     whole_projects = defaultdict(list)
     batch_num = None
     batch = {}
     files_by_topic = defaultdict(set)
     unique_records = 0
-    cols = """SELECT d.name,d.kind,d.line,d.status,dp.topic FROM roadmap_external_declarations d
+    cols = """SELECT d.name,d.kind,d.line,d.status,dp.public_topic FROM roadmap_external_declarations d
               LEFT JOIN declaration_placements dp ON dp.declaration_id=d.decl_id
               WHERE d.module_id=? ORDER BY d.line,d.decl_id"""
     for m in modrows:
@@ -113,7 +161,7 @@ def export(db, complete):
         ident = m["module_id"]
         number = ident // 64
         if number != batch_num and batch:
-            publish(OUT / f"d{batch_num}.json.gz", batch, compressed=True)
+            publish(staging / f"d{batch_num}.json.gz", batch, compressed=True)
             batch = {}
         batch_num = number
         sections = defaultdict(list)
@@ -122,7 +170,10 @@ def export(db, complete):
             # It has no named result for a reader to open in the roadmap.
             if kind == "example":
                 continue
-            sections[native_folder(topic or m["topic"])].append(dict(name=name, kind=kind, line=line, status=status))
+            destination = topic or m["topic"]
+            if destination not in reviewed.folders:
+                raise RuntimeError(f"{repo}: invalid public placement for {m['path']}: {destination}")
+            sections[destination].append(dict(name=name, kind=kind, line=line, status=status))
         file_records = []
         for part, (topic, records) in enumerate(sorted(sections.items())):
             key = f"{ident}-{part}"
@@ -160,12 +211,12 @@ def export(db, complete):
                 counts={k: counts[k] for k in ("def", "thm", "other")},
                 declsHref=f"{PREFIX}d{number}.json.gz#{key}"))
     if batch:
-        publish(OUT / f"d{batch_num}.json.gz", batch, compressed=True)
+        publish(staging / f"d{batch_num}.json.gz", batch, compressed=True)
     topics = {}
     for (topic, repo), group in sorted(groups.items()):
         slug = hashlib.sha256((topic + "/" + repo).encode()).hexdigest()[:20]
         name = f"p{slug}.json"
-        publish(OUT / name, {"files": sorted(group.files, key=lambda f: (f["project"], f["path"]))})
+        publish(staging / name, {"files": sorted(group.files, key=lambda f: (f["project"], f["path"]))})
         index = topics.setdefault(topic, {"count": 0, "files": len(files_by_topic[topic]), "groups": []})
         count = sum(group.counts.values())
         index["count"] += count
@@ -174,7 +225,7 @@ def export(db, complete):
         if repo:
             all_name = "r" + hashlib.sha256(repo.encode()).hexdigest()[:20] + ".json"
             all_files = sorted(whole_projects[repo], key=lambda f: f["path"])
-            publish(OUT / all_name, {"files": all_files})
+            publish(staging / all_name, {"files": all_files})
             identity.update(allFilesHref=PREFIX + all_name, totalCount=sum(f["count"] for f in all_files))
         index["groups"].append({**identity, "count": count, "byProject": dict(sorted(group.by_project.items())),
                                 "files": len(group.file_ids), "href": PREFIX + name,
@@ -186,21 +237,26 @@ def export(db, complete):
         expected = con.execute("SELECT count(*) FROM declarations WHERE kind <> 'example'").fetchone()[0]
         if expected != unique_records:
             raise RuntimeError(f"Expected {expected} declaration rows, exported {unique_records}")
-        primary_repos = {repo for _, repo in groups if repo}
-        if primary_repos != set(whole_projects):
-            raise RuntimeError(f"Missing repository homes: {sorted(set(whole_projects) - primary_repos)}")
-    index_path = OUT / "index.json"
-    prior_topics = json.loads(index_path.read_text())["topics"] if index_path.exists() else {}
-    publish(index_path, index)
-    # Old topic manifests are unreachable once the new index is public.
-    # Only remove our own previously published group names.
-    current = {g["href"] for entry in topics.values() for g in entry["groups"]}
-    previous = {g["href"] for entry in prior_topics.values() for g in entry["groups"]}
-    for obsolete in previous - current:
-        slug = obsolete.removeprefix(PREFIX + "p").removesuffix(".json")
-        if len(slug) == 20 and all(c in "0123456789abcdef" for c in slug):
-            (OUT / f"p{slug}.json").unlink(missing_ok=True)
+        primary_homes = {repo: topic for topic, repo in groups if repo}
+        if primary_homes != homes:
+            raise RuntimeError(f"Missing populated reviewed homes: {sorted(set(homes.items()) - set(primary_homes.items()))}")
+    publish(staging / "index.json", index)
+    con.close()
     print(f"{len(repos)} repositories, {index['fileCount']} audited files, {unique_records} plotted declarations, {len(topics)} topics")
+
+
+def export(db, complete):
+    OUT.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix=".roadmap-export-", dir=OUT.parent) as temp:
+        staging = Path(temp)
+        build_export(db, complete, staging)
+        previous = previous_outputs(OUT)
+        current = {path.name for path in staging.iterdir()}
+        for name in sorted(current - {"index.json"}):
+            (staging / name).replace(OUT / name)
+        (staging / "index.json").replace(OUT / "index.json")
+        for name in previous - current:
+            (OUT / name).unlink(missing_ok=True)
 
 
 if __name__ == "__main__":
