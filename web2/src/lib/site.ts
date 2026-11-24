@@ -47,8 +47,8 @@ export const navSections: NavSection[] = [
     items: [
       { label: "Physlib Atlas", href: "/roadmap" },
       { label: "API Maps", href: "/api-maps" },
-      { label: "Dependency Graphs", href: "/dependencies" },
       { label: "Documentation", href: site.docs },
+      { label: "Dependency Graphs", href: "/dependencies" },
       { label: "References", href: "/references" },
     ],
   },

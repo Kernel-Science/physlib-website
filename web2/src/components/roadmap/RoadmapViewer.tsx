@@ -415,8 +415,14 @@ function InteractiveMap({ data, contributors, references, sources }: {data?: Map
       const target = fromHash(index);
       const destinations = target ? regionActions(target.tile.entry,references) : [];
       const destination = destinations[0];
-      if (destination && location.hash.startsWith("#d=")) {
-        window.location.replace(destination.href);
+      if (target && destination && location.hash.startsWith("#d=")) {
+        const bookmark = new URLSearchParams(location.hash.slice(1)).get("d") ?? "";
+        const name = bookmark.slice(bookmark.lastIndexOf("~") + 1).replaceAll("___", ".");
+        const declaration = target.tile.entry.decls.find(item => item.name === name);
+        const docs = declaration && fileDestinations(target.tile.entry, references)
+          .find(link => link.source === declaration.source && link.href.startsWith("/docs/"));
+        const href = docs && declaration ? docs.href + "#" + encodeURIComponent(declaration.name) : destination.href;
+        window.location.replace(href);
         return;
       }
       const preferredField = target && (requestedField || !destination) ? fieldOf(target.tile.entry) : requestedField;
