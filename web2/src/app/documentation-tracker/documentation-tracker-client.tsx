@@ -1,7 +1,11 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
-import { GraphvizView } from "@/components/graphviz-view";
+import { useEffect, useMemo, useState } from "react";
+import {
+  GraphvizView,
+  loadImportGraphDot,
+  preloadGraphvizEngine,
+} from "@/components/graphviz-view";
 
 const repository = "leanprover-community/physlib";
 const sourceRoot = `https://github.com/${repository}/blob/master/`;
@@ -27,11 +31,8 @@ function sourceUrl(path: string) {
 }
 
 async function buildDot(files: string[] | null): Promise<string> {
-  const response = await fetch("/my_graph.dot");
-  if (!response.ok) throw new Error("Failed to load the import graph");
-
   const undocumented = files && new Set(files);
-  const dotText = await response.text();
+  const dotText = await loadImportGraphDot();
   return dotText.replace(
     /"([^"]+)"\s*\[([^\]]*)\]/g,
     (match, name: string, attrs: string) => {
@@ -57,16 +58,35 @@ export function DocumentationTrackerClient({ showFiles = true }: { showFiles?: b
   const [query, setQuery] = useState("");
 
   useEffect(() => {
+    // The graph needs three things: the engine, the import graph, and the
+    // exemption list from GitHub. Ask for all three at once.
+    preloadGraphvizEngine().catch(() => {});
+    loadImportGraphDot().catch(() => {});
+
     const controller = new AbortController();
+    let unmounted = false;
+    // The list only colours the graph, so don't let a slow or blocked
+    // raw.githubusercontent.com hold the graph back indefinitely.
+    const timeout = setTimeout(() => controller.abort(), 8000);
     fetchExemptions(controller.signal)
       .then(setFiles)
       .catch(() => {
-        if (!controller.signal.aborted) setFiles(null);
-      });
-    return () => controller.abort();
+        if (!unmounted) setFiles(null);
+      })
+      .finally(() => clearTimeout(timeout));
+    return () => {
+      unmounted = true;
+      clearTimeout(timeout);
+      controller.abort();
+    };
   }, []);
 
-  const getDot = useCallback(() => buildDot(files ?? null), [files]);
+  // null until the exemption list has loaded or failed: the graph view shows
+  // its loading state at full size meanwhile, so the page doesn't jump.
+  const getDot = useMemo(
+    () => (files === undefined ? null : () => buildDot(files)),
+    [files],
+  );
   const needle = query.trim().toLowerCase();
   const matches = files?.filter((path) => path.toLowerCase().includes(needle));
 
@@ -74,7 +94,7 @@ export function DocumentationTrackerClient({ showFiles = true }: { showFiles?: b
     <>
       {showFiles && (
         <section aria-labelledby="files-needing-documentation" className="mb-8">
-          <h2 id="files-needing-documentation" className="text-xl font-semibold mb-2">
+          <h2 id="files-needing-documentation" className="text-xl font-semibold mb-2 scroll-mt-24">
             Files needing documentation
           </h2>
           <p className="text-sm text-muted mb-3">
@@ -138,9 +158,9 @@ export function DocumentationTrackerClient({ showFiles = true }: { showFiles?: b
               <span className="text-success font-medium">Green nodes</span> are outside it.{" "}
             </>
           )}
-          Drag to pan or scroll to zoom. Select a file to view its source.
+          An arrow from A to B means B imports A.
         </p>
-        {files !== undefined && <GraphvizView getDot={getDot} label="Lean module import graph" />}
+        <GraphvizView getDot={getDot} label="Lean module import graph" emptyMessage="The import graph is empty." />
       </section>
     </>
   );

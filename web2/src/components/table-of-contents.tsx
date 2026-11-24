@@ -9,19 +9,33 @@ interface Heading {
   level: number;
 }
 
+const headingSelector = "h2[id], h3[id], header[id]";
+
+function containsHeading(node: Node) {
+  return node instanceof HTMLElement &&
+    (node.matches(headingSelector) || node.querySelector(headingSelector) !== null);
+}
+
+function changedHeading(record: MutationRecord) {
+  const target = record.target instanceof Element ? record.target : record.target.parentElement;
+  if (!(target instanceof HTMLElement)) return false;
+  if (record.type === "attributes") return target.matches("h2, h3, header");
+  if (target.closest(headingSelector)) return true;
+  return Array.from(record.addedNodes).some(containsHeading) ||
+    Array.from(record.removedNodes).some(containsHeading);
+}
+
 export function TableOfContents() {
   const pathname = usePathname();
   const [headings, setHeadings] = useState<Heading[]>([]);
   const [activeId, setActiveId] = useState<string>("");
   const observerRef = useRef<IntersectionObserver | null>(null);
 
-  // Re-scan headings whenever the page changes
   useEffect(() => {
-    const timer = setTimeout(() => {
-      // Matches both h2/h3[id] and PageHeader-style <header id="..."><h2>...</h2></header>
-      const elements = document.querySelectorAll(
-        "main h2[id], main h3[id], main header[id]"
-      );
+    const main = document.querySelector("main");
+    if (!main) return;
+    const scan = () => {
+      const elements = main.querySelectorAll(headingSelector);
       const headingList = Array.from(elements).reduce<Heading[]>((acc, el) => {
         if (el.tagName === "HEADER") {
           const inner = el.querySelector("h2, h3");
@@ -42,9 +56,19 @@ export function TableOfContents() {
         return acc;
       }, []);
       setHeadings(headingList);
-      setActiveId(headingList[0]?.id ?? "");
-    }, 150);
-    return () => clearTimeout(timer);
+      setActiveId((current) => headingList.some(({ id }) => id === current)
+        ? current : headingList[0]?.id ?? "");
+    };
+    scan();
+    // Headings can change after a route has mounted, including streamed content.
+    // Ignore graph rendering and other changes that don't affect this navigation.
+    const observer = new MutationObserver((records) => {
+      if (records.some(changedHeading)) scan();
+    });
+    observer.observe(main, {
+      childList: true, subtree: true, characterData: true, attributeFilter: ["id"],
+    });
+    return () => observer.disconnect();
   }, [pathname]);
 
   // Highlight the active section with IntersectionObserver
@@ -72,7 +96,10 @@ export function TableOfContents() {
     return () => observerRef.current?.disconnect();
   }, [headings]);
 
-  if (headings.length === 0) return null;
+  // A list of one section is not worth showing. The column is still kept, on
+  // every page, so the content does not jump sideways after load.
+  if (headings.length < 2)
+    return <aside aria-hidden="true" className="hidden w-52 shrink-0 lg:block" />;
 
   return (
     <aside className="hidden w-52 shrink-0 lg:block pt-16">

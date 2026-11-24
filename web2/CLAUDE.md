@@ -2,25 +2,19 @@
 
 # "On this page" sidebar
 
-Every content page gets its right-hand "On this page" sidebar for free from
+Every content page gets its left-hand "On this page" sidebar for free from
 `ConditionalSidebar` → `TableOfContents` (see `src/components/table-of-contents.tsx`),
-which scans `main h2[id], main h3[id], main header[id]` on mount. A page with
-no `id`'d headings renders with **no sidebar at all** (not an empty one) -
-compare `/apis` or `/todo` (no ids, no sidebar) with `/documentation-tracker`
-or `/getting-started` (id'd headings, sidebar present).
+which scans `main h2[id], main h3[id], main header[id]`. The outline updates
+when a heading is added, removed or renamed, including after client-side filtering.
+The desktop layout reserves the sidebar column and shows the outline when at
+least two headings are available.
 
-When adding a new page under `src/app/`, give at least one top-level section
-an `id` (e.g. `<h2 id="reference-library" className="... scroll-mt-24">` or
-`<PageHeader id="..." .../>`) so it matches the rest of the site instead of
-silently rendering full-width with no sidebar.
+Give each section a stable heading ID (e.g.
+`<h2 id="reference-library" className="... scroll-mt-24">` or
+`<PageHeader id="reference-library" .../>`) so the links land on the section.
 
-Caveat: the generic TOC only re-scans headings on route change (`useEffect`
-keyed on `pathname`), not on client-side state changes - it doesn't work for a
-page whose sections are tabs/views that swap without navigating.
-
-For that case (or any page that wants real sidebar *navigation* rather than a
-same-page outline), give the route its own sidebar in `ConditionalSidebar`
-instead, following the `/api-tracker` and `/references` pattern:
+For sidebar links that also switch views, follow the custom sidebar used by
+`/api-tracker` and `/references` in `ConditionalSidebar`:
 - A small `src/app/api/<name>/route.ts` re-serving `data/<Name>.json`, because
   the sidebar mounts outside the page's own tree (it's a sibling of `<main>`
   in the root layout) and can't receive server-fetched props - it fetches its

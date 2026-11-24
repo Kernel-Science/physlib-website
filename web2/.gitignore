@@ -51,3 +51,6 @@ next-env.d.ts
 
 # Generated Lean documentation is installed by scripts/download-docs.js.
 /public/docs/
+
+# Generated from the current import graph and locked JavaScript packages.
+/public/graph-assets/

@@ -1,0 +1,133 @@
+.overview {
+  --rule: color-mix(in srgb, var(--foreground) 15%, var(--surface));
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--foreground);
+  overflow: clip;
+  container-type: inline-size;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .4rem 1rem;
+  padding: 1rem 1.15rem;
+  border-bottom: 1px solid var(--border);
+}
+.header h2 { margin: 0; font-size: 1.05rem; font-weight: 650; }
+.header p { flex-basis: 100%; margin: 0; color: var(--muted); font-size: .85rem; }
+.full { color: var(--accent); font-weight: 550; font-size: .85rem; padding: .25rem 0; cursor: pointer; }
+.full:hover { text-decoration: underline; text-underline-offset: .2em; }
+.flow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(9rem, .75fr) minmax(0, 1fr);
+  grid-template-rows: auto 1fr;
+  align-items: stretch;
+  padding: 1.1rem 1.15rem .65rem;
+}
+.incoming, .outgoing { display: grid; grid-row: 1 / 3; grid-template-rows: subgrid; }
+.incoming { grid-column: 1; }
+.outgoing { grid-column: 3; }
+.columnTitle, .indexTitle { font-size: .8rem; font-weight: 600; line-height: 1.3; }
+.columnTitle { margin: 0 0 .65rem; color: var(--muted); }
+.outgoing .columnTitle { margin-left: clamp(.8rem, 4cqw, 2.2rem); }
+.branch { display: flex; align-items: stretch; min-height: 2.75rem; }
+.neighbors, .subjects { padding: 0; margin: 0; list-style: none; }
+.neighbors {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  grid-auto-rows: 1fr;
+}
+.neighbors li { min-width: 0; display: flex; align-items: center; padding: .1rem 0; }
+.neighbors button, .choice {
+  display: grid;
+  grid-template-columns: .55rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: .5rem;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  line-height: 1.22;
+}
+.neighbors button { border: 1px solid var(--rule); border-radius: 6px; padding: .38rem .5rem; font-size: .875rem; min-height: 2.1rem; }
+.dot {
+  display: inline-block;
+  width: .55rem; height: .55rem;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--subject-color) 60%, var(--foreground));
+  background: var(--subject-color);
+}
+.count { color: var(--muted); font-variant-numeric: tabular-nums; font-size: .78rem; }
+.curves { flex: none; width: clamp(.8rem, 4cqw, 2.2rem); height: 100%; min-height: 0; color: var(--muted); }
+.outgoing .curves { order: -1; }
+.active, .outgoing .neighbors button { position: relative; }
+/* Anchor arrowheads to the receiving node so their size is independent of the fan height. */
+.incoming:has(.branch) + .active::before, .outgoing .neighbors button::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: calc(100% + 1px);
+  width: 7px;
+  height: 7px;
+  transform: translateY(-50%);
+  background: var(--muted);
+  clip-path: polygon(0 0, 100% 50%, 0 100%, 1.5px 50%);
+  pointer-events: none;
+}
+.empty { grid-row: 2; align-self: center; color: var(--muted); font-size: .83rem; }
+.outgoing .empty { margin-left: clamp(.8rem, 4cqw, 2.2rem); }
+.active {
+  grid-column: 2;
+  grid-row: 2;
+  align-self: center;
+  justify-self: stretch;
+  display: grid; grid-template-columns: auto minmax(0, auto); justify-content: center; align-items: center; gap: .3rem .45rem;
+  padding: .7rem .4rem;
+  border: 1px solid color-mix(in srgb, var(--subject-color) 65%, var(--foreground));
+  background: color-mix(in srgb, var(--subject-color) 17%, var(--surface));
+  border-radius: 8px;
+  line-height: 1.18;
+  text-align: center;
+}
+.active strong { font-size: 1.02rem; }
+.active span { grid-column: 1 / -1; font-size: .8rem; font-weight: 500; }
+.caption { margin: 0; padding: .3rem 1.15rem .8rem; font-size: .77rem; color: var(--muted); }
+.index { border-top: 1px solid var(--rule); padding: .75rem 1.15rem .9rem; }
+.indexTitle { display: flex; justify-content: space-between; align-items: baseline; margin: 0 0 .45rem; }
+.indexTitle span { color: var(--muted); font-size: .72rem; font-weight: 450; }
+.subjects { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .125rem .65rem; }
+.choice { padding: .45rem .35rem; min-height: 2rem; border-radius: 4px; font-size: .875rem; }
+.choice[aria-pressed=true], .choice:hover, .neighbors button:hover {
+  background: color-mix(in srgb, var(--subject-color) 19%, var(--surface));
+}
+.choice[aria-pressed=true] { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--subject-color) 60%, var(--surface)); }
+.overview :is(button, .active):focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+@container (max-width: 38rem) {
+  .header, .index { padding: .8rem; }
+  .flow { padding: .8rem .8rem .4rem; grid-template-columns: minmax(0, 1fr) minmax(0, .8fr) minmax(0, 1fr); }
+  .subjects { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .caption { padding: .3rem .8rem .7rem; }
+  .neighbors button { font-size: .8rem; }
+  .active strong, .neighbors button > span:not(.count) { overflow-wrap: anywhere; }
+}
+@container (max-width: 30rem) {
+  .flow { grid-template-columns: 1fr; grid-template-rows: auto; gap: .55rem; }
+  .incoming, .outgoing, .active { grid-column: 1; grid-row: auto; }
+  .incoming, .outgoing { display: block; }
+  .columnTitle, .outgoing .columnTitle, .outgoing .empty { margin: 0 0 .25rem; }
+  .branch { display: block; min-height: 0; }
+  .curves { display: none; }
+  .incoming:has(.branch) + .active::before, .outgoing .neighbors button::before { display: none; }
+  .neighbors { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .25rem; }
+  .active { justify-self: center; grid-template-columns: auto 1fr; gap: .2rem .45rem; padding: .55rem .9rem; }
+  .incoming:has(.branch)::after, .outgoing:has(.branch)::before { content: "↓"; display: block; text-align: center; line-height: .9; color: var(--muted); }
+  .incoming:has(.branch)::after { margin: .45rem 0 -.25rem; }
+  .outgoing:has(.branch)::before { margin: -.25rem 0 .3rem; }
+  .subjects { column-gap: .4rem; }
+  .choice { padding: .45rem .28rem; }
+  .choice > span:not(.count) { overflow-wrap: anywhere; }
+}

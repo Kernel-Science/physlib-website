@@ -3,15 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "predev": "node scripts/build-lean-search-index.mjs",
+    "predev": "node scripts/build-lean-search-index.mjs && node scripts/build-dependency-overview.mjs",
     "dev": "next dev --turbopack",
-    "prebuild": "node scripts/download-docs.js && node scripts/build-lean-search-index.mjs",
+    "prebuild": "node scripts/download-docs.js && node scripts/build-lean-search-index.mjs && node scripts/build-dependency-overview.mjs",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
     "@heroui/react": "^3.0.3",
     "@heroui/styles": "^3.0.3",
+    "@modelcontextprotocol/server": "2.4.0",
     "js-yaml": "^4.1.1",
     "katex": "^0.16.47",
     "next": "16.2.4",
@@ -24,14 +25,18 @@
     "rehype-raw": "^7.0.0",
     "remark-gfm": "^4.0.1",
     "remark-math": "^6.0.0",
-    "tailwind-variants": "^3.2.2"
+    "tailwind-variants": "^3.2.2",
+    "zod": "4.6.7"
   },
   "devDependencies": {
+    "@hpcc-js/wasm": "2.20.0",
     "@tailwindcss/postcss": "^4",
     "@types/js-yaml": "^4.0.9",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "d3": "7.9.0",
+    "d3-graphviz": "5.6.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
