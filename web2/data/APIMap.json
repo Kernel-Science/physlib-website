@@ -1,8 +1,8 @@
 {
   "repo": "leanprover-community/physlib",
   "branch": "master",
-  "commit": "9bf2570c3ae5615d40a74904e39313311aa89302",
-  "generatedAt": "2026-11-23T14:49:23.043Z",
+  "commit": "1fa65789169f5981d12137dd6e930afe0836ffe2",
+  "generatedAt": "2026-11-24T12:37:50.837Z",
   "nodes": [
     {
       "path": "Physlib/ClassicalFieldTheory/GaugeTheory",
@@ -3504,6 +3504,347 @@
         }
       ],
       "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Lagrangian/API-map.md"
+    },
+    {
+      "path": "Physlib/ClassicalMechanics/OrbitalMechanics",
+      "file": "Physlib/ClassicalMechanics/OrbitalMechanics/API-map.md",
+      "title": "Orbital mechanics",
+      "alpha": true,
+      "abstract": "A body of mass m orbits a central body of mass M under Newtonian gravity with constant G. On a\ncircular orbit of radius r the speed is fixed by the gravitational parameter G M alone,\nv² = G M / r, and equals the radius times the angular rate. When both bodies move about their common\nbarycentre the period follows Kepler's third law with the total mass, P² G (M + m) = 4π² r³, and the\nreflex speed of the central body about the barycentre is the radial-velocity semi-amplitude that\nreveals a planet on an edge-on circular orbit. The specific orbital energy v² / 2 − G M / r is\nnegative on a circular orbit, where it equals half the potential energy per unit mass, and vanishes\nat the escape speed √(2 G M / r), which exceeds the circular speed by a factor √2.",
+      "abstractHeading": "Abstract (Alpha)",
+      "content": [
+        {
+          "heading": "Content (Alpha)",
+          "alpha": true,
+          "intro": "",
+          "subsections": [
+            {
+              "title": "System and configuration",
+              "body": "The system is the gravitational constant G, the central mass M and the orbiting mass m, and a\nconfiguration is the orbital radius r. [1] The circular speed, the specific orbital energy and the\nescape speed use the gravitational parameter G M of the central body alone, the limit of a test\nbody with m ≪ M; the two-body period and the reflex motion use the total mass M + m. [1]"
+            },
+            {
+              "title": "Circular orbits",
+              "body": "The circular speed at radius r is √(G M / r), with square G M / r. [2] It equals the radius times\nthe circular angular rate √(G M / r³). [3]"
+            },
+            {
+              "title": "The two-body period and the reflex motion",
+              "body": "The period of a circular two-body orbit at separation r is 2π √(r³ / (G (M + m))), which satisfies\nKepler's third law P² G (M + m) = 4π² r³ {1}. [4] The central body circles the barycentre at\ndistance m r / (M + m), and its reflex speed, once round that circle per period, satisfies\nK³ = 2π G m³ / (P (M + m)²); for a star with a planet on an edge-on circular orbit this is the\nradial-velocity semi-amplitude {2}. [5]"
+            },
+            {
+              "title": "Energy and the escape speed",
+              "body": "The specific orbital energy at speed v and radius r is v² / 2 − G M / r, and on a circular orbit it\nis −(G M / r) / 2, half the potential energy per unit mass. [6] The escape speed √(2 G M / r) is\npositive, its square is 2 G M / r, and the specific orbital energy vanishes there. [7] It is √2\ntimes the circular speed at the same radius, so a body on a circular orbit moves more slowly than\nthe escape speed and is bound. [8]"
+            },
+            {
+              "title": "General orbits",
+              "body": "On an orbit of semi-major axis a the vis-viva equation gives v² = G M (2 / r − 1 / a) {1}. [TODO]\nThe two-body problem reduces to the motion of a single body of reduced mass M m / (M + m) in the\nrelative coordinate {1}. [TODO] Bound orbits are ellipses with the centre of force at a focus, sweep\nout equal areas in equal times, and have periods with P² proportional to a³ {1}. [TODO]"
+            }
+          ]
+        }
+      ],
+      "leanReferences": [
+        {
+          "index": 1,
+          "file": "Physlib/ClassicalMechanics/OrbitalMechanics/VisViva.lean",
+          "declarations": [
+            {
+              "text": "VisViva",
+              "fullName": "ClassicalMechanics.VisViva",
+              "kind": "structure",
+              "line": 79,
+              "doc": "System parameters for the vis-viva equation in circular orbital mechanics.",
+              "signature": "structure VisViva where\n  G : ℝ\n  M : ℝ\n  m : ℝ"
+            },
+            {
+              "text": "VisViva.ConfigurationSpace",
+              "fullName": "ClassicalMechanics.VisViva.ConfigurationSpace",
+              "kind": "structure",
+              "line": 94,
+              "doc": "Configuration space for orbital mechanics, defining the orbital radius.",
+              "signature": "structure ConfigurationSpace where\n  r : ℝ"
+            }
+          ],
+          "exists": true
+        },
+        {
+          "index": 2,
+          "file": "Physlib/ClassicalMechanics/OrbitalMechanics/VisViva.lean",
+          "declarations": [
+            {
+              "text": "VisViva.speedCircular",
+              "fullName": "ClassicalMechanics.VisViva.speedCircular",
+              "kind": "def",
+              "line": 105,
+              "doc": "The orbital speed required for a circular orbit at radius `r`.",
+              "signature": "noncomputable def speedCircular (sys : VisViva) (cfg : ConfigurationSpace) : ℝ"
+            },
+            {
+              "text": "VisViva.speedCircular_sq",
+              "fullName": "ClassicalMechanics.VisViva.speedCircular_sq",
+              "kind": "lemma",
+              "line": 109,
+              "doc": "Lemma: the square of the circular orbit speed equals G M / r.",
+              "signature": "lemma speedCircular_sq (sys : VisViva) (cfg : ConfigurationSpace) (hr : 0 < cfg.r) (hG : 0 < sys.G)\n    (hM : 0 < sys.M) :\n    (speedCircular sys cfg)^2 = sys.G * sys.M / cfg.r"
+            }
+          ],
+          "exists": true
+        },
+        {
+          "index": 3,
+          "file": "Physlib/ClassicalMechanics/OrbitalMechanics/VisViva.lean",
+          "declarations": [
+            {
+              "text": "VisViva.speedCircular_eq_radius_mul_angularRate",
+              "fullName": "ClassicalMechanics.VisViva.speedCircular_eq_radius_mul_angularRate",
+              "kind": "lemma",
+              "line": 119,
+              "doc": "The circular speed equals the orbital radius times the positive circular angular rate.",
+              "signature": "lemma speedCircular_eq_radius_mul_angularRate (sys : VisViva) (cfg : ConfigurationSpace)\n    (hr : 0 < cfg.r) (hG : 0 < sys.G) (hM : 0 < sys.M) :\n    sys.speedCircular cfg = cfg.r * Real.sqrt (sys.G * sys.M / cfg.r ^ 3)"
+            }
+          ],
+          "exists": true
+        },
+        {
+          "index": 4,
+          "file": "Physlib/ClassicalMechanics/OrbitalMechanics/VisViva.lean",
+          "declarations": [
+            {
+              "text": "VisViva.periodTwoBody",
+              "fullName": "ClassicalMechanics.VisViva.periodTwoBody",
+              "kind": "def",
+              "line": 136,
+              "doc": "The period of a circular orbit of two bodies of masses `M` and `m` at separation `r`, from Kepler's third law with the total mass `M + m`.",
+              "signature": "noncomputable def periodTwoBody (sys : VisViva) (cfg : ConfigurationSpace) : ℝ"
+            },
+            {
+              "text": "VisViva.periodTwoBody_sq",
+              "fullName": "ClassicalMechanics.VisViva.periodTwoBody_sq",
+              "kind": "lemma",
+              "line": 140,
+              "doc": "Kepler's third law for a circular two-body orbit, `P² G (M + m) = 4π² r³`.",
+              "signature": "lemma periodTwoBody_sq (sys : VisViva) (cfg : ConfigurationSpace) (hr : 0 < cfg.r)\n    (hG : 0 < sys.G) (hM : 0 < sys.M) (hm : 0 < sys.m) :\n    sys.periodTwoBody cfg ^ 2 * (sys.G * (sys.M + sys.m)) = 4 * Real.pi ^ 2 * cfg.r ^ 3"
+            }
+          ],
+          "exists": true
+        },
+        {
+          "index": 5,
+          "file": "Physlib/ClassicalMechanics/OrbitalMechanics/VisViva.lean",
+          "declarations": [
+            {
+              "text": "VisViva.reflexRadius",
+              "fullName": "ClassicalMechanics.VisViva.reflexRadius",
+              "kind": "def",
+              "line": 153,
+              "doc": "The distance of the central body from the barycentre, `m r / (M + m)`.",
+              "signature": "noncomputable def reflexRadius (sys : VisViva) (cfg : ConfigurationSpace) : ℝ"
+            },
+            {
+              "text": "VisViva.reflexSpeed",
+              "fullName": "ClassicalMechanics.VisViva.reflexSpeed",
+              "kind": "def",
+              "line": 159,
+              "doc": "The reflex speed of the central body, which goes once round a circle of radius `reflexRadius` per orbital period. For a star with a planet on an edge-on circular orbit, this is the radial-velocity semi-amplitude `K`.",
+              "signature": "noncomputable def reflexSpeed (sys : VisViva) (cfg : ConfigurationSpace) : ℝ"
+            },
+            {
+              "text": "VisViva.reflexSpeed_pow_three",
+              "fullName": "ClassicalMechanics.VisViva.reflexSpeed_pow_three",
+              "kind": "lemma",
+              "line": 164,
+              "doc": "The reflex speed in terms of the period, `K³ = 2π G m³ / (P (M + m)²)`. Taking the cube root gives the radial-velocity semi-amplitude `K = (2π G / P)^{1/3} m / (M + m)^{2/3}`.",
+              "signature": "lemma reflexSpeed_pow_three (sys : VisViva) (cfg : ConfigurationSpace) (hr : 0 < cfg.r)\n    (hG : 0 < sys.G) (hM : 0 < sys.M) (hm : 0 < sys.m) :\n    sys.reflexSpeed cfg ^ 3 =\n      2 * Real.pi * sys.G * sys.m ^ 3 / (sys.periodTwoBody cfg *…"
+            }
+          ],
+          "exists": true
+        },
+        {
+          "index": 6,
+          "file": "Physlib/ClassicalMechanics/OrbitalMechanics/VisViva.lean",
+          "declarations": [
+            {
+              "text": "VisViva.specificOrbitalEnergy",
+              "fullName": "ClassicalMechanics.VisViva.specificOrbitalEnergy",
+              "kind": "def",
+              "line": 185,
+              "doc": "The specific orbital energy of the orbiting body moving at speed `v` at radius `r`: the kinetic energy per unit mass `v² / 2` plus the gravitational potential energy per unit mass `-G M / r`.",
+              "signature": "noncomputable def specificOrbitalEnergy (sys : VisViva) (cfg : ConfigurationSpace) (v : ℝ) : ℝ"
+            },
+            {
+              "text": "VisViva.specificOrbitalEnergy_speedCircular",
+              "fullName": "ClassicalMechanics.VisViva.specificOrbitalEnergy_speedCircular",
+              "kind": "lemma",
+              "line": 190,
+              "doc": "On a circular orbit the specific orbital energy is `-(G M / r) / 2`, half the potential energy per unit mass.",
+              "signature": "lemma specificOrbitalEnergy_speedCircular (sys : VisViva) (cfg : ConfigurationSpace)\n    (hr : 0 < cfg.r) (hG : 0 < sys.G) (hM : 0 < sys.M) :\n    sys.specificOrbitalEnergy cfg (sys.speedCircular cfg) = -(sys.G * sys.M / cfg.r) / 2"
+            }
+          ],
+          "exists": true
+        },
+        {
+          "index": 7,
+          "file": "Physlib/ClassicalMechanics/OrbitalMechanics/VisViva.lean",
+          "declarations": [
+            {
+              "text": "VisViva.speedEscape",
+              "fullName": "ClassicalMechanics.VisViva.speedEscape",
+              "kind": "def",
+              "line": 202,
+              "doc": "The escape speed from radius `r`, `√(2 G M / r)`: the speed at which the specific orbital energy vanishes, so that the body can just reach infinite separation.",
+              "signature": "noncomputable def speedEscape (sys : VisViva) (cfg : ConfigurationSpace) : ℝ"
+            },
+            {
+              "text": "VisViva.speedEscape_sq",
+              "fullName": "ClassicalMechanics.VisViva.speedEscape_sq",
+              "kind": "lemma",
+              "line": 206,
+              "doc": "The square of the escape speed equals `2 G M / r`.",
+              "signature": "lemma speedEscape_sq (sys : VisViva) (cfg : ConfigurationSpace) (hr : 0 < cfg.r)\n    (hG : 0 < sys.G) (hM : 0 < sys.M) :\n    sys.speedEscape cfg ^ 2 = 2 * sys.G * sys.M / cfg.r"
+            },
+            {
+              "text": "VisViva.speedEscape_pos",
+              "fullName": "ClassicalMechanics.VisViva.speedEscape_pos",
+              "kind": "lemma",
+              "line": 212,
+              "doc": "The escape speed is positive.",
+              "signature": "lemma speedEscape_pos (sys : VisViva) (cfg : ConfigurationSpace) (hr : 0 < cfg.r)\n    (hG : 0 < sys.G) (hM : 0 < sys.M) :\n    0 < sys.speedEscape cfg"
+            },
+            {
+              "text": "VisViva.specificOrbitalEnergy_speedEscape",
+              "fullName": "ClassicalMechanics.VisViva.specificOrbitalEnergy_speedEscape",
+              "kind": "lemma",
+              "line": 218,
+              "doc": "At the escape speed the specific orbital energy vanishes.",
+              "signature": "lemma specificOrbitalEnergy_speedEscape (sys : VisViva) (cfg : ConfigurationSpace)\n    (hr : 0 < cfg.r) (hG : 0 < sys.G) (hM : 0 < sys.M) :\n    sys.specificOrbitalEnergy cfg (sys.speedEscape cfg) = 0"
+            }
+          ],
+          "exists": true
+        },
+        {
+          "index": 8,
+          "file": "Physlib/ClassicalMechanics/OrbitalMechanics/VisViva.lean",
+          "declarations": [
+            {
+              "text": "VisViva.speedEscape_eq_sqrt_two_mul_speedCircular",
+              "fullName": "ClassicalMechanics.VisViva.speedEscape_eq_sqrt_two_mul_speedCircular",
+              "kind": "lemma",
+              "line": 229,
+              "doc": "The escape speed is `√2` times the circular speed at the same radius.",
+              "signature": "lemma speedEscape_eq_sqrt_two_mul_speedCircular (sys : VisViva) (cfg : ConfigurationSpace) :\n    sys.speedEscape cfg = Real.sqrt 2 * sys.speedCircular cfg"
+            },
+            {
+              "text": "VisViva.speedEscape_sq_eq_two_mul_speedCircular_sq",
+              "fullName": "ClassicalMechanics.VisViva.speedEscape_sq_eq_two_mul_speedCircular_sq",
+              "kind": "lemma",
+              "line": 236,
+              "doc": "The square of the escape speed is twice the square of the circular speed.",
+              "signature": "lemma speedEscape_sq_eq_two_mul_speedCircular_sq (sys : VisViva) (cfg : ConfigurationSpace) :\n    sys.speedEscape cfg ^ 2 = 2 * sys.speedCircular cfg ^ 2"
+            },
+            {
+              "text": "VisViva.speedCircular_lt_speedEscape",
+              "fullName": "ClassicalMechanics.VisViva.speedCircular_lt_speedEscape",
+              "kind": "lemma",
+              "line": 242,
+              "doc": "A body on a circular orbit moves more slowly than the escape speed: it is bound.",
+              "signature": "lemma speedCircular_lt_speedEscape (sys : VisViva) (cfg : ConfigurationSpace) (hr : 0 < cfg.r)\n    (hG : 0 < sys.G) (hM : 0 < sys.M) :\n    sys.speedCircular cfg < sys.speedEscape cfg"
+            }
+          ],
+          "exists": true
+        }
+      ],
+      "references": [
+        {
+          "index": 1,
+          "text": "Landau & Lifshitz, *Mechanics*, 3rd ed., Sections 13 and 15.",
+          "apiMap": null
+        },
+        {
+          "index": 2,
+          "text": "Perryman, *The Exoplanet Handbook*, 2nd ed., Chapter 2.",
+          "apiMap": null
+        }
+      ],
+      "requirements": [
+        {
+          "done": true,
+          "citations": [
+            1
+          ],
+          "alpha": true
+        },
+        {
+          "done": true,
+          "citations": [
+            1
+          ],
+          "alpha": true
+        },
+        {
+          "done": true,
+          "citations": [
+            2
+          ],
+          "alpha": true
+        },
+        {
+          "done": true,
+          "citations": [
+            3
+          ],
+          "alpha": true
+        },
+        {
+          "done": true,
+          "citations": [
+            4
+          ],
+          "alpha": true
+        },
+        {
+          "done": true,
+          "citations": [
+            5
+          ],
+          "alpha": true
+        },
+        {
+          "done": true,
+          "citations": [
+            6
+          ],
+          "alpha": true
+        },
+        {
+          "done": true,
+          "citations": [
+            7
+          ],
+          "alpha": true
+        },
+        {
+          "done": true,
+          "citations": [
+            8
+          ],
+          "alpha": true
+        },
+        {
+          "done": false,
+          "citations": [],
+          "alpha": true
+        },
+        {
+          "done": false,
+          "citations": [],
+          "alpha": true
+        },
+        {
+          "done": false,
+          "citations": [],
+          "alpha": true
+        }
+      ],
+      "parents": [],
+      "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/OrbitalMechanics/API-map.md"
     },
     {
       "path": "Physlib/ClassicalMechanics/Pendulum",
@@ -24331,7 +24672,7 @@
               "text": "deriv_add",
               "fullName": "WaveVectorSpace.deriv_add",
               "kind": "lemma",
-              "line": 86,
+              "line": 91,
               "doc": null,
               "signature": "lemma deriv_add : ∂[i] (f₁ + f₂) k = ∂[i] f₁ k + ∂[i] f₂ k"
             },
@@ -24339,7 +24680,7 @@
               "text": "deriv_const_smul",
               "fullName": "WaveVectorSpace.deriv_const_smul",
               "kind": "lemma",
-              "line": 115,
+              "line": 120,
               "doc": null,
               "signature": "lemma deriv_const_smul\n    {R : Type*} [Semiring R] [Module R M] [SMulCommClass ℝ R M] [ContinuousConstSMul R M] (c : R)\n    (i : Fin d) {f : WaveVectorSpace d → M} {k : WaveVectorSpace d} (hf : DifferentiableAt ℝ f k) :\n    ∂[i] (c • f) k…"
             },
@@ -24347,7 +24688,7 @@
               "text": "deriv_smul",
               "fullName": "WaveVectorSpace.deriv_smul",
               "kind": "lemma",
-              "line": 108,
+              "line": 113,
               "doc": "The product rule for functions on `WaveVectorSpace`.",
               "signature": "lemma deriv_smul {𝕜 : Type*} [NontriviallyNormedField 𝕜] [NormedAlgebra ℝ 𝕜] [NormedSpace 𝕜 M]\n    (i : Fin d) {c : WaveVectorSpace d → 𝕜} {f : WaveVectorSpace d → M} {k : WaveVectorSpace d}\n    (hc : DifferentiableAt ℝ c k) (hf : Dif…"
             },
@@ -24355,7 +24696,7 @@
               "text": "deriv_pow",
               "fullName": "WaveVectorSpace.deriv_pow",
               "kind": "lemma",
-              "line": 129,
+              "line": 134,
               "doc": "The power rule for functions on `WaveVectorSpace`.",
               "signature": "lemma deriv_pow {𝔸 : Type*} [NormedCommRing 𝔸] [NormedAlgebra ℝ 𝔸] (i : Fin d)\n    {f : WaveVectorSpace d → 𝔸} {k : WaveVectorSpace d} (n : ℕ) (hf : DifferentiableAt ℝ f k) :\n    ∂[i] (f ^ n) k = (n • f k ^ (n - 1)) • ∂[i] f k"
             }
@@ -24408,7 +24749,7 @@
               "text": "fourierIntegral",
               "fullName": "WaveVectorSpace.fourierIntegral",
               "kind": "def",
-              "line": 107,
+              "line": 109,
               "doc": "The Fourier integral over `Space`,",
               "signature": "noncomputable def fourierIntegral (f : Space d → E) (k : WaveVectorSpace d) : E"
             },
@@ -24416,7 +24757,7 @@
               "text": "fourierIntegralInv",
               "fullName": "WaveVectorSpace.fourierIntegralInv",
               "kind": "def",
-              "line": 130,
+              "line": 132,
               "doc": "The inverse Fourier integral over `WaveVectorSpace`,",
               "signature": "noncomputable def fourierIntegralInv (g : WaveVectorSpace d → E) (x : Space d) : E"
             }
@@ -29239,7 +29580,7 @@
   "directories": [
     {
       "path": "Physlib",
-      "leanFiles": 696,
+      "leanFiles": 697,
       "hasApiMap": false
     },
     {
@@ -29315,7 +29656,7 @@
     {
       "path": "Physlib/ClassicalMechanics/OrbitalMechanics",
       "leanFiles": 1,
-      "hasApiMap": false
+      "hasApiMap": true
     },
     {
       "path": "Physlib/ClassicalMechanics/Pendulum",
@@ -29524,7 +29865,7 @@
     },
     {
       "path": "Physlib/Mathematics",
-      "leanFiles": 64,
+      "leanFiles": 65,
       "hasApiMap": false
     },
     {
@@ -29625,6 +29966,11 @@
     {
       "path": "Physlib/Mathematics/Modules",
       "leanFiles": 3,
+      "hasApiMap": false
+    },
+    {
+      "path": "Physlib/Mathematics/Projection",
+      "leanFiles": 1,
       "hasApiMap": false
     },
     {

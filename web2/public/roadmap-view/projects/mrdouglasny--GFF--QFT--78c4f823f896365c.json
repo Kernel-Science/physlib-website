@@ -1,0 +1,1 @@
+{"repository":"mrdouglasny/GFF","revision":"f3629bb8698938e65e82b4c5dd64c5a9510ce448","key":"78c4f823f896365c8aa18ec8ff8404d72f1f03e8c50a49c682954acb1bbfbd59","files":["GFF.lean","GFF/GFFConstruction.lean","GFF/OSVerification.lean","GFF/SpacetimeInstances.lean"]}

@@ -1,0 +1,1 @@
+{"repository":"mrdouglasny/gibbs-variational","revision":"75e08d8aaca83bb090fc43855898991fbfc9abf3","key":"a954837f1a596248d5f11e0bf52b821c924109c2b3bea6b1fce78058101c1e1f","files":["GibbsVariational.lean","GibbsVariational/BoueDupuis.lean","GibbsVariational/GaussianEntropy.lean","GibbsVariational/Variational.lean"]}

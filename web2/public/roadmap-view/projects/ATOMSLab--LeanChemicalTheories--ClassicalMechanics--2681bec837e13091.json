@@ -1,0 +1,1 @@
+{"repository":"ATOMSLab/LeanChemicalTheories","revision":"00841fedb86c0af282f515eda7e83a525a42e048","key":"2681bec837e130918acf1eeafa0fdf00f7f534e0557b460bd313cdd443e15d19","files":["src/molecular_mechanics/lennard_jones.lean","src/molecular_mechanics/translation_invariance_LJ.lean","src/physics/kinematic_equations.lean"]}

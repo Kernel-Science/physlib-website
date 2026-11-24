@@ -1,0 +1,1 @@
+{"repository":"lean-dojo/QuantumLean-Bench","revision":"dac8c9da3ccdbb0319b8e9dc76b94c11f7dcf39b","key":"ce051c7788433dc1e46a00a4a65de1a0fb9dd6bec54d97eb4a50610f51785400","files":["benchmarking/formal/Computing.lean","benchmarking/formal/Cryptography.lean","benchmarking/formal/InfoTheory.lean","benchmarking/formal/QML.lean"]}

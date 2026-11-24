@@ -1,0 +1,1 @@
+{"repository":"ATOMSLab/LeanChemicalTheories","revision":"00841fedb86c0af282f515eda7e83a525a42e048","key":"79f48398638e13575bcc98da222bae091d82f94d49f784f236a352127c2731db","files":["src/adsorption/BETInfinite.lean","src/adsorption/langmuir_kinetics.lean","src/thermodynamics/basic.lean","src/thermodynamics/boyles_law.lean"]}
