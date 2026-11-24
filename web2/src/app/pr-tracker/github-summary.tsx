@@ -14,8 +14,8 @@ export function GithubSummary({ report }: { report: ReviewReport }) {
   ];
 
   return (
-    <div className="mb-8">
-      <h2 className="text-xl font-semibold mb-3">Current reviewer load</h2>
+    <div className="mt-10 mb-8">
+      <h2 id="reviewer-load" className="text-xl font-semibold mb-3 scroll-mt-24">Current reviewer load</h2>
 
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 mb-5">
         <Stat label="In need of reviewer" count={report.unreviewedPRs.length} color="border-l-danger" />

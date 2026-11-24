@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ComponentType } from "react";
 import {
   BeneficiariesContent,
   ImpactContent,
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
     "The mission, values, beneficiaries, and intended impact of Physlib — a library of digitalized physics results in Lean 4.",
 };
 
-const panels = {
+const panels: Record<string, ComponentType<{ headingLevel?: 2 | 3 }>> = {
   "/about/mission": MissionContent,
   "/about/values": ValuesContent,
   "/about/beneficiaries": BeneficiariesContent,
@@ -79,7 +80,7 @@ export default function AboutPage() {
               {section.label}
             </h2>
             <p className="mb-8 text-lg text-muted">{section.tagline}</p>
-            <Content />
+            <Content headingLevel={3} />
           </section>
         );
       })}

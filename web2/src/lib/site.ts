@@ -82,17 +82,8 @@ export const navSections: NavSection[] = [
     label: "Support",
     plainHover: true,
     items: [
-      { label: "Fund Physlib", href: site.sponsor },
+      { label: "Project Priorities", href: site.sponsor },
       { label: "Sponsors", href: site.sponsors },
     ],
   },
-];
-
-export const primaryNav: NavItem[] = [
-  { label: "Home", href: "/" },
-  { label: "Getting Started", href: "/getting-started" },
-  { label: "Get Involved", href: "/get-involved" },
-  { label: "Trackers", href: "/api-tracker" },
-  { label: "Find a Task", href: site.tasks },
-  { label: "Fund Physlib", href: site.sponsor },
 ];

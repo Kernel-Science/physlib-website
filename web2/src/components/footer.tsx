@@ -2,6 +2,8 @@ import { Wordmark } from "@/components/wordmark";
 import Link from "next/link";
 import { navSections, site, type NavItem } from "@/lib/site";
 
+const footerBody = "text-[13px] leading-normal font-normal tracking-[-0.01em] text-muted";
+
 const physlibLinks: NavItem[] = [
   { label: "GitHub", href: site.github, external: true },
   { label: "PhyslibSearch", href: site.semanticSearch, external: true },
@@ -19,8 +21,7 @@ function FooterLinks({ items }: { items: NavItem[] }) {
               href={item.href}
               target={item.external ? "_blank" : undefined}
               rel={item.external ? "noopener noreferrer" : undefined}
-              className="text-[13px] text-muted transition-colors hover:text-foreground"
-              style={{ letterSpacing: "-0.01em" }}
+              className={`${footerBody} transition-colors hover:text-foreground`}
             >
               {item.label}{item.external && " ↗"}
             </ItemLink>
@@ -45,10 +46,7 @@ export function Footer() {
             >
               <Wordmark />
             </Link>
-            <p
-              className="mt-3 text-xs text-muted leading-relaxed"
-              style={{ letterSpacing: "-0.01em" }}
-            >
+            <p className={`mt-3 ${footerBody}`}>
               The definitive library for formalized physics in Lean 4.
             </p>
             <div className="mt-5">
@@ -85,7 +83,7 @@ export function Footer() {
               <span className="inline-flex items-center gap-1.5 whitespace-nowrap">
                 Website supported by
                 <a href="https://kernel-science.com" target="_blank" rel="noopener noreferrer" className="opacity-70 hover:opacity-100 transition-opacity">
-                  <img src="/images/kernel_science_logo.png" alt="Kernel Science" className="logo-mark relative -top-[0.5px] h-3.5 w-auto" />
+                  <img src="/images/kernel_science_logo.png" alt="Kernel Science" width={2852} height={410} className="logo-mark relative -top-[0.5px] h-3.5 w-auto" />
                 </a>
               </span>
               <span>

@@ -1,7 +1,7 @@
 import { Card } from "@heroui/react";
+import { ButtonLink } from "@/components/button-link";
 import { PageHeader } from "@/components/page-header";
 import { site } from "@/lib/site";
-
 
 const physlibAiToolsRepo = "https://github.com/jstoobysmith/PhyslibAITools";
 const textStyle = { letterSpacing: "-0.01em", color: "color-mix(in srgb, var(--foreground) 70%, var(--accent))" };
@@ -25,14 +25,14 @@ export function PhyslibAiToolsContent(
       </p>
 
       <section className="mb-12">
-        <PageHeader headingLevel={headingLevel} id="what-it-does" title="What it does" />
+        <PageHeader headingLevel={headingLevel} id="what-it-does" title="What It Does" />
         <p className="text-sm leading-relaxed" style={textStyle}>
-          PhyslibAItools uses an AI agent of your choice to complete automated tasks on the Physlib codebase.
+          PhyslibAITools uses an AI agent to complete automated tasks on the Physlib codebase.
         </p>
       </section>
 
       <section className="mb-12">
-        <PageHeader headingLevel={headingLevel} id="two-ways-to-run-it" title="Two ways to run it" />
+        <PageHeader headingLevel={headingLevel} id="two-ways-to-run-it" title="Two Ways to Run It" />
         <div className="grid gap-4 sm:grid-cols-2">
           <Card variant="default">
             <Card.Header>
@@ -40,29 +40,19 @@ export function PhyslibAiToolsContent(
             </Card.Header>
             <Card.Content className="text-sm text-foreground/90">
               <p className="mb-4 leading-relaxed" style={textStyle}>
-               Sign in to Claude Code and GitHub, then choose from a list of taks to get your agent working on. These include: Golf, Rename, DocFixer, APIMap, ImportMinimizer, LintQI and TODO. Your agent will automatically make a PR for completed tasks.
+                Sign in to Claude Code and GitHub, then choose from a list of tasks to get your agent working on. These include: Golf, Rename, DocFixer, APIMap, ImportMinimizer, LintQI and TODO. Your agent will automatically make a PR for completed tasks. Installers are available for Windows and macOS.
               </p>
-              <a
-                href={`${physlibAiToolsRepo}/releases`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex h-9 items-center gap-2 rounded-(--radius) px-4 text-sm font-medium transition-opacity hover:opacity-80"
-                style={{ background: "var(--accent)", color: "var(--accent-foreground)", letterSpacing: "-0.01em" }}
-              >
-                Download releases ↗
-              </a>
+              <ButtonLink size="sm" href={`${physlibAiToolsRepo}/releases`}>Download Releases ↗</ButtonLink>
             </Card.Content>
           </Card>
 
           <Card variant="default">
             <Card.Header>
-              <Card.Title>
-                <code className="font-mono text-sm">Command Line</code>
-              </Card.Title>
+              <Card.Title>Command Line</Card.Title>
             </Card.Header>
             <Card.Content className="text-sm text-foreground/90">
-              <p className="mb-4 leading-relaxed" style={textStyle}>
-                A CLI which can perform documentation checking using a local LLM of your choice.
+              <p className="leading-relaxed" style={textStyle}>
+                A script, <code className="font-mono text-xs">Scripts/physlib-auto-task.sh</code>, which runs the same tasks from a terminal with Claude Code, and a CLI which can perform documentation checking using a local LLM of your choice.
               </p>
             </Card.Content>
           </Card>
@@ -83,16 +73,16 @@ export function PhyslibAiToolsContent(
           </li>
         </ul>
         <p className="text-sm mt-4 leading-relaxed" style={textStyle}>
-         See the{" "}
+          See the{" "}
           <a href={guidelinesHref} className="text-accent hover:underline underline-offset-2">
             AI Guidelines
           </a>{" "}
-          for our policy on AI generated contributions.
+          for our policy on AI-generated contributions.
         </p>
       </section>
 
       <section>
-        <PageHeader headingLevel={headingLevel} id="learn-more" title="Learn more" />
+        <PageHeader headingLevel={headingLevel} id="learn-more" title="Learn More" />
         <p className="text-sm leading-relaxed" style={textStyle}>
           Full setup details live in the{" "}
           <a
@@ -101,9 +91,9 @@ export function PhyslibAiToolsContent(
             rel="noopener noreferrer"
             className="text-accent hover:underline underline-offset-2"
           >
-            PhyslibAItools repository with the open-source code.
+            PhyslibAITools repository
           </a>
-          . If you have questions, ask in the{" "}
+          , along with the open-source code. If you have questions, ask in the{" "}
           <a
             href={site.zulip}
             target="_blank"

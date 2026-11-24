@@ -1,4 +1,5 @@
 import { Card } from "@heroui/react";
+import { labelTone, tagClass } from "@/lib/label-tone";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ButtonLink } from "@/components/button-link";
@@ -7,7 +8,7 @@ import { PageHeader } from "@/components/page-header";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "GitHub Guide | Physlib",
+  title: "GitHub Guide",
   description:
     "Fork Physlib, submit your changes, and respond to review on GitHub.",
 };
@@ -20,13 +21,13 @@ export default function GhGuidePage() {
       <h1 className="page-title-editorial">
         GitHub Guide
       </h1>
-      <p className="page-intro-editorial page-intro-tinted max-w-2xl mb-12">
+      <p className="page-intro-editorial max-w-2xl mb-10">
         Use this guide to create a branch, open a pull request, and work through review on GitHub.
       </p>
 
       <section className="mb-12">
-        <PageHeader id="deciding-a-problem" title="1. Choose a Task" />
-        <p className="mb-4 text-sm leading-relaxed text-foreground/80">
+        <PageHeader id="deciding-a-problem" number={1} title="Choose a Task" />
+        <p className="text-sm mb-4 leading-relaxed" style={{ letterSpacing: "-0.01em", color: "color-mix(in srgb, var(--foreground) 70%, var(--accent))" }}>
           Start with{" "}
           <Link href={site.tasks} className="text-accent hover:underline underline-offset-2">Find a Task</Link>
           {" "}to see what is already open.
@@ -54,15 +55,15 @@ export default function GhGuidePage() {
 
       {/* Step 2 — Work on it */}
       <section className="mb-12">
-        <PageHeader id="work-on-the-problem" title="2. Create a Branch" />
+        <PageHeader id="work-on-the-problem" number={2} title="Create a Branch" />
         <p
           className="text-sm mb-4 leading-relaxed"
           style={{ letterSpacing: "-0.01em", color: "color-mix(in srgb, var(--foreground) 70%, var(--accent))" }}
         >
           Follow the “I want to contribute” instructions in{" "}
-          <a href="/getting-started#installing" className="text-accent hover:underline underline-offset-2">
+          <Link href="/getting-started#installing" className="text-accent hover:underline underline-offset-2">
             Getting Started
-          </a>{" "}
+          </Link>{" "}
           to fork Physlib and clone it. In that checkout, <code>origin</code> points to your fork
           and <code>upstream</code> points to <code>leanprover-community/physlib</code>.
           Create a branch for your changes from the current upstream <code>master</code>.
@@ -73,9 +74,10 @@ git switch --no-track -c my-change upstream/master`} />
 
       {/* Step 3 — Pull Request */}
       <section className="mb-12">
-        <PageHeader id="make-a-pull-request" title="3. Open a Pull Request" />
+        <PageHeader id="make-a-pull-request" number={3} title="Open a Pull Request" />
         <p className="text-sm mb-4 leading-relaxed" style={{ letterSpacing: "-0.01em", color: "color-mix(in srgb, var(--foreground) 70%, var(--accent))" }}>
-          Keep each pull request focused on one change. After editing and testing, run
+          Keep each pull request focused on one change. After editing, building, and{" "}
+          <Link href="/getting-started#linting" className="text-accent hover:underline underline-offset-2">linting</Link>, run
           these commands from your checkout. Replace <code>path/to/file</code> with your
           changed file paths and write a commit message describing your change.
         </p>
@@ -101,7 +103,7 @@ git push -u origin my-change`} />
           and click &quot;compare across forks&quot;. Set the base repository to{" "}
           <code>leanprover-community/physlib</code> and the base branch to <code>master</code>.
           Select your fork as the head repository and <code>my-change</code> as the compare
-          branch. Follow the pull request template and describe your change and how you checked it in your own words.
+          branch. Describe your change and how you checked it in your own words.
         </p>
 
         <div className="mt-8">
@@ -165,7 +167,7 @@ git push -u origin my-change`} />
             <li>
               <LabelPill name="easy" /> — a trivial change (a single lemma, a typo
               fix, a diff under ~25 lines, no new definitions) that maintainers
-              prioritise reviewing first to keep the queue moving. If you&apos;re
+              prioritize reviewing first to keep the queue moving. If you&apos;re
               unsure whether your PR qualifies, don&apos;t add it.
             </li>
             <li>
@@ -176,7 +178,7 @@ git push -u origin my-change`} />
             </li>
             <li>
               <LabelPill name="merge-conflict" /> — your branch has diverged from{" "}
-              <code className="font-mono text-xs">master </code> in a way Git
+              <code className="font-mono text-xs">master</code> in a way Git
               can&apos;t resolve automatically. See GitHub&apos;s{" "}
               <a
                 href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-on-github"
@@ -193,9 +195,19 @@ git push -u origin my-change`} />
       </section>
 
       <section className="mb-12">
-        <PageHeader id="managing-the-pr" title="4. Managing the PR" />
+        <PageHeader id="managing-the-pr" number={4} title="Managing the PR" />
         <p className="text-sm leading-relaxed" style={{ letterSpacing: "-0.01em", color: "color-mix(in srgb, var(--foreground) 70%, var(--accent))" }}>
-          After opening a PR, the maintainers will review the changes and provide feedback. Feel free to begin work on a separate PR in the meantime but be prepared to make changes to this one if required.
+          After opening a PR, automated checks will run and a reviewer will provide feedback, following the{" "}
+          <a
+            href={`${site.github}/blob/master/docs/ReviewGuidelines.md`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-accent hover:underline underline-offset-2"
+          >
+            review guidelines
+          </a>. The first review can take several days, and if you have never had a PR merged
+          a reviewer may need to start the checks for you. Feel free to begin work on a separate
+          PR in the meantime but be prepared to make changes to this one if required.
         </p>
         <p className="text-sm mt-4 leading-relaxed" style={{ letterSpacing: "-0.01em", color: "color-mix(in srgb, var(--foreground) 70%, var(--accent))" }}>
           If you want a reviewer to be able to push fixes directly to your branch, you can grant them
@@ -210,32 +222,32 @@ git push -u origin my-change`} />
             rel="noopener noreferrer"
             className="text-accent hover:underline underline-offset-2"
           >
-            Lean Zulip
+            Physlib Zulip
           </a>{" "}
           is full of people who are happy to give advice.
         </p>
       </section>
 
       <section className="mb-12">
-        <PageHeader id="merging-the-pr" title="5. Merging the PR" />
+        <PageHeader id="merging-the-pr" number={5} title="Merging the PR" />
         <p className="text-sm leading-relaxed" style={{ letterSpacing: "-0.01em", color: "color-mix(in srgb, var(--foreground) 70%, var(--accent))" }}>
-         Approved changes merge into <code>master</code>. Physlib uses a{" "}
-            <a
-              href="https://github.com/leanprover-community/physlib/queue/master"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-accent hover:underline underline-offset-2"
-            >
-              merge queue
-            </a>{" "}
-            to ensure that consecutive changes do not produce unexpected errors. This may result in your PR being rejected with errors you have not seen before.
+          Approved changes merge into <code>master</code>. Physlib uses a{" "}
+          <a
+            href="https://github.com/leanprover-community/physlib/queue/master"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-accent hover:underline underline-offset-2"
+          >
+            merge queue
+          </a>{" "}
+          to ensure that consecutive changes do not produce unexpected errors. This may result in your PR being rejected with errors you have not seen before.
         </p>
       </section>
 
       {/* Additional Guidance */}
       <section className="mb-12">
         <PageHeader id="additional-guidance" title="Additional Guidance" />
-        <p className="mb-4 text-sm leading-relaxed text-foreground/80">
+        <p className="text-sm mb-4 leading-relaxed" style={{ letterSpacing: "-0.01em", color: "color-mix(in srgb, var(--foreground) 70%, var(--accent))" }}>
           If you used AI to prepare a change, check the{" "}
           <Link href={site.aiResources + "#ai-guidelines"} className="text-accent hover:underline underline-offset-2">
             AI contribution guidelines
@@ -245,54 +257,26 @@ git push -u origin my-change`} />
         <p className="text-sm leading-relaxed" style={{ letterSpacing: "-0.01em", color: "color-mix(in srgb, var(--foreground) 70%, var(--accent))" }}>
           Please use your real name in your GitHub account settings and commit author. Physlib uses
           GitHub account names in its automated documentation generation, so using your real name
-          makes it easier for people to recognise your work.
+          makes it easier for people to recognize your work.
         </p>
         <p className="text-sm mt-4 leading-relaxed" style={{ letterSpacing: "-0.01em", color: "color-mix(in srgb, var(--foreground) 70%, var(--accent))" }}>
           If you are contributing to PhyslibAlpha, which sits downstream of Physlib,
-          Lean code quality guidelines are less strict. However, please still follow the GitHub contribution guide.
+          Lean code quality guidelines are less strict. However, please still follow this GitHub Guide.
         </p>
       </section>
+
 
     </div>
   );
 }
 
 const issueChecklist = [
-  "A clear title summarising the problem or feature.",
+  "A clear title summarizing the problem or feature.",
   "Explain the motivation for the feature.",
   "Any relevant links.",
-  "A summary of the incorrect code (For bugs).",
+  "A summary of the incorrect code (for bugs).",
 ];
 
-// Actual colors from github.com/leanprover-community/physlib/labels, so
-// these read as the real labels rather than approximations.
-const labelColors: Record<string, string> = {
-  "awaiting-author": "f96e8f",
-  "reviewer-approved": "71d9a5",
-  "ready-to-merge": "97f144",
-  WIP: "dfeca7",
-  "help-wanted": "008672",
-  easy: "6be25e",
-  "blocked-by-PR": "0c7b31",
-  "blocked-by-mathlib-PR": "c4c38e",
-  "merge-conflict": "4077a0",
-};
-
-function contrastColor(hex: string) {
-  const r = parseInt(hex.slice(0, 2), 16);
-  const g = parseInt(hex.slice(2, 4), 16);
-  const b = parseInt(hex.slice(4, 6), 16);
-  return (0.299 * r + 0.587 * g + 0.114 * b) / 255 > 0.5 ? "#000" : "#fff";
-}
-
 function LabelPill({ name }: { name: string }) {
-  const color = labelColors[name];
-  return (
-    <span
-      className="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium"
-      style={{ background: `#${color}`, color: contrastColor(color) }}
-    >
-      {name}
-    </span>
-  );
+  return <span className={tagClass(labelTone(name))}>{name}</span>;
 }

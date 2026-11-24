@@ -93,7 +93,7 @@ export default function HomePage() {
                   style={{ letterSpacing: "-0.01em", lineHeight: 1.45 }}
                 >
                   Core work on Physlib by individuals can be published in signed,
-                  verifiable reports covering reviewing, formalisation, foundations,
+                  verifiable reports covering reviewing, formalization, foundations,
                   refactoring, maintenance and documentation.
                 </p>
                 <a

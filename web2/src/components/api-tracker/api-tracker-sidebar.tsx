@@ -109,7 +109,9 @@ export function ApiTrackerSidebar() {
     return () => window.removeEventListener("hashchange", onHashChange);
   }, [pathname]);
 
-  if (!tree || tree.length === 0) return null;
+  // Reserve the column while the tree loads so the page does not jump.
+  if (!tree || tree.length === 0)
+    return <aside aria-hidden="true" className="hidden w-56 shrink-0 lg:block xl:w-64" />;
 
   const selectedPath = pathname === "/api-tracker" ? activePath || flattenFolderTree(tree)[0]?.path : "";
 

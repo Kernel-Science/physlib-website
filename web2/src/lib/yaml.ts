@@ -30,7 +30,7 @@ export async function getSponsorPitch(): Promise<SponsorPitch> {
   const [head, ...rest] = raw.split(/^## /m);
   const titleMatch = head.match(/^# (.+)$/m);
   return {
-    title: titleMatch ? titleMatch[1].trim() : "Sponsor Physlib",
+    title: titleMatch ? titleMatch[1].trim() : "Project Priorities",
     intro: head.replace(/^# .+$/m, "").trim(),
     sections: rest.map((chunk) => {
       const newline = chunk.indexOf("\n");
@@ -51,6 +51,10 @@ export type Sponsor = {
   name: string;
   url: string;
   support: string;
+  /** Shown in place of the name when present; see data/Sponsors.yml. */
+  logo?: string;
+  logoWidth?: number;
+  logoHeight?: number;
 };
 
 export async function getSponsors(): Promise<Sponsor[]> {

@@ -12,12 +12,28 @@
  * `hashchange` manually and let each side react to it itself.
  */
 export type ReferencesSelection =
-  | { view: "cited" }
+  // `reference` is a single entry's bibliography key: "#reference-<key>" is
+  // the permalink to one reference (site search links to these).
+  | { view: "cited"; reference?: string }
   | { view: "subfolder"; subfolder?: string }
   | { view: "author"; letter?: string };
 
+const REFERENCE_PREFIX = "reference-";
+
+/** The id of a reference's card in the Most Cited view, and its hash. */
+export function referenceAnchor(key: string): string {
+  return REFERENCE_PREFIX + key;
+}
+
 export function decodeReferencesHash(): ReferencesSelection {
   const raw = window.location.hash.replace(/^#/, "");
+  if (raw.startsWith(REFERENCE_PREFIX)) {
+    try {
+      return { view: "cited", reference: decodeURIComponent(raw.slice(REFERENCE_PREFIX.length)) };
+    } catch {
+      return { view: "cited" };
+    }
+  }
   if (raw.startsWith("subfolder")) {
     const rest = raw.slice("subfolder".length);
     return rest.startsWith(":")

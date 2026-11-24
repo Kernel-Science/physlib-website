@@ -33,6 +33,9 @@ const KIND_LABELS: Record<string, string> = {
   instance: "Instances",
   abbrev: "Abbreviations",
   inductive: "Inductive types",
+  class: "Classes",
+  opaque: "Opaque definitions",
+  axiom: "Axioms",
   structure: "Structures",
   informal_definition: "Informal definitions",
   informal_lemma: "Informal lemmas",
@@ -209,7 +212,7 @@ export function MonthDetail({ data }: { data: MonthlyUpdate }) {
                     {data.pdfUrl && (
                       <a
                         href={chatGptSummaryUrl(
-                          `Summarise the ${s.path} section of this PDF: ${site.url}${data.pdfUrl}`,
+                          `Summarize the ${s.path} section of this PDF: ${site.url}${data.pdfUrl}`,
                         )}
                         target="_blank"
                         rel="noopener noreferrer"

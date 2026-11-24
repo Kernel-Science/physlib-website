@@ -56,7 +56,7 @@ const pages: Record<string, [string, string]> = {
   "/references": ["References", "Search publications and citations used in Physlib."],
   "/monthly-updates": ["Monthly updates", "Monthly reports on changes and contributions to Physlib."],
   "/news": ["News", "Project news and announcements."],
-  "/sponsor": ["Fund Physlib", "Funding priorities and ways to donate or support Physlib in kind."],
+  "/sponsor": ["Project Priorities", "Volunteer contributions, research collaborations and estimated project costs for grant planning."],
   "/sponsors": ["Sponsors", "The current sponsors of Physlib."],
   [site.aiResources]: ["AI Resources", "AI contribution guidelines, companion tools, and reusable prompts."],
   "/ai-guidelines": ["AI guidelines", "Policy for using AI tools to contribute to Physlib."],

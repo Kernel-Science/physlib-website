@@ -8,7 +8,14 @@ export type PullRequest = {
   created_at: string;
   user: { login: string } | null;
   labels: { name: string; color: string }[];
+  /**
+   * Logins of the requested reviewers. GitHub's pull request list supplies
+   * these; the review report's `openPRs` does not, so it is left undefined there.
+   */
+  reviewers?: string[];
 };
+
+type RawPullRequest = PullRequest & { requested_reviewers?: unknown; requested_teams?: unknown };
 
 type NumberedPR = { number: number };
 
@@ -37,7 +44,16 @@ function hasText(value: unknown): value is string {
 }
 
 // Validate the fields rendered by the table and omit the rest of GitHub's REST payload.
-function tableRows(prs: PullRequest[]): PullRequest[] {
+function reviewerLogins(value: unknown): string[] | undefined {
+  if (!Array.isArray(value)) return undefined;
+  return value.flatMap((entry: unknown) => {
+    // People carry a login; requested teams carry a slug.
+    const { login, slug } = (entry ?? {}) as { login?: unknown; slug?: unknown };
+    return hasText(login) ? [login] : hasText(slug) ? [slug] : [];
+  });
+}
+
+function tableRows(prs: RawPullRequest[]): PullRequest[] {
   return prs.map((pr) => {
     if (!hasNumber(pr) || !hasText(pr.title) || pr.html_url !== `${site.github}/pull/${pr.number}` ||
         typeof pr.draft !== "boolean" || !hasText(pr.created_at) || !Number.isFinite(Date.parse(pr.created_at))) {
@@ -49,10 +65,14 @@ function tableRows(prs: PullRequest[]): PullRequest[] {
       throw new Error("Invalid author or labels in tracker response");
     }
     const { number, title, html_url, draft, created_at, user, labels } = pr;
+    const people = reviewerLogins(pr.requested_reviewers);
+    const teams = reviewerLogins(pr.requested_teams);
+    const reviewers = people && [...people, ...(teams ?? [])];
     return {
       number, title, html_url, draft, created_at,
       user: user && { login: user.login },
       labels: labels.map(({ name, color }) => ({ name, color })),
+      ...(reviewers && { reviewers }),
     };
   });
 }

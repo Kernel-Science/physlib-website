@@ -12,7 +12,7 @@ export function AiGuidelinesContent({ headingLevel = 2 }: { headingLevel?: 2 | 3
       </p>
 
       <section className="mb-12">
-        <PageHeader headingLevel={headingLevel} id="where-ai-code-is-allowed" title="Where AI-generated code is allowed" />
+        <PageHeader headingLevel={headingLevel} id="where-ai-code-is-allowed" title="Where AI-Generated Code Is Allowed" />
         <p className="text-sm mb-6 leading-relaxed" style={textStyle}>
           Physlib is split into two areas with different tolerances for
           AI-generated proofs, reflecting how much scrutiny each area&apos;s
@@ -29,7 +29,7 @@ export function AiGuidelinesContent({ headingLevel = 2 }: { headingLevel?: 2 | 3
               <p className="leading-relaxed" style={textStyle}>
                 AI assistance is permitted when preparing
                 pull requests for this area, but stricter code quality
-                requirements apply. The bulk of the work and decisions made must be made by a human.
+                requirements apply. A human must do the bulk of the work and make the decisions.
               </p>
             </Card.Content>
           </Card>
@@ -41,7 +41,7 @@ export function AiGuidelinesContent({ headingLevel = 2 }: { headingLevel?: 2 | 3
             </Card.Header>
             <Card.Content className="text-sm text-foreground/90">
               <p className="leading-relaxed" style={textStyle}>
-                This is a downstream staging ground for formalisations. AI-generated code is allowed here so the review process is less strict. First drafts of theorems can go in here and then a human can use them as inspiration to produce higher quality code in {" "}<code className="font-mono text-xs">/Physlib</code>.
+                This is a downstream staging ground for formalizations. AI-generated code is allowed here so the review process is less strict. First drafts of theorems can go in here and then a human can use them as inspiration to produce higher quality code in{" "}<code className="font-mono text-xs">/Physlib</code>.
               </p>
             </Card.Content>
           </Card>
@@ -52,7 +52,7 @@ export function AiGuidelinesContent({ headingLevel = 2 }: { headingLevel?: 2 | 3
         <PageHeader
           headingLevel={headingLevel}
           id="stricter-requirements-for-physlib"
-          title="Stricter requirements for /Physlib pull requests"
+          title="Stricter Requirements for /Physlib Pull Requests"
         />
         <p className="text-sm mb-4 leading-relaxed" style={textStyle}>
           If you use AI tools to help write a pull request targeting{" "}
@@ -68,14 +68,40 @@ export function AiGuidelinesContent({ headingLevel = 2 }: { headingLevel?: 2 | 3
           <li className="flex gap-3">
             <span className="text-accent flex-shrink-0">—</span>
             <div className="flex-1">
-              The code must follow the same style, naming, and structure conventions described in the <a href="/getting-started" className="text-accent hover:underline underline-offset-2">Getting Started</a> guide. You must make sure your code is in the correct sub-folder of Physlib and does not duplicate existing code.
+              The code must follow the same style, naming, and structure conventions described in the <a href="/getting-started#writing-results" className="text-accent hover:underline underline-offset-2">Getting Started</a> guide. You must make sure your code is in the correct sub-folder of Physlib and does not duplicate existing code.
             </div>
           </li>
           <li className="flex gap-3">
             <span className="text-accent flex-shrink-0">—</span>
             Do not submit unreviewed AI output.
           </li>
+          <li className="flex gap-3">
+            <span className="text-accent flex-shrink-0">—</span>
+            Check every bibliographic reference yourself, and do not use an AI
+            agent to talk to reviewers.
+          </li>
         </ul>
+        <p className="text-sm mt-4 leading-relaxed" style={textStyle}>
+          See the repository&apos;s{" "}
+          <a
+            href={`${site.github}/blob/master/AI-POLICY.md`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-accent hover:underline underline-offset-2"
+          >
+            AI policy
+          </a>{" "}
+          for the full rules on AI-assisted pull requests, and{" "}
+          <a
+            href={`${site.github}/blob/master/AGENTS.md`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-accent hover:underline underline-offset-2"
+          >
+            AGENTS.md
+          </a>{" "}
+          for the instructions your agent should follow.
+        </p>
       </section>
 
       <section>

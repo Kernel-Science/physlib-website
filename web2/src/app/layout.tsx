@@ -26,6 +26,12 @@ export const metadata: Metadata = {
     template: `%s · ${site.name}`,
   },
   description: site.description,
+  icons: {
+    icon: [
+      { url: "/icon.svg?v=mono", type: "image/svg+xml", sizes: "any", media: "(prefers-color-scheme: light)" },
+      { url: "/physlib-icon-dark.svg?v=mono", type: "image/svg+xml", sizes: "any", media: "(prefers-color-scheme: dark)" },
+    ],
+  },
   openGraph: {
     title: site.title,
     description: site.description,
@@ -51,7 +57,7 @@ export default async function RootLayout({
         <Providers>
           <Navbar />
           {/* pt-16 offsets the fixed navbar on inner pages; home page handles its own top spacing */}
-          <div className="mx-auto flex w-full flex-1 lg:has-[>aside]:max-w-7xl">
+          <div className="mx-auto flex w-full flex-1 max-w-7xl has-[.hero-gradient]:max-w-none">
             <MonthArchiveProvider bounds={await getArchiveBounds()}>
               <ConditionalSidebar />
             </MonthArchiveProvider>
