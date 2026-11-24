@@ -26,7 +26,7 @@ Connect an MCP client using Streamable HTTP at `/api/mcp` on the running site.
 With the default development server, the URL is `http://localhost:3000/api/mcp`.
 Try asking “Which issues are open for the website, and how do I preview a change?”
 
-- `find_tasks` searches website issues and the Lean library's issues, TODOs, documentation tasks, and API map work. Set `repository` to `website` or `library` to narrow the search. Each result links to its source.
+- `find_tasks` searches website issues and the Lean library's issues, TODOs, documentation tasks, and Wiki article work. Set `repository` to `website` or `library` to narrow the search. Each result links to its source.
 - `get_contribution_guide` lists the guides or reads one by ID. Use `website` for local setup and the website PR target. The other guides cover getting started, the library's AI guidelines, and opening a library PR. Clients can also read these guides as Markdown resources.
 
 Scripts can use the same search at `GET /api/tasks`. For example, `/api/tasks?repository=website` lists open website issues, and `/api/tasks?repository=library&q=qubit&limit=5` finds library work mentioning qubits. Check `sources` for data availability and use `nextOffset` to request the next page.

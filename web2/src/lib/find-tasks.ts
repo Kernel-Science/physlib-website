@@ -186,7 +186,9 @@ function documentationTask(path: string): FindTask {
 function issueKinds(title: string, labels: string[], isTodo: boolean): FindTaskKind[] {
   const kinds: FindTaskKind[] = ["issue"];
   if (isTodo) kinds.push("todo");
-  if (/\bapi[\s-]+maps?\b/i.test(title) || labels.some((label) => /^api(?:[\s-]+maps?)?$/i.test(label))) {
+  const wikiTitle = /\b(?:wiki[\s-]+articles?|api[\s-]+maps?)\b/i;
+  const wikiLabel = /^(?:wiki(?:[\s-]+articles?)?|api(?:[\s-]+maps?)?)$/i;
+  if (wikiTitle.test(title) || labels.some(label => wikiLabel.test(label))) {
     kinds.push("api-map");
   }
   return kinds;

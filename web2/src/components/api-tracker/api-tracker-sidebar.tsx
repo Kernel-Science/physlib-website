@@ -1,137 +1,169 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState, type MouseEvent } from "react";
 import { usePathname } from "next/navigation";
-import type { ApiMap, ApiMapNode } from "@/lib/yaml";
-import { buildFolderTree, flattenFolderTree, type FolderEntry } from "@/lib/api-map-folders";
-import { selectApiMapEntry } from "@/lib/api-map-hash";
-import { API_STATUS_DOT, API_STATUS_LABEL, apiStatusKind } from "@/lib/api-map-status";
+import { isWikiReaderPath, selectApiMapEntry } from "@/lib/api-map-hash";
+import { API_STATUS_DOT, API_STATUS_LABEL, type ApiStatusKind } from "@/lib/api-map-status";
+import { Chevron } from "@/components/chevron";
+import { articleHref, type SidebarArticle, type SidebarManifest } from "./roadmap-sidebar-data";
+import styles from "./roadmap-sidebar.module.css";
 
-function decodeHash(): string {
-  return decodeURIComponent(window.location.hash.replace(/^#/, ""));
-}
+type Folder = { path: string; name: string; sourceFolders: Set<string>; articles: SidebarArticle[]; folders: Folder[] };
 
-function MapList({
-  nodes,
-  activePath,
-  indented = true,
-}: {
-  nodes: ApiMapNode[];
-  activePath: string;
-  indented?: boolean;
-}) {
-  return (
-    <ul className="flex flex-col">
-      {nodes.map((node) => {
-        const { path, title } = node;
-        const isActive = path === activePath;
-        const status = apiStatusKind(node);
-        return (
-          <li key={path}>
-            <a
-              href={`/api-tracker#${path}`}
-              onClick={(e) => {
-                if (window.location.pathname !== "/api-tracker" || e.metaKey || e.ctrlKey
-                  || e.shiftKey || e.altKey || e.button !== 0) return;
-                e.preventDefault();
-                selectApiMapEntry(path, { scrollToArticle: true });
-              }}
-              aria-current={isActive ? "location" : undefined}
-              title={title}
-              className={`flex items-center rounded-lg py-1.5 pr-3 text-sm transition-colors ${
-                isActive ? "text-accent font-medium" : "text-muted hover:text-foreground"
-              }`}
-              style={{ letterSpacing: "-0.01em", paddingLeft: indented ? 22 : 8 }}
-            >
-              <span className="min-w-0 flex-1 truncate">{title}</span>
-              <span
-                aria-hidden
-                className={`ml-2 size-1.5 shrink-0 rounded-full ${API_STATUS_DOT[status]}`}
-              />
-              <span className="sr-only"> ({API_STATUS_LABEL[status]})</span>
-            </a>
-          </li>
-        );
-      })}
-    </ul>
+function displayedFolder(item: SidebarArticle) {
+  return item.folder.split("/").filter(Boolean).filter((part,i) =>
+    i !== 0 || (part !== "Physlib" && part !== "PhyslibAlpha")
   );
 }
 
-function RootMaps({ root, activePath }: { root: FolderEntry; activePath: string }) {
-  const folders = new Map<string, ApiMapNode[]>();
-  for (const node of flattenFolderTree(root.children)) {
-    const folder = node.path.split("/")[1];
-    const maps = folders.get(folder);
-    if (maps) maps.push(node);
-    else folders.set(folder, [node]);
+function buildTree(articles: SidebarArticle[]) {
+  const root: Folder = { path: "", name: "", sourceFolders: new Set(), articles: [], folders: [] };
+  const known = new Map([["", root]]);
+  for (const item of articles) {
+    let parent = root;
+    const segments = displayedFolder(item);
+    const source = item.folder.split("/");
+    const prefix = source.slice(0, source.length - segments.length);
+    for (const segment of segments) {
+      prefix.push(segment);
+      const path = parent.path ? parent.path + "/" + segment : segment;
+      let next = known.get(path);
+      if (!next) {
+        next = {path, name:segment, sourceFolders:new Set(), articles:[], folders:[]};
+        parent.folders.push(next);
+        known.set(path,next);
+      }
+      next.sourceFolders.add(prefix.join("/"));
+      parent = next;
+    }
+    parent.articles.push(item);
   }
+  for (const node of known.values()) {
+    node.folders.sort((a,b) => a.name.localeCompare(b.name));
+  }
+  return root;
+}
 
-  return (
-    <>
-      <p className="mb-2 px-2 text-[10px] font-bold uppercase tracking-widest text-muted/60">
-        {root.label}
-      </p>
-      {root.node && <MapList nodes={[root.node]} activePath={activePath} indented={false} />}
-      {[...folders].map(([folder, nodes]) => (
-        <div key={folder}>
-          <p className="block truncate py-1.5 pl-2 pr-3 font-mono text-[11px] text-muted/70">
-            {folder}/
-          </p>
-          <MapList nodes={nodes} activePath={activePath} />
-        </div>
-      ))}
-    </>
-  );
+function getKey() {
+  try {
+    return decodeURIComponent(window.location.hash.slice(1));
+  }
+  catch { return ""; }
+}
+function FolderName({ value }: { value: string }) {
+  return <>{value.split(/(?<=[a-z])(?=[A-Z])|(?=[./])/).map((part,i) =>
+    <span key={i}>{i > 0 && <wbr />}{part}</span>
+  )}</>;
+}
+function StatusDot({status}: {status:ApiStatusKind}) {
+  return <span aria-hidden="true" title={API_STATUS_LABEL[status]} data-api-status={status}
+    className={`${styles.dot} size-1.5 rounded-full ${API_STATUS_DOT[status]}`} />;
 }
 
 export function ApiTrackerSidebar() {
   const pathname = usePathname();
-  const [tree, setTree] = useState<FolderEntry[] | null>(null);
-  const [activePath, setActivePath] = useState("");
-
+  const [manifest,setManifest] = useState<SidebarManifest>();
+  const [failed,setFailed] = useState(false);
+  const [open,setOpen] = useState(false);
+  const [openPath,setOpenPath] = useState("");
+  const [active,setActive] = useState("");
   useEffect(() => {
-    let cancelled = false;
-    fetch("/api/api-map")
-      .then((res) => res.json())
-      .then((data: ApiMap) => {
-        if (!cancelled) setTree(buildFolderTree(data.nodes));
-      })
-      .catch(() => {});
-    return () => {
-      cancelled = true;
-    };
+    const controller = new AbortController();
+    fetch("/api/roadmap-sidebar", {signal:controller.signal}).then(async res => {
+      if (!res.ok) throw new Error(String(res.status));
+      setManifest(await res.json());
+    }).catch(() => { if (!controller.signal.aborted) setFailed(true); });
+    return () => controller.abort();
   }, []);
-
   useEffect(() => {
-    const onHashChange = () => setActivePath(decodeHash());
-    onHashChange();
-    window.addEventListener("hashchange", onHashChange);
-    return () => window.removeEventListener("hashchange", onHashChange);
+    const onChange = () => {
+      const key = getKey();
+      setActive(key);
+      if (!key) setOpenPath("");
+      setOpen(false);
+    };
+    onChange();
+    window.addEventListener("hashchange", onChange);
+    window.addEventListener("physlib:reset-roadmap", onChange);
+    return () => {
+      window.removeEventListener("hashchange", onChange);
+      window.removeEventListener("physlib:reset-roadmap", onChange);
+    };
   }, [pathname]);
+  const selected = useMemo(() => manifest?.articles.find(a => a.target === active), [active,manifest]);
+  useEffect(() => {
+    setOpenPath(selected ? displayedFolder(selected).join("/") : "");
+  }, [selected]);
 
-  // Reserve the column while the tree loads so the page does not jump.
-  if (!tree || tree.length === 0)
-    return <aside aria-hidden="true" className="hidden w-56 shrink-0 lg:block xl:w-64" />;
-
-  const selectedPath = pathname === "/api-tracker" ? activePath || flattenFolderTree(tree)[0]?.path : "";
-
-  return (
-    <aside className="hidden w-56 shrink-0 pt-16 lg:block xl:w-64">
-      <div className="sticky top-16 mb-4 flex max-h-[calc(100dvh-5rem)] flex-col pt-6">
-        <nav
-          id="api-map-sidebar"
-          aria-label="API maps"
-          className="min-h-0 overflow-y-auto overflow-x-hidden pb-5 [mask-image:linear-gradient(to_bottom,black_calc(100%-1rem),transparent)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-        >
-          <div className="pr-3 pl-6">
-            {tree.map((root, i) => (
-              <div key={root.path} className={i > 0 ? "mt-5" : ""}>
-                <RootMaps root={root} activePath={selectedPath} />
-              </div>
-            ))}
-          </div>
-        </nav>
+  const tree = useMemo(() => buildTree(manifest?.articles ?? []), [manifest]);
+  const close = () => setOpen(false);
+  function navigate(event: MouseEvent<HTMLAnchorElement>, article: SidebarArticle) {
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
+    close();
+    const path = window.location.pathname;
+    if (!isWikiReaderPath(path)) return;
+    event.preventDefault();
+    setOpenPath(displayedFolder(article).join("/"));
+    selectApiMapEntry(article.target, {scrollToArticle:true});
+  }
+  function branch(node: Folder) {
+    const expanded = openPath === node.path || openPath.startsWith(node.path + "/");
+    const hasChildren = node.folders.length > 0;
+    const label = (expanded ? "Collapse " : "Expand ") + node.path;
+    const toggle = () => setOpenPath(expanded ? node.path.split("/").slice(0,-1).join("/") : node.path);
+    return <li key={node.path}>
+      {node.articles.length > 0 ? node.articles.map((article, i) =>
+        <div className={styles.folder} key={article.target} data-has-map>
+          <a href={articleHref(article)} onClick={event => navigate(event, article)}
+             aria-label={`Read ${article.title}, ${API_STATUS_LABEL[article.status]}`}
+             title={article.title + " · " + API_STATUS_LABEL[article.status]}
+             aria-current={selected === article ? "page" : undefined} data-api-map={article.target}>
+            <FolderName value={node.name || article.target}/>
+            {node.articles.length > 1 && " (" + article.target.split("/")[0] + ")"}
+            <StatusDot status={article.status}/>
+          </a>
+          {hasChildren && i === 0 && <button type="button" className={styles.disclosure}
+            onClick={toggle} aria-label={label} aria-expanded={expanded}>
+            <Chevron open={expanded}/>
+          </button>}
+        </div>
+      ) : <div className={`${styles.folder} ${styles.emptyFolder}`}>
+        <button type="button" className={styles.folderToggle} onClick={toggle} aria-label={label} aria-expanded={expanded}>
+          <FolderName value={node.name}/><Chevron open={expanded}/>
+        </button>
+        {[...node.sourceFolders].map(path => (
+          <a key={path} href={`/wiki/new?path=${encodeURIComponent(path)}`} className={styles.addArticle}
+            aria-label={`Create a Wiki article for ${path}`}>
+            +
+          </a>
+        ))}
+      </div>}
+      {expanded && hasChildren && <ul className={styles.children}>{node.folders.map(branch)}</ul>}
+    </li>;
+  }
+  return <aside className={styles.sidebar} data-api-library-sidebar>
+    <button className={styles.mobileToggle} type="button" aria-controls="api-map-sidebar"
+            aria-expanded={open} onClick={() => setOpen(!open)}>
+      Browse articles <Chevron open={open}/>
+    </button>
+    <nav id="api-map-sidebar" aria-label="Wiki articles" className={styles.nav} data-open={open}>
+      <a href="/wiki" className={`site-nav-heading ${styles.home}`} aria-current={pathname === "/wiki" && !active ? "page" : undefined}
+        onClick={event => {
+          if (pathname !== "/wiki" || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
+          event.preventDefault();
+          setOpen(false);
+          setOpenPath("");
+          selectApiMapEntry("");
+          requestAnimationFrame(() => {
+            document.getElementById("wiki")?.focus({ preventScroll: true });
+            window.scrollTo({ top: 0, behavior: "instant" });
+          });
+        }}>Physlib Wiki</a>
+      <div className={styles.scroll}>
+        {!manifest ? <p className={styles.status}>{failed?"The article list could not be loaded.":"Loading articles…"}</p>
+          : <ul className={styles.tree}>{tree.articles.map(article => branch({path: article.target, name: article.target, sourceFolders: new Set([article.folder]), articles: [article], folders: []}))}{tree.folders.map(branch)}</ul>}
       </div>
-    </aside>
-  );
+      <a href="/wiki/new" onClick={close} className={styles.create}>Create a Wiki article</a>
+    </nav>
+  </aside>;
 }

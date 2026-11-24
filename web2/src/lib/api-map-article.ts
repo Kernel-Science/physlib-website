@@ -67,7 +67,7 @@ export function talkUrl(repo: string, title: string): string {
 }
 
 /** The page of an API map on this site. */
-export const apiMapHref = (path: string) => `/api-tracker#${path}`;
+export const apiMapHref = (path: string) => `/wiki#${path}`;
 
 /** `Physlib/SpaceAndTime/Time` → `Physlib.SpaceAndTime.Time`. */
 export const moduleOf = (path: string) => path.replace(/\//g, ".");
@@ -531,18 +531,20 @@ export function unifiedDiff(diff: DiffLine[]): string {
     .join("\n");
 }
 
-// ─── New API maps ───────────────────────────────────────────────────────────
+// ─── New Wiki articles ──────────────────────────────────────────────────────
+
+export const WIKI_TITLE_PLACEHOLDER = "Wiki article title";
+export const WIKI_ABSTRACT_PLACEHOLDER = "Summarize the physics and the results this article covers in one paragraph. Leave citations for the main text.";
 
 /** The skeleton of a new API-map.md, in the shape docs/API_MAP_GUIDE.md asks
  *  for. */
 export function newApiMapTemplate(title: string, abstract = ""): string {
   return [
-    `# ${title.trim() || "Title of the API"}`,
+    `# ${title.trim() || WIKI_TITLE_PLACEHOLDER}`,
     "",
     "## Abstract (Alpha)",
     "",
-    abstract.trim() ||
-      "One paragraph saying what this area of physics is about and what the API covers. No citations here.",
+    abstract.trim() || WIKI_ABSTRACT_PLACEHOLDER,
     "",
     "## Content (Alpha)",
     "",

@@ -7,7 +7,27 @@ const themeMarker = '\n/* --- PHYSLIB CUSTOM THEME --- */\n';
 const faviconLinks = '<link rel="icon" type="image/svg+xml" href="/icon.svg?v=mono" media="(prefers-color-scheme: light)"/>' +
   '<link rel="icon" type="image/svg+xml" href="/physlib-icon-dark.svg?v=mono" media="(prefers-color-scheme: dark)"/>';
 
+function publishedVersoPages() {
+  const { tree } = JSON.parse(fs.readFileSync(path.join(publicPath, 'roadmap-view/roadmap-data.json'), 'utf8'));
+  const { formerFiles } = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/RoadmapNativeFolders.json'), 'utf8'));
+  const published = new Map();
+  function visit(node) {
+    for (const { href } of node.moduleLinks ?? []) {
+      const match = /^https:\/\/jstoobysmith\.github\.io\/PhyslibVerso\/((?:Physlib|PhyslibAlpha)(?:\/[^?#]+?)?)\/$/.exec(href);
+      if (match) published.set(decodeURIComponent(match[1]) + '.lean', href);
+    }
+    for (const child of node.children ?? []) visit(child);
+  }
+  visit(tree);
+  const pages = new Map(published);
+  for (const [former, current] of Object.entries(formerFiles)) {
+    if (published.has(former) && !pages.has(current)) pages.set(current, published.get(former));
+  }
+  return pages;
+}
+
 function styleGeneratedDocs() {
+  const versoPages = publishedVersoPages();
   const stylePath = path.join(docsPath, 'style.css');
   const baseStyle = fs.readFileSync(stylePath, 'utf8').split(themeMarker)[0];
   const theme = ['blue-palette.css', 'physlib-theme.css', 'docs-theme.css']
@@ -30,7 +50,11 @@ function styleGeneratedDocs() {
     const isIndex = file === 'index.html';
     const filePath = path.join(docsPath, file);
     const html = fs.readFileSync(filePath, 'utf8');
-    const withFavicon = html.replace(/<link rel="icon" href="[^"]*favicon\.svg"\s*\/?>/, faviconLinks);
+    const withFavicon = html
+      // Re-derive this attribute after styling, including if a published
+      // counterpart disappeared or this was previously an empty module.
+      .replace(/<main\b[^>]*>/, tag => tag.replace(/\sdata-verso-href="[^"]*"/g, ''))
+      .replace(/<link rel="icon" href="[^"]*favicon\.svg"\s*\/?>/, faviconLinks);
     if (file === 'navbar.html') {
       const updatedNav = withFavicon
         .replace(/<details class="docs-general"><summary>General documentation<\/summary>([\s\S]*?)<\/details>/,
@@ -97,9 +121,13 @@ function styleGeneratedDocs() {
       ? pageWithTitle
       : pageWithTitle.replace(/<nav class="nav"><iframe\b[^>]*class="navframe"[^>]*><\/iframe><\/nav>/,
           (sidebar) => `<aside class="docs-sidebar-column">${sidebar}</aside>`);
-    const result = pageWithSidebar.includes('class="docs-site-header"') && !pageWithSidebar.includes('class="docs-site-footer"')
+    const withFooter = pageWithSidebar.includes('class="docs-site-header"') && !pageWithSidebar.includes('class="docs-site-footer"')
       ? pageWithSidebar.replace('</body>', '<iframe class="docs-site-footer" src="/docs-header" title="Physlib footer" loading="lazy"></iframe></body>')
       : pageWithSidebar;
+    const href = versoPages.get(file.split(path.sep).join('/').replace(/\.html$/, '.lean'));
+    const result = href
+      ? withFooter.replace(/<main(?=[\s>])/, () => '<main data-verso-href="' + href.replaceAll('&', '&amp;').replaceAll('"', '&quot;') + '"')
+      : withFooter;
     if (result !== html) fs.writeFileSync(filePath, result);
   }
 }

@@ -1,0 +1,40 @@
+# External Lean Declaration Audit
+
+The database indexes Lean source declarations at pinned Git revisions. Each row carries a repository, file, line, Lean keyword and qualified source name. A source receipt checks each file against its upstream Git blob. Source-level `sorry` and `admit` flags describe the declaration text. The audit does not run the Lean compiler.
+
+Extract the portable snapshot from this directory with `gzip -dc declarations.sqlite.gz > declarations.sqlite` in a fresh checkout. The local working database is `declarations.sqlite`.
+
+To read every declaration from one repository, including its proposed Physlib-style destination, open the database with SQLite and run this query.
+
+```sql
+SELECT d.path, d.line, d.name, d.kind, d.status,
+       coalesce(dp.topic, mp.topic) AS roadmap_topic,
+       coalesce(dp.evidence, mp.evidence) AS placement_evidence
+FROM roadmap_external_declarations AS d
+JOIN module_placements AS mp ON mp.module_id = d.module_id
+LEFT JOIN declaration_placements AS dp ON dp.declaration_id = d.decl_id
+WHERE d.repository = 'yezhuoyang/LogicQ'
+ORDER BY d.path, d.line;
+```
+
+The roadmap uses two glyphs for Physlib and PhyslibAlpha declarations. Lemmas, theorems and axioms use a filled dot. Definitions, constants and other object declarations use an eight-spoke asterisk. A file region opens its published module article. Marks share the file destination. Anonymous Lean examples remain in the audit table. Hollow circles come from explicit TODOs in Physlib Wiki articles.
+
+To rebuild from the pinned project inventories, run these commands in `web2`. The source audit resumes completed files. The verification step reads public Git trees through an authenticated GitHub CLI or a `GITHUB_TOKEN` with public repository read access.
+
+```sh
+python3 scripts/roadmap_audit.py
+python3 scripts/roadmap_verify_blobs.py
+python3 scripts/roadmap_placement.py
+node scripts/build-roadmap-native-folders.mjs
+python3 scripts/build-roadmap-native-declarations.py
+python3 scripts/export-roadmap-declarations.py --complete
+node scripts/build-verso-roadmap.mjs
+```
+
+The external placement uses source paths, declaration names and project scopes. Each proposed destination records the evidence used. The public map attaches those results to the nearest directory in the pinned Physlib, PhyslibAlpha or bundled QuantumInfo tree. The audit retains the more detailed proposed topic. Each repository has one named home in `project_homes`. A repository can also contribute declarations to other topics, where each file retains its source attribution.
+
+The overview draws individual declarations for Physlib and PhyslibAlpha. External declarations contribute to grey project and topic areas. Select a named project on the map and use **Open on GitHub** to visit its repository. The SQL query above lists its indexed declarations, source files and lines.
+
+The area for a repository is its indexed declaration count times its linked GitHub contributor count raised to the power 1.1. Each repository divides that area among its topics in proportion to its declaration counts. Physlib and PhyslibAlpha share one repository. The blue Physlib total includes bundled QuantumInfo. Each native file in the pinned Git tree is indexed, including import-only files. Marks count explicit formal declaration commands in the source. Published Verso pages provide links. Explicit TODOs in Wiki articles occupy part of the native repository’s area without adding to its declaration count. Source visibility controls leave the geometry fixed.
+
+The weekly workflow refreshes native file and folder credits when the pinned Physlib revision changes. To reproduce them locally, use an authenticated GitHub CLI and run `python3 scripts/build-roadmap-native-contributors.py --repo /path/to/full/physlib/clone`. Refresh the separate repository-wide contributor snapshot with `node scripts/build-roadmap-contributors.mjs`. GitHub attributes commits to linked accounts. The snapshot excludes reported bots and records when the contributor lists were fetched.

@@ -24,7 +24,7 @@ export function createPhyslibMcpServer() {
     title: "Find a Physlib task",
     description:
       "Search website issues and the Physlib library's GitHub issues, Lean TODOs, documentation tasks, " +
-      "and API map work. Results include source links and indicate which sources were available.",
+      "and Wiki article tasks. Results include source links and indicate which sources were available.",
     inputSchema: taskQuerySchema,
     annotations: { readOnlyHint: true },
   }, async (query) => {

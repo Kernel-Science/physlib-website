@@ -45,11 +45,11 @@ export const navSections: NavSection[] = [
   {
     label: "Explore",
     items: [
-      { label: "API Maps", href: "/api-tracker" },
+      { label: "Roadmap", href: "/roadmap" },
+      { label: "Physlib Wiki", href: "/wiki" },
       { label: "Dependency Graphs", href: "/dependencies" },
       { label: "Documentation", href: site.docs },
       { label: "References", href: "/references" },
-      { label: "VersoView", href: site.verso, external: true },
     ],
   },
   {

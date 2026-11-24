@@ -54,3 +54,10 @@ next-env.d.ts
 
 # Generated from the current import graph and locked JavaScript packages.
 /public/graph-assets/
+
+# The portable source audit is declarations.sqlite.gz. Keep the working
+# SQLite database, transient journal files, and parser logs on this machine.
+/data/roadmap-audit/*.sqlite
+/data/roadmap-audit/*.sqlite-*
+/data/roadmap-audit/*.log
+/scripts/__pycache__/

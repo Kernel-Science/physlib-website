@@ -1,0 +1,142 @@
+{
+  "Physlib/ClassicalMechanics/HamiltonsEquations.lean": {
+    "current": "Physlib/ClassicalMechanics/HamiltonianMechanics/HamiltonsEquations.lean",
+    "commit": "1ae0a0c3093ec24b6244511f240298802af49062"
+  },
+  "Physlib/Electromagnetism/Distributional/Dynamics/CurrentDensity.lean": {
+    "current": "Physlib/Electromagnetism/TemperedDistributional/Dynamics/CurrentDensity.lean",
+    "commit": "44185ad52bd658f2da4945eb59c461434a4ede6c"
+  },
+  "Physlib/Electromagnetism/Distributional/Dynamics/IsExtrema.lean": {
+    "current": "Physlib/Electromagnetism/TemperedDistributional/Dynamics/IsExtrema.lean",
+    "commit": "44185ad52bd658f2da4945eb59c461434a4ede6c"
+  },
+  "Physlib/Electromagnetism/Distributional/Dynamics/KineticTerm.lean": {
+    "current": "Physlib/Electromagnetism/TemperedDistributional/Dynamics/KineticTerm.lean",
+    "commit": "44185ad52bd658f2da4945eb59c461434a4ede6c"
+  },
+  "Physlib/Electromagnetism/Distributional/Dynamics/Lagrangian.lean": {
+    "current": "Physlib/Electromagnetism/TemperedDistributional/Dynamics/Lagrangian.lean",
+    "commit": "44185ad52bd658f2da4945eb59c461434a4ede6c"
+  },
+  "Physlib/Electromagnetism/Distributional/ElectricField.lean": {
+    "current": "Physlib/Electromagnetism/TemperedDistributional/ElectricField.lean",
+    "commit": "44185ad52bd658f2da4945eb59c461434a4ede6c"
+  },
+  "Physlib/Electromagnetism/Distributional/FieldStrength.lean": {
+    "current": "Physlib/Electromagnetism/TemperedDistributional/FieldStrength.lean",
+    "commit": "44185ad52bd658f2da4945eb59c461434a4ede6c"
+  },
+  "Physlib/Electromagnetism/Distributional/MagneticField.lean": {
+    "current": "Physlib/Electromagnetism/TemperedDistributional/MagneticField.lean",
+    "commit": "44185ad52bd658f2da4945eb59c461434a4ede6c"
+  },
+  "Physlib/Electromagnetism/Distributional/ScalarPotential.lean": {
+    "current": "Physlib/Electromagnetism/TemperedDistributional/ScalarPotential.lean",
+    "commit": "44185ad52bd658f2da4945eb59c461434a4ede6c"
+  },
+  "Physlib/Electromagnetism/Distributional/VectorPotential.lean": {
+    "current": "Physlib/Electromagnetism/TemperedDistributional/VectorPotential.lean",
+    "commit": "44185ad52bd658f2da4945eb59c461434a4ede6c"
+  },
+  "Physlib/Mathematics/ConjModule.lean": {
+    "current": "Physlib/Mathematics/Modules/ConjModule.lean",
+    "commit": "1433e0de522684d9413c2377d7536479526acaf9"
+  },
+  "Physlib/Mathematics/CrossProduct.lean": {
+    "current": "Physlib/Mathematics/Modules/CrossProduct.lean",
+    "commit": "1433e0de522684d9413c2377d7536479526acaf9"
+  },
+  "Physlib/Mathematics/CrossProductMatrix.lean": {
+    "current": "Physlib/Mathematics/Modules/CrossProductMatrix.lean",
+    "commit": "1433e0de522684d9413c2377d7536479526acaf9"
+  },
+  "Physlib/Mathematics/DataStructures/Matrix/LieTrace.lean": {
+    "current": "Physlib/Mathematics/ForMathlib/DataStructures/Matrix/LieTrace.lean",
+    "commit": "1433e0de522684d9413c2377d7536479526acaf9"
+  },
+  "Physlib/Mathematics/Distribution/Basic.lean": {
+    "current": "Physlib/Mathematics/Distribution/TemperedDistribution.lean",
+    "commit": "44185ad52bd658f2da4945eb59c461434a4ede6c"
+  },
+  "Physlib/Mathematics/FDerivCurry.lean": {
+    "current": "Physlib/Mathematics/ForMathlib/FDerivCurry.lean",
+    "commit": "1433e0de522684d9413c2377d7536479526acaf9"
+  },
+  "Physlib/Mathematics/Fin.lean": {
+    "current": "Physlib/Mathematics/ForMathlib/Fin.lean",
+    "commit": "1433e0de522684d9413c2377d7536479526acaf9"
+  },
+  "Physlib/Mathematics/Fin/Involutions.lean": {
+    "current": "Physlib/Mathematics/ForMathlib/Fin/Involutions.lean",
+    "commit": "1433e0de522684d9413c2377d7536479526acaf9"
+  },
+  "Physlib/Mathematics/LinearMaps.lean": {
+    "current": "Physlib/Mathematics/ForMathlib/LinearMaps.lean",
+    "commit": "1433e0de522684d9413c2377d7536479526acaf9"
+  },
+  "Physlib/Mathematics/LinearPMap.lean": {
+    "current": "Physlib/Mathematics/ForMathlib/LinearPMap.lean",
+    "commit": "1433e0de522684d9413c2377d7536479526acaf9"
+  },
+  "Physlib/Mathematics/List.lean": {
+    "current": "Physlib/Mathematics/ForMathlib/List.lean",
+    "commit": "1433e0de522684d9413c2377d7536479526acaf9"
+  },
+  "Physlib/Mathematics/List/InsertIdx.lean": {
+    "current": "Physlib/Mathematics/ForMathlib/List/InsertIdx.lean",
+    "commit": "1433e0de522684d9413c2377d7536479526acaf9"
+  },
+  "Physlib/Mathematics/List/InsertionSort.lean": {
+    "current": "Physlib/Mathematics/ForMathlib/List/InsertionSort.lean",
+    "commit": "1433e0de522684d9413c2377d7536479526acaf9"
+  },
+  "Physlib/Mathematics/OrthogonalMatrix.lean": {
+    "current": "Physlib/Mathematics/ForMathlib/OrthogonalMatrix.lean",
+    "commit": "1433e0de522684d9413c2377d7536479526acaf9"
+  },
+  "Physlib/Mathematics/SO3/Basic.lean": {
+    "current": "Physlib/Mathematics/Groups/SO3/Basic.lean",
+    "commit": "1433e0de522684d9413c2377d7536479526acaf9"
+  },
+  "Physlib/Mathematics/SchurTriangulation.lean": {
+    "current": "Physlib/Mathematics/ForMathlib/SchurTriangulation.lean",
+    "commit": "1433e0de522684d9413c2377d7536479526acaf9"
+  },
+  "Physlib/Mathematics/Trigonometry/Tanh.lean": {
+    "current": "Physlib/Mathematics/ForMathlib/Trigonometry/Tanh.lean",
+    "commit": "1433e0de522684d9413c2377d7536479526acaf9"
+  },
+  "Physlib/Particles/StandardModel/Basic.lean": {
+    "current": "Physlib/Particles/StandardModel/GaugeGroup/Basic.lean",
+    "commit": "bb09d6dca9632bba5592fb9604a0f5f8d57817e9"
+  },
+  "Physlib/Relativity/PauliMatrices/Relations.lean": {
+    "current": "Physlib/Relativity/Bispinors/Pauli/Relations.lean",
+    "commit": "1e43bf05f513b57c2625cd331f3ef9f395153de7"
+  },
+  "Physlib/Relativity/PauliMatrices/ToTensor.lean": {
+    "current": "Physlib/Relativity/Bispinors/Pauli/ToTensor.lean",
+    "commit": "1e43bf05f513b57c2625cd331f3ef9f395153de7"
+  },
+  "Physlib/Relativity/Tensors/ComplexTensor/OfRat.lean": {
+    "current": "Physlib/Relativity/Tensors/ComplexTensor/OfGaussianInt.lean",
+    "commit": "3b203ef9fd95804536b77d64c6d82fd7d5567316"
+  },
+  "Physlib/Relativity/Tensors/ComplexTensor/Vector/Pre/Contraction.lean": {
+    "current": "Physlib/Relativity/Tensors/ComplexTensor/Vector/Contraction.lean",
+    "commit": "cff79f67403fcc43b7d6f236f1903ccba80e47f0"
+  },
+  "Physlib/Relativity/Tensors/RealTensor/Vector/Causality/Basic.lean": {
+    "current": "Physlib/Relativity/Causality/Basic.lean",
+    "commit": "d76538126ef28f3f5e0a7c048e32e06622668532"
+  },
+  "Physlib/Relativity/Tensors/RealTensor/Vector/Causality/LightLike.lean": {
+    "current": "Physlib/Relativity/Causality/LightLike.lean",
+    "commit": "d76538126ef28f3f5e0a7c048e32e06622668532"
+  },
+  "Physlib/Relativity/Tensors/RealTensor/Vector/Causality/TimeLike.lean": {
+    "current": "Physlib/Relativity/Causality/TimeLike.lean",
+    "commit": "d76538126ef28f3f5e0a7c048e32e06622668532"
+  }
+}

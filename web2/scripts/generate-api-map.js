@@ -37,6 +37,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 const { execFileSync } = require("node:child_process");
 const { parseLean } = require("./lean-decls");
+const { paragraphsOf, citedClaims } = require("./api-map-claims");
 
 const OWNER = "leanprover-community";
 const REPO = "physlib";
@@ -202,35 +203,6 @@ function parseLiteratureReference({ index, text }) {
   return { index, text, apiMap: m ? m[1] : null };
 }
 
-/** The claims of the content, exactly as Physlib's index counts them: each
- *  run of adjacent `[n]`/`[TODO]` citations closes a claim, done unless the
- *  run contains `[TODO]`. Literature citations `{n}` don't count. */
-function claimsOf(paragraph, alpha) {
-  const text = paragraph.replace(/\{\s*\d+\s*\}/g, "");
-  const claims = [];
-  let run = null;
-  let last = 0;
-  for (const m of text.matchAll(/\[(TODO|\d+(?:\s*,\s*\d+)*)\]/g)) {
-    // Prose between two citations ends the earlier run's claim.
-    if (run && text.slice(last, m.index).trim()) {
-      claims.push(run);
-      run = null;
-    }
-    run ??= { done: true, citations: [], alpha };
-    if (m[1] === "TODO") run.done = false;
-    else run.citations.push(...m[1].split(",").map((n) => Number(n.trim())));
-    last = m.index + m[0].length;
-  }
-  if (run) claims.push(run);
-  return claims;
-}
-
-const paragraphsOf = (text) =>
-  text
-    .split(/\n\s*\n/)
-    .map((p) => p.split("\n").filter((l) => !/^#/.test(l)).join(" ").trim())
-    .filter(Boolean);
-
 // ─── Declaration resolution ────────────────────────────────────────────────
 const leanFileCache = new Map();
 
@@ -323,9 +295,11 @@ function parseApiMap(raw, file, rev, branchName, existingFiles) {
 
   const references = (litSection ? numberedEntries(litSection.body) : []).map(parseLiteratureReference);
 
-  const requirements = contentSections.flatMap((s) =>
-    paragraphsOf(s.body.join("\n")).flatMap((p) => claimsOf(p, s.heading.endsWith("(Alpha)"))),
-  );
+  const requirements = contentSections.flatMap((section) => {
+    const alpha = section.heading.endsWith("(Alpha)");
+    return paragraphsOf(section.body.join("\n")).flatMap(citedClaims)
+      .map(({ done, citations }) => ({ done, citations, alpha }));
+  });
 
   // Another API map cited in the references is what this one builds on - the
   // edges of the dependency map.

@@ -6,7 +6,7 @@ import { TaskList } from "./task-list";
 
 export const metadata: Metadata = {
   title: "Find a Task",
-  description: "Search open GitHub issues, Lean TODOs, documentation tasks, and API map work in Physlib.",
+  description: "Search open GitHub issues, Lean TODOs, documentation tasks, and Wiki article tasks in Physlib.",
 };
 
 export default async function TasksPage({
@@ -26,7 +26,7 @@ export default async function TasksPage({
       <p className="label-mono text-muted mb-5">Contribute</p>
       <h1 className="page-title-tracker">Find a Task</h1>
       <p className="page-intro-tracker mb-3">
-        Find GitHub issues, unfinished work marked in Lean files, and tasks for documentation and API maps.{" "}
+        Find GitHub issues, unfinished work marked in Lean files, and tasks for documentation and Wiki articles.{" "}
         <Link href="/ai-resources#task-discovery" className="text-accent hover:underline underline-offset-2">
           Connect an AI assistant
         </Link>{" or "}

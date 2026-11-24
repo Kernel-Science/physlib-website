@@ -10,7 +10,8 @@ export function ConditionalSidebar() {
   const pathname = usePathname();
   if (pathname === "/") return null;
   if (pathname.startsWith("/monthly-updates")) return <MonthSidebar />;
-  if (pathname.startsWith("/api-tracker")) return <ApiTrackerSidebar />;
+  if (pathname === "/roadmap" || pathname === "/api-tracker") return null;
+  if (pathname === "/wiki" || pathname.startsWith("/api-tracker/")) return <ApiTrackerSidebar />;
   if (pathname.startsWith("/references")) return <ReferencesSidebar />;
   return <TableOfContents />;
 }

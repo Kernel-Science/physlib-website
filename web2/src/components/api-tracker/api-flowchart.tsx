@@ -39,7 +39,7 @@ function MapLinks({ items, activePath }: { items: MapLink[]; activePath: string 
             <span className="min-w-0 break-words">
               <span className="block font-medium">{title}</span>
               <span className="block text-xs text-muted">
-                {node ? statusStyle(node).label : "Map missing"}
+                {node ? statusStyle(node).label : "Article missing"}
               </span>
             </span>
           </a>
@@ -55,7 +55,7 @@ function SelectedApi({ nodes, activePath }: { nodes: ApiMapNode[]; activePath: s
   const selected = byPath.get(activePath) ??
     (referenced ? undefined : flattenFolderTree(buildFolderTree(nodes))[0]);
   const path = selected?.path ?? referenced?.path;
-  if (!path) return <p className="text-sm text-muted">No API maps yet.</p>;
+  if (!path) return <p className="text-sm text-muted">No Wiki articles yet.</p>;
 
   const citations = selected?.parents.map(({ path, name }) => ({
     path, title: byPath.get(path)?.title ?? name, node: byPath.get(path),
@@ -148,7 +148,7 @@ function FlowNode({
 
   const style = node
     ? statusStyle(node)
-    : { box: "border-dashed border-border bg-surface-secondary/60", label: "No API-map.md yet" };
+    : { box: "border-dashed border-border bg-surface-secondary/60", label: "Article missing" };
 
   return (
     <li className="api-tree__node">
@@ -168,7 +168,7 @@ function FlowNode({
             e.preventDefault();
             onSelect(path, e.currentTarget);
           }}
-          title={node ? title : `${title} (no API-map.md yet)`}
+          title={node ? title : `${title} (article missing)`}
           className={`flex w-44 flex-col gap-0.5 rounded-lg border px-3 py-2 text-left shadow-sm transition-shadow hover:shadow-md ${style.box} ${
             isActive ? "ring-2 ring-accent ring-offset-2 ring-offset-background" : ""
           }`}
@@ -190,7 +190,7 @@ function FlowNode({
             href={node.url}
             target="_blank"
             rel="noopener noreferrer"
-            title="View API-map.md on GitHub"
+            title="View the Wiki article on GitHub"
             className="absolute right-1.5 top-1.5 rounded-(--radius) p-0.5 text-muted/60 hover:bg-surface hover:text-accent"
           >
             <TopRightArrowIcon className="size-3" />
@@ -289,7 +289,7 @@ export function ApiFlowchart({ nodes }: { nodes: ApiMapNode[] }) {
       {view === "full" && (
         <>
           <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
-            <p className="text-xs text-muted">Dashed boxes mark cited topics without an API map.</p>
+            <p className="text-xs text-muted">Dashed boxes mark cited topics without a Wiki article.</p>
             <div className="flex gap-1">
               <button type="button" onClick={() => stepGraph(-1)} aria-label="Scroll graph left"
                 className="size-8 rounded-(--radius) border border-border text-muted hover:text-accent">←</button>

@@ -23,12 +23,12 @@ export default function ContributorFaqPage() {
         <section aria-labelledby="first-task">
           <PageHeader id="first-task" title="Can I contribute before learning Lean?" />
           <p>
-            Yes. An API map explains the physics in Markdown and links to existing Lean
-            declarations. Look for a topic you know in{" "}
-            <Link className={linkClass} href="/api-tracker">API Maps</Link>
+            Yes. A Wiki article explains the physics in Markdown and links to existing Lean
+            declarations. Look for a topic you know in the{" "}
+            <Link className={linkClass} href="/wiki">Wiki</Link>
             {" "}and use the{" "}
             <a className={linkClass} href={`${repository}/blob/master/docs/API_MAP_GUIDE.md`} {...external}>
-              API map guide
+              article writing guide
             </a>
             {" "}to get started.
           </p>
@@ -57,7 +57,7 @@ export default function ContributorFaqPage() {
         <section aria-labelledby="checks">
           <PageHeader id="checks" title="What should I check before submitting?" />
           <p>
-            For an API map, use the lint command in the API map guide and check
+            For a Wiki article, use the lint command in the writing guide and check
             the rendered Markdown and declaration links. For Lean changes, see{" "}
             <Link className={linkClass} href="/getting-started#linting">Linting</Link>
             {" "}for the local commands used to check the code.

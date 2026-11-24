@@ -1,6 +1,7 @@
 "use client";
 
 import { Wordmark } from "@/components/wordmark";
+import { DocsScopeToggle } from "./docs-scope-toggle";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
@@ -142,9 +143,12 @@ export function Navbar() {
         <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-5 sm:px-8">
 
           {pathname === "/docs-header" ? (
-            <div className="flex shrink-0 items-center gap-3">
+            <div className="docs-brand flex shrink-0 items-center gap-3">
               {brand}
-              <a href={site.docs} target="_parent" className="docs-header-page-name">Documentation</a>
+              <div className="docs-heading-tools">
+                <a href={site.docs} target="_parent" className="docs-header-page-name">Documentation</a>
+                <DocsScopeToggle />
+              </div>
             </div>
           ) : brand}
 

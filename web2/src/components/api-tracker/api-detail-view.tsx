@@ -52,13 +52,13 @@ function editIssue(node: ApiMapNode, target: EditTarget, commit: string): IssueD
   const isNew = target.shape === "new";
   return apiMapIssue({
     title: isNew
-      ? `API-map: new section for ${node.title}`
+      ? `New Wiki article section — ${node.title}`
       : target.shape === "article"
-        ? `API-map: edit to ${node.title}`
-        : `API-map: edit to ${node.title} (${target.label})`,
+        ? `Wiki article edit — ${node.title}`
+        : `Wiki article edit — ${node.title} (${target.label})`,
     heading: isNew ? "Suggested new section" : "Suggested edit",
     facts: [
-      `**API map:** [${node.title}](${node.url}) (\`${node.file}\`)`,
+      `**Wiki article:** [${node.title}](${node.url}) (\`${node.file}\`)`,
       isNew ? `**Adds:** ${target.location}` : `**Replaces:** ${target.location}`,
       `**Currently:** ${done} of ${total} claims formalized.`,
     ],
@@ -115,7 +115,7 @@ function NewSectionPosition({
   );
 }
 
-export function ApiDetailView({ apiMap }: { apiMap: ApiMap }) {
+export function ApiDetailView({ apiMap, activePath }: { apiMap: ApiMap; activePath: string }) {
   const { nodes, repo, branch, commit, generatedAt } = apiMap;
 
   // Menu order: Physlib's folders, as in the sidebar.
@@ -135,24 +135,6 @@ export function ApiDetailView({ apiMap }: { apiMap: ApiMap }) {
     }
     return map;
   }, [nodes]);
-
-  const [activePath, setActivePath] = useState("");
-  useEffect(() => {
-    const readPath = () => decodeURIComponent(window.location.hash.slice(1));
-    const initialPath = readPath();
-    setActivePath(initialPath);
-
-    // A fresh link to an article should land there. Let the browser restore
-    // its saved reading position when reloading or traversing history.
-    const navigation = performance.getEntriesByType("navigation")[0] as PerformanceNavigationTiming | undefined;
-    if (byPath.has(initialPath) && navigation?.type === "navigate" && window.scrollY === 0) {
-      scrollToApiMapArticle();
-    }
-
-    const onHashChange = () => setActivePath(readPath());
-    window.addEventListener("hashchange", onHashChange);
-    return () => window.removeEventListener("hashchange", onHashChange);
-  }, [byPath]);
 
   const found = entries.findIndex((e) => e.path === activePath);
   // A map other maps cite but nobody has written yet (a dashed box in the
@@ -186,7 +168,7 @@ export function ApiDetailView({ apiMap }: { apiMap: ApiMap }) {
     (target: EditTarget, sectionId?: string, addReference = false) => {
       if (!current) return;
       setEditing({ path: current.path, target, sectionId, addReference });
-      window.scrollTo({ top: 0 });
+      requestAnimationFrame(scrollToApiMapArticle);
     },
     [current],
   );
@@ -255,7 +237,7 @@ export function ApiDetailView({ apiMap }: { apiMap: ApiMap }) {
             <Breadcrumb path={current.path} repo={repo} branch={branch} />
             {!edit && !missing && (
               <div className="flex shrink-0 items-center gap-1.5 text-xs text-muted">
-                <button type="button" onClick={() => go(-1)} disabled={index === 0} aria-label="Previous API map" className={navButton}>
+                <button type="button" onClick={() => go(-1)} disabled={index === 0} aria-label="Previous Wiki article" className={navButton}>
                   <ChevronIcon direction="left" />
                 </button>
                 <span className="tabular-nums">
@@ -265,7 +247,7 @@ export function ApiDetailView({ apiMap }: { apiMap: ApiMap }) {
                   type="button"
                   onClick={() => go(1)}
                   disabled={index === entries.length - 1}
-                  aria-label="Next API map"
+                  aria-label="Next Wiki article"
                   className={navButton}
                 >
                   <ChevronIcon direction="right" />
@@ -278,9 +260,9 @@ export function ApiDetailView({ apiMap }: { apiMap: ApiMap }) {
               <button type="button" onClick={stopEdit} className="mb-2 text-xs text-muted hover:text-accent">
                 ← Back to {current.title}
               </button>
-              <h1 className="text-3xl font-bold tracking-tight md:text-4xl">
+              <h2 id="api-map-reader-title" className="scroll-mt-36 text-3xl font-bold tracking-tight md:text-4xl">
                 {edit.target.shape === "new" ? "Add a section" : "Suggest an edit"}
-              </h1>
+              </h2>
               <p className="mt-1 text-sm text-muted">
                 {current.title}
                 {edit.target.shape !== "article" && edit.target.shape !== "new" && <> · {edit.target.label}</>}
@@ -288,7 +270,7 @@ export function ApiDetailView({ apiMap }: { apiMap: ApiMap }) {
             </>
           ) : (
             <>
-              <h1 className="text-3xl font-bold tracking-tight md:text-4xl">{current.title}</h1>
+              <h2 id="api-map-reader-title" className="scroll-mt-36 text-3xl font-bold tracking-tight md:text-4xl">{current.title}</h2>
               {node && (
                 <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
                   <StatusPills node={node} />
@@ -308,7 +290,7 @@ export function ApiDetailView({ apiMap }: { apiMap: ApiMap }) {
               <Callout>
                 {edit.target.shape === "new" ? (
                   <>
-                    You are proposing a new section for this API map. Give it a{" "}
+                    You are proposing a new section for this Wiki article. Give it a{" "}
                     <code className="apimap-code">###</code> title and write it as
                     the other sections are; it is added to the Alpha content,
                     since it has not been reviewed yet.
@@ -322,7 +304,7 @@ export function ApiDetailView({ apiMap }: { apiMap: ApiMap }) {
                     .
                   </>
                 )}{" "}
-                API maps are files in the Physlib repository, so the suggestion is
+                Wiki folder articles are files in the Physlib repository, so the suggestion is
                 filed as a GitHub issue for a maintainer to review. Cite Lean
                 declarations with <code className="apimap-code">[n]</code>,
                 literature with <code className="apimap-code">{"{n}"}</code>,
@@ -358,7 +340,7 @@ export function ApiDetailView({ apiMap }: { apiMap: ApiMap }) {
                   rel="noopener noreferrer"
                   className="apimap-external"
                 >
-                  Edit API-map.md on GitHub
+                  Edit the article on GitHub
                 </a>{" "}
                 to open a pull request directly.
               </>

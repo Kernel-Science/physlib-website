@@ -40,7 +40,7 @@ export function PhyslibAiToolsContent(
             </Card.Header>
             <Card.Content className="text-sm text-foreground/90">
               <p className="mb-4 leading-relaxed" style={textStyle}>
-                Sign in to Claude Code and GitHub, then choose from a list of tasks to get your agent working on. These include: Golf, Rename, DocFixer, APIMap, ImportMinimizer, LintQI and TODO. Your agent will automatically make a PR for completed tasks. Installers are available for Windows and macOS.
+                Sign in to Claude Code and GitHub, then choose from a list of tasks to get your agent working on. Choose APIMap to work on a Wiki article. Other tasks include Golf, Rename, DocFixer, ImportMinimizer, LintQI and TODO. Your agent will automatically make a PR for completed tasks. Installers are available for Windows and macOS.
               </p>
               <ButtonLink size="sm" href={`${physlibAiToolsRepo}/releases`}>Download Releases ↗</ButtonLink>
             </Card.Content>

@@ -135,6 +135,30 @@ main h1 {
 
 main h2, main h3 { font-weight: 500; letter-spacing: -0.025em; }
 
+.docs-view-bar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: .65rem;
+}
+.docs-view-options {
+  display: inline-flex;
+  padding: 2px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  font: 400 .8125rem/1.5 Geist, ui-sans-serif, sans-serif;
+}
+.docs-view-options a {
+  padding: .2rem .65rem;
+  border-radius: calc(var(--radius) - 2px);
+  color: var(--text-color);
+  text-decoration: none;
+}
+.docs-view-options a:hover { background: var(--surface-secondary); }
+.docs-view-options a[aria-current="page"] { color: var(--accent); background: var(--accent-tint); }
+main[data-module-view="verso"] > :not(.docs-view-root),
+body:has(main[data-module-view="verso"]) > .internal_nav { display: none; }
+
 nav {
   color: color-mix(in srgb, var(--foreground) 68%, var(--background));
   font: 0.875rem/1.5 Geist, ui-sans-serif, system-ui, sans-serif;
@@ -159,6 +183,8 @@ html:has(.navframe > .nav), body:has(.navframe > .nav) { overflow: hidden; }
   padding: 0 1rem 1.25rem;
   overflow: clip;
   overflow-wrap: anywhere;
+  font-size: .8125rem;
+  line-height: 1.4;
 }
 
 .nav h3 {
@@ -179,11 +205,14 @@ html:has(.navframe > .nav), body:has(.navframe > .nav) { overflow: hidden; }
 }
 
 .nav a:hover, .internal_nav a:hover { color: var(--accent); }
-.nav .module_list > details { margin-top: 0.3rem; }
+.nav > [hidden], .module_list > [hidden],
+.module_list[data-scope="physlib"] > details:not([hidden]) > summary { display: none; }
+.nav .module_list[data-scope="physlib"] > details:not([hidden]) > :is(details, .nav_link) { margin-inline-start: 0; }
+.nav .module_list > details { margin-top: 0; }
 .nav details > * { padding-inline-start: 0; }
-.nav details > details, .nav details > .nav_link { margin-inline-start: 1rem; }
-.nav .nav_link, .nav details > .nav_link, .nav details > summary { padding-inline-start: 1rem; }
-.nav > .nav_link { margin-top: 0.3rem; }
+.nav details > details, .nav details > .nav_link { margin-inline-start: .5rem; }
+.nav .nav_link, .nav details > summary { padding: .375rem .1rem .375rem 0; }
+.nav details > summary { position: relative; padding-inline-end: 1.25rem; }
 
 @media screen and (width > 1000px) {
   body:has(> .docs-site-footer) {
@@ -248,13 +277,21 @@ nav summary::before {
   opacity: 0.65;
 }
 nav details[open] > summary::before { transform: translateY(-0.15em) rotate(45deg); }
-.nav details > summary { position: relative; }
 .nav details > summary::before {
   position: absolute;
-  inset-inline-start: 0.15rem;
-  top: 0.55em;
-  margin-inline: 0;
+  inset-inline-end: .1rem;
+  top: 50%;
+  width: .75rem;
+  height: .75rem;
+  margin: 0;
+  border: 0;
+  background: currentColor;
+  /* The same 24-unit stroke as the Wiki's Chevron component. */
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 5l7 7-7 7'/%3E%3C/svg%3E") center / contain no-repeat;
+  opacity: 1;
+  transform: translateY(-50%);
 }
+.nav details[open] > summary::before { transform: translateY(-50%) rotate(90deg); }
 
 .navframe #settings { display: none; }
 
@@ -269,7 +306,13 @@ nav details[open] > summary::before { transform: translateY(-0.15em) rotate(45de
 pre, code { border-radius: var(--radius); }
 
 @media screen and (max-width: 1000px) {
-  body:has(> .docs-site-footer) main { width: auto; padding-inline: 1rem; }
+  /* Keep the Modules button in reach when a Lean name or equation is wide. */
+  body:has(> .docs-site-footer) main {
+    width: auto;
+    padding-inline: 1rem;
+    overflow-wrap: anywhere;
+    overflow-x: auto;
+  }
 
   body .navframe .nav { margin-left: 0; }
   #nav_toggle:not(:checked) ~ .docs-sidebar-column { display: none; }
