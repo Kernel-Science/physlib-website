@@ -1,19 +1,14 @@
-// Rebuild from the pinned Lean sources, Physlib API map claims and external audit.
+// Rebuild from the pinned Lean sources and Physlib API map claims.
 import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import { citedClaims, paragraphsOf } from "./api-map-claims.js";
-import { buildExternalCatalogue, retireProjectFiles } from "./build-external-catalogue.mjs";
 
-const sources = ["Physlib", "PhyslibAlpha", "External", "UnformalizedClaims"];
+const sources = ["Physlib", "PhyslibAlpha", "UnformalizedClaims"];
 const libraries = new Set(["Physlib", "PhyslibAlpha"]);
 
-const auditUrl = new URL("../public/roadmap-view/declarations/index.json", import.meta.url);
-const audit = JSON.parse(await readFile(auditUrl, "utf8"));
-const auditedRepositories = new Set(audit.repositories);
-const [maps, native, nativeDecls, catalogue] = await Promise.all([
+const [maps, native, nativeDecls] = await Promise.all([
   readFile(new URL("../data/APIMap.json", import.meta.url), "utf8").then(JSON.parse),
   readFile(new URL("../data/RoadmapNativeFolders.json", import.meta.url), "utf8").then(JSON.parse),
   readFile(new URL("../data/RoadmapNativeDeclarations.json", import.meta.url), "utf8").then(JSON.parse),
-  buildExternalCatalogue(),
 ]);
 if (native.revision !== maps.commit) throw Error("Refresh the native directory reference for the API map revision.");
 if (nativeDecls.revision !== native.revision || nativeDecls.repository !== native.repository ||
@@ -22,10 +17,6 @@ if (nativeDecls.revision !== native.revision || nativeDecls.repository !== nativ
   throw Error("Rebuild the native declarations for every file at the pinned source revision.");
 }
 const directories = new Set(["", ...native.folders.map(f => f.path), ...native.quantumInfoFolders.map(f => f.replaceAll("/", "."))]);
-function nearestDirectory(path) {
-  while (!directories.has(path)) path = path.includes(".") ? path.slice(0,path.lastIndexOf(".")) : "";
-  return path;
-}
 
 const root = { name: "Physlib", path: "", children: [] };
 const nodes = new Map([["", root]]);
@@ -111,21 +102,6 @@ for (const article of maps.nodes) {
       name: statement, source: "UnformalizedClaims", library, kind: "claim", statement, href,
     }));
   }
-
-}
-
-// The flat source catalogue remains available to the audit tool. Once audited,
-// declarations appear in their physics topics and supersede the file listing.
-for (const [topic, index] of Object.entries(audit.topics)) {
-  if (!directories.has(topic)) throw Error(`Re-export audited declarations into native folders: ${topic}`);
-  at(topic).externalIndex = index;
-}
-for (const { subject, ...project } of catalogue.markers) {
-  if (auditedRepositories.has(project.repository)) continue;
-  const marker = at([nearestDirectory(subject),project.repository.replaceAll(".", "%2E")].filter(Boolean).join("."));
-  marker.name = project.repository.split("/")[1];
-  marker.sources = ["External"];
-  marker.externalProject = project;
 }
 
 for (const [path,node] of nodes) {
@@ -136,26 +112,16 @@ function count(node) {
   const children = node.children.sort((a, b) => a.name.localeCompare(b.name, "en"));
   if (!children.length) delete node.children;
   for (const decl of node.decls ?? []) bySource[decl.source]++;
-  const audited = node.externalIndex?.count ?? 0;
-  bySource.External += audited;
-  return children.reduce((sum, child) => sum + count(child), (node.decls?.length ?? 0) + audited);
+  return children.reduce((sum, child) => sum + count(child), node.decls?.length ?? 0);
 }
 const areas = root.children.sort((a, b) => a.name.localeCompare(b.name, "en"))
   .map((area) => ({ name: area.name, results: count(area) }));
-const rootExternal = root.externalIndex?.count ?? 0;
-bySource.External += rootExternal;
-const stats = { results: areas.reduce((sum, area) => sum + area.results, rootExternal), bySource, areas: areas.length };
-const data = { sources, nativeRevision: native.revision, stats: { ...stats, nativeLibraries: nativeTotals, externalCatalogue: catalogue.stats }, areas, tree: root,
-  projects: catalogue.markers };
+const stats = { results: areas.reduce((sum, area) => sum + area.results, 0), bySource, areas: areas.length };
+const data = { sources, nativeRevision: native.revision, stats: { ...stats, nativeLibraries: nativeTotals }, areas, tree: root };
 const dir = new URL("../public/roadmap-view/", import.meta.url);
 await mkdir(dir, { recursive: true });
 const out = new URL("roadmap-data.json", dir);
 const pending = new URL(`roadmap-data.${process.pid}.tmp`, dir);
-const oldDataset = await readFile(out, "utf8").then(JSON.parse).catch((err) => {
-  if (err.code !== "ENOENT") throw err;
-});
 await writeFile(pending, JSON.stringify(data) + "\n");
 await rename(pending, out);
-await retireProjectFiles(oldDataset?.tree, new Set(catalogue.markers.map((p) => p.modulesHref)));
 console.log("Roadmap results:", bySource);
-console.log("External file catalogue:", catalogue.stats);

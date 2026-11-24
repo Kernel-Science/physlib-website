@@ -6,7 +6,7 @@ on:
     types: [completed]
     branches: [main]
   schedule:
-    # Weekly fallback and monthly external source check.
+    # Weekly fallback.
     - cron: "20 4 * * 1"
   workflow_dispatch: {}
 
@@ -20,31 +20,6 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  external-heads:
-    if: github.event_name != 'workflow_run'
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-    steps:
-      - name: Check on the first Monday of the month or a manual run
-        id: due
-        env:
-          EVENT_NAME: ${{ github.event_name }}
-        run: |
-          if [[ "$EVENT_NAME" == workflow_dispatch || $(date -u +%-d) -le 7 ]]; then
-            echo 'check=true' >> "$GITHUB_OUTPUT"
-          fi
-      - uses: actions/checkout@v4
-        if: steps.due.outputs.check == 'true'
-        with:
-          persist-credentials: false
-      - name: Report changes since the audited external revisions
-        if: steps.due.outputs.check == 'true'
-        working-directory: web2
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: node scripts/check-external-roadmap-heads.mjs >> "$GITHUB_STEP_SUMMARY"
-
   generate:
     if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
@@ -72,7 +47,7 @@ jobs:
           key: physlib-clone-${{ github.run_id }}
           restore-keys: physlib-clone-
 
-      - name: Generate API maps and roadmap
+      - name: Generate API maps and the Physlib Globe
         working-directory: web2
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -80,11 +55,8 @@ jobs:
           node scripts/generate-api-map.js
           node scripts/build-roadmap-native-folders.mjs
           python3 scripts/build-roadmap-native-declarations.py --repo .cache/physlib.git
-          gzip -dc data/roadmap-audit/declarations.sqlite.gz > "$RUNNER_TEMP/roadmap.sqlite"
-          python3 scripts/roadmap_placement.py --project-homes-only --db "$RUNNER_TEMP/roadmap.sqlite"
-          python3 scripts/export-roadmap-declarations.py --complete --db "$RUNNER_TEMP/roadmap.sqlite"
           node scripts/build-verso-roadmap.mjs
-          node --test scripts/roadmap.test.mjs scripts/roadmap-audited-data.test.mjs
+          node --test scripts/roadmap.test.mjs
 
       - name: Refresh native contributors when the Physlib revision changes
         working-directory: web2
@@ -98,7 +70,7 @@ jobs:
           fi
           python3 scripts/build-roadmap-native-contributors.py --repo .cache/physlib.git
 
-      - name: Refresh homepage wheels when Roadmap data changes
+      - name: Refresh homepage wheels when Globe data changes
         working-directory: web2
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -110,7 +82,7 @@ jobs:
           ./node_modules/.bin/next dev --hostname 127.0.0.1 --port 3170 > "$RUNNER_TEMP/roadmap-preview.log" 2>&1 &
           preview_pid=$!
           trap 'kill "$preview_pid" 2>/dev/null || true' EXIT
-          curl --fail --silent --show-error --retry 12 --retry-connrefused --retry-delay 1 http://127.0.0.1:3170/roadmap -o /dev/null
+          curl --fail --silent --show-error --retry 12 --retry-connrefused --retry-delay 1 http://127.0.0.1:3170/globe -o /dev/null
           node scripts/build-roadmap-previews.mjs http://127.0.0.1:3170
 
       - name: Commit & push updated API map

@@ -38,7 +38,7 @@ export async function WikiPage({ home }: { home: "wiki" | "roadmap" }) {
         {home === "roadmap" ? (
           <>
             <header id="roadmap" tabIndex={-1} className="sticky top-14 z-20 -mt-2 mb-2 scroll-mt-20 bg-background py-2">
-              <h1 className="text-2xl font-semibold tracking-tight">Physlib Atlas</h1>
+              <h1 className="text-2xl font-semibold tracking-tight">The Physlib Globe</h1>
             </header>
             <RoadmapViewer referencePaths={referencePaths} folderPaths={roadmapFolderPaths(apiMap.directories)} />
           </>

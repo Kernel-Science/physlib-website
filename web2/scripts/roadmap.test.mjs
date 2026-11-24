@@ -44,7 +44,7 @@ test("every directory shown in the roadmap exists in the source repository", asy
   const folders = new Set(["", ...native.folders.map(f => f.path),
     ...native.quantumInfoFolders.map(path => path.replaceAll("/", "."))]);
   for (const node of nodes) {
-    if (node.children?.length || node.externalIndex) assert.ok(folders.has(node.path), node.path);
+    if (node.children?.length) assert.ok(folders.has(node.path), node.path);
   }
   // A module node must represent a module in today's source inventory.
   const current = new Set(native.files.map(path => path.slice(0, -5)

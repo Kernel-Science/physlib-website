@@ -49,7 +49,7 @@ const pages: Record<string, [string, string]> = {
   "/project-ideas": ["Project ideas", "Suggested physics formalization projects and reading material."],
   "/dependencies": ["Dependency graphs", "Explore imports and dependencies between Lean modules."],
   "/docs/index.html": ["Lean documentation", "Browse the generated Lean module and declaration documentation."],
-  "/roadmap": ["Physlib Atlas", "Explore formalized physics by subject, read API Maps, and open Lean module documentation."],
+  "/globe": ["The Physlib Globe", "Explore formalized physics by subject, read API Maps, and open Lean module documentation."],
   "/api-maps": ["API Maps", "Explore the physics in each folder and follow its claims to the corresponding Lean results."],
   "/api-maps/new": ["Write an API Map", "Document a physics topic and link it to Lean results."],
   "/pr-tracker": ["Pull Request Queue", "Open pull requests and the reviews or actions they need."],
@@ -69,7 +69,7 @@ const pages: Record<string, [string, string]> = {
 function sitePages(hasDocs: boolean): Entry[] {
   const aliases = new Map<string, string[]>([
     ["/api-maps", ["Physlib Wiki", "Wiki", "API tracker"]],
-    ["/roadmap", ["Roadmap"]],
+    ["/globe", ["Globe", "Atlas", "Roadmap"]],
   ]);
   for (const section of navSections) {
     for (const item of section.items) {

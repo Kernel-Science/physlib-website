@@ -1,11 +1,10 @@
 "use client";
 
-import { memo, Suspense, useCallback, useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
 import type { KeyboardEvent as ReactKeyboardEvent } from "react";
 import { createPortal } from "react-dom";
-import { useSearchParams } from "next/navigation";
-import { arc, arcSubject, CONTRIBUTOR_EXPONENT, frame, labelWidth, refreshLabelMetrics, SUBJECT_FONT, LABELS, layout, polar, pretty, SOURCES, WHOLE } from "./layout";
-import type { ContributorCounts, Destination, Entry, MapData, Source, Tile } from "./layout";
+import { arc, arcSubject, frame, labelWidth, refreshLabelMetrics, SUBJECT_FONT, LABELS, layout, polar, pretty, SOURCES, WHOLE } from "./layout";
+import type { Destination, Entry, MapData, Source, Tile } from "./layout";
 import { RoadmapInspector } from "./roadmap-inspector";
 import { RoadmapSidebar } from "./roadmap-sidebar";
 import { RoadmapContributors } from "./roadmap-contributors";
@@ -24,11 +23,11 @@ type FolderPaths = Record<string, string | string[]>;
 type References = { modules: Paths; folders: FolderPaths };
 const allSources = new Set<Source>(SOURCES);
 const colors: Record<Source, string> = {
-  Physlib: "var(--rm-physlib)", PhyslibAlpha: "var(--rm-alpha)", External: "var(--rm-external)", UnformalizedClaims: "var(--rm-todo)",
+  Physlib: "var(--rm-physlib)", PhyslibAlpha: "var(--rm-alpha)", UnformalizedClaims: "var(--rm-todo)",
 };
 
 const surfaces: Record<Source, string> = {
-  Physlib: "var(--tile-physlib)", PhyslibAlpha: "var(--tile-alpha)", External: "var(--tile-external)", UnformalizedClaims: "var(--tile-todo)",
+  Physlib: "var(--tile-physlib)", PhyslibAlpha: "var(--tile-alpha)", UnformalizedClaims: "var(--tile-todo)",
 };
 
 function searchText(value: string) {
@@ -37,10 +36,6 @@ function searchText(value: string) {
 
 function isArticleHash(hash: string) {
   return /^#(?:file=|verso=|Physlib(?:Alpha)?(?:\/|$)|articles$|dependency-map$)/.test(hash);
-}
-
-function externalProject(entry: Entry) {
-  return entry.node.externalProject?.repository ?? entry.node.project ?? entry.node.moduleLinks?.find(link => link.source === "External")?.label;
 }
 
 function fieldOf(entry: Entry) {
@@ -54,7 +49,6 @@ function writeField(url: URL, field: string) {
 
 function targetHash({ tile, source }: Selection) {
   const path = encodeURIComponent(tile.entry.node.path);
-  if (tile.entry.kind === "project") return "project=" + path;
   const sourceParam = source && tile.entry.sources.includes("Physlib") && tile.entry.sources.includes("PhyslibAlpha")
     ? "&source=" + source : "";
   return `${tile.entry.kind === "folder" ? "dir" : "f"}=${path}${sourceParam}`;
@@ -62,10 +56,6 @@ function targetHash({ tile, source }: Selection) {
 
 function fromHash(index: Index): Selection | undefined {
   const params = new URLSearchParams(location.hash.slice(1));
-  if (params.has("project")) {
-    const tile = index.tiles.find(t => t.entry.kind === "project" && t.entry.node.path === params.get("project"));
-    if (tile) return {tile};
-  }
   const [type, ...parts] = location.hash.slice(1).split("=");
   let value: string;
   try { value = type === "f" ? params.get("f") ?? "" : decodeURIComponent(parts.join("=")); } catch { return; }
@@ -83,13 +73,6 @@ function fromHash(index: Index): Selection | undefined {
     if (tile) {
       const source = nativeSource(params.get("source"));
       return { tile, source: source && tile.entry.kind === "file" && tile.entry.sources.includes(source) ? source : undefined };
-    }
-    // Previous catalog bookmarks identified a project by subject and repository.
-    const [subject,repo] = value.split(".ExternalProjects.");
-    if (repo) {
-      const matches = index.tiles.filter(t => t.entry.node.externalGroup?.project === repo.replaceAll("%2E","."));
-      const target = matches.find(t => t.entry.node.path.startsWith(subject + ".")) ?? matches[0];
-      if (target) return { tile: target };
     }
   }
 }
@@ -110,9 +93,8 @@ function fileDestinations(entry: Entry, references: References): Destination[] {
   for (const link of node.moduleLinks ?? []) {
     const module = nativeModule(link);
     if (module) links.push({...link,href:references.modules[module] ?? link.href});
-    else if (link.source === "External" && link.href.startsWith("https://github.com/")) links.push(link);
   }
-  if (!links.length && entry.kind === "file" && !entry.external) {
+  if (!links.length && entry.kind === "file") {
     for (const source of entry.sources) {
       if (source !== "Physlib" && source !== "PhyslibAlpha") continue;
       for (const path of [node.path,...(node.wikiPaths ?? [])]) {
@@ -130,16 +112,6 @@ function fileDestinations(entry: Entry, references: References): Destination[] {
 
 function regionActions(entry: Entry, references: References, visible = allSources, source?: NativeSource) {
   const {node, kind} = entry;
-  if (kind === "project") {
-    if (!visible.has("External")) return [];
-    if (node.externalProject) return [{href:node.externalProject.href,label:"Open on GitHub ↗"}];
-    const group = node.externalGroup;
-    const repositories = group?.project ? [group.project] : Object.keys(group?.byProject ?? {}).sort();
-    return repositories.map(repo => ({
-      href:"https://github.com/" + repo,
-      label:group?.project ? "Open on GitHub ↗" : repo + " ↗",
-    }));
-  }
   if (kind === "folder" || kind === "todos") {
     const openClaims = visible.has("UnformalizedClaims") && (kind === "todos" ||
       entry.children.some(child => child.kind === "todos" && child.node.apiMapHref === node.apiMapHref));
@@ -160,14 +132,14 @@ function regionActions(entry: Entry, references: References, visible = allSource
   if (docs) return [{href:docs.href,label:"Open in Documentation →"}];
   const github = links.find(link => nativeModule(link));
   if (github) return [{href:github.href,label:"View Lean source on GitHub ↗"}];
-  return links.filter(link => link.source === "External").map(link => ({
-    href:link.href,label:(link.label ?? "View source") + " ↗",
-  }));
+  return [];
 }
 
 const softSurfaces: Record<Source,string> = {
-  Physlib: "var(--soft-physlib)", PhyslibAlpha: "var(--soft-alpha)", External: "var(--soft-external)", UnformalizedClaims: surfaces.UnformalizedClaims,
+  Physlib: "var(--soft-physlib)", PhyslibAlpha: "var(--soft-alpha)", UnformalizedClaims: surfaces.UnformalizedClaims,
 };
+// Folders without a visible library take a neutral surface.
+const neutralSurface = "var(--soft-neutral)";
 function fileSurface(source: Source, documented: Set<Source>) {
   if (source === "PhyslibAlpha") return "var(--file-alpha)";
   return documented.has(source) ? surfaces[source] : softSurfaces[source];
@@ -205,30 +177,27 @@ const Sectors = memo(function Sectors({ index, tileIndices, visible, references,
   return <>{tileIndices.map(i => {
     const t = index.tiles[i];
     const { entry, sector } = t;
-    const group = entry.node.externalGroup;
-    const project = group && !group.inline ? { repository: group.project ?? group.label ?? entry.node.name } : entry.node.externalProject;
-    const folder = entry.kind === "folder" || (entry.kind === "project" && !group?.inline);
-    const band = t.labelSector ?? sector;
-    const mid = (band.outer + band.inner) / 2, angle = (band.start + band.end)/2;
-    const width = (band.end - band.start) * mid, height = band.outer - band.inner;
+    const folder = entry.kind === "folder";
+    const mid = (sector.outer + sector.inner) / 2, angle = (sector.start + sector.end)/2;
+    const width = (sector.end - sector.start) * mid, height = sector.outer - sector.inner;
     const major = index.roots.includes(entry);
-    const fullName = project ? project.repository : entry.kind === "todos" ? "API Map TODOs" : pretty(entry.node.name);
-    const name = major ? arcSubject(entry.node.name,width) : project ? project.repository : fullName;
+    const fullName = entry.kind === "todos" ? "API Map TODOs" : pretty(entry.node.name);
+    const name = major ? arcSubject(entry.node.name,width) : fullName;
     const map = folder ? entry.node.apiMapHref : undefined;
     const weight = major || map ? 720 : 600;
     const labelSize = major ? SUBJECT_FONT : Math.min(12, height*.59, width / (labelWidth(name ?? "",1,weight)*1.05 + 3.2));
-    const showLabel = Boolean(name) && folder && (!entry.node.externalGroup || t.labelSector) && labelSize >= (project ? 4 : 2.1);
+    const showLabel = Boolean(name) && folder && labelSize >= 2.1;
     const lower = angle > Math.PI/2 && angle < Math.PI*1.5;
-    const labelEnd = Math.min(band.end,band.start + Math.PI*2 - 0.0001);
-    const a = polar(lower ? labelEnd : band.start, mid);
-    const b = polar(lower ? band.start : labelEnd, mid);
+    const labelEnd = Math.min(sector.end,sector.start + Math.PI*2 - 0.0001);
+    const a = polar(lower ? labelEnd : sector.start, mid);
+    const b = polar(lower ? sector.start : labelEnd, mid);
     const fileLinks = entry.kind === "file" ? fileDestinations(entry,references) : [];
     const documented = new Set(fileLinks.filter(link => link.href.startsWith("/docs/")).map(link => link.source));
     const visibleNative = (["Physlib", "PhyslibAlpha"] as const).find(source => visible.has(source) && entry.sources.includes(source));
     const visibleArticle = entry.node.apiMapLinks?.find(link => visible.has(link.source));
-    const bandSource = (!major && visibleArticle?.source) || visibleNative || "External";
-    const fill = entry.kind === "project" ? softSurfaces.External : folder ?
-      (bandSource === "Physlib" ? "var(--band-physlib)" : bandSource === "PhyslibAlpha" ? "var(--band-alpha)" : "var(--band-external)") : "var(--rm-canvas)";
+    const bandSource = (!major && visibleArticle?.source) || visibleNative;
+    const fill = folder ?
+      (bandSource === "Physlib" ? "var(--band-physlib)" : bandSource === "PhyslibAlpha" ? "var(--band-alpha)" : "var(--band-neutral)") : "var(--rm-canvas)";
     const openClaimsOnly = entry.kind === "folder" && showsOnlyOpenClaims(counts.get(entry), visible);
     const shown = (openClaimsOnly || entry.kind === "todos") ? visible.has("UnformalizedClaims")
       : entry.sources.some(source => source !== "UnformalizedClaims" && visible.has(source))
@@ -241,13 +210,13 @@ const Sectors = memo(function Sectors({ index, tileIndices, visible, references,
       t.fields.some(field => field.source === "PhyslibAlpha");
     const href = splitFile ? undefined : action?.href;
     const targetTitle = fullName + (entry.kind === "file" ? ".lean" : "") + (action ? " · " + action.label.replace(/ [→↗]$/,"") : "");
-    const content = <g key={entry.kind + entry.node.path} role={href ? undefined : !splitFile && (actions.length || entry.external) ? "button" : "group"} tabIndex={!href && !splitFile && shown ? 0 : undefined}
-      cursor={actions.length || entry.external ? "pointer" : undefined}
-      aria-label={href ? undefined : targetTitle} data-tile={i} data-kind={entry.kind} data-path={entry.node.path} data-count={entry.results} data-weight={entry.weight} data-external={entry.external} data-start={t.bounds.start} data-end={t.bounds.end} data-project-home={project?.repository} visibility={shown ? "visible" : "hidden"}>
+    const content = <g key={entry.kind + entry.node.path} role={href ? undefined : !splitFile && actions.length ? "button" : "group"} tabIndex={!href && !splitFile && shown ? 0 : undefined}
+      cursor={actions.length ? "pointer" : undefined}
+      aria-label={href ? undefined : targetTitle} data-tile={i} data-kind={entry.kind} data-path={entry.node.path} data-count={entry.results} data-weight={entry.weight} data-start={t.bounds.start} data-end={t.bounds.end} visibility={shown ? "visible" : "hidden"}>
       <title>{splitFile ? fullName + ".lean" : targetTitle}</title>
       <path d={arc(sector)} pointerEvents={splitFile ? "none" : undefined} stroke="var(--rm-canvas)" strokeWidth={.55} data-map-folder={map ? entry.node.path : undefined}
         fill={openClaimsOnly ? surfaces.UnformalizedClaims
-          : entry.kind === "folder" && (major || !(map && articleShown)) ? softSurfaces[bandSource] : fill}/>
+          : entry.kind === "folder" && (major || !(map && articleShown)) ? (bandSource ? softSurfaces[bandSource] : neutralSurface) : fill}/>
       {t.fields.map(field => {
         const source = nativeSource(field.source);
         const fieldAction = splitFile && source ? regionActions(entry,references,visible,source)[0] : undefined;
@@ -276,7 +245,7 @@ const Sectors = memo(function Sectors({ index, tileIndices, visible, references,
   })}</>;
 });
 
-function AreaWeightInfo({ includeExternal }: { includeExternal: boolean }) {
+function AreaWeightInfo() {
   const [open, setOpen] = useState(false);
   const id = useId();
   const button = useRef<HTMLButtonElement>(null);
@@ -310,24 +279,17 @@ function AreaWeightInfo({ includeExternal }: { includeExternal: boolean }) {
       Area
     </button>
     {open && <span ref={tip} role="tooltip" id={id} className={styles.weightTip}>
-      {includeExternal ? <>
-        <strong>Repository area ∝ declarations × contributors<sup>{CONTRIBUTOR_EXPONENT}</sup></strong>
-        Each repository divides its area among its folders and files. Repositories with no linked contributors use a weight of one.
-      </> : <>
-        <strong>Area ∝ declarations + open claims</strong>
-        Each declaration and each open API Map claim has equal weight.
-      </>}
+      <strong>Area ∝ declarations + unformalized results</strong>
+      Each declaration and each unformalized API Map result has equal weight.
     </span>}
   </span>;
 }
 
 const EMPTY_TREE: MapData["tree"] = {name:"Physics",path:"",children:[]};
-const NATIVE_SOURCES: readonly Source[] = SOURCES.filter(source => source !== "External");
-const INCLUDE_EXTERNAL_BY_DEFAULT = false;
-function InteractiveMap({ data, contributors, references, sources }: {data?: MapData; contributors?: ContributorCounts; references:References; sources: readonly Source[]}) {
-  const [visible,setVisible] = useState(() => new Set<Source>(sources));
+function InteractiveMap({ data, references }: {data?: MapData; references:References}) {
+  const [visible,setVisible] = useState(() => new Set<Source>(SOURCES));
   // The library buttons change visibility within the active layout.
-  const index = useMemo(() => {refreshLabelMetrics(); return layout(data?.tree ?? EMPTY_TREE,new Set(sources),contributors);}, [data,contributors,sources]);
+  const index = useMemo(() => {refreshLabelMetrics(); return layout(data?.tree ?? EMPTY_TREE,allSources);}, [data]);
   const fieldTiles = useMemo(() => {
     const groups = new Map<string, number[]>();
     index.tiles.forEach((tile, i) => {
@@ -372,7 +334,6 @@ function InteractiveMap({ data, contributors, references, sources }: {data?: Map
   const inspectedCounts = examinedCounts && inspectedSource ? {
     Physlib: inspectedSource === "Physlib" ? examinedCounts.Physlib : 0,
     PhyslibAlpha: inspectedSource === "PhyslibAlpha" ? examinedCounts.PhyslibAlpha : 0,
-    External: 0,
     UnformalizedClaims: 0,
   } : examinedCounts;
   const actions = inspected ? regionActions(inspected,references,visible,inspectedSource) : [];
@@ -410,7 +371,7 @@ function InteractiveMap({ data, contributors, references, sources }: {data?: Map
     const q = searchText(query);
     if (!q) return [];
     const searchable = index.tiles.filter(({entry}) => (!field || entry === field || entry.node.path.startsWith(field.node.path + ".")) &&
-      !entry.node.externalGroup?.inline && entry.kind !== "todos" && regionActions(entry,references,visible).length > 0 &&
+      entry.kind !== "todos" && regionActions(entry,references,visible).length > 0 &&
       entry.sources.some(source => visible.has(source)));
     const native = searchable.map(tile => {
       const paths = [tile.entry.node.path,...(tile.entry.node.wikiPaths ?? [])];
@@ -474,8 +435,7 @@ function InteractiveMap({ data, contributors, references, sources }: {data?: Map
         writeField(url, restoredField);
         history.replaceState(null, "", url);
       }
-      const canPin = Boolean(destinations.length || target?.tile.entry.external);
-      select(canPin ? target : undefined, false, restoredField);
+      select(destinations.length ? target : undefined, false, restoredField);
     };
     restore();
     window.addEventListener("hashchange",restore);
@@ -486,9 +446,9 @@ function InteractiveMap({ data, contributors, references, sources }: {data?: Map
     };
   },[data,index,select,references,fields]);
   const reset = useCallback(() => {
-    setVisible(new Set(sources));
+    setVisible(new Set(SOURCES));
     zoomField("");
-  },[zoomField,sources]);
+  },[zoomField]);
   useEffect(() => {
     const shortcuts = (e: KeyboardEvent) => {
       if (isArticleHash(location.hash) || search.current?.closest("[hidden]")) return;
@@ -516,7 +476,7 @@ function InteractiveMap({ data, contributors, references, sources }: {data?: Map
     return { tile, source };
   }
   function pin(target: Selection, keyboard = false) {
-    if (!target.tile.entry.external && !regionActions(target.tile.entry,references,visible,target.source).length) return;
+    if (!regionActions(target.tile.entry,references,visible,target.source).length) return;
     const origin = document.activeElement;
     const owner = field && fields.find(item => item.node.path === fieldOf(target.tile.entry));
     if (owner && owner !== field) cameraMovedUnderPointer.current = true;
@@ -553,9 +513,9 @@ function InteractiveMap({ data, contributors, references, sources }: {data?: Map
               if (!event.currentTarget.matches(":hover")) inspectPointer(undefined);
             }
           }}>
-          {showingPin && <button className={styles.closeDetails} onClick={unpin} aria-label="Unpin selected Atlas item">Unpin</button>}
+          {showingPin && <button className={styles.closeDetails} onClick={unpin} aria-label="Unpin selected Globe item">Unpin</button>}
           <RoadmapInspector entry={inspected} counts={inspectedCounts}/>
-          <RoadmapContributors entry={inspected} contributors={contributors} source={inspectedSource}/>
+          <RoadmapContributors entry={inspected} source={inspectedSource}/>
           {actions.map(action => <a key={action.href} className={styles.contextAction} href={action.href} data-context-action
             onKeyDown={event => {
               const origin = focusOrigin.current;
@@ -567,15 +527,15 @@ function InteractiveMap({ data, contributors, references, sources }: {data?: Map
         </div>}
     </>,contextHost)}
     <div className={styles.controls}>
-      <button className={styles.resetMap} onClick={reset}>Reset Atlas</button>
-      <select aria-label="Physlib Atlas subject" title="Zoom to a physics field" disabled={!data} value={field?.node.path ?? ""} onChange={e => zoomField(e.target.value)}>
-        <option value="">Whole Atlas</option>{fields.map(item => <option key={item.node.path} value={item.node.path}>{pretty(item.node.name)}</option>)}</select>
-      <div className={styles.filters} aria-label="Physlib Atlas sources">{(["Physlib", "PhyslibAlpha", "UnformalizedClaims"] as const).map(s => <button key={s} type="button" aria-pressed={visible.has(s)}
+      <button className={styles.resetMap} onClick={reset}>Reset Globe</button>
+      <select aria-label="Physlib Globe subject" title="Zoom to a physics field" disabled={!data} value={field?.node.path ?? ""} onChange={e => zoomField(e.target.value)}>
+        <option value="">Whole Globe</option>{fields.map(item => <option key={item.node.path} value={item.node.path}>{pretty(item.node.name)}</option>)}</select>
+      <div className={styles.filters} aria-label="Physlib Globe sources">{(["Physlib", "PhyslibAlpha", "UnformalizedClaims"] as const).map(s => <button key={s} type="button" aria-pressed={visible.has(s)}
         className={s === "UnformalizedClaims" ? styles.openClaimsFilter : undefined}
         style={s !== "UnformalizedClaims" && visible.has(s) ? {background:surfaces[s], borderColor:colors[s]} : undefined}
         onClick={() => toggleSource(s)}>
         <i aria-hidden="true" style={s !== "UnformalizedClaims" ? {background:colors[s]} : undefined}/>{LABELS[s]}</button>)}</div>
-      <div className={styles.search}><input ref={search} type="search" aria-label="Search the Physlib Atlas" disabled={!data} value={query} placeholder={field ? "Search This Field…" : "Search the Atlas…"}
+      <div className={styles.search}><input ref={search} type="search" aria-label="Search the Physlib Globe" disabled={!data} value={query} placeholder={field ? "Search This Field…" : "Search the Globe…"}
         onChange={e => setQuery(e.target.value)} onKeyDown={e => {if (e.key === "Enter" && hits[0]) pin({tile:hits[0]},true);}}/>
         {query.trim() && <div className={styles.results} onPointerLeave={() => inspectPointer(undefined)}
           onBlur={event => {if (!contextHost?.contains(event.relatedTarget)) setFocus(undefined);}} onKeyDown={tabToContext}>
@@ -583,13 +543,13 @@ function InteractiveMap({ data, contributors, references, sources }: {data?: Map
           onPointerEnter={event => {if (event.pointerType !== "touch") inspectPointer({tile});}}
           onFocus={event => {if (event.currentTarget.matches(":focus-visible")) inspectFocus({tile});}}
           onClick={event => pin({tile},event.detail === 0)}>
-          <strong>{externalProject(tile.entry) ?? pretty(tile.entry.node.name)}</strong><small>{tile.entry.node.path}</small>
+          <strong>{pretty(tile.entry.node.name)}</strong><small>{tile.entry.node.path}</small>
         </button>) : <span>No matching results</span>}</div>}
       </div>
     </div>
     <div className={styles.body}>
       <div className={styles.plot}>
-        <svg data-atlas-plot role="group" aria-label="Physlib Atlas of physics folders, Lean files, and declarations"
+        <svg data-atlas-plot role="group" aria-label="The Physlib Globe of physics folders, Lean files, and declarations"
           viewBox={`${camera.x-camera.size/2} ${camera.y-camera.size/2} ${camera.size} ${camera.size}`}
           onPointerOver={e => {
             if (e.pointerType !== "touch" && !cameraMovedUnderPointer.current) inspectPointer(pick(e.target));
@@ -629,9 +589,8 @@ function InteractiveMap({ data, contributors, references, sources }: {data?: Map
               </g>
             ))}
           </g>
-          <text textAnchor="middle" dominantBaseline="central" fill="var(--foreground)" fontSize="36" className="font-semibold tracking-[-0.04em]" pointerEvents="none" aria-label="Formalized Physics">
-            <tspan x="0" y="-24" className="font-mono text-accent/60" fill="currentColor">Formalized</tspan>
-            <tspan x="0" y="24">Physics</tspan>
+          <text x="0" y="0" textAnchor="middle" dominantBaseline="central" fill="var(--foreground)" fontSize="44" className="font-semibold tracking-[-0.04em]" pointerEvents="none" aria-label="Physlib">
+            <tspan>Phys</tspan><tspan className="font-mono text-accent/60" fill="currentColor">lib</tspan>
           </text>
           {fieldTiles.map(([owner, tileIndices]) => (
             <g key={owner} data-roadmap-field={owner} className={field && owner !== field.node.path ? styles.otherField : undefined}>
@@ -644,12 +603,12 @@ function InteractiveMap({ data, contributors, references, sources }: {data?: Map
             <path className={styles.tileHighlight} d={arc(highlightedSector)} data-roadmap-highlight={focus ? "keyboard" : "pinned"} data-open-claim={showsOnlyOpenClaims(counts.byEntry.get(highlightedTile.entry), visible) || undefined}
               vectorEffect="non-scaling-stroke" pointerEvents="none" aria-hidden="true"/>}
         </svg>
-        {!data && <div role="status" className={styles.loading}>Loading the Atlas…</div>}
-        {visible.size === 0 && <div className={styles.empty}>Select a source to show it in the Atlas.</div>}
+        {!data && <div role="status" className={styles.loading}>Loading the Globe…</div>}
+        {visible.size === 0 && <div className={styles.empty}>Select a source to show it on the Globe.</div>}
       </div>
       <RoadmapSidebar/>
     </div>
-    <div className={styles.caption}><span className={styles.legend}><span><i className={styles.asterisk}>✳︎</i> Definition</span><span><i className={styles.solid}/> Lemma or Theorem</span><span><i className={styles.hollow}/> Open Claim</span><AreaWeightInfo includeExternal={sources.includes("External")}/></span>
+    <div className={styles.caption}><span className={styles.legend}><span><i className={styles.asterisk}>✳︎</i> Definition</span><span><i className={styles.solid}/> Lemma or Theorem</span><span><i className={styles.hollow}/> Unformalized</span><AreaWeightInfo/></span>
       <span className={styles.paperView}>formal twin of <a href="https://paperview.org/">PaperView <span aria-hidden="true">↗</span></a></span>
     </div>
   </div>;
@@ -658,11 +617,8 @@ function InteractiveMap({ data, contributors, references, sources }: {data?: Map
 const EMPTY_PATHS: Paths = {};
 type ViewerProps = {referencePaths: Paths; folderPaths?: FolderPaths};
 
-function AtlasView({referencePaths,folderPaths = EMPTY_PATHS}: ViewerProps) {
-  const params = useSearchParams();
-  const requested = params.get("external");
-  const includeExternal = requested === null ? INCLUDE_EXTERNAL_BY_DEFAULT : requested === "1";
-  const [atlas,setAtlas] = useState<{data:MapData; contributors:ContributorCounts}>();
+export default function RoadmapViewer({referencePaths,folderPaths = EMPTY_PATHS}: ViewerProps) {
+  const [data,setData] = useState<MapData>();
   const [error,setError] = useState(false);
   const references = useMemo(() => ({modules:referencePaths,folders:folderPaths}),[referencePaths,folderPaths]);
   useEffect(() => {
@@ -674,20 +630,12 @@ function AtlasView({referencePaths,folderPaths = EMPTY_PATHS}: ViewerProps) {
     };
     Promise.all([
       loadJson("/roadmap-view/roadmap-data.json") as Promise<MapData>,
-      loadJson("/roadmap-view/contributors.json").then(snapshot => snapshot.repositories as ContributorCounts),
       document.fonts.ready,
-    ]).then(([loaded,counts]) => {
-      if (!controller.signal.aborted) {
-        setAtlas({data:loaded,contributors:counts});
-      }
+    ]).then(([loaded]) => {
+      if (!controller.signal.aborted) setData(loaded);
     }).catch(() => {if (!controller.signal.aborted) setError(true);});
     return () => controller.abort();
   },[]);
-  if (error) return <p role="alert">The Physlib Atlas could not be loaded. <a href="/api-maps">Browse API Maps →</a></p>;
-  return <InteractiveMap key={includeExternal ? "full" : "native"} data={atlas?.data}
-    contributors={atlas?.contributors} references={references} sources={includeExternal ? SOURCES : NATIVE_SOURCES}/>;
-}
-
-export default function RoadmapViewer(props: ViewerProps) {
-  return <Suspense fallback={<p role="status">Loading the Atlas…</p>}><AtlasView {...props}/></Suspense>;
+  if (error) return <p role="alert">The Physlib Globe could not be loaded. <a href="/api-maps">Browse API Maps →</a></p>;
+  return <InteractiveMap data={data} references={references}/>;
 }

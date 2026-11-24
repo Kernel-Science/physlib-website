@@ -44,7 +44,7 @@ export function ApiMapReader({ articlePaths, referencePaths, home, children }: {
     function update(event?: Event) {
       const next = readFragment();
       if (home === "wiki" && /^(?:d|f|dir|project)=/.test(next)) {
-        window.location.replace("/roadmap" + window.location.search + window.location.hash);
+        window.location.replace("/globe" + window.location.search + window.location.hash);
         return;
       }
       // Old module bookmarks now open the published file in its native reader.
@@ -101,7 +101,7 @@ export function ApiMapReader({ articlePaths, referencePaths, home, children }: {
       </p>}
       {isApi && (
         <section id="api-map-reader" aria-label="Selected article" className="mx-auto min-w-0 max-w-5xl">
-          {home === "roadmap" && <a href="/roadmap" className="mb-3 inline-block text-sm text-accent hover:underline"
+          {home === "roadmap" && <a href="/globe" className="mb-3 inline-block text-sm text-accent hover:underline"
             onClick={event => {
               if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
               event.preventDefault();
@@ -117,7 +117,7 @@ export function ApiMapReader({ articlePaths, referencePaths, home, children }: {
                 window.scrollTo({ top: 0, behavior: "instant" });
               });
             }}>
-            ← Reset Atlas
+            ← Reset Globe
           </a>}
           {apiMap ? (
             <>

@@ -1,1 +1,0 @@
-{"repository":"Maokami/vqc_in_lean","revision":"00b7e012c2c867535f2f4561e5d931a336b5fc5d","key":"9fde3254848fa956933f10d518718381bdeb2e3030024ad4a12db14ad7e201ac","files":["Main.lean","VqcInLean.lean","VqcInLean/Basic.lean","VqcInLean/QBra.lean","VqcInLean/QMatrix.lean","VqcInLean/QState.lean","VqcInLean/Qubit.lean","VqcInLean/SQIR.lean"]}

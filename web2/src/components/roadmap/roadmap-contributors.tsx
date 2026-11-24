@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { GitHubProfilePill } from "@/components/github-profile-pill";
-import type { ContributorCounts, Entry } from "./layout";
+import type { Entry } from "./layout";
 import styles from "./roadmap-contributors.module.css";
 
 type Person = { login: string; loc?: number };
@@ -23,16 +23,6 @@ function nativeIndex() {
     throw error;
   });
   return nativeRequest;
-}
-
-function repositoryPeople(repositories: string[], snapshot: ContributorCounts): Person[] | undefined {
-  const users = new Map<string, Person>();
-  for (const repository of repositories) {
-    const logins = snapshot[repository]?.logins;
-    if (!logins) return;
-    for (const login of logins) users.set(login.toLowerCase(), { login });
-  }
-  return [...users.values()].sort((a, b) => a.login.localeCompare(b.login, "en"));
 }
 
 function scopedPaths(entry: Entry, index: NativeIndex, library?: "Physlib" | "PhyslibAlpha"): string[] {
@@ -104,12 +94,11 @@ function PeopleList({ people, scope }: { people?: Person[]; scope?: string }) {
   </div>;
 }
 
-export function RoadmapContributors({ entry, contributors, source }: {
+export function RoadmapContributors({ entry, source }: {
   entry?: Entry;
-  contributors?: ContributorCounts;
   source?: "Physlib" | "PhyslibAlpha";
 }) {
-  const native = !!entry && entry.kind !== "project" && (entry.kind !== "file" || !entry.external);
+  const native = !!entry;
   const [index, setIndex] = useState<NativeIndex>();
   const [failed, setFailed] = useState(false);
   const [retry, setRetry] = useState(0);
@@ -120,13 +109,6 @@ export function RoadmapContributors({ entry, contributors, source }: {
     nativeIndex().then(data => { if (active) setIndex(data); }, () => { if (active) setFailed(true); });
     return () => { active = false; };
   }, [entry, native, index, retry]);
-  const repositories = useMemo(() => {
-    if (!entry || native) return [];
-    const group = entry.node.externalGroup;
-    const project = group?.project ?? entry.node.externalProject?.repository;
-    return project ? [project.toLowerCase()] : Object.keys(group?.byProject ?? {}).map(name => name.toLowerCase());
-  }, [entry, native]);
-  const repoPeople = useMemo(() => contributors && repositoryPeople(repositories, contributors), [repositories, contributors]);
   const nativePeople = useMemo(() => {
     if (!index || !entry || !native) return;
     const keys = scopedPaths(entry, index, source);
@@ -139,7 +121,5 @@ export function RoadmapContributors({ entry, contributors, source }: {
       : index || failed ? <div className={styles.status}>Contributors unavailable
         {failed && <button type="button" onClick={() => setRetry(n => n + 1)}>Retry</button>}
       </div> : <div className={styles.status} role="status">Loading contributors…</div>)}
-    {repositories.length > 0 && <PeopleList people={repoPeople}
-      scope={repositories.length > 1 ? `Across ${repositories.length} repositories` : undefined}/>}
   </div>;
 }

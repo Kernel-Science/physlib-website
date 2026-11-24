@@ -45,7 +45,7 @@ export const navSections: NavSection[] = [
   {
     label: "Explore",
     items: [
-      { label: "Physlib Atlas", href: "/roadmap" },
+      { label: "The Physlib Globe", href: "/globe" },
       { label: "API Maps", href: "/api-maps" },
       { label: "Documentation", href: site.docs },
       { label: "Dependency Graphs", href: "/dependencies" },

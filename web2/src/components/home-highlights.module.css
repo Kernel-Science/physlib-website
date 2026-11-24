@@ -37,5 +37,3 @@
   background: url("/roadmap-view/home-light.webp") center / contain no-repeat;
 }
 :global([data-theme="dark"]) .preview { background-image: url("/roadmap-view/home-dark.webp"); }
-.preview[data-external="true"] { background-image: url("/roadmap-view/home-external-light.webp"); }
-:global([data-theme="dark"]) .preview[data-external="true"] { background-image: url("/roadmap-view/home-external-dark.webp"); }

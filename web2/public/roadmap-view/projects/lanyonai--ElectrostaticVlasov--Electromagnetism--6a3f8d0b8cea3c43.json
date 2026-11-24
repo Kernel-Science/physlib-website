@@ -1,1 +1,0 @@
-{"repository":"lanyonai/ElectrostaticVlasov","revision":"f43676e2eb1c39917747ef373b8402aa60867016","key":"6a3f8d0b8cea3c4331630d46065c694d8cad1d18196529a777abcebe14fce579","files":["proofs/es_vlasov_1x1v.lean","proofs/es_vlasov_1x2v.lean","proofs/es_vlasov_1x3v.lean","proofs/es_vlasov_2x2v.lean","proofs/es_vlasov_2x3v.lean","proofs/es_vlasov_3x3v.lean"]}

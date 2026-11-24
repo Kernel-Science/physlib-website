@@ -10,7 +10,7 @@ import { fileURLToPath } from "node:url";
 import WebSocket from "next/dist/compiled/ws/index.js";
 import sharp from "sharp";
 
-const url = new URL("/roadmap", process.argv[2] ?? "http://127.0.0.1:3000").href;
+const url = new URL("/globe", process.argv[2] ?? "http://127.0.0.1:3000").href;
 const output = process.argv[3] ? resolve(process.argv[3]) : fileURLToPath(new URL("../public/roadmap-view/", import.meta.url));
 const chrome = process.env.CHROME_BIN || (process.platform === "darwin"
   ? "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" : "google-chrome");
@@ -18,17 +18,16 @@ const profile = await mkdtemp(join(tmpdir(), "physlib-roadmap-preview-"));
 
 // This function runs in the site tab. Keep the exact live geometry, typography
 // and colors; the surrounding hero supplies the background under the chart.
-async function prepare(theme, includeExternal) {
+async function prepare(theme) {
   const until = performance.now() + 60_000;
   let svg;
   while (performance.now() < until) {
     svg = document.querySelector("svg[data-atlas-plot]");
-    if (document.documentElement.dataset.theme === theme && svg?.querySelector("g[data-tile]") &&
-        Boolean(svg.querySelector('g[data-external="true"]')) === includeExternal) break;
+    if (document.documentElement.dataset.theme === theme && svg?.querySelector("g[data-tile]")) break;
     svg = undefined;
     await new Promise(resolve => setTimeout(resolve, 100));
   }
-  if (!svg) throw Error("Timed out waiting for the rendered " + theme + " roadmap");
+  if (!svg) throw Error("Timed out waiting for the rendered " + theme + " Globe");
   await document.fonts.ready;
   for (let element = svg; element; element = element.parentElement) {
     element.style.setProperty("background", "transparent", "important");
@@ -101,19 +100,16 @@ try {
   await command("Emulation.setDefaultBackgroundColorOverride",{color:{r:0,g:0,b:0,a:0}});
   const previews = new Map();
   const variants = [
-    {name:"home-light", theme:"light", external:false},
-    {name:"home-dark", theme:"dark", external:false},
-    {name:"home-external-light", theme:"light", external:true},
-    {name:"home-external-dark", theme:"dark", external:true},
+    {name:"home-light", theme:"light"},
+    {name:"home-dark", theme:"dark"},
   ];
-  for (const {name,theme,external} of variants) {
+  for (const {name,theme} of variants) {
     const previewUrl = new URL(url);
-    previewUrl.searchParams.set("external",external ? "1" : "0");
     const init = await command("Page.addScriptToEvaluateOnNewDocument",{source:`localStorage.setItem("theme",${JSON.stringify(theme)})`});
     const loaded = once(events,"Page.loadEventFired",{signal:AbortSignal.timeout(60_000)});
     await command("Page.navigate",{url:previewUrl.href});
     await loaded;
-    const clip = await command("Runtime.evaluate",{expression:`(${prepare.toString()})(${JSON.stringify(theme)},${external})`,awaitPromise:true,returnByValue:true});
+    const clip = await command("Runtime.evaluate",{expression:`(${prepare.toString()})(${JSON.stringify(theme)})`,awaitPromise:true,returnByValue:true});
     if (clip.exceptionDetails) throw Error(clip.exceptionDetails.exception?.description ?? "The chart could not be captured");
     const {data} = await command("Page.captureScreenshot",{format:"png",clip:clip.result.value,captureBeyondViewport:true});
     const bitmap = sharp(Buffer.from(data,"base64")).resize(1100,1100);

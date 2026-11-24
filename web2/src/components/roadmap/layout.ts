@@ -1,31 +1,27 @@
-import { sourceDeclaration } from "./external-declarations";
-import type { ExternalIndex, ExternalGroup } from "./external-declarations";
-
-export const SOURCES = ["Physlib", "PhyslibAlpha", "External", "UnformalizedClaims"] as const;
+export const SOURCES = ["Physlib", "PhyslibAlpha", "UnformalizedClaims"] as const;
 export type Source = (typeof SOURCES)[number];
 export const LABELS: Record<Source, string> = {
-  Physlib: "Physlib", PhyslibAlpha: "PhyslibAlpha", External: "External", UnformalizedClaims: "Unformalized",
+  Physlib: "Physlib", PhyslibAlpha: "PhyslibAlpha", UnformalizedClaims: "Unformalized (API Maps)",
 };
 
 export type Destination = { source: Source; href: string; label?: string };
 export type Declaration = {
   name: string; source: Source; kind: string; href?: string; statement?: string;
-  project?: string; library?: "Physlib" | "PhyslibAlpha"; sourceKind?: string; line?: number; status?: string; filePath?: string; srcs?: { title?: string; url?: string; arxiv?: string }[];
+  library?: "Physlib" | "PhyslibAlpha"; sourceKind?: string; line?: number; srcs?: { title?: string; url?: string; arxiv?: string }[];
 };
-export type ExternalProject = { repository: string; href: string; fileCount: number; modulesHref: string };
 export type TreeNode = {
   name: string; path: string; children?: TreeNode[]; decls?: Declaration[];
-  sources?: Source[]; moduleLinks?: Destination[]; wikiPaths?: string[]; project?: string;
-  apiMapLinks?: Destination[]; apiMapHref?: string; todoGroup?: boolean; externalProject?: ExternalProject; externalIndex?: ExternalIndex; externalGroup?: ExternalGroup;
+  sources?: Source[]; moduleLinks?: Destination[]; wikiPaths?: string[];
+  apiMapLinks?: Destination[]; apiMapHref?: string; todoGroup?: boolean;
 };
 export type MapData = { tree: TreeNode };
 export type Entry = {
-  node: TreeNode; kind: "folder" | "file" | "todos" | "project"; children: Entry[];
-  decls: Declaration[]; results: number; weight: number; external: boolean; mapped: boolean; projects: number; repositories: string[]; todoLibraries: Source[]; sources: Source[];
+  node: TreeNode; kind: "folder" | "file" | "todos"; children: Entry[];
+  decls: Declaration[]; results: number; weight: number; mapped: boolean; todoLibraries: Source[]; sources: Source[];
 };
 export type Sector = { start: number; end: number; inner: number; outer: number };
 export type Dot = { x: number; y: number; radius: number; decl: Declaration };
-export type Tile = { plotted: boolean; entry: Entry; sector: Sector; labelSector?: Sector; bounds: Sector; color: string; fields: { source: Source; sector: Sector }[]; dots: Dot[]; glyphs: Partial<Record<Source, string>> };
+export type Tile = { plotted: boolean; entry: Entry; sector: Sector; bounds: Sector; color: string; fields: { source: Source; sector: Sector }[]; dots: Dot[]; glyphs: Partial<Record<Source, string>> };
 
 export const pretty = (s: string) => s.replace(/([a-z])([A-Z])/g, "$1 $2").replace(/ (?:(And|Of|In|For|With|Or|the))(?= )/g, word => word.toLowerCase());
 export const SUBJECT_FONT = 18;
@@ -67,101 +63,32 @@ export function declarationVisible(d: Declaration, visible: Set<Source>) {
   return visible.has(d.source) && (d.source !== "UnformalizedClaims" || visible.has(d.library ?? "Physlib"));
 }
 
-export type ContributorCounts = Record<string, { count: number; logins?: string[] }>;
-export const CONTRIBUTOR_EXPONENT = 1.1;
-const PHYS_REPO = "leanprover-community/physlib";
-function contributions(group: ExternalGroup) {
-  return Object.entries(group.byProject ?? (group.project ? {[group.project]:group.count} : {}));
-}
-
-function contributorRates(tree: TreeNode, contributors: ContributorCounts) {
-  const totals = new Map<string,number>();
-  let nativeTodos = 0;
-  function add(repo: string, n: number) {
-    const key = repo.toLowerCase();
-    totals.set(key,(totals.get(key) ?? 0)+n);
-  }
-  function collect(node: TreeNode) {
-    for (const row of node.decls ?? []) {
-      if (row.source === "UnformalizedClaims") nativeTodos++;
-      else add(row.source === "External" ? row.project ?? "" : PHYS_REPO,1);
-    }
-    for (const group of node.externalIndex?.groups ?? []) {
-      for (const [repo,count] of contributions(group)) add(repo,count);
-    }
-    node.children?.forEach(collect);
-  }
-  collect(tree);
-  const rates = new Map<string,number>();
-  const missing: string[] = [];
-  const counts = new Map(Object.entries(contributors).map(([repo,record]) => [repo.toLowerCase(),record.count]));
-  for (const [repo,total] of totals) {
-    const count = counts.get(repo);
-    if (typeof count !== "number" || !Number.isFinite(count) || count < 0) missing.push(repo);
-    else if (total) {
-      const positions = total + (repo === PHYS_REPO ? nativeTodos : 0);
-      const repositoryWeight = total * Math.max(1, count) ** CONTRIBUTOR_EXPONENT;
-      rates.set(repo, repositoryWeight / positions);
-    }
-  }
-  return {rates,missing};
-}
-
-function entries(node: TreeNode, visible: Set<Source>, hasAudit: boolean, rates?: Map<string,number>): Entry[] {
-  const legacyCatalogue = node.path.endsWith(".ExternalProjects") && node.name === "External projects";
-  if (legacyCatalogue && hasAudit) return [];
-  const children = (node.children ?? []).flatMap(child => entries(child, visible, hasAudit, rates));
-  // Old snapshots put repository inventories inside a synthetic directory.
-  // Retain their bookmarked paths, but attach them directly to their physics subject.
-  if (legacyCatalogue) return children;
-  if (visible.has("External")) {
-    for (const group of node.externalIndex?.groups ?? []) {
-      if (!group.count) continue;
-      // Secondary contributions belong directly to this physics topic. The
-      // private key locates a chart patch and is never exposed as a folder.
-      const repository = group.inline ? undefined : group.project;
-      const key = group.inline ? "~declarations" : (repository ?? group.label ?? "").replaceAll(".", "%2E");
-      const path = node.path ? node.path + "." + key : key;
-      const samples = (group.samples ?? []).map(sample => sourceDeclaration(sample, sample.project ?? repository ?? "", sample.path));
-      children.push({
-        node: { name: group.inline ? node.name : group.label ?? repository ?? node.name, path, externalGroup: group, project: repository },
-        kind: "project", children: [], decls: samples,
-        results: group.count, weight: rates ? contributions(group).reduce((sum,[repo,count]) => sum+count*(rates.get(repo.toLowerCase()) ?? 0),0) : group.count, external: true, mapped: false, projects: repository ? 1 : 0,
-        repositories: repository ? [repository] : [], todoLibraries: [], sources: ["External"],
-      });
-    }
-  }
-  // A project whose reviewed branch disappeared sits directly at the root.
+function entries(node: TreeNode, visible: Set<Source>): Entry[] {
+  const children = (node.children ?? []).flatMap(child => entries(child, visible));
   if (!node.path) return children;
   const decls = (node.decls ?? []).filter(d => declarationVisible(d,visible));
   const moduleLinks = node.moduleLinks?.filter(link => visible.has(link.source));
   const file: Entry[] = decls.length || moduleLinks?.length ? [{
-    node: { ...node, moduleLinks, externalProject: undefined }, kind: node.todoGroup ? "todos" : "file", children: [], decls,
-    results: decls.length, weight: rates ? decls.reduce((sum,d) =>
-      sum+(rates.get(d.source === "External" ? (d.project ?? "").toLowerCase() : PHYS_REPO) ?? 0),0) : decls.length, mapped: false, projects: 0, repositories: [],
+    node: { ...node, moduleLinks }, kind: node.todoGroup ? "todos" : "file", children: [], decls,
+    results: decls.length, weight: decls.length, mapped: false,
     todoLibraries: [...new Set(decls.filter(d => d.source === "UnformalizedClaims").map(d => d.library ?? "Physlib"))],
     sources: Array.from(new Set([...decls.map(d => d.source), ...(moduleLinks ?? []).map(link => link.source)])),
-    external: decls.length ? decls.every(d => d.source === "External") : Boolean(moduleLinks?.every(link => link.source === "External")),
   }] : [];
   // A visible TODO also keeps its own source article within reach when that
   // library's declaration markers are switched off.
   const todoMaps = new Set(children.filter(item => item.kind === "todos").map(item => item.node.apiMapHref));
   const maps = node.apiMapLinks?.filter(link => visible.has(link.source) || todoMaps.has(link.href));
   const article = maps?.[0]?.href;
-  const project = visible.has("External") ? node.externalProject : undefined;
-  if (!project && !children.length && !article) return file;
+  if (!children.length && !article) return file;
   const members = [...file, ...children];
-  const repositories = [...new Set([...members.flatMap(item => item.repositories), ...(project ? [project.repository] : [])])];
   return [{
-    node: { ...node, apiMapLinks: maps, apiMapHref: article, externalProject: project },
-    kind: project ? "project" : "folder", children: members, decls: [],
-    sources: Array.from(new Set([...(maps ?? []).map(link => link.source), ...members.flatMap(item => item.sources), ...(project ? ["External" as const] : [])])),
-    projects: repositories.length, repositories,
+    node: { ...node, apiMapLinks: maps, apiMapHref: article },
+    kind: "folder", children: members, decls: [],
+    sources: Array.from(new Set([...(maps ?? []).map(link => link.source), ...members.flatMap(item => item.sources)])),
     todoLibraries: [...new Set(members.flatMap(item => item.todoLibraries))],
     results: members.reduce((n, item) => n + item.results, 0),
     weight: members.reduce((n,item) => n+item.weight,0),
     mapped: Boolean(article) || members.some(item => item.mapped),
-    external: Boolean(project) || (members.length > 0 && members.every(item => item.external) && !article),
   }];
 }
 
@@ -230,13 +157,10 @@ export function dotGrid(decls: Declaration[], s: Sector) {
   return dots;
 }
 
-export function layout(tree: TreeNode, visible: Set<Source>, contributors?: ContributorCounts) {
-  const hasIndex = (node: TreeNode): boolean => Boolean(node.externalIndex) || Boolean(node.children?.some(hasIndex));
-  const hasAudit = hasIndex(tree);
-  const coverage = visible.has("External") && contributors ? contributorRates(tree,contributors) : undefined;
-  const allRoots = entries(tree, visible, hasAudit, coverage?.rates);
+export function layout(tree: TreeNode, visible: Set<Source>) {
+  const allRoots = entries(tree, visible);
   const hasArea = (entry: Entry) => entry.weight > 0;
-  const roots = allRoots.filter(entry => entry.results > 0 || entry.mapped || entry.projects > 0);
+  const roots = allRoots.filter(entry => entry.results > 0 || entry.mapped);
   const drawnRoots = roots.filter(hasArea);
   const tiles: Tile[] = [];
   // Import-only files remain searchable and can be opened from their folder. Their
@@ -247,32 +171,26 @@ export function layout(tree: TreeNode, visible: Set<Source>, contributors?: Cont
   }
   function place(entry: Entry, bounds: Sector, depth: number) {
     const region = bounds;
-    const isFolder = entry.kind === "folder" || entry.kind === "project";
+    const isFolder = entry.kind === "folder";
     const children = entry.children.filter(hasArea);
     const sector = isFolder && children.length ? {
       ...region, outer: region.inner + Math.min(depth === 0 ? 36 : 13, (region.outer - region.inner) * .17),
     } : region;
-    const labelHeight = Math.min(10,(sector.outer-sector.inner)*.21);
-    const labelSector = entry.node.externalGroup && !entry.node.externalGroup.inline && labelHeight > 1.5
-      ? { ...sector, outer:sector.inner+labelHeight } : undefined;
     const fields: Tile["fields"] = [];
     const dots: Dot[] = [];
     let start = sector.start;
-    if (entry.node.externalGroup) {
-      fields.push({source:"External",sector:{...sector,inner:labelSector?.outer ?? sector.inner}});
-    }
-    for (const source of entry.node.externalGroup ? [] : SOURCES) {
+    for (const source of SOURCES) {
       const members = entry.decls.filter(decl => decl.source === source);
       if (!members.length) continue;
       const end = start + (sector.end - sector.start) * members.length / entry.decls.length;
-      const field = { ...sector, start, end, inner:labelSector?.outer ?? sector.inner };
+      const field = { ...sector, start, end };
       fields.push({ source, sector: field });
-      if (source !== "External") dots.push(...dotGrid(members,inset(field,.8)));
+      dots.push(...dotGrid(members,inset(field,.8)));
       start = end;
     }
     const glyphs: Tile["glyphs"] = {};
     for (const dot of dots) glyphs[dot.decl.source] = (glyphs[dot.decl.source] ?? "") + pointGlyph(dot);
-    tiles.push({ plotted: true, entry, sector, labelSector, bounds, color: entry.sources.includes("Physlib") ? "var(--band-physlib)" : entry.sources.includes("PhyslibAlpha") ? "var(--band-alpha)" : "var(--band-external)", fields, dots, glyphs });
+    tiles.push({ plotted: true, entry, sector, bounds, color: entry.sources.includes("Physlib") ? "var(--band-physlib)" : entry.sources.includes("PhyslibAlpha") ? "var(--band-alpha)" : "var(--band-neutral)", fields, dots, glyphs });
     entry.children.filter(child => !hasArea(child)).forEach(child => indexOnly(child, bounds));
     if (children.length) {
       divide(children, { ...region, inner: sector.outer }, depth+1);
@@ -305,7 +223,7 @@ export function layout(tree: TreeNode, visible: Set<Source>, contributors?: Cont
     place(root, { start, end, inner:innerRadius, outer:492 }, 0);
     start = end;
   }
-  return { roots, tiles, missing:coverage?.missing ?? [] };
+  return { roots, tiles };
 }
 
 export type Camera = { x: number; y: number; size: number };

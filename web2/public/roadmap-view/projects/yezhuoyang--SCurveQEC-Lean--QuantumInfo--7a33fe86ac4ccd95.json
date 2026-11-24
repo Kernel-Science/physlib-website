@@ -1,1 +1,0 @@
-{"repository":"yezhuoyang/SCurveQEC-Lean","revision":"d16911b16af88fb9b177b86a37cace00de2ea5db","key":"7a33fe86ac4ccd955fd5b2852916583a7533472a25675b41d5853ad43c942b5f","files":["SCurveQEC.lean","SCurveQEC/Basic.lean","SCurveQEC/Decoder.lean","SCurveQEC/ErrorRate.lean","SCurveQEC/Monotone.lean","SCurveQEC/Pauli.lean","SCurveQEC/Stabilizer.lean","SCurveQEC/Surface.lean"]}
