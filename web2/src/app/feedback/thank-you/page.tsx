@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 export default function FeedbackThankYouPage() {
   return (
-    <section className="page-frame-editorial feedback-thank-you">
+    <section className="page-frame-editorial">
       <h1 className="page-title-editorial">Thank you</h1>
       <p className="page-intro-editorial">We received your feedback.</p>
     </section>
