@@ -32,7 +32,7 @@ export function ApiMapReader({ articlePaths, referencePaths, home, children }: {
     setLoadFailed(false);
     fetch("/api/api-map?view=articles", { signal: controller.signal })
       .then(response => {
-        if (!response.ok) throw new Error("Wiki article unavailable");
+        if (!response.ok) throw new Error("API Map unavailable");
         return response.json() as Promise<ApiMap>;
       })
       .then(setApiMap)
@@ -43,6 +43,10 @@ export function ApiMapReader({ articlePaths, referencePaths, home, children }: {
   useEffect(() => {
     function update(event?: Event) {
       const next = readFragment();
+      if (home === "wiki" && /^(?:d|f|dir|project)=/.test(next)) {
+        window.location.replace("/roadmap" + window.location.search + window.location.hash);
+        return;
+      }
       // Old module bookmarks now open the published file in its native reader.
       const file = parseWikiFile(next);
       if (file) {
@@ -77,7 +81,7 @@ export function ApiMapReader({ articlePaths, referencePaths, home, children }: {
       window.removeEventListener("hashchange", update);
       document.removeEventListener("click", followLink);
     };
-  }, [apiPaths, referencePaths]);
+  }, [apiPaths, home, referencePaths]);
 
   useLayoutEffect(() => {
     if (!isApi || !shouldScroll.current) return;
@@ -113,7 +117,7 @@ export function ApiMapReader({ articlePaths, referencePaths, home, children }: {
                 window.scrollTo({ top: 0, behavior: "instant" });
               });
             }}>
-            ← Reset Map
+            ← Reset Atlas
           </a>}
           {apiMap ? (
             <>
@@ -125,8 +129,8 @@ export function ApiMapReader({ articlePaths, referencePaths, home, children }: {
               </section>
             </>
           ) : loadFailed ? (
-            <p role="alert">This Wiki article could not be loaded. <button type="button" className="text-accent underline" onClick={() => setRetry(count => count + 1)}>Try again</button></p>
-          ) : <p role="status">Loading Wiki article…</p>}
+            <p role="alert">This API Map could not be loaded. <button type="button" className="text-accent underline" onClick={() => setRetry(count => count + 1)}>Try again</button></p>
+          ) : <p role="status">Loading API Map…</p>}
         </section>
       )}
     </>

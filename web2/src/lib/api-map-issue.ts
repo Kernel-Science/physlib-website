@@ -208,7 +208,7 @@ export function apiMapIssue({
         "_If this suggestion is accepted, please credit the issue author as a " +
           "co-author of the change (`Co-authored-by:`)._",
         "",
-        "*Suggested from the Physlib Wiki.*",
+        "*Suggested from Physlib API Maps.*",
         "",
       ].join("\n");
     },

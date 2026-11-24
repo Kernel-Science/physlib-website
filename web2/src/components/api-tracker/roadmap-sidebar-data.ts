@@ -30,5 +30,5 @@ export function makeSidebarManifest(native: NativeFolders, maps: ApiMapNode[]): 
 }
 
 export function articleHref(item: SidebarArticle) {
-  return "/wiki#" + item.target.split("/").map(encodeURIComponent).join("/");
+  return "/api-maps#" + item.target.split("/").map(encodeURIComponent).join("/");
 }

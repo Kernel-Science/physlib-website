@@ -144,7 +144,7 @@ def build_export(db, complete, staging):
     """).fetchall()
     groups = {}
     homes = dict(con.execute("SELECT repository, topic FROM project_homes"))
-    if any(homes.get(repo) != reviewed.review[repo]["folder"] for repo in repos) or (complete and set(homes) != repos):
+    if any(homes.get(repo) != reviewed.homes[repo] for repo in repos) or (complete and set(homes) != repos):
         raise RuntimeError("Apply reviewed project homes before exporting")
     whole_projects = defaultdict(list)
     batch_num = None
@@ -170,7 +170,7 @@ def build_export(db, complete, staging):
             # It has no named result for a reader to open in the roadmap.
             if kind == "example":
                 continue
-            destination = topic or m["topic"]
+            destination = m["topic"] if topic is None else topic
             if destination not in reviewed.folders:
                 raise RuntimeError(f"{repo}: invalid public placement for {m['path']}: {destination}")
             sections[destination].append(dict(name=name, kind=kind, line=line, status=status))

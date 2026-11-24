@@ -8,7 +8,7 @@ import { site } from "@/lib/site";
  */
 const ways: { label: string; text: string; href: string; external?: boolean }[] = [
   { label: "Review a PR", text: "Give feedback on submitted changes", href: "/pr-tracker" },
-  { label: "Write a Wiki Article", text: "Explain a physics topic and link it to Lean", href: "/wiki/new" },
+  { label: "Write an API Map", text: "Explain a physics topic and link it to Lean", href: "/api-maps/new" },
   { label: "Find a Task", text: "Browse issues, TODOs, and documentation tasks", href: site.tasks },
   { label: "Join the Discussion", text: "Talk to the community on Zulip", href: site.zulip, external: true },
 ];

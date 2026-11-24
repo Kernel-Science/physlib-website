@@ -7,6 +7,7 @@ placement. A topic path records a reading location, never proof status or owners
 
 import argparse
 import json
+import logging
 import re
 import sqlite3
 from collections import defaultdict
@@ -548,7 +549,8 @@ class ReviewedFolders:
 
     def __init__(self, review, registry, folders):
         self.review = review
-        self.folders = folders
+        self.folders = folders | {""}
+        self.homes = {repo: self.nearest(entry["folder"]) for repo, entry in review.items()}
         self.subjects = defaultdict(set)
         self.revisions = set()
         self.sources = {}
@@ -561,8 +563,6 @@ class ReviewedFolders:
             raise ValueError("Review and source registry disagree: " +
                              str(sorted(set(review).symmetric_difference(self.subjects))))
         for repo, entry in review.items():
-            if entry["folder"] not in folders:
-                raise ValueError(f"{repo}: no native folder {entry['folder']}")
             url = urlsplit(entry["source"])
             root = "/" + repo + "/blob/"
             if url.hostname != "github.com" or not url.path.startswith(root):
@@ -583,7 +583,7 @@ class ReviewedFolders:
         return topic
 
     def module_context(self, repo, revision, path, subject, classified, basis):
-        home = self.review[repo]["folder"]
+        home = self.homes[repo]
         if (revision, path) == self.sources[repo]:
             return home, True
         # Independently registered source scopes have their own subject.
@@ -623,6 +623,14 @@ def write_project_homes(conn):
     repos = {repo for repo, in conn.execute("SELECT DISTINCT repository FROM projects")}
     if repos - reviewed.review.keys():
         raise RuntimeError("Unreviewed source projects: " + str(sorted(repos - reviewed.review.keys())))
+    for repo in sorted(repos):
+        original = reviewed.review[repo]["folder"]
+        effective = reviewed.homes[repo]
+        if original != effective:
+            logging.getLogger(__name__).warning(
+                "%s: reviewed folder %s is absent from the native tree. Using %s on the Roadmap. Review the placement.",
+                repo, original, effective or "the root",
+            )
     for table in ("module_placements", "declaration_placements"):
         if "public_topic" not in {row[1] for row in conn.execute(f"PRAGMA table_info({table})")}:
             conn.execute(f"ALTER TABLE {table} ADD COLUMN public_topic TEXT")
@@ -647,7 +655,7 @@ def write_project_homes(conn):
     conn.executemany("UPDATE declaration_placements SET public_topic=? WHERE declaration_id=?", overrides)
     conn.execute("DELETE FROM project_homes")
     conn.executemany("INSERT INTO project_homes(repository,topic,basis) VALUES (?,?,?)",
-                     [(repo, reviewed.review[repo]["folder"], reviewed.review[repo]["scope"]) for repo in sorted(repos)])
+                     [(repo, reviewed.homes[repo], reviewed.review[repo]["scope"]) for repo in sorted(repos)])
 
 
 SCHEMA = """

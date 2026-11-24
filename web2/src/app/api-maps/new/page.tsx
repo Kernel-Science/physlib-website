@@ -4,10 +4,10 @@ import { getWikiModuleReferences } from "@/lib/wiki-module-references";
 import { CreateApiMap } from "@/components/api-tracker/create-api-map";
 
 export const metadata: Metadata = {
-  title: "Create a Wiki article",
-  alternates: { canonical: "/wiki/new" },
+  title: "Create an API Map",
+  alternates: { canonical: "/api-maps/new" },
   description:
-    "Start a new Wiki article for Physlib, in an existing part of the library or in a new area of physics.",
+    "Start a new API Map for Physlib, in an existing part of the library or in a new area of physics.",
 };
 
 export default async function CreateApiMapPage() {

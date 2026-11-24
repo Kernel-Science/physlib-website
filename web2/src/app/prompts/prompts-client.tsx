@@ -47,7 +47,7 @@ const PROMPTS: PromptDef[] = [
     summary:
       "Have the agent compare a folder against the standard textbook treatment of its topic and come back with a prioritized list of what's missing.",
     template: (folder, source) =>
-      `Research \`${folder}\` and its Wiki article, if one exists, against the standard textbook/reference treatment of this topic.${sourceSentence(source)} Identify definitions, theorems, or edge cases that are missing and would be worth formalizing next, and explain why each one matters. Don't write any Lean code — just produce a prioritized list of suggestions.`,
+      `Research \`${folder}\` and its API map, if one exists, against the standard textbook/reference treatment of this topic.${sourceSentence(source)} Identify definitions, theorems, or edge cases that are missing and would be worth formalizing next, and explain why each one matters. Don't write any Lean code — just produce a prioritized list of suggestions.`,
   },
   {
     id: "physlib-alpha",
@@ -70,13 +70,13 @@ const PROMPTS: PromptDef[] = [
   },
   {
     id: "api-map",
-    title: "Wiki Article",
+    title: "API Map",
     category: "Docs",
     chipColor: "accent",
     summary:
-      "Write or update a Wiki article that explains the physics in a Lean folder and cites its formal results.",
+      "Write or update an API map that explains the physics in a Lean folder and cites its formal results.",
     template: (folder, source) =>
-      `Look at \`${folder}\` and write or update its Wiki article in \`API-map.md\`. Follow \`docs/API_MAP_GUIDE.md\`. Explain the physics in this folder, close each claim with a numbered citation of the Lean declarations that formalize it (or [TODO] if it is not formalized yet), and list those declarations under Lean References and the literature under References. Check the result with \`lake exe api_map_lint\`.${sourceSentence(source)}`,
+      `Look at \`${folder}\` and write or update its API map in \`API-map.md\`. Follow \`docs/API_MAP_GUIDE.md\`. Explain the physics in this folder, close each claim with a numbered citation of the Lean declarations that formalize it (or [TODO] if it is not formalized yet), and list those declarations under Lean References and the literature under References. Check the result with \`lake exe api_map_lint\`.${sourceSentence(source)}`,
   },
   {
     id: "todo",

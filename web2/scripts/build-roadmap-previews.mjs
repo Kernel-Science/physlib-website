@@ -18,12 +18,13 @@ const profile = await mkdtemp(join(tmpdir(), "physlib-roadmap-preview-"));
 
 // This function runs in the site tab. Keep the exact live geometry, typography
 // and colors; the surrounding hero supplies the background under the chart.
-async function prepare(theme) {
+async function prepare(theme, includeExternal) {
   const until = performance.now() + 60_000;
   let svg;
   while (performance.now() < until) {
-    svg = document.querySelector('svg[aria-label^="Interactive radial roadmap"]');
-    if (document.documentElement.dataset.theme === theme && svg?.querySelector("g[data-tile]")) break;
+    svg = document.querySelector("svg[data-atlas-plot]");
+    if (document.documentElement.dataset.theme === theme && svg?.querySelector("g[data-tile]") &&
+        Boolean(svg.querySelector('g[data-external="true"]')) === includeExternal) break;
     svg = undefined;
     await new Promise(resolve => setTimeout(resolve, 100));
   }
@@ -99,20 +100,28 @@ try {
   await command("Emulation.setDeviceMetricsOverride",{width:1664,height:1240,deviceScaleFactor:2,mobile:false});
   await command("Emulation.setDefaultBackgroundColorOverride",{color:{r:0,g:0,b:0,a:0}});
   const previews = new Map();
-  for (const theme of ["light","dark"]) {
+  const variants = [
+    {name:"home-light", theme:"light", external:false},
+    {name:"home-dark", theme:"dark", external:false},
+    {name:"home-external-light", theme:"light", external:true},
+    {name:"home-external-dark", theme:"dark", external:true},
+  ];
+  for (const {name,theme,external} of variants) {
+    const previewUrl = new URL(url);
+    previewUrl.searchParams.set("external",external ? "1" : "0");
     const init = await command("Page.addScriptToEvaluateOnNewDocument",{source:`localStorage.setItem("theme",${JSON.stringify(theme)})`});
     const loaded = once(events,"Page.loadEventFired",{signal:AbortSignal.timeout(60_000)});
-    await command("Page.navigate",{url});
+    await command("Page.navigate",{url:previewUrl.href});
     await loaded;
-    const clip = await command("Runtime.evaluate",{expression:`(${prepare.toString()})(${JSON.stringify(theme)})`,awaitPromise:true,returnByValue:true});
+    const clip = await command("Runtime.evaluate",{expression:`(${prepare.toString()})(${JSON.stringify(theme)},${external})`,awaitPromise:true,returnByValue:true});
     if (clip.exceptionDetails) throw Error(clip.exceptionDetails.exception?.description ?? "The chart could not be captured");
     const {data} = await command("Page.captureScreenshot",{format:"png",clip:clip.result.value,captureBeyondViewport:true});
     const bitmap = sharp(Buffer.from(data,"base64")).resize(1100,1100);
-    previews.set(theme,await bitmap.webp({quality:80,alphaQuality:92,smartSubsample:true,effort:6}).toBuffer());
+    previews.set(name,await bitmap.webp({quality:80,alphaQuality:92,smartSubsample:true,effort:6}).toBuffer());
     await command("Page.removeScriptToEvaluateOnNewDocument",{identifier:init.identifier});
   }
-  for (const [theme,image] of previews) {
-    const name = join(output,"home-" + theme + ".webp");
+  for (const [variant,image] of previews) {
+    const name = join(output,variant + ".webp");
     const temporary = name + "." + process.pid + ".tmp";
     try {
       await writeFile(temporary,image);

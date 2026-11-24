@@ -100,7 +100,7 @@ function contributorRates(tree: TreeNode, contributors: ContributorCounts) {
     if (typeof count !== "number" || !Number.isFinite(count) || count < 0) missing.push(repo);
     else if (total) {
       const positions = total + (repo === PHYS_REPO ? nativeTodos : 0);
-      const repositoryWeight = total * count ** CONTRIBUTOR_EXPONENT;
+      const repositoryWeight = total * Math.max(1, count) ** CONTRIBUTOR_EXPONENT;
       rates.set(repo, repositoryWeight / positions);
     }
   }
@@ -120,7 +120,8 @@ function entries(node: TreeNode, visible: Set<Source>, hasAudit: boolean, rates?
       // Secondary contributions belong directly to this physics topic. The
       // private key locates a chart patch and is never exposed as a folder.
       const repository = group.inline ? undefined : group.project;
-      const path = group.inline ? node.path + ".~declarations" : node.path + "." + (repository ?? group.label ?? "").replaceAll(".", "%2E");
+      const key = group.inline ? "~declarations" : (repository ?? group.label ?? "").replaceAll(".", "%2E");
+      const path = node.path ? node.path + "." + key : key;
       const samples = (group.samples ?? []).map(sample => sourceDeclaration(sample, sample.project ?? repository ?? "", sample.path));
       children.push({
         node: { name: group.inline ? node.name : group.label ?? repository ?? node.name, path, externalGroup: group, project: repository },
@@ -130,6 +131,8 @@ function entries(node: TreeNode, visible: Set<Source>, hasAudit: boolean, rates?
       });
     }
   }
+  // A project whose reviewed branch disappeared sits directly at the root.
+  if (!node.path) return children;
   const decls = (node.decls ?? []).filter(d => declarationVisible(d,visible));
   const moduleLinks = node.moduleLinks?.filter(link => visible.has(link.source));
   const file: Entry[] = decls.length || moduleLinks?.length ? [{
@@ -230,8 +233,8 @@ export function dotGrid(decls: Declaration[], s: Sector) {
 export function layout(tree: TreeNode, visible: Set<Source>, contributors?: ContributorCounts) {
   const hasIndex = (node: TreeNode): boolean => Boolean(node.externalIndex) || Boolean(node.children?.some(hasIndex));
   const hasAudit = hasIndex(tree);
-  const coverage = contributors ? contributorRates(tree,contributors) : undefined;
-  const allRoots = (tree.children ?? []).flatMap(n => entries(n, visible, hasAudit,coverage?.rates));
+  const coverage = visible.has("External") && contributors ? contributorRates(tree,contributors) : undefined;
+  const allRoots = entries(tree, visible, hasAudit, coverage?.rates);
   const hasArea = (entry: Entry) => entry.weight > 0;
   const roots = allRoots.filter(entry => entry.results > 0 || entry.mapped || entry.projects > 0);
   const drawnRoots = roots.filter(hasArea);
@@ -306,11 +309,11 @@ export function layout(tree: TreeNode, visible: Set<Source>, contributors?: Cont
 }
 
 export type Camera = { x: number; y: number; size: number };
-export const WHOLE: Camera = { x: 0, y: 0, size: 1016 };
+export const WHOLE: Camera = { x: 0, y: 0, size: 1140 };
 export function frame(s: Sector): Camera {
   const angles = [s.start, s.end, ...[0, Math.PI/2, Math.PI, 1.5*Math.PI, TAU].filter(a => a > s.start && a < s.end)];
   const points = angles.flatMap(a => [polar(a, s.inner), polar(a, s.outer)]);
   const xx = points.map(p => p.x), yy = points.map(p => p.y);
   const left = Math.min(...xx), right = Math.max(...xx), top = Math.min(...yy), bottom = Math.max(...yy);
-  return { x: (left+right)/2, y: (top+bottom)/2, size: Math.max(12, (right-left)*1.18, (bottom-top)*1.18) };
+  return { x: (left+right)/2, y: (top+bottom)/2, size: Math.max(WHOLE.size / 2, (right-left)*1.32, (bottom-top)*1.32) };
 }

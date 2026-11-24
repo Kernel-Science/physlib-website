@@ -13,7 +13,7 @@ function* walk(node) {
 }
 
 const nodes = [...walk(tree)];
-const hrefFor = (article) => "/wiki#" + article.path;
+const hrefFor = (article) => "/api-maps#" + article.path;
 
 test("every native file and its current source declarations appear exactly once by library", async () => {
   const native = await readData("../data/RoadmapNativeDeclarations.json");

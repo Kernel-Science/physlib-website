@@ -150,9 +150,9 @@ export function ApiLink({
     const title = fallbackTitle ?? path.split("/").pop() ?? path;
     return (
       <Link
-        href={`/wiki/new?path=${encodeURIComponent(path)}&title=${encodeURIComponent(title)}`}
+        href={`/api-maps/new?path=${encodeURIComponent(path)}&title=${encodeURIComponent(title)}`}
         className="apimap-missing"
-        title={`${title} — no Wiki article yet. Click to start one.`}
+        title={`${title} — no API Map yet. Click to start one.`}
       >
         {children ?? title}
       </Link>
@@ -273,7 +273,7 @@ export function ReferenceText({ reference }: { reference: ApiMapReference }) {
     return (
       <>
         <ApiLink path={reference.apiMap} fallbackTitle={label}>{label}</ApiLink>{" "}
-        <span className="text-muted">(Wiki article)</span>
+        <span className="text-muted">(API Map)</span>
       </>
     );
   }
@@ -311,7 +311,7 @@ function Citation({ href }: { href: string }) {
       >
         <span className="block font-semibold">Not yet formalized</span>
         <span className="mt-1 block text-foreground/85">
-          This Wiki article identifies a result that still needs a Lean definition or proof.
+          This API Map identifies a result that still needs a Lean definition or proof.
         </span>
         <span className="mt-2 block text-[12px]">
           <Link href="/get-involved" className="apimap-link">
@@ -381,10 +381,6 @@ function Citation({ href }: { href: string }) {
 
 /** Article prose: markdown already passed through `linkCitations`. */
 export function ArticleProse({ markdown }: { markdown: string }) {
-  const { references } = useArticle();
-  // Rename an older article label only when its citation resolves to a Wiki article.
-  const prose = markdown.replace(/\bAPI map(?=[.,]?\s*\[(\d+)\]\(#cite-lit-)/gi,
-    (label, index: string) => findReference(references, Number(index))?.apiMap ? "Wiki article" : label);
   return (
     <div className="apimap-prose [&_.katex-display]:overflow-x-auto">
       <ReactMarkdown
@@ -403,7 +399,7 @@ export function ArticleProse({ markdown }: { markdown: string }) {
           },
         }}
       >
-        {prose}
+        {markdown}
       </ReactMarkdown>
     </div>
   );

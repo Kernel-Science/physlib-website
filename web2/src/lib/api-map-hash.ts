@@ -1,5 +1,5 @@
 export function isWikiReaderPath(pathname: string): boolean {
-  return pathname === "/wiki" || pathname === "/roadmap" || pathname === "/api-tracker";
+  return pathname === "/api-maps" || pathname === "/wiki" || pathname === "/roadmap" || pathname === "/api-tracker";
 }
 
 export function parseWikiFile(fragment: string) {

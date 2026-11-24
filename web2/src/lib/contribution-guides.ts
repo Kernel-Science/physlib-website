@@ -8,7 +8,7 @@ export const contributionGuides = [
     url: site.url + "/getting-started#first-contribution",
     text: [
       "For a first issue, use `find_tasks` with `kind: issue`, `label: good first issue`, and `unassigned: true`. Follow the issue link, check the assignees and recent comments, and tell the maintainer what you would like to work on. The task’s `nextStep` includes a brief you can share with an assistant.",
-      "Choose an item on [Find a Task](" + site.url + "/tasks) and open its source to read the issue or the surrounding Lean file. For a first contribution, the [Wiki article walkthrough](" + site.github + "/blob/master/docs/GettingStarted/FirstAPIMap.md) shows how to document a physics topic with references to existing Lean declarations.",
+      "Choose an item on [Find a Task](" + site.url + "/tasks) and open its source to read the issue or the surrounding Lean file. For a first contribution, the [API map walkthrough](" + site.github + "/blob/master/docs/GettingStarted/FirstAPIMap.md) shows how to document a physics topic with references to existing Lean declarations.",
       "For a code change, follow [Getting Started](" + site.url + "/getting-started#installing) to install Lean and build your fork. The [worked Alpha example](" + site.url + "/getting-started#making-a-new-file) shows where to place and how to build a new module. For module descriptions and docstrings, use the [Documentation Guide](" + site.url + "/documentation-guide).",
     ].join("\n\n"),
   },

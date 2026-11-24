@@ -73,11 +73,11 @@ const groups: Group[] = [
       {
         id: "write-an-api-map",
         fits: ["new", "lean"],
-        title: "Write a Wiki Article",
-        body: "Wiki articles are Markdown guides that explain a topic and link to the relevant Lean declarations. If you know the physics and are new to Lean, you can start with one.",
+        title: "Write an API Map",
+        body: "API maps are Markdown guides that explain a topic and link to the relevant Lean declarations. If you know the physics and are new to Lean, you can start with one.",
         links: [
-          { label: "Read the Wiki", href: "/wiki" },
-          { label: "Start an Article", href: "/wiki/new" },
+          { label: "Browse API Maps", href: "/api-maps" },
+          { label: "Start an API Map", href: "/api-maps/new" },
         ],
       },
       {

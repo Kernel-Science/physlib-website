@@ -1,8 +1,12 @@
 name: Generate API map
 
 on:
+  workflow_run:
+    workflows: ["Archive site files and documentation from Physlib"]
+    types: [completed]
+    branches: [main]
   schedule:
-    # Weekly refresh — API-map.md files change far less often than commits.
+    # Weekly fallback and monthly external source check.
     - cron: "20 4 * * 1"
   workflow_dispatch: {}
 
@@ -17,6 +21,7 @@ concurrency:
 
 jobs:
   external-heads:
+    if: github.event_name != 'workflow_run'
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -41,6 +46,7 @@ jobs:
         run: node scripts/check-external-roadmap-heads.mjs >> "$GITHUB_STEP_SUMMARY"
 
   generate:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     # A changed native revision requires tracing history and blame for every Lean file.
     timeout-minutes: 90
@@ -75,9 +81,10 @@ jobs:
           node scripts/build-roadmap-native-folders.mjs
           python3 scripts/build-roadmap-native-declarations.py --repo .cache/physlib.git
           gzip -dc data/roadmap-audit/declarations.sqlite.gz > "$RUNNER_TEMP/roadmap.sqlite"
+          python3 scripts/roadmap_placement.py --project-homes-only --db "$RUNNER_TEMP/roadmap.sqlite"
           python3 scripts/export-roadmap-declarations.py --complete --db "$RUNNER_TEMP/roadmap.sqlite"
           node scripts/build-verso-roadmap.mjs
-          node --test scripts/roadmap.test.mjs
+          node --test scripts/roadmap.test.mjs scripts/roadmap-audited-data.test.mjs
 
       - name: Refresh native contributors when the Physlib revision changes
         working-directory: web2

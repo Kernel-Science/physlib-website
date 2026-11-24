@@ -7,7 +7,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Search",
-  description: "Find Lean declarations, modules, TODOs, Wiki articles, references, and pages in Physlib.",
+  description: "Find Lean declarations, modules, TODOs, API maps, references, and pages in Physlib.",
 };
 
 const kinds: Record<SearchKind, [string, string]> = {
@@ -15,7 +15,7 @@ const kinds: Record<SearchKind, [string, string]> = {
   module: ["Module", "Modules"],
   page: ["Page", "Pages"],
   todo: ["TODO", "TODOs"],
-  "api-map": ["Wiki article", "Wiki articles"],
+  "api-map": ["API map", "API maps"],
   reference: ["Reference", "References"],
 };
 
@@ -116,7 +116,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
     <div className="page-frame-tracker">
       <p className="label-mono text-muted mb-5">Explore</p>
       <h1 className="page-title-tracker">Search Physlib</h1>
-      <p className="page-intro-tracker mb-6">Find Lean declarations, modules, pages, TODOs, Wiki articles, and references.</p>
+      <p className="page-intro-tracker mb-6">Find Lean declarations, modules, pages, TODOs, API maps, and references.</p>
       <Form key={query} action="/search" role="search" className="flex gap-2">
         <label htmlFor="physlib-query" className="sr-only">Search Physlib</label>
         <input

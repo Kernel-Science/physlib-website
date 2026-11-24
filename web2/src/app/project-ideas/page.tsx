@@ -18,7 +18,7 @@ function IdeaCard({ idea }: { idea: ProjectIdea }) {
     <li className="flex flex-col rounded-(--radius) border border-border bg-surface px-5 py-4">
       <p className="label-mono text-muted">{idea.area}</p>
       <h3 className="mt-2 text-lg font-medium text-foreground" style={{ letterSpacing: "-0.025em" }}>
-        <Link href={`/wiki#${idea.path}`} className="hover:text-accent">
+        <Link href={`/api-maps#${idea.path}`} className="hover:text-accent">
           {idea.title}
         </Link>
       </h3>
@@ -40,8 +40,8 @@ function IdeaCard({ idea }: { idea: ProjectIdea }) {
           <span className="tabular-nums">{idea.claims}</span> claims left to formalize
         </p>
         <p className="mt-2 text-sm">
-          <Link href={`/wiki#${idea.path}`} className={linkClass}>
-            Read the Wiki article
+          <Link href={`/api-maps#${idea.path}`} className={linkClass}>
+            Read the API map
           </Link>
         </p>
       </div>
@@ -64,9 +64,9 @@ export default async function ProjectIdeasPage() {
         lists individual tasks.
       </p>
       <p className="page-intro-tracker mb-10">
-        {total} of {roadmapCount} Wiki articles list claims still to formalize.{" "}
-        {unmapped.length > 0 && <>This page also highlights {unmapped.length} areas for a new article.{" "}</>}
-        <Link href="/wiki" className={linkClass}>
+        {total} of {roadmapCount} API maps list claims still to formalize.{" "}
+        {unmapped.length > 0 && <>This page also highlights {unmapped.length} areas for a new API map.{" "}</>}
+        <Link href="/api-maps" className={linkClass}>
           See every topic
         </Link>
         .
@@ -120,10 +120,10 @@ export default async function ProjectIdeasPage() {
       {unmapped.length > 0 && (
         <section className="mb-12">
           <h2 id="no-roadmap" className="text-2xl font-medium text-foreground scroll-mt-24" style={{ letterSpacing: "-0.04em" }}>
-            Topics without a Wiki article
+            Topics without an API map
           </h2>
           <p className="mt-1 mb-4 text-sm text-muted">
-            These {unmapped.length} areas each have at least {MIN_LEAN_FILES} Lean files and no Wiki article in the directory, its parents, or its subdirectories.
+            These {unmapped.length} areas each have at least {MIN_LEAN_FILES} Lean files and no API map in the directory, its parents, or its subdirectories.
           </p>
           <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {unmapped.map((area) => (
@@ -137,10 +137,10 @@ export default async function ProjectIdeasPage() {
                 </p>
                 <p className="mt-2 text-sm">
                   <Link
-                    href={`/wiki/new?path=${encodeURIComponent(area.path)}&title=${encodeURIComponent(area.title)}`}
+                    href={`/api-maps/new?path=${encodeURIComponent(area.path)}&title=${encodeURIComponent(area.title)}`}
                     className={linkClass}
                   >
-                    Write a Wiki article
+                    Write an API map
                   </Link>
                 </p>
               </li>

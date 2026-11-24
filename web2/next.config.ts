@@ -5,6 +5,21 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: '/wiki/:path*',
+        destination: '/api-maps/:path*',
+        permanent: true,
+      },
+      {
+        source: '/api-tracker',
+        destination: '/api-maps',
+        permanent: true,
+      },
+      {
+        source: '/api-tracker/new',
+        destination: '/api-maps/new',
+        permanent: true,
+      },
+      {
         source: '/docs',
         destination: '/docs/index.html',
         permanent: true,

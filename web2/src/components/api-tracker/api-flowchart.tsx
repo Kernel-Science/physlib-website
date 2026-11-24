@@ -55,7 +55,7 @@ function SelectedApi({ nodes, activePath }: { nodes: ApiMapNode[]; activePath: s
   const selected = byPath.get(activePath) ??
     (referenced ? undefined : flattenFolderTree(buildFolderTree(nodes))[0]);
   const path = selected?.path ?? referenced?.path;
-  if (!path) return <p className="text-sm text-muted">No Wiki articles yet.</p>;
+  if (!path) return <p className="text-sm text-muted">No API Maps yet.</p>;
 
   const citations = selected?.parents.map(({ path, name }) => ({
     path, title: byPath.get(path)?.title ?? name, node: byPath.get(path),
@@ -190,7 +190,7 @@ function FlowNode({
             href={node.url}
             target="_blank"
             rel="noopener noreferrer"
-            title="View the Wiki article on GitHub"
+            title="View the API Map on GitHub"
             className="absolute right-1.5 top-1.5 rounded-(--radius) p-0.5 text-muted/60 hover:bg-surface hover:text-accent"
           >
             <TopRightArrowIcon className="size-3" />
@@ -289,7 +289,7 @@ export function ApiFlowchart({ nodes }: { nodes: ApiMapNode[] }) {
       {view === "full" && (
         <>
           <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
-            <p className="text-xs text-muted">Dashed boxes mark cited topics without a Wiki article.</p>
+            <p className="text-xs text-muted">Dashed boxes mark cited topics without an API Map.</p>
             <div className="flex gap-1">
               <button type="button" onClick={() => stepGraph(-1)} aria-label="Scroll graph left"
                 className="size-8 rounded-(--radius) border border-border text-muted hover:text-accent">←</button>

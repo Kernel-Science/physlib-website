@@ -13,7 +13,7 @@ const filters = [
   ["issue", "GitHub Issues"],
   ["todo", "Lean TODOs"],
   ["documentation", "Documentation"],
-  ["api-map", "Wiki Articles"],
+  ["api-map", "API Maps"],
 ] as const;
 
 type Filter = FindTaskKind;
@@ -27,7 +27,7 @@ const tabHelp: Record<Filter, string> = {
   documentation:
     "Lean files that still need a module docstring.",
   "api-map":
-    "Issues about Wiki articles, the Markdown guides that explain a topic and link to the relevant Lean declarations.",
+    "Issues about API maps, the Markdown guides that explain a topic and link to the relevant Lean declarations.",
 };
 
 // One-click searches for the things people most often look for in a tab.
@@ -336,8 +336,8 @@ export function TaskList({
             </Link>
           )}
           {type === "api-map" && (
-            <Link href="/wiki" className="text-accent hover:underline underline-offset-2">
-              Browse and edit Wiki articles
+            <Link href="/api-maps" className="text-accent hover:underline underline-offset-2">
+              Browse and edit API maps
             </Link>
           )}
         </div>

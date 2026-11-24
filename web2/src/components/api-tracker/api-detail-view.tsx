@@ -52,13 +52,13 @@ function editIssue(node: ApiMapNode, target: EditTarget, commit: string): IssueD
   const isNew = target.shape === "new";
   return apiMapIssue({
     title: isNew
-      ? `New Wiki article section — ${node.title}`
+      ? `New API Map section — ${node.title}`
       : target.shape === "article"
-        ? `Wiki article edit — ${node.title}`
-        : `Wiki article edit — ${node.title} (${target.label})`,
+        ? `API Map edit — ${node.title}`
+        : `API Map edit — ${node.title} (${target.label})`,
     heading: isNew ? "Suggested new section" : "Suggested edit",
     facts: [
-      `**Wiki article:** [${node.title}](${node.url}) (\`${node.file}\`)`,
+      `**API Map:** [${node.title}](${node.url}) (\`${node.file}\`)`,
       isNew ? `**Adds:** ${target.location}` : `**Replaces:** ${target.location}`,
       `**Currently:** ${done} of ${total} claims formalized.`,
     ],
@@ -238,7 +238,7 @@ export function ApiDetailView({ apiMap, activePath, referencePaths }: { apiMap: 
             <Breadcrumb path={current.path} repo={repo} branch={branch} />
             {!edit && !missing && (
               <div className="flex shrink-0 items-center gap-1.5 text-xs text-muted">
-                <button type="button" onClick={() => go(-1)} disabled={index === 0} aria-label="Previous Wiki article" className={navButton}>
+                <button type="button" onClick={() => go(-1)} disabled={index === 0} aria-label="Previous API Map" className={navButton}>
                   <ChevronIcon direction="left" />
                 </button>
                 <span className="tabular-nums">
@@ -248,7 +248,7 @@ export function ApiDetailView({ apiMap, activePath, referencePaths }: { apiMap: 
                   type="button"
                   onClick={() => go(1)}
                   disabled={index === entries.length - 1}
-                  aria-label="Next Wiki article"
+                  aria-label="Next API Map"
                   className={navButton}
                 >
                   <ChevronIcon direction="right" />
@@ -291,7 +291,7 @@ export function ApiDetailView({ apiMap, activePath, referencePaths }: { apiMap: 
               <Callout>
                 {edit.target.shape === "new" ? (
                   <>
-                    You are proposing a new section for this Wiki article. Give it a{" "}
+                    You are proposing a new section for this API Map. Give it a{" "}
                     <code className="apimap-code">###</code> title and write it as
                     the other sections are; it is added to the Alpha content,
                     since it has not been reviewed yet.
@@ -305,7 +305,7 @@ export function ApiDetailView({ apiMap, activePath, referencePaths }: { apiMap: 
                     .
                   </>
                 )}{" "}
-                Wiki folder articles are files in the Physlib repository, so the suggestion is
+                API Maps are files in the Physlib repository, so the suggestion is
                 filed as a GitHub issue for a maintainer to review. Cite Lean
                 declarations with <code className="apimap-code">[n]</code>,
                 literature with <code className="apimap-code">{"{n}"}</code>,

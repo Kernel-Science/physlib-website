@@ -645,7 +645,7 @@ export function MissingApiMapView({
   return (
     <div className="rounded-xl border border-dashed border-border bg-surface-secondary/40 p-6">
       <p className="text-sm leading-relaxed text-muted">
-        There is no Wiki article for <span className="text-foreground">{title}</span> yet. It
+        There is no API Map for <span className="text-foreground">{title}</span> yet. It
         would live at <code className="apimap-code">{path}/API-map.md</code>
         {citedBy.length > 0 && <>, and is already cited by other articles</>}.
       </p>
@@ -659,11 +659,11 @@ export function MissingApiMapView({
         </div>
       )}
       <a
-        href={`/wiki/new?path=${encodeURIComponent(path)}&title=${encodeURIComponent(title)}`}
+        href={`/api-maps/new?path=${encodeURIComponent(path)}&title=${encodeURIComponent(title)}`}
         className={`${toolbarAction} mt-4 inline-flex w-fit`}
       >
         <span aria-hidden>＋</span>
-        Start this Wiki article
+        Start this API Map
       </a>
     </div>
   );

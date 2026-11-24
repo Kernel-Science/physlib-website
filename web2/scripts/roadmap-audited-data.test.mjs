@@ -24,10 +24,21 @@ const projectsPattern = /^\/roadmap-view\/declarations\/r[0-9a-f]{20}\.json$/;
 const recordsPattern = /^(\/roadmap-view\/declarations\/d(\d+)\.json\.gz)#((\d+)-(\d+|all))$/;
 const statements = new Set(["theorem", "lemma", "axiom", "informal_lemma", "semiformal_result"]);
 
+const folders = new Set(["", ...nativeCatalog.folders.map(folder => folder.path),
+  ...nativeCatalog.quantumInfoFolders.map(path => path.replaceAll("/", "."))]);
+
 test("external work is published only at existing Lean directories or the root", () => {
-  const folders = new Set(["", ...nativeCatalog.folders.map(folder => folder.path),
-    ...nativeCatalog.quantumInfoFolders.map(path => path.replaceAll("/", "."))]);
   for (const topic of Object.keys(index.topics)) assert.ok(folders.has(topic), topic);
+});
+
+test("every external project has a named research author or group and supporting sources", () => {
+  for (const repository of index.repositories) {
+    const record = review[repository]?.provenance;
+    assert.ok(record?.authors?.trim(), repository);
+    assert.ok(record.evidence?.trim(), repository);
+    assert.ok(Array.isArray(record.urls) && record.urls.length > 0, repository);
+    for (const url of record.urls) assert.ok(["https:", "http:"].includes(new URL(url).protocol), repository);
+  }
 });
 
 test("the published tree and index agree on each source's one named home and every topic total", () => {
@@ -54,7 +65,9 @@ test("the published tree and index agree on each source's one named home and eve
         repoTotals.set(repository, (repoTotals.get(repository) ?? 0) + count);
       }
       if (group.primary) {
-        assert.equal(review[group.project].folder, topic, group.project);
+        const parts = review[group.project].folder.split(".");
+        while (parts.length && !folders.has(parts.join("."))) parts.pop();
+        assert.equal(parts.join("."), topic, group.project);
         assert.ok(!group.inline && !homes.has(group.project), group.project);
         assert.deepEqual(group.byProject, { [group.project]: group.count });
         assert.match(group.allFilesHref, projectsPattern);

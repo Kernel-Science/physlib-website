@@ -1,5 +1,7 @@
+import sqlite3
 import unittest
-from roadmap_placement import Classifier, ReviewedFolders
+from unittest.mock import patch
+from roadmap_placement import Classifier, ReviewedFolders, SCHEMA, write_project_homes
 
 
 class RoadmapPlacementTests(unittest.TestCase):
@@ -85,6 +87,34 @@ class ProjectHomeTests(unittest.TestCase):
                          "QuantumMechanics.Operators.SpectralTheory")
         self.assertEqual(self.placed("HilbertSpaces/Basic.lean","QuantumMechanics","QuantumMechanics.HilbertSpaces"),
                          "QuantumMechanics.HilbertSpaces")
+
+    def test_removed_reviewed_folder_uses_surviving_ancestor_and_reports_original(self):
+        repo = "sample/repo"
+        review = {repo: {**self.reviewed.review[repo], "scope": "Operator spectral theory"}}
+        registry = [{"repository":repo, "revision":self.rev, "subject":"QuantumMechanics"}]
+        for folders, effective in [({"QuantumMechanics"}, "QuantumMechanics"), ({"QFT"}, "")]:
+            with self.subTest(effective=effective), sqlite3.connect(":memory:") as db:
+                reviewed = ReviewedFolders(review, registry, folders)
+                db.executescript("""
+                    CREATE TABLE projects(id INTEGER PRIMARY KEY, repository TEXT, revision TEXT);
+                    CREATE TABLE files(id INTEGER PRIMARY KEY, project_id INTEGER, path TEXT, subject TEXT);
+                    CREATE TABLE declarations(id INTEGER PRIMARY KEY, file_id INTEGER);
+                """ + SCHEMA)
+                db.execute("INSERT INTO projects VALUES(1,?,?)", (repo, self.rev))
+                db.execute("INSERT INTO files VALUES(1,1,'Spectral.lean','QuantumMechanics')")
+                db.execute("INSERT INTO declarations VALUES(17,1)")
+                original = review[repo]["folder"]
+                db.execute("INSERT INTO module_placements VALUES(1,?,'directory-name','','physics')", (original,))
+                db.execute("INSERT INTO declaration_placements VALUES(17,?,'declaration-name','','physics')", (original,))
+                with patch.object(ReviewedFolders, "load", return_value=reviewed), self.assertLogs("roadmap_placement", level="WARNING") as log:
+                    write_project_homes(db)
+                self.assertIn(repo, log.output[0])
+                self.assertIn(original, log.output[0])
+                self.assertIn("Using " + (effective or "the root"), log.output[0])
+                self.assertEqual(db.execute("SELECT topic FROM project_homes").fetchone(), (effective,))
+                for table in ("module_placements", "declaration_placements"):
+                    self.assertEqual(db.execute(f"SELECT topic,public_topic FROM {table}").fetchone(), (original,effective))
+                self.assertEqual(review[repo]["folder"], "QuantumMechanics.Operators")
 
     def test_explicit_second_scope_and_native_subject_paths_survive(self):
         self.assertEqual(self.placed("Haag.lean","QFT","QFT.Euclidean"),"QFT.Euclidean")

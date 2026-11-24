@@ -80,7 +80,8 @@ function ensureRepo() {
   }
   try {
     git(["fetch", "--quiet", "origin", "+refs/heads/*:refs/remotes/origin/*", "--tags"]);
-  } catch {
+  } catch (error) {
+    if (process.env.GITHUB_ACTIONS === "true") throw error;
     try {
       git(["fetch", "--quiet", "--all"]);
     } catch {
@@ -356,9 +357,10 @@ function leanDirectories(allFiles) {
 (function main() {
   ensureRepo();
   const branch = resolveBranchRef();
+  const revision = git(["rev-parse", branch.rev]).trim();
   console.log(`• reading ${FILE_NAME} files from ${OWNER}/${REPO}@${branch.name}`);
 
-  const allFiles = git(["ls-tree", "-r", branch.rev, "--name-only"]).split("\n").filter(Boolean);
+  const allFiles = git(["ls-tree", "-r", revision, "--name-only"]).split("\n").filter(Boolean);
   const existingFiles = new Set(allFiles);
   const files = allFiles.filter(
     (f) => f.endsWith(`/${FILE_NAME}`) || f === FILE_NAME,
@@ -366,9 +368,9 @@ function leanDirectories(allFiles) {
 
   const nodes = [];
   for (const file of files) {
-    const raw = git(["show", `${branch.rev}:${file}`]);
+    const raw = git(["show", `${revision}:${file}`]);
     try {
-      nodes.push(parseApiMap(raw, file, branch.rev, branch.name, existingFiles));
+      nodes.push(parseApiMap(raw, file, revision, branch.name, existingFiles));
     } catch (err) {
       console.warn(`  ⚠ skipping ${file}: ${err.message}`);
     }
@@ -381,11 +383,19 @@ function leanDirectories(allFiles) {
     branch: branch.name,
     // The commit the maps were read at - the base an edit suggested on the
     // site applies to (see src/lib/api-map-issue.ts).
-    commit: git(["rev-parse", branch.rev]).trim(),
+    commit: revision,
     generatedAt: new Date().toISOString(),
     nodes,
     directories: leanDirectories(allFiles),
   };
+
+  if (fs.existsSync(OUT_PATH)) {
+    const previous = JSON.parse(fs.readFileSync(OUT_PATH, "utf8"));
+    if (JSON.stringify({ ...out, generatedAt: previous.generatedAt }) === JSON.stringify(previous)) {
+      console.log(`• API map data already matches ${revision}`);
+      return;
+    }
+  }
 
   fs.mkdirSync(path.dirname(OUT_PATH), { recursive: true });
   fs.writeFileSync(OUT_PATH, JSON.stringify(out, null, 2) + "\n", "utf8");

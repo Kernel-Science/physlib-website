@@ -132,8 +132,8 @@ export function ApiTrackerSidebar() {
           <FolderName value={node.name}/><Chevron open={expanded}/>
         </button>
         {[...node.sourceFolders].map(path => (
-          <a key={path} href={`/wiki/new?path=${encodeURIComponent(path)}`} className={styles.addArticle}
-            aria-label={`Create a Wiki article for ${path}`}>
+          <a key={path} href={`/api-maps/new?path=${encodeURIComponent(path)}`} className={styles.addArticle}
+            aria-label={`Create an API Map for ${path}`}>
             +
           </a>
         ))}
@@ -146,10 +146,10 @@ export function ApiTrackerSidebar() {
             aria-expanded={open} onClick={() => setOpen(!open)}>
       Browse articles <Chevron open={open}/>
     </button>
-    <nav id="api-map-sidebar" aria-label="Wiki articles" className={styles.nav} data-open={open}>
-      <a href="/wiki" className={`site-nav-heading ${styles.home}`} aria-current={pathname === "/wiki" && !active ? "page" : undefined}
+    <nav id="api-map-sidebar" aria-label="API Maps" className={styles.nav} data-open={open}>
+      <a href="/api-maps" className={`site-nav-heading ${styles.home}`} aria-current={pathname === "/api-maps" && !active ? "page" : undefined}
         onClick={event => {
-          if (pathname !== "/wiki" || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
+          if (pathname !== "/api-maps" || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
           event.preventDefault();
           setOpen(false);
           setOpenPath("");
@@ -158,12 +158,12 @@ export function ApiTrackerSidebar() {
             document.getElementById("wiki")?.focus({ preventScroll: true });
             window.scrollTo({ top: 0, behavior: "instant" });
           });
-        }}>Physlib Wiki</a>
+        }}>API Maps</a>
       <div className={styles.scroll}>
         {!manifest ? <p className={styles.status}>{failed?"The article list could not be loaded.":"Loading articles…"}</p>
           : <ul className={styles.tree}>{tree.articles.map(article => branch({path: article.target, name: article.target, sourceFolders: new Set([article.folder]), articles: [article], folders: []}))}{tree.folders.map(branch)}</ul>}
       </div>
-      <a href="/wiki/new" onClick={close} className={styles.create}>Create a Wiki article</a>
+      <a href="/api-maps/new" onClick={close} className={styles.create}>Create an API Map</a>
     </nav>
   </aside>;
 }

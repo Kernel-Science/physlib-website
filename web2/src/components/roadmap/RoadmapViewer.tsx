@@ -1,8 +1,9 @@
 "use client";
 
-import { memo, useCallback, useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { memo, Suspense, useCallback, useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
 import type { KeyboardEvent as ReactKeyboardEvent } from "react";
 import { createPortal } from "react-dom";
+import { useSearchParams } from "next/navigation";
 import { arc, arcSubject, CONTRIBUTOR_EXPONENT, frame, labelWidth, refreshLabelMetrics, SUBJECT_FONT, LABELS, layout, polar, pretty, SOURCES, WHOLE } from "./layout";
 import type { ContributorCounts, Destination, Entry, MapData, Source, Tile } from "./layout";
 import { RoadmapInspector } from "./roadmap-inspector";
@@ -84,7 +85,7 @@ function fromHash(index: Index): Selection | undefined {
 }
 
 function readerHref(href: string) {
-  return href.replace(/^\/(?:api-tracker(?:\/articles)?|roadmap)#/, "/wiki#");
+  return href.replace(/^\/(?:api-tracker(?:\/articles)?|roadmap|wiki)#/, "/api-maps#");
 }
 
 function nativeModule(link: Destination) {
@@ -133,11 +134,11 @@ function regionActions(entry: Entry, references: References, visible = allSource
     const ownArticle = node.apiMapLinks?.find(link => visible.has(link.source))?.href ??
       (kind === "todos" && visible.has("UnformalizedClaims") && entry.todoLibraries.some(source => visible.has(source)) ? node.apiMapHref : undefined);
     const href = ownArticle && readerHref(ownArticle);
-    if (href?.startsWith("/wiki#")) return [{href,label:"Read Wiki article →"}];
+    if (href?.startsWith("/api-maps#")) return [{href,label:"Open API Map →"}];
     const paths = references.folders[node.path];
     const folder = kind === "folder" && (Array.isArray(paths) ? paths : paths ? [paths] : [])
       .find(path => visible.has(path.startsWith("PhyslibAlpha/") || path === "PhyslibAlpha" ? "PhyslibAlpha" : "Physlib"));
-    if (folder) return [{href:"/wiki/new?path=" + encodeURIComponent(folder),label:"Create Wiki article →"}];
+    if (folder) return [{href:"/api-maps/new?path=" + encodeURIComponent(folder),label:"Create API Map →"}];
     return [];
   }
   if (kind !== "file") return [];
@@ -193,7 +194,7 @@ const Sectors = memo(function Sectors({ index, tileIndices, visible, references 
     const mid = (band.outer + band.inner) / 2, angle = (band.start + band.end)/2;
     const width = (band.end - band.start) * mid, height = band.outer - band.inner;
     const major = index.roots.includes(entry);
-    const fullName = project ? project.repository : entry.kind === "todos" ? "Wiki TODOs" : pretty(entry.node.name);
+    const fullName = project ? project.repository : entry.kind === "todos" ? "API Map TODOs" : pretty(entry.node.name);
     const name = major ? arcSubject(entry.node.name,width) : project ? project.repository : fullName;
     const map = folder ? entry.node.apiMapHref : undefined;
     const weight = major || map ? 720 : 600;
@@ -240,7 +241,7 @@ const Sectors = memo(function Sectors({ index, tileIndices, visible, references 
   })}</>;
 });
 
-function AreaWeightInfo() {
+function AreaWeightInfo({ includeExternal }: { includeExternal: boolean }) {
   const [open, setOpen] = useState(false);
   const id = useId();
   const button = useRef<HTMLButtonElement>(null);
@@ -274,18 +275,24 @@ function AreaWeightInfo() {
       Area
     </button>
     {open && <span ref={tip} role="tooltip" id={id} className={styles.weightTip}>
-      <strong>Area ∝ declarations × contributors<sup>{CONTRIBUTOR_EXPONENT}</sup></strong>
-      Contributor counts set the weight of each repository. Within a repository, area is proportional to declaration count.
+      {includeExternal ? <>
+        <strong>Repository area ∝ declarations × contributors<sup>{CONTRIBUTOR_EXPONENT}</sup></strong>
+        Each repository divides its area among its folders and files. Repositories with no linked contributors use a weight of one.
+      </> : <>
+        <strong>Area ∝ declarations + open claims</strong>
+        Each declaration and each open API Map claim has equal weight.
+      </>}
     </span>}
   </span>;
 }
 
 const EMPTY_TREE: MapData["tree"] = {name:"Physics",path:"",children:[]};
-function InteractiveMap({ data, contributors, references }: {data?: MapData; contributors?: ContributorCounts; references:References}) {
-  const [visible,setVisible] = useState(() => new Set<Source>(SOURCES));
-  // Source controls change visibility only. Preserve the map's coordinate system,
-  // the selected object, and the fixed chart frame across every toggle.
-  const index = useMemo(() => {refreshLabelMetrics(); return layout(data?.tree ?? EMPTY_TREE,new Set(SOURCES),contributors);}, [data,contributors]);
+const NATIVE_SOURCES: readonly Source[] = SOURCES.filter(source => source !== "External");
+const INCLUDE_EXTERNAL_BY_DEFAULT = false;
+function InteractiveMap({ data, contributors, references, sources }: {data?: MapData; contributors?: ContributorCounts; references:References; sources: readonly Source[]}) {
+  const [visible,setVisible] = useState(() => new Set<Source>(sources));
+  // The library buttons change visibility within the active layout.
+  const index = useMemo(() => {refreshLabelMetrics(); return layout(data?.tree ?? EMPTY_TREE,new Set(sources),contributors);}, [data,contributors,sources]);
   const fieldTiles = useMemo(() => {
     const groups = new Map<string, number[]>();
     index.tiles.forEach((tile, i) => {
@@ -430,9 +437,9 @@ function InteractiveMap({ data, contributors, references }: {data?: MapData; con
     };
   },[data,index,select,references,fields]);
   const reset = useCallback(() => {
-    setVisible(new Set(SOURCES));
+    setVisible(new Set(sources));
     zoomField("");
-  },[zoomField]);
+  },[zoomField,sources]);
   useEffect(() => {
     const shortcuts = (e: KeyboardEvent) => {
       if (isArticleHash(location.hash) || search.current?.closest("[hidden]")) return;
@@ -492,7 +499,7 @@ function InteractiveMap({ data, contributors, references }: {data?: MapData; con
               if (!event.currentTarget.matches(":hover")) inspectPointer(undefined);
             }
           }}>
-          {showingPin && <button className={styles.closeDetails} onClick={unpin} aria-label="Unpin roadmap item">Unpin</button>}
+          {showingPin && <button className={styles.closeDetails} onClick={unpin} aria-label="Unpin selected Atlas item">Unpin</button>}
           <RoadmapInspector entry={inspected} counts={inspectedCounts}/>
           <RoadmapContributors entry={inspected} contributors={contributors}/>
           {actions.map(action => <a key={action.href} className={styles.contextAction} href={action.href} data-context-action
@@ -506,13 +513,13 @@ function InteractiveMap({ data, contributors, references }: {data?: MapData; con
         </div>}
     </>,contextHost)}
     <div className={styles.controls}>
-      <button className={styles.resetMap} onClick={reset}>Reset Map</button>
-      <select aria-label="Roadmap Subject" title="Zoom to a physics field" disabled={!data} value={field?.node.path ?? ""} onChange={e => zoomField(e.target.value)}>
-        <option value="">Whole Map</option>{fields.map(item => <option key={item.node.path} value={item.node.path}>{pretty(item.node.name)}</option>)}</select>
-      <div className={styles.filters} aria-label="Roadmap Sources">{SOURCES.filter(s => s !== "UnformalizedClaims").map(s => <button key={s} aria-pressed={visible.has(s)}
+      <button className={styles.resetMap} onClick={reset}>Reset Atlas</button>
+      <select aria-label="Physlib Atlas subject" title="Zoom to a physics field" disabled={!data} value={field?.node.path ?? ""} onChange={e => zoomField(e.target.value)}>
+        <option value="">Whole Atlas</option>{fields.map(item => <option key={item.node.path} value={item.node.path}>{pretty(item.node.name)}</option>)}</select>
+      <div className={styles.filters} aria-label="Physlib Atlas sources">{(["Physlib", "PhyslibAlpha"] as const).map(s => <button key={s} aria-pressed={visible.has(s)}
         style={visible.has(s) ? {background:surfaces[s], borderColor:colors[s]} : undefined} onClick={() => toggleSource(s)}>
         <i style={{background:colors[s]}}/>{LABELS[s]}</button>)}</div>
-      <div className={styles.search}><input ref={search} type="search" aria-label="Search Roadmap" disabled={!data} value={query} placeholder={field ? "Search This Field…" : "Search Roadmap…"}
+      <div className={styles.search}><input ref={search} type="search" aria-label="Search the Physlib Atlas" disabled={!data} value={query} placeholder={field ? "Search This Field…" : "Search the Atlas…"}
         onChange={e => setQuery(e.target.value)} onKeyDown={e => {if (e.key === "Enter" && hits[0]) pin({tile:hits[0]},true);}}/>
         {query.trim() && <div className={styles.results} onPointerLeave={() => inspectPointer(undefined)}
           onBlur={event => {if (!contextHost?.contains(event.relatedTarget)) setFocus(undefined);}} onKeyDown={tabToContext}>
@@ -526,7 +533,7 @@ function InteractiveMap({ data, contributors, references }: {data?: MapData; con
     </div>
     <div className={styles.body}>
       <div className={styles.plot}>
-        <svg role="group" aria-label="Interactive radial roadmap of Physlib folders, files, and declarations"
+        <svg data-atlas-plot role="group" aria-label="Physlib Atlas of physics folders, Lean files, and declarations"
           viewBox={`${camera.x-camera.size/2} ${camera.y-camera.size/2} ${camera.size} ${camera.size}`}
           onPointerOver={e => {
             if (e.pointerType !== "touch" && !cameraMovedUnderPointer.current) inspectPointer(pick(e.target)?.tile.entry);
@@ -580,22 +587,26 @@ function InteractiveMap({ data, contributors, references }: {data?: MapData; con
             <path className={styles.tileHighlight} d={arc(highlightedTile.sector)} data-roadmap-highlight={focus ? "keyboard" : "pinned"}
               vectorEffect="non-scaling-stroke" pointerEvents="none" aria-hidden="true"/>}
         </svg>
-        {!data && <div role="status" className={styles.loading}>Loading roadmap…</div>}
-        {!SOURCES.some(s => s !== "UnformalizedClaims" && visible.has(s)) && <div className={styles.empty}>Select a source to show it on the map.</div>}
+        {!data && <div role="status" className={styles.loading}>Loading the Atlas…</div>}
+        {!sources.some(s => s !== "UnformalizedClaims" && visible.has(s)) && <div className={styles.empty}>Select a library to show it in the Atlas.</div>}
       </div>
       <RoadmapSidebar/>
     </div>
     <div className={styles.caption}><span className={styles.legend}><span><i className={styles.asterisk}>✳︎</i> Definition</span><span><i className={styles.solid}/> Lemma or Theorem</span><button className={styles.todoToggle} aria-pressed={visible.has("UnformalizedClaims")} onClick={() => toggleSource("UnformalizedClaims")}
-        title="Show or hide unformalized results listed as TODOs in a wiki article"><i className={styles.hollow}/> Unformalized</button><AreaWeightInfo/></span>
+        title="Show or hide unformalized results listed as TODOs in an API Map"><i className={styles.hollow}/> Unformalized</button><AreaWeightInfo includeExternal={sources.includes("External")}/></span>
       <span className={styles.paperView}>formal twin of <a href="https://paperview.org/">PaperView <span aria-hidden="true">↗</span></a></span>
     </div>
   </div>;
 }
 
 const EMPTY_PATHS: Paths = {};
-export default function RoadmapViewer({referencePaths,folderPaths = EMPTY_PATHS}: {referencePaths: Paths; folderPaths?: FolderPaths}) {
-  const [data,setData] = useState<MapData>();
-  const [contributors,setContributors] = useState<ContributorCounts>();
+type ViewerProps = {referencePaths: Paths; folderPaths?: FolderPaths};
+
+function AtlasView({referencePaths,folderPaths = EMPTY_PATHS}: ViewerProps) {
+  const params = useSearchParams();
+  const requested = params.get("external");
+  const includeExternal = requested === null ? INCLUDE_EXTERNAL_BY_DEFAULT : requested === "1";
+  const [atlas,setAtlas] = useState<{data:MapData; contributors:ContributorCounts}>();
   const [error,setError] = useState(false);
   const references = useMemo(() => ({modules:referencePaths,folders:folderPaths}),[referencePaths,folderPaths]);
   useEffect(() => {
@@ -610,10 +621,17 @@ export default function RoadmapViewer({referencePaths,folderPaths = EMPTY_PATHS}
       loadJson("/roadmap-view/contributors.json").then(snapshot => snapshot.repositories as ContributorCounts),
       document.fonts.ready,
     ]).then(([loaded,counts]) => {
-      if (!controller.signal.aborted) {setContributors(counts);setData(loaded);}
+      if (!controller.signal.aborted) {
+        setAtlas({data:loaded,contributors:counts});
+      }
     }).catch(() => {if (!controller.signal.aborted) setError(true);});
     return () => controller.abort();
   },[]);
-  if (error) return <p role="alert">The Roadmap could not be loaded. <a href="/wiki">Browse the Physlib Wiki →</a></p>;
-  return <InteractiveMap data={data} contributors={contributors} references={references}/>;
+  if (error) return <p role="alert">The Physlib Atlas could not be loaded. <a href="/api-maps">Browse API Maps →</a></p>;
+  return <InteractiveMap key={includeExternal ? "full" : "native"} data={atlas?.data}
+    contributors={atlas?.contributors} references={references} sources={includeExternal ? SOURCES : NATIVE_SOURCES}/>;
+}
+
+export default function RoadmapViewer(props: ViewerProps) {
+  return <Suspense fallback={<p role="status">Loading the Atlas…</p>}><AtlasView {...props}/></Suspense>;
 }

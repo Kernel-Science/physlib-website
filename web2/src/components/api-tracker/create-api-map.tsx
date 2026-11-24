@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import type { ApiMap } from "@/lib/yaml";
-import { apiMapHref, newApiMapTemplate, parseFullApiMap, WIKI_ABSTRACT_PLACEHOLDER, WIKI_TITLE_PLACEHOLDER } from "@/lib/api-map-article";
+import { apiMapHref, newApiMapTemplate, parseFullApiMap, API_MAP_ABSTRACT_PLACEHOLDER, API_MAP_TITLE_PLACEHOLDER } from "@/lib/api-map-article";
 import { MAX_URL_LENGTH } from "@/components/suggest-dialog-shared";
 import { ArticleContext, type ArticleContextValue } from "@/components/api-tracker/article-prose";
 import { Callout } from "@/components/api-tracker/article-view";
@@ -26,10 +26,10 @@ function WritingGuide({ examplePath }: { examplePath: string | null }) {
   return (
     <section className="apimap-guide" aria-labelledby="apimap-guide-title">
       <h2 id="apimap-guide-title" className="apimap-guide-title">
-        How to write a Wiki article
+        How to write an API Map
       </h2>
       <p>
-        A Wiki article covers one area of physics in Physlib.
+        An API Map covers one area of physics in Physlib.
         It explains the physics in words, and points from each statement to
         the Lean declarations that formalize it.
       </p>
@@ -57,7 +57,7 @@ function WritingGuide({ examplePath }: { examplePath: string | null }) {
           <code className="apimap-code">1. Physlib/SpaceAndTime/Time/Basic.lean — `Time`, `Time.val`</code>.
         </li>
         <li>
-          <b>Literature and other Wiki articles</b> go under References and are
+          <b>Literature and other API Maps</b> go under References and are
           cited with curly brackets, <code className="apimap-code">{"{1}"}</code>. Don&apos;t
           put links in the text itself.
         </li>
@@ -139,7 +139,7 @@ export function CreateApiMap({ apiMap, referencePaths }: { apiMap: ApiMap; refer
     if (!ROOTS.includes(path.split("/")[0]))
       return `The folder must be inside ${ROOTS.join(", ")}.`;
     if (!/^[\w./-]+$/u.test(path) || path.includes("//")) return "The folder path can only contain letters, digits, _, - and /.";
-    if (mapped.has(path)) return "That folder already has a Wiki article. Open it to suggest an edit.";
+    if (mapped.has(path)) return "That folder already has an API Map. Open it to suggest an edit.";
     if (where === "new" && dirPaths.has(path)) return "That folder already exists in Physlib - choose it under “In an existing part of Physlib”.";
     return null;
   })();
@@ -157,8 +157,8 @@ export function CreateApiMap({ apiMap, referencePaths }: { apiMap: ApiMap; refer
   );
 
   const issue: IssueDraft = apiMapIssue({
-    title: `New Wiki article — ${parseFullApiMap(text).title || "untitled"}`,
-    heading: "New Wiki article",
+    title: `New API Map — ${parseFullApiMap(text).title || "untitled"}`,
+    heading: "New API Map",
     facts: [
       `**Title:** ${parseFullApiMap(text).title || "_untitled_"}`,
       `**Location:** \`${path}/API-map.md\``,
@@ -173,8 +173,8 @@ export function CreateApiMap({ apiMap, referencePaths }: { apiMap: ApiMap; refer
   const validate = (file: string) => {
     if (pathProblem) return pathProblem;
     const parsed = parseFullApiMap(file);
-    if (!parsed.title || parsed.title === WIKI_TITLE_PLACEHOLDER || parsed.title === "Title of the API") return "Give the article a title on its first line (# Title).";
-    if (!parsed.abstract || parsed.abstract === WIKI_ABSTRACT_PLACEHOLDER || /^One paragraph saying/.test(parsed.abstract)) return "Write the abstract.";
+    if (!parsed.title || parsed.title === API_MAP_TITLE_PLACEHOLDER || parsed.title === "Title of the API") return "Give the article a title on its first line (# Title).";
+    if (!parsed.abstract || parsed.abstract === API_MAP_ABSTRACT_PLACEHOLDER || /^One paragraph saying/.test(parsed.abstract)) return "Write the abstract.";
     return null;
   };
 
@@ -198,10 +198,10 @@ export function CreateApiMap({ apiMap, referencePaths }: { apiMap: ApiMap; refer
   return (
     <ArticleContext.Provider value={context}>
       <div className="apimap">
-        <a href="/wiki" className="mb-2 inline-block text-xs text-muted hover:text-accent">
-          ← Physlib Wiki
+        <a href="/api-maps" className="mb-2 inline-block text-xs text-muted hover:text-accent">
+          ← API Maps
         </a>
-        <h1 className="page-title-tracker">Create a Wiki article</h1>
+        <h1 className="page-title-tracker">Create an API Map</h1>
         <p className="mb-6 leading-relaxed text-muted">
           Choose a topic, explain the physics, and link to the Lean results that formalize it.
         </p>
@@ -212,7 +212,7 @@ export function CreateApiMap({ apiMap, referencePaths }: { apiMap: ApiMap; refer
           <span>1. Where will it live?</span>
         </h2>
         <div className="grid gap-2 sm:grid-cols-2">
-          {option("existing", "In an existing part of Physlib", "A folder with Lean files that still needs a Wiki article.")}
+          {option("existing", "In an existing part of Physlib", "A folder with Lean files that still needs an API Map.")}
           {option("new", "In a new area", "A topic that Physlib could cover. Mark results to formalize with [TODO].")}
         </div>
 
@@ -232,7 +232,7 @@ export function CreateApiMap({ apiMap, referencePaths }: { apiMap: ApiMap; refer
                 return (
                   <li key={d.path}>
                     {has ? (
-                      <a href={apiMapHref(d.path)} className="apimap-dir apimap-dir-mapped" title="Read this Wiki article">
+                      <a href={apiMapHref(d.path)} className="apimap-dir apimap-dir-mapped" title="Read this API Map">
                         <span className="truncate font-mono">{d.path}</span>
                         <span className="shrink-0 text-[11px]">Read article →</span>
                       </a>

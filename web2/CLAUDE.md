@@ -14,7 +14,7 @@ Give each section a stable heading ID (e.g.
 `<PageHeader id="reference-library" .../>`) so the links land on the section.
 
 For sidebar links that also switch views, follow the custom sidebars for the
-Physlib Wiki (`/wiki`) and References (`/references`) in `ConditionalSidebar`:
+API Maps (`/api-maps`) and References (`/references`) in `ConditionalSidebar`:
 - A small `src/app/api/<name>/route.ts` re-serving `data/<Name>.json`, because
   the sidebar mounts outside the page's own tree (it's a sibling of `<main>`
   in the root layout) and can't receive server-fetched props - it fetches its

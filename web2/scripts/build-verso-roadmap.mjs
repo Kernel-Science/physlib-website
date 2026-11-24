@@ -1,4 +1,4 @@
-// Rebuild from the pinned Lean sources, Physlib Wiki claims and external audit.
+// Rebuild from the pinned Lean sources, Physlib API map claims and external audit.
 import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import { citedClaims, paragraphsOf } from "./api-map-claims.js";
 import { buildExternalCatalogue, retireProjectFiles } from "./build-external-catalogue.mjs";
@@ -90,7 +90,7 @@ for (const article of maps.nodes) {
   const path = libraries.has(library) ? segments.join(".") : article.path.replaceAll("/", ".");
   if (!directories.has(path)) throw Error(`API map outside the native source hierarchy: ${path}`);
   const folder = at(path);
-  const href = "/wiki#" + article.path.split("/").map(encodeURIComponent).join("/");
+  const href = "/api-maps#" + article.path.split("/").map(encodeURIComponent).join("/");
   folder.apiMapLinks ??= [];
   folder.apiMapLinks.push({ source: library, href, label: article.title });
   folder.apiMapHref ??= href;
@@ -103,7 +103,7 @@ for (const article of maps.nodes) {
   }
   if (todos.length) {
     const group = at([path, `API-map-${library}-TODOs`].filter(Boolean).join("."));
-    group.name = "Wiki TODOs";
+    group.name = "API map TODOs";
     group.todoGroup = true;
     group.sources = ["UnformalizedClaims"];
     group.apiMapHref = href;
@@ -142,7 +142,9 @@ function count(node) {
 }
 const areas = root.children.sort((a, b) => a.name.localeCompare(b.name, "en"))
   .map((area) => ({ name: area.name, results: count(area) }));
-const stats = { results: areas.reduce((sum, area) => sum + area.results, 0), bySource, areas: areas.length };
+const rootExternal = root.externalIndex?.count ?? 0;
+bySource.External += rootExternal;
+const stats = { results: areas.reduce((sum, area) => sum + area.results, rootExternal), bySource, areas: areas.length };
 const data = { sources, nativeRevision: native.revision, stats: { ...stats, nativeLibraries: nativeTotals, externalCatalogue: catalogue.stats }, areas, tree: root,
   projects: catalogue.markers };
 const dir = new URL("../public/roadmap-view/", import.meta.url);

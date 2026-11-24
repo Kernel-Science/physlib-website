@@ -26,7 +26,7 @@ export function WikiSearch() {
     setFailed(false);
     fetch("/api/roadmap-sidebar", { signal: controller.signal })
       .then(response => {
-        if (!response.ok) throw new Error("Wiki index unavailable");
+        if (!response.ok) throw new Error("API Map index unavailable");
         return response.json() as Promise<SidebarManifest>;
       })
       .then(setManifest)
@@ -41,7 +41,7 @@ export function WikiSearch() {
 
   return (
     <div className="mt-6">
-      <label htmlFor="wiki-search" className="mb-2 block text-sm font-medium">Search the Wiki</label>
+      <label htmlFor="wiki-search" className="mb-2 block text-sm font-medium">Search API Maps</label>
       <input id="wiki-search" type="search" className="site-field w-full" autoComplete="off"
         placeholder="Topic or article title" value={query}
         onChange={event => { setQuery(event.target.value); setLimit(pageSize); }} />
@@ -49,7 +49,7 @@ export function WikiSearch() {
         <div className="mt-3">
           <p className="text-xs text-muted" role="status">
             {manifest ? (matches.length ? `${matches.length} ${matches.length === 1 ? "result" : "results"}` : "No matching articles.")
-              : failed ? "The Wiki index could not be loaded." : "Searching…"}
+              : failed ? "The API Map index could not be loaded." : "Searching…"}
           </p>
           {failed && !manifest && <button type="button" className="text-sm text-accent underline" onClick={() => setRetry(previous => previous + 1)}>Try again</button>}
           {matches.length > 0 && (

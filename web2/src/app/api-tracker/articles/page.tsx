@@ -12,5 +12,5 @@ export default async function LegacyArticlesPage({
   }
   const search = query.toString();
   // A Location without a fragment inherits the original article's fragment.
-  redirect(`/wiki${search ? `?${search}` : ""}`);
+  redirect(`/api-maps${search ? `?${search}` : ""}`);
 }

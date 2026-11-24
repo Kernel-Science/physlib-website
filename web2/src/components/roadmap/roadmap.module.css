@@ -17,7 +17,18 @@
   --rm-todo: var(--foreground);
 }
 .controls, .caption, .filters { display: flex; align-items: center; }
-.controls { flex-wrap: wrap; gap: .6rem 1rem; padding: .75rem 1rem; border-bottom: 1px solid var(--rule); }
+.controls {
+  position: sticky;
+  /* The site navigation and Atlas heading occupy the first 6.5rem. */
+  top: 6.5rem;
+  z-index: 10;
+  flex-wrap: wrap;
+  gap: .6rem 1rem;
+  padding: .75rem 1rem;
+  border-bottom: 1px solid var(--rule);
+  border-radius: 11px 11px 0 0;
+  background: var(--surface);
+}
 .controls select, .search input {
   border: 1px solid var(--rule); border-radius: 6px;
   background: var(--surface); color: var(--foreground);

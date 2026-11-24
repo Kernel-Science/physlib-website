@@ -1,1 +1,1 @@
-export { default, metadata } from "../../wiki/new/page";
+export { default, metadata } from "../../api-maps/new/page";
