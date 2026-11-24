@@ -333,6 +333,7 @@ function InteractiveMap({ data, contributors, references }: {data?: MapData; con
   const [query,setQuery] = useState("");
   const [hover,setHover] = useState<Entry>();
   const [focus,setFocus] = useState<Entry>();
+  const cameraMovedUnderPointer = useRef(false);
   const viewer = useRef<HTMLDivElement>(null);
   const hoverTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const focusOrigin = useRef<HTMLElement | SVGElement | null>(null);
@@ -401,7 +402,7 @@ function InteractiveMap({ data, contributors, references }: {data?: MapData; con
       const closingReader = isArticleHash(location.hash);
       if (nextField !== undefined) writeField(url, nextField);
       url.hash = target ? targetHash(target) : "";
-      history.replaceState(history.state, "", url);
+      history.replaceState(null, "", url);
       if (closingReader) window.dispatchEvent(new HashChangeEvent("hashchange",{oldURL,newURL:location.href}));
     }
   },[]);
@@ -435,7 +436,7 @@ function InteractiveMap({ data, contributors, references }: {data?: MapData; con
       const restoredField = fields.find(item => item.node.path === preferredField)?.node.path ?? "";
       if (restoredField !== requestedField) {
         writeField(url, restoredField);
-        history.replaceState(history.state, "", url);
+        history.replaceState(null, "", url);
       }
       const canPin = Boolean(destinations.length || target?.tile.entry.external);
       select(canPin ? target : undefined, false, restoredField);
@@ -479,6 +480,7 @@ function InteractiveMap({ data, contributors, references }: {data?: MapData; con
     if (!target.tile.entry.external && !regionActions(target.tile.entry,references,visible).length) return;
     const origin = document.activeElement;
     const owner = field && fields.find(item => item.node.path === fieldOf(target.tile.entry));
+    if (owner && owner !== field) cameraMovedUnderPointer.current = true;
     select(target, true, owner?.node.path);
     if (keyboard && (origin instanceof HTMLElement || origin instanceof SVGElement)) focusOrigin.current = origin;
     requestAnimationFrame(() => {
@@ -547,8 +549,18 @@ function InteractiveMap({ data, contributors, references }: {data?: MapData; con
       <div className={styles.plot}>
         <svg role="group" aria-label="Interactive radial roadmap of Physlib folders, files, and declarations"
           viewBox={`${camera.x-camera.size/2} ${camera.y-camera.size/2} ${camera.size} ${camera.size}`}
-          onPointerOver={e => {if (e.pointerType !== "touch") inspectPointer(pick(e.target)?.tile.entry);}}
-          onPointerLeave={() => inspectPointer(undefined)}
+          onPointerOver={e => {
+            if (e.pointerType !== "touch" && !cameraMovedUnderPointer.current) inspectPointer(pick(e.target)?.tile.entry);
+          }}
+          onPointerMove={e => {
+            // Changing the SVG viewBox can dispatch pointerover on a different
+            // tile while the mouse is still. Keep the pin until the user moves.
+            if (cameraMovedUnderPointer.current && (e.movementX || e.movementY)) {
+              cameraMovedUnderPointer.current = false;
+              if (e.pointerType !== "touch") inspectPointer(pick(e.target)?.tile.entry);
+            }
+          }}
+          onPointerLeave={() => {cameraMovedUnderPointer.current = false; inspectPointer(undefined);}}
           onFocus={e => {if (e.target instanceof Element && e.target.matches(":focus-visible")) inspectFocus(pick(e.target)?.tile.entry);}}
           onBlur={event => {if (!contextHost?.contains(event.relatedTarget)) setFocus(undefined);}}
           onKeyDown={e => {
