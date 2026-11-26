@@ -2,6 +2,13 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   allowedDevOrigins: ["172.26.27.79"],
+  // public/docs holds ~1 GB of generated Lean docs served as static files.
+  // No server route reads them, so keep them out of every function bundle:
+  // pulling them in pushes a function past Vercel's 250 MB limit and the
+  // whole deploy fails.
+  outputFileTracingExcludes: {
+    "*": ["public/docs/**/*"],
+  },
   async redirects() {
     return [
       {
