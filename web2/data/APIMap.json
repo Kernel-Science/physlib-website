@@ -1,8 +1,8 @@
 {
   "repo": "leanprover-community/physlib",
   "branch": "master",
-  "commit": "1fa65789169f5981d12137dd6e930afe0836ffe2",
-  "generatedAt": "2026-11-24T12:37:50.837Z",
+  "commit": "9027e3d7cb78c98452e2154d7e9428b15bae12aa",
+  "generatedAt": "2026-11-26T11:42:42.488Z",
   "nodes": [
     {
       "path": "Physlib/ClassicalFieldTheory/GaugeTheory",
@@ -3536,7 +3536,7 @@
             },
             {
               "title": "General orbits",
-              "body": "On an orbit of semi-major axis a the vis-viva equation gives v² = G M (2 / r − 1 / a) {1}. [TODO]\nThe two-body problem reduces to the motion of a single body of reduced mass M m / (M + m) in the\nrelative coordinate {1}. [TODO] Bound orbits are ellipses with the centre of force at a focus, sweep\nout equal areas in equal times, and have periods with P² proportional to a³ {1}. [TODO]"
+              "body": "On an orbit of semi-major axis a the vis-viva equation gives v² = G M (2 / r − 1 / a) {1}. [TODO]\nThe two-body problem reduces to the motion of a single body of reduced mass M m / (M + m) in the\nrelative coordinate {1}. [TODO] In a planar binary, the relative displacement sweeps out equal\nsigned areas in equal times within a collision-free interval. Its areal rate is half the signed\nangular momentum per unit reduced mass. [9] Bound nonradial orbits are ellipses with the centre of\nforce at a focus, and their squared periods are proportional to a³ {1}. [TODO]"
             }
           ]
         }
@@ -3749,6 +3749,29 @@
             }
           ],
           "exists": true
+        },
+        {
+          "index": 9,
+          "file": "PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/BinaryStar.lean",
+          "declarations": [
+            {
+              "text": "binarySignedSweptArea_eq_of_gravity",
+              "fullName": "ClassicalMechanics.PointParticle.NewtonianSystem.binarySignedSweptArea_eq_of_gravity",
+              "kind": "lemma",
+              "line": 206,
+              "doc": "On a collision-free interval, the area swept per unit time is half the signed specific angular momentum.",
+              "signature": "lemma binarySignedSweptArea_eq_of_gravity {a b u v : ℝ}\n    (hsep : ∀ t ∈ Icc a b, (e 1).pos t ≠ (e 0).pos t) (hu : u ∈ Icc a b) (hv : v ∈ Icc a b) :\n    system.binarySignedSweptArea e u v =\n      (v - u) * (system.binarySpecificAngularMom…"
+            },
+            {
+              "text": "binarySignedSweptArea_eq_of_eq_duration",
+              "fullName": "ClassicalMechanics.PointParticle.NewtonianSystem.binarySignedSweptArea_eq_of_eq_duration",
+              "kind": "lemma",
+              "line": 222,
+              "doc": "Kepler's second law for a binary. Equal time intervals of the same collision-free motion sweep out equal signed areas.",
+              "signature": "lemma binarySignedSweptArea_eq_of_eq_duration {a b u v u' v' : ℝ}\n    (hsep : ∀ t ∈ Icc a b, (e 1).pos t ≠ (e 0).pos t)\n    (hu : u ∈ Icc a b) (hv : v ∈ Icc a b) (hu' : u' ∈ Icc a b) (hv' : v' ∈ Icc a b)\n    (hduration : v - u = v' - u') :…"
+            }
+          ],
+          "exists": true
         }
       ],
       "references": [
@@ -3835,6 +3858,13 @@
         {
           "done": false,
           "citations": [],
+          "alpha": true
+        },
+        {
+          "done": true,
+          "citations": [
+            9
+          ],
           "alpha": true
         },
         {
@@ -4859,6 +4889,352 @@
         }
       ],
       "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/Pendulum/SimplePendulum/API-map.md"
+    },
+    {
+      "path": "Physlib/ClassicalMechanics/PointParticle/NewtonianSystem",
+      "file": "Physlib/ClassicalMechanics/PointParticle/NewtonianSystem/API-map.md",
+      "title": "Newtonian systems of point particles",
+      "alpha": true,
+      "abstract": "A Newtonian system describes finitely many point particles in an inertial frame. Each particle\naccelerates under the forces acting on it. Internal forces come in equal and opposite pairs,\nso they cancel when summed over the system. The total momentum determines the velocity of\nthe center of mass, which is constant in the absence of external forces.",
+      "abstractHeading": "Abstract (Alpha)",
+      "content": [
+        {
+          "heading": "Content (Alpha)",
+          "alpha": true,
+          "intro": "",
+          "subsections": [
+            {
+              "title": "Particles and forces in an inertial frame",
+              "body": "A particle has a constant positive mass and a position that depends on time. In an inertial\nframe the position is twice differentiable. Its first derivative is the velocity and its\nsecond derivative is the acceleration. [1]\n\nA Newtonian system collects the particles and the forces acting on them in one inertial\nframe. Each force has a time-dependent vector value and a target particle. An internal force\nalso has a source particle distinct from its target. The net force on a particle is the sum\nof all internal and external forces on that target, counting each occurrence. [2][3]\n\nNewton's second law identifies this net force with the particle's mass times its acceleration.\nNewton's third law pairs each internal force with its reverse, which swaps the source and\ntarget and negates the force. The two occur with the same multiplicity, so the sum of all\ninternal forces vanishes at each time {1}. [2][4]"
+            },
+            {
+              "title": "Total quantities and the center of mass",
+              "body": "Summing the particle masses gives the total mass M. Summing their momenta gives the total\nmomentum P(t), and summing their individual kinetic energies gives the total kinetic energy.\nThe net external force sums just the forces applied from outside the system. [5]\n\nFor positive M, the center of mass R(t) is the mass-weighted average of the particle positions\nand its velocity is R′(t) = P(t) / M. [6] If the collection of external forces is empty, the\ncenter of mass moves at constant velocity. Its position at any time t is\nR(t) = R(t₀) + (t − t₀) P(t₀) / M for any reference time t₀ {1}. [7]"
+            },
+            {
+              "title": "An isolated binary star",
+              "body": "Consider two stars of masses m₀ and m₁ at positions x₀(t) and x₁(t), interacting only\nthrough gravity. The gravitational forces on the two stars are equal and opposite. [8]\nTheir center of mass R(t) = (m₀ x₀(t) + m₁ x₁(t)) / M, where M = m₀ + m₁, moves at\nconstant velocity because there are no external forces. [7][9] Let G be the gravitational constant and\nr(t) = x₁(t) − x₀(t) the relative displacement. Whenever r(t) ≠ 0, the relative motion\nsatisfies the inverse-square equation r″(t) = −G M r(t) / ‖r(t)‖³ {1}. [10]"
+            }
+          ]
+        }
+      ],
+      "leanReferences": [
+        {
+          "index": 1,
+          "file": "Physlib/ClassicalMechanics/PointParticle/Basic.lean",
+          "declarations": [
+            {
+              "text": "Particle",
+              "fullName": "ClassicalMechanics.ReferenceFrame.Particle",
+              "kind": "structure",
+              "line": 43,
+              "doc": "A point particle in `frame`.",
+              "signature": "structure Particle (frame : ReferenceFrame d) where\n  mass : ℝ+\n  pos : ℝ → frame.Vector\n  pos_twice_differentiable : Differentiable ℝ pos ∧ Differentiable ℝ (deriv pos)"
+            },
+            {
+              "text": "velocity",
+              "fullName": "ClassicalMechanics.ReferenceFrame.Particle.velocity",
+              "kind": "def",
+              "line": 55,
+              "doc": "The particle's velocity.",
+              "signature": "def velocity : ℝ → frame.Vector"
+            },
+            {
+              "text": "acceleration",
+              "fullName": "ClassicalMechanics.ReferenceFrame.Particle.acceleration",
+              "kind": "def",
+              "line": 59,
+              "doc": "The particle's acceleration.",
+              "signature": "def acceleration  : ℝ → frame.Vector"
+            }
+          ],
+          "exists": true
+        },
+        {
+          "index": 2,
+          "file": "Physlib/ClassicalMechanics/PointParticle/NewtonianSystem/Basic.lean",
+          "declarations": [
+            {
+              "text": "NewtonianSystem",
+              "fullName": "ClassicalMechanics.PointParticle.NewtonianSystem",
+              "kind": "structure",
+              "line": 53,
+              "doc": "A finite system of point particles satisfying Newton's laws.",
+              "signature": "structure NewtonianSystem (d : ℕ) where\n  frame : ReferenceFrame d\n  frame_inertial : frame.IsInertial\n  particles : Multiset frame.Particle\n  internalForces : Multiset (frame.InternalForce particles)\n  externalForces : Multiset (frame.For…"
+            },
+            {
+              "text": "reverse_count_eq",
+              "fullName": "ClassicalMechanics.PointParticle.NewtonianSystem.InternalForce.reverse_count_eq",
+              "kind": "lemma",
+              "line": 162,
+              "doc": "A force and its reverse have the same multiplicity.",
+              "signature": "lemma reverse_count_eq :\n    system.internalForces.count force.1.reverse = system.internalForces.count force.1"
+            },
+            {
+              "text": "internalForce_sum_zero",
+              "fullName": "ClassicalMechanics.PointParticle.NewtonianSystem.internalForce_sum_zero",
+              "kind": "lemma",
+              "line": 181,
+              "doc": "The internal forces cancel in pairs by Newton's third law.",
+              "signature": "lemma internalForce_sum_zero (t : ℝ) :\n    (system.internalForces.map (fun f => f.value t)).sum = 0"
+            }
+          ],
+          "exists": true
+        },
+        {
+          "index": 3,
+          "file": "Physlib/ClassicalMechanics/Force.lean",
+          "declarations": [
+            {
+              "text": "Force",
+              "fullName": "ClassicalMechanics.ReferenceFrame.Force",
+              "kind": "structure",
+              "line": 45,
+              "doc": "A time-dependent force acting on an object.",
+              "signature": "structure Force (frame : ReferenceFrame d) (Object : Type) where\n  value : ℝ → frame.Vector\n  target : Object"
+            },
+            {
+              "text": "InternalForce",
+              "fullName": "ClassicalMechanics.ReferenceFrame.InternalForce",
+              "kind": "structure",
+              "line": 55,
+              "doc": "A force between two objects.",
+              "signature": "structure InternalForce (frame : ReferenceFrame d) (Object : Type) extends frame.Force Object where\n  source : Object\n  source_ne_target : source ≠ target"
+            },
+            {
+              "text": "netForce",
+              "fullName": "ClassicalMechanics.ReferenceFrame.netForce",
+              "kind": "def",
+              "line": 74,
+              "doc": "The net force on `object`.",
+              "signature": "def netForce (object : Object) (internalForces : Multiset (frame.InternalForce Object))\n    (externalForces : Multiset (frame.Force Object)) (t : ℝ) : frame.Vector"
+            }
+          ],
+          "exists": true
+        },
+        {
+          "index": 4,
+          "file": "Physlib/ClassicalMechanics/Force.lean",
+          "declarations": [
+            {
+              "text": "InternalForce.reverse",
+              "fullName": "ClassicalMechanics.ReferenceFrame.InternalForce.reverse",
+              "kind": "def",
+              "line": 67,
+              "doc": "The equal-and-opposite force with source and target exchanged.",
+              "signature": "def InternalForce.reverse (force : frame.InternalForce Object) : frame.InternalForce Object where"
+            }
+          ],
+          "exists": true
+        },
+        {
+          "index": 5,
+          "file": "Physlib/ClassicalMechanics/PointParticle/NewtonianSystem/Basic.lean",
+          "declarations": [
+            {
+              "text": "mass",
+              "fullName": "ClassicalMechanics.PointParticle.NewtonianSystem.mass",
+              "kind": "def",
+              "line": 219,
+              "doc": "Total mass.",
+              "signature": "def mass : ℝ"
+            },
+            {
+              "text": "momentum",
+              "fullName": "ClassicalMechanics.PointParticle.NewtonianSystem.momentum",
+              "kind": "def",
+              "line": 223,
+              "doc": "Total momentum at `t`.",
+              "signature": "def momentum : system.Vector"
+            },
+            {
+              "text": "kineticEnergy",
+              "fullName": "ClassicalMechanics.PointParticle.NewtonianSystem.kineticEnergy",
+              "kind": "def",
+              "line": 231,
+              "doc": "Total kinetic energy at `t`.",
+              "signature": "def kineticEnergy : ℝ"
+            },
+            {
+              "text": "netExternalForce",
+              "fullName": "ClassicalMechanics.PointParticle.NewtonianSystem.netExternalForce",
+              "kind": "def",
+              "line": 227,
+              "doc": "Net external force at `t`.",
+              "signature": "def netExternalForce : system.Vector"
+            }
+          ],
+          "exists": true
+        },
+        {
+          "index": 6,
+          "file": "Physlib/ClassicalMechanics/PointParticle/NewtonianSystem/CenterOfMass.lean",
+          "declarations": [
+            {
+              "text": "centerOfMass",
+              "fullName": "ClassicalMechanics.PointParticle.NewtonianSystem.centerOfMass",
+              "kind": "def",
+              "line": 53,
+              "doc": "The center of mass in the system's frame coordinates.",
+              "signature": "def centerOfMass (t : ℝ) : S.Vector"
+            },
+            {
+              "text": "hasDerivAt_centerOfMass",
+              "fullName": "ClassicalMechanics.PointParticle.NewtonianSystem.hasDerivAt_centerOfMass",
+              "kind": "lemma",
+              "line": 57,
+              "doc": "The center-of-mass velocity is the total momentum divided by the total mass.",
+              "signature": "lemma hasDerivAt_centerOfMass (t : ℝ) :\n    HasDerivAt S.centerOfMass (S.mass⁻¹ • S.momentum t) t"
+            }
+          ],
+          "exists": true
+        },
+        {
+          "index": 7,
+          "file": "Physlib/ClassicalMechanics/PointParticle/NewtonianSystem/CenterOfMass.lean",
+          "declarations": [
+            {
+              "text": "centerOfMass_eq_of_noExternalForces",
+              "fullName": "ClassicalMechanics.PointParticle.NewtonianSystem.centerOfMass_eq_of_noExternalForces",
+              "kind": "lemma",
+              "line": 79,
+              "doc": "The center of mass follows the straight line fixed by its initial position and momentum.",
+              "signature": "lemma centerOfMass_eq_of_noExternalForces (hExt : S.externalForces = 0) (t₀ t : ℝ) :\n    S.centerOfMass t = S.centerOfMass t₀ + (t - t₀) • (S.mass⁻¹ • S.momentum t₀)"
+            }
+          ],
+          "exists": true
+        },
+        {
+          "index": 8,
+          "file": "PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/NewtonianGravity.lean",
+          "declarations": [
+            {
+              "text": "pairGravity",
+              "fullName": "ClassicalMechanics.ReferenceFrame.pairGravity",
+              "kind": "def",
+              "line": 69,
+              "doc": "The Newtonian force exerted by one particle on another in the given frame.",
+              "signature": "def pairGravity (source target : particles) (hne : source ≠ target) :\n    frame.InternalForce particles where"
+            },
+            {
+              "text": "pairGravity_reverse",
+              "fullName": "ClassicalMechanics.ReferenceFrame.pairGravity_reverse",
+              "kind": "lemma",
+              "line": 77,
+              "doc": "Exchanging source and target gives the equal and opposite force.",
+              "signature": "lemma pairGravity_reverse (source target : particles) (hne : source ≠ target) :\n    (pairGravity G particles source target hne).reverse =\n      pairGravity G particles target source hne.symm"
+            }
+          ],
+          "exists": true
+        },
+        {
+          "index": 9,
+          "file": "PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/BinaryStar.lean",
+          "declarations": [
+            {
+              "text": "centerOfMass_eq_of_two_particles",
+              "fullName": "ClassicalMechanics.PointParticle.NewtonianSystem.centerOfMass_eq_of_two_particles",
+              "kind": "lemma",
+              "line": 65,
+              "doc": "The center of mass of two labelled particles, in the system's frame coordinates.",
+              "signature": "lemma centerOfMass_eq_of_two_particles (t : ℝ) :\n    system.centerOfMass t = ((e 0).mass.val + (e 1).mass.val)⁻¹ •\n      ((e 0).mass.val • (e 0).pos t + (e 1).mass.val • (e 1).pos t)"
+            }
+          ],
+          "exists": true
+        },
+        {
+          "index": 10,
+          "file": "PhyslibAlpha/ClassicalMechanics/OrbitalMechanics/BinaryStar.lean",
+          "declarations": [
+            {
+              "text": "hasDerivAt_deriv_relativePosition_of_gravity",
+              "fullName": "ClassicalMechanics.PointParticle.NewtonianSystem.hasDerivAt_deriv_relativePosition_of_gravity",
+              "kind": "lemma",
+              "line": 110,
+              "doc": "At a collision-free time the relative displacement of two mutually gravitating particles satisfies the Kepler equation with gravitational parameter `G` times their total mass.",
+              "signature": "lemma hasDerivAt_deriv_relativePosition_of_gravity\n    (hi : system.internalForces = gravityForces G system.particles)\n    (he : system.externalForces = 0) {t : ℝ} (hne : (e 1).pos t ≠ (e 0).pos t) :\n    let r"
+            }
+          ],
+          "exists": true
+        }
+      ],
+      "references": [
+        {
+          "index": 1,
+          "text": "H. Goldstein, C. P. Poole and J. L. Safko, *Classical Mechanics*, 3rd ed., Addison-Wesley, 2002, §§1.2, 3.1 and 3.7.",
+          "apiMap": null
+        }
+      ],
+      "requirements": [
+        {
+          "done": true,
+          "citations": [
+            1
+          ],
+          "alpha": true
+        },
+        {
+          "done": true,
+          "citations": [
+            2,
+            3
+          ],
+          "alpha": true
+        },
+        {
+          "done": true,
+          "citations": [
+            2,
+            4
+          ],
+          "alpha": true
+        },
+        {
+          "done": true,
+          "citations": [
+            5
+          ],
+          "alpha": true
+        },
+        {
+          "done": true,
+          "citations": [
+            6
+          ],
+          "alpha": true
+        },
+        {
+          "done": true,
+          "citations": [
+            7
+          ],
+          "alpha": true
+        },
+        {
+          "done": true,
+          "citations": [
+            8
+          ],
+          "alpha": true
+        },
+        {
+          "done": true,
+          "citations": [
+            7,
+            9
+          ],
+          "alpha": true
+        },
+        {
+          "done": true,
+          "citations": [
+            10
+          ],
+          "alpha": true
+        }
+      ],
+      "parents": [],
+      "url": "https://github.com/leanprover-community/physlib/blob/master/Physlib/ClassicalMechanics/PointParticle/NewtonianSystem/API-map.md"
     },
     {
       "path": "Physlib/ClassicalMechanics/RigidBody",
@@ -10650,13 +11026,13 @@
         },
         {
           "index": 7,
-          "file": "Physlib/QuantumMechanics/Operators/Multiplication.lean",
+          "file": "Physlib/QuantumMechanics/Operators/SpaceD/Multiplication.lean",
           "declarations": [
             {
               "text": "mulOperator",
               "fullName": "QuantumMechanics.SpaceDHilbertSpace.mulOperator",
               "kind": "def",
-              "line": 85,
+              "line": 86,
               "doc": "The multiplication operator which maps `ψ` to the equivalence class of `f • ψ` with maximal domain `{ψ : SpaceDHilbertspace d μ | MemHS (f • ψ) μ}`.",
               "signature": "def mulOperator (μ : Measure (Space d)) (f : Space d → ℂ) :\n    SpaceDHilbertSpace d μ →ₗ.[ℂ] SpaceDHilbertSpace d μ where"
             }
@@ -10665,13 +11041,13 @@
         },
         {
           "index": 8,
-          "file": "Physlib/QuantumMechanics/Operators/Position.lean",
+          "file": "Physlib/QuantumMechanics/Operators/SpaceD/Position.lean",
           "declarations": [
             {
               "text": "positionOperator",
               "fullName": "positionOperator",
               "kind": "def",
-              "line": 351,
+              "line": 350,
               "doc": "The operator on `SpaceDHilbertSpace d` acting by multiplication by `fun x ↦ xᵢ`.",
               "signature": "def positionOperator : SpaceDHilbertSpace d μ →ₗ.[ℂ] SpaceDHilbertSpace d μ"
             }
@@ -10994,7 +11370,7 @@
       "leanReferences": [
         {
           "index": 1,
-          "file": "Physlib/QuantumMechanics/Operators/Unbounded.lean",
+          "file": "Physlib/QuantumMechanics/Operators/Basic.lean",
           "declarations": [
             {
               "text": "HasDenseDomain",
@@ -11033,7 +11409,7 @@
         },
         {
           "index": 2,
-          "file": "Physlib/QuantumMechanics/Operators/Unbounded.lean",
+          "file": "Physlib/QuantumMechanics/Operators/Basic.lean",
           "declarations": [
             {
               "text": "IsSymmetric",
@@ -11056,7 +11432,7 @@
         },
         {
           "index": 3,
-          "file": "Physlib/QuantumMechanics/Operators/Unbounded.lean",
+          "file": "Physlib/QuantumMechanics/Operators/Basic.lean",
           "declarations": [
             {
               "text": "IsSymmetric.isClosable",
@@ -11111,7 +11487,7 @@
         },
         {
           "index": 4,
-          "file": "Physlib/QuantumMechanics/Operators/Unbounded.lean",
+          "file": "Physlib/QuantumMechanics/Operators/Basic.lean",
           "declarations": [
             {
               "text": "IsEssentiallySelfAdjoint",
@@ -11142,7 +11518,7 @@
         },
         {
           "index": 5,
-          "file": "Physlib/QuantumMechanics/Operators/Unbounded.lean",
+          "file": "Physlib/QuantumMechanics/Operators/Basic.lean",
           "declarations": [
             {
               "text": "adjoint_smul",
@@ -11213,7 +11589,7 @@
         },
         {
           "index": 6,
-          "file": "Physlib/QuantumMechanics/Operators/Unbounded.lean",
+          "file": "Physlib/QuantumMechanics/Operators/Basic.lean",
           "declarations": [
             {
               "text": "IsSymmetric.isSelfAdjoint_of_range_eq_top",
@@ -11244,7 +11620,7 @@
         },
         {
           "index": 7,
-          "file": "Physlib/QuantumMechanics/Operators/Unbounded.lean",
+          "file": "Physlib/QuantumMechanics/Operators/Basic.lean",
           "declarations": [
             {
               "text": "unitaryConj",
@@ -11299,13 +11675,13 @@
         },
         {
           "index": 8,
-          "file": "Physlib/QuantumMechanics/Operators/Multiplication.lean",
+          "file": "Physlib/QuantumMechanics/Operators/SpaceD/Multiplication.lean",
           "declarations": [
             {
               "text": "mulOperator",
               "fullName": "QuantumMechanics.SpaceDHilbertSpace.mulOperator",
               "kind": "def",
-              "line": 85,
+              "line": 86,
               "doc": "The multiplication operator which maps `ψ` to the equivalence class of `f • ψ` with maximal domain `{ψ : SpaceDHilbertspace d μ | MemHS (f • ψ) μ}`.",
               "signature": "def mulOperator (μ : Measure (Space d)) (f : Space d → ℂ) :\n    SpaceDHilbertSpace d μ →ₗ.[ℂ] SpaceDHilbertSpace d μ where"
             },
@@ -11317,7 +11693,7 @@
               "text": "mem_mulOperator_domain_iff",
               "fullName": "QuantumMechanics.SpaceDHilbertSpace.mem_mulOperator_domain_iff",
               "kind": "lemma",
-              "line": 119,
+              "line": 120,
               "doc": "The multiplication operator `𝓜 μ f` has maximal domain: `ψ` is in the domain exactly when multiplying by `f` gives an element of the Hilbert space.",
               "signature": "lemma mem_mulOperator_domain_iff\n    {μ : Measure (Space d)} {f : Space d → ℂ} {ψ : SpaceDHilbertSpace d μ} :\n    ψ ∈ (𝓜 μ f).domain ↔ MemHS (f • ⇑ψ) μ"
             },
@@ -11325,7 +11701,7 @@
               "text": "mulOperator_apply_ae",
               "fullName": "QuantumMechanics.SpaceDHilbertSpace.mulOperator_apply_ae",
               "kind": "lemma",
-              "line": 125,
+              "line": 126,
               "doc": "The defining property of a multiplication operator: `ψ` is mapped to `f • ψ`.",
               "signature": "lemma mulOperator_apply_ae {μ : Measure (Space d)} {f : Space d → ℂ} (ψ : (𝓜 μ f).domain) :\n    𝓜 μ f ψ =ᵐ[μ] f • ψ"
             },
@@ -11333,7 +11709,7 @@
               "text": "mulOperator_hasDenseDomain",
               "fullName": "QuantumMechanics.SpaceDHilbertSpace.mulOperator_hasDenseDomain",
               "kind": "lemma",
-              "line": 183,
+              "line": 184,
               "doc": "The multiplication operator corresponding to a `μ`-a.e. strongly measurable function is densely defined.",
               "signature": "lemma mulOperator_hasDenseDomain\n    {μ : Measure (Space d)} {f : Space d → ℂ} (hf : AEStronglyMeasurable f μ) :\n    (𝓜 μ f).HasDenseDomain"
             }
@@ -11342,13 +11718,13 @@
         },
         {
           "index": 9,
-          "file": "Physlib/QuantumMechanics/Operators/Multiplication.lean",
+          "file": "Physlib/QuantumMechanics/Operators/SpaceD/Multiplication.lean",
           "declarations": [
             {
               "text": "mulOperator_domain_eq_top",
               "fullName": "QuantumMechanics.SpaceDHilbertSpace.mulOperator_domain_eq_top",
               "kind": "lemma",
-              "line": 134,
+              "line": 135,
               "doc": "The multiplication operator of a `μ`-a.e. bounded function has full domain.",
               "signature": "lemma mulOperator_domain_eq_top {μ : Measure (Space d)}\n    {f : Space d → ℂ} (hf : AEStronglyMeasurable f μ) {c : ℝ} (hfc : ∀ᵐ x ∂μ, ‖f x‖ ≤ c) :\n    (𝓜 μ f).domain = ⊤"
             },
@@ -11356,7 +11732,7 @@
               "text": "mulOperator_domain_antitone",
               "fullName": "QuantumMechanics.SpaceDHilbertSpace.mulOperator_domain_antitone",
               "kind": "lemma",
-              "line": 144,
+              "line": 145,
               "doc": "The domains of multiplication operators shrink with increasing function norm.",
               "signature": "lemma mulOperator_domain_antitone {μ : Measure (Space d)}\n    {f g : Space d → ℂ} (hg : AEStronglyMeasurable g μ) (h : ∀ᵐ x ∂μ, ‖g x‖ ≤ ‖f x‖) :\n    (𝓜 μ f).domain ≤ (𝓜 μ g).domain"
             },
@@ -11364,7 +11740,7 @@
               "text": "mulOperator_conj_domain",
               "fullName": "QuantumMechanics.SpaceDHilbertSpace.mulOperator_conj_domain",
               "kind": "lemma",
-              "line": 176,
+              "line": 177,
               "doc": "The multiplication operators corresponding to a function and its conjugate have the same domain.",
               "signature": "lemma mulOperator_conj_domain\n    {μ : Measure (Space d)} {f : Space d → ℂ} (hf : AEStronglyMeasurable f μ) :\n    (𝓜 μ (conj ∘ f)).domain = (𝓜 μ f).domain"
             },
@@ -11372,7 +11748,7 @@
               "text": "mulOperator_domain_ge_of_hasTemperateGrowth",
               "fullName": "QuantumMechanics.SpaceDHilbertSpace.mulOperator_domain_ge_of_hasTemperateGrowth",
               "kind": "lemma",
-              "line": 232,
+              "line": 233,
               "doc": "The multiplication operator corresponding to a function of temperate growth contains all Schwartz maps in its domain.",
               "signature": "lemma mulOperator_domain_ge_of_hasTemperateGrowth {f : Space d → ℂ} (hf : f.HasTemperateGrowth)\n    (μ : Measure (Space d)) [μ.HasTemperateGrowth] [μ.IsOpenPosMeasure] :\n    SchwartzSubmodule d μ ≤ (𝓜 μ f).domain"
             }
@@ -11381,13 +11757,13 @@
         },
         {
           "index": 10,
-          "file": "Physlib/QuantumMechanics/Operators/Multiplication.lean",
+          "file": "Physlib/QuantumMechanics/Operators/SpaceD/Multiplication.lean",
           "declarations": [
             {
               "text": "mulOperator_adjoint_eq_conj",
               "fullName": "QuantumMechanics.SpaceDHilbertSpace.mulOperator_adjoint_eq_conj",
               "kind": "lemma",
-              "line": 358,
+              "line": 359,
               "doc": "The adjoint of a multiplication operator is again a multiplication operator.",
               "signature": "lemma mulOperator_adjoint_eq_conj {μ : Measure (Space d)} [IsFiniteMeasureOnCompacts μ]\n    {f : Space d → ℂ} (hf : AEStronglyMeasurable f μ) :\n    (𝓜 μ f)† = 𝓜 μ (conj ∘ f)"
             },
@@ -11395,7 +11771,7 @@
               "text": "mulOperator_isSelfAdjoint_ofReal",
               "fullName": "QuantumMechanics.SpaceDHilbertSpace.mulOperator_isSelfAdjoint_ofReal",
               "kind": "lemma",
-              "line": 376,
+              "line": 377,
               "doc": "The multiplication operator corresponding to a real function is self-adjoint.",
               "signature": "lemma mulOperator_isSelfAdjoint_ofReal {μ : Measure (Space d)} [IsFiniteMeasureOnCompacts μ]\n    {f : Space d → ℂ} (hf : AEStronglyMeasurable f μ) (hf' : conj ∘ f = f) :\n    IsSelfAdjoint (𝓜 μ f)"
             },
@@ -11403,7 +11779,7 @@
               "text": "mulOperator_isClosable",
               "fullName": "QuantumMechanics.SpaceDHilbertSpace.mulOperator_isClosable",
               "kind": "lemma",
-              "line": 386,
+              "line": 387,
               "doc": "Multiplication operators of `μ`-a.e. strongly measurable functions are closable.",
               "signature": "lemma mulOperator_isClosable {μ : Measure (Space d)} [IsFiniteMeasureOnCompacts μ]\n    {f : Space d → ℂ} (hf : AEStronglyMeasurable f μ) :\n    (𝓜 μ f).IsClosable"
             },
@@ -11411,7 +11787,7 @@
               "text": "mulOperator_isUnbounded",
               "fullName": "QuantumMechanics.SpaceDHilbertSpace.mulOperator_isUnbounded",
               "kind": "lemma",
-              "line": 394,
+              "line": 395,
               "doc": "Multiplication operators of `μ`-a.e. strongly measurable functions are unbounded.",
               "signature": "lemma mulOperator_isUnbounded {μ : Measure (Space d)} [IsFiniteMeasureOnCompacts μ]\n    {f : Space d → ℂ} (hf : AEStronglyMeasurable f μ) :\n    (𝓜 μ f).IsUnbounded"
             },
@@ -11419,7 +11795,7 @@
               "text": "mulOperator_isClosed",
               "fullName": "QuantumMechanics.SpaceDHilbertSpace.mulOperator_isClosed",
               "kind": "lemma",
-              "line": 400,
+              "line": 401,
               "doc": "Multiplication operators of `μ`-a.e. strongly measurable functions are closed.",
               "signature": "lemma mulOperator_isClosed {μ : Measure (Space d)} [IsFiniteMeasureOnCompacts μ]\n    {f : Space d → ℂ} (hf : AEStronglyMeasurable f μ) :\n    (𝓜 μ f).IsClosed"
             }
@@ -11428,13 +11804,13 @@
         },
         {
           "index": 11,
-          "file": "Physlib/QuantumMechanics/Operators/Multiplication.lean",
+          "file": "Physlib/QuantumMechanics/Operators/SpaceD/Multiplication.lean",
           "declarations": [
             {
               "text": "mulOperator_const_smul_eq",
               "fullName": "QuantumMechanics.SpaceDHilbertSpace.mulOperator_const_smul_eq",
               "kind": "lemma",
-              "line": 476,
+              "line": 485,
               "doc": "Scalar multiplication and `mulOperator` commute for `c ≠ 0`.",
               "signature": "lemma mulOperator_const_smul_eq (μ : Measure (Space d)) (f : Space d → ℂ) {c : ℂ} (hc : c ≠ 0) :\n    𝓜 μ (c • f) = c • 𝓜 μ f"
             },
@@ -11442,7 +11818,7 @@
               "text": "mulOperator_add_ge",
               "fullName": "QuantumMechanics.SpaceDHilbertSpace.mulOperator_add_ge",
               "kind": "lemma",
-              "line": 499,
+              "line": 519,
               "doc": "`𝓜 μ (f + g)` extends `𝓜 μ f + 𝓜 μ g`.",
               "signature": "lemma mulOperator_add_ge (μ : Measure (Space d)) (f g : Space d → ℂ) :\n    𝓜 μ f + 𝓜 μ g ≤ 𝓜 μ (f + g)"
             },
@@ -11450,7 +11826,7 @@
               "text": "mulOperator_add_eq",
               "fullName": "QuantumMechanics.SpaceDHilbertSpace.mulOperator_add_eq",
               "kind": "lemma",
-              "line": 516,
+              "line": 536,
               "doc": "`(𝓜 μ g).domain = ⊤` is a sufficient condition to ensure equality in `mulOperator_add_ge`.",
               "signature": "lemma mulOperator_add_eq\n    {μ : Measure (Space d)} (f : Space d → ℂ) {g : Space d → ℂ} (h : (𝓜 μ g).domain = ⊤) :\n    𝓜 μ (f + g) = 𝓜 μ f + 𝓜 μ g"
             },
@@ -11458,7 +11834,7 @@
               "text": "mulOperator_sub_ge",
               "fullName": "QuantumMechanics.SpaceDHilbertSpace.mulOperator_sub_ge",
               "kind": "lemma",
-              "line": 554,
+              "line": 574,
               "doc": "`𝓜 μ (f - g)` extends `𝓜 μ f - 𝓜 μ g`.",
               "signature": "lemma mulOperator_sub_ge (μ : Measure (Space d)) (f g : Space d → ℂ) :\n    𝓜 μ f - 𝓜 μ g ≤ 𝓜 μ (f - g)"
             },
@@ -11466,7 +11842,7 @@
               "text": "mulOperator_smul_ge",
               "fullName": "QuantumMechanics.SpaceDHilbertSpace.mulOperator_smul_ge",
               "kind": "lemma",
-              "line": 587,
+              "line": 613,
               "doc": "`𝓜 μ (f • g)` extends `𝓜 μ f * 𝓜 μ g`.",
               "signature": "lemma mulOperator_smul_ge (μ : Measure (Space d)) (f g : Space d → ℂ) :\n    𝓜 μ f ∘ᵣ 𝓜 μ g ≤ 𝓜 μ (f • g)"
             }
@@ -11475,13 +11851,13 @@
         },
         {
           "index": 12,
-          "file": "Physlib/QuantumMechanics/Operators/Position.lean",
+          "file": "Physlib/QuantumMechanics/Operators/SpaceD/Position.lean",
           "declarations": [
             {
               "text": "positionCLM",
               "fullName": "QuantumMechanics.positionCLM",
               "kind": "def",
-              "line": 79,
+              "line": 78,
               "doc": "Component `i` of the position operator is the continuous linear map from `𝓢(Space d, ℂ)` to itself which maps `ψ` to `xᵢψ`.",
               "signature": "def positionCLM : 𝓢(Space d, ℂ) →L[ℂ] 𝓢(Space d, ℂ)"
             },
@@ -11493,7 +11869,7 @@
               "text": "positionCLM_apply",
               "fullName": "QuantumMechanics.positionCLM_apply",
               "kind": "lemma",
-              "line": 95,
+              "line": 94,
               "doc": null,
               "signature": "lemma positionCLM_apply (ψ : 𝓢(Space d, ℂ)) (x : Space d) : 𝐱 i ψ x = x i * ψ x"
             },
@@ -11501,7 +11877,7 @@
               "text": "positionSqCLM_eq",
               "fullName": "QuantumMechanics.positionSqCLM_eq",
               "kind": "lemma",
-              "line": 150,
+              "line": 149,
               "doc": null,
               "signature": "lemma positionSqCLM_eq {d : ℕ} (ε : ℝˣ) :\n    ∑ i, 𝐱 i ∘L 𝐱 i = 𝐫₀ ε 2 - ε.1 ^ 2 • ContinuousLinearMap.id ℂ 𝓢(Space d, ℂ)"
             },
@@ -11509,7 +11885,7 @@
               "text": "positionOperator",
               "fullName": "positionOperator",
               "kind": "def",
-              "line": 351,
+              "line": 350,
               "doc": "The operator on `SpaceDHilbertSpace d` acting by multiplication by `fun x ↦ xᵢ`.",
               "signature": "def positionOperator : SpaceDHilbertSpace d μ →ₗ.[ℂ] SpaceDHilbertSpace d μ"
             },
@@ -11521,7 +11897,7 @@
               "text": "positionOperator_hasDenseDomain",
               "fullName": "positionOperator_hasDenseDomain",
               "kind": "lemma",
-              "line": 357,
+              "line": 356,
               "doc": null,
               "signature": "lemma positionOperator_hasDenseDomain : (𝓧 μ i).HasDenseDomain"
             },
@@ -11529,7 +11905,7 @@
               "text": "positionOperator_isSelfAdjoint",
               "fullName": "positionOperator_isSelfAdjoint",
               "kind": "lemma",
-              "line": 360,
+              "line": 359,
               "doc": null,
               "signature": "lemma positionOperator_isSelfAdjoint [IsFiniteMeasureOnCompacts μ] : IsSelfAdjoint (𝓧 μ i)"
             },
@@ -11537,7 +11913,7 @@
               "text": "positionOperator_isUnbounded",
               "fullName": "positionOperator_isUnbounded",
               "kind": "lemma",
-              "line": 363,
+              "line": 362,
               "doc": null,
               "signature": "lemma positionOperator_isUnbounded [IsFiniteMeasureOnCompacts μ] : (𝓧 μ i).IsUnbounded"
             }
@@ -11546,13 +11922,13 @@
         },
         {
           "index": 13,
-          "file": "Physlib/QuantumMechanics/Operators/Position.lean",
+          "file": "Physlib/QuantumMechanics/Operators/SpaceD/Position.lean",
           "declarations": [
             {
               "text": "radiusRegPowCLM",
               "fullName": "QuantumMechanics.radiusRegPowCLM",
               "kind": "def",
-              "line": 117,
+              "line": 116,
               "doc": "The radius operator to power `s`, regularized by `ε ≠ 0`, is the continuous linear map from `𝓢(Space d, ℂ)` to itself which maps `ψ` to `(‖x‖² + ε²)^(s/2) • ψ`.",
               "signature": "def radiusRegPowCLM {d : ℕ} (ε : ℝˣ) (s : ℝ) : 𝓢(Space d, ℂ) →L[ℂ] 𝓢(Space d, ℂ)"
             },
@@ -11564,7 +11940,7 @@
               "text": "radiusRegPowCLM_comp_eq",
               "fullName": "QuantumMechanics.radiusRegPowCLM_comp_eq",
               "kind": "lemma",
-              "line": 139,
+              "line": 138,
               "doc": null,
               "signature": "lemma radiusRegPowCLM_comp_eq {d : ℕ} (ε : ℝˣ) (s t : ℝ) :\n    𝐫₀[d] ε s ∘L 𝐫₀ ε t = 𝐫₀ ε (s+t)"
             },
@@ -11572,7 +11948,7 @@
               "text": "radiusPowLM",
               "fullName": "QuantumMechanics.radiusPowLM",
               "kind": "def",
-              "line": 161,
+              "line": 160,
               "doc": "The radius operator to power `s` is the linear map from `𝓢(Space d, ℂ)` to `Space d → ℂ` that maps `ψ` to `x ↦ ‖x‖ˢψ(x)` (which is 'nearly' Schwartz for general `s`).",
               "signature": "def radiusPowLM {d : ℕ} (s : ℝ) : 𝓢(Space d, ℂ) →ₗ[ℂ] Space d → ℂ where"
             },
@@ -11584,7 +11960,7 @@
               "text": "radiusPowLM_apply_memHS",
               "fullName": "QuantumMechanics.radiusPowLM_apply_memHS",
               "kind": "lemma",
-              "line": 199,
+              "line": 198,
               "doc": "`x ↦ ‖x‖ˢψ(x)` is square-integrable provided `s` is not too negative.",
               "signature": "lemma radiusPowLM_apply_memHS {d : ℕ} (s : ℝ) (ψ : 𝓢(Space d, ℂ)) (a : ℕ)\n    (hψ : ψ ∈ PolyBddSchwartzMap d a) (h : 0 < d + 2 * (a + s)) :\n    MemHS (𝐫 s ψ)"
             },
@@ -11592,7 +11968,7 @@
               "text": "radiusRegPow_tendsto_radiusPow",
               "fullName": "QuantumMechanics.radiusRegPow_tendsto_radiusPow",
               "kind": "lemma",
-              "line": 285,
+              "line": 284,
               "doc": "`𝐫[ε,s] ψ` converges pointwise to `𝐫[s] ψ` as `ε → 0` except perhaps at `x = 0`.",
               "signature": "lemma radiusRegPow_tendsto_radiusPow {d : ℕ} (s : ℝ) (ψ : 𝓢(Space d, ℂ)) {x : Space d}\n    (hx : x ≠ 0) : Tendsto (fun ε ↦ 𝐫₀ ε s ψ x) nhdsZeroUnits (nhds (𝐫 s ψ x))"
             },
@@ -11600,7 +11976,7 @@
               "text": "radiusRegPowOperator",
               "fullName": "radiusRegPowOperator",
               "kind": "def",
-              "line": 372,
+              "line": 371,
               "doc": "The operator on `SpaceDHilbertSpace d` acting by multiplication by `fun x ↦ (‖x‖² + ε²)^(s/2)`.",
               "signature": "def radiusRegPowOperator (ε : ℝˣ) (s : ℝ) :\n    SpaceDHilbertSpace d μ →ₗ.[ℂ] SpaceDHilbertSpace d μ"
             },
@@ -11608,7 +11984,7 @@
               "text": "radiusRegPowOperator_isSelfAdjoint",
               "fullName": "radiusRegPowOperator_isSelfAdjoint",
               "kind": "lemma",
-              "line": 382,
+              "line": 381,
               "doc": null,
               "signature": "lemma radiusRegPowOperator_isSelfAdjoint [IsFiniteMeasureOnCompacts μ] (ε : ℝˣ) (s : ℝ) :\n    IsSelfAdjoint (𝓡₀ μ ε s)"
             },
@@ -11616,7 +11992,7 @@
               "text": "radiusPowOperator",
               "fullName": "radiusPowOperator",
               "kind": "def",
-              "line": 395,
+              "line": 394,
               "doc": "The operator on `SpaceDHilbertSpace d` acting by multiplication by `fun x ↦ ‖x‖ˢ`.",
               "signature": "def radiusPowOperator (s : ℝ) : SpaceDHilbertSpace d μ →ₗ.[ℂ] SpaceDHilbertSpace d μ"
             },
@@ -11624,7 +12000,7 @@
               "text": "radiusPowOperator_isSelfAdjoint",
               "fullName": "radiusPowOperator_isSelfAdjoint",
               "kind": "lemma",
-              "line": 404,
+              "line": 403,
               "doc": null,
               "signature": "lemma radiusPowOperator_isSelfAdjoint [IsFiniteMeasureOnCompacts μ] (s : ℝ) :\n    IsSelfAdjoint (𝓡 μ s)"
             },
@@ -11632,7 +12008,7 @@
               "text": "radiusPowOperator_domain_ge",
               "fullName": "radiusPowOperator_domain_ge",
               "kind": "lemma",
-              "line": 426,
+              "line": 425,
               "doc": null,
               "signature": "lemma radiusPowOperator_domain_ge {d : ℕ} (s : ℝ) :\n    PolyBddSchwartzSubmodule d ⌊1 - d / 2 - s⌋.toNat ≤ (radiusPowOperator volume s).domain"
             }
@@ -11641,7 +12017,7 @@
         },
         {
           "index": 14,
-          "file": "Physlib/QuantumMechanics/Operators/Momentum.lean",
+          "file": "Physlib/QuantumMechanics/Operators/SpaceD/Momentum.lean",
           "declarations": [
             {
               "text": "momentumCLM",
@@ -11893,7 +12269,7 @@
         },
         {
           "index": 18,
-          "file": "Physlib/QuantumMechanics/Operators/AngularMomentum.lean",
+          "file": "Physlib/QuantumMechanics/Operators/SpaceD/AngularMomentum.lean",
           "declarations": [
             {
               "text": "angularMomentumCLM",
@@ -11980,7 +12356,7 @@
         },
         {
           "index": 19,
-          "file": "Physlib/QuantumMechanics/Operators/AngularMomentum.lean",
+          "file": "Physlib/QuantumMechanics/Operators/SpaceD/AngularMomentum.lean",
           "declarations": [
             {
               "text": "angularMomentum_commutation_position",
@@ -12011,7 +12387,7 @@
         },
         {
           "index": 20,
-          "file": "Physlib/QuantumMechanics/Operators/AngularMomentum.lean",
+          "file": "Physlib/QuantumMechanics/Operators/SpaceD/AngularMomentum.lean",
           "declarations": [
             {
               "text": "angularMomentumSqr_commutation_angularMomentum",
@@ -12058,7 +12434,7 @@
         },
         {
           "index": 21,
-          "file": "Physlib/QuantumMechanics/Operators/AngularMomentum.lean",
+          "file": "Physlib/QuantumMechanics/Operators/SpaceD/AngularMomentum.lean",
           "declarations": [
             {
               "text": "angularMomentumOperator",
@@ -12137,7 +12513,7 @@
         },
         {
           "index": 22,
-          "file": "Physlib/QuantumMechanics/Operators/AngularMomentum.lean",
+          "file": "Physlib/QuantumMechanics/Operators/SpaceD/AngularMomentum.lean",
           "declarations": [
             {
               "text": "angularMomentumSqOperator",
@@ -12216,7 +12592,7 @@
         },
         {
           "index": 23,
-          "file": "Physlib/QuantumMechanics/Operators/AngularMomentum/DimThree.lean",
+          "file": "Physlib/QuantumMechanics/Operators/SpaceD/AngularMomentum/DimThree.lean",
           "declarations": [
             {
               "text": "angularMomentumDimThreeOperator",
@@ -12303,7 +12679,7 @@
         },
         {
           "index": 24,
-          "file": "Physlib/QuantumMechanics/Operators/AngularMomentum/DimThree.lean",
+          "file": "Physlib/QuantumMechanics/Operators/SpaceD/AngularMomentum/DimThree.lean",
           "declarations": [
             {
               "text": "angularMomentumRaisingCLM",
@@ -12988,15 +13364,15 @@
           "subsections": [
             {
               "title": "Resolvent and spectrum",
-              "body": "A complex number z lies in the resolvent set of an operator T {1} when T - z has a bounded inverse,\nthe resolvent; the resolvent set is open, and for a closed operator it is exactly the set of z for\nwhich T - z is a bijection from the domain onto the space. [1] The spectrum is the complement of the\nresolvent set; it is closed, and splits into the point, residual and continuous spectra. [2]\nResolvents satisfy the two resolvent identities, relating resolvents at two points and of two\noperators. [3] The treatment follows the standard references of Hall {2}, Reed and Simon {3}, and\nSchmüdgen {4}."
+              "body": "A complex number z lies in the resolvent set of an operator T {1} when T - z has a bounded inverse,\nthe resolvent; the resolvent set is open, and for a closed operator it is exactly the set of z for\nwhich T - z is a bijection from the domain onto the space. [1] The spectrum is the complement of the\nresolvent set; it is closed, and for a closed operator it is the union of the point, residual and\ncontinuous spectra. The point spectrum is the set of eigenvalues. [2]\nResolvents satisfy the two resolvent identities, relating resolvents at two points and of two\noperators. [3] The treatment follows the standard references of Hall {2}, Reed and Simon {3}, and\nSchmüdgen {4}."
             },
             {
               "title": "Regularity domain and numerical range",
-              "body": "A point z is a point of regularity when T - z is bounded below. The regularity domain is open, the\ndeficiency subspace at z is the orthogonal complement of the range of T - z, and its dimension is\nthe defect number; for a closable operator it is constant on each connected component of the\nregularity domain. [4] The numerical range is the set of values of the pairing of a unit vector with\nits image; it is convex by the Toeplitz-Hausdorff theorem, and the exterior of its closure consists\nof points of regularity. [5]"
+              "body": "A point z is a point of regularity when T - z is bounded below. The regularity domain is open, the\ndeficiency subspace at z is the orthogonal complement of the range of T - z, and its dimension is\nthe defect number, which vanishes exactly when this range is dense; for a closable operator the\ndefect number is constant on each connected component of the regularity domain. [4] The numerical\nrange is the set of values of the pairing of a unit vector with its image; it is convex by the\nToeplitz-Hausdorff theorem, and the exterior of its closure consists of points of regularity. [5]"
             },
             {
               "title": "Symmetric operators",
-              "body": "The numerical range of a symmetric operator is real, and so is described by its projection to the\nreal axis. [6] Every point off the real axis is therefore a point of regularity, and the regularity\ndomain is connected when the operator is bounded above or below. [7] A symmetric operator whose\ndefect numbers at i and -i both vanish is essentially self-adjoint. [8] The eigenvalues of a\nsymmetric operator are real. [9]"
+              "body": "The numerical range of a symmetric operator is real, and so is described by its projection to the\nreal axis. [6] Every point off the real axis is therefore a point of regularity, and the regularity\ndomain is connected when the operator is bounded above or below. [7] The eigenvalues of a\nsymmetric operator are real. [8] A densely defined symmetric operator whose defect numbers at i\nand -i both vanish is essentially self-adjoint. This is the case when its eigenvectors span a\ndense subspace, since for z off the real axis the range of T - z contains every eigenvector, and\nis therefore dense. [9]"
             },
             {
               "title": "Self-adjoint operators",
@@ -13004,7 +13380,7 @@
             },
             {
               "title": "Spectral measures and the spectral theorem",
-              "body": "A spectral measure is a vector measure valued in the bounded operators whose values are star\nprojections and which sends the whole outcome space to the identity. [13] The projections of two\nmeasurable sets compose to the projection of their intersection, disjoint sets give orthogonal\nprojections, and all of them commute. [14]\n\nEvery self-adjoint operator is the integral of the identity against a spectral measure supported on\nits spectrum; equivalently, it is unitarily equivalent to multiplication by a real function on an L²\nspace. [TODO] The spectral theorem yields a functional calculus, and Stone's theorem gives the\nunitary time evolution generated by a self-adjoint Hamiltonian. [TODO] The spectrum of a\nmultiplication operator is the essential range of its multiplier. [TODO]"
+              "body": "A spectral measure is a vector measure valued in the bounded operators whose values are star\nprojections and which sends the whole outcome space to the identity. [13] The projections of two\nmeasurable sets compose to the projection of their intersection, disjoint sets give orthogonal\nprojections, and all of them commute. [14]\n\nEvery self-adjoint operator is the integral of the identity against a spectral measure supported on\nits spectrum; equivalently, it is unitarily equivalent to multiplication by a real function on an L²\nspace. [TODO] The spectral theorem yields a functional calculus, and Stone's theorem gives the\nunitary time evolution generated by a self-adjoint Hamiltonian. [TODO] The spectrum of a\nmultiplication operator is the essential range of its multiplier (the support of the pushforward\nof the measure); for a continuous multiplier it is the closure of the range. [15]"
             }
           ]
         }
@@ -13018,7 +13394,7 @@
               "text": "resolvent",
               "fullName": "LinearPMap.resolvent",
               "kind": "abbrev",
-              "line": 106,
+              "line": 107,
               "doc": "The resolvent, `(T - z • 1)⁻¹`.",
               "signature": "abbrev resolvent (T : H →ₗ.[ℂ] H) (z : ℂ) : H →ₗ.[ℂ] H"
             },
@@ -13030,7 +13406,7 @@
               "text": "resolventSet",
               "fullName": "LinearPMap.resolventSet",
               "kind": "def",
-              "line": 630,
+              "line": 638,
               "doc": "The resolvent set, `ρ`, of a partial linear map.",
               "signature": "def resolventSet (T : H →ₗ.[ℂ] H) : Set ℂ"
             },
@@ -13042,7 +13418,7 @@
               "text": "resolventSet_isOpen",
               "fullName": "LinearPMap.resolventSet_isOpen",
               "kind": "lemma",
-              "line": 682,
+              "line": 690,
               "doc": "The resolvent set is an open subset of ℂ.",
               "signature": "lemma resolventSet_isOpen [CompleteSpace H] (T : H →ₗ.[ℂ] H) : IsOpen (ρ T)"
             },
@@ -13050,7 +13426,7 @@
               "text": "resolventSet_eq_empty",
               "fullName": "LinearPMap.resolventSet_eq_empty",
               "kind": "lemma",
-              "line": 645,
+              "line": 653,
               "doc": "If an operator is not closed then its resolvent set is empty.",
               "signature": "lemma resolventSet_eq_empty [CompleteSpace H] {T : H →ₗ.[ℂ] H} (h : ¬T.IsClosed) : ρ T = ∅"
             },
@@ -13058,7 +13434,7 @@
               "text": "IsClosed.resolventSet_eq",
               "fullName": "LinearPMap.IsClosed.resolventSet_eq",
               "kind": "lemma",
-              "line": 660,
+              "line": 668,
               "doc": "For a closed operator the continuity of the resolvent is redundant in the definition of the resolvent set.",
               "signature": "lemma IsClosed.resolventSet_eq [CompleteSpace H] {T : H →ₗ.[ℂ] H} (hT : T.IsClosed) :\n    ρ T = {z : ℂ | (T - z • 1).toFun.ker = ⊥ ∧ (T - z • 1).toFun.range = ⊤}"
             },
@@ -13066,7 +13442,7 @@
               "text": "IsClosed.resolventSet_eq'",
               "fullName": "LinearPMap.IsClosed.resolventSet_eq'",
               "kind": "lemma",
-              "line": 672,
+              "line": 680,
               "doc": "For a closed operator the resolvent set consists of those regular points for which the defect number is zero.",
               "signature": "lemma IsClosed.resolventSet_eq' [CompleteSpace H] {T : H →ₗ.[ℂ] H} (hT : T.IsClosed) :\n    ρ T = T.regularityDomain ∩ T.defectNumber ⁻¹' {0}"
             }
@@ -13081,7 +13457,7 @@
               "text": "spectrum",
               "fullName": "LinearPMap.spectrum",
               "kind": "def",
-              "line": 703,
+              "line": 711,
               "doc": "The spectrum, `σ`, of a partial linear map.",
               "signature": "def spectrum (T : H →ₗ.[ℂ] H) : Set ℂ"
             },
@@ -13093,7 +13469,7 @@
               "text": "spectrum_isClosed",
               "fullName": "LinearPMap.spectrum_isClosed",
               "kind": "lemma",
-              "line": 719,
+              "line": 727,
               "doc": "The spectrum is a closed subset of ℂ.",
               "signature": "lemma spectrum_isClosed [CompleteSpace H] (T : H →ₗ.[ℂ] H) : _root_.IsClosed (σ T)"
             },
@@ -13101,7 +13477,7 @@
               "text": "spectrum_eq_univ",
               "fullName": "LinearPMap.spectrum_eq_univ",
               "kind": "lemma",
-              "line": 715,
+              "line": 723,
               "doc": "If an operator is not closed then its spectrum is all of ℂ.",
               "signature": "lemma spectrum_eq_univ [CompleteSpace H] {T : H →ₗ.[ℂ] H} (h : ¬T.IsClosed) : σ T = univ"
             },
@@ -13109,7 +13485,7 @@
               "text": "pointSpectrum",
               "fullName": "LinearPMap.pointSpectrum",
               "kind": "def",
-              "line": 729,
+              "line": 737,
               "doc": "The point spectrum, `σᵖ`, of a partial linear map.",
               "signature": "def pointSpectrum (T : H →ₗ.[ℂ] H) : Set ℂ"
             },
@@ -13117,7 +13493,7 @@
               "text": "residualSpectrum",
               "fullName": "LinearPMap.residualSpectrum",
               "kind": "def",
-              "line": 750,
+              "line": 774,
               "doc": "The residual spectrum, `σʳ`, of a partial linear map.",
               "signature": "def residualSpectrum (T : H →ₗ.[ℂ] H) : Set ℂ"
             },
@@ -13125,7 +13501,7 @@
               "text": "continuousSpectrum",
               "fullName": "LinearPMap.continuousSpectrum",
               "kind": "def",
-              "line": 777,
+              "line": 801,
               "doc": "The continuous spectrum, `σᶜ`, of a partial linear map.",
               "signature": "def continuousSpectrum (T : H →ₗ.[ℂ] H) : Set ℂ"
             },
@@ -13133,7 +13509,7 @@
               "text": "IsClosed.spectrum_eq",
               "fullName": "LinearPMap.IsClosed.spectrum_eq",
               "kind": "lemma",
-              "line": 796,
+              "line": 820,
               "doc": null,
               "signature": "lemma IsClosed.spectrum_eq [CompleteSpace H] {T : H →ₗ.[ℂ] H} (hT : T.IsClosed) :\n    σ T = σᵖ T ∪ σʳ T ∪ σᶜ T"
             },
@@ -13141,9 +13517,17 @@
               "text": "pointSpectrum_inter_residualSpectrum",
               "fullName": "LinearPMap.pointSpectrum_inter_residualSpectrum",
               "kind": "lemma",
-              "line": 814,
+              "line": 838,
               "doc": null,
               "signature": "lemma pointSpectrum_inter_residualSpectrum (T : H →ₗ.[ℂ] H) : σᵖ T ∩ σʳ T = ∅"
+            },
+            {
+              "text": "IsEigenvector.mem_pointSpectrum",
+              "fullName": "LinearPMap.IsEigenvector.mem_pointSpectrum",
+              "kind": "lemma",
+              "line": 749,
+              "doc": "If `x` is an eigenvector of `T` with eigenvalue `c`, then `c` lies in the point spectrum of `T`.",
+              "signature": "lemma IsEigenvector.mem_pointSpectrum {T : H →ₗ.[ℂ] H} {x : T.domain} {c : ℂ}\n    (hx : T.IsEigenvector x c) : c ∈ σᵖ T"
             }
           ],
           "exists": true
@@ -13156,7 +13540,7 @@
               "text": "resolvent_sub",
               "fullName": "LinearPMap.resolvent_sub",
               "kind": "lemma",
-              "line": 821,
+              "line": 845,
               "doc": null,
               "signature": "lemma resolvent_sub\n    {T₁ T₂ : H →ₗ.[ℂ] H} (hT : T₂.domain ≤ T₁.domain) {z : ℂ} (hz₁ : z ∈ ρ T₁) (hz₂ : z ∈ ρ T₂) :\n    𝑅 T₁ z - 𝑅 T₂ z = 𝑅 T₁ z * (T₂ - T₁) * 𝑅 T₂ z"
             },
@@ -13164,7 +13548,7 @@
               "text": "resolvent_sub'",
               "fullName": "LinearPMap.resolvent_sub'",
               "kind": "lemma",
-              "line": 852,
+              "line": 876,
               "doc": null,
               "signature": "lemma resolvent_sub' {T : H →ₗ.[ℂ] H} (z₁ z₂ : ℂ) (hz₁ : z₁ ∈ ρ T) (hz₂ : z₂ ∈ ρ T) :\n    𝑅 T z₁ - 𝑅 T z₂ = (z₁ - z₂) • (𝑅 T z₁ * 𝑅 T z₂)"
             }
@@ -13179,7 +13563,7 @@
               "text": "regularityDomain",
               "fullName": "LinearPMap.regularityDomain",
               "kind": "def",
-              "line": 149,
+              "line": 150,
               "doc": "The regular points for `T`.",
               "signature": "def regularityDomain (T : H →ₗ.[ℂ] H) : Set ℂ"
             },
@@ -13187,7 +13571,7 @@
               "text": "regularityDomain_isOpen",
               "fullName": "LinearPMap.regularityDomain_isOpen",
               "kind": "lemma",
-              "line": 225,
+              "line": 226,
               "doc": "The regularity domain is an open set.",
               "signature": "lemma regularityDomain_isOpen (T : H →ₗ.[ℂ] H) : IsOpen T.regularityDomain"
             },
@@ -13195,7 +13579,7 @@
               "text": "regularityDomain_closure",
               "fullName": "LinearPMap.regularityDomain_closure",
               "kind": "lemma",
-              "line": 229,
+              "line": 230,
               "doc": "`T` and `T.closure` have the same regularity domain.",
               "signature": "lemma regularityDomain_closure (T : H →ₗ.[ℂ] H) :\n    T.closure.regularityDomain = T.regularityDomain"
             },
@@ -13203,7 +13587,7 @@
               "text": "deficiencySubspace",
               "fullName": "LinearPMap.deficiencySubspace",
               "kind": "def",
-              "line": 312,
+              "line": 313,
               "doc": "For a partial linear map `T` and any complex number `z`, the closed submodule which is orthogonal to the range of `T - z • 1`.",
               "signature": "def deficiencySubspace (T : H →ₗ.[ℂ] H) (z : ℂ) : ClosedSubmodule ℂ H"
             },
@@ -13211,7 +13595,7 @@
               "text": "defectNumber",
               "fullName": "LinearPMap.defectNumber",
               "kind": "def",
-              "line": 320,
+              "line": 321,
               "doc": "The rank of `T.deficiencySubspace z = (T - z • 1).rangeᗮ`.",
               "signature": "def defectNumber (T : H →ₗ.[ℂ] H) (z : ℂ) : Cardinal"
             },
@@ -13219,15 +13603,23 @@
               "text": "IsClosed.defectNumber_eq_zero_iff",
               "fullName": "LinearPMap.IsClosed.defectNumber_eq_zero_iff",
               "kind": "lemma",
-              "line": 325,
+              "line": 326,
               "doc": null,
               "signature": "lemma IsClosed.defectNumber_eq_zero_iff [CompleteSpace H]\n    {T : H →ₗ.[ℂ] H} (hT : T.IsClosed) {z : ℂ} (hz : z ∈ T.regularityDomain) :\n    T.defectNumber z = 0 ↔ (T - z • 1).toFun.range = ⊤"
+            },
+            {
+              "text": "defectNumber_eq_zero_iff_dense",
+              "fullName": "LinearPMap.defectNumber_eq_zero_iff_dense",
+              "kind": "lemma",
+              "line": 333,
+              "doc": "The defect number of `T` at `z` vanishes if and only if the range of `T - z • 1` is dense.",
+              "signature": "lemma defectNumber_eq_zero_iff_dense [CompleteSpace H] {T : H →ₗ.[ℂ] H} {z : ℂ} :\n    T.defectNumber z = 0 ↔ Dense ((T - z • 1).toFun.range : Set H)"
             },
             {
               "text": "IsClosable.defectNumber_const",
               "fullName": "LinearPMap.IsClosable.defectNumber_const",
               "kind": "lemma",
-              "line": 395,
+              "line": 403,
               "doc": "The defect number is constant on each connected component of the regularity domain.",
               "signature": "lemma IsClosable.defectNumber_const [CompleteSpace H]\n    {T : H →ₗ.[ℂ] H} (hT : T.IsClosable)\n    {z₁ z₂ : ℂ} (hz : z₂ ∈ connectedComponentIn T.regularityDomain z₁) :\n    T.defectNumber z₁ = T.defectNumber z₂"
             },
@@ -13235,7 +13627,7 @@
               "text": "IsClosable.closure_range_sub_eq_range_closure_sub",
               "fullName": "LinearPMap.IsClosable.closure_range_sub_eq_range_closure_sub",
               "kind": "lemma",
-              "line": 234,
+              "line": 235,
               "doc": null,
               "signature": "lemma IsClosable.closure_range_sub_eq_range_closure_sub [CompleteSpace H]\n    {T : H →ₗ.[ℂ] H} (hT : T.IsClosable) {z : ℂ} (hz : z ∈ T.regularityDomain) :\n    (T - z • 1).toFun.range.closure = (T.closure - z • 1).toFun.range"
             }
@@ -13250,7 +13642,7 @@
               "text": "numericalRange",
               "fullName": "LinearPMap.numericalRange",
               "kind": "def",
-              "line": 459,
+              "line": 467,
               "doc": "The set `{⟪x, T x⟫_ℂ | x ∈ T.domain ∧ ‖x‖ = 1} ⊆ ℂ`.",
               "signature": "def numericalRange (T : H →ₗ.[ℂ] H) : Set ℂ"
             },
@@ -13262,7 +13654,7 @@
               "text": "mem_numericalRange",
               "fullName": "LinearPMap.mem_numericalRange",
               "kind": "lemma",
-              "line": 466,
+              "line": 474,
               "doc": null,
               "signature": "lemma mem_numericalRange {T : H →ₗ.[ℂ] H} {x : T.domain} (hx : x ≠ 0) :\n    (‖x‖ ^ 2)⁻¹ * ⟪↑x, T x⟫_ℂ ∈ Θ T"
             },
@@ -13270,7 +13662,7 @@
               "text": "numericalRange_sub_const",
               "fullName": "LinearPMap.numericalRange_sub_const",
               "kind": "lemma",
-              "line": 486,
+              "line": 494,
               "doc": null,
               "signature": "lemma numericalRange_sub_const (T : H →ₗ.[ℂ] H) (c : ℂ) : Θ (T - c • 1) = Θ T - {c}"
             },
@@ -13278,7 +13670,7 @@
               "text": "numericalRange_convex",
               "fullName": "LinearPMap.numericalRange_convex",
               "kind": "theorem",
-              "line": 544,
+              "line": 552,
               "doc": "The Toeplitz-Hausdorff theorem.",
               "signature": "theorem numericalRange_convex (T : H →ₗ.[ℂ] H) : Convex ℝ (Θ T)"
             },
@@ -13286,7 +13678,7 @@
               "text": "compl_closure_numericalRange_subset_regularityDomain",
               "fullName": "LinearPMap.compl_closure_numericalRange_subset_regularityDomain",
               "kind": "lemma",
-              "line": 498,
+              "line": 506,
               "doc": "The regularity domain contains the exterior of the numerical range.",
               "signature": "lemma compl_closure_numericalRange_subset_regularityDomain (T : H →ₗ.[ℂ] H) :\n    (_root_.closure (Θ T))ᶜ ⊆ T.regularityDomain"
             }
@@ -13301,7 +13693,7 @@
               "text": "realNumericalRange",
               "fullName": "LinearPMap.IsSymmetric.realNumericalRange",
               "kind": "def",
-              "line": 62,
+              "line": 72,
               "doc": "The projection of the numerical range onto the real axis.",
               "signature": "def realNumericalRange (T : H →ₗ.[ℂ] H) : Set ℝ"
             },
@@ -13309,7 +13701,7 @@
               "text": "im_eq_zero_of_mem_numericalRange",
               "fullName": "LinearPMap.IsSymmetric.im_eq_zero_of_mem_numericalRange",
               "kind": "lemma",
-              "line": 78,
+              "line": 88,
               "doc": "The numerical range of a symmetric operator is contained in the real axis.",
               "signature": "lemma im_eq_zero_of_mem_numericalRange {z : ℂ} (hz : z ∈ Θ T) : z.im = 0"
             },
@@ -13317,7 +13709,7 @@
               "text": "numericalRange_subset",
               "fullName": "LinearPMap.IsSymmetric.numericalRange_subset",
               "kind": "lemma",
-              "line": 84,
+              "line": 94,
               "doc": "The numerical range of a symmetric operator is contained in the real axis.",
               "signature": "lemma numericalRange_subset : Θ T ⊆ range ofReal"
             },
@@ -13325,7 +13717,7 @@
               "text": "numericalRange_eq",
               "fullName": "LinearPMap.IsSymmetric.numericalRange_eq",
               "kind": "lemma",
-              "line": 88,
+              "line": 98,
               "doc": "The numerical range of a symmetric operator is equal to its projection onto the real axis.",
               "signature": "lemma numericalRange_eq : Θ T = ofReal '' Θᵣₑ T"
             },
@@ -13333,7 +13725,7 @@
               "text": "closure_numericalRange_subset",
               "fullName": "LinearPMap.IsSymmetric.closure_numericalRange_subset",
               "kind": "lemma",
-              "line": 93,
+              "line": 103,
               "doc": null,
               "signature": "lemma closure_numericalRange_subset : _root_.closure (Θ T) ⊆ range ofReal"
             }
@@ -13348,7 +13740,7 @@
               "text": "mem_regularityDomain_of_im_ne_zero",
               "fullName": "LinearPMap.IsSymmetric.mem_regularityDomain_of_im_ne_zero",
               "kind": "lemma",
-              "line": 103,
+              "line": 113,
               "doc": "The regularity domain of a symmetric operator contains all complex numbers with non-zero imaginary part.",
               "signature": "lemma mem_regularityDomain_of_im_ne_zero {z : ℂ} (hz : z.im ≠ 0) : z ∈ T.regularityDomain"
             },
@@ -13356,7 +13748,7 @@
               "text": "compl_ofReal_subset_regularityDomain",
               "fullName": "LinearPMap.IsSymmetric.compl_ofReal_subset_regularityDomain",
               "kind": "lemma",
-              "line": 111,
+              "line": 121,
               "doc": "The regularity domain of a symmetric operator contains all complex numbers with non-zero imaginary part.",
               "signature": "lemma compl_ofReal_subset_regularityDomain : (range ofReal)ᶜ ⊆ T.regularityDomain"
             },
@@ -13364,7 +13756,7 @@
               "text": "Iio_subset_regularityDomain",
               "fullName": "LinearPMap.IsSymmetric.Iio_subset_regularityDomain",
               "kind": "lemma",
-              "line": 115,
+              "line": 125,
               "doc": "If `m` is a lower bound on the numerical range then the regularity domain contains `(-∞,m)`.",
               "signature": "lemma Iio_subset_regularityDomain {m : ℝ} (h : m ∈ lowerBounds (Θᵣₑ T)) :\n    ofReal '' Iio m ⊆ T.regularityDomain"
             },
@@ -13372,7 +13764,7 @@
               "text": "Ioi_subset_regularityDomain",
               "fullName": "LinearPMap.IsSymmetric.Ioi_subset_regularityDomain",
               "kind": "lemma",
-              "line": 135,
+              "line": 145,
               "doc": "If `m` is an upper bound on the numerical range then the regularity domain contains `(m,∞)`.",
               "signature": "lemma Ioi_subset_regularityDomain {m : ℝ} (h : m ∈ upperBounds (Θᵣₑ T)) :\n    ofReal '' Ioi m ⊆ T.regularityDomain"
             },
@@ -13380,7 +13772,7 @@
               "text": "regularityDomain_isConnected_iff",
               "fullName": "LinearPMap.IsSymmetric.regularityDomain_isConnected_iff",
               "kind": "lemma",
-              "line": 144,
+              "line": 154,
               "doc": "The regularity domain of a symmetric operator is connected iff it contains a real number.",
               "signature": "lemma regularityDomain_isConnected_iff :\n    IsConnected T.regularityDomain ↔ (ofReal ⁻¹' T.regularityDomain).Nonempty"
             },
@@ -13388,7 +13780,7 @@
               "text": "regularityDomain_isConnected_of_bddBelow",
               "fullName": "LinearPMap.IsSymmetric.regularityDomain_isConnected_of_bddBelow",
               "kind": "lemma",
-              "line": 192,
+              "line": 202,
               "doc": "The regularity domain of a lower semibounded symmetric operator is connected.",
               "signature": "lemma regularityDomain_isConnected_of_bddBelow (h : BddBelow (Θᵣₑ T)) :\n    IsConnected T.regularityDomain"
             },
@@ -13396,7 +13788,7 @@
               "text": "regularityDomain_isConnected_of_bddAbove",
               "fullName": "LinearPMap.IsSymmetric.regularityDomain_isConnected_of_bddAbove",
               "kind": "lemma",
-              "line": 199,
+              "line": 209,
               "doc": "The regularity domain of an upper semibounded symmetric operator is connected.",
               "signature": "lemma regularityDomain_isConnected_of_bddAbove (h : BddAbove (Θᵣₑ T)) :\n    IsConnected T.regularityDomain"
             }
@@ -13408,12 +13800,12 @@
           "file": "Physlib/QuantumMechanics/Operators/SpectralTheory/Symmetric.lean",
           "declarations": [
             {
-              "text": "isEssentiallySelfAdjoint_of_defectNumber_eq_zero",
-              "fullName": "LinearPMap.IsSymmetric.isEssentiallySelfAdjoint_of_defectNumber_eq_zero",
+              "text": "pointSpectrum_real",
+              "fullName": "LinearPMap.IsSymmetric.pointSpectrum_real",
               "kind": "lemma",
-              "line": 231,
-              "doc": "The basic criterion for essential self-adjointness: a symmetric, densely-defined operator whose defect numbers at `I` and `-I` both vanish is essentially self-adjoint.",
-              "signature": "lemma isEssentiallySelfAdjoint_of_defectNumber_eq_zero\n    (hdense : T.HasDenseDomain) (hpos : T.defectNumber I = 0) (hneg : T.defectNumber (-I) = 0) :\n    T.IsEssentiallySelfAdjoint"
+              "line": 220,
+              "doc": "Eigenvalues of a symmetric unbounded operator are real.",
+              "signature": "lemma pointSpectrum_real : σᵖ T ⊆ range ofReal"
             }
           ],
           "exists": true
@@ -13423,12 +13815,28 @@
           "file": "Physlib/QuantumMechanics/Operators/SpectralTheory/Symmetric.lean",
           "declarations": [
             {
-              "text": "pointSpectrum_real",
-              "fullName": "LinearPMap.IsSymmetric.pointSpectrum_real",
+              "text": "isEssentiallySelfAdjoint_of_defectNumber_eq_zero",
+              "fullName": "LinearPMap.IsSymmetric.isEssentiallySelfAdjoint_of_defectNumber_eq_zero",
               "kind": "lemma",
-              "line": 210,
-              "doc": "Eigenvalues of a symmetric unbounded operator are real.",
-              "signature": "lemma pointSpectrum_real : σᵖ T ⊆ range ofReal"
+              "line": 251,
+              "doc": "The basic criterion for essential self-adjointness: a symmetric, densely-defined operator whose defect numbers at `I` and `-I` both vanish is essentially self-adjoint.",
+              "signature": "lemma isEssentiallySelfAdjoint_of_defectNumber_eq_zero\n    (hdense : T.HasDenseDomain) (hpos : T.defectNumber I = 0) (hneg : T.defectNumber (-I) = 0) :\n    T.IsEssentiallySelfAdjoint"
+            },
+            {
+              "text": "mem_range_sub_of_apply_eq_of_im_ne_zero",
+              "fullName": "LinearPMap.IsSymmetric.mem_range_sub_of_apply_eq_of_im_ne_zero",
+              "kind": "lemma",
+              "line": 235,
+              "doc": "If `T` is symmetric and `T x = c • x`, then `x` lies in the range of `T - z • 1` for every `z` with non-zero imaginary part.",
+              "signature": "lemma mem_range_sub_of_apply_eq_of_im_ne_zero {x : T.domain} {c z : ℂ}\n    (hx : T x = c • (x : H)) (hz : z.im ≠ 0) : (x : H) ∈ (T - z • 1).toFun.range"
+            },
+            {
+              "text": "isEssentiallySelfAdjoint_of_dense_span_eigenvectors",
+              "fullName": "LinearPMap.IsSymmetric.isEssentiallySelfAdjoint_of_dense_span_eigenvectors",
+              "kind": "lemma",
+              "line": 272,
+              "doc": "A symmetric operator `T` is essentially self-adjoint if a family of vectors `v j` of its domain, with `T (v j) = c j • v j`, spans a dense subspace. The `v j` need not be orthonormal, and some of them may be zero.",
+              "signature": "lemma isEssentiallySelfAdjoint_of_dense_span_eigenvectors {ι : Type*} (v : ι → T.domain)\n    {c : ι → ℂ} (hv : ∀ j, T (v j) = c j • (v j : H))\n    (hspan : Dense (Submodule.span ℂ (Set.range fun j ↦ (v j : H)) : Set H)) :\n    T.IsEssential…"
             }
           ],
           "exists": true
@@ -13579,6 +13987,37 @@
             }
           ],
           "exists": true
+        },
+        {
+          "index": 15,
+          "file": "Physlib/QuantumMechanics/Operators/SpectralTheory/Multiplication.lean",
+          "declarations": [
+            {
+              "text": "mulOperator_spectrum_eq_support_map",
+              "fullName": "QuantumMechanics.SpaceDHilbertSpace.mulOperator_spectrum_eq_support_map",
+              "kind": "lemma",
+              "line": 99,
+              "doc": "For a σ-finite measure `μ` and a `μ`-a.e. strongly measurable `f`, the spectrum of `𝓜 μ f` is the essential range of `f`, the support of the pushforward measure `μ.map f`.",
+              "signature": "lemma mulOperator_spectrum_eq_support_map {μ : Measure (Space d)} [SigmaFinite μ]\n    {f : Space d → ℂ} (hf : AEStronglyMeasurable f μ) :\n    σ (𝓜 μ f) = (μ.map f).support"
+            },
+            {
+              "text": "mulOperator_spectrum_subset_support_map",
+              "fullName": "QuantumMechanics.SpaceDHilbertSpace.mulOperator_spectrum_subset_support_map",
+              "kind": "lemma",
+              "line": 81,
+              "doc": "The spectrum of `𝓜 μ f` is contained in the essential range `(μ.map f).support` of `f`, for any measure `μ` and any `μ`-a.e. strongly measurable `f`.",
+              "signature": "lemma mulOperator_spectrum_subset_support_map {μ : Measure (Space d)} {f : Space d → ℂ}\n    (hf : AEStronglyMeasurable f μ) : σ (𝓜 μ f) ⊆ (μ.map f).support"
+            },
+            {
+              "text": "mulOperator_spectrum_eq_closure_range",
+              "fullName": "QuantumMechanics.SpaceDHilbertSpace.mulOperator_spectrum_eq_closure_range",
+              "kind": "lemma",
+              "line": 143,
+              "doc": "For a continuous `f` and a σ-finite measure `μ` which is positive on non-empty open sets, the spectrum of `𝓜 μ f` is the closure of the range of `f`.",
+              "signature": "lemma mulOperator_spectrum_eq_closure_range (μ : Measure (Space d)) [SigmaFinite μ]\n    [μ.IsOpenPosMeasure] {f : Space d → ℂ} (hf : Continuous f) :\n    σ (𝓜 μ f) = _root_.closure (Set.range f)"
+            }
+          ],
+          "exists": true
         }
       ],
       "references": [
@@ -13713,8 +14152,10 @@
           "alpha": true
         },
         {
-          "done": false,
-          "citations": [],
+          "done": true,
+          "citations": [
+            15
+          ],
           "alpha": true
         }
       ],
@@ -22170,15 +22611,15 @@
           "subsections": [
             {
               "title": "Frames",
-              "body": "A reference frame records a time origin, together with an affine origin and a basis of displacements\nof space {1} at each time. [1] Its time origin converts a real time coordinate into an instant of\ntime {2}. [14] A frame can be built from the trajectories of a collection of reference points,\nprovided those points form an affine basis at every time: one point serves as the origin, and the\ndisplacements from it to the others serve as the basis. [2] The origin and basis of a frame built in\nthis way are exactly those points and displacements. [TODO]\n\nA frame may induce the same inner product on coordinates at every time, in which case it\nconserves its coordinate metric. [3] A frame may also have orthonormal axes at every time; such a\nframe conserves its coordinate metric, and typeclass inference knows this. [4]"
+              "body": "A reference frame records a time origin, together with an affine origin and a basis of displacements\nof space {1} at each time. [1] Its time origin converts a real time coordinate into an instant of\ntime {2}. [14] The spatial origin and each basis vector are smooth in time. [2]\n\nThe pairwise inner products of the basis vectors are constant in time: the axes may rotate,\nbut their lengths and the angles between them stay fixed. [3] A frame may also have orthonormal\naxes at every time. [4]"
             },
             {
               "title": "Inertial frames",
-              "body": "A frame is inertial when its origin moves with constant velocity and its axes are the same at\nevery time, both measured against the affine structure that space itself supplies. [5] This is a\nrestriction on the observer rather than on whatever is being observed. An inertial frame's origin\nhas a definite constant velocity. [6] Over any elapsed time the origin is displaced by that\nelapsed time multiplied by this velocity. This velocity is uniquely determined by the displacement\nlaw, and the origin has an affine trajectory through its position at the frame's time origin. [15]\nAn inertial frame conserves its coordinate\nmetric, and typeclass inference knows this. [7]\n\nThe relative motion of two inertial frames is the boost, rotation and translation carrying one to\nthe other, and it induces a transformation law on measured components. [TODO] A frame whose\naxes are constant and whose origin moves with constant velocity relative to an inertial frame is\nitself inertial. Its velocity is the sum of the original frame velocity and the relative velocity,\nboth expressed in ambient space. [15]"
+              "body": "A frame is inertial when its origin moves with constant velocity and its axes are the same at\nevery time, both measured against the affine structure that space itself supplies. [5] This is a\nrestriction on the observer rather than on whatever is being observed. An inertial frame's origin\nhas a definite constant velocity. [6] Over any elapsed time the origin is displaced by that\nelapsed time multiplied by this velocity. [7]\n\nThe relative motion of two inertial frames is the boost, rotation and translation carrying one to\nthe other, and it induces a transformation law on measured components. [TODO] A frame whose\naxes are constant and whose origin moves with constant velocity relative to an inertial frame is\nitself inertial. Its velocity is the sum of the original frame velocity and the relative velocity,\nboth expressed in ambient space. [15]"
             },
             {
               "title": "Measured vector quantities",
-              "body": "A vector quantity measured by an observer, a relative position, a velocity, an acceleration, a\nforce, a momentum, is a list of components read off that observer's axes. These components have\na carrier of their own, equivalent to the tuples of coordinates. [8] They add and scale\ncomponentwise, inheriting the additive and scalar structure of their entries, regardless of which\nquantity they stand for; the physical dimension, units and transformation law belong to whatever\nsupplies the quantity. [9] The components carry a topology, a continuous linear equivalence with\ncoordinate tuples, and finite dimensionality. [11]\n\nThrough the frame's basis at a given time, such components name a geometric displacement in\nspace, as a linear and as a continuous linear map. [10] Lengths and angles are geometric facts\nabout that displacement rather than about the numbers. For a frame that conserves its coordinate\nmetric, the components carry a norm and an inner product pulled back through the frame basis from\ndisplacement space, so that a displacement keeps its length and its angles even when the axes are\nskew or unequally scaled. [12] In an orthonormal frame these reduce to the familiar Euclidean\nformulas: the sum of the squared components gives the squared length, and the sum of the\ncomponentwise products gives the inner product. [13]\n\nThe derivative of a trajectory expressed in a frame gives the velocity and acceleration that frame\nmeasures, as the time derivative of the coordinate components. [TODO]"
+              "body": "A vector quantity measured by an observer, a relative position, a velocity, an acceleration, a\nforce, a momentum, is a list of components read off that observer's axes. These components have\na carrier of their own, equivalent to the tuples of coordinates. [8] They add and scale\ncomponentwise, inheriting the additive and scalar structure of their entries, regardless of which\nquantity they stand for; the physical dimension, units and transformation law belong to whatever\nsupplies the quantity. [9] The frame vectors form a finite-dimensional real vector space. [11]\n\nThrough the frame's basis at a given time, such components name a geometric displacement in\nspace by a linear isometry. [10] Lengths and angles are geometric facts\nabout that displacement rather than about the numbers. In every frame, the components carry\na norm and an inner product pulled back through the frame basis from\ndisplacement space, so that a displacement keeps its length and its angles even when the axes are\nskew or unequally scaled. [12] In an orthonormal frame these reduce to the familiar Euclidean\nformulas: the sum of the squared components gives the squared length, and the sum of the\ncomponentwise products gives the inner product. [13]\n\nThe derivative of a trajectory expressed in a frame gives the velocity and acceleration that frame\nmeasures, as the time derivative of the coordinate components. [TODO]"
             }
           ]
         }
@@ -22192,9 +22633,9 @@
               "text": "ReferenceFrame",
               "fullName": "ClassicalMechanics.ReferenceFrame",
               "kind": "structure",
-              "line": 48,
+              "line": 52,
               "doc": "A time origin and a time-indexed spatial origin and basis in `d`-dimensional space.",
-              "signature": "structure ReferenceFrame (d : ℕ) where\n  timeOrigin : Time\n  origin : Time → Space d\n  basis : Time → Module.Basis (Fin d) ℝ (EuclideanSpace ℝ (Fin d))"
+              "signature": "structure ReferenceFrame (d : ℕ) where\n  timeOrigin : Time\n  origin : Time → Space d\n  origin_smooth : ContMDiff 𝓘(ℝ) (𝓡 d) ∞ origin\n  basis : Time → Module.Basis (Fin d) ℝ (EuclideanSpace ℝ (Fin d))\n  basis_smooth : ∀ i, ContMDiff 𝓘(ℝ)…"
             },
             {
               "text": "ReferenceFrame.timeOrigin"
@@ -22213,12 +22654,10 @@
           "file": "Physlib/SpaceAndTime/ReferenceFrame.lean",
           "declarations": [
             {
-              "text": "ReferenceFrame.fromReferencePoints",
-              "fullName": "ClassicalMechanics.ReferenceFrame.fromReferencePoints",
-              "kind": "def",
-              "line": 62,
-              "doc": "Build a reference frame from the trajectories of a collection of reference points.",
-              "signature": "def ReferenceFrame.fromReferencePoints\n    (timeOrigin : Time)\n    (referencePoints : Finset (Time → Space d))\n    (independence : ∀ t, AffineIndependent ℝ fun point : referencePoints => point.val t)\n    (spans_space : ∀ t, affineSpan ℝ {p…"
+              "text": "ReferenceFrame.origin_smooth"
+            },
+            {
+              "text": "ReferenceFrame.basis_smooth"
             }
           ],
           "exists": true
@@ -22228,12 +22667,7 @@
           "file": "Physlib/SpaceAndTime/ReferenceFrame.lean",
           "declarations": [
             {
-              "text": "ReferenceFrame.IsMetricConserved",
-              "fullName": "ClassicalMechanics.ReferenceFrame.IsMetricConserved",
-              "kind": "def",
-              "line": 98,
-              "doc": "Whether the frame basis induces the same inner product on coordinates at every time.",
-              "signature": "def IsMetricConserved (frame : ReferenceFrame d) : Prop"
+              "text": "ReferenceFrame.gram_matrix_constant"
             }
           ],
           "exists": true
@@ -22246,21 +22680,9 @@
               "text": "ReferenceFrame.Orthonormal",
               "fullName": "ClassicalMechanics.ReferenceFrame.Orthonormal",
               "kind": "def",
-              "line": 103,
+              "line": 75,
               "doc": "Whether the frame's coordinate basis is orthonormal at every time.",
-              "signature": "def Orthonormal (frame : ReferenceFrame d) : Prop"
-            },
-            {
-              "text": "Orthonormal.isMetricConserved",
-              "fullName": "ClassicalMechanics.ReferenceFrame.Orthonormal.isMetricConserved",
-              "kind": "lemma",
-              "line": 107,
-              "doc": "An orthonormal frame conserves its coordinate metric.",
-              "signature": "lemma Orthonormal.isMetricConserved (h : frame.Orthonormal) : frame.IsMetricConserved"
-            },
-            {
-              "text": "Fact frame.IsMetricConserved",
-              "kind": "instance"
+              "signature": "def Orthonormal : Prop"
             }
           ],
           "exists": true
@@ -22273,15 +22695,15 @@
               "text": "ReferenceFrame.IsInertial",
               "fullName": "ClassicalMechanics.ReferenceFrame.IsInertial",
               "kind": "structure",
-              "line": 114,
+              "line": 91,
               "doc": "Whether a reference frame is related to its initial grid by uniform translation alone.",
-              "signature": "structure IsInertial (frame : ReferenceFrame d) : Prop where\n  origin_moves_uniformly :\n    ∃ velocity, ∀ t₁ t₂, frame.origin t₂ -ᵥ frame.origin t₁ = (t₂ -ᵥ t₁) • velocity\n  basis_conserved : ∀ t₁ t₂, frame.basis t₁ = frame.basis t₂"
+              "signature": "structure IsInertial (frame : ReferenceFrame d) : Prop where\n  velocity_constant : frame.velocity.IsConst\n  basis_constant : frame.basis.IsConst"
             },
             {
-              "text": "origin_moves_uniformly"
+              "text": "IsInertial.velocity_constant"
             },
             {
-              "text": "basis_conserved"
+              "text": "IsInertial.basis_constant"
             }
           ],
           "exists": true
@@ -22294,9 +22716,9 @@
               "text": "IsInertial.velocity",
               "fullName": "ClassicalMechanics.ReferenceFrame.IsInertial.velocity",
               "kind": "def",
-              "line": 122,
+              "line": 102,
               "doc": "The time-independent velocity of an inertial frame's coordinate origin.",
-              "signature": "def IsInertial.velocity (h : frame.IsInertial) : EuclideanSpace ℝ (Fin d)"
+              "signature": "def velocity : EuclideanSpace ℝ (Fin d)"
             }
           ],
           "exists": true
@@ -22306,16 +22728,12 @@
           "file": "Physlib/SpaceAndTime/ReferenceFrame.lean",
           "declarations": [
             {
-              "text": "IsInertial.isMetricConserved",
-              "fullName": "ClassicalMechanics.ReferenceFrame.IsInertial.isMetricConserved",
+              "text": "IsInertial.origin_vsub_eq",
+              "fullName": "ClassicalMechanics.ReferenceFrame.IsInertial.origin_vsub_eq",
               "kind": "lemma",
-              "line": 166,
-              "doc": "An inertial frame conserves its coordinate metric.",
-              "signature": "lemma IsInertial.isMetricConserved (h : frame.IsInertial) : frame.IsMetricConserved"
-            },
-            {
-              "text": "Fact frame.IsMetricConserved",
-              "kind": "instance"
+              "line": 106,
+              "doc": "The origin of an inertial frame moves by elapsed time times its constant velocity.",
+              "signature": "lemma origin_vsub_eq (t₁ t₂ : Time) :\n    frame.origin t₂ -ᵥ frame.origin t₁ = (t₂ -ᵥ t₁) • h.velocity"
             }
           ],
           "exists": true
@@ -22328,7 +22746,7 @@
               "text": "ReferenceFrame.Vector",
               "fullName": "ClassicalMechanics.ReferenceFrame.Vector",
               "kind": "structure",
-              "line": 185,
+              "line": 148,
               "doc": "The `d` real components used to express a vector quantity relative to `frame`.",
               "signature": "structure Vector (frame : ReferenceFrame d) where\n  components : Fin d → ℝ"
             },
@@ -22339,7 +22757,7 @@
               "text": "componentEquiv",
               "fullName": "ClassicalMechanics.ReferenceFrame.Vector.componentEquiv",
               "kind": "def",
-              "line": 192,
+              "line": 157,
               "doc": "Equivalence between frame vectors and coordinate components",
               "signature": "def componentEquiv : frame.Vector ≃ (Fin d → ℝ)"
             },
@@ -22347,7 +22765,7 @@
               "text": "componentLinearEquiv",
               "fullName": "ClassicalMechanics.ReferenceFrame.Vector.componentLinearEquiv",
               "kind": "def",
-              "line": 205,
+              "line": 170,
               "doc": "Linear equivalence between frame vectors and coordinate components.",
               "signature": "def componentLinearEquiv : frame.Vector ≃ₗ[ℝ] (Fin d → ℝ)"
             }
@@ -22374,20 +22792,20 @@
           "file": "Physlib/SpaceAndTime/ReferenceFrame.lean",
           "declarations": [
             {
-              "text": "dispEquiv",
+              "text": "Vector.dispEquiv",
               "fullName": "ClassicalMechanics.ReferenceFrame.Vector.dispEquiv",
               "kind": "def",
-              "line": 210,
+              "line": 178,
               "doc": "Equivalence between frame vectors and geometric displacements in space, defined by the frame's basis at time coordinate `t`.",
               "signature": "def dispEquiv (t : ℝ) : frame.Vector ≃ₗ[ℝ] EuclideanSpace ℝ (Fin d)"
             },
             {
-              "text": "contDispEquiv",
-              "fullName": "ClassicalMechanics.ReferenceFrame.Vector.contDispEquiv",
+              "text": "Vector.dispIsometry",
+              "fullName": "ClassicalMechanics.ReferenceFrame.Vector.dispIsometry",
               "kind": "def",
-              "line": 227,
-              "doc": "Continuous equivalence between frame vectors and geometric displacements in space, defined by the frame's basis at time coordinate `t`.",
-              "signature": "def contDispEquiv (t : ℝ) : frame.Vector ≃L[ℝ] EuclideanSpace ℝ (Fin d)"
+              "line": 204,
+              "doc": "The linear isometry from frame vectors to geometric displacements at time `t`.",
+              "signature": "def dispIsometry (t : ℝ) : frame.Vector ≃ₗᵢ[ℝ] EuclideanSpace ℝ (Fin d)"
             }
           ],
           "exists": true
@@ -22396,18 +22814,6 @@
           "index": 11,
           "file": "Physlib/SpaceAndTime/ReferenceFrame.lean",
           "declarations": [
-            {
-              "text": "componentContLinearEquiv",
-              "fullName": "ClassicalMechanics.ReferenceFrame.Vector.componentContLinearEquiv",
-              "kind": "def",
-              "line": 217,
-              "doc": "Continuous linear equivalence between frame vectors and coordinate components.",
-              "signature": "def componentContLinearEquiv (frame : ReferenceFrame d) : frame.Vector ≃L[ℝ] (Fin d → ℝ)"
-            },
-            {
-              "text": "TopologicalSpace frame.Vector",
-              "kind": "instance"
-            },
             {
               "text": "FiniteDimensional ℝ frame.Vector",
               "kind": "instance"
@@ -22438,17 +22844,17 @@
               "text": "norm_euclidean_if_orthonormal",
               "fullName": "ClassicalMechanics.ReferenceFrame.Vector.norm_euclidean_if_orthonormal",
               "kind": "lemma",
-              "line": 249,
-              "doc": "In an orthonormal frame, the norm is the square root of squared components.",
-              "signature": "lemma norm_euclidean_if_orthonormal [h : Fact frame.Orthonormal] :\n    ∀ v : frame.Vector, ‖v‖^2 = ∑ i, (v.components i)^2"
+              "line": 218,
+              "doc": "In an orthonormal frame, the squared norm is the sum of squared components.",
+              "signature": "lemma norm_euclidean_if_orthonormal : frame.Orthonormal →\n    ∀ v : frame.Vector, ‖v‖^2 = ∑ i, (v.components i)^2"
             },
             {
               "text": "inner_euclidean_if_orthonormal",
               "fullName": "ClassicalMechanics.ReferenceFrame.Vector.inner_euclidean_if_orthonormal",
               "kind": "lemma",
-              "line": 259,
+              "line": 208,
               "doc": "In an orthonormal frame, the inner product is the sum of component products.",
-              "signature": "lemma inner_euclidean_if_orthonormal [h : Fact frame.Orthonormal] :\n    ∀ v w : frame.Vector, inner ℝ v w = ∑ i, v.components i * w.components i"
+              "signature": "lemma inner_euclidean_if_orthonormal : frame.Orthonormal →\n    ∀ v w : frame.Vector, ⟪v, w⟫ = ∑ i, v.components i * w.components i"
             }
           ],
           "exists": true
@@ -22464,9 +22870,9 @@
               "text": "ReferenceFrame.timeEquiv",
               "fullName": "ClassicalMechanics.ReferenceFrame.timeEquiv",
               "kind": "def",
-              "line": 86,
+              "line": 71,
               "doc": "Convert a frame's real-valued time coordinate into an instant in affine time.",
-              "signature": "def timeEquiv (frame : ReferenceFrame d) : ℝ ≃ᵃ[ℝ] Time"
+              "signature": "def timeEquiv : ℝ ≃ᵃ[ℝ] Time"
             }
           ],
           "exists": true
@@ -22476,44 +22882,12 @@
           "file": "Physlib/SpaceAndTime/ReferenceFrame.lean",
           "declarations": [
             {
-              "text": "IsInertial.origin_vsub_eq",
-              "fullName": "ClassicalMechanics.ReferenceFrame.IsInertial.origin_vsub_eq",
-              "kind": "lemma",
-              "line": 126,
-              "doc": "The origin of an inertial frame moves by elapsed time times its constant velocity.",
-              "signature": "lemma IsInertial.origin_vsub_eq (h : frame.IsInertial) (t₁ t₂ : Time) :\n    frame.origin t₂ -ᵥ frame.origin t₁ = (t₂ -ᵥ t₁) • h.velocity"
-            },
-            {
-              "text": "IsInertial.velocity_eq_of_origin_vsub_eq",
-              "fullName": "ClassicalMechanics.ReferenceFrame.IsInertial.velocity_eq_of_origin_vsub_eq",
-              "kind": "lemma",
-              "line": 131,
-              "doc": "A velocity describing the origin's displacement at every pair of times is unique.",
-              "signature": "lemma IsInertial.velocity_eq_of_origin_vsub_eq (h : frame.IsInertial)\n    {velocity : EuclideanSpace ℝ (Fin d)}\n    (hvelocity : ∀ t₁ t₂, frame.origin t₂ -ᵥ frame.origin t₁ = (t₂ -ᵥ t₁) • velocity) :\n    h.velocity = velocity"
-            },
-            {
-              "text": "IsInertial.origin_eq",
-              "fullName": "ClassicalMechanics.ReferenceFrame.IsInertial.origin_eq",
-              "kind": "lemma",
-              "line": 140,
-              "doc": "An inertial frame's origin has an affine trajectory through its position at the time origin.",
-              "signature": "lemma IsInertial.origin_eq (h : frame.IsInertial) (t : Time) :\n    frame.origin t = (t -ᵥ frame.timeOrigin) • h.velocity +ᵥ frame.origin frame.timeOrigin"
-            },
-            {
-              "text": "IsInertial.origin_vsub_eq_of_relative_motion",
-              "fullName": "ClassicalMechanics.ReferenceFrame.IsInertial.origin_vsub_eq_of_relative_motion",
-              "kind": "lemma",
-              "line": 146,
-              "doc": "If another origin moves uniformly relative to an inertial frame, its displacement is given by the sum of the frame velocity and the relative velocity in ambient space.",
-              "signature": "lemma IsInertial.origin_vsub_eq_of_relative_motion (h : frame.IsInertial)\n    {other : ReferenceFrame d} {u : EuclideanSpace ℝ (Fin d)}\n    (hrel : ∀ t₁ t₂, (other.origin t₂ -ᵥ frame.origin t₂) -\n      (other.origin t₁ -ᵥ frame.origin t₁) …"
-            },
-            {
               "text": "IsInertial.of_relative_motion",
               "fullName": "ClassicalMechanics.ReferenceFrame.IsInertial.of_relative_motion",
               "kind": "lemma",
-              "line": 156,
+              "line": 118,
               "doc": "A frame with fixed axes moving uniformly relative to an inertial frame is inertial, with velocity given by addition of the ambient velocities.",
-              "signature": "lemma IsInertial.of_relative_motion (h : frame.IsInertial)\n    {other : ReferenceFrame d} {u : EuclideanSpace ℝ (Fin d)}\n    (hrel : ∀ t₁ t₂, (other.origin t₂ -ᵥ frame.origin t₂) -\n      (other.origin t₁ -ᵥ frame.origin t₁) = (t₂ -ᵥ t₁) • …"
+              "signature": "lemma of_relative_motion {other : ReferenceFrame d} {u : EuclideanSpace ℝ (Fin d)}\n    (hrel : ∀ t₁ t₂, (other.origin t₂ -ᵥ frame.origin t₂) -\n      (other.origin t₁ -ᵥ frame.origin t₁) = (t₂ -ᵥ t₁) • u)\n    (hbasis : ∀ t₁ t₂, other.basis …"
             }
           ],
           "exists": true
@@ -22554,11 +22928,6 @@
           "alpha": true
         },
         {
-          "done": false,
-          "citations": [],
-          "alpha": true
-        },
-        {
           "done": true,
           "citations": [
             3
@@ -22583,13 +22952,6 @@
           "done": true,
           "citations": [
             6
-          ],
-          "alpha": true
-        },
-        {
-          "done": true,
-          "citations": [
-            15
           ],
           "alpha": true
         },
@@ -24550,7 +24912,7 @@
             },
             {
               "title": "Fourier transforms",
-              "body": "The Fourier transform takes a suitably nice function of space to a function of wavevector,\nresolving its spatial dependence into plane-wave components; the inverse Fourier transform\nreconstructs the spatial function from those components. [8]\nThe transform and its inverse have a consistent choice of normalization\nand preserve inner products up to the corresponding normalization factor. [TODO]\nThe Fourier transform maps derivatives with respect to space to multiplication by wavevector\nand *vice versa*, under suitable regularity and decay assumptions. [TODO]"
+              "body": "The Fourier transform (FT) takes a suitably nice function of space to a function of wavevector,\nresolving its spatial dependence into plane-wave components; the inverse Fourier transform (IFT)\nreconstructs the spatial function from those components. [8]\nUnder suitable regularity and integrability assumptions,\nthe FT maps derivatives with respect to space to multiplication by wavevector and *vice versa* [9],\nthe FT and IFT are in fact left and right inverses with a consistent choice of normalization [10],\nand the FT and IFT are continuously differentiable [11].\n\nBoth FT and IFT preserve inner products up to a constant normalization factor. [TODO]"
             }
           ]
         }
@@ -24749,7 +25111,7 @@
               "text": "fourierIntegral",
               "fullName": "WaveVectorSpace.fourierIntegral",
               "kind": "def",
-              "line": 109,
+              "line": 115,
               "doc": "The Fourier integral over `Space`,",
               "signature": "noncomputable def fourierIntegral (f : Space d → E) (k : WaveVectorSpace d) : E"
             },
@@ -24757,9 +25119,142 @@
               "text": "fourierIntegralInv",
               "fullName": "WaveVectorSpace.fourierIntegralInv",
               "kind": "def",
-              "line": 132,
+              "line": 158,
               "doc": "The inverse Fourier integral over `WaveVectorSpace`,",
               "signature": "noncomputable def fourierIntegralInv (g : WaveVectorSpace d → E) (x : Space d) : E"
+            }
+          ],
+          "exists": true
+        },
+        {
+          "index": 9,
+          "file": "Physlib/SpaceAndTime/WaveVectorSpace/Fourier.lean",
+          "declarations": [
+            {
+              "text": "fderiv_fourierIntegral",
+              "fullName": "WaveVectorSpace.fderiv_fourierIntegral",
+              "kind": "lemma",
+              "line": 284,
+              "doc": null,
+              "signature": "lemma fderiv_fourierIntegral\n    {f : Space d → E} (hf : Integrable f) (hf' : Integrable fun x ↦ ‖x‖ * ‖f x‖) :\n    fderiv ℝ (fourierIntegral a b f)\n      = fourierIntegral a b (fun x ↦ (b * I) • x.dual.smulRight (f x))"
+            },
+            {
+              "text": "fderiv_fourierIntegralInv",
+              "fullName": "WaveVectorSpace.fderiv_fourierIntegralInv",
+              "kind": "lemma",
+              "line": 295,
+              "doc": null,
+              "signature": "lemma fderiv_fourierIntegralInv\n    {g : WaveVectorSpace d → E} (hg : Integrable g) (hg' : Integrable (fun k ↦ ‖k‖ * ‖g k‖)) :\n    fderiv ℝ (fourierIntegralInv a b g)\n      = fourierIntegralInv a b (fun k ↦ -(b * I) • k.dual.smulRight (g k…"
+            },
+            {
+              "text": "deriv_fourierIntegral",
+              "fullName": "WaveVectorSpace.deriv_fourierIntegral",
+              "kind": "lemma",
+              "line": 330,
+              "doc": "The partial derivative of the Fourier transform of `f` along coordinate `i` is the Fourier transform of `x ↦ (b * I * x i) • f x`, provided both integrals exist.",
+              "signature": "lemma deriv_fourierIntegral (i : Fin d)\n    {f : Space d → E} (hf : Integrable f) (hf' : Integrable fun x ↦ ‖x‖ * ‖f x‖) :\n    ∂[i] (fourierIntegral a b f) = fourierIntegral a b fun x ↦ (b * I * x i) • f x"
+            },
+            {
+              "text": "deriv_fourierIntegralInv",
+              "fullName": "WaveVectorSpace.deriv_fourierIntegralInv",
+              "kind": "lemma",
+              "line": 341,
+              "doc": "The partial derivative of the inverse Fourier transform of `g` along coordinate `i` is the inverse Fourier transform of `k ↦ (-b * I * k i) • g k`, provided both integrals exist.",
+              "signature": "lemma deriv_fourierIntegralInv (i : Fin d)\n    {g : WaveVectorSpace d → E} (hg : Integrable g) (hg' : Integrable fun k ↦ ‖k‖ * ‖g k‖) :\n    ∂[i] (fourierIntegralInv a b g) = fourierIntegralInv a b fun k ↦ -(b * I * k i) • g k"
+            },
+            {
+              "text": "fourierIntegral_fderiv",
+              "fullName": "WaveVectorSpace.fourierIntegral_fderiv",
+              "kind": "lemma",
+              "line": 307,
+              "doc": null,
+              "signature": "lemma fourierIntegral_fderiv {f : Space d → E} (hf : Integrable f) (hf' : Differentiable ℝ f)\n    (hf'' : Integrable (fderiv ℝ f)) (k : WaveVectorSpace d) :\n    fourierIntegral a b (fderiv ℝ f) k = -(b * I) • k.dual.smulRight (fourierInteg…"
+            },
+            {
+              "text": "fourierIntegralInv_fderiv",
+              "fullName": "WaveVectorSpace.fourierIntegralInv_fderiv",
+              "kind": "lemma",
+              "line": 315,
+              "doc": null,
+              "signature": "lemma fourierIntegralInv_fderiv {g : WaveVectorSpace d → E}\n    (hg : Integrable g) (hg' : Differentiable ℝ g) (hg'' : Integrable (fderiv ℝ g)) (x : Space d) :\n    fourierIntegralInv a b (fderiv ℝ g) x\n      = (b * I) • x.dual.smulRight (f…"
+            },
+            {
+              "text": "fourierIntegral_deriv",
+              "fullName": "WaveVectorSpace.fourierIntegral_deriv",
+              "kind": "lemma",
+              "line": 354,
+              "doc": "The Fourier transform of the partial derivative of `f` along coordinate `i` is `-b * I * kᵢ` times the Fourier transform of `f`.",
+              "signature": "lemma fourierIntegral_deriv (i : Fin d) {f : Space d → E}\n    (hf : Integrable f) (hf' : Differentiable ℝ f) (hf'' : Integrable (fderiv ℝ f)) :\n    fourierIntegral a b (∂[i] f) = -(b * I) • coord i • fourierIntegral a b f"
+            },
+            {
+              "text": "fourierIntegralInv_deriv",
+              "fullName": "WaveVectorSpace.fourierIntegralInv_deriv",
+              "kind": "lemma",
+              "line": 365,
+              "doc": "The inverse Fourier transform of the partial derivative of `g` along coordinate `i` is `b * I * xᵢ` times the inverse Fourier transform of `g`.",
+              "signature": "lemma fourierIntegralInv_deriv (i : Fin d) {g : WaveVectorSpace d → E}\n    (hg : Integrable g) (hg' : Differentiable ℝ g) (hg'' : Integrable (fderiv ℝ g)) :\n    fourierIntegralInv a b (∂[i] g) = (b * I) • Space.coord i • fourierIntegralInv…"
+            }
+          ],
+          "exists": true
+        },
+        {
+          "index": 10,
+          "file": "Physlib/SpaceAndTime/WaveVectorSpace/Fourier.lean",
+          "declarations": [
+            {
+              "text": "fourierIntegralInv_fourierIntegral_eq",
+              "fullName": "WaveVectorSpace.fourierIntegralInv_fourierIntegral_eq",
+              "kind": "lemma",
+              "line": 436,
+              "doc": "The Fourier inversion formula: `𝓕⁻ (𝓕 f) = f` for a suitably nice function `f : Space d → E`.",
+              "signature": "lemma fourierIntegralInv_fourierIntegral_eq (hb : b ≠ 0) [CompleteSpace E] {f : Space d → E}\n    (h : Continuous f) (hf : Integrable f) (hf' : Integrable (fourierIntegral a b f)) :\n    fourierIntegralInv a b (fourierIntegral a b f) = f"
+            },
+            {
+              "text": "fourierIntegral_fourierIntegralInv_eq",
+              "fullName": "WaveVectorSpace.fourierIntegral_fourierIntegralInv_eq",
+              "kind": "lemma",
+              "line": 479,
+              "doc": "The Fourier inversion formula: `𝓕 (𝓕⁻ g) = g` for a suitably nice function `g : WaveVectorSpace d → E`.",
+              "signature": "lemma fourierIntegral_fourierIntegralInv_eq\n    (hb : b ≠ 0) [CompleteSpace E] {g : WaveVectorSpace d → E}\n    (h : Continuous g) (hg : Integrable g) (hg' : Integrable (fourierIntegralInv a b g)) :\n    fourierIntegral a b (fourierIntegralI…"
+            }
+          ],
+          "exists": true
+        },
+        {
+          "index": 11,
+          "file": "Physlib/SpaceAndTime/WaveVectorSpace/Fourier.lean",
+          "declarations": [
+            {
+              "text": "differentiable_fourierIntegral",
+              "fullName": "WaveVectorSpace.differentiable_fourierIntegral",
+              "kind": "lemma",
+              "line": 379,
+              "doc": "If both `f` and `‖x‖ * ‖f x‖` are integrable, then the Fourier integral of `f` is differentiable.",
+              "signature": "lemma differentiable_fourierIntegral\n    {f : Space d → E} (hf : Integrable f) (hf' : Integrable fun x ↦ ‖x‖ * ‖f x‖) :\n    Differentiable ℝ (fourierIntegral a b f)"
+            },
+            {
+              "text": "differentiable_fourierIntegralInv",
+              "fullName": "WaveVectorSpace.differentiable_fourierIntegralInv",
+              "kind": "lemma",
+              "line": 386,
+              "doc": "If both `g` and `‖k‖ * ‖g k‖` are integrable, then the inverse Fourier integral of `g` is differentiable.",
+              "signature": "lemma differentiable_fourierIntegralInv\n    {g : WaveVectorSpace d → E} (hg : Integrable g) (hg' : Integrable fun k ↦ ‖k‖ * ‖g k‖) :\n    Differentiable ℝ (fourierIntegralInv a b g)"
+            },
+            {
+              "text": "contDiff_fourierIntegral",
+              "fullName": "WaveVectorSpace.contDiff_fourierIntegral",
+              "kind": "lemma",
+              "line": 392,
+              "doc": "If `‖x‖^n * ‖f x‖` is integrable for all `n ≤ N`, then the Fourier integral of `f` is `C^N`.",
+              "signature": "lemma contDiff_fourierIntegral {f : Space d → E} {N : ℕ∞}\n    (hf : ∀ (n : ℕ), n ≤ N → Integrable (fun x ↦ ‖x‖ ^ n * ‖f x‖)) :\n    ContDiff ℝ N (fourierIntegral a b f)"
+            },
+            {
+              "text": "contDiff_fourierIntegralInv",
+              "fullName": "WaveVectorSpace.contDiff_fourierIntegralInv",
+              "kind": "lemma",
+              "line": 399,
+              "doc": "If `‖k‖^n * ‖g k‖` is integrable for all `n ≤ N`, then the inverse Fourier integral of `g` is `C^N`.",
+              "signature": "lemma contDiff_fourierIntegralInv {g : WaveVectorSpace d → E} {N : ℕ∞}\n    (hg : ∀ (n : ℕ), n ≤ N → Integrable (fun k ↦ ‖k‖ ^ n * ‖g k‖)) :\n    ContDiff ℝ N (fourierIntegralInv a b g)"
             }
           ],
           "exists": true
@@ -24845,8 +25340,24 @@
           "alpha": true
         },
         {
-          "done": false,
-          "citations": [],
+          "done": true,
+          "citations": [
+            9
+          ],
+          "alpha": true
+        },
+        {
+          "done": true,
+          "citations": [
+            10
+          ],
+          "alpha": true
+        },
+        {
+          "done": true,
+          "citations": [
+            11
+          ],
           "alpha": true
         },
         {
@@ -29580,7 +30091,7 @@
   "directories": [
     {
       "path": "Physlib",
-      "leanFiles": 697,
+      "leanFiles": 702,
       "hasApiMap": false
     },
     {
@@ -29686,7 +30197,7 @@
     {
       "path": "Physlib/ClassicalMechanics/PointParticle/NewtonianSystem",
       "leanFiles": 2,
-      "hasApiMap": false
+      "hasApiMap": true
     },
     {
       "path": "Physlib/ClassicalMechanics/RigidBody",
@@ -29865,7 +30376,7 @@
     },
     {
       "path": "Physlib/Mathematics",
-      "leanFiles": 65,
+      "leanFiles": 67,
       "hasApiMap": false
     },
     {
@@ -29885,7 +30396,7 @@
     },
     {
       "path": "Physlib/Mathematics/ForMathlib",
-      "leanFiles": 24,
+      "leanFiles": 26,
       "hasApiMap": false
     },
     {
@@ -30180,12 +30691,17 @@
     },
     {
       "path": "Physlib/ProbabilisticTheory",
-      "leanFiles": 35,
+      "leanFiles": 37,
       "hasApiMap": false
     },
     {
       "path": "Physlib/ProbabilisticTheory/Channel",
       "leanFiles": 5,
+      "hasApiMap": false
+    },
+    {
+      "path": "Physlib/ProbabilisticTheory/Classical",
+      "leanFiles": 2,
       "hasApiMap": false
     },
     {
@@ -30320,7 +30836,7 @@
     },
     {
       "path": "Physlib/QuantumMechanics",
-      "leanFiles": 59,
+      "leanFiles": 60,
       "hasApiMap": false
     },
     {
@@ -30380,13 +30896,8 @@
     },
     {
       "path": "Physlib/QuantumMechanics/Operators",
-      "leanFiles": 22,
+      "leanFiles": 23,
       "hasApiMap": true
-    },
-    {
-      "path": "Physlib/QuantumMechanics/Operators/AngularMomentum",
-      "leanFiles": 1,
-      "hasApiMap": false
     },
     {
       "path": "Physlib/QuantumMechanics/Operators/OneDimension",
@@ -30394,8 +30905,18 @@
       "hasApiMap": false
     },
     {
+      "path": "Physlib/QuantumMechanics/Operators/SpaceD",
+      "leanFiles": 5,
+      "hasApiMap": false
+    },
+    {
+      "path": "Physlib/QuantumMechanics/Operators/SpaceD/AngularMomentum",
+      "leanFiles": 1,
+      "hasApiMap": false
+    },
+    {
       "path": "Physlib/QuantumMechanics/Operators/SpectralTheory",
-      "leanFiles": 4,
+      "leanFiles": 5,
       "hasApiMap": true
     },
     {

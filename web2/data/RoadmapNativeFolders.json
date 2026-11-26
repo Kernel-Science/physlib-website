@@ -1,6 +1,6 @@
 {
   "repository": "leanprover-community/physlib",
-  "revision": "1fa65789169f5981d12137dd6e930afe0836ffe2",
+  "revision": "9027e3d7cb78c98452e2154d7e9428b15bae12aa",
   "folders": [
     {
       "path": "ClassicalFieldTheory",
@@ -384,7 +384,9 @@
       "libraries": [
         "Physlib"
       ],
-      "apiMaps": []
+      "apiMaps": [
+        "Physlib"
+      ]
     },
     {
       "path": "ClassicalMechanics.RigidBody",
@@ -1781,6 +1783,7 @@
     {
       "path": "ProbabilisticTheory.Classical",
       "libraries": [
+        "Physlib",
         "PhyslibAlpha"
       ],
       "apiMaps": []
@@ -2324,14 +2327,21 @@
       ]
     },
     {
-      "path": "QuantumMechanics.Operators.AngularMomentum",
+      "path": "QuantumMechanics.Operators.OneDimension",
       "libraries": [
         "Physlib"
       ],
       "apiMaps": []
     },
     {
-      "path": "QuantumMechanics.Operators.OneDimension",
+      "path": "QuantumMechanics.Operators.SpaceD",
+      "libraries": [
+        "Physlib"
+      ],
+      "apiMaps": []
+    },
+    {
+      "path": "QuantumMechanics.Operators.SpaceD.AngularMomentum",
       "libraries": [
         "Physlib"
       ],
@@ -3147,11 +3157,13 @@
     "Physlib/Mathematics/ForMathlib/Fin/Involutions.lean",
     "Physlib/Mathematics/ForMathlib/HasTemperateGrowth.lean",
     "Physlib/Mathematics/ForMathlib/Integration/Basic.lean",
+    "Physlib/Mathematics/ForMathlib/IsConst.lean",
     "Physlib/Mathematics/ForMathlib/LinearMaps.lean",
     "Physlib/Mathematics/ForMathlib/LinearPMap.lean",
     "Physlib/Mathematics/ForMathlib/List.lean",
     "Physlib/Mathematics/ForMathlib/List/InsertIdx.lean",
     "Physlib/Mathematics/ForMathlib/List/InsertionSort.lean",
+    "Physlib/Mathematics/ForMathlib/LpStarOrder.lean",
     "Physlib/Mathematics/ForMathlib/OneParameterSubgroups/Basic.lean",
     "Physlib/Mathematics/ForMathlib/OneParameterSubgroups/Unitary.lean",
     "Physlib/Mathematics/ForMathlib/OrthogonalMatrix.lean",
@@ -3295,6 +3307,8 @@
     "Physlib/ProbabilisticTheory/Channel/Covariant.lean",
     "Physlib/ProbabilisticTheory/Channel/Norm.lean",
     "Physlib/ProbabilisticTheory/Channel/Reversible.lean",
+    "Physlib/ProbabilisticTheory/Classical/Basic.lean",
+    "Physlib/ProbabilisticTheory/Classical/Dirac.lean",
     "Physlib/ProbabilisticTheory/Effect/Basic.lean",
     "Physlib/ProbabilisticTheory/Effect/Complement.lean",
     "Physlib/ProbabilisticTheory/Effect/Convex.lean",
@@ -3427,27 +3441,28 @@
     "Physlib/QuantumMechanics/Hydrogen/LaplaceRungeLenzVector.lean",
     "Physlib/QuantumMechanics/Hydrogen/Rydberg.lean",
     "Physlib/QuantumMechanics/InfiniteSquareWell/Basic.lean",
-    "Physlib/QuantumMechanics/Operators/AngularMomentum.lean",
-    "Physlib/QuantumMechanics/Operators/AngularMomentum/DimThree.lean",
+    "Physlib/QuantumMechanics/Operators/Basic.lean",
     "Physlib/QuantumMechanics/Operators/Commutation.lean",
     "Physlib/QuantumMechanics/Operators/Covariance.lean",
     "Physlib/QuantumMechanics/Operators/Examples.lean",
-    "Physlib/QuantumMechanics/Operators/Momentum.lean",
-    "Physlib/QuantumMechanics/Operators/Multiplication.lean",
     "Physlib/QuantumMechanics/Operators/OneDimension/Commutation.lean",
     "Physlib/QuantumMechanics/Operators/OneDimension/Momentum.lean",
     "Physlib/QuantumMechanics/Operators/OneDimension/Parity.lean",
     "Physlib/QuantumMechanics/Operators/OneDimension/Position.lean",
     "Physlib/QuantumMechanics/Operators/OneDimension/Unbounded.lean",
-    "Physlib/QuantumMechanics/Operators/Position.lean",
+    "Physlib/QuantumMechanics/Operators/SpaceD/AngularMomentum.lean",
+    "Physlib/QuantumMechanics/Operators/SpaceD/AngularMomentum/DimThree.lean",
+    "Physlib/QuantumMechanics/Operators/SpaceD/Momentum.lean",
+    "Physlib/QuantumMechanics/Operators/SpaceD/Multiplication.lean",
+    "Physlib/QuantumMechanics/Operators/SpaceD/Position.lean",
     "Physlib/QuantumMechanics/Operators/SpectralTheory/Basic.lean",
+    "Physlib/QuantumMechanics/Operators/SpectralTheory/Multiplication.lean",
     "Physlib/QuantumMechanics/Operators/SpectralTheory/SelfAdjoint.lean",
     "Physlib/QuantumMechanics/Operators/SpectralTheory/SpectralMeasure.lean",
     "Physlib/QuantumMechanics/Operators/SpectralTheory/Symmetric.lean",
     "Physlib/QuantumMechanics/Operators/StateObservables/ExpectedValue.lean",
     "Physlib/QuantumMechanics/Operators/StateObservables/IsEigenvector.lean",
     "Physlib/QuantumMechanics/Operators/StateObservables/Variance.lean",
-    "Physlib/QuantumMechanics/Operators/Unbounded.lean",
     "Physlib/QuantumMechanics/Operators/Uncertainty.lean",
     "Physlib/QuantumMechanics/PlanckConstant.lean",
     "Physlib/QuantumMechanics/PoschlTeller/Basic.lean",
