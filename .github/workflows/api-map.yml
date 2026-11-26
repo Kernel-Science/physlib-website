@@ -1,13 +1,18 @@
 name: Generate API map
 
 on:
+  workflow_run:
+    workflows: ["Archive site files and documentation from Physlib"]
+    types: [completed]
+    branches: [main]
   schedule:
-    # Weekly refresh — API-map.md files change far less often than commits.
+    # Weekly fallback.
     - cron: "20 4 * * 1"
   workflow_dispatch: {}
 
 permissions:
   contents: write
+  actions: read
 
 # Two runs committing to the same branch would race on push.
 concurrency:
@@ -16,8 +21,10 @@ concurrency:
 
 jobs:
   generate:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    # A changed native revision requires tracing history and blame for every Lean file.
+    timeout-minutes: 90
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -40,16 +47,50 @@ jobs:
           key: physlib-clone-${{ github.run_id }}
           restore-keys: physlib-clone-
 
-      - name: Run generator
+      - name: Generate API maps and the Physlib Globe
         working-directory: web2
-        run: node scripts/generate-api-map.js
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          node scripts/generate-api-map.js
+          node scripts/build-roadmap-native-folders.mjs
+          python3 scripts/build-roadmap-native-declarations.py --repo .cache/physlib.git
+          node scripts/build-verso-roadmap.mjs
+          node --test scripts/roadmap.test.mjs
+
+      - name: Refresh native contributors when the Physlib revision changes
+        working-directory: web2
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          revision=$(jq -er '.revision' data/RoadmapNativeFolders.json)
+          if [[ -f public/roadmap-view/native-contributors.json ]] &&
+             [[ $(jq -r '.revision' public/roadmap-view/native-contributors.json) == "$revision" ]]; then
+            exit 0
+          fi
+          python3 scripts/build-roadmap-native-contributors.py --repo .cache/physlib.git
+
+      - name: Refresh homepage wheels when Globe data changes
+        working-directory: web2
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet -- public/roadmap-view/roadmap-data.json; then exit 0; fi
+          npm ci --no-audit --no-fund
+          node scripts/download-docs.js
+          node scripts/build-lean-search-index.mjs
+          ./node_modules/.bin/next dev --hostname 127.0.0.1 --port 3170 > "$RUNNER_TEMP/roadmap-preview.log" 2>&1 &
+          preview_pid=$!
+          trap 'kill "$preview_pid" 2>/dev/null || true' EXIT
+          curl --fail --silent --show-error --retry 12 --retry-connrefused --retry-delay 1 http://127.0.0.1:3170/globe -o /dev/null
+          node scripts/build-roadmap-previews.mjs http://127.0.0.1:3170
 
       - name: Commit & push updated API map
         id: commit
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add web2/data/APIMap.json
+          git add web2/data/APIMap.json web2/data/RoadmapNativeFolders.json web2/data/RoadmapNativeDeclarations.json web2/public/roadmap-view/
           if git diff --cached --quiet; then
             echo "No API map changes to commit."
             echo "committed=false" >> "$GITHUB_OUTPUT"

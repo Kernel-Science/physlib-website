@@ -32,7 +32,7 @@ function entry(kind: SearchKind, title: string, href: string, summary: string, e
 }
 
 // The navigation provides display aliases. These descriptions also cover local pages
-// reached from article content, such as the contributor FAQ and new API map form.
+// reached from article content, such as the contributor FAQ and new API Map form.
 const pages: Record<string, [string, string]> = {
   "/": ["Physlib", site.description],
   "/about": ["About Physlib", "Project overview, mission, values, impact, and beneficiaries."],
@@ -49,8 +49,9 @@ const pages: Record<string, [string, string]> = {
   "/project-ideas": ["Project ideas", "Suggested physics formalization projects and reading material."],
   "/dependencies": ["Dependency graphs", "Explore imports and dependencies between Lean modules."],
   "/docs/index.html": ["Lean documentation", "Browse the generated Lean module and declaration documentation."],
-  "/api-tracker": ["API Maps", "Browse the API tracker and follow links from maps to the Lean declarations they describe."],
-  "/api-tracker/new": ["Create an API map", "Start a new map of formalized physics results."],
+  "/globe": ["The Physlib Globe", "Explore formalized physics by subject, read API Maps, and open Lean module documentation."],
+  "/api-maps": ["API Maps", "Explore the physics in each folder and follow its claims to the corresponding Lean results."],
+  "/api-maps/new": ["Write an API Map", "Document a physics topic and link it to Lean results."],
   "/pr-tracker": ["Pull Request Queue", "Open pull requests and the reviews or actions they need."],
   [site.documentationGuide]: ["Documentation Guide", "How to document a Lean module and explore the import graph."],
   [site.tasks]: ["Find a Task", "Search open GitHub issues, Lean TODOs, and documentation tasks."],
@@ -66,7 +67,10 @@ const pages: Record<string, [string, string]> = {
 };
 
 function sitePages(hasDocs: boolean): Entry[] {
-  const aliases = new Map<string, string[]>();
+  const aliases = new Map<string, string[]>([
+    ["/api-maps", ["Physlib Wiki", "Wiki", "API tracker"]],
+    ["/globe", ["Globe", "Atlas", "Roadmap"]],
+  ]);
   for (const section of navSections) {
     for (const item of section.items) {
       const url = new URL(item.href, site.url);
@@ -109,7 +113,7 @@ async function buildIndex(): Promise<Entry[]> {
   for (const node of apiMap.nodes) {
     const content = node.content.flatMap((section) => [section.intro,
       ...section.subsections.map((sub) => sub.title + " " + sub.body)]);
-    rows.push(entry("api-map", node.title, "/api-tracker#" + node.path, node.abstract,
+    rows.push(entry("api-map", node.title, "/api-maps#" + node.path, node.abstract,
       [node.path, ...content].join(" ")));
   }
   for (const item of todos.TODOItem) {

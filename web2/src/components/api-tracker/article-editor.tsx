@@ -156,8 +156,8 @@ function NewReferenceForm({
     <div className="border-b border-border bg-surface-secondary/30 px-3 py-3">
       <p className="mb-2 text-xs text-muted">
         New reference <code className="apimap-code">{`{${index}}`}</code>, cited where the cursor is.
-        Italicize titles with <code className="apimap-code">*…*</code>; for another API map,
-        write e.g. <code className="apimap-code">Time API map — Physlib/SpaceAndTime/Time/API-map.md</code>.
+        Italicize titles with <code className="apimap-code">*…*</code>. To cite another API Map,
+        use its source path, for example <code className="apimap-code">Time — Physlib/SpaceAndTime/Time/API-map.md</code>.
       </p>
       <div className="grid gap-2 sm:grid-cols-[2fr_1fr]">
         <input

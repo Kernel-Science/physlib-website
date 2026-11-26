@@ -6,7 +6,7 @@ import { TaskList } from "./task-list";
 
 export const metadata: Metadata = {
   title: "Find a Task",
-  description: "Search open GitHub issues, Lean TODOs, documentation tasks, and API map work in Physlib.",
+  description: "Search open GitHub issues, Lean TODOs, documentation tasks, and API map tasks in Physlib.",
 };
 
 export default async function TasksPage({

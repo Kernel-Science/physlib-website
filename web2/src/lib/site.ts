@@ -12,7 +12,6 @@ export const site = {
   // Signed Open Badges 3.0 reports for contributions to Physlib.
   contributions: "https://contributions.physlib.io",
   docs: "/docs/index.html",
-  verso: "https://jstoobysmith.github.io/PhyslibVerso/",
   sponsor: "/sponsor",
   sponsors: "/sponsors",
   team: "/team",
@@ -46,11 +45,11 @@ export const navSections: NavSection[] = [
   {
     label: "Explore",
     items: [
-      { label: "API Maps", href: "/api-tracker" },
-      { label: "Dependency Graphs", href: "/dependencies" },
+      { label: "The Physlib Globe", href: "/globe" },
+      { label: "API Maps", href: "/api-maps" },
       { label: "Documentation", href: site.docs },
+      { label: "Dependency Graphs", href: "/dependencies" },
       { label: "References", href: "/references" },
-      { label: "VersoView", href: site.verso, external: true },
     ],
   },
   {

@@ -19,7 +19,7 @@ import {
   referenceId,
   sourceUrl,
 } from "@/lib/api-map-article";
-import { selectApiMapEntry } from "@/lib/api-map-hash";
+import { isWikiReaderPath, selectApiMapEntry } from "@/lib/api-map-hash";
 import { API_STATUS_DOT, apiStatusKind } from "@/lib/api-map-status";
 
 /**
@@ -33,6 +33,7 @@ export type ArticleContextValue = {
   repo: string;
   branch: string;
   commit: string;
+  referencePaths: Record<string, string>;
   leanReferences: ApiMapLeanReference[];
   references: ApiMapReference[];
   byPath: Map<string, ApiMapNode>;
@@ -149,9 +150,9 @@ export function ApiLink({
     const title = fallbackTitle ?? path.split("/").pop() ?? path;
     return (
       <Link
-        href={`/api-tracker/new?path=${encodeURIComponent(path)}&title=${encodeURIComponent(title)}`}
+        href={`/api-maps/new?path=${encodeURIComponent(path)}&title=${encodeURIComponent(title)}`}
         className="apimap-missing"
-        title={`${title} - no API map yet. Click to start one.`}
+        title={`${title} — no API Map yet. Click to start one.`}
       >
         {children ?? title}
       </Link>
@@ -166,10 +167,9 @@ export function ApiLink({
         <a
           href={apiMapHref(path)}
           onClick={(e) => {
-            if (window.location.pathname !== "/api-tracker") return;
+            if (!isWikiReaderPath(window.location.pathname) || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
             e.preventDefault();
-            selectApiMapEntry(path);
-            window.scrollTo({ top: 0 });
+            selectApiMapEntry(path, { scrollToArticle: true });
           }}
           className="apimap-link"
         >
@@ -237,10 +237,9 @@ export function DeclarationLink({ file, decl }: { file: string; decl: ApiMapDecl
   );
 }
 
-/** A Lean file in a reference: its source on GitHub, marked when the file
- *  the map names doesn't exist. */
+/** Prefer the published module, with a source fallback while the Docs build catches up. */
 export function LeanFileLink({ reference }: { reference: ApiMapLeanReference }) {
-  const { repo, branch } = useArticle();
+  const { repo, branch, commit, referencePaths } = useArticle();
   if (!reference.exists) {
     return (
       <span className="apimap-missing font-mono text-[0.85em]" title="This file does not exist in Physlib">
@@ -248,12 +247,13 @@ export function LeanFileLink({ reference }: { reference: ApiMapLeanReference }) 
       </span>
     );
   }
+  const docs = referencePaths[reference.file.replace(/\.lean$/, "")];
   return (
     <a
-      href={sourceUrl(repo, branch, reference.file)}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="apimap-external apimap-file"
+      href={docs ?? sourceUrl(repo, commit || branch, reference.file)}
+      target={docs ? undefined : "_blank"}
+      rel={docs ? undefined : "noopener noreferrer"}
+      className={docs ? "apimap-link apimap-file" : "apimap-external apimap-file"}
     >
       {reference.file}
     </a>
@@ -269,12 +269,11 @@ const URL_RE = /https?:\/\/[^\s<>]+[^\s<>.,;:)]/g;
 export function ReferenceText({ reference }: { reference: ApiMapReference }) {
   if (reference.apiMap) {
     const name = reference.text.split("—")[0].replace(/\s*API map\s*$/i, "").trim();
+    const label = name === `${reference.apiMap}/API-map.md` ? undefined : name;
     return (
       <>
-        <ApiLink path={reference.apiMap} fallbackTitle={name}>
-          {name}
-        </ApiLink>{" "}
-        <span className="text-muted">(API map)</span>
+        <ApiLink path={reference.apiMap} fallbackTitle={label}>{label}</ApiLink>{" "}
+        <span className="text-muted">(API Map)</span>
       </>
     );
   }
@@ -312,8 +311,7 @@ function Citation({ href }: { href: string }) {
       >
         <span className="block font-semibold">Not yet formalized</span>
         <span className="mt-1 block text-foreground/85">
-          This claim is part of the API&apos;s roadmap: it is stated here but
-          not yet proved or defined in Lean. Contributions are welcome.
+          This API Map identifies a result that still needs a Lean definition or proof.
         </span>
         <span className="mt-2 block text-[12px]">
           <Link href="/get-involved" className="apimap-link">

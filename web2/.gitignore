@@ -54,3 +54,5 @@ next-env.d.ts
 
 # Generated from the current import graph and locked JavaScript packages.
 /public/graph-assets/
+
+/scripts/__pycache__/

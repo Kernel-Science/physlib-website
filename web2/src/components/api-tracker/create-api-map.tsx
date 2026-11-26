@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import type { ApiMap } from "@/lib/yaml";
-import { apiMapHref, newApiMapTemplate, parseFullApiMap } from "@/lib/api-map-article";
+import { apiMapHref, newApiMapTemplate, parseFullApiMap, API_MAP_ABSTRACT_PLACEHOLDER, API_MAP_TITLE_PLACEHOLDER } from "@/lib/api-map-article";
 import { MAX_URL_LENGTH } from "@/components/suggest-dialog-shared";
 import { ArticleContext, type ArticleContextValue } from "@/components/api-tracker/article-prose";
 import { Callout } from "@/components/api-tracker/article-view";
@@ -26,17 +26,16 @@ function WritingGuide({ examplePath }: { examplePath: string | null }) {
   return (
     <section className="apimap-guide" aria-labelledby="apimap-guide-title">
       <h2 id="apimap-guide-title" className="apimap-guide-title">
-        How to write an API map
+        How to write an API Map
       </h2>
       <p>
-        An API map is a short article about one area of physics in Physlib.
+        An API Map covers one area of physics in Physlib.
         It explains the physics in words, and points from each statement to
         the Lean declarations that formalize it.
       </p>
       <ol>
         <li>
-          <b>One file per API.</b> It is called <code className="apimap-code">API-map.md</code>{" "}
-          and sits in the top folder of the API it describes.
+          <b>One article per topic.</b> Save it in the Physlib folder it describes.
         </li>
         <li>
           <b>Fixed headings.</b> A <code className="apimap-code"># Title</code>, then{" "}
@@ -50,8 +49,7 @@ function WritingGuide({ examplePath }: { examplePath: string | null }) {
           <b>Content first.</b> State the physics as you would to a colleague
           who does not know the Lean names. End each claim with a Lean citation
           such as <code className="apimap-code">[1]</code>, one number per bracket. If it
-          is not formalized yet, write <code className="apimap-code">[TODO]</code>, so the
-          map doubles as a roadmap.
+          still needs to be formalized, mark it <code className="apimap-code">[TODO]</code>.
         </li>
         <li>
           <b>Lean references.</b> Number them from 1 and cite each one. An entry is
@@ -59,13 +57,13 @@ function WritingGuide({ examplePath }: { examplePath: string | null }) {
           <code className="apimap-code">1. Physlib/SpaceAndTime/Time/Basic.lean — `Time`, `Time.val`</code>.
         </li>
         <li>
-          <b>Literature and other API maps</b> go under References and are
+          <b>Literature and other API Maps</b> go under References and are
           cited with curly brackets, <code className="apimap-code">{"{1}"}</code>. Don&apos;t
           put links in the text itself.
         </li>
         <li>
-          <b>New maps start as Alpha.</b>{" "}
-          They become reviewed maps after Physlib&apos;s full review.
+          <b>New articles start as Alpha.</b>{" "}
+          Physlib changes their status after review.
         </li>
       </ol>
       <p className="mt-2">
@@ -96,7 +94,7 @@ function newFileUrl(repo: string, branch: string, path: string, text: string): s
   return full.length <= MAX_URL_LENGTH ? full : base;
 }
 
-export function CreateApiMap({ apiMap }: { apiMap: ApiMap }) {
+export function CreateApiMap({ apiMap, referencePaths }: { apiMap: ApiMap; referencePaths: Record<string, string> }) {
   const { repo, branch, commit, nodes, directories } = apiMap;
   const byPath = useMemo(() => new Map(nodes.map((n) => [n.path, n])), [nodes]);
   const dirPaths = useMemo(() => new Set(directories.map((d) => d.path)), [directories]);
@@ -137,11 +135,11 @@ export function CreateApiMap({ apiMap }: { apiMap: ApiMap }) {
   const path = (where === "existing" ? existingPath : newPath).trim().replace(/^\/+|\/+$/g, "");
 
   const pathProblem = (() => {
-    if (!path) return where === "existing" ? "Choose a folder for the API map." : "Give the folder for the new area.";
+    if (!path) return where === "existing" ? "Choose a folder for the article." : "Give the folder for the new area.";
     if (!ROOTS.includes(path.split("/")[0]))
       return `The folder must be inside ${ROOTS.join(", ")}.`;
     if (!/^[\w./-]+$/u.test(path) || path.includes("//")) return "The folder path can only contain letters, digits, _, - and /.";
-    if (mapped.has(path)) return "That folder already has an API map - edit it instead.";
+    if (mapped.has(path)) return "That folder already has an API Map. Open it to suggest an edit.";
     if (where === "new" && dirPaths.has(path)) return "That folder already exists in Physlib - choose it under “In an existing part of Physlib”.";
     return null;
   })();
@@ -154,13 +152,13 @@ export function CreateApiMap({ apiMap }: { apiMap: ApiMap }) {
   }, [directories, filter]);
 
   const context: ArticleContextValue = useMemo(
-    () => ({ repo, branch, commit, leanReferences: [], references: [], byPath }),
-    [repo, branch, commit, byPath],
+    () => ({ repo, branch, commit, referencePaths, leanReferences: [], references: [], byPath }),
+    [repo, branch, commit, referencePaths, byPath],
   );
 
   const issue: IssueDraft = apiMapIssue({
-    title: `API-map: new API map — ${parseFullApiMap(text).title || "untitled"}`,
-    heading: "New API map",
+    title: `New API Map — ${parseFullApiMap(text).title || "untitled"}`,
+    heading: "New API Map",
     facts: [
       `**Title:** ${parseFullApiMap(text).title || "_untitled_"}`,
       `**Location:** \`${path}/API-map.md\``,
@@ -175,8 +173,8 @@ export function CreateApiMap({ apiMap }: { apiMap: ApiMap }) {
   const validate = (file: string) => {
     if (pathProblem) return pathProblem;
     const parsed = parseFullApiMap(file);
-    if (!parsed.title || parsed.title === "Title of the API") return "Give the API map a title on its first line (# Title).";
-    if (!parsed.abstract || /^One paragraph saying/.test(parsed.abstract)) return "Write the abstract.";
+    if (!parsed.title || parsed.title === API_MAP_TITLE_PLACEHOLDER || parsed.title === "Title of the API") return "Give the article a title on its first line (# Title).";
+    if (!parsed.abstract || parsed.abstract === API_MAP_ABSTRACT_PLACEHOLDER || /^One paragraph saying/.test(parsed.abstract)) return "Write the abstract.";
     return null;
   };
 
@@ -200,13 +198,12 @@ export function CreateApiMap({ apiMap }: { apiMap: ApiMap }) {
   return (
     <ArticleContext.Provider value={context}>
       <div className="apimap">
-        <a href="/api-tracker" className="mb-2 inline-block text-xs text-muted hover:text-accent">
-          ← API maps
+        <a href="/api-maps" className="mb-2 inline-block text-xs text-muted hover:text-accent">
+          ← API Maps
         </a>
-        <h1 className="page-title-tracker">Create an API map</h1>
+        <h1 className="page-title-tracker">Create an API Map</h1>
         <p className="mb-6 leading-relaxed text-muted">
-          Start the API map for an area of Physlib that doesn&apos;t have one,
-          or for physics that Physlib doesn&apos;t cover yet.
+          Choose a topic, explain the physics, and link to the Lean results that formalize it.
         </p>
 
         <WritingGuide examplePath={byPath.has("Physlib/SpaceAndTime/Time") ? "Physlib/SpaceAndTime/Time" : nodes[0]?.path ?? null} />
@@ -215,8 +212,8 @@ export function CreateApiMap({ apiMap }: { apiMap: ApiMap }) {
           <span>1. Where will it live?</span>
         </h2>
         <div className="grid gap-2 sm:grid-cols-2">
-          {option("existing", "In an existing part of Physlib", "A folder that already has Lean files but no API map yet.")}
-          {option("new", "In a new area", "Physics that Physlib does not cover yet - the map can start as a roadmap of [TODO]s.")}
+          {option("existing", "In an existing part of Physlib", "A folder with Lean files that still needs an API Map.")}
+          {option("new", "In a new area", "A topic that Physlib could cover. Mark results to formalize with [TODO].")}
         </div>
 
         {where === "existing" ? (
@@ -235,9 +232,9 @@ export function CreateApiMap({ apiMap }: { apiMap: ApiMap }) {
                 return (
                   <li key={d.path}>
                     {has ? (
-                      <a href={apiMapHref(d.path)} className="apimap-dir apimap-dir-mapped" title="Already has an API map">
+                      <a href={apiMapHref(d.path)} className="apimap-dir apimap-dir-mapped" title="Read this API Map">
                         <span className="truncate font-mono">{d.path}</span>
-                        <span className="shrink-0 text-[11px]">has a map →</span>
+                        <span className="shrink-0 text-[11px]">Read article →</span>
                       </a>
                     ) : (
                       <button
@@ -281,7 +278,7 @@ export function CreateApiMap({ apiMap }: { apiMap: ApiMap }) {
         <p className={`mt-2 text-sm ${pathProblem ? "text-muted" : "text-success"}`}>
           {pathProblem ?? (
             <>
-              The map will be created at <code className="apimap-code">{path}/API-map.md</code>.
+              The article will be saved at <code className="apimap-code">{path}/API-map.md</code>.
             </>
           )}
         </p>
@@ -293,8 +290,7 @@ export function CreateApiMap({ apiMap }: { apiMap: ApiMap }) {
           key={seed.key}
           notice={
             <Callout>
-              The text box starts with a skeleton map: replace the placeholder
-              text and keep the headings. <b>Preview</b> shows the page as
+              Replace the placeholder text and keep the headings. <b>Preview</b> shows the page as
               readers will see it.
             </Callout>
           }

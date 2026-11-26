@@ -1,0 +1,49 @@
+:global(div):has(> .sidebar) {
+  display: grid;
+  grid-template-columns: clamp(13rem, 21%, 16rem) minmax(0, 1fr);
+  grid-template-areas: "sidebar plot";
+}
+:global(div):has(> .sidebar) > :first-child { grid-area: plot; }
+.sidebar {
+  grid-area: sidebar;
+  min-width: 0;
+  position: relative;
+  border-inline-end: 1px solid var(--rule);
+}
+.panel {
+  --roadmap-stat-gap: .18rem;
+  position: absolute;
+  inset: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
+  padding: 1.25rem 1rem;
+}
+.totals, .context { min-width: 0; }
+.link { align-self: flex-start; color: var(--accent); font-size: .82rem; }
+.link:hover { text-decoration: underline; text-underline-offset: .15em; }
+.panel:has(.context [data-pinned]) > .link { display: none; }
+.context:not(:empty) { border-top: 1px solid var(--rule); padding-top: 1rem; }
+.countLine { font-weight: 600; color: var(--foreground); }
+.panel .sourceCounts { display: grid; gap: var(--roadmap-stat-gap); }
+.panel .sourceCounts > div { display: flex; justify-content: space-between; font-size: inherit; }
+.context .sourceCounts { margin-top: .5rem; }
+.context .fileBreadcrumb {
+  white-space: normal;
+  font-size: .8125rem;
+}
+.fileParents {
+  color: var(--muted);
+  font-size: .75rem;
+  font-weight: 400;
+}
+@media (max-width: 767px) {
+  :global(div):has(> .sidebar) { grid-template-columns: minmax(0, 1fr); grid-template-areas: "plot" "sidebar"; }
+  .sidebar { border-inline-end: 0; border-top: 1px solid var(--rule); }
+  .panel { position: static; padding: .85rem 1rem; gap: .65rem; overflow: visible; }
+  .context:not(:empty) { padding-top: .75rem; }
+}

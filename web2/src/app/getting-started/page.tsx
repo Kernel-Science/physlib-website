@@ -29,13 +29,15 @@ export default function GettingStartedPage() {
 
       <PageHeader id="first-contribution" title="Make Your First Contribution" />
       <p className="mb-4 text-sm leading-relaxed text-foreground/85">
-        If you know the physics and are new to Lean, you can start with an API map.
-        API maps are Markdown guides that explain a topic and link to the
-        relevant Lean declarations. You can choose a topic and draft locally
-        before signing in to GitHub.
+        If you know the physics and are new to Lean, you can write an API map
+        explaining a topic and linking to its Lean declarations. The{" "}
+        <a href="https://github.com/leanprover-community/physlib/blob/master/docs/GettingStarted/FirstAPIMap.md" className="text-accent hover:underline">
+          API map walkthrough
+        </a>{" "}
+        shows how to draft and check one.
       </p>
       <div className="mb-12 flex flex-wrap gap-3">
-        <ButtonLink href="https://github.com/leanprover-community/physlib/blob/master/docs/GettingStarted/FirstAPIMap.md">
+        <ButtonLink href="/api-maps/new">
           Write your first API map
         </ButtonLink>
         <ButtonLink href="/gh-guide" variant="secondary">

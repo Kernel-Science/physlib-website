@@ -336,8 +336,8 @@ export function TaskList({
             </Link>
           )}
           {type === "api-map" && (
-            <Link href="/api-tracker" className="text-accent hover:underline underline-offset-2">
-              Browse and edit maps
+            <Link href="/api-maps" className="text-accent hover:underline underline-offset-2">
+              Browse and edit API maps
             </Link>
           )}
         </div>

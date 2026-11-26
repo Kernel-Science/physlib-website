@@ -76,8 +76,8 @@ const groups: Group[] = [
         title: "Write an API Map",
         body: "API maps are Markdown guides that explain a topic and link to the relevant Lean declarations. If you know the physics and are new to Lean, you can start with one.",
         links: [
-          { label: "See API Maps", href: "/api-tracker" },
-          { label: "Start a New Map", href: "/api-tracker/new" },
+          { label: "Browse API Maps", href: "/api-maps" },
+          { label: "Start an API Map", href: "/api-maps/new" },
         ],
       },
       {

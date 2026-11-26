@@ -4,7 +4,7 @@ import { filterTaskSearch } from "@/lib/task-search";
 
 export const taskQuerySchema = z.object({
   q: z.string().trim().max(200).optional().describe("Match all words in task titles, summaries, labels, or Lean task details."),
-  kind: z.enum(["issue", "todo", "documentation", "api-map"]).optional().describe("Restrict to a task kind. A GitHub issue may also be a Lean TODO or API map task."),
+  kind: z.enum(["issue", "todo", "documentation", "api-map"]).optional().describe("Restrict to a task kind. A GitHub issue may also be a Lean TODO or an API map task."),
   repository: z.enum(["library", "website"]).optional().describe("Search the Physlib Lean library or the Physlib website. Omit to search both."),
   label: z.string().trim().min(1).max(100).optional().describe("Match an exact GitHub issue label, ignoring case."),
   unassigned: z.boolean().optional().describe("When true, return only GitHub issues with a confirmed empty assignee list."),

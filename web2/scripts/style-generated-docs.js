@@ -31,6 +31,8 @@ function styleGeneratedDocs() {
     const filePath = path.join(docsPath, file);
     const html = fs.readFileSync(filePath, 'utf8');
     const withFavicon = html
+      // Remove the earlier preview’s alternate-reader attribute when restyling existing pages.
+      .replace(/<main\b[^>]*>/, tag => tag.replace(/\sdata-verso-href="[^"]*"/g, ''))
       .replaceAll("/icon.svg?v=mono", "/icon.svg?v=rnd1")
       .replaceAll("/physlib-icon-dark.svg?v=mono", "/physlib-icon-dark.svg?v=rnd1")
       .replace(/<link rel="icon" href="[^"]*favicon\.svg"\s*\/?>/, faviconLinks);
@@ -100,10 +102,10 @@ function styleGeneratedDocs() {
       ? pageWithTitle
       : pageWithTitle.replace(/<nav class="nav"><iframe\b[^>]*class="navframe"[^>]*><\/iframe><\/nav>/,
           (sidebar) => `<aside class="docs-sidebar-column">${sidebar}</aside>`);
-    const result = pageWithSidebar.includes('class="docs-site-header"') && !pageWithSidebar.includes('class="docs-site-footer"')
+    const withFooter = pageWithSidebar.includes('class="docs-site-header"') && !pageWithSidebar.includes('class="docs-site-footer"')
       ? pageWithSidebar.replace('</body>', '<iframe class="docs-site-footer" src="/docs-header" title="Physlib footer" loading="lazy"></iframe></body>')
       : pageWithSidebar;
-    if (result !== html) fs.writeFileSync(filePath, result);
+    if (withFooter !== html) fs.writeFileSync(filePath, withFooter);
   }
 }
 

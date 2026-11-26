@@ -156,12 +156,26 @@ export default function DocsHeader() {
         body > header button[aria-label="Toggle menu"] { display: inline-flex; }
         body > header + div.fixed { display: flex; }
       }
-      .docs-header-page-name {
+      .docs-heading-tools, .docs-scope-toggle { display: inline-flex; align-items: baseline; }
+      .docs-heading-tools { gap: .75rem; }
+      .docs-scope-toggle { gap: .3rem; }
+      .docs-header-page-name, .docs-scope-toggle {
         white-space: nowrap;
         color: color-mix(in srgb, var(--foreground) 62%, var(--background));
         font: 400 0.8125rem var(--font-geist-sans), ui-sans-serif, sans-serif;
       }
       a.docs-header-page-name:hover { text-decoration: underline; text-underline-offset: 0.2em; }
+      .docs-scope-toggle button { font: inherit; color: inherit; text-decoration: none; cursor: pointer; padding-block: .35rem; }
+      .docs-scope-toggle button[aria-pressed="true"] { color: var(--accent); }
+      .docs-scope-toggle button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+      @media (max-width: 420px) {
+        body > header > div { padding-inline: .65rem; }
+        .docs-brand, .docs-heading-tools { gap: .45rem; }
+      }
+      @media (max-width: 480px) {
+        .docs-brand { align-items: flex-start; flex-direction: column; gap: 0; }
+        .docs-scope-toggle button { padding-block: .1rem; }
+      }
     `}</style>
   );
 }

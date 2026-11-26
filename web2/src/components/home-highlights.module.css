@@ -1,0 +1,39 @@
+.carousel { position: relative; container-type: inline-size; }
+.pager {
+  position: absolute;
+  inset: auto 0 0 auto;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  color: var(--muted);
+  font-size: .8125rem;
+  font-variant-numeric: tabular-nums;
+}
+.pager button {
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 2.5rem;
+  cursor: pointer;
+  color: inherit;
+}
+.pager button[aria-current] { font-weight: 650; }
+.pager button:hover { text-decoration: underline; text-underline-offset: .18em; }
+.pager button:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+.stage { display: grid; }
+.slide { grid-area: 1 / 1; align-self: center; min-width: 0; }
+.slide[aria-hidden="true"] { visibility: hidden; }
+@media (max-width: 1023px) {
+  .slide { align-self: start; }
+  .carousel[data-slide="1"] .pager { inset-block: calc(min(100cqi, 33rem) + .7rem) auto; }
+}
+.roadmapLink { display: block; }
+.roadmapLink:hover > :last-child { text-decoration: underline; text-underline-offset: .15em; }
+.preview {
+  display: block;
+  width: min(100%, 33rem);
+  aspect-ratio: 1;
+  margin-inline: auto;
+  background: url("/roadmap-view/home-light.webp") center / contain no-repeat;
+}
+:global([data-theme="dark"]) .preview { background-image: url("/roadmap-view/home-dark.webp"); }

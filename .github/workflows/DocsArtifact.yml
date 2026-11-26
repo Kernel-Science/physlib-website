@@ -39,6 +39,9 @@ jobs:
   
         - name: Get Mathlib cache
           run: lake -Kenv=dev exe cache get || true
+
+        - name: Get prebuilt Physlib and Alpha modules
+          run: lake -Kenv=dev exe get_cache --no-mathlib || echo 'Building uncached modules from source.'
   
         - name: Build project
           run: lake -Kenv=dev build Physlib QuantumInfo PhyslibAlpha
@@ -119,7 +122,33 @@ jobs:
   
         - name: Build documentation
           working-directory: docs/build
-          run: lake build Physlib:docs QuantumInfo:docs
+          # Render all three module roots together so the navbar, search index
+          # and cross-library links come from the same doc-gen4 pass.
+          run: |
+            lake build +Physlib:docInfo +PhyslibAlpha:docInfo +QuantumInfo:docInfo
+            lake exe doc-gen4 fromDb --build .lake/build --manifest .lake/build/doc-manifest.json \
+              .lake/build/api-docs.db Physlib PhyslibAlpha QuantumInfo Init Std Lake Lean
+
+        - name: Verify generated module pages and shared indexes
+          run: |
+            python3 - <<'PY'
+            import json
+            from pathlib import Path
+
+            docs = Path("docs/build/.lake/build/doc")
+            modules = json.loads((docs / "declarations/declaration-data.bmp").read_text())["modules"]
+            navbar = (docs / "navbar.html").read_text()
+            for library in ("Physlib", "PhyslibAlpha", "QuantumInfo"):
+                sources = [Path(library + ".lean"), *Path(library).rglob("*.lean")]
+                for source in sources:
+                    page = source.with_suffix(".html")
+                    module = ".".join(source.with_suffix("").parts)
+                    if not (docs / page).is_file() or modules.get(module, {}).get("url") != "./" + page.as_posix():
+                        raise SystemExit(f"Missing documentation page or search entry for {module}")
+                if f'href="./{library}.html"' not in navbar:
+                    raise SystemExit(f"Missing {library} in the module sidebar")
+                print(f"{library}: verified {len(sources)} module pages and search entries")
+            PY
         #End Section
         ##################
 

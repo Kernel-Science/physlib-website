@@ -4,7 +4,7 @@ import { monthRange } from "@/lib/monthly-updates-range";
 import { navSections, site } from "@/lib/site";
 
 // Pages worth indexing that are not navbar items.
-const otherPages = ["/", "/faq", site.feedback, "/documentation-guide", "/search", "/api-tracker/new"];
+const otherPages = ["/", "/faq", site.feedback, "/documentation-guide", "/search", "/api-maps/new"];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const navPages = navSections

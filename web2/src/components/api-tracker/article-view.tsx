@@ -441,7 +441,7 @@ function SummaryCard({
           </SummaryRow>
         )}
         <SummaryRow label="Source">
-          <ExternalLink href={node.url}>API-map.md</ExternalLink>
+          <ExternalLink href={node.url}>Article on GitHub</ExternalLink>
           <span className="text-muted"> · </span>
           <ExternalLink href={treeUrl(repo, branch, node.path)}>folder</ExternalLink>
         </SummaryRow>
@@ -540,12 +540,12 @@ export function ArticleReadView({
         <Callout tone="warning">
           <span className="font-medium text-foreground">Alpha.</span>{" "}
           {parts.mixed ? (
-            `In this API map ${phrase} ${phrase.includes(" and ") ? "are" : "is"} Alpha ` +
+            `In this article ${phrase} ${phrase.includes(" and ") ? "are" : "is"} Alpha ` +
             "(marked below) and the rest is reviewed. The Alpha parts have not yet been " +
             "through Physlib's full review, so they may be incomplete and are likely to change."
           ) : (
             <>
-              This API map has not yet been through Physlib&apos;s full review, so
+              This article has not yet been through Physlib&apos;s full review, so
               it may be incomplete and is likely to change.
             </>
           )}
@@ -645,9 +645,9 @@ export function MissingApiMapView({
   return (
     <div className="rounded-xl border border-dashed border-border bg-surface-secondary/40 p-6">
       <p className="text-sm leading-relaxed text-muted">
-        There is no API map for <span className="text-foreground">{title}</span> yet. It
+        There is no API Map for <span className="text-foreground">{title}</span> yet. It
         would live at <code className="apimap-code">{path}/API-map.md</code>
-        {citedBy.length > 0 && <>, and is already cited by other maps</>}.
+        {citedBy.length > 0 && <>, and is already cited by other articles</>}.
       </p>
       {citedBy.length > 0 && (
         <div className="mt-3 flex flex-wrap gap-1.5">
@@ -659,11 +659,11 @@ export function MissingApiMapView({
         </div>
       )}
       <a
-        href={`/api-tracker/new?path=${encodeURIComponent(path)}&title=${encodeURIComponent(title)}`}
+        href={`/api-maps/new?path=${encodeURIComponent(path)}&title=${encodeURIComponent(title)}`}
         className={`${toolbarAction} mt-4 inline-flex w-fit`}
       >
         <span aria-hidden>＋</span>
-        Start this API map
+        Start this API Map
       </a>
     </div>
   );

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { site } from "@/lib/site";
 import { ContributeLinks } from "@/components/contribute-links";
+import { HomeHighlights } from "@/components/home-highlights";
 import { GitHubIcon } from "@/components/monthly-updates/icons";
 import { PhyslibLogo } from "@/components/physlib-logo";
 
@@ -113,14 +114,16 @@ export default function HomePage() {
         {/* ═══ GET INVOLVED ════════════════════════════════════════ */}
         <div className="flex flex-col justify-center">
           <div className="animate-fade-up mx-auto w-full max-w-xl px-5 delay-100 sm:px-8 lg:max-w-none lg:pl-12">
-            <p className="label-mono text-muted mb-4">Get Involved</p>
-            <h2
-              className="text-2xl font-medium text-foreground mb-8 sm:text-3xl"
-              style={{ letterSpacing: "-0.04em" }}
-            >
-              How you can contribute:
-            </h2>
-            <ContributeLinks />
+            <HomeHighlights>
+              <p className="label-mono text-muted mb-4">Get Involved</p>
+              <h2
+                className="text-2xl font-medium text-foreground mb-8 sm:text-3xl"
+                style={{ letterSpacing: "-0.04em" }}
+              >
+                How you can contribute:
+              </h2>
+              <ContributeLinks />
+            </HomeHighlights>
           </div>
         </div>
       </div>

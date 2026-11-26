@@ -26,7 +26,7 @@ Connect an MCP client using Streamable HTTP at `/api/mcp` on the running site.
 With the default development server, the URL is `http://localhost:3000/api/mcp`.
 Try asking “Which issues are open for the website, and how do I preview a change?”
 
-- `find_tasks` searches website issues and the Lean library's issues, TODOs, documentation tasks, and API map work. Set `repository` to `website` or `library` to narrow the search. Each result links to its source.
+- `find_tasks` searches website issues and the Lean library's issues, TODOs, documentation tasks, and API Map tasks. Set `repository` to `website` or `library` to narrow the search. Each result links to its source.
 - `get_contribution_guide` lists the guides or reads one by ID. Use `website` for local setup and the website PR target. The other guides cover getting started, the library's AI guidelines, and opening a library PR. Clients can also read these guides as Markdown resources.
 
 Scripts can use the same search at `GET /api/tasks`. For example, `/api/tasks?repository=website` lists open website issues, and `/api/tasks?repository=library&q=qubit&limit=5` finds library work mentioning qubits. Check `sources` for data availability and use `nextOffset` to request the next page.
@@ -34,6 +34,21 @@ Scripts can use the same search at `GET /api/tasks`. For example, `/api/tasks?re
 ## Feedback delivery
 
 Both tabs on `/feedback` submit to the published Google Form through `/api/feedback`. Visitors see the Physlib thank-you page after the server verifies Google’s confirmation. If delivery cannot be confirmed, the visitor can retry with their draft intact. The form owner and authorized collaborators can read submissions in Google Forms under **Responses**. When changing the Google Form, check the action, entry IDs, option values and confirmation text in `src/app/api/feedback/route.ts`.
+
+## Physlib Globe data
+
+The Physlib Globe at `/globe` shows Physlib, PhyslibAlpha and bundled QuantumInfo at one pinned Physlib commit. Each native declaration and each open API Map claim has equal area. Lemmas, theorems and axioms use a filled dot. Definitions, constants and other object declarations use an eight-spoke asterisk. Hollow circles come from explicit TODOs in API Maps. A native file region opens its on-site Docs page.
+
+**Generate API map** refreshes the Globe after a successful upstream documentation build, with a Monday fallback and a manual trigger. To rebuild locally, run these commands in `web2`.
+
+```sh
+node scripts/build-roadmap-native-folders.mjs
+python3 scripts/build-roadmap-native-declarations.py
+node scripts/build-verso-roadmap.mjs
+node --test scripts/roadmap.test.mjs
+```
+
+The file and folder contributor credits come from the pinned Physlib Git history. To refresh them, use an authenticated GitHub CLI and run `python3 scripts/build-roadmap-native-contributors.py --repo /path/to/full/physlib/clone`.
 
 ## Learn More
 
