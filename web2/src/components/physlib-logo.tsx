@@ -3,7 +3,7 @@ export function PhyslibLogo() {
     <svg
       viewBox="-12 0 964 275"
       aria-hidden="true"
-      className="block h-auto w-full font-mono text-foreground"
+      className="physlib-wordmark block h-auto w-full text-foreground"
     >
       {/* Git-fork style: heavy lines, big hollow ring nodes, no dot at the vertex. The line in from
           the left carries straight on as the wavy photon; one branch splits off at a sharp angle,
@@ -17,7 +17,7 @@ export function PhyslibLogo() {
       <path d="M604.7 155.6 L587.6 184.0 L571.6 156.2 Z" fill="currentColor" />
       <g fill="currentColor" fontSize="154" fontWeight="600" fontStyle="italic">
         <text x="44" y="221">Phys</text>
-        <text x="449" y="219" transform="rotate(-30 449 219)" className="text-accent/60">lib</text>
+        <text x="449" y="219" transform="rotate(-30 449 219)" className="physlib-wordmark-mono text-accent/60">lib</text>
       </g>
       <path d="M140 130 L203 118" stroke="currentColor" strokeWidth="8" />
       {/* Hollow ring nodes. */}

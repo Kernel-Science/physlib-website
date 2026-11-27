@@ -6,8 +6,8 @@ export function Wordmark() {
   return (
     <>
       <span className="sr-only">{site.name}</span>
-      <span aria-hidden="true">
-        Phys<span className="font-mono text-accent/60">lib</span>
+      <span aria-hidden="true" className="physlib-wordmark">
+        Phys<span className="physlib-wordmark-mono text-accent/60">lib</span>
       </span>
     </>
   );

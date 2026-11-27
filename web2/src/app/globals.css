@@ -187,6 +187,14 @@ body {
 .tracking-sub      { letter-spacing: -0.025em; }
 .tracking-body     { letter-spacing: -0.01em; }
 
+/* Shared typography for the compact Physlib wordmark. */
+.physlib-wordmark {
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+}
+.physlib-wordmark-mono {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+}
+
 /* Monospace uppercase labels (PP Neue Montreal Mono substitute) */
 .label-mono {
   font-family: var(--font-geist-mono), ui-monospace, monospace;

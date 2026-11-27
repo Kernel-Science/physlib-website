@@ -589,8 +589,8 @@ function InteractiveMap({ data, references }: {data?: MapData; references:Refere
               </g>
             ))}
           </g>
-          <text x="0" y="0" textAnchor="middle" dominantBaseline="central" fill="var(--foreground)" fontSize="44" className="font-semibold tracking-[-0.04em]" pointerEvents="none" aria-label="Physlib">
-            <tspan>Phys</tspan><tspan className="font-mono text-accent/60" fill="currentColor">lib</tspan>
+          <text x="0" y="0.28em" textAnchor="middle" dominantBaseline="alphabetic" fill="var(--foreground)" fontSize="44" className="physlib-wordmark font-semibold tracking-[-0.04em]" pointerEvents="none" aria-label="Physlib">
+            <tspan>Phys</tspan><tspan className="physlib-wordmark-mono text-accent/60" fill="currentColor">lib</tspan>
           </text>
           {fieldTiles.map(([owner, tileIndices]) => (
             <g key={owner} data-roadmap-field={owner} className={field && owner !== field.node.path ? styles.otherField : undefined}>
