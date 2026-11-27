@@ -1,0 +1,61 @@
+name: Generate growth
+
+on:
+  schedule:
+    # Weekly, so the sponsor page's charts are never more than a week old.
+    - cron: "40 4 * * 1"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+# Two runs committing to the same branch would race on push.
+concurrency:
+  group: growth
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # Shared with the monthly-updates and API-map generators.
+      - name: Cache physlib clone
+        uses: actions/cache@v4
+        with:
+          path: web2/.cache/physlib.git
+          key: physlib-clone-${{ github.run_id }}
+          restore-keys: physlib-clone-
+
+      - name: Generate growth series
+        working-directory: web2
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node scripts/generate-growth.js
+
+      - name: Commit & push updated growth series
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add web2/data/Growth.json
+          if git diff --cached --quiet; then
+            echo "No growth changes to commit."
+            exit 0
+          fi
+          git commit -m "chore(growth): auto-generated update"
+          git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+
+      # mirror-to-personal.yml mirrors the commit just pushed to the Vercel
+      # deploy repo: it runs on workflow_run for this workflow.

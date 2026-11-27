@@ -276,11 +276,50 @@ body {
   }
 }
 
-/* Sponsor pitch (data/Sponsor.md): each `###` is a giving level, so it reads
-   as a small accent label rather than a full prose heading. */
+/* Sponsor pitch (data/Sponsor.md): a `###` groups options (People, Equipment
+   and events, …), so it reads as a small mono label with a rule above it;
+   each `####` beneath it is one option. */
 .sponsor-pitch .prose-physlib h3 {
-  @apply text-lg font-medium text-accent mt-8 mb-1;
+  @apply mt-10 mb-3 border-t border-border pt-6 text-accent;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.055em;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+.sponsor-pitch .prose-physlib h4 {
+  @apply mt-6 mb-2 text-lg font-medium text-foreground;
   letter-spacing: -0.01em;
+}
+
+/* Sponsor page footnotes: small accent superscripts in the text, and one
+   small list at the very bottom of the page (see getSponsorPitch). */
+.sponsor-pitch sup.footnote-ref {
+  @apply ml-px text-[0.7em] leading-none;
+}
+.sponsor-pitch sup.footnote-ref a {
+  @apply text-accent no-underline hover:underline;
+}
+.sponsor-footnotes .prose-physlib :is(p, li) {
+  @apply m-0 text-xs leading-relaxed text-muted;
+  text-align: left;
+}
+
+/* On a phone, a wide table on the sponsor page scrolls inside its own box
+   instead of widening the page. */
+@media (max-width: 48rem) {
+  .sponsor-pitch .prose-physlib table {
+    display: block;
+    overflow-x: auto;
+  }
+  .sponsor-pitch .prose-physlib :is(th, td) {
+    @apply px-2 text-sm;
+  }
+}
+
+/* Costs sit in the last column; keep each on one line while prose columns wrap. */
+.sponsor-pitch .prose-physlib :is(th, td):last-child {
+  white-space: nowrap;
 }
 
 /* ─── TOC anchor offset (clears fixed navbar) ───────────────── */
