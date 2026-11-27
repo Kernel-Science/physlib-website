@@ -1,6 +1,6 @@
 {
   "repository": "leanprover-community/physlib",
-  "revision": "1c3c16e796fb270aa85cdd488b19d3a086299a46",
+  "revision": "31f35373ab937172abc689c128177c98405dc936",
   "folders": [
     {
       "path": "ClassicalFieldTheory",
@@ -3308,6 +3308,7 @@
     "Physlib/ProbabilisticTheory/Basic.lean",
     "Physlib/ProbabilisticTheory/CStarAlgebra/Basic.lean",
     "Physlib/ProbabilisticTheory/CStarAlgebra/Channel.lean",
+    "Physlib/ProbabilisticTheory/CStarAlgebra/CompletelyPositive.lean",
     "Physlib/ProbabilisticTheory/CStarAlgebra/State.lean",
     "Physlib/ProbabilisticTheory/CStarAlgebra/Traciality.lean",
     "Physlib/ProbabilisticTheory/Channel/Basic.lean",
@@ -3461,6 +3462,7 @@
     "Physlib/QuantumMechanics/Operators/OneDimension/Parity.lean",
     "Physlib/QuantumMechanics/Operators/OneDimension/Position.lean",
     "Physlib/QuantumMechanics/Operators/OneDimension/Unbounded.lean",
+    "Physlib/QuantumMechanics/Operators/SelfAdjoint.lean",
     "Physlib/QuantumMechanics/Operators/SpaceD/AngularMomentum.lean",
     "Physlib/QuantumMechanics/Operators/SpaceD/AngularMomentum/DimThree.lean",
     "Physlib/QuantumMechanics/Operators/SpaceD/Momentum.lean",

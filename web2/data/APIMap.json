@@ -1,8 +1,8 @@
 {
   "repo": "leanprover-community/physlib",
   "branch": "master",
-  "commit": "1c3c16e796fb270aa85cdd488b19d3a086299a46",
-  "generatedAt": "2026-11-27T00:03:27.731Z",
+  "commit": "31f35373ab937172abc689c128177c98405dc936",
+  "generatedAt": "2026-11-27T11:25:24.700Z",
   "nodes": [
     {
       "path": "Physlib/ClassicalFieldTheory/GaugeTheory",
@@ -11047,7 +11047,7 @@
               "text": "positionOperator",
               "fullName": "positionOperator",
               "kind": "def",
-              "line": 350,
+              "line": 351,
               "doc": "The operator on `SpaceDHilbertSpace d` acting by multiplication by `fun x ↦ xᵢ`.",
               "signature": "def positionOperator : SpaceDHilbertSpace d μ →ₗ.[ℂ] SpaceDHilbertSpace d μ"
             }
@@ -11342,27 +11342,27 @@
           "subsections": [
             {
               "title": "Unbounded operators",
-              "body": "An operator on a Hilbert space is a partially defined linear map. It has a dense domain when its\ndomain is a dense subspace, and it is unbounded, in the technical sense used here, when it is\ndensely defined and closable. [1] It is symmetric when the inner-product pairing is symmetric on its\ndomain, which happens exactly when the pairing of each vector with its own image is real. [2]\nSymmetry is stable under sums, powers and closures, and a self-adjoint operator is symmetric and\nclosed. [3] An operator is essentially self-adjoint when its closure is self-adjoint; such an\noperator is unbounded, and its closure is its only self-adjoint extension. [4]\n\nThe adjoint is antitone and conjugate-linear in non-zero scalars, the sum of two adjoints is a\nrestriction of the adjoint of the sum, and likewise for compositions; the adjoint of an unbounded\noperator is again unbounded, and its second adjoint is its closure. [5] A symmetric densely defined\noperator for which T + i and T - i both have the whole space as range is self-adjoint. [6]\nConjugation by a unitary preserves formal adjoints, dense domains and surjectivity of T - z. [7] The\nstandard examples separating the classes of symmetric, essentially self-adjoint and self-adjoint\noperators make the distinction between symmetry and self-adjointness visible. [TODO] These\ndefinitions follow the standard treatments of unbounded operators by Hall {1}, Reed and Simon {2},\nand Schmüdgen {3}. The spectrum, the resolvent, the numerical range and spectral measures of these\noperators belong to spectral theory {4}."
+              "body": "An operator on a Hilbert space is a partially defined linear map. It has a dense domain when its\ndomain is a dense subspace, and it is unbounded, in the technical sense used here, when it is\ndensely defined and closable. [1] It is symmetric when the inner-product pairing is symmetric on its\ndomain, which happens exactly when the pairing of each vector with its own image is real. [2]\nSymmetry is stable under sums, powers and closures, and a self-adjoint operator is symmetric and\nclosed. [3][4] An operator is essentially self-adjoint when its closure is self-adjoint; such an\noperator is unbounded, and its closure is its only self-adjoint extension. [5]\n\nThe adjoint is antitone and conjugate-linear in non-zero scalars, the sum of two adjoints is a\nrestriction of the adjoint of the sum, and likewise for compositions; the adjoint of an unbounded\noperator is again unbounded, and its second adjoint is its closure. [6] A symmetric densely defined\noperator for which T + i and T - i both have the whole space as range is self-adjoint. [7]\nConjugation by a unitary preserves formal adjoints, dense domains and surjectivity of T - z. [8] The\nstandard examples separating the classes of symmetric, essentially self-adjoint and self-adjoint\noperators make the distinction between symmetry and self-adjointness visible. [TODO] These\ndefinitions follow the standard treatments of unbounded operators by Hall {1}, Reed and Simon {2},\nand Schmüdgen {3}. The spectrum, the resolvent, the numerical range and spectral measures of these\noperators belong to spectral theory {4}."
             },
             {
               "title": "Multiplication operators",
-              "body": "A complex function on space {5} gives a multiplication operator on the Hilbert space on space {6},\ndefined on its maximal domain, the vectors whose product with the function is still\nsquare-integrable; for an almost everywhere strongly measurable multiplier the operator is densely\ndefined. [8] For a bounded multiplier the domain is the whole\nspace, and for a multiplier of temperate growth it contains the Schwartz maps. [9] The adjoint of a\nmultiplication operator is multiplication by the conjugate function, so a real multiplier gives a\nself-adjoint operator; multiplication operators are closed and unbounded. [10] They behave\npredictably under scalar multiples, sums and composition. [11]"
+              "body": "A complex function on space {5} gives a multiplication operator on the Hilbert space on space {6},\ndefined on its maximal domain, the vectors whose product with the function is still\nsquare-integrable; for an almost everywhere strongly measurable multiplier the operator is densely\ndefined. [9] For a bounded multiplier the domain is the whole\nspace, and for a multiplier of temperate growth it contains the Schwartz maps. [10] The adjoint of a\nmultiplication operator is multiplication by the conjugate function, so a real multiplier gives a\nself-adjoint operator; multiplication operators are closed and unbounded. [11] They behave\npredictably under scalar multiples, sums and composition. [12]"
             },
             {
               "title": "Position and momentum",
-              "body": "Each component of the position operator is multiplication by a coordinate, first on Schwartz maps\nand then as a partially defined operator on the Hilbert space, where it is densely defined,\nself-adjoint and unbounded. [12] Multiplication by a power of the radius, and by its smooth\nregularization, supplies the multipliers of central potentials; the product stays square-integrable\nunder an explicit condition, and the regularized operators converge to the unregularized one. [13]\n\nEach component of the momentum operator is -iℏ∂ᵢ, first on Schwartz maps and then as a partially\ndefined operator, which is densely defined, symmetric and unbounded on the Schwartz submodule; the\nmomentum squared acts on the same domain. [14] On the Sobolev space H¹ the momentum operator is\nself-adjoint, and not merely symmetric, and likewise the momentum squared on H². [TODO]"
+              "body": "Each component of the position operator is multiplication by a coordinate, first on Schwartz maps\nand then as a partially defined operator on the Hilbert space, where it is densely defined,\nself-adjoint and unbounded. [13] Multiplication by a power of the radius, and by its smooth\nregularization, supplies the multipliers of central potentials; the product stays square-integrable\nunder an explicit condition, and the regularized operators converge to the unregularized one. [14]\n\nEach component of the momentum operator is -iℏ∂ᵢ, first on Schwartz maps and then as a partially\ndefined operator, which is densely defined, symmetric and unbounded on the Schwartz submodule; the\nmomentum squared acts on the same domain. [15] On the Sobolev space H¹ the momentum operator is\nself-adjoint, and not merely symmetric, and likewise the momentum squared on H². [TODO]"
             },
             {
               "title": "Commutation relations",
-              "body": "Position and momentum satisfy the canonical commutation relation [xᵢ, pⱼ] = iℏ δᵢⱼ on Schwartz maps,\nand Leibniz rules reduce a commutator of products to commutators of the factors. [15] The position\ncomponents commute among themselves, as do the momentum components, and the commutator of a position\ncomponent with the momentum squared is 2iℏ pᵢ. [16] A regularized power of the radius commutes with\nitself and with each position component, and its commutators with a momentum component and with the\nmomentum squared are explicit. [17]"
+              "body": "Position and momentum satisfy the canonical commutation relation [xᵢ, pⱼ] = iℏ δᵢⱼ on Schwartz maps,\nand Leibniz rules reduce a commutator of products to commutators of the factors. [16] The position\ncomponents commute among themselves, as do the momentum components, and the commutator of a position\ncomponent with the momentum squared is 2iℏ pᵢ. [17] A regularized power of the radius commutes with\nitself and with each position component, and its commutators with a momentum component and with the\nmomentum squared are explicit. [18]"
             },
             {
               "title": "Angular momentum",
-              "body": "The components 𝐋ᵢⱼ = xᵢpⱼ - xⱼpᵢ of the angular momentum operator and the scalar 𝐋² act on Schwartz\nmaps; the components are antisymmetric in the two indices and vanish for a repeated index, and the\none-, two- and three-dimensional cases each have their own description. [18] Position and momentum\ntransform as vectors under the angular momenta, which close into the Lie algebra of rotations. [19]\nThe scalar 𝐋² commutes with every angular momentum component, with the momentum squared and with any\nregularized power of the radius. [20]\n\nEach angular momentum component acts on the Hilbert space with dense Schwartz domain, agrees almost\neverywhere with its action on Schwartz maps, preserves the Schwartz submodule, and is symmetric and\nclosable. [21] Angular momentum squared acts on the Hilbert space with invariant dense Schwartz\ndomain, equals half the sum of the squares of the components, and is symmetric and closable. [22] In\nthree dimensions the right-handed Cartesian components act on the invariant Schwartz domain, satisfy\nthe Levi-Civita and cyclic commutation relations, and their three squares sum to angular momentum\nsquared. [23] The ladder operators L± = Lx ± i Ly act on Schwartz maps and on the Hilbert space with\ninvariant dense Schwartz domain, where [Lz, L±] = ±ℏ L± and [L², L±] = 0. [24]\n\nAngular momentum extends from its Schwartz domain to self-adjoint operators on the Hilbert space,\nwhose spectra consist of the eigenvalues ℏ² l (l + 1) of the scalar and ℏ m of a chosen component,\nwith the spherical harmonics as the corresponding eigenfunctions. [TODO]"
+              "body": "The components 𝐋ᵢⱼ = xᵢpⱼ - xⱼpᵢ of the angular momentum operator and the scalar 𝐋² act on Schwartz\nmaps; the components are antisymmetric in the two indices and vanish for a repeated index, and the\none-, two- and three-dimensional cases each have their own description. [19] Position and momentum\ntransform as vectors under the angular momenta, which close into the Lie algebra of rotations. [20]\nThe scalar 𝐋² commutes with every angular momentum component, with the momentum squared and with any\nregularized power of the radius. [21]\n\nEach angular momentum component acts on the Hilbert space with dense Schwartz domain, agrees almost\neverywhere with its action on Schwartz maps, preserves the Schwartz submodule, and is symmetric and\nclosable. [22] Angular momentum squared acts on the Hilbert space with invariant dense Schwartz\ndomain, equals half the sum of the squares of the components, and is symmetric and closable. [23] In\nthree dimensions the right-handed Cartesian components act on the invariant Schwartz domain, satisfy\nthe Levi-Civita and cyclic commutation relations, and their three squares sum to angular momentum\nsquared. [24] The ladder operators L± = Lx ± i Ly act on Schwartz maps and on the Hilbert space with\ninvariant dense Schwartz domain, where [Lz, L±] = ±ℏ L± and [L², L±] = 0. [25]\n\nAngular momentum extends from its Schwartz domain to self-adjoint operators on the Hilbert space,\nwhose spectra consist of the eigenvalues ℏ² l (l + 1) of the scalar and ℏ m of a chosen component,\nwith the spherical harmonics as the corresponding eigenfunctions. [TODO]"
             },
             {
               "title": "Statistics of observables",
-              "body": "The expectation value of an observable T in a state ψ is ⟨T⟩ = re ⟪ψ, T ψ⟫, and the centered vector\nis T ψ - ⟨T⟩ψ; for a symmetric operator the pairing is already real. [25] The variance is ‖T ψ -\n⟨T⟩ψ‖², given for a unit vector and a symmetric operator by the second-order formula ⟨T²⟩ - ⟨T⟩²,\nand the standard deviation is its square root; for a unit vector the variance vanishes exactly when\nthe vector is an eigenvector. [26] A vector is an eigenvector of a partially defined operator when\nit is a non-zero element of the domain sent to a multiple of itself. [27] The covariance of two\nobservables in a state is symmetric and reduces to the variance on a single observable. [28]\n\nThe product of the standard deviations of two observables is at least half the size of their\nexpected commutator, in both the Robertson and the Robertson-Schrödinger forms, stated for both a\ncentered and a raw commutator identity. [29] In particular position and momentum obey the Heisenberg\nuncertainty relation: in any unit state of a common domain the product of their standard deviations\nis at least ℏ/2. [TODO]\n\nThese are the textbook notions of Sakurai and Napolitano {7}, Griffiths and Schroeter {8}, and\nHall {1}. The uncertainty bounds go back to Robertson {9} and Schrödinger {10}."
+              "body": "The expectation value of an observable T in a state ψ is ⟨T⟩ = re ⟪ψ, T ψ⟫, and the centered vector\nis T ψ - ⟨T⟩ψ; for a symmetric operator the pairing is already real. [26] The variance is ‖T ψ -\n⟨T⟩ψ‖², given for a unit vector and a symmetric operator by the second-order formula ⟨T²⟩ - ⟨T⟩²,\nand the standard deviation is its square root; for a unit vector the variance vanishes exactly when\nthe vector is an eigenvector. [27] A vector is an eigenvector of a partially defined operator when\nit is a non-zero element of the domain sent to a multiple of itself. [28] The covariance of two\nobservables in a state is symmetric and reduces to the variance on a single observable. [29]\n\nThe product of the standard deviations of two observables is at least half the size of their\nexpected commutator, in both the Robertson and the Robertson-Schrödinger forms, stated for both a\ncentered and a raw commutator identity. [30] In particular position and momentum obey the Heisenberg\nuncertainty relation: in any unit state of a common domain the product of their standard deviations\nis at least ℏ/2. [TODO]\n\nThese are the textbook notions of Sakurai and Napolitano {7}, Griffiths and Schroeter {8}, and\nHall {1}. The uncertainty bounds go back to Robertson {9} and Schrödinger {10}."
             }
           ]
         }
@@ -11376,7 +11376,7 @@
               "text": "HasDenseDomain",
               "fullName": "LinearPMap.HasDenseDomain",
               "kind": "def",
-              "line": 117,
+              "line": 113,
               "doc": "A LinearPMap `U` has dense domain iff `U.domain` is dense in `H`.",
               "signature": "def HasDenseDomain (U : H →ₗ.[ℂ] H') : Prop"
             },
@@ -11384,7 +11384,7 @@
               "text": "IsUnbounded",
               "fullName": "LinearPMap.IsUnbounded",
               "kind": "def",
-              "line": 122,
+              "line": 118,
               "doc": "A LinearPMap is an unbounded operator iff it has dense domain and is closable.",
               "signature": "def IsUnbounded (U : H →ₗ.[ℂ] H') : Prop"
             },
@@ -11392,7 +11392,7 @@
               "text": "isClosable_of_continuous",
               "fullName": "LinearPMap.isClosable_of_continuous",
               "kind": "lemma",
-              "line": 408,
+              "line": 404,
               "doc": "Continuous operators are closable.",
               "signature": "lemma isClosable_of_continuous (h : Continuous U) : U.IsClosable"
             },
@@ -11400,7 +11400,7 @@
               "text": "IsClosed.continuous_of_isClosed_domain",
               "fullName": "LinearPMap.IsClosed.continuous_of_isClosed_domain",
               "kind": "lemma",
-              "line": 475,
+              "line": 471,
               "doc": "The **closed graph theorem** for partial linear maps: a closed operator with closed domain is continuous.",
               "signature": "lemma IsClosed.continuous_of_isClosed_domain [CompleteSpace H] [CompleteSpace H']\n    (hU : U.IsClosed) (h : _root_.IsClosed (U.domain : Set H)) :\n    Continuous U"
             }
@@ -11415,7 +11415,7 @@
               "text": "IsSymmetric",
               "fullName": "LinearPMap.IsSymmetric",
               "kind": "def",
-              "line": 127,
+              "line": 123,
               "doc": "A LinearPMap `T` is symmetric iff `⟪T x, y⟫_ℂ = ⟪x, T y⟫_ℂ` for all `x y : T.domain`.",
               "signature": "def IsSymmetric (T : H →ₗ.[ℂ] H) : Prop"
             },
@@ -11423,7 +11423,7 @@
               "text": "isSymmetric_iff_inner_map_self_real",
               "fullName": "LinearPMap.isSymmetric_iff_inner_map_self_real",
               "kind": "lemma",
-              "line": 742,
+              "line": 738,
               "doc": null,
               "signature": "lemma isSymmetric_iff_inner_map_self_real :\n    T.IsSymmetric ↔ ∀ x : T.domain, conj ⟪T x, x⟫_ℂ = ⟪T x, x⟫_ℂ"
             }
@@ -11438,7 +11438,7 @@
               "text": "IsSymmetric.isClosable",
               "fullName": "LinearPMap.IsSymmetric.isClosable",
               "kind": "lemma",
-              "line": 750,
+              "line": 746,
               "doc": null,
               "signature": "lemma IsSymmetric.isClosable [CompleteSpace H] (h : T.IsSymmetric) (h' : T.HasDenseDomain) :\n    T.IsClosable"
             },
@@ -11446,7 +11446,7 @@
               "text": "IsSymmetric.closure",
               "fullName": "LinearPMap.IsSymmetric.closure",
               "kind": "lemma",
-              "line": 834,
+              "line": 824,
               "doc": "The closure of a symmetric densely-defined operator is symmetric: `T††` is a symmetric closed extension of `T`, so it extends `T.closure`, whose symmetry then descends.",
               "signature": "lemma IsSymmetric.closure [CompleteSpace H] (hsym : T.IsSymmetric) (hdense : T.HasDenseDomain) :\n    T.closure.IsSymmetric"
             },
@@ -11454,7 +11454,7 @@
               "text": "IsSymmetric.add",
               "fullName": "LinearPMap.IsSymmetric.add",
               "kind": "lemma",
-              "line": 804,
+              "line": 794,
               "doc": null,
               "signature": "lemma IsSymmetric.add (h₁ : T₁.IsSymmetric) (h₂ : T₂.IsSymmetric) : (T₁ + T₂).IsSymmetric"
             },
@@ -11462,31 +11462,33 @@
               "text": "IsSymmetric.pow",
               "fullName": "LinearPMap.IsSymmetric.pow",
               "kind": "lemma",
-              "line": 785,
+              "line": 775,
               "doc": null,
               "signature": "lemma IsSymmetric.pow (h : T.IsSymmetric) (n : ℕ) : (T ^ n).IsSymmetric"
-            },
-            {
-              "text": "IsSelfAdjoint.isSymmetric",
-              "fullName": "LinearPMap.IsSelfAdjoint.isSymmetric",
-              "kind": "lemma",
-              "line": 862,
-              "doc": null,
-              "signature": "lemma IsSelfAdjoint.isSymmetric [CompleteSpace H] (h : IsSelfAdjoint T) : T.IsSymmetric"
-            },
-            {
-              "text": "IsSelfAdjoint.isClosed",
-              "fullName": "LinearPMap.IsSelfAdjoint.isClosed",
-              "kind": "lemma",
-              "line": 867,
-              "doc": null,
-              "signature": "lemma IsSelfAdjoint.isClosed [CompleteSpace H] (h : IsSelfAdjoint T) : T.IsClosed"
             }
           ],
           "exists": true
         },
         {
           "index": 4,
+          "file": "Physlib/QuantumMechanics/Operators/SelfAdjoint.lean",
+          "declarations": [
+            {
+              "text": "IsSelfAdjoint.isSymmetric",
+              "fullName": "LinearPMap.IsSelfAdjoint.isSymmetric",
+              "kind": "lemma",
+              "line": 95,
+              "doc": "A self-adjoint operator is symmetric.",
+              "signature": "lemma isSymmetric : T.IsSymmetric"
+            },
+            {
+              "text": "IsSelfAdjoint.isClosed"
+            }
+          ],
+          "exists": true
+        },
+        {
+          "index": 5,
           "file": "Physlib/QuantumMechanics/Operators/EssentiallySelfAdjoint.lean",
           "declarations": [
             {
@@ -11525,14 +11527,14 @@
           "exists": true
         },
         {
-          "index": 5,
+          "index": 6,
           "file": "Physlib/QuantumMechanics/Operators/Basic.lean",
           "declarations": [
             {
               "text": "adjoint_smul",
               "fullName": "LinearPMap.adjoint_smul",
               "kind": "lemma",
-              "line": 316,
+              "line": 312,
               "doc": null,
               "signature": "lemma adjoint_smul [CompleteSpace H] (U : H →ₗ.[ℂ] H') {c : ℂ} (hc : c ≠ 0) :\n    (c • U)† = conj c • U†"
             },
@@ -11540,7 +11542,7 @@
               "text": "adjoint_neg",
               "fullName": "LinearPMap.adjoint_neg",
               "kind": "lemma",
-              "line": 328,
+              "line": 324,
               "doc": null,
               "signature": "lemma adjoint_neg [CompleteSpace H] (U : H →ₗ.[ℂ] H') : (-U)† = -U†"
             },
@@ -11548,7 +11550,7 @@
               "text": "adjoint_antitone",
               "fullName": "LinearPMap.adjoint_antitone",
               "kind": "lemma",
-              "line": 331,
+              "line": 327,
               "doc": null,
               "signature": "lemma adjoint_antitone [CompleteSpace H]\n    (h₁₂ : U₁.HasDenseDomain ∨ ¬U₂.HasDenseDomain) (h_le : U₁ ≤ U₂) : U₂† ≤ U₁†"
             },
@@ -11556,7 +11558,7 @@
               "text": "adjoint_add_le_add_adjoint",
               "fullName": "LinearPMap.adjoint_add_le_add_adjoint",
               "kind": "lemma",
-              "line": 349,
+              "line": 345,
               "doc": null,
               "signature": "lemma adjoint_add_le_add_adjoint [CompleteSpace H]\n    (U₁ U₂ : H →ₗ.[ℂ] H') (h₁₂ : (U₁ + U₂).HasDenseDomain) : U₁† + U₂† ≤ (U₁ + U₂)†"
             },
@@ -11564,7 +11566,7 @@
               "text": "adjoint_compRestricted_le_compRestricted_adjoint",
               "fullName": "LinearPMap.adjoint_compRestricted_le_compRestricted_adjoint",
               "kind": "lemma",
-              "line": 370,
+              "line": 366,
               "doc": null,
               "signature": "lemma adjoint_compRestricted_le_compRestricted_adjoint [CompleteSpace H] [CompleteSpace H']\n    (hV : V.HasDenseDomain) (hVU : (V ∘ᵣ U).HasDenseDomain) : U† ∘ᵣ V† ≤ (V ∘ᵣ U)†"
             },
@@ -11572,7 +11574,7 @@
               "text": "IsUnbounded.adjoint",
               "fullName": "LinearPMap.IsUnbounded.adjoint",
               "kind": "lemma",
-              "line": 656,
+              "line": 652,
               "doc": null,
               "signature": "lemma IsUnbounded.adjoint [CompleteSpace H] [CompleteSpace H'] (h : U.IsUnbounded) :\n    U†.IsUnbounded"
             },
@@ -11580,7 +11582,7 @@
               "text": "IsUnbounded.adjoint_closure_eq_adjoint",
               "fullName": "LinearPMap.IsUnbounded.adjoint_closure_eq_adjoint",
               "kind": "lemma",
-              "line": 679,
+              "line": 675,
               "doc": null,
               "signature": "lemma IsUnbounded.adjoint_closure_eq_adjoint [CompleteSpace H] (h : U.IsUnbounded) :\n    U.closure† = U†"
             },
@@ -11588,7 +11590,7 @@
               "text": "IsUnbounded.adjoint_adjoint_eq_closure",
               "fullName": "LinearPMap.IsUnbounded.adjoint_adjoint_eq_closure",
               "kind": "lemma",
-              "line": 689,
+              "line": 685,
               "doc": null,
               "signature": "lemma IsUnbounded.adjoint_adjoint_eq_closure [CompleteSpace H] [CompleteSpace H']\n    (h : U.IsUnbounded) :\n    U†† = U.closure"
             }
@@ -11596,37 +11598,37 @@
           "exists": true
         },
         {
-          "index": 6,
-          "file": "Physlib/QuantumMechanics/Operators/Basic.lean",
+          "index": 7,
+          "file": "Physlib/QuantumMechanics/Operators/SelfAdjoint.lean",
           "declarations": [
             {
               "text": "IsSymmetric.isSelfAdjoint_of_range_eq_top",
               "fullName": "LinearPMap.IsSymmetric.isSelfAdjoint_of_range_eq_top",
               "kind": "lemma",
-              "line": 898,
+              "line": 53,
               "doc": "Self-adjointness from surjectivity of `T ± i`: a symmetric, densely-defined operator `T` for which `T + I • 1` and `T - I • 1` both have full range is self-adjoint.",
-              "signature": "lemma IsSymmetric.isSelfAdjoint_of_range_eq_top [CompleteSpace H] (hsym : T.IsSymmetric)\n    (hdense : T.HasDenseDomain)\n    (hadd : (T + I • 1).toFun.range = ⊤) (hsub : (T - I • 1).toFun.range = ⊤) :\n    IsSelfAdjoint T"
+              "signature": "lemma IsSymmetric.isSelfAdjoint_of_range_eq_top (hsym : T.IsSymmetric) (hdense : T.HasDenseDomain)\n    (hadd : (T + I • 1).toFun.range = ⊤) (hsub : (T - I • 1).toFun.range = ⊤) :\n    IsSelfAdjoint T"
             },
             {
               "text": "IsSymmetric.isSelfAdjoint_iff",
               "fullName": "LinearPMap.IsSymmetric.isSelfAdjoint_iff",
               "kind": "lemma",
-              "line": 769,
-              "doc": null,
-              "signature": "lemma IsSymmetric.isSelfAdjoint_iff [CompleteSpace H] (h : T.IsSymmetric) (h' : T.HasDenseDomain) :\n    IsSelfAdjoint T ↔ T†.domain = T.domain"
+              "line": 44,
+              "doc": "A densely-defined symmetric operators is self-adjoint *if and only if* it has the same domain as its adjoint.",
+              "signature": "lemma IsSymmetric.isSelfAdjoint_iff (h : T.IsSymmetric) (h' : T.HasDenseDomain) :\n    IsSelfAdjoint T ↔ T†.domain = T.domain"
             }
           ],
           "exists": true
         },
         {
-          "index": 7,
+          "index": 8,
           "file": "Physlib/QuantumMechanics/Operators/Basic.lean",
           "declarations": [
             {
               "text": "unitaryConj",
               "fullName": "LinearPMap.unitaryConj",
               "kind": "def",
-              "line": 588,
+              "line": 584,
               "doc": "The conjugation `u A u⁻¹` of a partially-defined operator `A : H →ₗ.[ℂ] H` by a unitary `u : H ≃ₗᵢ[ℂ] H'`, with domain `u (A.domain) = u⁻¹ ⁻¹' (A.domain)` and action `y ↦ u (A (u⁻¹ y))`. Since `u` and `u⁻¹` are `ℂ`-linear, the result is again `ℂ`-linear.",
               "signature": "def unitaryConj : H' →ₗ.[ℂ] H' where"
             },
@@ -11634,7 +11636,7 @@
               "text": "mem_unitaryConj_domain_iff",
               "fullName": "LinearPMap.mem_unitaryConj_domain_iff",
               "kind": "lemma",
-              "line": 596,
+              "line": 592,
               "doc": "Membership in the conjugated domain: `x ∈ D(u A u⁻¹) ↔ u⁻¹ x ∈ D(A)`.",
               "signature": "lemma mem_unitaryConj_domain_iff {x : H'} :\n    x ∈ (unitaryConj u A).domain ↔ u.symm x ∈ A.domain"
             },
@@ -11642,7 +11644,7 @@
               "text": "unitaryConj_apply",
               "fullName": "LinearPMap.unitaryConj_apply",
               "kind": "lemma",
-              "line": 600,
+              "line": 596,
               "doc": "The defining formula `(u A u⁻¹) x = u (A (u⁻¹ x))`.",
               "signature": "lemma unitaryConj_apply (x : (unitaryConj u A).domain) :\n    unitaryConj u A x = u (A ⟨u.symm (x : H'), (mem_unitaryConj_domain_iff u A).mp x.2⟩)"
             },
@@ -11650,7 +11652,7 @@
               "text": "IsFormalAdjoint.unitaryConj",
               "fullName": "LinearPMap.IsFormalAdjoint.unitaryConj",
               "kind": "lemma",
-              "line": 617,
+              "line": 613,
               "doc": "Unitary conjugation preserves formal adjointness. If `A` is a formal adjoint of `B`, then `u A u⁻¹` is a formal adjoint of `u B u⁻¹`. Unitary conjugation preserves symmetry when `A = B`.",
               "signature": "lemma IsFormalAdjoint.unitaryConj {B : H →ₗ.[ℂ] H} (h : A.IsFormalAdjoint B) :\n    (unitaryConj u A).IsFormalAdjoint (unitaryConj u B)"
             },
@@ -11658,7 +11660,7 @@
               "text": "HasDenseDomain.unitaryConj_dense_domain",
               "fullName": "LinearPMap.HasDenseDomain.unitaryConj_dense_domain",
               "kind": "lemma",
-              "line": 629,
+              "line": 625,
               "doc": "If `A` has dense domain, then so does `u A u⁻¹`: the domain `u⁻¹ ⁻¹' (A.domain)` is the preimage of a dense set under a homeomorphism.",
               "signature": "lemma HasDenseDomain.unitaryConj_dense_domain (hdense : A.HasDenseDomain) :\n    (unitaryConj u A).HasDenseDomain"
             },
@@ -11666,7 +11668,7 @@
               "text": "unitaryConj_sub_smul_surjective",
               "fullName": "LinearPMap.unitaryConj_sub_smul_surjective",
               "kind": "lemma",
-              "line": 633,
+              "line": 629,
               "doc": "If `A - z` is surjective for a scalar `z : ℂ`, then so is `u A u⁻¹ - z`.",
               "signature": "lemma unitaryConj_sub_smul_surjective {z : ℂ} (h : Function.Surjective (A - z • 1).toFun) :\n    Function.Surjective (unitaryConj u A - z • 1).toFun"
             }
@@ -11674,7 +11676,7 @@
           "exists": true
         },
         {
-          "index": 8,
+          "index": 9,
           "file": "Physlib/QuantumMechanics/Operators/SpaceD/Multiplication.lean",
           "declarations": [
             {
@@ -11717,7 +11719,7 @@
           "exists": true
         },
         {
-          "index": 9,
+          "index": 10,
           "file": "Physlib/QuantumMechanics/Operators/SpaceD/Multiplication.lean",
           "declarations": [
             {
@@ -11756,7 +11758,7 @@
           "exists": true
         },
         {
-          "index": 10,
+          "index": 11,
           "file": "Physlib/QuantumMechanics/Operators/SpaceD/Multiplication.lean",
           "declarations": [
             {
@@ -11803,7 +11805,7 @@
           "exists": true
         },
         {
-          "index": 11,
+          "index": 12,
           "file": "Physlib/QuantumMechanics/Operators/SpaceD/Multiplication.lean",
           "declarations": [
             {
@@ -11850,14 +11852,14 @@
           "exists": true
         },
         {
-          "index": 12,
+          "index": 13,
           "file": "Physlib/QuantumMechanics/Operators/SpaceD/Position.lean",
           "declarations": [
             {
               "text": "positionCLM",
               "fullName": "QuantumMechanics.positionCLM",
               "kind": "def",
-              "line": 78,
+              "line": 79,
               "doc": "Component `i` of the position operator is the continuous linear map from `𝓢(Space d, ℂ)` to itself which maps `ψ` to `xᵢψ`.",
               "signature": "def positionCLM : 𝓢(Space d, ℂ) →L[ℂ] 𝓢(Space d, ℂ)"
             },
@@ -11869,7 +11871,7 @@
               "text": "positionCLM_apply",
               "fullName": "QuantumMechanics.positionCLM_apply",
               "kind": "lemma",
-              "line": 94,
+              "line": 95,
               "doc": null,
               "signature": "lemma positionCLM_apply (ψ : 𝓢(Space d, ℂ)) (x : Space d) : 𝐱 i ψ x = x i * ψ x"
             },
@@ -11877,7 +11879,7 @@
               "text": "positionSqCLM_eq",
               "fullName": "QuantumMechanics.positionSqCLM_eq",
               "kind": "lemma",
-              "line": 149,
+              "line": 150,
               "doc": null,
               "signature": "lemma positionSqCLM_eq {d : ℕ} (ε : ℝˣ) :\n    ∑ i, 𝐱 i ∘L 𝐱 i = 𝐫₀ ε 2 - ε.1 ^ 2 • ContinuousLinearMap.id ℂ 𝓢(Space d, ℂ)"
             },
@@ -11885,7 +11887,7 @@
               "text": "positionOperator",
               "fullName": "positionOperator",
               "kind": "def",
-              "line": 350,
+              "line": 351,
               "doc": "The operator on `SpaceDHilbertSpace d` acting by multiplication by `fun x ↦ xᵢ`.",
               "signature": "def positionOperator : SpaceDHilbertSpace d μ →ₗ.[ℂ] SpaceDHilbertSpace d μ"
             },
@@ -11897,7 +11899,7 @@
               "text": "positionOperator_hasDenseDomain",
               "fullName": "positionOperator_hasDenseDomain",
               "kind": "lemma",
-              "line": 356,
+              "line": 357,
               "doc": null,
               "signature": "lemma positionOperator_hasDenseDomain : (𝓧 μ i).HasDenseDomain"
             },
@@ -11905,7 +11907,7 @@
               "text": "positionOperator_isSelfAdjoint",
               "fullName": "positionOperator_isSelfAdjoint",
               "kind": "lemma",
-              "line": 359,
+              "line": 360,
               "doc": null,
               "signature": "lemma positionOperator_isSelfAdjoint [IsFiniteMeasureOnCompacts μ] : IsSelfAdjoint (𝓧 μ i)"
             },
@@ -11913,7 +11915,7 @@
               "text": "positionOperator_isUnbounded",
               "fullName": "positionOperator_isUnbounded",
               "kind": "lemma",
-              "line": 362,
+              "line": 363,
               "doc": null,
               "signature": "lemma positionOperator_isUnbounded [IsFiniteMeasureOnCompacts μ] : (𝓧 μ i).IsUnbounded"
             }
@@ -11921,14 +11923,14 @@
           "exists": true
         },
         {
-          "index": 13,
+          "index": 14,
           "file": "Physlib/QuantumMechanics/Operators/SpaceD/Position.lean",
           "declarations": [
             {
               "text": "radiusRegPowCLM",
               "fullName": "QuantumMechanics.radiusRegPowCLM",
               "kind": "def",
-              "line": 116,
+              "line": 117,
               "doc": "The radius operator to power `s`, regularized by `ε ≠ 0`, is the continuous linear map from `𝓢(Space d, ℂ)` to itself which maps `ψ` to `(‖x‖² + ε²)^(s/2) • ψ`.",
               "signature": "def radiusRegPowCLM {d : ℕ} (ε : ℝˣ) (s : ℝ) : 𝓢(Space d, ℂ) →L[ℂ] 𝓢(Space d, ℂ)"
             },
@@ -11940,7 +11942,7 @@
               "text": "radiusRegPowCLM_comp_eq",
               "fullName": "QuantumMechanics.radiusRegPowCLM_comp_eq",
               "kind": "lemma",
-              "line": 138,
+              "line": 139,
               "doc": null,
               "signature": "lemma radiusRegPowCLM_comp_eq {d : ℕ} (ε : ℝˣ) (s t : ℝ) :\n    𝐫₀[d] ε s ∘L 𝐫₀ ε t = 𝐫₀ ε (s+t)"
             },
@@ -11948,7 +11950,7 @@
               "text": "radiusPowLM",
               "fullName": "QuantumMechanics.radiusPowLM",
               "kind": "def",
-              "line": 160,
+              "line": 161,
               "doc": "The radius operator to power `s` is the linear map from `𝓢(Space d, ℂ)` to `Space d → ℂ` that maps `ψ` to `x ↦ ‖x‖ˢψ(x)` (which is 'nearly' Schwartz for general `s`).",
               "signature": "def radiusPowLM {d : ℕ} (s : ℝ) : 𝓢(Space d, ℂ) →ₗ[ℂ] Space d → ℂ where"
             },
@@ -11960,7 +11962,7 @@
               "text": "radiusPowLM_apply_memHS",
               "fullName": "QuantumMechanics.radiusPowLM_apply_memHS",
               "kind": "lemma",
-              "line": 198,
+              "line": 199,
               "doc": "`x ↦ ‖x‖ˢψ(x)` is square-integrable provided `s` is not too negative.",
               "signature": "lemma radiusPowLM_apply_memHS {d : ℕ} (s : ℝ) (ψ : 𝓢(Space d, ℂ)) (a : ℕ)\n    (hψ : ψ ∈ PolyBddSchwartzMap d a) (h : 0 < d + 2 * (a + s)) :\n    MemHS (𝐫 s ψ)"
             },
@@ -11968,7 +11970,7 @@
               "text": "radiusRegPow_tendsto_radiusPow",
               "fullName": "QuantumMechanics.radiusRegPow_tendsto_radiusPow",
               "kind": "lemma",
-              "line": 284,
+              "line": 285,
               "doc": "`𝐫[ε,s] ψ` converges pointwise to `𝐫[s] ψ` as `ε → 0` except perhaps at `x = 0`.",
               "signature": "lemma radiusRegPow_tendsto_radiusPow {d : ℕ} (s : ℝ) (ψ : 𝓢(Space d, ℂ)) {x : Space d}\n    (hx : x ≠ 0) : Tendsto (fun ε ↦ 𝐫₀ ε s ψ x) nhdsZeroUnits (nhds (𝐫 s ψ x))"
             },
@@ -11976,7 +11978,7 @@
               "text": "radiusRegPowOperator",
               "fullName": "radiusRegPowOperator",
               "kind": "def",
-              "line": 371,
+              "line": 372,
               "doc": "The operator on `SpaceDHilbertSpace d` acting by multiplication by `fun x ↦ (‖x‖² + ε²)^(s/2)`.",
               "signature": "def radiusRegPowOperator (ε : ℝˣ) (s : ℝ) :\n    SpaceDHilbertSpace d μ →ₗ.[ℂ] SpaceDHilbertSpace d μ"
             },
@@ -11984,7 +11986,7 @@
               "text": "radiusRegPowOperator_isSelfAdjoint",
               "fullName": "radiusRegPowOperator_isSelfAdjoint",
               "kind": "lemma",
-              "line": 381,
+              "line": 382,
               "doc": null,
               "signature": "lemma radiusRegPowOperator_isSelfAdjoint [IsFiniteMeasureOnCompacts μ] (ε : ℝˣ) (s : ℝ) :\n    IsSelfAdjoint (𝓡₀ μ ε s)"
             },
@@ -11992,7 +11994,7 @@
               "text": "radiusPowOperator",
               "fullName": "radiusPowOperator",
               "kind": "def",
-              "line": 394,
+              "line": 395,
               "doc": "The operator on `SpaceDHilbertSpace d` acting by multiplication by `fun x ↦ ‖x‖ˢ`.",
               "signature": "def radiusPowOperator (s : ℝ) : SpaceDHilbertSpace d μ →ₗ.[ℂ] SpaceDHilbertSpace d μ"
             },
@@ -12000,7 +12002,7 @@
               "text": "radiusPowOperator_isSelfAdjoint",
               "fullName": "radiusPowOperator_isSelfAdjoint",
               "kind": "lemma",
-              "line": 403,
+              "line": 404,
               "doc": null,
               "signature": "lemma radiusPowOperator_isSelfAdjoint [IsFiniteMeasureOnCompacts μ] (s : ℝ) :\n    IsSelfAdjoint (𝓡 μ s)"
             },
@@ -12008,7 +12010,7 @@
               "text": "radiusPowOperator_domain_ge",
               "fullName": "radiusPowOperator_domain_ge",
               "kind": "lemma",
-              "line": 425,
+              "line": 426,
               "doc": null,
               "signature": "lemma radiusPowOperator_domain_ge {d : ℕ} (s : ℝ) :\n    PolyBddSchwartzSubmodule d ⌊1 - d / 2 - s⌋.toNat ≤ (radiusPowOperator volume s).domain"
             }
@@ -12016,7 +12018,7 @@
           "exists": true
         },
         {
-          "index": 14,
+          "index": 15,
           "file": "Physlib/QuantumMechanics/Operators/SpaceD/Momentum.lean",
           "declarations": [
             {
@@ -12103,7 +12105,7 @@
           "exists": true
         },
         {
-          "index": 15,
+          "index": 16,
           "file": "Physlib/QuantumMechanics/Operators/Commutation.lean",
           "declarations": [
             {
@@ -12174,7 +12176,7 @@
           "exists": true
         },
         {
-          "index": 16,
+          "index": 17,
           "file": "Physlib/QuantumMechanics/Operators/Commutation.lean",
           "declarations": [
             {
@@ -12221,7 +12223,7 @@
           "exists": true
         },
         {
-          "index": 17,
+          "index": 18,
           "file": "Physlib/QuantumMechanics/Operators/Commutation.lean",
           "declarations": [
             {
@@ -12268,7 +12270,7 @@
           "exists": true
         },
         {
-          "index": 18,
+          "index": 19,
           "file": "Physlib/QuantumMechanics/Operators/SpaceD/AngularMomentum.lean",
           "declarations": [
             {
@@ -12355,7 +12357,7 @@
           "exists": true
         },
         {
-          "index": 19,
+          "index": 20,
           "file": "Physlib/QuantumMechanics/Operators/SpaceD/AngularMomentum.lean",
           "declarations": [
             {
@@ -12386,7 +12388,7 @@
           "exists": true
         },
         {
-          "index": 20,
+          "index": 21,
           "file": "Physlib/QuantumMechanics/Operators/SpaceD/AngularMomentum.lean",
           "declarations": [
             {
@@ -12433,7 +12435,7 @@
           "exists": true
         },
         {
-          "index": 21,
+          "index": 22,
           "file": "Physlib/QuantumMechanics/Operators/SpaceD/AngularMomentum.lean",
           "declarations": [
             {
@@ -12512,7 +12514,7 @@
           "exists": true
         },
         {
-          "index": 22,
+          "index": 23,
           "file": "Physlib/QuantumMechanics/Operators/SpaceD/AngularMomentum.lean",
           "declarations": [
             {
@@ -12591,7 +12593,7 @@
           "exists": true
         },
         {
-          "index": 23,
+          "index": 24,
           "file": "Physlib/QuantumMechanics/Operators/SpaceD/AngularMomentum/DimThree.lean",
           "declarations": [
             {
@@ -12678,7 +12680,7 @@
           "exists": true
         },
         {
-          "index": 24,
+          "index": 25,
           "file": "Physlib/QuantumMechanics/Operators/SpaceD/AngularMomentum/DimThree.lean",
           "declarations": [
             {
@@ -12781,7 +12783,7 @@
           "exists": true
         },
         {
-          "index": 25,
+          "index": 26,
           "file": "Physlib/QuantumMechanics/Operators/StateObservables/ExpectedValue.lean",
           "declarations": [
             {
@@ -12836,7 +12838,7 @@
           "exists": true
         },
         {
-          "index": 26,
+          "index": 27,
           "file": "Physlib/QuantumMechanics/Operators/StateObservables/Variance.lean",
           "declarations": [
             {
@@ -12907,7 +12909,7 @@
           "exists": true
         },
         {
-          "index": 27,
+          "index": 28,
           "file": "Physlib/QuantumMechanics/Operators/StateObservables/IsEigenvector.lean",
           "declarations": [
             {
@@ -12938,7 +12940,7 @@
           "exists": true
         },
         {
-          "index": 28,
+          "index": 29,
           "file": "Physlib/QuantumMechanics/Operators/Covariance.lean",
           "declarations": [
             {
@@ -12977,7 +12979,7 @@
           "exists": true
         },
         {
-          "index": 29,
+          "index": 30,
           "file": "Physlib/QuantumMechanics/Operators/Uncertainty.lean",
           "declarations": [
             {
@@ -13126,13 +13128,7 @@
         {
           "done": true,
           "citations": [
-            3
-          ],
-          "alpha": true
-        },
-        {
-          "done": true,
-          "citations": [
+            3,
             4
           ],
           "alpha": true
@@ -13159,15 +13155,15 @@
           "alpha": true
         },
         {
-          "done": false,
-          "citations": [],
-          "alpha": true
-        },
-        {
           "done": true,
           "citations": [
             8
           ],
+          "alpha": true
+        },
+        {
+          "done": false,
+          "citations": [],
           "alpha": true
         },
         {
@@ -13213,15 +13209,15 @@
           "alpha": true
         },
         {
-          "done": false,
-          "citations": [],
-          "alpha": true
-        },
-        {
           "done": true,
           "citations": [
             15
           ],
+          "alpha": true
+        },
+        {
+          "done": false,
+          "citations": [],
           "alpha": true
         },
         {
@@ -13288,15 +13284,15 @@
           "alpha": true
         },
         {
-          "done": false,
-          "citations": [],
-          "alpha": true
-        },
-        {
           "done": true,
           "citations": [
             25
           ],
+          "alpha": true
+        },
+        {
+          "done": false,
+          "citations": [],
           "alpha": true
         },
         {
@@ -13324,6 +13320,13 @@
           "done": true,
           "citations": [
             29
+          ],
+          "alpha": true
+        },
+        {
+          "done": true,
+          "citations": [
+            30
           ],
           "alpha": true
         },
@@ -13849,7 +13852,7 @@
               "text": "resolventSet_eq_regularityDomain",
               "fullName": "LinearPMap.IsSelfAdjoint.resolventSet_eq_regularityDomain",
               "kind": "lemma",
-              "line": 56,
+              "line": 57,
               "doc": null,
               "signature": "lemma resolventSet_eq_regularityDomain : ρ T = T.regularityDomain"
             },
@@ -13857,7 +13860,7 @@
               "text": "mem_resolventSet_of_im_ne_zero",
               "fullName": "LinearPMap.IsSelfAdjoint.mem_resolventSet_of_im_ne_zero",
               "kind": "lemma",
-              "line": 70,
+              "line": 71,
               "doc": "Every non-real `z` lies in the resolvent set of a self-adjoint operator.",
               "signature": "lemma mem_resolventSet_of_im_ne_zero {z : ℂ} (hz : z.im ≠ 0) : z ∈ ρ T"
             },
@@ -13865,7 +13868,7 @@
               "text": "sub_smul_surjective",
               "fullName": "LinearPMap.IsSelfAdjoint.sub_smul_surjective",
               "kind": "lemma",
-              "line": 76,
+              "line": 77,
               "doc": "A self-adjoint operator has `T - z • 1` surjective for every non-real `z`: off the real axis a self-adjoint operator has `z` in its resolvent set, so `T - z • 1` has full range.",
               "signature": "lemma sub_smul_surjective {z : ℂ} (hz : z.im ≠ 0) : Function.Surjective (T - z • 1).toFun"
             },
@@ -13873,7 +13876,7 @@
               "text": "mem_resolventSet_of_range_eq_top",
               "fullName": "LinearPMap.IsSelfAdjoint.mem_resolventSet_of_range_eq_top",
               "kind": "lemma",
-              "line": 81,
+              "line": 82,
               "doc": "`(T - z • 1).range = ⊤` is a sufficient condition for `z ∈ ρ T` (and it is a necessary condition by definition of `ρ`).",
               "signature": "lemma mem_resolventSet_of_range_eq_top {z : ℂ} (h : (T - z • 1).toFun.range = ⊤) : z ∈ ρ T"
             }
@@ -13888,7 +13891,7 @@
               "text": "spectrum_real",
               "fullName": "LinearPMap.IsSelfAdjoint.spectrum_real",
               "kind": "lemma",
-              "line": 96,
+              "line": 97,
               "doc": "The spectrum of a self-adjoint operator is real.",
               "signature": "lemma spectrum_real : σ T ⊆ range ofReal"
             },
@@ -13896,7 +13899,7 @@
               "text": "residualSpectrum_eq_empty",
               "fullName": "LinearPMap.IsSelfAdjoint.residualSpectrum_eq_empty",
               "kind": "lemma",
-              "line": 101,
+              "line": 102,
               "doc": "The residual spectrum of a self-adjoint operator is empty.",
               "signature": "lemma residualSpectrum_eq_empty : σʳ T = ∅"
             }
@@ -13911,7 +13914,7 @@
               "text": "unitaryConj_isSelfAdjoint",
               "fullName": "LinearPMap.unitaryConj_isSelfAdjoint",
               "kind": "lemma",
-              "line": 120,
+              "line": 121,
               "doc": "Unitary conjugation preserves self-adjointness: if `A` is a self-adjoint operator on `H` and `u : H ≃ₗᵢ[ℂ] H'` is unitary, then `u A u⁻¹` is self-adjoint on `H'`. Symmetry, dense domain, and the two deficiency surjectivities of `A` all transfer through `u`.",
               "signature": "lemma unitaryConj_isSelfAdjoint (u : H ≃ₗᵢ[ℂ] H') {A : H →ₗ.[ℂ] H} (hA : IsSelfAdjoint A) :\n    IsSelfAdjoint (A.unitaryConj u)"
             }
@@ -23332,7 +23335,7 @@
               "text": "time_deriv_cross_commute",
               "fullName": "Space.time_deriv_cross_commute",
               "kind": "lemma",
-              "line": 102,
+              "line": 104,
               "doc": "Cross product and time derivative commute.",
               "signature": "lemma time_deriv_cross_commute {s : EuclideanSpace ℝ (Fin 3)} {f : Time → EuclideanSpace ℝ (Fin 3)}\n    (hf : Differentiable ℝ f) :\n    s ⨯ₑ₃ (∂ₜ (fun t => f t) t) = ∂ₜ (fun t => s ⨯ₑ₃ (f t)) t"
             },
@@ -23340,7 +23343,7 @@
               "text": "inner_cross_self",
               "fullName": "Space.inner_cross_self",
               "kind": "lemma",
-              "line": 115,
+              "line": 117,
               "doc": null,
               "signature": "lemma inner_cross_self (v w : EuclideanSpace ℝ (Fin 3)) :\n    inner ℝ v (w ⨯ₑ₃ v) = 0"
             }
@@ -23487,7 +23490,7 @@
               "text": "distCurl",
               "fullName": "Space.distCurl",
               "kind": "def",
-              "line": 690,
+              "line": 727,
               "doc": "The curl of a distribution `Space →d[ℝ] (EuclideanSpace ℝ (Fin 3))` as a distribution `Space →d[ℝ] (EuclideanSpace ℝ (Fin 3))`.",
               "signature": "noncomputable def distCurl : (Space →d[ℝ] (EuclideanSpace ℝ (Fin 3))) →ₗ[ℝ]\n    (Space) →d[ℝ] (EuclideanSpace ℝ (Fin 3)) where"
             }
@@ -26590,7 +26593,7 @@
             },
             {
               "title": "Named quantities",
-              "body": "The base quantities themselves are the subject of the APIs for time {6}, space {7} and\ntemperature {8}, and of the mass and charge modules.\nArea has dimension length squared, with the square metre, square foot, square mile, are, hectare\nand acre, their values in SI units, and one acre equal to 43560 square feet. [54] Speed has\ndimension length over time, with the metre per second, mile per hour, kilometre per hour and\nknot, their values in SI units, and the conversions between them. [55] Energy\nhas dimension mass times length squared over time squared, with the joule, electronvolt, calorie\nand kilowatt hour. [56] Pressure has dimension mass over length over time squared, with the\npascal, millimetre of mercury, bar, standard atmosphere, torr and pound per square inch. [57]\nMomentum has dimension mass times length over time and takes values in d spatial components:\nit is the three-momentum rather than the four-momentum. [58] The mass of a particle is a named\ndimension-carrying quantity in the manner of momentum, and so is its velocity in d spatial\ndimensions. [TODO]"
+              "body": "The base quantities themselves are the subject of the APIs for time {6}, space {7} and\ntemperature {8}, and of the mass and charge modules.\nArea has dimension length squared, with the square metre, square foot, square mile, are, hectare\nand acre, their values in SI units, and one acre equal to 43560 square feet. [54] Speed has\ndimension length over time, with the metre per second, mile per hour, kilometre per hour and\nknot, their values in SI units, and the conversions between them. [55] Energy\nhas dimension mass times length squared over time squared, with the joule, electronvolt, calorie\nand kilowatt hour. [56] Pressure has dimension mass over length over time squared, with the\npascal, millimetre of mercury, bar, standard atmosphere, torr and pound per square inch. [57]\nMomentum has dimension mass times length over time and takes values in d spatial components:\nit is the three-momentum rather than the four-momentum. [58] The mass of a particle is a named\ndimension-carrying quantity in the manner of momentum, a real number with the dimension of\nmass, and so is its velocity in d spatial dimensions, with the dimension of a length over a\ntime. [78][79]"
             },
             {
               "title": "Physical constants",
@@ -29485,6 +29488,36 @@
             }
           ],
           "exists": true
+        },
+        {
+          "index": 78,
+          "file": "Physlib/Units/WithDim/Mass.lean",
+          "declarations": [
+            {
+              "text": "Mass",
+              "fullName": "Mass",
+              "kind": "abbrev",
+              "line": 23,
+              "doc": "The mass of a particle in an arbitrary, but given, set of units: a real number carrying the dimension of mass.",
+              "signature": "abbrev Mass : Type"
+            }
+          ],
+          "exists": true
+        },
+        {
+          "index": 79,
+          "file": "Physlib/Units/WithDim/Velocity.lean",
+          "declarations": [
+            {
+              "text": "Velocity",
+              "fullName": "Velocity",
+              "kind": "abbrev",
+              "line": 24,
+              "doc": "The velocity of a particle in `d`-dimensional space in an arbitrary, but given, set of units: `d` real components carrying the dimension of a length over a time. In `(3+1)d` space time this is the `3`-velocity, not the `4`-velocity.",
+              "signature": "abbrev Velocity (d : ℕ := 3) : Type"
+            }
+          ],
+          "exists": true
         }
       ],
       "references": [
@@ -29964,8 +29997,11 @@
           "alpha": true
         },
         {
-          "done": false,
-          "citations": [],
+          "done": true,
+          "citations": [
+            78,
+            79
+          ],
           "alpha": true
         },
         {
@@ -30091,7 +30127,7 @@
   "directories": [
     {
       "path": "Physlib",
-      "leanFiles": 705,
+      "leanFiles": 707,
       "hasApiMap": false
     },
     {
@@ -30691,7 +30727,7 @@
     },
     {
       "path": "Physlib/ProbabilisticTheory",
-      "leanFiles": 37,
+      "leanFiles": 38,
       "hasApiMap": false
     },
     {
@@ -30706,7 +30742,7 @@
     },
     {
       "path": "Physlib/ProbabilisticTheory/CStarAlgebra",
-      "leanFiles": 4,
+      "leanFiles": 5,
       "hasApiMap": false
     },
     {
@@ -30836,7 +30872,7 @@
     },
     {
       "path": "Physlib/QuantumMechanics",
-      "leanFiles": 63,
+      "leanFiles": 64,
       "hasApiMap": false
     },
     {
@@ -30901,7 +30937,7 @@
     },
     {
       "path": "Physlib/QuantumMechanics/Operators",
-      "leanFiles": 24,
+      "leanFiles": 25,
       "hasApiMap": true
     },
     {
