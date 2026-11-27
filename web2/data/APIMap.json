@@ -1,8 +1,8 @@
 {
   "repo": "leanprover-community/physlib",
   "branch": "master",
-  "commit": "9027e3d7cb78c98452e2154d7e9428b15bae12aa",
-  "generatedAt": "2026-11-26T11:42:42.488Z",
+  "commit": "1c3c16e796fb270aa85cdd488b19d3a086299a46",
+  "generatedAt": "2026-11-27T00:03:27.731Z",
   "nodes": [
     {
       "path": "Physlib/ClassicalFieldTheory/GaugeTheory",
@@ -11376,7 +11376,7 @@
               "text": "HasDenseDomain",
               "fullName": "LinearPMap.HasDenseDomain",
               "kind": "def",
-              "line": 122,
+              "line": 117,
               "doc": "A LinearPMap `U` has dense domain iff `U.domain` is dense in `H`.",
               "signature": "def HasDenseDomain (U : H →ₗ.[ℂ] H') : Prop"
             },
@@ -11384,7 +11384,7 @@
               "text": "IsUnbounded",
               "fullName": "LinearPMap.IsUnbounded",
               "kind": "def",
-              "line": 127,
+              "line": 122,
               "doc": "A LinearPMap is an unbounded operator iff it has dense domain and is closable.",
               "signature": "def IsUnbounded (U : H →ₗ.[ℂ] H') : Prop"
             },
@@ -11392,7 +11392,7 @@
               "text": "isClosable_of_continuous",
               "fullName": "LinearPMap.isClosable_of_continuous",
               "kind": "lemma",
-              "line": 419,
+              "line": 408,
               "doc": "Continuous operators are closable.",
               "signature": "lemma isClosable_of_continuous (h : Continuous U) : U.IsClosable"
             },
@@ -11400,7 +11400,7 @@
               "text": "IsClosed.continuous_of_isClosed_domain",
               "fullName": "LinearPMap.IsClosed.continuous_of_isClosed_domain",
               "kind": "lemma",
-              "line": 486,
+              "line": 475,
               "doc": "The **closed graph theorem** for partial linear maps: a closed operator with closed domain is continuous.",
               "signature": "lemma IsClosed.continuous_of_isClosed_domain [CompleteSpace H] [CompleteSpace H']\n    (hU : U.IsClosed) (h : _root_.IsClosed (U.domain : Set H)) :\n    Continuous U"
             }
@@ -11415,7 +11415,7 @@
               "text": "IsSymmetric",
               "fullName": "LinearPMap.IsSymmetric",
               "kind": "def",
-              "line": 132,
+              "line": 127,
               "doc": "A LinearPMap `T` is symmetric iff `⟪T x, y⟫_ℂ = ⟪x, T y⟫_ℂ` for all `x y : T.domain`.",
               "signature": "def IsSymmetric (T : H →ₗ.[ℂ] H) : Prop"
             },
@@ -11423,7 +11423,7 @@
               "text": "isSymmetric_iff_inner_map_self_real",
               "fullName": "LinearPMap.isSymmetric_iff_inner_map_self_real",
               "kind": "lemma",
-              "line": 753,
+              "line": 742,
               "doc": null,
               "signature": "lemma isSymmetric_iff_inner_map_self_real :\n    T.IsSymmetric ↔ ∀ x : T.domain, conj ⟪T x, x⟫_ℂ = ⟪T x, x⟫_ℂ"
             }
@@ -11438,7 +11438,7 @@
               "text": "IsSymmetric.isClosable",
               "fullName": "LinearPMap.IsSymmetric.isClosable",
               "kind": "lemma",
-              "line": 761,
+              "line": 750,
               "doc": null,
               "signature": "lemma IsSymmetric.isClosable [CompleteSpace H] (h : T.IsSymmetric) (h' : T.HasDenseDomain) :\n    T.IsClosable"
             },
@@ -11446,7 +11446,7 @@
               "text": "IsSymmetric.closure",
               "fullName": "LinearPMap.IsSymmetric.closure",
               "kind": "lemma",
-              "line": 854,
+              "line": 834,
               "doc": "The closure of a symmetric densely-defined operator is symmetric: `T††` is a symmetric closed extension of `T`, so it extends `T.closure`, whose symmetry then descends.",
               "signature": "lemma IsSymmetric.closure [CompleteSpace H] (hsym : T.IsSymmetric) (hdense : T.HasDenseDomain) :\n    T.closure.IsSymmetric"
             },
@@ -11454,7 +11454,7 @@
               "text": "IsSymmetric.add",
               "fullName": "LinearPMap.IsSymmetric.add",
               "kind": "lemma",
-              "line": 824,
+              "line": 804,
               "doc": null,
               "signature": "lemma IsSymmetric.add (h₁ : T₁.IsSymmetric) (h₂ : T₂.IsSymmetric) : (T₁ + T₂).IsSymmetric"
             },
@@ -11462,7 +11462,7 @@
               "text": "IsSymmetric.pow",
               "fullName": "LinearPMap.IsSymmetric.pow",
               "kind": "lemma",
-              "line": 805,
+              "line": 785,
               "doc": null,
               "signature": "lemma IsSymmetric.pow (h : T.IsSymmetric) (n : ℕ) : (T ^ n).IsSymmetric"
             },
@@ -11470,7 +11470,7 @@
               "text": "IsSelfAdjoint.isSymmetric",
               "fullName": "LinearPMap.IsSelfAdjoint.isSymmetric",
               "kind": "lemma",
-              "line": 882,
+              "line": 862,
               "doc": null,
               "signature": "lemma IsSelfAdjoint.isSymmetric [CompleteSpace H] (h : IsSelfAdjoint T) : T.IsSymmetric"
             },
@@ -11478,7 +11478,7 @@
               "text": "IsSelfAdjoint.isClosed",
               "fullName": "LinearPMap.IsSelfAdjoint.isClosed",
               "kind": "lemma",
-              "line": 887,
+              "line": 867,
               "doc": null,
               "signature": "lemma IsSelfAdjoint.isClosed [CompleteSpace H] (h : IsSelfAdjoint T) : T.IsClosed"
             }
@@ -11487,31 +11487,39 @@
         },
         {
           "index": 4,
-          "file": "Physlib/QuantumMechanics/Operators/Basic.lean",
+          "file": "Physlib/QuantumMechanics/Operators/EssentiallySelfAdjoint.lean",
           "declarations": [
             {
               "text": "IsEssentiallySelfAdjoint",
               "fullName": "LinearPMap.IsEssentiallySelfAdjoint",
               "kind": "def",
-              "line": 137,
-              "doc": "A LinearPMap is essentially self-adjoint iff its closure is self-adjoint.",
-              "signature": "def IsEssentiallySelfAdjoint [CompleteSpace H] (T : H →ₗ.[ℂ] H) : Prop"
+              "line": 51,
+              "doc": "An operator is essentially self-adjoint if its closure is self-adjoint.",
+              "signature": "def IsEssentiallySelfAdjoint (T : H →ₗ.[ℂ] H) : Prop"
             },
             {
               "text": "IsEssentiallySelfAdjoint.isUnbounded",
               "fullName": "LinearPMap.IsEssentiallySelfAdjoint.isUnbounded",
               "kind": "lemma",
-              "line": 970,
-              "doc": null,
-              "signature": "lemma IsEssentiallySelfAdjoint.isUnbounded [CompleteSpace H] (h : T.IsEssentiallySelfAdjoint) :\n    T.IsUnbounded"
+              "line": 97,
+              "doc": "An essentially self-adjoint operator is unbounded (densely defined and closable).",
+              "signature": "lemma isUnbounded : T.IsUnbounded"
             },
             {
               "text": "IsEssentiallySelfAdjoint.unique_self_adjoint_extension",
               "fullName": "LinearPMap.IsEssentiallySelfAdjoint.unique_self_adjoint_extension",
               "kind": "lemma",
-              "line": 975,
+              "line": 123,
               "doc": "The closure is the unique self-adjoint extension of an essentially self-adjoint operator.",
-              "signature": "lemma IsEssentiallySelfAdjoint.unique_self_adjoint_extension [CompleteSpace H]\n    (h : T.IsEssentiallySelfAdjoint) {T₂ : H →ₗ.[ℂ] H} (h_le : T ≤ T₂) (h₂ : IsSelfAdjoint T₂) :\n    T₂ = T.closure"
+              "signature": "lemma unique_self_adjoint_extension {T₂ : H →ₗ.[ℂ] H} (h_le : T ≤ T₂) (h₂ : IsSelfAdjoint T₂) :\n    T₂ = T.closure"
+            },
+            {
+              "text": "IsSymmetric.isEssentiallySelfAdjoint_iff",
+              "fullName": "LinearPMap.IsSymmetric.isEssentiallySelfAdjoint_iff",
+              "kind": "lemma",
+              "line": 64,
+              "doc": "A densely-defined symmetric operator is essentially self-adjoint *if and only if* its adjoint and closure have the same domain.",
+              "signature": "lemma IsSymmetric.isEssentiallySelfAdjoint_iff (h : T.IsSymmetric) (h' : T.HasDenseDomain) :\n    T.IsEssentiallySelfAdjoint ↔ T†.domain = T.closure.domain"
             }
           ],
           "exists": true
@@ -11524,7 +11532,7 @@
               "text": "adjoint_smul",
               "fullName": "LinearPMap.adjoint_smul",
               "kind": "lemma",
-              "line": 327,
+              "line": 316,
               "doc": null,
               "signature": "lemma adjoint_smul [CompleteSpace H] (U : H →ₗ.[ℂ] H') {c : ℂ} (hc : c ≠ 0) :\n    (c • U)† = conj c • U†"
             },
@@ -11532,7 +11540,7 @@
               "text": "adjoint_neg",
               "fullName": "LinearPMap.adjoint_neg",
               "kind": "lemma",
-              "line": 339,
+              "line": 328,
               "doc": null,
               "signature": "lemma adjoint_neg [CompleteSpace H] (U : H →ₗ.[ℂ] H') : (-U)† = -U†"
             },
@@ -11540,7 +11548,7 @@
               "text": "adjoint_antitone",
               "fullName": "LinearPMap.adjoint_antitone",
               "kind": "lemma",
-              "line": 342,
+              "line": 331,
               "doc": null,
               "signature": "lemma adjoint_antitone [CompleteSpace H]\n    (h₁₂ : U₁.HasDenseDomain ∨ ¬U₂.HasDenseDomain) (h_le : U₁ ≤ U₂) : U₂† ≤ U₁†"
             },
@@ -11548,7 +11556,7 @@
               "text": "adjoint_add_le_add_adjoint",
               "fullName": "LinearPMap.adjoint_add_le_add_adjoint",
               "kind": "lemma",
-              "line": 360,
+              "line": 349,
               "doc": null,
               "signature": "lemma adjoint_add_le_add_adjoint [CompleteSpace H]\n    (U₁ U₂ : H →ₗ.[ℂ] H') (h₁₂ : (U₁ + U₂).HasDenseDomain) : U₁† + U₂† ≤ (U₁ + U₂)†"
             },
@@ -11556,7 +11564,7 @@
               "text": "adjoint_compRestricted_le_compRestricted_adjoint",
               "fullName": "LinearPMap.adjoint_compRestricted_le_compRestricted_adjoint",
               "kind": "lemma",
-              "line": 381,
+              "line": 370,
               "doc": null,
               "signature": "lemma adjoint_compRestricted_le_compRestricted_adjoint [CompleteSpace H] [CompleteSpace H']\n    (hV : V.HasDenseDomain) (hVU : (V ∘ᵣ U).HasDenseDomain) : U† ∘ᵣ V† ≤ (V ∘ᵣ U)†"
             },
@@ -11564,7 +11572,7 @@
               "text": "IsUnbounded.adjoint",
               "fullName": "LinearPMap.IsUnbounded.adjoint",
               "kind": "lemma",
-              "line": 667,
+              "line": 656,
               "doc": null,
               "signature": "lemma IsUnbounded.adjoint [CompleteSpace H] [CompleteSpace H'] (h : U.IsUnbounded) :\n    U†.IsUnbounded"
             },
@@ -11572,7 +11580,7 @@
               "text": "IsUnbounded.adjoint_closure_eq_adjoint",
               "fullName": "LinearPMap.IsUnbounded.adjoint_closure_eq_adjoint",
               "kind": "lemma",
-              "line": 690,
+              "line": 679,
               "doc": null,
               "signature": "lemma IsUnbounded.adjoint_closure_eq_adjoint [CompleteSpace H] (h : U.IsUnbounded) :\n    U.closure† = U†"
             },
@@ -11580,7 +11588,7 @@
               "text": "IsUnbounded.adjoint_adjoint_eq_closure",
               "fullName": "LinearPMap.IsUnbounded.adjoint_adjoint_eq_closure",
               "kind": "lemma",
-              "line": 700,
+              "line": 689,
               "doc": null,
               "signature": "lemma IsUnbounded.adjoint_adjoint_eq_closure [CompleteSpace H] [CompleteSpace H']\n    (h : U.IsUnbounded) :\n    U†† = U.closure"
             }
@@ -11595,7 +11603,7 @@
               "text": "IsSymmetric.isSelfAdjoint_of_range_eq_top",
               "fullName": "LinearPMap.IsSymmetric.isSelfAdjoint_of_range_eq_top",
               "kind": "lemma",
-              "line": 922,
+              "line": 898,
               "doc": "Self-adjointness from surjectivity of `T ± i`: a symmetric, densely-defined operator `T` for which `T + I • 1` and `T - I • 1` both have full range is self-adjoint.",
               "signature": "lemma IsSymmetric.isSelfAdjoint_of_range_eq_top [CompleteSpace H] (hsym : T.IsSymmetric)\n    (hdense : T.HasDenseDomain)\n    (hadd : (T + I • 1).toFun.range = ⊤) (hsub : (T - I • 1).toFun.range = ⊤) :\n    IsSelfAdjoint T"
             },
@@ -11603,17 +11611,9 @@
               "text": "IsSymmetric.isSelfAdjoint_iff",
               "fullName": "LinearPMap.IsSymmetric.isSelfAdjoint_iff",
               "kind": "lemma",
-              "line": 789,
+              "line": 769,
               "doc": null,
               "signature": "lemma IsSymmetric.isSelfAdjoint_iff [CompleteSpace H] (h : T.IsSymmetric) (h' : T.HasDenseDomain) :\n    IsSelfAdjoint T ↔ T†.domain = T.domain"
-            },
-            {
-              "text": "IsSymmetric.isEssentiallySelfAdjoint_iff",
-              "fullName": "LinearPMap.IsSymmetric.isEssentiallySelfAdjoint_iff",
-              "kind": "lemma",
-              "line": 780,
-              "doc": null,
-              "signature": "lemma IsSymmetric.isEssentiallySelfAdjoint_iff [CompleteSpace H]\n    (h : T.IsSymmetric) (h' : T.HasDenseDomain) :\n    T.IsEssentiallySelfAdjoint ↔ T†.domain = T.closure.domain"
             }
           ],
           "exists": true
@@ -11626,7 +11626,7 @@
               "text": "unitaryConj",
               "fullName": "LinearPMap.unitaryConj",
               "kind": "def",
-              "line": 599,
+              "line": 588,
               "doc": "The conjugation `u A u⁻¹` of a partially-defined operator `A : H →ₗ.[ℂ] H` by a unitary `u : H ≃ₗᵢ[ℂ] H'`, with domain `u (A.domain) = u⁻¹ ⁻¹' (A.domain)` and action `y ↦ u (A (u⁻¹ y))`. Since `u` and `u⁻¹` are `ℂ`-linear, the result is again `ℂ`-linear.",
               "signature": "def unitaryConj : H' →ₗ.[ℂ] H' where"
             },
@@ -11634,7 +11634,7 @@
               "text": "mem_unitaryConj_domain_iff",
               "fullName": "LinearPMap.mem_unitaryConj_domain_iff",
               "kind": "lemma",
-              "line": 607,
+              "line": 596,
               "doc": "Membership in the conjugated domain: `x ∈ D(u A u⁻¹) ↔ u⁻¹ x ∈ D(A)`.",
               "signature": "lemma mem_unitaryConj_domain_iff {x : H'} :\n    x ∈ (unitaryConj u A).domain ↔ u.symm x ∈ A.domain"
             },
@@ -11642,7 +11642,7 @@
               "text": "unitaryConj_apply",
               "fullName": "LinearPMap.unitaryConj_apply",
               "kind": "lemma",
-              "line": 611,
+              "line": 600,
               "doc": "The defining formula `(u A u⁻¹) x = u (A (u⁻¹ x))`.",
               "signature": "lemma unitaryConj_apply (x : (unitaryConj u A).domain) :\n    unitaryConj u A x = u (A ⟨u.symm (x : H'), (mem_unitaryConj_domain_iff u A).mp x.2⟩)"
             },
@@ -11650,7 +11650,7 @@
               "text": "IsFormalAdjoint.unitaryConj",
               "fullName": "LinearPMap.IsFormalAdjoint.unitaryConj",
               "kind": "lemma",
-              "line": 628,
+              "line": 617,
               "doc": "Unitary conjugation preserves formal adjointness. If `A` is a formal adjoint of `B`, then `u A u⁻¹` is a formal adjoint of `u B u⁻¹`. Unitary conjugation preserves symmetry when `A = B`.",
               "signature": "lemma IsFormalAdjoint.unitaryConj {B : H →ₗ.[ℂ] H} (h : A.IsFormalAdjoint B) :\n    (unitaryConj u A).IsFormalAdjoint (unitaryConj u B)"
             },
@@ -11658,7 +11658,7 @@
               "text": "HasDenseDomain.unitaryConj_dense_domain",
               "fullName": "LinearPMap.HasDenseDomain.unitaryConj_dense_domain",
               "kind": "lemma",
-              "line": 640,
+              "line": 629,
               "doc": "If `A` has dense domain, then so does `u A u⁻¹`: the domain `u⁻¹ ⁻¹' (A.domain)` is the preimage of a dense set under a homeomorphism.",
               "signature": "lemma HasDenseDomain.unitaryConj_dense_domain (hdense : A.HasDenseDomain) :\n    (unitaryConj u A).HasDenseDomain"
             },
@@ -11666,7 +11666,7 @@
               "text": "unitaryConj_sub_smul_surjective",
               "fullName": "LinearPMap.unitaryConj_sub_smul_surjective",
               "kind": "lemma",
-              "line": 644,
+              "line": 633,
               "doc": "If `A - z` is surjective for a scalar `z : ℂ`, then so is `u A u⁻¹ - z`.",
               "signature": "lemma unitaryConj_sub_smul_surjective {z : ℂ} (h : Function.Surjective (A - z • 1).toFun) :\n    Function.Surjective (unitaryConj u A - z • 1).toFun"
             }
@@ -13693,7 +13693,7 @@
               "text": "realNumericalRange",
               "fullName": "LinearPMap.IsSymmetric.realNumericalRange",
               "kind": "def",
-              "line": 72,
+              "line": 73,
               "doc": "The projection of the numerical range onto the real axis.",
               "signature": "def realNumericalRange (T : H →ₗ.[ℂ] H) : Set ℝ"
             },
@@ -13701,7 +13701,7 @@
               "text": "im_eq_zero_of_mem_numericalRange",
               "fullName": "LinearPMap.IsSymmetric.im_eq_zero_of_mem_numericalRange",
               "kind": "lemma",
-              "line": 88,
+              "line": 89,
               "doc": "The numerical range of a symmetric operator is contained in the real axis.",
               "signature": "lemma im_eq_zero_of_mem_numericalRange {z : ℂ} (hz : z ∈ Θ T) : z.im = 0"
             },
@@ -13709,7 +13709,7 @@
               "text": "numericalRange_subset",
               "fullName": "LinearPMap.IsSymmetric.numericalRange_subset",
               "kind": "lemma",
-              "line": 94,
+              "line": 95,
               "doc": "The numerical range of a symmetric operator is contained in the real axis.",
               "signature": "lemma numericalRange_subset : Θ T ⊆ range ofReal"
             },
@@ -13717,7 +13717,7 @@
               "text": "numericalRange_eq",
               "fullName": "LinearPMap.IsSymmetric.numericalRange_eq",
               "kind": "lemma",
-              "line": 98,
+              "line": 99,
               "doc": "The numerical range of a symmetric operator is equal to its projection onto the real axis.",
               "signature": "lemma numericalRange_eq : Θ T = ofReal '' Θᵣₑ T"
             },
@@ -13725,7 +13725,7 @@
               "text": "closure_numericalRange_subset",
               "fullName": "LinearPMap.IsSymmetric.closure_numericalRange_subset",
               "kind": "lemma",
-              "line": 103,
+              "line": 104,
               "doc": null,
               "signature": "lemma closure_numericalRange_subset : _root_.closure (Θ T) ⊆ range ofReal"
             }
@@ -13740,7 +13740,7 @@
               "text": "mem_regularityDomain_of_im_ne_zero",
               "fullName": "LinearPMap.IsSymmetric.mem_regularityDomain_of_im_ne_zero",
               "kind": "lemma",
-              "line": 113,
+              "line": 114,
               "doc": "The regularity domain of a symmetric operator contains all complex numbers with non-zero imaginary part.",
               "signature": "lemma mem_regularityDomain_of_im_ne_zero {z : ℂ} (hz : z.im ≠ 0) : z ∈ T.regularityDomain"
             },
@@ -13748,7 +13748,7 @@
               "text": "compl_ofReal_subset_regularityDomain",
               "fullName": "LinearPMap.IsSymmetric.compl_ofReal_subset_regularityDomain",
               "kind": "lemma",
-              "line": 121,
+              "line": 122,
               "doc": "The regularity domain of a symmetric operator contains all complex numbers with non-zero imaginary part.",
               "signature": "lemma compl_ofReal_subset_regularityDomain : (range ofReal)ᶜ ⊆ T.regularityDomain"
             },
@@ -13756,7 +13756,7 @@
               "text": "Iio_subset_regularityDomain",
               "fullName": "LinearPMap.IsSymmetric.Iio_subset_regularityDomain",
               "kind": "lemma",
-              "line": 125,
+              "line": 126,
               "doc": "If `m` is a lower bound on the numerical range then the regularity domain contains `(-∞,m)`.",
               "signature": "lemma Iio_subset_regularityDomain {m : ℝ} (h : m ∈ lowerBounds (Θᵣₑ T)) :\n    ofReal '' Iio m ⊆ T.regularityDomain"
             },
@@ -13764,7 +13764,7 @@
               "text": "Ioi_subset_regularityDomain",
               "fullName": "LinearPMap.IsSymmetric.Ioi_subset_regularityDomain",
               "kind": "lemma",
-              "line": 145,
+              "line": 146,
               "doc": "If `m` is an upper bound on the numerical range then the regularity domain contains `(m,∞)`.",
               "signature": "lemma Ioi_subset_regularityDomain {m : ℝ} (h : m ∈ upperBounds (Θᵣₑ T)) :\n    ofReal '' Ioi m ⊆ T.regularityDomain"
             },
@@ -13772,7 +13772,7 @@
               "text": "regularityDomain_isConnected_iff",
               "fullName": "LinearPMap.IsSymmetric.regularityDomain_isConnected_iff",
               "kind": "lemma",
-              "line": 154,
+              "line": 155,
               "doc": "The regularity domain of a symmetric operator is connected iff it contains a real number.",
               "signature": "lemma regularityDomain_isConnected_iff :\n    IsConnected T.regularityDomain ↔ (ofReal ⁻¹' T.regularityDomain).Nonempty"
             },
@@ -13780,7 +13780,7 @@
               "text": "regularityDomain_isConnected_of_bddBelow",
               "fullName": "LinearPMap.IsSymmetric.regularityDomain_isConnected_of_bddBelow",
               "kind": "lemma",
-              "line": 202,
+              "line": 203,
               "doc": "The regularity domain of a lower semibounded symmetric operator is connected.",
               "signature": "lemma regularityDomain_isConnected_of_bddBelow (h : BddBelow (Θᵣₑ T)) :\n    IsConnected T.regularityDomain"
             },
@@ -13788,7 +13788,7 @@
               "text": "regularityDomain_isConnected_of_bddAbove",
               "fullName": "LinearPMap.IsSymmetric.regularityDomain_isConnected_of_bddAbove",
               "kind": "lemma",
-              "line": 209,
+              "line": 210,
               "doc": "The regularity domain of an upper semibounded symmetric operator is connected.",
               "signature": "lemma regularityDomain_isConnected_of_bddAbove (h : BddAbove (Θᵣₑ T)) :\n    IsConnected T.regularityDomain"
             }
@@ -13803,7 +13803,7 @@
               "text": "pointSpectrum_real",
               "fullName": "LinearPMap.IsSymmetric.pointSpectrum_real",
               "kind": "lemma",
-              "line": 220,
+              "line": 221,
               "doc": "Eigenvalues of a symmetric unbounded operator are real.",
               "signature": "lemma pointSpectrum_real : σᵖ T ⊆ range ofReal"
             }
@@ -13818,7 +13818,7 @@
               "text": "isEssentiallySelfAdjoint_of_defectNumber_eq_zero",
               "fullName": "LinearPMap.IsSymmetric.isEssentiallySelfAdjoint_of_defectNumber_eq_zero",
               "kind": "lemma",
-              "line": 251,
+              "line": 252,
               "doc": "The basic criterion for essential self-adjointness: a symmetric, densely-defined operator whose defect numbers at `I` and `-I` both vanish is essentially self-adjoint.",
               "signature": "lemma isEssentiallySelfAdjoint_of_defectNumber_eq_zero\n    (hdense : T.HasDenseDomain) (hpos : T.defectNumber I = 0) (hneg : T.defectNumber (-I) = 0) :\n    T.IsEssentiallySelfAdjoint"
             },
@@ -13826,7 +13826,7 @@
               "text": "mem_range_sub_of_apply_eq_of_im_ne_zero",
               "fullName": "LinearPMap.IsSymmetric.mem_range_sub_of_apply_eq_of_im_ne_zero",
               "kind": "lemma",
-              "line": 235,
+              "line": 236,
               "doc": "If `T` is symmetric and `T x = c • x`, then `x` lies in the range of `T - z • 1` for every `z` with non-zero imaginary part.",
               "signature": "lemma mem_range_sub_of_apply_eq_of_im_ne_zero {x : T.domain} {c z : ℂ}\n    (hx : T x = c • (x : H)) (hz : z.im ≠ 0) : (x : H) ∈ (T - z • 1).toFun.range"
             },
@@ -13834,7 +13834,7 @@
               "text": "isEssentiallySelfAdjoint_of_dense_span_eigenvectors",
               "fullName": "LinearPMap.IsSymmetric.isEssentiallySelfAdjoint_of_dense_span_eigenvectors",
               "kind": "lemma",
-              "line": 272,
+              "line": 273,
               "doc": "A symmetric operator `T` is essentially self-adjoint if a family of vectors `v j` of its domain, with `T (v j) = c j • v j`, spans a dense subspace. The `v j` need not be orthonormal, and some of them may be zero.",
               "signature": "lemma isEssentiallySelfAdjoint_of_dense_span_eigenvectors {ι : Type*} (v : ι → T.domain)\n    {c : ι → ℂ} (hv : ∀ j, T (v j) = c j • (v j : H))\n    (hspan : Dense (Submodule.span ℂ (Set.range fun j ↦ (v j : H)) : Set H)) :\n    T.IsEssential…"
             }
@@ -30091,7 +30091,7 @@
   "directories": [
     {
       "path": "Physlib",
-      "leanFiles": 702,
+      "leanFiles": 705,
       "hasApiMap": false
     },
     {
@@ -30836,7 +30836,7 @@
     },
     {
       "path": "Physlib/QuantumMechanics",
-      "leanFiles": 60,
+      "leanFiles": 63,
       "hasApiMap": false
     },
     {
@@ -30861,7 +30861,7 @@
     },
     {
       "path": "Physlib/QuantumMechanics/HilbertSpaces",
-      "leanFiles": 15,
+      "leanFiles": 17,
       "hasApiMap": false
     },
     {
@@ -30872,6 +30872,11 @@
     {
       "path": "Physlib/QuantumMechanics/HilbertSpaces/OneDimension",
       "leanFiles": 5,
+      "hasApiMap": false
+    },
+    {
+      "path": "Physlib/QuantumMechanics/HilbertSpaces/Qubit",
+      "leanFiles": 1,
       "hasApiMap": false
     },
     {
@@ -30896,7 +30901,7 @@
     },
     {
       "path": "Physlib/QuantumMechanics/Operators",
-      "leanFiles": 23,
+      "leanFiles": 24,
       "hasApiMap": true
     },
     {
@@ -31281,7 +31286,7 @@
     },
     {
       "path": "PhyslibAlpha",
-      "leanFiles": 849,
+      "leanFiles": 850,
       "hasApiMap": false
     },
     {
@@ -32231,7 +32236,7 @@
     },
     {
       "path": "PhyslibAlpha/QuantumMechanics",
-      "leanFiles": 44,
+      "leanFiles": 45,
       "hasApiMap": false
     },
     {
@@ -32261,12 +32266,17 @@
     },
     {
       "path": "PhyslibAlpha/QuantumMechanics/HilbertSpaces",
-      "leanFiles": 3,
+      "leanFiles": 4,
       "hasApiMap": false
     },
     {
       "path": "PhyslibAlpha/QuantumMechanics/HilbertSpaces/FiniteTarget",
       "leanFiles": 3,
+      "hasApiMap": false
+    },
+    {
+      "path": "PhyslibAlpha/QuantumMechanics/HilbertSpaces/SpaceD",
+      "leanFiles": 1,
       "hasApiMap": false
     },
     {

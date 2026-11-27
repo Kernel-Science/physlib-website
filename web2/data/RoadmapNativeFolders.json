@@ -1,6 +1,6 @@
 {
   "repository": "leanprover-community/physlib",
-  "revision": "9027e3d7cb78c98452e2154d7e9428b15bae12aa",
+  "revision": "1c3c16e796fb270aa85cdd488b19d3a086299a46",
   "folders": [
     {
       "path": "ClassicalFieldTheory",
@@ -2285,9 +2285,17 @@
       "apiMaps": []
     },
     {
-      "path": "QuantumMechanics.HilbertSpaces.SpaceD",
+      "path": "QuantumMechanics.HilbertSpaces.Qubit",
       "libraries": [
         "Physlib"
+      ],
+      "apiMaps": []
+    },
+    {
+      "path": "QuantumMechanics.HilbertSpaces.SpaceD",
+      "libraries": [
+        "Physlib",
+        "PhyslibAlpha"
       ],
       "apiMaps": [
         "Physlib"
@@ -3422,12 +3430,14 @@
     "Physlib/QuantumMechanics/HarmonicOscillator/OneDimension/Eigenfunction.lean",
     "Physlib/QuantumMechanics/HarmonicOscillator/OneDimension/Examples.lean",
     "Physlib/QuantumMechanics/HarmonicOscillator/OneDimension/TISE.lean",
+    "Physlib/QuantumMechanics/HilbertSpaces/Basic.lean",
     "Physlib/QuantumMechanics/HilbertSpaces/FiniteTarget/Basic.lean",
     "Physlib/QuantumMechanics/HilbertSpaces/OneDimension/Basic.lean",
     "Physlib/QuantumMechanics/HilbertSpaces/OneDimension/Gaussians.lean",
     "Physlib/QuantumMechanics/HilbertSpaces/OneDimension/PlaneWaves.lean",
     "Physlib/QuantumMechanics/HilbertSpaces/OneDimension/PositionStates.lean",
     "Physlib/QuantumMechanics/HilbertSpaces/OneDimension/SchwartzSubmodule.lean",
+    "Physlib/QuantumMechanics/HilbertSpaces/Qubit/Basic.lean",
     "Physlib/QuantumMechanics/HilbertSpaces/SpaceD/Basic.lean",
     "Physlib/QuantumMechanics/HilbertSpaces/SpaceD/DirichletSubmodule.lean",
     "Physlib/QuantumMechanics/HilbertSpaces/SpaceD/Fourier.lean",
@@ -3444,6 +3454,7 @@
     "Physlib/QuantumMechanics/Operators/Basic.lean",
     "Physlib/QuantumMechanics/Operators/Commutation.lean",
     "Physlib/QuantumMechanics/Operators/Covariance.lean",
+    "Physlib/QuantumMechanics/Operators/EssentiallySelfAdjoint.lean",
     "Physlib/QuantumMechanics/Operators/Examples.lean",
     "Physlib/QuantumMechanics/Operators/OneDimension/Commutation.lean",
     "Physlib/QuantumMechanics/Operators/OneDimension/Momentum.lean",
@@ -4477,6 +4488,7 @@
     "PhyslibAlpha/QuantumMechanics/HilbertSpaces/FiniteTarget/Operators.lean",
     "PhyslibAlpha/QuantumMechanics/HilbertSpaces/FiniteTarget/Product.lean",
     "PhyslibAlpha/QuantumMechanics/HilbertSpaces/FiniteTarget/ProductState.lean",
+    "PhyslibAlpha/QuantumMechanics/HilbertSpaces/SpaceD/DirichletDensity.lean",
     "PhyslibAlpha/QuantumMechanics/Hydrogen/BoundStatesAdjoint.lean",
     "PhyslibAlpha/QuantumMechanics/Hydrogen/BoundStatesL2.lean",
     "PhyslibAlpha/QuantumMechanics/Hydrogen/Degeneracy.lean",
