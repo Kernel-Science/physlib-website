@@ -15,6 +15,9 @@ const output = process.argv[3] ? resolve(process.argv[3]) : fileURLToPath(new UR
 const chrome = process.env.CHROME_BIN || (process.platform === "darwin"
   ? "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" : "google-chrome");
 const profile = await mkdtemp(join(tmpdir(), "physlib-roadmap-preview-"));
+const imageSize = 1100;
+const padding = 15;
+const transparent = "#00000000";
 
 // This function runs in the site tab. Keep the exact live geometry, typography
 // and colors; the surrounding hero supplies the background under the chart.
@@ -52,8 +55,11 @@ async function prepare(theme) {
   while (svg.firstChild) drawing.append(svg.firstChild);
   svg.append(defs, drawing);
   const bounds = drawing.getBBox(), toScreen = svg.getScreenCTM();
-  const center = new DOMPoint(bounds.x + bounds.width/2, bounds.y + bounds.height/2).matrixTransform(toScreen);
-  const size = Math.ceil(Math.max(bounds.width, bounds.height) * toScreen.a * 1.012);
+  // The full Globe is centered at the SVG origin, independent of the bounds
+  // reported for individual sectors and labels.
+  const center = new DOMPoint(0, 0).matrixTransform(toScreen);
+  const radius = Math.max(-bounds.x, bounds.x + bounds.width, -bounds.y, bounds.y + bounds.height);
+  const size = Math.ceil(2 * radius * toScreen.a * 1.08);
   return {x: Math.round(center.x + scrollX - size/2), y: Math.round(center.y + scrollY - size/2), width:size, height:size, scale:1};
 }
 
@@ -112,7 +118,11 @@ try {
     const clip = await command("Runtime.evaluate",{expression:`(${prepare.toString()})(${JSON.stringify(theme)})`,awaitPromise:true,returnByValue:true});
     if (clip.exceptionDetails) throw Error(clip.exceptionDetails.exception?.description ?? "The chart could not be captured");
     const {data} = await command("Page.captureScreenshot",{format:"png",clip:clip.result.value,captureBeyondViewport:true});
-    const bitmap = sharp(Buffer.from(data,"base64")).resize(1100,1100);
+    const artworkSize = imageSize - 2 * padding;
+    const bitmap = sharp(Buffer.from(data,"base64"))
+      .trim({background:transparent,threshold:1})
+      .resize(artworkSize,artworkSize,{fit:"contain",background:transparent})
+      .extend({top:padding,bottom:padding,left:padding,right:padding,background:transparent});
     previews.set(name,await bitmap.webp({quality:80,alphaQuality:92,smartSubsample:true,effort:6}).toBuffer());
     await command("Page.removeScriptToEvaluateOnNewDocument",{identifier:init.identifier});
   }
