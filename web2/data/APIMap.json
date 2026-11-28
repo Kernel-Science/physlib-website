@@ -1,8 +1,8 @@
 {
   "repo": "leanprover-community/physlib",
   "branch": "master",
-  "commit": "31f35373ab937172abc689c128177c98405dc936",
-  "generatedAt": "2026-11-27T11:25:24.700Z",
+  "commit": "1edac1ae605e2408563022288cfc19452d72afe0",
+  "generatedAt": "2026-11-28T11:06:38.204Z",
   "nodes": [
     {
       "path": "Physlib/ClassicalFieldTheory/GaugeTheory",
@@ -23490,7 +23490,7 @@
               "text": "distCurl",
               "fullName": "Space.distCurl",
               "kind": "def",
-              "line": 727,
+              "line": 774,
               "doc": "The curl of a distribution `Space →d[ℝ] (EuclideanSpace ℝ (Fin 3))` as a distribution `Space →d[ℝ] (EuclideanSpace ℝ (Fin 3))`.",
               "signature": "noncomputable def distCurl : (Space →d[ℝ] (EuclideanSpace ℝ (Fin 3))) →ₗ[ℝ]\n    (Space) →d[ℝ] (EuclideanSpace ℝ (Fin 3)) where"
             }
