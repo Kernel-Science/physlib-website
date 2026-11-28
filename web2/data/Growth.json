@@ -1,0 +1,333 @@
+{
+  "generatedAt": "2026-11-27T09:17:56.128Z",
+  "repo": "leanprover-community/physlib",
+  "branch": "master",
+  "headSha": "2a2630c3fd6c7c9e03a5493c015bbc8b51aae98c",
+  "headDate": "2026-11-27T06:23:16Z",
+  "libraries": [
+    "Physlib",
+    "QuantumInfo"
+  ],
+  "series": [
+    {
+      "month": "2024-04",
+      "sha": "22d784b3438e25a0473fedb795e33d928bb2815c",
+      "lines": 12358,
+      "theorems": 726,
+      "pullRequests": 14,
+      "pullRequestsTotal": 14,
+      "contributors": 1,
+      "stars": 0
+    },
+    {
+      "month": "2024-05",
+      "sha": "801a92944e42086829bfb546fd39d7cc45fd9884",
+      "lines": 14877,
+      "theorems": 896,
+      "pullRequests": 26,
+      "pullRequestsTotal": 40,
+      "contributors": 2,
+      "stars": 11
+    },
+    {
+      "month": "2024-06",
+      "sha": "0116994a58c1c41dcb849bcf941dc98145ce563f",
+      "lines": 16237,
+      "theorems": 931,
+      "pullRequests": 29,
+      "pullRequestsTotal": 69,
+      "contributors": 2,
+      "stars": 17
+    },
+    {
+      "month": "2024-07",
+      "sha": "2439ec3d1d6b436bb1eef1acd2c9e1a1de7640b2",
+      "lines": 18704,
+      "theorems": 1042,
+      "pullRequests": 34,
+      "pullRequestsTotal": 103,
+      "contributors": 2,
+      "stars": 27
+    },
+    {
+      "month": "2024-08",
+      "sha": "86b3b8acd6f6d8e10e9a938c2f5e0c62fd43b261",
+      "lines": 24268,
+      "theorems": 1456,
+      "pullRequests": 32,
+      "pullRequestsTotal": 135,
+      "contributors": 2,
+      "stars": 39
+    },
+    {
+      "month": "2024-09",
+      "sha": "94ceb30da40c8f2f5a236323e9abbfdad513be42",
+      "lines": 25728,
+      "theorems": 1487,
+      "pullRequests": 37,
+      "pullRequestsTotal": 172,
+      "contributors": 2,
+      "stars": 47
+    },
+    {
+      "month": "2024-10",
+      "sha": "16b30667ea33bd43b3075a3607f925a959f435a2",
+      "lines": 31007,
+      "theorems": 1515,
+      "pullRequests": 46,
+      "pullRequestsTotal": 218,
+      "contributors": 2,
+      "stars": 58
+    },
+    {
+      "month": "2024-11",
+      "sha": "a57d38cd6e04a7ed5de4aa3dbb731647e4e6fb20",
+      "lines": 34838,
+      "theorems": 1663,
+      "pullRequests": 31,
+      "pullRequestsTotal": 249,
+      "contributors": 3,
+      "stars": 75
+    },
+    {
+      "month": "2024-12",
+      "sha": "abfda8fd16413be8cdff5135031a477c56fd181a",
+      "lines": 38061,
+      "theorems": 1816,
+      "pullRequests": 18,
+      "pullRequestsTotal": 267,
+      "contributors": 3,
+      "stars": 87
+    },
+    {
+      "month": "2025-01",
+      "sha": "6aab0ba3cdfae63d8d6fb9c4947c252f28e1d15b",
+      "lines": 49594,
+      "theorems": 2434,
+      "pullRequests": 32,
+      "pullRequestsTotal": 299,
+      "contributors": 4,
+      "stars": 101
+    },
+    {
+      "month": "2025-02",
+      "sha": "733bf4f50a2f24e24911cec27ac976a10764c788",
+      "lines": 57381,
+      "theorems": 2864,
+      "pullRequests": 47,
+      "pullRequestsTotal": 346,
+      "contributors": 4,
+      "stars": 112
+    },
+    {
+      "month": "2025-03",
+      "sha": "cac586d1bf2e5109687d50f6c4c389ccb3fb6f06",
+      "lines": 63904,
+      "theorems": 3163,
+      "pullRequests": 62,
+      "pullRequestsTotal": 408,
+      "contributors": 7,
+      "stars": 179
+    },
+    {
+      "month": "2025-04",
+      "sha": "a30f2f3cb4de2f72678509ce3d21059628afbdf0",
+      "lines": 62055,
+      "theorems": 3148,
+      "pullRequests": 86,
+      "pullRequestsTotal": 494,
+      "contributors": 10,
+      "stars": 202
+    },
+    {
+      "month": "2025-05",
+      "sha": "e41a3c8be955e3443b5acb53d3f5674b30a8d93f",
+      "lines": 67842,
+      "theorems": 3378,
+      "pullRequests": 53,
+      "pullRequestsTotal": 547,
+      "contributors": 11,
+      "stars": 241
+    },
+    {
+      "month": "2025-06",
+      "sha": "e8fbff6b24387d0f8f019e79fa837fbf90b6962f",
+      "lines": 75946,
+      "theorems": 3766,
+      "pullRequests": 38,
+      "pullRequestsTotal": 585,
+      "contributors": 13,
+      "stars": 266
+    },
+    {
+      "month": "2025-07",
+      "sha": "1d07315cafe67cacf42ad3f332dbc111f87db9fa",
+      "lines": 84637,
+      "theorems": 4147,
+      "pullRequests": 48,
+      "pullRequestsTotal": 633,
+      "contributors": 16,
+      "stars": 290
+    },
+    {
+      "month": "2025-08",
+      "sha": "a4395398d5fead8f7c07a0d4f54681dc78d6c428",
+      "lines": 88516,
+      "theorems": 4359,
+      "pullRequests": 44,
+      "pullRequestsTotal": 677,
+      "contributors": 19,
+      "stars": 319
+    },
+    {
+      "month": "2025-09",
+      "sha": "9a8fe2739ee239ec98972899efb2c63117c0da89",
+      "lines": 96772,
+      "theorems": 4586,
+      "pullRequests": 30,
+      "pullRequestsTotal": 707,
+      "contributors": 21,
+      "stars": 342
+    },
+    {
+      "month": "2025-10",
+      "sha": "c6ebae93e3d28daa94374b7410471ce70d9787d4",
+      "lines": 104518,
+      "theorems": 4805,
+      "pullRequests": 39,
+      "pullRequestsTotal": 746,
+      "contributors": 25,
+      "stars": 360
+    },
+    {
+      "month": "2025-11",
+      "sha": "b47abf978783d8175b204626e27c639b9f5ef38d",
+      "lines": 110872,
+      "theorems": 5083,
+      "pullRequests": 24,
+      "pullRequestsTotal": 770,
+      "contributors": 27,
+      "stars": 387
+    },
+    {
+      "month": "2025-12",
+      "sha": "7ab21947846f1cfdc247463c24caf848107dbe13",
+      "lines": 111536,
+      "theorems": 5126,
+      "pullRequests": 31,
+      "pullRequestsTotal": 801,
+      "contributors": 30,
+      "stars": 415
+    },
+    {
+      "month": "2026-01",
+      "sha": "d127ae0f9184cd4fe24d13f9adbe94c65e1308fb",
+      "lines": 113252,
+      "theorems": 5185,
+      "pullRequests": 34,
+      "pullRequestsTotal": 835,
+      "contributors": 36,
+      "stars": 455
+    },
+    {
+      "month": "2026-02",
+      "sha": "6286c6b614977a8d6a83086aa6e0c52d7975e4af",
+      "lines": 116809,
+      "theorems": 5385,
+      "pullRequests": 30,
+      "pullRequestsTotal": 865,
+      "contributors": 38,
+      "stars": 490
+    },
+    {
+      "month": "2026-03",
+      "sha": "f2fd44719f302510929e95fd8fb6df74403f9f80",
+      "lines": 148836,
+      "theorems": 7096,
+      "pullRequests": 49,
+      "pullRequestsTotal": 914,
+      "contributors": 40,
+      "stars": 525
+    },
+    {
+      "month": "2026-04",
+      "sha": "cd22b0c28882412447d12d5cfde677c4ad999994",
+      "lines": 152100,
+      "theorems": 7245,
+      "pullRequests": 47,
+      "pullRequestsTotal": 961,
+      "contributors": 42,
+      "stars": 550
+    },
+    {
+      "month": "2026-05",
+      "sha": "d44dd713876a1cf7817747d9846cfd362353057f",
+      "lines": 168519,
+      "theorems": 7859,
+      "pullRequests": 67,
+      "pullRequestsTotal": 1028,
+      "contributors": 48,
+      "stars": 581
+    },
+    {
+      "month": "2026-06",
+      "sha": "05930fe0159096a15956f518d5917bc72a69175d",
+      "lines": 170561,
+      "theorems": 8299,
+      "pullRequests": 197,
+      "pullRequestsTotal": 1225,
+      "contributors": 64,
+      "stars": 625
+    },
+    {
+      "month": "2026-07",
+      "sha": "471cf7ffd7d404b7ccc8ead7e6f14fcca5b84405",
+      "lines": 174834,
+      "theorems": 8748,
+      "pullRequests": 134,
+      "pullRequestsTotal": 1359,
+      "contributors": 74,
+      "stars": 659
+    },
+    {
+      "month": "2026-08",
+      "sha": "12e16cfcefba9073db9e87554281e1929c94cf19",
+      "lines": 184004,
+      "theorems": 9174,
+      "pullRequests": 94,
+      "pullRequestsTotal": 1453,
+      "contributors": 87,
+      "stars": 711
+    },
+    {
+      "month": "2026-09",
+      "sha": "b840c857d3b5b87cd3a0e58eac7696b7bdb2fe17",
+      "lines": 187218,
+      "theorems": 9334,
+      "pullRequests": 101,
+      "pullRequestsTotal": 1554,
+      "contributors": 95,
+      "stars": 760
+    },
+    {
+      "month": "2026-10",
+      "sha": "a8823c76303bab825824ddecb7bd540880c4ae62",
+      "lines": 203724,
+      "theorems": 10138,
+      "pullRequests": 284,
+      "pullRequestsTotal": 1838,
+      "contributors": 110,
+      "stars": 812
+    },
+    {
+      "month": "2026-11",
+      "sha": "2a2630c3fd6c7c9e03a5493c015bbc8b51aae98c",
+      "lines": 209795,
+      "theorems": 10440,
+      "pullRequests": 201,
+      "pullRequestsTotal": 2039,
+      "contributors": 120,
+      "stars": 897
+    }
+  ]
+}

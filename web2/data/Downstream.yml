@@ -1,0 +1,124 @@
+# Who is building on Physlib: shown as rows of cards on the sponsor page,
+# where data/Sponsor.md has the `<!-- downstream-cards -->` marker.
+#
+# Each group is one horizontally scrolling row. Each card needs:
+#   org      who is behind it (shown as a small label)
+#   name     the project, linked to `url`
+#   summary  one or two sentences on how it uses Physlib
+#   uses     short tags: the parts of Physlib it uses, or how
+# and may add `links`, further evidence shown under the summary.
+#
+# Only add a project here after checking its own source (its lakefile,
+# README or paper) shows that it really uses Physlib.
+
+- title: Research labs build their own work on it
+  items:
+    - org: Google DeepMind and Google Quantum AI
+      name: Formal quantum computation
+      uses: ["Quantum information"]
+      url: https://github.com/google-deepmind/formal-quantum-computation
+      summary: A library for verifying quantum programs, built on Physlib's quantum information library.
+      links:
+        - label: Paper
+          url: https://arxiv.org/abs/2611.09822
+    - org: Meta
+      name: ATLAS-Lean
+      uses: ["Classical mechanics", "Electromagnetism", "Quantum mechanics"]
+      url: https://github.com/facebookresearch/atlas-lean
+      summary: A large AI-driven formalization project with three direct dependencies, Mathlib, CSLib and Physlib. It keeps a dedicated library, PhyslibExt, for physics that extends Physlib.
+    - org: Electron-Ion Collider
+      name: EpsilonEridani
+      uses: ["Lorentz tensors", "Spinors", "Wick's theorem"]
+      url: https://github.com/eic/EpsilonEridani
+      summary: An AI-written library of collider physics, "downstream of Mathlib, Physlib, and Tau Ceti". Its roadmaps tell authors that "Physlib is not optional background".
+      links:
+        - label: Roadmaps
+          url: https://github.com/eic/EpsilonEridaniRoadmaps
+    - org: NASA Jet Propulsion Laboratory
+      name: PropertyKindCalculus
+      uses: ["Units and dimensions"]
+      url: https://github.com/nasa-jpl/PropertyKindCalculus
+      summary: A formalization of the kinds of quantity used in measurement, which maps each kind onto Physlib's physical dimensions.
+    - org: Axiom Math
+      name: AreaLaw2D
+      uses: ["Quantum information"]
+      url: https://github.com/AxiomMath/AreaLaw2D
+      summary: Uses Physlib to formalize an AI-generated result from OpenAI on quantum many-body systems. Axiom also offers Physlib as a ready-made environment in its verification service for AI provers.
+      links:
+        - label: Verification service
+          url: https://github.com/AxiomMath/axiom-lean-engine
+    - org: LeanDojo
+      name: Millennium Prize Problems
+      uses: ["Lorentz group", "Spectral theory"]
+      url: https://github.com/lean-dojo/LeanMillenniumPrizeProblems
+      summary: Uses Physlib's Lorentz group and operator theory to state the Yang-Mills problem.
+
+- title: AI provers are trained and tested on it
+  items:
+    - org: Carnegie Mellon University
+      name: miniCTX
+      uses: ["Benchmark"]
+      url: https://arxiv.org/abs/2408.03350
+      summary: A benchmark for AI theorem provers (ICLR 2025) that took one of its six problem sets from Physlib, then called HepLean, as its example from outside mathematics. Its successor keeps a Physlib set.
+      links:
+        - label: Seed Prover's results
+          url: https://github.com/ByteDance-Seed/Seed-Prover
+    - org: UIUC and Rutgers
+      name: PhysProver
+      uses: ["Training data", "Benchmark"]
+      url: https://aclanthology.org/2026.findings-emnlp.565/
+      summary: An AI prover for physics (Findings of EMNLP 2026) whose data comes entirely from Physlib, about 2,900 lemmas to train on and 250 to test on.
+    - org: SFU, AWS and UT Austin
+      name: Lean Refactor
+      uses: ["Benchmark"]
+      url: https://arxiv.org/abs/2605.20244
+      summary: Tests how well AI can improve existing proofs, using theorems from Physlib. Its competition at a NeurIPS 2026 workshop takes Physlib as one of six sources of proofs.
+      links:
+        - label: Competition
+          url: https://huggingface.co/spaces/delta-lab-ai/lean-refactor-arena
+    - org: Project Numina
+      name: Lean Census
+      uses: ["Reference library"]
+      url: https://arxiv.org/abs/2611.28430
+      summary: Uses Physlib as one of two human-written reference libraries against which AI-generated Lean code is measured.
+    - org: Axiomatic AI, Math Inc. and others
+      name: SorryDB
+      uses: ["Benchmark"]
+      url: https://arxiv.org/abs/2603.02668
+      summary: A benchmark of unfinished proofs from real Lean projects, including Physlib and its quantum information library.
+    - org: LeanDojo
+      name: QuantumLean-Bench
+      uses: ["Benchmark", "Quantum mechanics"]
+      url: https://github.com/lean-dojo/QuantumLean-Bench
+      summary: A benchmark of 931 quantum-science problems. Its physics problems take Physlib's finite-dimensional Hilbert space as the state space.
+
+- title: The Lean ecosystem relies on it
+  items:
+    - org: Mathlib
+      name: Significant downstream projects
+      uses: ["Testing"]
+      url: https://github.com/leanprover-community/mathlib4/blob/master/scripts/downstream_repos.yml
+      summary: Mathlib lists Physlib among its significant downstream projects, and the Lean community tests it against every new version of Mathlib.
+      links:
+        - label: Compatibility reports
+          url: https://github.com/leanprover-community/downstream-reports
+    - org: Lean FRO
+      name: Lean's code formatter
+      uses: ["Testing"]
+      url: https://github.com/leanprover/lean4/pull/15218
+      summary: Lean's developers used Physlib as one of four codebases to try out Lean's new code formatter.
+    - org: LeanExplore
+      name: Search for Lean
+      uses: ["Search"]
+      url: https://arxiv.org/abs/2506.11085
+      summary: A search engine for Lean, also used by AI agents, that has indexed Physlib since its first release.
+    - org: University of Waterloo and Perimeter Institute
+      name: Lean-verified quantum information theory
+      uses: ["Teaching", "Quantum information"]
+      url: https://github.com/rodolfor-s/lean-quinfo-lectures
+      summary: A graduate course that teaches theorem proving for quantum information with Physlib.
+    - org: PUC-Rio
+      name: Introduction to Lean
+      uses: ["Teaching"]
+      url: https://github.com/TecMF/intro-lean-2026
+      summary: An introductory Lean course whose example project depends on Physlib.
